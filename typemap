@@ -1,0 +1,284 @@
+WGPUAdapter					T_PTROBJ
+WGPUAdapterProperties				T_OPAQUE_STRUCT
+WGPUAdapterProperties *				T_PTROBJ
+WGPUAdapterType					T_PTROBJ
+WGPUAddressMode					T_PTROBJ
+WGPUBackendType					T_PTROBJ
+WGPUBindGroup					T_PTROBJ
+WGPUBindGroupDescriptor				T_OPAQUE_STRUCT
+WGPUBindGroupDescriptor *			T_PTROBJ
+WGPUBindGroupDescriptor const *			T_PTROBJ
+WGPUBindGroupEntry				T_OPAQUE_STRUCT
+WGPUBindGroupEntry *				T_PTROBJ
+WGPUBindGroupLayout				T_PTROBJ
+WGPUBindGroupLayoutDescriptor			T_OPAQUE_STRUCT
+WGPUBindGroupLayoutDescriptor *			T_PTROBJ
+WGPUBindGroupLayoutDescriptor const *		T_PTROBJ
+WGPUBindGroupLayoutEntry			T_OPAQUE_STRUCT
+WGPUBindGroupLayoutEntry *			T_PTROBJ
+WGPUBlendComponent				T_OPAQUE_STRUCT
+WGPUBlendComponent *				T_PTROBJ
+WGPUBlendFactor					T_PTROBJ
+WGPUBlendOperation				T_PTROBJ
+WGPUBlendState					T_OPAQUE_STRUCT
+WGPUBlendState *				T_PTROBJ
+WGPUBuffer					T_PTROBJ
+WGPUBufferBindingLayout				T_OPAQUE_STRUCT
+WGPUBufferBindingLayout *			T_PTROBJ
+WGPUBufferBindingType				T_PTROBJ
+WGPUBufferDescriptor				T_OPAQUE_STRUCT
+WGPUBufferDescriptor *				T_PTROBJ
+WGPUBufferDescriptor const *			T_PTROBJ
+WGPUBufferMapCallback				T_PTROBJ
+WGPUBufferMapState				T_PTROBJ
+WGPUBufferUsage					T_PTROBJ
+WGPUBufferUsageFlags				T_PTROBJ
+WGPUChainedStruct				T_OPAQUE_STRUCT
+WGPUChainedStruct *				T_PTROBJ
+WGPUChainedStructOut				T_OPAQUE_STRUCT
+WGPUChainedStructOut *				T_PTROBJ
+WGPUColor					T_OPAQUE_STRUCT
+WGPUColor *					T_PTROBJ
+WGPUColor const *				T_PTROBJ
+WGPUColorTargetState				T_OPAQUE_STRUCT
+WGPUColorTargetState *				T_PTROBJ
+WGPUColorWriteMaskFlags				T_PTROBJ
+WGPUCommandBuffer				T_PTROBJ
+WGPUCommandBuffer const *			T_PTROBJ
+WGPUCommandBufferDescriptor			T_OPAQUE_STRUCT
+WGPUCommandBufferDescriptor *			T_PTROBJ
+WGPUCommandBufferDescriptor const *		T_PTROBJ
+WGPUCommandEncoder				T_PTROBJ
+WGPUCommandEncoderDescriptor			T_OPAQUE_STRUCT
+WGPUCommandEncoderDescriptor *			T_PTROBJ
+WGPUCommandEncoderDescriptor const *		T_PTROBJ
+WGPUCompareFunction				T_PTROBJ
+WGPUCompilationInfo				T_OPAQUE_STRUCT
+WGPUCompilationInfo *				T_PTROBJ
+WGPUCompilationInfoCallback			T_PTROBJ
+WGPUCompilationMessage				T_OPAQUE_STRUCT
+WGPUCompilationMessage *			T_PTROBJ
+WGPUCompilationMessageType			T_PTROBJ
+WGPUComputePassDescriptor			T_OPAQUE_STRUCT
+WGPUComputePassDescriptor *			T_PTROBJ
+WGPUComputePassDescriptor const *		T_PTROBJ
+WGPUComputePassEncoder				T_PTROBJ
+WGPUComputePassTimestampLocation		T_PTROBJ
+WGPUComputePassTimestampWrite			T_OPAQUE_STRUCT
+WGPUComputePassTimestampWrite *			T_PTROBJ
+WGPUComputePipeline				T_PTROBJ
+WGPUComputePipelineDescriptor			T_OPAQUE_STRUCT
+WGPUComputePipelineDescriptor *			T_PTROBJ
+WGPUComputePipelineDescriptor const *		T_PTROBJ
+WGPUConstantEntry				T_OPAQUE_STRUCT
+WGPUConstantEntry *				T_PTROBJ
+WGPUCreateComputePipelineAsyncCallback		T_PTROBJ
+WGPUCreateRenderPipelineAsyncCallback		T_PTROBJ
+WGPUCullMode					T_PTROBJ
+WGPUDepthStencilState				T_OPAQUE_STRUCT
+WGPUDepthStencilState *				T_PTROBJ
+WGPUDevice					T_PTROBJ
+WGPUDeviceDescriptor				T_OPAQUE_STRUCT
+WGPUDeviceDescriptor *				T_PTROBJ
+WGPUDeviceDescriptor const *			T_PTROBJ
+WGPUDeviceLostCallback				T_PTROBJ
+WGPUErrorCallback				T_PTROBJ
+WGPUErrorFilter					T_PTROBJ
+WGPUExtent3D					T_OPAQUE_STRUCT
+WGPUExtent3D *					T_PTROBJ
+WGPUExtent3D const *				T_PTROBJ
+WGPUFeatureName					T_PTROBJ
+WGPUFeatureName *				T_PTROBJ
+WGPUFilterMode					T_PTROBJ
+WGPUFragmentState				T_OPAQUE_STRUCT
+WGPUFragmentState *				T_PTROBJ
+WGPUFrontFace					T_PTROBJ
+WGPUImageCopyBuffer				T_OPAQUE_STRUCT
+WGPUImageCopyBuffer *				T_PTROBJ
+WGPUImageCopyBuffer const *			T_PTROBJ
+WGPUImageCopyTexture				T_OPAQUE_STRUCT
+WGPUImageCopyTexture *				T_PTROBJ
+WGPUImageCopyTexture const *			T_PTROBJ
+WGPUIndexFormat					T_PTROBJ
+WGPUIndexFormat format				T_PTROBJ
+WGPUInstance					T_PTROBJ
+WGPUInstanceDescriptor				T_OPAQUE_STRUCT
+WGPUInstanceDescriptor *			T_PTROBJ
+WGPUInstanceDescriptor const *			T_PTROBJ
+WGPULimits					T_OPAQUE_STRUCT
+WGPULimits *					T_PTROBJ
+WGPULoadOp					T_PTROBJ
+WGPUMapModeFlags				T_PTROBJ
+WGPUMipmapFilterMode				T_PTROBJ
+WGPUMultisampleState				T_OPAQUE_STRUCT
+WGPUMultisampleState *				T_PTROBJ
+WGPUOrigin3D					T_OPAQUE_STRUCT
+WGPUOrigin3D *					T_PTROBJ
+WGPUPipelineLayout				T_PTROBJ
+WGPUPipelineLayoutDescriptor			T_OPAQUE_STRUCT
+WGPUPipelineLayoutDescriptor *			T_PTROBJ
+WGPUPipelineLayoutDescriptor const *		T_PTROBJ
+WGPUPowerPreference				T_PTROBJ
+WGPUPresentMode					T_PTROBJ
+WGPUPrimitiveDepthClipControl			T_OPAQUE_STRUCT
+WGPUPrimitiveDepthClipControl *			T_PTROBJ
+WGPUPrimitiveState				T_OPAQUE_STRUCT
+WGPUPrimitiveState *				T_PTROBJ
+WGPUPrimitiveTopology				T_PTROBJ
+WGPUProc					T_PTROBJ
+WGPUProgrammableStageDescriptor			T_OPAQUE_STRUCT
+WGPUProgrammableStageDescriptor *		T_PTROBJ
+WGPUQuerySet					T_PTROBJ
+WGPUQuerySetDescriptor				T_OPAQUE_STRUCT
+WGPUQuerySetDescriptor *			T_PTROBJ
+WGPUQuerySetDescriptor const *			T_PTROBJ
+WGPUQueryType					T_PTROBJ
+WGPUQueue					T_PTROBJ
+WGPUQueueDescriptor				T_OPAQUE_STRUCT
+WGPUQueueDescriptor *				T_PTROBJ
+WGPUQueueWorkDoneCallback			T_PTROBJ
+WGPURenderBundle				T_PTROBJ
+WGPURenderBundle const *			T_PTROBJ
+WGPURenderBundleDescriptor			T_OPAQUE_STRUCT
+WGPURenderBundleDescriptor *			T_PTROBJ
+WGPURenderBundleDescriptor const *		T_PTROBJ
+WGPURenderBundleEncoder				T_PTROBJ
+WGPURenderBundleEncoderDescriptor		T_OPAQUE_STRUCT
+WGPURenderBundleEncoderDescriptor *		T_PTROBJ
+WGPURenderBundleEncoderDescriptor const *	T_PTROBJ
+WGPURenderPassColorAttachment			T_OPAQUE_STRUCT
+WGPURenderPassColorAttachment *			T_PTROBJ
+WGPURenderPassDepthStencilAttachment		T_OPAQUE_STRUCT
+WGPURenderPassDepthStencilAttachment *		T_PTROBJ
+WGPURenderPassDescriptor			T_OPAQUE_STRUCT
+WGPURenderPassDescriptor *			T_PTROBJ
+WGPURenderPassDescriptor const *		T_PTROBJ
+WGPURenderPassDescriptorMaxDrawCount		T_OPAQUE_STRUCT
+WGPURenderPassDescriptorMaxDrawCount *		T_PTROBJ
+WGPURenderPassEncoder				T_PTROBJ
+WGPURenderPassTimestampLocation			T_PTROBJ
+WGPURenderPassTimestampWrite			T_OPAQUE_STRUCT
+WGPURenderPassTimestampWrite *			T_PTROBJ
+WGPURenderPipeline				T_PTROBJ
+WGPURenderPipelineDescriptor			T_OPAQUE_STRUCT
+WGPURenderPipelineDescriptor *			T_PTROBJ
+WGPURenderPipelineDescriptor const *		T_PTROBJ
+WGPURequestAdapterCallback			T_PTROBJ
+WGPURequestAdapterOptions			T_OPAQUE_STRUCT
+WGPURequestAdapterOptions *			T_PTROBJ
+WGPURequestAdapterOptions const *		T_PTROBJ
+WGPURequestDeviceCallback			T_PTROBJ
+WGPURequiredLimits				T_OPAQUE_STRUCT
+WGPURequiredLimits *				T_PTROBJ
+WGPUSType					T_PTROBJ
+WGPUSampler					T_PTROBJ
+WGPUSamplerBindingLayout			T_OPAQUE_STRUCT
+WGPUSamplerBindingLayout *			T_PTROBJ
+WGPUSamplerBindingType				T_PTROBJ
+WGPUSamplerDescriptor				T_OPAQUE_STRUCT
+WGPUSamplerDescriptor *				T_PTROBJ
+WGPUSamplerDescriptor const *			T_PTROBJ
+WGPUShaderModule				T_PTROBJ
+WGPUShaderModuleCompilationHint			T_OPAQUE_STRUCT
+WGPUShaderModuleCompilationHint *		T_PTROBJ
+WGPUShaderModuleDescriptor			T_OPAQUE_STRUCT
+WGPUShaderModuleDescriptor *			T_PTROBJ
+WGPUShaderModuleDescriptor const *		T_PTROBJ
+WGPUShaderModuleSPIRVDescriptor			T_OPAQUE_STRUCT
+WGPUShaderModuleSPIRVDescriptor *		T_PTROBJ
+WGPUShaderModuleWGSLDescriptor			T_OPAQUE_STRUCT
+WGPUShaderModuleWGSLDescriptor *		T_PTROBJ
+WGPUShaderStageFlags				T_PTROBJ
+WGPUStencilFaceState				T_OPAQUE_STRUCT
+WGPUStencilFaceState *				T_PTROBJ
+WGPUStencilOperation				T_PTROBJ
+WGPUStorageTextureAccess			T_PTROBJ
+WGPUStorageTextureBindingLayout			T_OPAQUE_STRUCT
+WGPUStorageTextureBindingLayout *		T_PTROBJ
+WGPUStoreOp					T_PTROBJ
+WGPUSupportedLimits				T_OPAQUE_STRUCT
+WGPUSupportedLimits *				T_PTROBJ
+WGPUSurface					T_PTROBJ
+WGPUSurfaceDescriptor				T_OPAQUE_STRUCT
+WGPUSurfaceDescriptor *				T_PTROBJ
+WGPUSurfaceDescriptor const *			T_PTROBJ
+WGPUSurfaceDescriptorFromAndroidNativeWindow	T_OPAQUE_STRUCT
+WGPUSurfaceDescriptorFromAndroidNativeWindow *	T_PTROBJ
+WGPUSurfaceDescriptorFromCanvasHTMLSelector	T_OPAQUE_STRUCT
+WGPUSurfaceDescriptorFromCanvasHTMLSelector *	T_PTROBJ
+WGPUSurfaceDescriptorFromMetalLayer		T_OPAQUE_STRUCT
+WGPUSurfaceDescriptorFromMetalLayer *		T_PTROBJ
+WGPUSurfaceDescriptorFromWaylandSurface		T_OPAQUE_STRUCT
+WGPUSurfaceDescriptorFromWaylandSurface *	T_PTROBJ
+WGPUSurfaceDescriptorFromWindowsHWND		T_OPAQUE_STRUCT
+WGPUSurfaceDescriptorFromWindowsHWND *		T_PTROBJ
+WGPUSurfaceDescriptorFromXcbWindow		T_OPAQUE_STRUCT
+WGPUSurfaceDescriptorFromXcbWindow *		T_PTROBJ
+WGPUSurfaceDescriptorFromXlibWindow		T_OPAQUE_STRUCT
+WGPUSurfaceDescriptorFromXlibWindow *		T_PTROBJ
+WGPUSwapChain					T_PTROBJ
+WGPUSwapChainDescriptor				T_OPAQUE_STRUCT
+WGPUSwapChainDescriptor *			T_PTROBJ
+WGPUSwapChainDescriptor const *			T_PTROBJ
+WGPUTexture					T_PTROBJ
+WGPUTextureAspect				T_PTROBJ
+WGPUTextureBindingLayout			T_OPAQUE_STRUCT
+WGPUTextureBindingLayout *			T_PTROBJ
+WGPUTextureDataLayout				T_OPAQUE_STRUCT
+WGPUTextureDataLayout *				T_PTROBJ
+WGPUTextureDataLayout const *			T_PTROBJ
+WGPUTextureDescriptor				T_OPAQUE_STRUCT
+WGPUTextureDescriptor *				T_PTROBJ
+WGPUTextureDescriptor const *			T_PTROBJ
+WGPUTextureDimension				T_PTROBJ
+WGPUTextureFormat				T_PTROBJ
+WGPUTextureSampleType				T_PTROBJ
+WGPUTextureUsage				T_PTROBJ
+WGPUTextureUsageFlags				T_PTROBJ
+WGPUTextureView					T_PTROBJ
+WGPUTextureViewDescriptor			T_OPAQUE_STRUCT
+WGPUTextureViewDescriptor *			T_PTROBJ
+WGPUTextureViewDescriptor const *		T_PTROBJ
+WGPUTextureViewDimension			T_PTROBJ
+WGPUVertexAttribute				T_OPAQUE_STRUCT
+WGPUVertexAttribute *				T_PTROBJ
+WGPUVertexBufferLayout				T_OPAQUE_STRUCT
+WGPUVertexBufferLayout *			T_PTROBJ
+WGPUVertexFormat				T_PTROBJ
+WGPUVertexState					T_OPAQUE_STRUCT
+WGPUVertexState *				T_PTROBJ
+WGPUVertexStepMode				T_PTROBJ
+__fsid_t					T_OPAQUE_STRUCT
+__fsid_t *					T_PTROBJ
+char const *					T_PTROBJ
+double						T_PTROBJ
+float						T_NV
+int						T_PTROBJ
+int32_t						T_PTROBJ
+max_align_t					T_OPAQUE_STRUCT
+max_align_t *					T_PTROBJ
+size_t						T_PTROBJ
+uint16_t					T_PTROBJ
+uint32_t					T_PTROBJ
+uint32_t const *				T_PTROBJ
+uint64_t					T_PTROBJ
+void *						T_PTROBJ
+void const *					T_PTROBJ
+#############################################################################
+INPUT
+T_OPAQUE_STRUCT
+	if (sv_derived_from($arg, \"${ntype}\")) {
+	    STRLEN len;
+	    char  *s = SvPV((SV*)SvRV($arg), len);
+
+	    if (len != sizeof($var))
+		croak(\"Size %d of packed data != expected %d\",
+			len, sizeof($var));
+	    $var = *($type *)s;
+	}
+	else
+	    croak(\"$var is not of type ${ntype}\")
+#############################################################################
+OUTPUT
+T_OPAQUE_STRUCT
+	sv_setref_pvn($arg, \"${ntype}\", (char *)&$var, sizeof($var));

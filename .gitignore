@@ -1,0 +1,13 @@
+/WebGPU-Direct-*
+Makefile
+pm_to_blib
+MYMETA.*
+!META.json
+/.prove
+/local*
+/blib/
+tmp*
+*.sw[po]
+Direct.bs
+Direct.c
+Direct.o
