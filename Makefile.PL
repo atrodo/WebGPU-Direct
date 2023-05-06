@@ -28,11 +28,35 @@ my %WriteMakefileArgs = (
   }
 );
 
+my $addl_search = $ENV{ADDL_SEARCH};;
+sub is_lib
+{
+  my $lib = shift;
+  local $SIG{__WARN__} = sub {};
+  return !!join('', ExtUtils::Liblist->ext("-L$addl_search -l$lib"));
+}
+
+my $wgpu = 'wgpu_native';
+if ( !is_lib($wgpu) )
+{
+  die "Unable to locate $wgpu\n";
+}
+
+my @libs;
+my @defines;
+
+if ( !is_lib('x11') )
+{
+  push @libs, '-lx11';
+  push @defines, '-DHAVE_x11';
+}
+
+$WriteMakefileArgs{LIBS} = "-L$addl_search @libs";
+$WriteMakefileArgs{DEFINES} = "@defines";
 
 my %FallbackPrereqs = (
   "Test::More" => "0.96"
 );
-
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
   delete $WriteMakefileArgs{TEST_REQUIRES};
