@@ -248,20 +248,16 @@ WGPUVertexFormat				T_PTROBJ
 WGPUVertexState					T_OPAQUE_STRUCT
 WGPUVertexState *				T_PTROBJ
 WGPUVertexStepMode				T_PTROBJ
-__fsid_t					T_OPAQUE_STRUCT
-__fsid_t *					T_PTROBJ
-char const *					T_PTROBJ
-double						T_PTROBJ
+char const *					T_PV
+double						T_DOUBLE
 float						T_NV
-int						T_PTROBJ
-int32_t						T_PTROBJ
-max_align_t					T_OPAQUE_STRUCT
-max_align_t *					T_PTROBJ
-size_t						T_PTROBJ
-uint16_t					T_PTROBJ
-uint32_t					T_PTROBJ
-uint32_t const *				T_PTROBJ
-uint64_t					T_PTROBJ
+int						T_INT
+int32_t						T_IV
+size_t						T_U_INT
+uint16_t					T_U_INT
+uint32_t					T_U_INT
+uint32_t const *				T_PTR
+uint64_t					T_U_INT
 void *						T_PTROBJ
 void const *					T_PTROBJ
 #############################################################################
