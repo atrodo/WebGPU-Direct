@@ -25,14 +25,13 @@ my %WriteMakefileArgs = (
   LIBS              => ['-lwgpu_native'],
   "test" => {
     "TESTS" => "t/*.t"
-  }
+  },
 );
 
 my $addl_search = $ENV{ADDL_SEARCH};;
 sub is_lib
 {
   my $lib = shift;
-  local $SIG{__WARN__} = sub {};
   return !!join('', ExtUtils::Liblist->ext("-L$addl_search -l$lib"));
 }
 
@@ -45,14 +44,14 @@ if ( !is_lib($wgpu) )
 my @libs;
 my @defines;
 
-if ( !is_lib('x11') )
+if ( is_lib('X11') )
 {
-  push @libs, '-lx11';
-  push @defines, '-DHAVE_x11';
+  push @libs, '-lX11';
+  push @defines, '-DHAS_X11';
 }
 
-$WriteMakefileArgs{LIBS} = "-L$addl_search @libs";
-$WriteMakefileArgs{DEFINES} = "@defines";
+$WriteMakefileArgs{LIBS} = "-L$addl_search -l$wgpu @libs";
+$WriteMakefileArgs{DEFINE} = "@defines";
 
 my %FallbackPrereqs = (
   "Test::More" => "0.96"

@@ -35,6 +35,7 @@ WGPUBufferUsage					T_PTROBJ
 WGPUBufferUsageFlags				T_PTROBJ
 WGPUChainedStruct				T_OPAQUE_STRUCT
 WGPUChainedStruct *				T_PTROBJ
+WGPUChainedStruct const *			T_PTROBJ
 WGPUChainedStructOut				T_OPAQUE_STRUCT
 WGPUChainedStructOut *				T_PTROBJ
 WGPUColor					T_OPAQUE_STRUCT
@@ -199,7 +200,7 @@ WGPUStoreOp					T_PTROBJ
 WGPUSupportedLimits				T_OPAQUE_STRUCT
 WGPUSupportedLimits *				T_PTROBJ
 WGPUSurface					T_PTROBJ
-WGPUSurfaceDescriptor				T_OPAQUE_STRUCT
+WebGPU::Direct::WGPUSurfaceDescriptor				T_PTROBJ
 WGPUSurfaceDescriptor *				T_PTROBJ
 WGPUSurfaceDescriptor const *			T_PTROBJ
 WGPUSurfaceDescriptorFromAndroidNativeWindow	T_OPAQUE_STRUCT
@@ -260,6 +261,8 @@ uint32_t const *				T_PTR
 uint64_t					T_U_INT
 void *						T_PTROBJ
 void const *					T_PTROBJ
+
+WGPU_DIRECT_x11      				T_OPAQUE_STRUCT
 #############################################################################
 INPUT
 T_OPAQUE_STRUCT

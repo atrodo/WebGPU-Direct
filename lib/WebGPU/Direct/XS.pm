@@ -1,6 +1,6 @@
 package WebGPU::Direct::XS;
 
-use 5.030003;
+use 5.030000;
 use strict;
 use warnings;
 
