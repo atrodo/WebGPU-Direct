@@ -4148,14 +4148,52 @@ textureView(THIS, __value = NO_INIT)
 
 MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct::WGPUSurfaceDescriptor		PREFIX = wgpu
 
-WebGPU::Direct::WGPUSurfaceDescriptor
+SV *
 new(CLASS)
 	char *CLASS = NO_INIT
     PROTOTYPE: $
     CODE:
-        Newxz(RETVAL, 1, WGPUSurfaceDescriptor);
+        WGPUSurfaceDescriptor *n;
+        Newxz(n, 1, WGPUSurfaceDescriptor);
+
+        HV *h = newHV();
+        RETVAL= sv_2mortal(newRV((SV*)h));
+
+        SV *fp;
+
+        fp = newSV(0);
+        sv_magicext(fp, newSVpvs("WGPUChainedStruct"), PERL_MAGIC_ext, &_mg_vtbl_obj, (const char *)&n->nextInChain, 0);
+        hv_store(h, "nextInChain", 11, fp, 0);
+
+        fp = newSVpvs("");
+        sv_magicext(fp, NULL, PERL_MAGIC_ext, &_mg_vtbl_str, (const char *)&n->label, 0);
+        hv_store(h, "label", 5, fp, 0);
+
+        sv_magicext(h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+        sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::WGPUSurfaceDescriptor", GV_ADD));
+        n->nextInChain = -1;
     OUTPUT:
 	RETVAL
+
+void
+pack(THIS)
+        SV *THIS
+    PROTOTYPE: $
+    CODE:
+        if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::WGPUSurfaceDescriptor"))
+        {
+          croak_nocontext("%s: %s is not of type %s",
+            "WebGPU::Direct::WGPUSurfaceDescriptor",
+            "THIS", "WebGPU::Direct::WGPUSurfaceDescriptor");
+        }
+
+        HV *h = SvRV(THIS);
+        WGPUSurfaceDescriptor *n = _get_struct_ptr(aTHX, THIS, NULL);;
+        SV **f;
+        SV *fp;
+
+        _find_set_obj(aTHX_ h, "nextInChain", 11, &n->nextInChain, newSVpvs("WGPUChainedStruct"));
+
 
 WGPUChainedStruct const *
 nextInChain(THIS, __value = NO_INIT)
