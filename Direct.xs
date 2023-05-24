@@ -125,6 +125,29 @@ STATIC MGVTBL _mg_vtbl_str = {
 _find_set_x(str, newSVpvs(""));
 
 /* ------------------------------------------------------------------
+   enum
+   ------------------------------------------------------------------ */
+
+void _set_enum(pTHX_ SV *new_value, I32 *field)
+{
+  I32 v = (I32)SvIV(new_value);
+  *field = v;
+}
+
+int _mg_set_enum(pTHX_ SV* sv, MAGIC* mg)
+{
+  I32 *s = (I32 *) mg->mg_ptr;
+  _set_enum(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_enum = {
+  .svt_set = _mg_set_enum
+};
+
+_find_set_x(enum, newSViv(0));
+
+/* ------------------------------------------------------------------
    bool
    ------------------------------------------------------------------ */
 
@@ -146,6 +169,102 @@ STATIC MGVTBL _mg_vtbl_bool = {
 };
 
 _find_set_x(bool, newSViv(FALSE));
+
+/* ------------------------------------------------------------------
+   uint16_t
+   ------------------------------------------------------------------ */
+
+void _set_uint16_t(pTHX_ SV *new_value, U16 *field)
+{
+  U16 v = (U16)SvIV(new_value);
+  *field = v;
+}
+
+int _mg_set_uint16_t(pTHX_ SV* sv, MAGIC* mg)
+{
+  U16 *s = (U16 *) mg->mg_ptr;
+  _set_uint16_t(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_uint16_t = {
+  .svt_set = _mg_set_uint16_t
+};
+
+_find_set_x(uint16_t, newSViv(0));
+
+/* ------------------------------------------------------------------
+   uint32_t
+   ------------------------------------------------------------------ */
+
+void _set_uint32_t(pTHX_ SV *new_value, U32 *field)
+{
+  U32 v = (U32)SvIV(new_value);
+  *field = v;
+}
+
+int _mg_set_uint32_t(pTHX_ SV* sv, MAGIC* mg)
+{
+  U32 *s = (U32 *) mg->mg_ptr;
+  _set_uint32_t(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_uint32_t = {
+  .svt_set = _mg_set_uint32_t
+};
+
+_find_set_x(uint32_t, newSViv(0));
+
+/* ------------------------------------------------------------------
+   uint64_t
+   ------------------------------------------------------------------ */
+
+void _set_uint64_t(pTHX_ SV *new_value, U64 *field)
+{
+  U64 v = (U64)SvIV(new_value);
+  *field = v;
+}
+
+int _mg_set_uint64_t(pTHX_ SV* sv, MAGIC* mg)
+{
+  U64 *s = (U64 *) mg->mg_ptr;
+  _set_uint64_t(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_uint64_t = {
+  .svt_set = _mg_set_uint64_t
+};
+
+_find_set_x(uint64_t, newSViv(0));
+
+/* ------------------------------------------------------------------
+   int32_t
+   ------------------------------------------------------------------ */
+
+void _set_int32_t(pTHX_ SV *new_value, I32 *field)
+{
+  I32 v = (I32)SvIV(new_value);
+  *field = v;
+}
+
+int _mg_set_int32_t(pTHX_ SV* sv, MAGIC* mg)
+{
+  I32 *s = (I32 *) mg->mg_ptr;
+  _set_int32_t(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_int32_t = {
+  .svt_set = _mg_set_int32_t
+};
+
+_find_set_x(int32_t, newSViv(0));
+
+/* ------------------------------------------------------------------
+   END
+   ------------------------------------------------------------------ */
 
 #include "xs/webgpu.c"
 
