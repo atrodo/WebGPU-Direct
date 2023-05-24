@@ -1120,3 +1120,83 @@ package WebGPU::Direct::RenderPipelineDescriptor {
     }
 }
 
+package WebGPU::Direct::BufferMapCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::CompilationInfoCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::CreateComputePipelineAsyncCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::CreateRenderPipelineAsyncCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::DeviceLostCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::ErrorCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::Proc {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::QueueWorkDoneCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::RequestAdapterCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+
+package WebGPU::Direct::RequestDeviceCallback {
+    
+    sub new {
+        my $class = __PACKAGE__;
+        die "Cannot call new on abstract class $class";
+    }
+}
+

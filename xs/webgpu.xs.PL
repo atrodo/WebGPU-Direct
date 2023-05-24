@@ -21,6 +21,7 @@ my %typedefs = (
     uint32_t => 'uint32_t',
     uint64_t => 'uint64_t',
     int32_t  => 'int32_t',
+    size_t   => 'size_t',
     char     => 'str',
     void     => 'void',
 );
@@ -39,8 +40,13 @@ say $pm q{use warnings;};
 sub pkg_name
 {
   my $ctype = shift;
+
+  return $ctype
+    if exists $typedefs{$ctype};
+
   $ctype = "WebGPU::Direct::$ctype";
   $ctype =~ s/::WGPU/::/;
+
   return $ctype;
 }
 
@@ -48,6 +54,12 @@ while (<$h>)
 {
   chomp;
   s[// .* $][]xms;
+
+  # Skip the WGPU_SKIP_PROCS definitions
+  if ( m{^ [#] if \s+ [!] defined [(] WGPU_SKIP_PROCS [)] }xms .. m[^ [#] endif ]xms )
+  {
+    next;
+  }
 
   if (m/^ [#] | ^ \s* $ | ^ extern \s* "C" \s* { | ^ } \s* $ /xms)
   {
@@ -152,8 +164,6 @@ while (<$h>)
         inline_obj => $inline_obj,
         return     => $return,
           };
-
-      warn( "Hey: $class " . scalar(@defs) ) if $inline_obj;
     }
     else
     {
@@ -162,24 +172,44 @@ while (<$h>)
     next;
   }
 
-  # Ignore function call typdefs
-  if (m[^ typedef \s+ \w+ (\s* const \s*)? (\s* [*] \s*)? \s+ [(][*] ]xms)
+  if (m[^ typedef \s+ (\w+) \s+ [(][*] (\w*) [)] [(] ([^)]+) [)] ; ]xms)
   {
+    my $return = $1;
+    my $type = $2;
+    my $definition = $3;
+
+    my $class = pkg_name($type);
+
+    die "Duplicate typedef: $class"
+        if exists $typedefs{$class};
+
+    $typedefs{$class} = 'void';
+
+    push @classes, $class;
+
+    $classdefs{$class} = {
+      type  => $type,
+      class => $class,
+      defs  => [],
+      fns   => [],
+    };
+
     next;
   }
 
   if (
-    m[^WGPU_EXPORT \s* (\w+ \s* (?: const \s*)? (?: \s* [*] \s*)? ) \s* (\w+) \s* [(] \s* ( [^)]* ) \s* [)] ; \s* $ ]xms
+    m[^WGPU_EXPORT \s* (\w+) \s* ( (?: const \s*)? (?: \s* [*] \s*)? ) \s* (\w+) \s* [(] \s* ( [^)]* ) \s* [)] ; \s* $ ]xms
       )
   {
     my $return  = $1;
-    my $fn_name = $2;
-    my $arg     = $3;
+    my $return2 = $2;
+    my $fn_name = $3;
+    my $arg     = $4;
 
     my @args = ( $arg =~ m[ \s* ([^,]*) \s+ (\w+) \s* (?: , | $ ) ]xmsg );
 
     my $fn_def = {
-      return => pkg_name($return),
+      return => pkg_name($return) . " $return2",
       name   => $fn_name,
       args   => [@args],
     };
@@ -227,6 +257,7 @@ while (<$h>)
   }
 
   say $_;
+  die "Unparsed line: $_";
 }
 
 say $xs qq{MODULE = WebGPU::Direct\t\tPACKAGE = WebGPU::Direct::XS};
@@ -234,7 +265,6 @@ say $xs qq{MODULE = WebGPU::Direct\t\tPACKAGE = WebGPU::Direct::XS};
 foreach (@fns)
 {
   my %def = %$_;
-  warn $def{name};
   my $class = 'WebGPU::Direct';
   my $type  = 'asdf';
 
@@ -279,18 +309,20 @@ foreach my $class ( @classes )
   my @defs = $def{defs}->@*;
   my @fns  = $def{fns}->@*;
 
-  my $c_prefix  = "${type}__";
   my $isa       = "";
   my $packs     = "";
   my $addl_pack = "";
+  my $c_prefix  = "${class}__";
+
+  $c_prefix =~ s/::/__/g;
 
   if ( @defs )
   {
     $packs = "  SV **f;\n  SV *fp;\n";
     if ( $defs[0]->{inline_obj} && 1 == scalar(grep { $_->{inline_obj} } @defs ) )
     {
-      warn "HeyHye";
-      my $c_prefix = $defs[0]->{ctype} . '__';
+      my $c_prefix = $defs[0]->{typedef} . '::';
+      $c_prefix =~ s/::/__/g;
       $addl_pack = qq{${c_prefix}pack( SV *THIS );\n};
       $isa = qq{push \@$class\::ISA, "$defs[0]->{return}";};
     }
@@ -434,6 +466,8 @@ foreach my $class ( @classes )
   
   my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : 'T_VOID';
   say $tm sprintf("%-64s%s", $class, $typemap);
+  say $tm sprintf("%-64s%s", "$class *", 'T_FETCHPTR');
+  say $tm sprintf("%-64s%s", "$class const *", 'T_FETCHPTR');
 }
 
 foreach my $typedef ( sort keys %typedefs )
@@ -452,9 +486,13 @@ say $tm <<'EOF';
 INPUT
 T_VOID
     $var = (int32_t)SvUV($arg)
+T_FETCHPTR
+    $var = (int32_t)SvUV($arg)
 
 OUTPUT
 T_VOID
+    $arg = newRV((SV*)$var);
+T_FETCHPTR
     $arg = newRV((SV*)$var);
 EOF
 

@@ -14,105 +14,105 @@ wgpuGetProcAddress(device, procName)
         char const * procName
 
 
-WebGPU::Direct::size_t 
+size_t 
 wgpuAdapterEnumerateFeatures(adapter, features)
         WebGPU::Direct::Adapter adapter
         WGPUFeatureName * features
 
 
-WebGPU::Direct::bool 
+bool 
 wgpuAdapterGetLimits(adapter, limits)
         WebGPU::Direct::Adapter adapter
         WebGPU::Direct::SupportedLimits * limits
 
 
-WebGPU::Direct::void 
+void 
 wgpuAdapterGetProperties(adapter, properties)
         WebGPU::Direct::Adapter adapter
         WebGPU::Direct::AdapterProperties * properties
 
 
-WebGPU::Direct::bool 
+bool 
 wgpuAdapterHasFeature(adapter, feature)
         WebGPU::Direct::Adapter adapter
         WGPUFeatureName feature
 
 
-WebGPU::Direct::void 
+void 
 wgpuAdapterRequestDevice(adapter, callback, userdata)
         WebGPU::Direct::Adapter adapter
-        WGPURequestDeviceCallback callback
+        WebGPU::Direct::RequestDeviceCallback callback
         void * userdata
 
 
-WebGPU::Direct::void 
+void 
 wgpuBindGroupSetLabel(bindGroup, label)
         WebGPU::Direct::BindGroup bindGroup
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuBindGroupLayoutSetLabel(bindGroupLayout, label)
         WebGPU::Direct::BindGroupLayout bindGroupLayout
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuBufferDestroy(buffer)
         WebGPU::Direct::Buffer buffer
 
 
-WebGPU::Direct::void const * 
+void const * 
 wgpuBufferGetConstMappedRange(buffer, offset, size)
         WebGPU::Direct::Buffer buffer
         size_t offset
         size_t size
 
 
-WebGPU::Direct::BufferMapState 
+WGPUBufferMapState 
 wgpuBufferGetMapState(buffer)
         WebGPU::Direct::Buffer buffer
 
 
-WebGPU::Direct::void * 
+void * 
 wgpuBufferGetMappedRange(buffer, offset, size)
         WebGPU::Direct::Buffer buffer
         size_t offset
         size_t size
 
 
-WebGPU::Direct::uint64_t 
+uint64_t 
 wgpuBufferGetSize(buffer)
         WebGPU::Direct::Buffer buffer
 
 
-WebGPU::Direct::BufferUsage 
+WGPUBufferUsage 
 wgpuBufferGetUsage(buffer)
         WebGPU::Direct::Buffer buffer
 
 
-WebGPU::Direct::void 
+void 
 wgpuBufferMapAsync(buffer, mode, offset, size, callback, userdata)
         WebGPU::Direct::Buffer buffer
         WGPUMapModeFlags mode
         size_t offset
         size_t size
-        WGPUBufferMapCallback callback
+        WebGPU::Direct::BufferMapCallback callback
         void * userdata
 
 
-WebGPU::Direct::void 
+void 
 wgpuBufferSetLabel(buffer, label)
         WebGPU::Direct::Buffer buffer
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuBufferUnmap(buffer)
         WebGPU::Direct::Buffer buffer
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandBufferSetLabel(commandBuffer, label)
         WebGPU::Direct::CommandBuffer commandBuffer
         char const * label
@@ -129,7 +129,7 @@ wgpuCommandEncoderBeginRenderPass(commandEncoder, descriptor)
         WebGPU::Direct::RenderPassDescriptor const * descriptor
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderClearBuffer(commandEncoder, buffer, offset, size)
         WebGPU::Direct::CommandEncoder commandEncoder
         WebGPU::Direct::Buffer buffer
@@ -137,7 +137,7 @@ wgpuCommandEncoderClearBuffer(commandEncoder, buffer, offset, size)
         uint64_t size
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderCopyBufferToBuffer(commandEncoder, source, sourceOffset, destination, destinationOffset, size)
         WebGPU::Direct::CommandEncoder commandEncoder
         WebGPU::Direct::Buffer source
@@ -147,7 +147,7 @@ wgpuCommandEncoderCopyBufferToBuffer(commandEncoder, source, sourceOffset, desti
         uint64_t size
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderCopyBufferToTexture(commandEncoder, source, destination, copySize)
         WebGPU::Direct::CommandEncoder commandEncoder
         WebGPU::Direct::ImageCopyBuffer const * source
@@ -155,7 +155,7 @@ wgpuCommandEncoderCopyBufferToTexture(commandEncoder, source, destination, copyS
         WebGPU::Direct::Extent3D const * copySize
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderCopyTextureToBuffer(commandEncoder, source, destination, copySize)
         WebGPU::Direct::CommandEncoder commandEncoder
         WebGPU::Direct::ImageCopyTexture const * source
@@ -163,7 +163,7 @@ wgpuCommandEncoderCopyTextureToBuffer(commandEncoder, source, destination, copyS
         WebGPU::Direct::Extent3D const * copySize
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderCopyTextureToTexture(commandEncoder, source, destination, copySize)
         WebGPU::Direct::CommandEncoder commandEncoder
         WebGPU::Direct::ImageCopyTexture const * source
@@ -176,24 +176,24 @@ wgpuCommandEncoderFinish(commandEncoder)
         WebGPU::Direct::CommandEncoder commandEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderInsertDebugMarker(commandEncoder, markerLabel)
         WebGPU::Direct::CommandEncoder commandEncoder
         char const * markerLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderPopDebugGroup(commandEncoder)
         WebGPU::Direct::CommandEncoder commandEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderPushDebugGroup(commandEncoder, groupLabel)
         WebGPU::Direct::CommandEncoder commandEncoder
         char const * groupLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderResolveQuerySet(commandEncoder, querySet, firstQuery, queryCount, destination, destinationOffset)
         WebGPU::Direct::CommandEncoder commandEncoder
         WebGPU::Direct::QuerySet querySet
@@ -203,27 +203,27 @@ wgpuCommandEncoderResolveQuerySet(commandEncoder, querySet, firstQuery, queryCou
         uint64_t destinationOffset
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderSetLabel(commandEncoder, label)
         WebGPU::Direct::CommandEncoder commandEncoder
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuCommandEncoderWriteTimestamp(commandEncoder, querySet, queryIndex)
         WebGPU::Direct::CommandEncoder commandEncoder
         WebGPU::Direct::QuerySet querySet
         uint32_t queryIndex
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderBeginPipelineStatisticsQuery(computePassEncoder, querySet, queryIndex)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         WebGPU::Direct::QuerySet querySet
         uint32_t queryIndex
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderDispatchWorkgroups(computePassEncoder, workgroupCountX, workgroupCountY, workgroupCountZ)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         uint32_t workgroupCountX
@@ -231,41 +231,41 @@ wgpuComputePassEncoderDispatchWorkgroups(computePassEncoder, workgroupCountX, wo
         uint32_t workgroupCountZ
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderDispatchWorkgroupsIndirect(computePassEncoder, indirectBuffer, indirectOffset)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         WebGPU::Direct::Buffer indirectBuffer
         uint64_t indirectOffset
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderEnd(computePassEncoder)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderEndPipelineStatisticsQuery(computePassEncoder)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderInsertDebugMarker(computePassEncoder, markerLabel)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         char const * markerLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderPopDebugGroup(computePassEncoder)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderPushDebugGroup(computePassEncoder, groupLabel)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         char const * groupLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderSetBindGroup(computePassEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffsets)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         uint32_t groupIndex
@@ -274,13 +274,13 @@ wgpuComputePassEncoderSetBindGroup(computePassEncoder, groupIndex, group, dynami
         uint32_t const * dynamicOffsets
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderSetLabel(computePassEncoder, label)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePassEncoderSetPipeline(computePassEncoder, pipeline)
         WebGPU::Direct::ComputePassEncoder computePassEncoder
         WebGPU::Direct::ComputePipeline pipeline
@@ -292,7 +292,7 @@ wgpuComputePipelineGetBindGroupLayout(computePipeline, groupIndex)
         uint32_t groupIndex
 
 
-WebGPU::Direct::void 
+void 
 wgpuComputePipelineSetLabel(computePipeline, label)
         WebGPU::Direct::ComputePipeline computePipeline
         char const * label
@@ -327,11 +327,11 @@ wgpuDeviceCreateComputePipeline(device, descriptor)
         WebGPU::Direct::ComputePipelineDescriptor const * descriptor
 
 
-WebGPU::Direct::void 
+void 
 wgpuDeviceCreateComputePipelineAsync(device, descriptor, callback, userdata)
         WebGPU::Direct::Device device
         WebGPU::Direct::ComputePipelineDescriptor const * descriptor
-        WGPUCreateComputePipelineAsyncCallback callback
+        WebGPU::Direct::CreateComputePipelineAsyncCallback callback
         void * userdata
 
 
@@ -359,11 +359,11 @@ wgpuDeviceCreateRenderPipeline(device, descriptor)
         WebGPU::Direct::RenderPipelineDescriptor const * descriptor
 
 
-WebGPU::Direct::void 
+void 
 wgpuDeviceCreateRenderPipelineAsync(device, descriptor, callback, userdata)
         WebGPU::Direct::Device device
         WebGPU::Direct::RenderPipelineDescriptor const * descriptor
-        WGPUCreateRenderPipelineAsyncCallback callback
+        WebGPU::Direct::CreateRenderPipelineAsyncCallback callback
         void * userdata
 
 
@@ -391,18 +391,18 @@ wgpuDeviceCreateTexture(device, descriptor)
         WebGPU::Direct::TextureDescriptor const * descriptor
 
 
-WebGPU::Direct::void 
+void 
 wgpuDeviceDestroy(device)
         WebGPU::Direct::Device device
 
 
-WebGPU::Direct::size_t 
+size_t 
 wgpuDeviceEnumerateFeatures(device, features)
         WebGPU::Direct::Device device
         WGPUFeatureName * features
 
 
-WebGPU::Direct::bool 
+bool 
 wgpuDeviceGetLimits(device, limits)
         WebGPU::Direct::Device device
         WebGPU::Direct::SupportedLimits * limits
@@ -413,42 +413,42 @@ wgpuDeviceGetQueue(device)
         WebGPU::Direct::Device device
 
 
-WebGPU::Direct::bool 
+bool 
 wgpuDeviceHasFeature(device, feature)
         WebGPU::Direct::Device device
         WGPUFeatureName feature
 
 
-WebGPU::Direct::bool 
+bool 
 wgpuDevicePopErrorScope(device, callback, userdata)
         WebGPU::Direct::Device device
-        WGPUErrorCallback callback
+        WebGPU::Direct::ErrorCallback callback
         void * userdata
 
 
-WebGPU::Direct::void 
+void 
 wgpuDevicePushErrorScope(device, filter)
         WebGPU::Direct::Device device
         WGPUErrorFilter filter
 
 
-WebGPU::Direct::void 
+void 
 wgpuDeviceSetDeviceLostCallback(device, callback, userdata)
         WebGPU::Direct::Device device
-        WGPUDeviceLostCallback callback
+        WebGPU::Direct::DeviceLostCallback callback
         void * userdata
 
 
-WebGPU::Direct::void 
+void 
 wgpuDeviceSetLabel(device, label)
         WebGPU::Direct::Device device
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuDeviceSetUncapturedErrorCallback(device, callback, userdata)
         WebGPU::Direct::Device device
-        WGPUErrorCallback callback
+        WebGPU::Direct::ErrorCallback callback
         void * userdata
 
 
@@ -458,66 +458,66 @@ wgpuInstanceCreateSurface(instance, descriptor)
         WebGPU::Direct::SurfaceDescriptor const * descriptor
 
 
-WebGPU::Direct::void 
+void 
 wgpuInstanceProcessEvents(instance)
         WebGPU::Direct::Instance instance
 
 
-WebGPU::Direct::void 
+void 
 wgpuInstanceRequestAdapter(instance, callback, userdata)
         WebGPU::Direct::Instance instance
-        WGPURequestAdapterCallback callback
+        WebGPU::Direct::RequestAdapterCallback callback
         void * userdata
 
 
-WebGPU::Direct::void 
+void 
 wgpuPipelineLayoutSetLabel(pipelineLayout, label)
         WebGPU::Direct::PipelineLayout pipelineLayout
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuQuerySetDestroy(querySet)
         WebGPU::Direct::QuerySet querySet
 
 
-WebGPU::Direct::uint32_t 
+uint32_t 
 wgpuQuerySetGetCount(querySet)
         WebGPU::Direct::QuerySet querySet
 
 
-WebGPU::Direct::QueryType 
+WGPUQueryType 
 wgpuQuerySetGetType(querySet)
         WebGPU::Direct::QuerySet querySet
 
 
-WebGPU::Direct::void 
+void 
 wgpuQuerySetSetLabel(querySet, label)
         WebGPU::Direct::QuerySet querySet
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuQueueOnSubmittedWorkDone(queue, callback, userdata)
         WebGPU::Direct::Queue queue
-        WGPUQueueWorkDoneCallback callback
+        WebGPU::Direct::QueueWorkDoneCallback callback
         void * userdata
 
 
-WebGPU::Direct::void 
+void 
 wgpuQueueSetLabel(queue, label)
         WebGPU::Direct::Queue queue
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuQueueSubmit(queue, commandCount, commands)
         WebGPU::Direct::Queue queue
         uint32_t commandCount
         WebGPU::Direct::CommandBuffer const * commands
 
 
-WebGPU::Direct::void 
+void 
 wgpuQueueWriteBuffer(queue, buffer, bufferOffset, data, size)
         WebGPU::Direct::Queue queue
         WebGPU::Direct::Buffer buffer
@@ -526,7 +526,7 @@ wgpuQueueWriteBuffer(queue, buffer, bufferOffset, data, size)
         size_t size
 
 
-WebGPU::Direct::void 
+void 
 wgpuQueueWriteTexture(queue, destination, data, dataSize, dataLayout, writeSize)
         WebGPU::Direct::Queue queue
         WebGPU::Direct::ImageCopyTexture const * destination
@@ -536,7 +536,7 @@ wgpuQueueWriteTexture(queue, destination, data, dataSize, dataLayout, writeSize)
         WebGPU::Direct::Extent3D const * writeSize
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderDraw(renderBundleEncoder, vertexCount, instanceCount, firstVertex, firstInstance)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         uint32_t vertexCount
@@ -545,7 +545,7 @@ wgpuRenderBundleEncoderDraw(renderBundleEncoder, vertexCount, instanceCount, fir
         uint32_t firstInstance
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderDrawIndexed(renderBundleEncoder, indexCount, instanceCount, firstIndex, baseVertex, firstInstance)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         uint32_t indexCount
@@ -555,14 +555,14 @@ wgpuRenderBundleEncoderDrawIndexed(renderBundleEncoder, indexCount, instanceCoun
         uint32_t firstInstance
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderDrawIndexedIndirect(renderBundleEncoder, indirectBuffer, indirectOffset)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         WebGPU::Direct::Buffer indirectBuffer
         uint64_t indirectOffset
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderDrawIndirect(renderBundleEncoder, indirectBuffer, indirectOffset)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         WebGPU::Direct::Buffer indirectBuffer
@@ -574,24 +574,24 @@ wgpuRenderBundleEncoderFinish(renderBundleEncoder)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderInsertDebugMarker(renderBundleEncoder, markerLabel)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         char const * markerLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderPopDebugGroup(renderBundleEncoder)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderPushDebugGroup(renderBundleEncoder, groupLabel)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         char const * groupLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffsets)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         uint32_t groupIndex
@@ -600,7 +600,7 @@ wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dyna
         uint32_t const * dynamicOffsets
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderSetIndexBuffer(renderBundleEncoder, buffer, format, offset, size)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         WebGPU::Direct::Buffer buffer
@@ -609,19 +609,19 @@ wgpuRenderBundleEncoderSetIndexBuffer(renderBundleEncoder, buffer, format, offse
         uint64_t size
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderSetLabel(renderBundleEncoder, label)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderSetPipeline(renderBundleEncoder, pipeline)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         WebGPU::Direct::RenderPipeline pipeline
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderBundleEncoderSetVertexBuffer(renderBundleEncoder, slot, buffer, offset, size)
         WebGPU::Direct::RenderBundleEncoder renderBundleEncoder
         uint32_t slot
@@ -630,20 +630,20 @@ wgpuRenderBundleEncoderSetVertexBuffer(renderBundleEncoder, slot, buffer, offset
         uint64_t size
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderBeginOcclusionQuery(renderPassEncoder, queryIndex)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t queryIndex
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderBeginPipelineStatisticsQuery(renderPassEncoder, querySet, queryIndex)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         WebGPU::Direct::QuerySet querySet
         uint32_t queryIndex
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderDraw(renderPassEncoder, vertexCount, instanceCount, firstVertex, firstInstance)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t vertexCount
@@ -652,7 +652,7 @@ wgpuRenderPassEncoderDraw(renderPassEncoder, vertexCount, instanceCount, firstVe
         uint32_t firstInstance
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderDrawIndexed(renderPassEncoder, indexCount, instanceCount, firstIndex, baseVertex, firstInstance)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t indexCount
@@ -662,60 +662,60 @@ wgpuRenderPassEncoderDrawIndexed(renderPassEncoder, indexCount, instanceCount, f
         uint32_t firstInstance
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderDrawIndexedIndirect(renderPassEncoder, indirectBuffer, indirectOffset)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         WebGPU::Direct::Buffer indirectBuffer
         uint64_t indirectOffset
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderDrawIndirect(renderPassEncoder, indirectBuffer, indirectOffset)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         WebGPU::Direct::Buffer indirectBuffer
         uint64_t indirectOffset
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderEnd(renderPassEncoder)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderEndOcclusionQuery(renderPassEncoder)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderEndPipelineStatisticsQuery(renderPassEncoder)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderExecuteBundles(renderPassEncoder, bundleCount, bundles)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t bundleCount
         WebGPU::Direct::RenderBundle const * bundles
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderInsertDebugMarker(renderPassEncoder, markerLabel)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         char const * markerLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderPopDebugGroup(renderPassEncoder)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderPushDebugGroup(renderPassEncoder, groupLabel)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         char const * groupLabel
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffsets)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t groupIndex
@@ -724,13 +724,13 @@ wgpuRenderPassEncoderSetBindGroup(renderPassEncoder, groupIndex, group, dynamicO
         uint32_t const * dynamicOffsets
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetBlendConstant(renderPassEncoder, color)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         WebGPU::Direct::Color const * color
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetIndexBuffer(renderPassEncoder, buffer, format, offset, size)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         WebGPU::Direct::Buffer buffer
@@ -739,19 +739,19 @@ wgpuRenderPassEncoderSetIndexBuffer(renderPassEncoder, buffer, format, offset, s
         uint64_t size
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetLabel(renderPassEncoder, label)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetPipeline(renderPassEncoder, pipeline)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         WebGPU::Direct::RenderPipeline pipeline
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetScissorRect(renderPassEncoder, x, y, width, height)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t x
@@ -760,13 +760,13 @@ wgpuRenderPassEncoderSetScissorRect(renderPassEncoder, x, y, width, height)
         uint32_t height
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetStencilReference(renderPassEncoder, reference)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t reference
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetVertexBuffer(renderPassEncoder, slot, buffer, offset, size)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         uint32_t slot
@@ -775,7 +775,7 @@ wgpuRenderPassEncoderSetVertexBuffer(renderPassEncoder, slot, buffer, offset, si
         uint64_t size
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPassEncoderSetViewport(renderPassEncoder, x, y, width, height, minDepth, maxDepth)
         WebGPU::Direct::RenderPassEncoder renderPassEncoder
         float x
@@ -792,32 +792,32 @@ wgpuRenderPipelineGetBindGroupLayout(renderPipeline, groupIndex)
         uint32_t groupIndex
 
 
-WebGPU::Direct::void 
+void 
 wgpuRenderPipelineSetLabel(renderPipeline, label)
         WebGPU::Direct::RenderPipeline renderPipeline
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuSamplerSetLabel(sampler, label)
         WebGPU::Direct::Sampler sampler
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuShaderModuleGetCompilationInfo(shaderModule, callback, userdata)
         WebGPU::Direct::ShaderModule shaderModule
-        WGPUCompilationInfoCallback callback
+        WebGPU::Direct::CompilationInfoCallback callback
         void * userdata
 
 
-WebGPU::Direct::void 
+void 
 wgpuShaderModuleSetLabel(shaderModule, label)
         WebGPU::Direct::ShaderModule shaderModule
         char const * label
 
 
-WebGPU::Direct::TextureFormat 
+WGPUTextureFormat 
 wgpuSurfaceGetPreferredFormat(surface, adapter)
         WebGPU::Direct::Surface surface
         WebGPU::Direct::Adapter adapter
@@ -828,7 +828,7 @@ wgpuSwapChainGetCurrentTextureView(swapChain)
         WebGPU::Direct::SwapChain swapChain
 
 
-WebGPU::Direct::void 
+void 
 wgpuSwapChainPresent(swapChain)
         WebGPU::Direct::SwapChain swapChain
 
@@ -838,58 +838,58 @@ wgpuTextureCreateView(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::void 
+void 
 wgpuTextureDestroy(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::uint32_t 
+uint32_t 
 wgpuTextureGetDepthOrArrayLayers(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::TextureDimension 
+WGPUTextureDimension 
 wgpuTextureGetDimension(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::TextureFormat 
+WGPUTextureFormat 
 wgpuTextureGetFormat(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::uint32_t 
+uint32_t 
 wgpuTextureGetHeight(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::uint32_t 
+uint32_t 
 wgpuTextureGetMipLevelCount(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::uint32_t 
+uint32_t 
 wgpuTextureGetSampleCount(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::TextureUsage 
+WGPUTextureUsage 
 wgpuTextureGetUsage(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::uint32_t 
+uint32_t 
 wgpuTextureGetWidth(texture)
         WebGPU::Direct::Texture texture
 
 
-WebGPU::Direct::void 
+void 
 wgpuTextureSetLabel(texture, label)
         WebGPU::Direct::Texture texture
         char const * label
 
 
-WebGPU::Direct::void 
+void 
 wgpuTextureViewSetLabel(textureView, label)
         WebGPU::Direct::TextureView textureView
         char const * label
@@ -1007,7 +1007,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__ChainedStruct__pack( SV *THIS );
         
 
 
@@ -1054,7 +1054,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUChainedStructOut__pack( SV *THIS );
+        WebGPU__Direct__ChainedStructOut__pack( SV *THIS );
         
 
 
@@ -1227,7 +1227,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUAdapterProperties__pack( SV *THIS );
+        WebGPU__Direct__AdapterProperties__pack( SV *THIS );
         
 
 
@@ -1364,7 +1364,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBindGroupEntry__pack( SV *THIS );
+        WebGPU__Direct__BindGroupEntry__pack( SV *THIS );
         
 
 
@@ -1429,7 +1429,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBlendComponent__pack( SV *THIS );
+        WebGPU__Direct__BlendComponent__pack( SV *THIS );
         
 
 
@@ -1512,7 +1512,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBufferBindingLayout__pack( SV *THIS );
+        WebGPU__Direct__BufferBindingLayout__pack( SV *THIS );
         
 
 
@@ -1613,7 +1613,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBufferDescriptor__pack( SV *THIS );
+        WebGPU__Direct__BufferDescriptor__pack( SV *THIS );
         
 
 
@@ -1696,7 +1696,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUColor__pack( SV *THIS );
+        WebGPU__Direct__Color__pack( SV *THIS );
         
 
 
@@ -1743,7 +1743,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUCommandBufferDescriptor__pack( SV *THIS );
+        WebGPU__Direct__CommandBufferDescriptor__pack( SV *THIS );
         
 
 
@@ -1790,7 +1790,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUCommandEncoderDescriptor__pack( SV *THIS );
+        WebGPU__Direct__CommandEncoderDescriptor__pack( SV *THIS );
         
 
 
@@ -1981,7 +1981,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUCompilationMessage__pack( SV *THIS );
+        WebGPU__Direct__CompilationMessage__pack( SV *THIS );
         
 
 
@@ -2046,7 +2046,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUComputePassTimestampWrite__pack( SV *THIS );
+        WebGPU__Direct__ComputePassTimestampWrite__pack( SV *THIS );
         
 
 
@@ -2111,7 +2111,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUConstantEntry__pack( SV *THIS );
+        WebGPU__Direct__ConstantEntry__pack( SV *THIS );
         
 
 
@@ -2176,7 +2176,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUExtent3D__pack( SV *THIS );
+        WebGPU__Direct__Extent3D__pack( SV *THIS );
         
 
 
@@ -2205,7 +2205,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUInstanceDescriptor__pack( SV *THIS );
+        WebGPU__Direct__InstanceDescriptor__pack( SV *THIS );
         
 
 
@@ -2774,7 +2774,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPULimits__pack( SV *THIS );
+        WebGPU__Direct__Limits__pack( SV *THIS );
         
 
 
@@ -2857,7 +2857,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUMultisampleState__pack( SV *THIS );
+        WebGPU__Direct__MultisampleState__pack( SV *THIS );
         
 
 
@@ -2922,7 +2922,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUOrigin3D__pack( SV *THIS );
+        WebGPU__Direct__Origin3D__pack( SV *THIS );
         
 
 
@@ -3005,7 +3005,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUPipelineLayoutDescriptor__pack( SV *THIS );
+        WebGPU__Direct__PipelineLayoutDescriptor__pack( SV *THIS );
         
 
 
@@ -3052,8 +3052,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUPrimitiveDepthClipControl__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__PrimitiveDepthClipControl__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -3154,7 +3154,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUPrimitiveState__pack( SV *THIS );
+        WebGPU__Direct__PrimitiveState__pack( SV *THIS );
         
 
 
@@ -3273,7 +3273,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUQuerySetDescriptor__pack( SV *THIS );
+        WebGPU__Direct__QuerySetDescriptor__pack( SV *THIS );
         
 
 
@@ -3320,7 +3320,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUQueueDescriptor__pack( SV *THIS );
+        WebGPU__Direct__QueueDescriptor__pack( SV *THIS );
         
 
 
@@ -3367,7 +3367,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderBundleDescriptor__pack( SV *THIS );
+        WebGPU__Direct__RenderBundleDescriptor__pack( SV *THIS );
         
 
 
@@ -3522,7 +3522,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderBundleEncoderDescriptor__pack( SV *THIS );
+        WebGPU__Direct__RenderBundleEncoderDescriptor__pack( SV *THIS );
         
 
 
@@ -3695,7 +3695,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderPassDepthStencilAttachment__pack( SV *THIS );
+        WebGPU__Direct__RenderPassDepthStencilAttachment__pack( SV *THIS );
         
 
 
@@ -3742,8 +3742,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderPassDescriptorMaxDrawCount__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__RenderPassDescriptorMaxDrawCount__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -3808,7 +3808,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderPassTimestampWrite__pack( SV *THIS );
+        WebGPU__Direct__RenderPassTimestampWrite__pack( SV *THIS );
         
 
 
@@ -3891,7 +3891,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURequestAdapterOptions__pack( SV *THIS );
+        WebGPU__Direct__RequestAdapterOptions__pack( SV *THIS );
         
 
 
@@ -3938,7 +3938,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSamplerBindingLayout__pack( SV *THIS );
+        WebGPU__Direct__SamplerBindingLayout__pack( SV *THIS );
         
 
 
@@ -4165,7 +4165,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSamplerDescriptor__pack( SV *THIS );
+        WebGPU__Direct__SamplerDescriptor__pack( SV *THIS );
         
 
 
@@ -4230,7 +4230,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUShaderModuleCompilationHint__pack( SV *THIS );
+        WebGPU__Direct__ShaderModuleCompilationHint__pack( SV *THIS );
         
 
 
@@ -4295,8 +4295,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUShaderModuleSPIRVDescriptor__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__ShaderModuleSPIRVDescriptor__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4343,8 +4343,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUShaderModuleWGSLDescriptor__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__ShaderModuleWGSLDescriptor__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4427,7 +4427,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUStencilFaceState__pack( SV *THIS );
+        WebGPU__Direct__StencilFaceState__pack( SV *THIS );
         
 
 
@@ -4510,7 +4510,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUStorageTextureBindingLayout__pack( SV *THIS );
+        WebGPU__Direct__StorageTextureBindingLayout__pack( SV *THIS );
         
 
 
@@ -4557,7 +4557,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptor__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptor__pack( SV *THIS );
         
 
 
@@ -4604,8 +4604,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptorFromAndroidNativeWindow__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4652,8 +4652,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptorFromCanvasHTMLSelector__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4700,8 +4700,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptorFromMetalLayer__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptorFromMetalLayer__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4766,8 +4766,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptorFromWaylandSurface__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4832,8 +4832,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptorFromWindowsHWND__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4898,8 +4898,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptorFromXcbWindow__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptorFromXcbWindow__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -4964,8 +4964,8 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSurfaceDescriptorFromXlibWindow__pack( SV *THIS );
-        WGPUChainedStruct__pack( SV *THIS );
+        WebGPU__Direct__SurfaceDescriptorFromXlibWindow__pack( SV *THIS );
+        obj__pack( SV *THIS );
 
 
 
@@ -5102,7 +5102,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSwapChainDescriptor__pack( SV *THIS );
+        WebGPU__Direct__SwapChainDescriptor__pack( SV *THIS );
         
 
 
@@ -5185,7 +5185,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUTextureBindingLayout__pack( SV *THIS );
+        WebGPU__Direct__TextureBindingLayout__pack( SV *THIS );
         
 
 
@@ -5268,7 +5268,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUTextureDataLayout__pack( SV *THIS );
+        WebGPU__Direct__TextureDataLayout__pack( SV *THIS );
         
 
 
@@ -5441,7 +5441,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUTextureViewDescriptor__pack( SV *THIS );
+        WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS );
         
 
 
@@ -5506,7 +5506,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUVertexAttribute__pack( SV *THIS );
+        WebGPU__Direct__VertexAttribute__pack( SV *THIS );
         
 
 
@@ -5607,7 +5607,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBindGroupDescriptor__pack( SV *THIS );
+        WebGPU__Direct__BindGroupDescriptor__pack( SV *THIS );
         
 
 
@@ -5744,7 +5744,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBindGroupLayoutEntry__pack( SV *THIS );
+        WebGPU__Direct__BindGroupLayoutEntry__pack( SV *THIS );
         
 
 
@@ -5791,7 +5791,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBlendState__pack( SV *THIS );
+        WebGPU__Direct__BlendState__pack( SV *THIS );
         
 
 
@@ -5856,7 +5856,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUCompilationInfo__pack( SV *THIS );
+        WebGPU__Direct__CompilationInfo__pack( SV *THIS );
         
 
 
@@ -5939,7 +5939,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUComputePassDescriptor__pack( SV *THIS );
+        WebGPU__Direct__ComputePassDescriptor__pack( SV *THIS );
         
 
 
@@ -6148,7 +6148,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUDepthStencilState__pack( SV *THIS );
+        WebGPU__Direct__DepthStencilState__pack( SV *THIS );
         
 
 
@@ -6213,7 +6213,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUImageCopyBuffer__pack( SV *THIS );
+        WebGPU__Direct__ImageCopyBuffer__pack( SV *THIS );
         
 
 
@@ -6314,7 +6314,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUImageCopyTexture__pack( SV *THIS );
+        WebGPU__Direct__ImageCopyTexture__pack( SV *THIS );
         
 
 
@@ -6415,7 +6415,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUProgrammableStageDescriptor__pack( SV *THIS );
+        WebGPU__Direct__ProgrammableStageDescriptor__pack( SV *THIS );
         
 
 
@@ -6516,7 +6516,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderPassColorAttachment__pack( SV *THIS );
+        WebGPU__Direct__RenderPassColorAttachment__pack( SV *THIS );
         
 
 
@@ -6563,7 +6563,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURequiredLimits__pack( SV *THIS );
+        WebGPU__Direct__RequiredLimits__pack( SV *THIS );
         
 
 
@@ -6646,7 +6646,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUShaderModuleDescriptor__pack( SV *THIS );
+        WebGPU__Direct__ShaderModuleDescriptor__pack( SV *THIS );
         
 
 
@@ -6693,7 +6693,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUSupportedLimits__pack( SV *THIS );
+        WebGPU__Direct__SupportedLimits__pack( SV *THIS );
         
 
 
@@ -6884,7 +6884,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUTextureDescriptor__pack( SV *THIS );
+        WebGPU__Direct__TextureDescriptor__pack( SV *THIS );
         
 
 
@@ -6967,7 +6967,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUVertexBufferLayout__pack( SV *THIS );
+        WebGPU__Direct__VertexBufferLayout__pack( SV *THIS );
         
 
 
@@ -7050,7 +7050,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUBindGroupLayoutDescriptor__pack( SV *THIS );
+        WebGPU__Direct__BindGroupLayoutDescriptor__pack( SV *THIS );
         
 
 
@@ -7133,7 +7133,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUColorTargetState__pack( SV *THIS );
+        WebGPU__Direct__ColorTargetState__pack( SV *THIS );
         
 
 
@@ -7216,7 +7216,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUComputePipelineDescriptor__pack( SV *THIS );
+        WebGPU__Direct__ComputePipelineDescriptor__pack( SV *THIS );
         
 
 
@@ -7335,7 +7335,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUDeviceDescriptor__pack( SV *THIS );
+        WebGPU__Direct__DeviceDescriptor__pack( SV *THIS );
         
 
 
@@ -7490,7 +7490,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderPassDescriptor__pack( SV *THIS );
+        WebGPU__Direct__RenderPassDescriptor__pack( SV *THIS );
         
 
 
@@ -7627,7 +7627,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUVertexState__pack( SV *THIS );
+        WebGPU__Direct__VertexState__pack( SV *THIS );
         
 
 
@@ -7764,7 +7764,7 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPUFragmentState__pack( SV *THIS );
+        WebGPU__Direct__FragmentState__pack( SV *THIS );
         
 
 
@@ -7919,6 +7919,36 @@ pack(THIS)
         SV *THIS
     PROTOTYPE: $
     CODE:
-        WGPURenderPipelineDescriptor__pack( SV *THIS );
+        WebGPU__Direct__RenderPipelineDescriptor__pack( SV *THIS );
         
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BufferMapCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CompilationInfoCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CreateComputePipelineAsyncCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CreateRenderPipelineAsyncCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::DeviceLostCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ErrorCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Proc	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::QueueWorkDoneCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RequestAdapterCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RequestDeviceCallback	PREFIX = wgpu
 
