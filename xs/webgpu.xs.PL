@@ -8,9 +8,9 @@ use List::Util qw/pairs/;
 use autodie;
 
 open my $h,  '<', "$Bin/../webgpu/webgpu.h";
-open my $xs, '>', "$Bin/webgpu.xsh";
+open my $xs, '>', "$Bin/webgpu.xs";
 open my $c,  '>', "$Bin/webgpu.c";
-open my $tm, '>', "$Bin/typemap";
+open my $tm, '>', "$Bin/../typemap";
 open my $pm, '>', "$Bin/../lib/WebGPU/Direct/XS.pl";
 
 my %typedefs = (
@@ -54,6 +54,7 @@ while (<$h>)
 {
   chomp;
   s[// .* $][]xms;
+  s[/[*] .*? [*]/][]xms;
 
   # Skip the WGPU_SKIP_PROCS definitions
   if ( m{^ [#] if \s+ [!] defined [(] WGPU_SKIP_PROCS [)] }xms .. m[^ [#] endif ]xms )
@@ -88,8 +89,7 @@ while (<$h>)
     next;
   }
 
-  if ( m[^ typedef \s+ (struct) \s+ (\w+) \s+ { $]xms ..
-    m[ ^ } \s+ (\w+) ; $]xms )
+  if ( m[^ typedef \s+ (struct) \s+ (\w+) \s+ { $]xms ..  m[ ^ } \s+ (\w+) ; $]xms )
   {
     state $type;
     state $class;
@@ -130,7 +130,7 @@ while (<$h>)
       m[^ \s*
               (struct \s*)?
               (\w+) \s*
-              (const \s*)?
+              (const \s+)?
               (\s* [*] \s*)?
               (\w+)
               ; \s* $]xms
@@ -149,7 +149,7 @@ while (<$h>)
         die "Unknown typedef: $ctype";
       }
 
-      if ( $typedef ne 'obj' )
+      if ( $typedef ne 'obj' && $typedef ne 'void' )
       {
         $return = $ctype;
       }
@@ -198,7 +198,7 @@ while (<$h>)
   }
 
   if (
-    m[^WGPU_EXPORT \s* (\w+) \s* ( (?: const \s*)? (?: \s* [*] \s*)? ) \s* (\w+) \s* [(] \s* ( [^)]* ) \s* [)] ; \s* $ ]xms
+    m[^WGPU_EXPORT \s* (\w+) \s* ( (?: const \s+)? (?: \s* [*] \s*)? ) \s* (\w+) \s* [(] \s* ( [^)]* ) \s* [)] ; \s* $ ]xms
       )
   {
     my $return  = $1;
@@ -217,14 +217,14 @@ while (<$h>)
     my $first_arg = $args[0];
     my $first_pkg = pkg_name($first_arg);
 
-    if ( ( $typedefs{$first_pkg} // '' ) eq 'obj'
-      && $fn_name =~ m/^$first_arg/i )
+    if ( ( ( $typedefs{$first_pkg} // '' ) eq 'obj' || ( $typedefs{$first_pkg} // '' ) eq 'void' )&& $fn_name =~ m/^$first_arg/i )
     {
       $fn_def->{name} =~ s/^$first_arg//i;
       push $classdefs{$first_pkg}->{fns}->@*, $fn_def;
     }
     else
     {
+      $fn_def->{name} =~ s/^wgpu//;
       push @fns, $fn_def;
     }
 
@@ -260,45 +260,13 @@ while (<$h>)
   die "Unparsed line: $_";
 }
 
-say $xs qq{MODULE = WebGPU::Direct\t\tPACKAGE = WebGPU::Direct::XS};
+say $xs qq{MODULE = WebGPU::Direct\t\tPACKAGE = WebGPU::Direct::XS\t\tPREFIX = wgpu};
 
 foreach (@fns)
 {
   my %def = %$_;
-  my $class = 'WebGPU::Direct';
-  my $type  = 'asdf';
+  say_call_fn(%def);
 
-  my @args;
-  my @keys;
-  my @vals;
-  foreach my $pair ( pairs $def{args}->@* )
-  {
-    my ( $key, $value ) = @$pair;
-
-    my ($type) = $key =~ m/^(\w+)/;
-    my $pkg = pkg_name($type);
-
-    warn "Unknown type: $type"
-        if !exists $typedefs{$pkg} && !exists $typedefs{$type};
-
-    if ( exists $typedefs{$pkg} )
-    {
-      $key =~ s/^$type/$pkg/;
-    }
-    push @args, "$key $value";
-    push @keys, "$key";
-    push @vals, "$value";
-  }
-
-  local $" = ', ';
-  say $xs "";
-  say $xs "$def{return}";
-  say $xs "$def{name}(@vals)";
-  foreach ( @args )
-  {
-    say $xs "        $_";
-  }
-  say $xs "";
 }
 
 foreach my $class ( @classes )
@@ -312,7 +280,7 @@ foreach my $class ( @classes )
   my $isa       = "";
   my $packs     = "";
   my $addl_pack = "";
-  my $c_prefix  = "${class}__";
+  my $c_prefix  = "${class}";
 
   $c_prefix =~ s/::/__/g;
 
@@ -335,28 +303,12 @@ foreach my $class ( @classes )
   foreach (@defs)
   {
     my %def = %$_;
-    $packs .= qq{  _find_set_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key}, newSVpvs("$def{return}"));\n};
 
-    say $xs <<~"EOF"; my $n = qq{
-      $def{return}
-      $def{key}(THIS, value = NO_INIT)
-              $class THIS
-              $def{return} value
-          PROTOTYPE: \$;\$
-          CODE:
-              HV *h = SvRV(THIS);
-              $type *n = _get_struct_ptr(aTHX, THIS, NULL);
-              SV *type_sv = newSVpvs("$type");
-              RETVAL = _find_obj(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key}, type_sv);
+    my $set_addl = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' ) ? qq{, newSVpvs("$def{return}")} : "";
 
-              if (items > 1)
-              {
-                  _set_obj(aTHX_ value, &n->$def{key}, type_sv);
-              }
-          OUTPUT:
-              RETVAL
-      EOF
-      };
+    $packs .= qq{  _find_set_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key} $set_addl);\n};
+
+    say_set_fn($class, $type, %def);
   }
 
   if ( @defs )
@@ -383,13 +335,13 @@ foreach my $class ( @classes )
               SV *THIS
           PROTOTYPE: \$
           CODE:
-              ${c_prefix}pack( SV *THIS );
+              ${c_prefix}__pack( SV *THIS );
               $addl_pack
       EOF
       };
 
     say $c <<~"EOF"; $n = qq{
-    void ${c_prefix}pack( SV *THIS )
+    void ${c_prefix}__pack( SV *THIS )
     {
       if (!SvROK(THIS) || !sv_derived_from(THIS, "$class"))
       {
@@ -398,12 +350,12 @@ foreach my $class ( @classes )
           "THIS", "$class");
       }
 
-      HV *h = SvRV(THIS);
-      $type *n = _get_struct_ptr(aTHX, THIS, NULL);
+      HV *h = (HV *)SvRV(THIS);
+      $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
       if ( !n )
       {
         Newxz(n, 1, $type);
-        sv_magicext(h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+        sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
       }
     $packs
     }
@@ -424,12 +376,12 @@ foreach my $class ( @classes )
       };
 
     say $c <<~"EOF"; $n = qq{
-    SV *${c_prefix}wrap( void *n )
+    SV *${c_prefix}__wrap( void *n )
     {
       HV *h = newHV();
       SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
-      sv_magicext(h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+      sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
       sv_bless(RETVAL, gv_stashpv("$class", GV_ADD));
       return RETVAL;
     }
@@ -440,34 +392,15 @@ foreach my $class ( @classes )
   foreach (@fns)
   {
     my %def = %$_;
-    warn $def{name};
-
-    say $xs <<~"EOF"; my $n = qq{
-      $def{return}
-      $def{name}(THIS, value = NO_INIT)
-              $class THIS
-              $def{return} value
-          PROTOTYPE: \$;\$
-          CODE:
-              HV *h = SvRV(THIS);
-              $type *n = _get_struct_ptr(aTHX, THIS, NULL);
-              SV *type_sv = newSVpvs("$type");
-              RETVAL = _find_obj(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key}, type_sv);
-
-              if (items > 1)
-              {
-                  _set_obj(aTHX_ value, &n->$def{key}, type_sv);
-              }
-          OUTPUT:
-              RETVAL
-      EOF
-      };
+    say_call_fn(%def);
   }
   
   my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : 'T_VOID';
   say $tm sprintf("%-64s%s", $class, $typemap);
   say $tm sprintf("%-64s%s", "$class *", 'T_FETCHPTR');
   say $tm sprintf("%-64s%s", "$class const *", 'T_FETCHPTR');
+
+  say $c "typedef SV * $c_prefix;";
 }
 
 foreach my $typedef ( sort keys %typedefs )
@@ -480,7 +413,11 @@ foreach my $typedef ( sort keys %typedefs )
       : ( $typedef =~ m/_t$/ )   ? 'T_IV'
       :                            'T_' . uc($typedef);
   say $tm sprintf( "%-64s%s", $typedef, $typemap );
+  say $tm sprintf( "%-64s%s", "$typedef *", $typemap );
+  say $tm sprintf( "%-64s%s", "$typedef const *", $typemap );
 }
+
+say $tm sprintf("%-64s%s", "char const *", 'T_PV');
 
 say $tm <<'EOF';
 INPUT
@@ -495,5 +432,97 @@ T_VOID
 T_FETCHPTR
     $arg = newRV((SV*)$var);
 EOF
+
+sub say_set_fn
+{
+  my $class = shift;
+  my $type = shift;
+  my %def = @_;
+
+  my $is_obj = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' );
+
+  if ( $is_obj )
+  {
+    say $xs <<~"EOF"; my $n = qq{
+      $def{return}
+      $def{key}(THIS, value = NO_INIT)
+              $class THIS
+              $def{return} value
+          PROTOTYPE: \$;\$
+          CODE:
+              HV *h = (HV *)SvRV(THIS);
+              $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+              SV *type_sv = newSVpvs("$type");
+              RETVAL = _find_obj(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key}, type_sv);
+
+              if (items > 1)
+              {
+                  _set_$def{typedef}(aTHX_ value,/**/ (void *) &n->$def{key}, type_sv);
+              }
+          OUTPUT:
+              RETVAL
+      EOF
+      };
+  }
+  else
+  {
+    say $xs <<~"EOF"; my $n = qq{
+      $def{return}
+      $def{key}(THIS, value = NO_INIT)
+              $class THIS
+              SV *value
+          PROTOTYPE: \$;\$
+          CODE:
+              HV *h = (HV *)SvRV(THIS);
+              $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+              SV *type_sv = newSVpvs("$type");
+              RETVAL = _find_obj(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key}, type_sv);
+
+              if (items > 1)
+              {
+                  _set_$def{typedef}(aTHX_ value,/*-*/ (void *) &n->$def{key});
+              }
+          OUTPUT:
+              RETVAL
+      EOF
+      };
+  }
+}
+
+sub say_call_fn
+{
+  my %def = @_;
+    my @args;
+    my @keys;
+    my @vals;
+    foreach my $pair ( pairs $def{args}->@* )
+    {
+      my ( $key, $value ) = @$pair;
+
+      my ($type) = $key =~ m/^(\w+)/;
+      my $pkg = pkg_name($type);
+
+      warn "Unknown type: $type"
+          if !exists $typedefs{$pkg} && !exists $typedefs{$type};
+
+      if ( exists $typedefs{$pkg} )
+      {
+        $key =~ s/^$type/$pkg/;
+      }
+      push @args, "$key $value";
+      push @keys, "$key";
+      push @vals, "$value";
+    }
+
+    local $" = ', ';
+    say $xs "";
+    say $xs "$def{return}";
+    say $xs "$def{name}(@vals)";
+    foreach ( @args )
+    {
+      say $xs "        $_";
+    }
+    say $xs "";
+}
 
 1;

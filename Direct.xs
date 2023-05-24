@@ -7,8 +7,6 @@
 
 #include <webgpu/webgpu.h>
 
-typedef WGPUSurfaceDescriptor* WebGPU__Direct__WGPUSurfaceDescriptor;
-
 void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
 {
   if ( !sv_isobject(obj) )
@@ -34,12 +32,9 @@ void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
   return mg->mg_ptr;
 }
 
-int _mg_set_obj(pTHX_ SV* sv, MAGIC* mg)
-{
-  SV *base = mg->mg_obj;
-  _set_obj(aTHX_ sv, (void *) mg->mg_ptr, base);
-  return 0;
-}
+/* ------------------------------------------------------------------
+   obj
+   ------------------------------------------------------------------ */
 
 void _set_obj(pTHX_ SV *new_value, void **field, SV *base)
 {
@@ -50,6 +45,13 @@ void _set_obj(pTHX_ SV *new_value, void **field, SV *base)
 
   void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
   *field = v;
+}
+
+int _mg_set_obj(pTHX_ SV* sv, MAGIC* mg)
+{
+  SV *base = mg->mg_obj;
+  _set_obj(aTHX_ sv, (void *) mg->mg_ptr, base);
+  return 0;
 }
 
 STATIC MGVTBL _mg_vtbl_obj = {
@@ -77,12 +79,31 @@ SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
   return fp;
 }
 
-int _mg_set_str(pTHX_ SV* sv, MAGIC* mg)
-{
-  char **s = (char *) mg->mg_ptr;
-  _set_str(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
+#define _find_set_x(type, init) \
+SV *_find_set_##type(pTHX_ HV *h, const char *key, I32 klen, void *field)      \
+{                                                                              \
+  SV **f;                                                                      \
+  SV *fp;                                                                      \
+                                                                               \
+  f = hv_fetch(h, key, klen, 0);                                               \
+  if ( f && *f )                                                               \
+  {                                                                            \
+    fp = *f;                                                                   \
+  }                                                                            \
+  else                                                                         \
+  {                                                                            \
+    fp = init;                                                                 \
+    sv_magicext(fp, NULL, PERL_MAGIC_ext, &_mg_vtbl_##type, (const char*)field, 0);    \
+    hv_store(h, key, klen, fp, 0);                                             \
+  }                                                                            \
+  _set_##type(aTHX_ fp, field);                                                \
+                                                                               \
+  return fp;                                                                   \
 }
+
+/* ------------------------------------------------------------------
+   str
+   ------------------------------------------------------------------ */
 
 void _set_str(pTHX_ SV *new_value, void **field)
 {
@@ -90,30 +111,43 @@ void _set_str(pTHX_ SV *new_value, void **field)
   *field = v;
 }
 
+int _mg_set_str(pTHX_ SV* sv, MAGIC* mg)
+{
+  char **s = (char **) mg->mg_ptr;
+  _set_str(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
 STATIC MGVTBL _mg_vtbl_str = {
   .svt_set = _mg_set_str
 };
 
-SV *_find_set_str(pTHX_ HV *h, const char *key, I32 klen, void *field)
+_find_set_x(str, newSVpvs(""));
+
+/* ------------------------------------------------------------------
+   bool
+   ------------------------------------------------------------------ */
+
+void _set_bool(pTHX_ SV *new_value, bool *field)
 {
-  SV **f;
-  SV *fp;
-
-  f = hv_fetch(h, key, klen, 0);
-  if ( f && *f )
-  {
-    fp = *f;
-  }
-  else
-  {
-    fp = newSVpvs("");
-    sv_magicext(fp, NULL, PERL_MAGIC_ext, &_mg_vtbl_str, (const char *)field, 0);
-    hv_store(h, key, klen, fp, 0);
-  }
-  _set_str(aTHX_ fp, field);
-
-  return fp;
+  bool v = (bool)SvIV(new_value);
+  *field = v;
 }
+
+int _mg_set_bool(pTHX_ SV* sv, MAGIC* mg)
+{
+  bool *s = (bool *) mg->mg_ptr;
+  _set_bool(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_bool = {
+  .svt_set = _mg_set_bool
+};
+
+_find_set_x(bool, newSViv(FALSE));
+
+#include "xs/webgpu.c"
 
 MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct::XS		PREFIX = wgpu
 
