@@ -1,4 +1,3 @@
-#define PERL_NO_GET_CONTEXT
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
@@ -30,6 +29,16 @@ void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
   }
 
   return mg->mg_ptr;
+}
+
+SV *_void__wrap( const void *n )
+{
+  SV *h = newSV(0);
+  SV *RETVAL = sv_2mortal(newRV(h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::Opaque", GV_ADD));
+  return RETVAL;
 }
 
 /* ------------------------------------------------------------------
@@ -78,9 +87,57 @@ SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
 
   return fp;
 }
+/* ------------------------------------------------------------------
+   void (Impl)
+   ------------------------------------------------------------------ */
 
-#define _find_set_x(type, init) \
-SV *_find_set_##type(pTHX_ HV *h, const char *key, I32 klen, void *field)      \
+void _set_void(pTHX_ SV *new_value, void **field, SV *base)
+{
+  if ( !base )
+  {
+    croak("Could not find requirement base for %s", SvPV_nolen(new_value));
+  }
+
+  void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
+  *field = v;
+}
+
+int _mg_set_void(pTHX_ SV* sv, MAGIC* mg)
+{
+  SV *base = mg->mg_obj;
+  _set_void(aTHX_ sv, (void *) mg->mg_ptr, base);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_void = {
+  .svt_set = _mg_set_void
+};
+
+SV *_find_set_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
+{
+  SV **f;
+  SV *fp;
+
+  f = hv_fetch(h, key, klen, 0);
+  if ( f && *f )
+  {
+    fp = *f;
+  }
+  else
+  {
+    fp = newSV(0);
+    sv_magicext(fp, base, PERL_MAGIC_ext, &_mg_vtbl_void, (const char *)field, 0);
+    hv_store(h, key, klen, fp, 0);
+  }
+  _set_void(aTHX_ fp, field, base);
+
+  return fp;
+}
+
+/* Integer and Floating types */ 
+
+#define _find_set_x(type, init, rt, cast) \
+rt _find_set_##type(pTHX_ HV *h, const char *key, I32 klen, void *field)      \
 {                                                                              \
   SV **f;                                                                      \
   SV *fp;                                                                      \
@@ -98,7 +155,7 @@ SV *_find_set_##type(pTHX_ HV *h, const char *key, I32 klen, void *field)      \
   }                                                                            \
   _set_##type(aTHX_ fp, field);                                                \
                                                                                \
-  return fp;                                                                   \
+  return cast(fp);                                                             \
 }
 
 /* ------------------------------------------------------------------
@@ -122,7 +179,7 @@ STATIC MGVTBL _mg_vtbl_str = {
   .svt_set = _mg_set_str
 };
 
-_find_set_x(str, newSVpvs(""));
+_find_set_x(str, newSVpvs(""), char*, SvPVbyte_nolen);
 
 /* ------------------------------------------------------------------
    enum
@@ -145,7 +202,7 @@ STATIC MGVTBL _mg_vtbl_enum = {
   .svt_set = _mg_set_enum
 };
 
-_find_set_x(enum, newSViv(0));
+_find_set_x(enum, newSViv(0), int, SvIV);
 
 /* ------------------------------------------------------------------
    bool
@@ -168,7 +225,53 @@ STATIC MGVTBL _mg_vtbl_bool = {
   .svt_set = _mg_set_bool
 };
 
-_find_set_x(bool, newSViv(FALSE));
+_find_set_x(bool, newSViv(FALSE), bool, SvIV);
+
+/* ------------------------------------------------------------------
+   double
+   ------------------------------------------------------------------ */
+
+void _set_double(pTHX_ SV *new_value, double *field)
+{
+  double v = (double)SvNV(new_value);
+  *field = v;
+}
+
+int _mg_set_double(pTHX_ SV* sv, MAGIC* mg)
+{
+  double *s = (double *) mg->mg_ptr;
+  _set_double(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_double = {
+  .svt_set = _mg_set_double
+};
+
+_find_set_x(double, newSVnv(0), double, SvNV);
+
+/* ------------------------------------------------------------------
+   float
+   ------------------------------------------------------------------ */
+
+void _set_float(pTHX_ SV *new_value, float *field)
+{
+  float v = (U16)SvNV(new_value);
+  *field = v;
+}
+
+int _mg_set_float(pTHX_ SV* sv, MAGIC* mg)
+{
+  float *s = (float *) mg->mg_ptr;
+  _set_float(aTHX_ sv, (void *) mg->mg_ptr);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_float = {
+  .svt_set = _mg_set_float
+};
+
+_find_set_x(float, newSVnv(0), float, SvNV);
 
 /* ------------------------------------------------------------------
    uint16_t
@@ -191,7 +294,7 @@ STATIC MGVTBL _mg_vtbl_uint16_t = {
   .svt_set = _mg_set_uint16_t
 };
 
-_find_set_x(uint16_t, newSViv(0));
+_find_set_x(uint16_t, newSViv(0), uint16_t, SvIV);
 
 /* ------------------------------------------------------------------
    uint32_t
@@ -214,7 +317,7 @@ STATIC MGVTBL _mg_vtbl_uint32_t = {
   .svt_set = _mg_set_uint32_t
 };
 
-_find_set_x(uint32_t, newSViv(0));
+_find_set_x(uint32_t, newSViv(0), uint32_t, SvIV);
 
 /* ------------------------------------------------------------------
    uint64_t
@@ -237,7 +340,7 @@ STATIC MGVTBL _mg_vtbl_uint64_t = {
   .svt_set = _mg_set_uint64_t
 };
 
-_find_set_x(uint64_t, newSViv(0));
+_find_set_x(uint64_t, newSViv(0), uint64_t, SvIV);
 
 /* ------------------------------------------------------------------
    int32_t
@@ -260,7 +363,7 @@ STATIC MGVTBL _mg_vtbl_int32_t = {
   .svt_set = _mg_set_int32_t
 };
 
-_find_set_x(int32_t, newSViv(0));
+_find_set_x(int32_t, newSViv(0), int32_t, SvIV);
 
 /* ------------------------------------------------------------------
    END
@@ -275,6 +378,22 @@ INCLUDE: xs/webgpu.xs
 #ifdef HAS_X11
 
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS::Backend         PREFIX = wgpu
+
+=c
+int
+desc(w)
+       WGPUSurfaceDescriptor const *w
+   CODE:
+       warn("%zu\n", __LINE__);
+       const WGPUChainedStruct * n = w->nextInChain;
+       warn("%zu\n", __LINE__);
+       warn("%zx\n", w);
+       warn("%zx\n", n);
+       warn("%zu\n", __LINE__);
+       RETVAL = w->nextInChain->sType;
+       warn("%zu\n", __LINE__);
+   OUTPUT:
+       RETVAL
 
 #include <X11/Xlib.h>
 
@@ -292,6 +411,7 @@ CreateSurface(CLASS)
           WGPUSwapChainDescriptor config;
           WGPUSwapChain swapchain;
           instance = wgpuCreateInstance(&(const WGPUInstanceDescriptor){0});
+          warn("%d\n", &(const WGPUInstanceDescriptor){0});
 
 	  int xw = 640;
 	  int yh = 360;
@@ -370,4 +490,5 @@ new_window_x11(CLASS, xw, yh)
         RETVAL
 
 
+=cut
 #endif

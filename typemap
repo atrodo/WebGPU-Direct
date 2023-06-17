@@ -1,318 +1,423 @@
+WGPUAdapter                                                     T_FETCH
+WGPUAdapter *                                                   T_FETCHPTR
+WGPUAdapter const *                                             T_FETCHPTR
 WebGPU::Direct::Adapter                                         T_VOID
-WebGPU::Direct::Adapter *                                       T_FETCHPTR
-WebGPU::Direct::Adapter const *                                 T_FETCHPTR
+WGPUBindGroup                                                   T_FETCH
+WGPUBindGroup *                                                 T_FETCHPTR
+WGPUBindGroup const *                                           T_FETCHPTR
 WebGPU::Direct::BindGroup                                       T_VOID
-WebGPU::Direct::BindGroup *                                     T_FETCHPTR
-WebGPU::Direct::BindGroup const *                               T_FETCHPTR
+WGPUBindGroupLayout                                             T_FETCH
+WGPUBindGroupLayout *                                           T_FETCHPTR
+WGPUBindGroupLayout const *                                     T_FETCHPTR
 WebGPU::Direct::BindGroupLayout                                 T_VOID
-WebGPU::Direct::BindGroupLayout *                               T_FETCHPTR
-WebGPU::Direct::BindGroupLayout const *                         T_FETCHPTR
+WGPUBuffer                                                      T_FETCH
+WGPUBuffer *                                                    T_FETCHPTR
+WGPUBuffer const *                                              T_FETCHPTR
 WebGPU::Direct::Buffer                                          T_VOID
-WebGPU::Direct::Buffer *                                        T_FETCHPTR
-WebGPU::Direct::Buffer const *                                  T_FETCHPTR
+WGPUCommandBuffer                                               T_FETCH
+WGPUCommandBuffer *                                             T_FETCHPTR
+WGPUCommandBuffer const *                                       T_FETCHPTR
 WebGPU::Direct::CommandBuffer                                   T_VOID
-WebGPU::Direct::CommandBuffer *                                 T_FETCHPTR
-WebGPU::Direct::CommandBuffer const *                           T_FETCHPTR
+WGPUCommandEncoder                                              T_FETCH
+WGPUCommandEncoder *                                            T_FETCHPTR
+WGPUCommandEncoder const *                                      T_FETCHPTR
 WebGPU::Direct::CommandEncoder                                  T_VOID
-WebGPU::Direct::CommandEncoder *                                T_FETCHPTR
-WebGPU::Direct::CommandEncoder const *                          T_FETCHPTR
+WGPUComputePassEncoder                                          T_FETCH
+WGPUComputePassEncoder *                                        T_FETCHPTR
+WGPUComputePassEncoder const *                                  T_FETCHPTR
 WebGPU::Direct::ComputePassEncoder                              T_VOID
-WebGPU::Direct::ComputePassEncoder *                            T_FETCHPTR
-WebGPU::Direct::ComputePassEncoder const *                      T_FETCHPTR
+WGPUComputePipeline                                             T_FETCH
+WGPUComputePipeline *                                           T_FETCHPTR
+WGPUComputePipeline const *                                     T_FETCHPTR
 WebGPU::Direct::ComputePipeline                                 T_VOID
-WebGPU::Direct::ComputePipeline *                               T_FETCHPTR
-WebGPU::Direct::ComputePipeline const *                         T_FETCHPTR
+WGPUDevice                                                      T_FETCH
+WGPUDevice *                                                    T_FETCHPTR
+WGPUDevice const *                                              T_FETCHPTR
 WebGPU::Direct::Device                                          T_VOID
-WebGPU::Direct::Device *                                        T_FETCHPTR
-WebGPU::Direct::Device const *                                  T_FETCHPTR
+WGPUInstance                                                    T_FETCH
+WGPUInstance *                                                  T_FETCHPTR
+WGPUInstance const *                                            T_FETCHPTR
 WebGPU::Direct::Instance                                        T_VOID
-WebGPU::Direct::Instance *                                      T_FETCHPTR
-WebGPU::Direct::Instance const *                                T_FETCHPTR
+WGPUPipelineLayout                                              T_FETCH
+WGPUPipelineLayout *                                            T_FETCHPTR
+WGPUPipelineLayout const *                                      T_FETCHPTR
 WebGPU::Direct::PipelineLayout                                  T_VOID
-WebGPU::Direct::PipelineLayout *                                T_FETCHPTR
-WebGPU::Direct::PipelineLayout const *                          T_FETCHPTR
+WGPUQuerySet                                                    T_FETCH
+WGPUQuerySet *                                                  T_FETCHPTR
+WGPUQuerySet const *                                            T_FETCHPTR
 WebGPU::Direct::QuerySet                                        T_VOID
-WebGPU::Direct::QuerySet *                                      T_FETCHPTR
-WebGPU::Direct::QuerySet const *                                T_FETCHPTR
+WGPUQueue                                                       T_FETCH
+WGPUQueue *                                                     T_FETCHPTR
+WGPUQueue const *                                               T_FETCHPTR
 WebGPU::Direct::Queue                                           T_VOID
-WebGPU::Direct::Queue *                                         T_FETCHPTR
-WebGPU::Direct::Queue const *                                   T_FETCHPTR
+WGPURenderBundle                                                T_FETCH
+WGPURenderBundle *                                              T_FETCHPTR
+WGPURenderBundle const *                                        T_FETCHPTR
 WebGPU::Direct::RenderBundle                                    T_VOID
-WebGPU::Direct::RenderBundle *                                  T_FETCHPTR
-WebGPU::Direct::RenderBundle const *                            T_FETCHPTR
+WGPURenderBundleEncoder                                         T_FETCH
+WGPURenderBundleEncoder *                                       T_FETCHPTR
+WGPURenderBundleEncoder const *                                 T_FETCHPTR
 WebGPU::Direct::RenderBundleEncoder                             T_VOID
-WebGPU::Direct::RenderBundleEncoder *                           T_FETCHPTR
-WebGPU::Direct::RenderBundleEncoder const *                     T_FETCHPTR
+WGPURenderPassEncoder                                           T_FETCH
+WGPURenderPassEncoder *                                         T_FETCHPTR
+WGPURenderPassEncoder const *                                   T_FETCHPTR
 WebGPU::Direct::RenderPassEncoder                               T_VOID
-WebGPU::Direct::RenderPassEncoder *                             T_FETCHPTR
-WebGPU::Direct::RenderPassEncoder const *                       T_FETCHPTR
+WGPURenderPipeline                                              T_FETCH
+WGPURenderPipeline *                                            T_FETCHPTR
+WGPURenderPipeline const *                                      T_FETCHPTR
 WebGPU::Direct::RenderPipeline                                  T_VOID
-WebGPU::Direct::RenderPipeline *                                T_FETCHPTR
-WebGPU::Direct::RenderPipeline const *                          T_FETCHPTR
+WGPUSampler                                                     T_FETCH
+WGPUSampler *                                                   T_FETCHPTR
+WGPUSampler const *                                             T_FETCHPTR
 WebGPU::Direct::Sampler                                         T_VOID
-WebGPU::Direct::Sampler *                                       T_FETCHPTR
-WebGPU::Direct::Sampler const *                                 T_FETCHPTR
+WGPUShaderModule                                                T_FETCH
+WGPUShaderModule *                                              T_FETCHPTR
+WGPUShaderModule const *                                        T_FETCHPTR
 WebGPU::Direct::ShaderModule                                    T_VOID
-WebGPU::Direct::ShaderModule *                                  T_FETCHPTR
-WebGPU::Direct::ShaderModule const *                            T_FETCHPTR
+WGPUSurface                                                     T_FETCH
+WGPUSurface *                                                   T_FETCHPTR
+WGPUSurface const *                                             T_FETCHPTR
 WebGPU::Direct::Surface                                         T_VOID
-WebGPU::Direct::Surface *                                       T_FETCHPTR
-WebGPU::Direct::Surface const *                                 T_FETCHPTR
+WGPUSwapChain                                                   T_FETCH
+WGPUSwapChain *                                                 T_FETCHPTR
+WGPUSwapChain const *                                           T_FETCHPTR
 WebGPU::Direct::SwapChain                                       T_VOID
-WebGPU::Direct::SwapChain *                                     T_FETCHPTR
-WebGPU::Direct::SwapChain const *                               T_FETCHPTR
+WGPUTexture                                                     T_FETCH
+WGPUTexture *                                                   T_FETCHPTR
+WGPUTexture const *                                             T_FETCHPTR
 WebGPU::Direct::Texture                                         T_VOID
-WebGPU::Direct::Texture *                                       T_FETCHPTR
-WebGPU::Direct::Texture const *                                 T_FETCHPTR
+WGPUTextureView                                                 T_FETCH
+WGPUTextureView *                                               T_FETCHPTR
+WGPUTextureView const *                                         T_FETCHPTR
 WebGPU::Direct::TextureView                                     T_VOID
-WebGPU::Direct::TextureView *                                   T_FETCHPTR
-WebGPU::Direct::TextureView const *                             T_FETCHPTR
+WGPUChainedStruct                                               T_FETCH
+WGPUChainedStruct *                                             T_FETCHPTR
+WGPUChainedStruct const *                                       T_FETCHPTR
 WebGPU::Direct::ChainedStruct                                   T_SV
-WebGPU::Direct::ChainedStruct *                                 T_FETCHPTR
-WebGPU::Direct::ChainedStruct const *                           T_FETCHPTR
+WGPUChainedStructOut                                            T_FETCH
+WGPUChainedStructOut *                                          T_FETCHPTR
+WGPUChainedStructOut const *                                    T_FETCHPTR
 WebGPU::Direct::ChainedStructOut                                T_SV
-WebGPU::Direct::ChainedStructOut *                              T_FETCHPTR
-WebGPU::Direct::ChainedStructOut const *                        T_FETCHPTR
+WGPUAdapterProperties                                           T_FETCH
+WGPUAdapterProperties *                                         T_FETCHPTR
+WGPUAdapterProperties const *                                   T_FETCHPTR
 WebGPU::Direct::AdapterProperties                               T_SV
-WebGPU::Direct::AdapterProperties *                             T_FETCHPTR
-WebGPU::Direct::AdapterProperties const *                       T_FETCHPTR
+WGPUBindGroupEntry                                              T_FETCH
+WGPUBindGroupEntry *                                            T_FETCHPTR
+WGPUBindGroupEntry const *                                      T_FETCHPTR
 WebGPU::Direct::BindGroupEntry                                  T_SV
-WebGPU::Direct::BindGroupEntry *                                T_FETCHPTR
-WebGPU::Direct::BindGroupEntry const *                          T_FETCHPTR
+WGPUBlendComponent                                              T_FETCH
+WGPUBlendComponent *                                            T_FETCHPTR
+WGPUBlendComponent const *                                      T_FETCHPTR
 WebGPU::Direct::BlendComponent                                  T_SV
-WebGPU::Direct::BlendComponent *                                T_FETCHPTR
-WebGPU::Direct::BlendComponent const *                          T_FETCHPTR
+WGPUBufferBindingLayout                                         T_FETCH
+WGPUBufferBindingLayout *                                       T_FETCHPTR
+WGPUBufferBindingLayout const *                                 T_FETCHPTR
 WebGPU::Direct::BufferBindingLayout                             T_SV
-WebGPU::Direct::BufferBindingLayout *                           T_FETCHPTR
-WebGPU::Direct::BufferBindingLayout const *                     T_FETCHPTR
+WGPUBufferDescriptor                                            T_FETCH
+WGPUBufferDescriptor *                                          T_FETCHPTR
+WGPUBufferDescriptor const *                                    T_FETCHPTR
 WebGPU::Direct::BufferDescriptor                                T_SV
-WebGPU::Direct::BufferDescriptor *                              T_FETCHPTR
-WebGPU::Direct::BufferDescriptor const *                        T_FETCHPTR
+WGPUColor                                                       T_FETCH
+WGPUColor *                                                     T_FETCHPTR
+WGPUColor const *                                               T_FETCHPTR
 WebGPU::Direct::Color                                           T_SV
-WebGPU::Direct::Color *                                         T_FETCHPTR
-WebGPU::Direct::Color const *                                   T_FETCHPTR
+WGPUCommandBufferDescriptor                                     T_FETCH
+WGPUCommandBufferDescriptor *                                   T_FETCHPTR
+WGPUCommandBufferDescriptor const *                             T_FETCHPTR
 WebGPU::Direct::CommandBufferDescriptor                         T_SV
-WebGPU::Direct::CommandBufferDescriptor *                       T_FETCHPTR
-WebGPU::Direct::CommandBufferDescriptor const *                 T_FETCHPTR
+WGPUCommandEncoderDescriptor                                    T_FETCH
+WGPUCommandEncoderDescriptor *                                  T_FETCHPTR
+WGPUCommandEncoderDescriptor const *                            T_FETCHPTR
 WebGPU::Direct::CommandEncoderDescriptor                        T_SV
-WebGPU::Direct::CommandEncoderDescriptor *                      T_FETCHPTR
-WebGPU::Direct::CommandEncoderDescriptor const *                T_FETCHPTR
+WGPUCompilationMessage                                          T_FETCH
+WGPUCompilationMessage *                                        T_FETCHPTR
+WGPUCompilationMessage const *                                  T_FETCHPTR
 WebGPU::Direct::CompilationMessage                              T_SV
-WebGPU::Direct::CompilationMessage *                            T_FETCHPTR
-WebGPU::Direct::CompilationMessage const *                      T_FETCHPTR
+WGPUComputePassTimestampWrite                                   T_FETCH
+WGPUComputePassTimestampWrite *                                 T_FETCHPTR
+WGPUComputePassTimestampWrite const *                           T_FETCHPTR
 WebGPU::Direct::ComputePassTimestampWrite                       T_SV
-WebGPU::Direct::ComputePassTimestampWrite *                     T_FETCHPTR
-WebGPU::Direct::ComputePassTimestampWrite const *               T_FETCHPTR
+WGPUConstantEntry                                               T_FETCH
+WGPUConstantEntry *                                             T_FETCHPTR
+WGPUConstantEntry const *                                       T_FETCHPTR
 WebGPU::Direct::ConstantEntry                                   T_SV
-WebGPU::Direct::ConstantEntry *                                 T_FETCHPTR
-WebGPU::Direct::ConstantEntry const *                           T_FETCHPTR
+WGPUExtent3D                                                    T_FETCH
+WGPUExtent3D *                                                  T_FETCHPTR
+WGPUExtent3D const *                                            T_FETCHPTR
 WebGPU::Direct::Extent3D                                        T_SV
-WebGPU::Direct::Extent3D *                                      T_FETCHPTR
-WebGPU::Direct::Extent3D const *                                T_FETCHPTR
+WGPUInstanceDescriptor                                          T_FETCH
+WGPUInstanceDescriptor *                                        T_FETCHPTR
+WGPUInstanceDescriptor const *                                  T_FETCHPTR
 WebGPU::Direct::InstanceDescriptor                              T_SV
-WebGPU::Direct::InstanceDescriptor *                            T_FETCHPTR
-WebGPU::Direct::InstanceDescriptor const *                      T_FETCHPTR
+WGPULimits                                                      T_FETCH
+WGPULimits *                                                    T_FETCHPTR
+WGPULimits const *                                              T_FETCHPTR
 WebGPU::Direct::Limits                                          T_SV
-WebGPU::Direct::Limits *                                        T_FETCHPTR
-WebGPU::Direct::Limits const *                                  T_FETCHPTR
+WGPUMultisampleState                                            T_FETCH
+WGPUMultisampleState *                                          T_FETCHPTR
+WGPUMultisampleState const *                                    T_FETCHPTR
 WebGPU::Direct::MultisampleState                                T_SV
-WebGPU::Direct::MultisampleState *                              T_FETCHPTR
-WebGPU::Direct::MultisampleState const *                        T_FETCHPTR
+WGPUOrigin3D                                                    T_FETCH
+WGPUOrigin3D *                                                  T_FETCHPTR
+WGPUOrigin3D const *                                            T_FETCHPTR
 WebGPU::Direct::Origin3D                                        T_SV
-WebGPU::Direct::Origin3D *                                      T_FETCHPTR
-WebGPU::Direct::Origin3D const *                                T_FETCHPTR
+WGPUPipelineLayoutDescriptor                                    T_FETCH
+WGPUPipelineLayoutDescriptor *                                  T_FETCHPTR
+WGPUPipelineLayoutDescriptor const *                            T_FETCHPTR
 WebGPU::Direct::PipelineLayoutDescriptor                        T_SV
-WebGPU::Direct::PipelineLayoutDescriptor *                      T_FETCHPTR
-WebGPU::Direct::PipelineLayoutDescriptor const *                T_FETCHPTR
+WGPUPrimitiveDepthClipControl                                   T_FETCH
+WGPUPrimitiveDepthClipControl *                                 T_FETCHPTR
+WGPUPrimitiveDepthClipControl const *                           T_FETCHPTR
 WebGPU::Direct::PrimitiveDepthClipControl                       T_SV
-WebGPU::Direct::PrimitiveDepthClipControl *                     T_FETCHPTR
-WebGPU::Direct::PrimitiveDepthClipControl const *               T_FETCHPTR
+WGPUPrimitiveState                                              T_FETCH
+WGPUPrimitiveState *                                            T_FETCHPTR
+WGPUPrimitiveState const *                                      T_FETCHPTR
 WebGPU::Direct::PrimitiveState                                  T_SV
-WebGPU::Direct::PrimitiveState *                                T_FETCHPTR
-WebGPU::Direct::PrimitiveState const *                          T_FETCHPTR
+WGPUQuerySetDescriptor                                          T_FETCH
+WGPUQuerySetDescriptor *                                        T_FETCHPTR
+WGPUQuerySetDescriptor const *                                  T_FETCHPTR
 WebGPU::Direct::QuerySetDescriptor                              T_SV
-WebGPU::Direct::QuerySetDescriptor *                            T_FETCHPTR
-WebGPU::Direct::QuerySetDescriptor const *                      T_FETCHPTR
+WGPUQueueDescriptor                                             T_FETCH
+WGPUQueueDescriptor *                                           T_FETCHPTR
+WGPUQueueDescriptor const *                                     T_FETCHPTR
 WebGPU::Direct::QueueDescriptor                                 T_SV
-WebGPU::Direct::QueueDescriptor *                               T_FETCHPTR
-WebGPU::Direct::QueueDescriptor const *                         T_FETCHPTR
+WGPURenderBundleDescriptor                                      T_FETCH
+WGPURenderBundleDescriptor *                                    T_FETCHPTR
+WGPURenderBundleDescriptor const *                              T_FETCHPTR
 WebGPU::Direct::RenderBundleDescriptor                          T_SV
-WebGPU::Direct::RenderBundleDescriptor *                        T_FETCHPTR
-WebGPU::Direct::RenderBundleDescriptor const *                  T_FETCHPTR
+WGPURenderBundleEncoderDescriptor                               T_FETCH
+WGPURenderBundleEncoderDescriptor *                             T_FETCHPTR
+WGPURenderBundleEncoderDescriptor const *                       T_FETCHPTR
 WebGPU::Direct::RenderBundleEncoderDescriptor                   T_SV
-WebGPU::Direct::RenderBundleEncoderDescriptor *                 T_FETCHPTR
-WebGPU::Direct::RenderBundleEncoderDescriptor const *           T_FETCHPTR
+WGPURenderPassDepthStencilAttachment                            T_FETCH
+WGPURenderPassDepthStencilAttachment *                          T_FETCHPTR
+WGPURenderPassDepthStencilAttachment const *                    T_FETCHPTR
 WebGPU::Direct::RenderPassDepthStencilAttachment                T_SV
-WebGPU::Direct::RenderPassDepthStencilAttachment *              T_FETCHPTR
-WebGPU::Direct::RenderPassDepthStencilAttachment const *        T_FETCHPTR
+WGPURenderPassDescriptorMaxDrawCount                            T_FETCH
+WGPURenderPassDescriptorMaxDrawCount *                          T_FETCHPTR
+WGPURenderPassDescriptorMaxDrawCount const *                    T_FETCHPTR
 WebGPU::Direct::RenderPassDescriptorMaxDrawCount                T_SV
-WebGPU::Direct::RenderPassDescriptorMaxDrawCount *              T_FETCHPTR
-WebGPU::Direct::RenderPassDescriptorMaxDrawCount const *        T_FETCHPTR
+WGPURenderPassTimestampWrite                                    T_FETCH
+WGPURenderPassTimestampWrite *                                  T_FETCHPTR
+WGPURenderPassTimestampWrite const *                            T_FETCHPTR
 WebGPU::Direct::RenderPassTimestampWrite                        T_SV
-WebGPU::Direct::RenderPassTimestampWrite *                      T_FETCHPTR
-WebGPU::Direct::RenderPassTimestampWrite const *                T_FETCHPTR
+WGPURequestAdapterOptions                                       T_FETCH
+WGPURequestAdapterOptions *                                     T_FETCHPTR
+WGPURequestAdapterOptions const *                               T_FETCHPTR
 WebGPU::Direct::RequestAdapterOptions                           T_SV
-WebGPU::Direct::RequestAdapterOptions *                         T_FETCHPTR
-WebGPU::Direct::RequestAdapterOptions const *                   T_FETCHPTR
+WGPUSamplerBindingLayout                                        T_FETCH
+WGPUSamplerBindingLayout *                                      T_FETCHPTR
+WGPUSamplerBindingLayout const *                                T_FETCHPTR
 WebGPU::Direct::SamplerBindingLayout                            T_SV
-WebGPU::Direct::SamplerBindingLayout *                          T_FETCHPTR
-WebGPU::Direct::SamplerBindingLayout const *                    T_FETCHPTR
+WGPUSamplerDescriptor                                           T_FETCH
+WGPUSamplerDescriptor *                                         T_FETCHPTR
+WGPUSamplerDescriptor const *                                   T_FETCHPTR
 WebGPU::Direct::SamplerDescriptor                               T_SV
-WebGPU::Direct::SamplerDescriptor *                             T_FETCHPTR
-WebGPU::Direct::SamplerDescriptor const *                       T_FETCHPTR
+WGPUShaderModuleCompilationHint                                 T_FETCH
+WGPUShaderModuleCompilationHint *                               T_FETCHPTR
+WGPUShaderModuleCompilationHint const *                         T_FETCHPTR
 WebGPU::Direct::ShaderModuleCompilationHint                     T_SV
-WebGPU::Direct::ShaderModuleCompilationHint *                   T_FETCHPTR
-WebGPU::Direct::ShaderModuleCompilationHint const *             T_FETCHPTR
+WGPUShaderModuleSPIRVDescriptor                                 T_FETCH
+WGPUShaderModuleSPIRVDescriptor *                               T_FETCHPTR
+WGPUShaderModuleSPIRVDescriptor const *                         T_FETCHPTR
 WebGPU::Direct::ShaderModuleSPIRVDescriptor                     T_SV
-WebGPU::Direct::ShaderModuleSPIRVDescriptor *                   T_FETCHPTR
-WebGPU::Direct::ShaderModuleSPIRVDescriptor const *             T_FETCHPTR
+WGPUShaderModuleWGSLDescriptor                                  T_FETCH
+WGPUShaderModuleWGSLDescriptor *                                T_FETCHPTR
+WGPUShaderModuleWGSLDescriptor const *                          T_FETCHPTR
 WebGPU::Direct::ShaderModuleWGSLDescriptor                      T_SV
-WebGPU::Direct::ShaderModuleWGSLDescriptor *                    T_FETCHPTR
-WebGPU::Direct::ShaderModuleWGSLDescriptor const *              T_FETCHPTR
+WGPUStencilFaceState                                            T_FETCH
+WGPUStencilFaceState *                                          T_FETCHPTR
+WGPUStencilFaceState const *                                    T_FETCHPTR
 WebGPU::Direct::StencilFaceState                                T_SV
-WebGPU::Direct::StencilFaceState *                              T_FETCHPTR
-WebGPU::Direct::StencilFaceState const *                        T_FETCHPTR
+WGPUStorageTextureBindingLayout                                 T_FETCH
+WGPUStorageTextureBindingLayout *                               T_FETCHPTR
+WGPUStorageTextureBindingLayout const *                         T_FETCHPTR
 WebGPU::Direct::StorageTextureBindingLayout                     T_SV
-WebGPU::Direct::StorageTextureBindingLayout *                   T_FETCHPTR
-WebGPU::Direct::StorageTextureBindingLayout const *             T_FETCHPTR
+WGPUSurfaceDescriptor                                           T_FETCH
+WGPUSurfaceDescriptor *                                         T_FETCHPTR
+WGPUSurfaceDescriptor const *                                   T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptor                               T_SV
-WebGPU::Direct::SurfaceDescriptor *                             T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptor const *                       T_FETCHPTR
+WGPUSurfaceDescriptorFromAndroidNativeWindow                    T_FETCH
+WGPUSurfaceDescriptorFromAndroidNativeWindow *                  T_FETCHPTR
+WGPUSurfaceDescriptorFromAndroidNativeWindow const *            T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow        T_SV
-WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow *      T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow const *T_FETCHPTR
+WGPUSurfaceDescriptorFromCanvasHTMLSelector                     T_FETCH
+WGPUSurfaceDescriptorFromCanvasHTMLSelector *                   T_FETCHPTR
+WGPUSurfaceDescriptorFromCanvasHTMLSelector const *             T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector         T_SV
-WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector *       T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector const * T_FETCHPTR
+WGPUSurfaceDescriptorFromMetalLayer                             T_FETCH
+WGPUSurfaceDescriptorFromMetalLayer *                           T_FETCHPTR
+WGPUSurfaceDescriptorFromMetalLayer const *                     T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromMetalLayer                 T_SV
-WebGPU::Direct::SurfaceDescriptorFromMetalLayer *               T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptorFromMetalLayer const *         T_FETCHPTR
+WGPUSurfaceDescriptorFromWaylandSurface                         T_FETCH
+WGPUSurfaceDescriptorFromWaylandSurface *                       T_FETCHPTR
+WGPUSurfaceDescriptorFromWaylandSurface const *                 T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromWaylandSurface             T_SV
-WebGPU::Direct::SurfaceDescriptorFromWaylandSurface *           T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptorFromWaylandSurface const *     T_FETCHPTR
+WGPUSurfaceDescriptorFromWindowsHWND                            T_FETCH
+WGPUSurfaceDescriptorFromWindowsHWND *                          T_FETCHPTR
+WGPUSurfaceDescriptorFromWindowsHWND const *                    T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromWindowsHWND                T_SV
-WebGPU::Direct::SurfaceDescriptorFromWindowsHWND *              T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptorFromWindowsHWND const *        T_FETCHPTR
+WGPUSurfaceDescriptorFromXcbWindow                              T_FETCH
+WGPUSurfaceDescriptorFromXcbWindow *                            T_FETCHPTR
+WGPUSurfaceDescriptorFromXcbWindow const *                      T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromXcbWindow                  T_SV
-WebGPU::Direct::SurfaceDescriptorFromXcbWindow *                T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptorFromXcbWindow const *          T_FETCHPTR
+WGPUSurfaceDescriptorFromXlibWindow                             T_FETCH
+WGPUSurfaceDescriptorFromXlibWindow *                           T_FETCHPTR
+WGPUSurfaceDescriptorFromXlibWindow const *                     T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromXlibWindow                 T_SV
-WebGPU::Direct::SurfaceDescriptorFromXlibWindow *               T_FETCHPTR
-WebGPU::Direct::SurfaceDescriptorFromXlibWindow const *         T_FETCHPTR
+WGPUSwapChainDescriptor                                         T_FETCH
+WGPUSwapChainDescriptor *                                       T_FETCHPTR
+WGPUSwapChainDescriptor const *                                 T_FETCHPTR
 WebGPU::Direct::SwapChainDescriptor                             T_SV
-WebGPU::Direct::SwapChainDescriptor *                           T_FETCHPTR
-WebGPU::Direct::SwapChainDescriptor const *                     T_FETCHPTR
+WGPUTextureBindingLayout                                        T_FETCH
+WGPUTextureBindingLayout *                                      T_FETCHPTR
+WGPUTextureBindingLayout const *                                T_FETCHPTR
 WebGPU::Direct::TextureBindingLayout                            T_SV
-WebGPU::Direct::TextureBindingLayout *                          T_FETCHPTR
-WebGPU::Direct::TextureBindingLayout const *                    T_FETCHPTR
+WGPUTextureDataLayout                                           T_FETCH
+WGPUTextureDataLayout *                                         T_FETCHPTR
+WGPUTextureDataLayout const *                                   T_FETCHPTR
 WebGPU::Direct::TextureDataLayout                               T_SV
-WebGPU::Direct::TextureDataLayout *                             T_FETCHPTR
-WebGPU::Direct::TextureDataLayout const *                       T_FETCHPTR
+WGPUTextureViewDescriptor                                       T_FETCH
+WGPUTextureViewDescriptor *                                     T_FETCHPTR
+WGPUTextureViewDescriptor const *                               T_FETCHPTR
 WebGPU::Direct::TextureViewDescriptor                           T_SV
-WebGPU::Direct::TextureViewDescriptor *                         T_FETCHPTR
-WebGPU::Direct::TextureViewDescriptor const *                   T_FETCHPTR
+WGPUVertexAttribute                                             T_FETCH
+WGPUVertexAttribute *                                           T_FETCHPTR
+WGPUVertexAttribute const *                                     T_FETCHPTR
 WebGPU::Direct::VertexAttribute                                 T_SV
-WebGPU::Direct::VertexAttribute *                               T_FETCHPTR
-WebGPU::Direct::VertexAttribute const *                         T_FETCHPTR
+WGPUBindGroupDescriptor                                         T_FETCH
+WGPUBindGroupDescriptor *                                       T_FETCHPTR
+WGPUBindGroupDescriptor const *                                 T_FETCHPTR
 WebGPU::Direct::BindGroupDescriptor                             T_SV
-WebGPU::Direct::BindGroupDescriptor *                           T_FETCHPTR
-WebGPU::Direct::BindGroupDescriptor const *                     T_FETCHPTR
+WGPUBindGroupLayoutEntry                                        T_FETCH
+WGPUBindGroupLayoutEntry *                                      T_FETCHPTR
+WGPUBindGroupLayoutEntry const *                                T_FETCHPTR
 WebGPU::Direct::BindGroupLayoutEntry                            T_SV
-WebGPU::Direct::BindGroupLayoutEntry *                          T_FETCHPTR
-WebGPU::Direct::BindGroupLayoutEntry const *                    T_FETCHPTR
+WGPUBlendState                                                  T_FETCH
+WGPUBlendState *                                                T_FETCHPTR
+WGPUBlendState const *                                          T_FETCHPTR
 WebGPU::Direct::BlendState                                      T_SV
-WebGPU::Direct::BlendState *                                    T_FETCHPTR
-WebGPU::Direct::BlendState const *                              T_FETCHPTR
+WGPUCompilationInfo                                             T_FETCH
+WGPUCompilationInfo *                                           T_FETCHPTR
+WGPUCompilationInfo const *                                     T_FETCHPTR
 WebGPU::Direct::CompilationInfo                                 T_SV
-WebGPU::Direct::CompilationInfo *                               T_FETCHPTR
-WebGPU::Direct::CompilationInfo const *                         T_FETCHPTR
+WGPUComputePassDescriptor                                       T_FETCH
+WGPUComputePassDescriptor *                                     T_FETCHPTR
+WGPUComputePassDescriptor const *                               T_FETCHPTR
 WebGPU::Direct::ComputePassDescriptor                           T_SV
-WebGPU::Direct::ComputePassDescriptor *                         T_FETCHPTR
-WebGPU::Direct::ComputePassDescriptor const *                   T_FETCHPTR
+WGPUDepthStencilState                                           T_FETCH
+WGPUDepthStencilState *                                         T_FETCHPTR
+WGPUDepthStencilState const *                                   T_FETCHPTR
 WebGPU::Direct::DepthStencilState                               T_SV
-WebGPU::Direct::DepthStencilState *                             T_FETCHPTR
-WebGPU::Direct::DepthStencilState const *                       T_FETCHPTR
+WGPUImageCopyBuffer                                             T_FETCH
+WGPUImageCopyBuffer *                                           T_FETCHPTR
+WGPUImageCopyBuffer const *                                     T_FETCHPTR
 WebGPU::Direct::ImageCopyBuffer                                 T_SV
-WebGPU::Direct::ImageCopyBuffer *                               T_FETCHPTR
-WebGPU::Direct::ImageCopyBuffer const *                         T_FETCHPTR
+WGPUImageCopyTexture                                            T_FETCH
+WGPUImageCopyTexture *                                          T_FETCHPTR
+WGPUImageCopyTexture const *                                    T_FETCHPTR
 WebGPU::Direct::ImageCopyTexture                                T_SV
-WebGPU::Direct::ImageCopyTexture *                              T_FETCHPTR
-WebGPU::Direct::ImageCopyTexture const *                        T_FETCHPTR
+WGPUProgrammableStageDescriptor                                 T_FETCH
+WGPUProgrammableStageDescriptor *                               T_FETCHPTR
+WGPUProgrammableStageDescriptor const *                         T_FETCHPTR
 WebGPU::Direct::ProgrammableStageDescriptor                     T_SV
-WebGPU::Direct::ProgrammableStageDescriptor *                   T_FETCHPTR
-WebGPU::Direct::ProgrammableStageDescriptor const *             T_FETCHPTR
+WGPURenderPassColorAttachment                                   T_FETCH
+WGPURenderPassColorAttachment *                                 T_FETCHPTR
+WGPURenderPassColorAttachment const *                           T_FETCHPTR
 WebGPU::Direct::RenderPassColorAttachment                       T_SV
-WebGPU::Direct::RenderPassColorAttachment *                     T_FETCHPTR
-WebGPU::Direct::RenderPassColorAttachment const *               T_FETCHPTR
+WGPURequiredLimits                                              T_FETCH
+WGPURequiredLimits *                                            T_FETCHPTR
+WGPURequiredLimits const *                                      T_FETCHPTR
 WebGPU::Direct::RequiredLimits                                  T_SV
-WebGPU::Direct::RequiredLimits *                                T_FETCHPTR
-WebGPU::Direct::RequiredLimits const *                          T_FETCHPTR
+WGPUShaderModuleDescriptor                                      T_FETCH
+WGPUShaderModuleDescriptor *                                    T_FETCHPTR
+WGPUShaderModuleDescriptor const *                              T_FETCHPTR
 WebGPU::Direct::ShaderModuleDescriptor                          T_SV
-WebGPU::Direct::ShaderModuleDescriptor *                        T_FETCHPTR
-WebGPU::Direct::ShaderModuleDescriptor const *                  T_FETCHPTR
+WGPUSupportedLimits                                             T_FETCH
+WGPUSupportedLimits *                                           T_FETCHPTR
+WGPUSupportedLimits const *                                     T_FETCHPTR
 WebGPU::Direct::SupportedLimits                                 T_SV
-WebGPU::Direct::SupportedLimits *                               T_FETCHPTR
-WebGPU::Direct::SupportedLimits const *                         T_FETCHPTR
+WGPUTextureDescriptor                                           T_FETCH
+WGPUTextureDescriptor *                                         T_FETCHPTR
+WGPUTextureDescriptor const *                                   T_FETCHPTR
 WebGPU::Direct::TextureDescriptor                               T_SV
-WebGPU::Direct::TextureDescriptor *                             T_FETCHPTR
-WebGPU::Direct::TextureDescriptor const *                       T_FETCHPTR
+WGPUVertexBufferLayout                                          T_FETCH
+WGPUVertexBufferLayout *                                        T_FETCHPTR
+WGPUVertexBufferLayout const *                                  T_FETCHPTR
 WebGPU::Direct::VertexBufferLayout                              T_SV
-WebGPU::Direct::VertexBufferLayout *                            T_FETCHPTR
-WebGPU::Direct::VertexBufferLayout const *                      T_FETCHPTR
+WGPUBindGroupLayoutDescriptor                                   T_FETCH
+WGPUBindGroupLayoutDescriptor *                                 T_FETCHPTR
+WGPUBindGroupLayoutDescriptor const *                           T_FETCHPTR
 WebGPU::Direct::BindGroupLayoutDescriptor                       T_SV
-WebGPU::Direct::BindGroupLayoutDescriptor *                     T_FETCHPTR
-WebGPU::Direct::BindGroupLayoutDescriptor const *               T_FETCHPTR
+WGPUColorTargetState                                            T_FETCH
+WGPUColorTargetState *                                          T_FETCHPTR
+WGPUColorTargetState const *                                    T_FETCHPTR
 WebGPU::Direct::ColorTargetState                                T_SV
-WebGPU::Direct::ColorTargetState *                              T_FETCHPTR
-WebGPU::Direct::ColorTargetState const *                        T_FETCHPTR
+WGPUComputePipelineDescriptor                                   T_FETCH
+WGPUComputePipelineDescriptor *                                 T_FETCHPTR
+WGPUComputePipelineDescriptor const *                           T_FETCHPTR
 WebGPU::Direct::ComputePipelineDescriptor                       T_SV
-WebGPU::Direct::ComputePipelineDescriptor *                     T_FETCHPTR
-WebGPU::Direct::ComputePipelineDescriptor const *               T_FETCHPTR
+WGPUDeviceDescriptor                                            T_FETCH
+WGPUDeviceDescriptor *                                          T_FETCHPTR
+WGPUDeviceDescriptor const *                                    T_FETCHPTR
 WebGPU::Direct::DeviceDescriptor                                T_SV
-WebGPU::Direct::DeviceDescriptor *                              T_FETCHPTR
-WebGPU::Direct::DeviceDescriptor const *                        T_FETCHPTR
+WGPURenderPassDescriptor                                        T_FETCH
+WGPURenderPassDescriptor *                                      T_FETCHPTR
+WGPURenderPassDescriptor const *                                T_FETCHPTR
 WebGPU::Direct::RenderPassDescriptor                            T_SV
-WebGPU::Direct::RenderPassDescriptor *                          T_FETCHPTR
-WebGPU::Direct::RenderPassDescriptor const *                    T_FETCHPTR
+WGPUVertexState                                                 T_FETCH
+WGPUVertexState *                                               T_FETCHPTR
+WGPUVertexState const *                                         T_FETCHPTR
 WebGPU::Direct::VertexState                                     T_SV
-WebGPU::Direct::VertexState *                                   T_FETCHPTR
-WebGPU::Direct::VertexState const *                             T_FETCHPTR
+WGPUFragmentState                                               T_FETCH
+WGPUFragmentState *                                             T_FETCHPTR
+WGPUFragmentState const *                                       T_FETCHPTR
 WebGPU::Direct::FragmentState                                   T_SV
-WebGPU::Direct::FragmentState *                                 T_FETCHPTR
-WebGPU::Direct::FragmentState const *                           T_FETCHPTR
+WGPURenderPipelineDescriptor                                    T_FETCH
+WGPURenderPipelineDescriptor *                                  T_FETCHPTR
+WGPURenderPipelineDescriptor const *                            T_FETCHPTR
 WebGPU::Direct::RenderPipelineDescriptor                        T_SV
-WebGPU::Direct::RenderPipelineDescriptor *                      T_FETCHPTR
-WebGPU::Direct::RenderPipelineDescriptor const *                T_FETCHPTR
+WGPUBufferMapCallback                                           T_FETCH
+WGPUBufferMapCallback *                                         T_FETCHPTR
+WGPUBufferMapCallback const *                                   T_FETCHPTR
 WebGPU::Direct::BufferMapCallback                               T_VOID
-WebGPU::Direct::BufferMapCallback *                             T_FETCHPTR
-WebGPU::Direct::BufferMapCallback const *                       T_FETCHPTR
+WGPUCompilationInfoCallback                                     T_FETCH
+WGPUCompilationInfoCallback *                                   T_FETCHPTR
+WGPUCompilationInfoCallback const *                             T_FETCHPTR
 WebGPU::Direct::CompilationInfoCallback                         T_VOID
-WebGPU::Direct::CompilationInfoCallback *                       T_FETCHPTR
-WebGPU::Direct::CompilationInfoCallback const *                 T_FETCHPTR
+WGPUCreateComputePipelineAsyncCallback                          T_FETCH
+WGPUCreateComputePipelineAsyncCallback *                        T_FETCHPTR
+WGPUCreateComputePipelineAsyncCallback const *                  T_FETCHPTR
 WebGPU::Direct::CreateComputePipelineAsyncCallback              T_VOID
-WebGPU::Direct::CreateComputePipelineAsyncCallback *            T_FETCHPTR
-WebGPU::Direct::CreateComputePipelineAsyncCallback const *      T_FETCHPTR
+WGPUCreateRenderPipelineAsyncCallback                           T_FETCH
+WGPUCreateRenderPipelineAsyncCallback *                         T_FETCHPTR
+WGPUCreateRenderPipelineAsyncCallback const *                   T_FETCHPTR
 WebGPU::Direct::CreateRenderPipelineAsyncCallback               T_VOID
-WebGPU::Direct::CreateRenderPipelineAsyncCallback *             T_FETCHPTR
-WebGPU::Direct::CreateRenderPipelineAsyncCallback const *       T_FETCHPTR
+WGPUDeviceLostCallback                                          T_FETCH
+WGPUDeviceLostCallback *                                        T_FETCHPTR
+WGPUDeviceLostCallback const *                                  T_FETCHPTR
 WebGPU::Direct::DeviceLostCallback                              T_VOID
-WebGPU::Direct::DeviceLostCallback *                            T_FETCHPTR
-WebGPU::Direct::DeviceLostCallback const *                      T_FETCHPTR
+WGPUErrorCallback                                               T_FETCH
+WGPUErrorCallback *                                             T_FETCHPTR
+WGPUErrorCallback const *                                       T_FETCHPTR
 WebGPU::Direct::ErrorCallback                                   T_VOID
-WebGPU::Direct::ErrorCallback *                                 T_FETCHPTR
-WebGPU::Direct::ErrorCallback const *                           T_FETCHPTR
+WGPUProc                                                        T_FETCH
+WGPUProc *                                                      T_FETCHPTR
+WGPUProc const *                                                T_FETCHPTR
 WebGPU::Direct::Proc                                            T_VOID
-WebGPU::Direct::Proc *                                          T_FETCHPTR
-WebGPU::Direct::Proc const *                                    T_FETCHPTR
+WGPUQueueWorkDoneCallback                                       T_FETCH
+WGPUQueueWorkDoneCallback *                                     T_FETCHPTR
+WGPUQueueWorkDoneCallback const *                               T_FETCHPTR
 WebGPU::Direct::QueueWorkDoneCallback                           T_VOID
-WebGPU::Direct::QueueWorkDoneCallback *                         T_FETCHPTR
-WebGPU::Direct::QueueWorkDoneCallback const *                   T_FETCHPTR
+WGPURequestAdapterCallback                                      T_FETCH
+WGPURequestAdapterCallback *                                    T_FETCHPTR
+WGPURequestAdapterCallback const *                              T_FETCHPTR
 WebGPU::Direct::RequestAdapterCallback                          T_VOID
-WebGPU::Direct::RequestAdapterCallback *                        T_FETCHPTR
-WebGPU::Direct::RequestAdapterCallback const *                  T_FETCHPTR
+WGPURequestDeviceCallback                                       T_FETCH
+WGPURequestDeviceCallback *                                     T_FETCHPTR
+WGPURequestDeviceCallback const *                               T_FETCHPTR
 WebGPU::Direct::RequestDeviceCallback                           T_VOID
-WebGPU::Direct::RequestDeviceCallback *                         T_FETCHPTR
-WebGPU::Direct::RequestDeviceCallback const *                   T_FETCHPTR
 WGPUAdapterType                                                 T_IV
 WGPUAdapterType *                                               T_IV
 WGPUAdapterType const *                                         T_IV
@@ -484,9 +589,9 @@ WGPUVertexStepMode const *                                      T_IV
 bool                                                            T_BOOL
 bool *                                                          T_BOOL
 bool const *                                                    T_BOOL
-char                                                            T_CHAR
-char *                                                          T_CHAR
-char const *                                                    T_CHAR
+char                                                            T_PV
+char *                                                          T_PV
+char const *                                                    T_PV
 double                                                          T_DOUBLE
 double *                                                        T_DOUBLE
 double const *                                                  T_DOUBLE
@@ -511,16 +616,20 @@ uint64_t const *                                                T_IV
 void                                                            T_VOID
 void *                                                          T_VOID
 void const *                                                    T_VOID
-char const *                                                    T_PV
+# We do the tr/:/_/ in the output because ParseXS doesn't for outputs
 INPUT
 T_VOID
-    $var = (int32_t)SvUV($arg)
+    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"$Package\"))
+T_FETCH
+    $var = *($type *) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"$Package\"))
 T_FETCHPTR
-    $var = (int32_t)SvUV($arg)
+    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"$Package\"))
 
 OUTPUT
 T_VOID
-    $arg = newRV((SV*)$var);
+    $arg = _void__wrap($var);
+T_FETCH
+    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);
 T_FETCHPTR
-    $arg = newRV((SV*)$var);
+    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);
 
