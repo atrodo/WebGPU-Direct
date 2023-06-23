@@ -1,0 +1,4 @@
+xs/webgpu.xs linguist-generated
+xs/webgpu.c linguist-generated
+typemap linguist-generated
+lib/WebGPU/Direct/XS.pl linguist-generated
