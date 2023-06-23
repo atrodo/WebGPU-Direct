@@ -432,7 +432,7 @@ package WebGPU::Direct::PipelineLayoutDescriptor {
 }
 
 package WebGPU::Direct::PrimitiveDepthClipControl {
-    
+    push @WebGPU::Direct::PrimitiveDepthClipControl::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::PrimitiveDepthClipControl\n"
@@ -523,7 +523,7 @@ package WebGPU::Direct::RenderPassDepthStencilAttachment {
 }
 
 package WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
-    
+    push @WebGPU::Direct::RenderPassDescriptorMaxDrawCount::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassDescriptorMaxDrawCount\n"
@@ -601,7 +601,7 @@ package WebGPU::Direct::ShaderModuleCompilationHint {
 }
 
 package WebGPU::Direct::ShaderModuleSPIRVDescriptor {
-    
+    push @WebGPU::Direct::ShaderModuleSPIRVDescriptor::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderModuleSPIRVDescriptor\n"
@@ -614,7 +614,7 @@ package WebGPU::Direct::ShaderModuleSPIRVDescriptor {
 }
 
 package WebGPU::Direct::ShaderModuleWGSLDescriptor {
-    
+    push @WebGPU::Direct::ShaderModuleWGSLDescriptor::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderModuleWGSLDescriptor\n"
@@ -666,7 +666,7 @@ package WebGPU::Direct::SurfaceDescriptor {
 }
 
 package WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
-    
+    push @WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow\n"
@@ -679,7 +679,7 @@ package WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
 }
 
 package WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
-    
+    push @WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector\n"
@@ -692,7 +692,7 @@ package WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
 }
 
 package WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
-    
+    push @WebGPU::Direct::SurfaceDescriptorFromMetalLayer::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromMetalLayer\n"
@@ -705,7 +705,7 @@ package WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
 }
 
 package WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
-    
+    push @WebGPU::Direct::SurfaceDescriptorFromWaylandSurface::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromWaylandSurface\n"
@@ -718,7 +718,7 @@ package WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
 }
 
 package WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
-    
+    push @WebGPU::Direct::SurfaceDescriptorFromWindowsHWND::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromWindowsHWND\n"
@@ -731,7 +731,7 @@ package WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
 }
 
 package WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
-    
+    push @WebGPU::Direct::SurfaceDescriptorFromXcbWindow::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromXcbWindow\n"
@@ -744,7 +744,7 @@ package WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
 }
 
 package WebGPU::Direct::SurfaceDescriptorFromXlibWindow {
-    
+    push @WebGPU::Direct::SurfaceDescriptorFromXlibWindow::ISA, "WebGPU::Direct::ChainedStruct";
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromXlibWindow\n"

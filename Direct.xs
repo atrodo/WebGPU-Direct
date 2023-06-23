@@ -38,7 +38,37 @@ SV *_void__wrap( const void *n )
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::Opaque", GV_ADD));
-  return RETVAL;
+  return SvREFCNT_inc(RETVAL);
+}
+
+SV *_new( SV *CLASS )
+{
+  dSP;
+  PUSHMARK(SP);
+  EXTEND(SP, 1);
+  PUSHs(CLASS);
+  PUTBACK;
+
+  int count = call_method("new", G_SCALAR);
+
+  if (count != 1)
+  {
+    croak("Could not call new on %s\n", SvPV_nolen(CLASS));
+  }
+
+  SV *THIS = SvREFCNT_inc(POPs);
+
+  return THIS;
+}
+
+SV *_new_with( SV *CLASS, void *n)
+{
+  SV *h = (SV *)newHV();
+  SV *RETVAL = sv_2mortal(newRV(h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv(SvPV_nolen(CLASS), GV_ADD));
+  return SvREFCNT_inc(RETVAL);
 }
 
 /* ------------------------------------------------------------------
@@ -87,6 +117,26 @@ SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
 
   return fp;
 }
+
+SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
+{
+  SV **f;
+  SV *fp;
+
+  f = hv_fetch(h, key, klen, 1);
+  if ( f && *f )
+  {
+    fp = *f;
+  }
+  else
+  {
+    croak("Could not save new value for %s", key);
+  }
+  *f  = _new_with(base, field);
+
+  return *f;
+}
+
 /* ------------------------------------------------------------------
    void (Impl)
    ------------------------------------------------------------------ */
@@ -134,6 +184,25 @@ SV *_find_set_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base
   return fp;
 }
 
+SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
+{
+  SV **f;
+  SV *fp;
+
+  f = hv_fetch(h, key, klen, 1);
+  if ( f && *f )
+  {
+    fp = *f;
+  }
+  else
+  {
+    croak("Could not save new value for %s", key);
+  }
+  *f  = _void__wrap(field);
+
+  return *f;
+}
+
 /* Integer and Floating types */ 
 
 #define _find_set_x(type, init, rt, cast) \
@@ -158,6 +227,26 @@ rt _find_set_##type(pTHX_ HV *h, const char *key, I32 klen, void *field)      \
   return cast(fp);                                                             \
 }
 
+#define _unpack_x(type, ft, constr) \
+SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)           \
+{                                                                              \
+  SV **f;                                                                      \
+  SV *fp;                                                                      \
+                                                                               \
+  f = hv_fetch(h, key, klen, 1);                                               \
+  if ( f && *f )                                                               \
+  {                                                                            \
+    fp = *f;                                                                   \
+  }                                                                            \
+  else                                                                         \
+  {                                                                            \
+    croak("Could not save new value for %s", key);                             \
+  }                                                                            \
+  *f  = constr;                                                                \
+                                                                               \
+ return *f;                                                                    \
+}
+
 /* ------------------------------------------------------------------
    str
    ------------------------------------------------------------------ */
@@ -180,6 +269,7 @@ STATIC MGVTBL _mg_vtbl_str = {
 };
 
 _find_set_x(str, newSVpvs(""), char*, SvPVbyte_nolen);
+_unpack_x(str, const char **, newSVpv(*field, 0));
 
 /* ------------------------------------------------------------------
    enum
@@ -203,6 +293,7 @@ STATIC MGVTBL _mg_vtbl_enum = {
 };
 
 _find_set_x(enum, newSViv(0), int, SvIV);
+_unpack_x(enum, void *, newSViv(*(int *)field));
 
 /* ------------------------------------------------------------------
    bool
@@ -226,6 +317,7 @@ STATIC MGVTBL _mg_vtbl_bool = {
 };
 
 _find_set_x(bool, newSViv(FALSE), bool, SvIV);
+_unpack_x(bool, bool *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    double
@@ -249,6 +341,7 @@ STATIC MGVTBL _mg_vtbl_double = {
 };
 
 _find_set_x(double, newSVnv(0), double, SvNV);
+_unpack_x(double, double *, newSVnv(*field));
 
 /* ------------------------------------------------------------------
    float
@@ -272,6 +365,7 @@ STATIC MGVTBL _mg_vtbl_float = {
 };
 
 _find_set_x(float, newSVnv(0), float, SvNV);
+_unpack_x(float, float *, newSVnv(*field));
 
 /* ------------------------------------------------------------------
    uint16_t
@@ -295,6 +389,7 @@ STATIC MGVTBL _mg_vtbl_uint16_t = {
 };
 
 _find_set_x(uint16_t, newSViv(0), uint16_t, SvIV);
+_unpack_x(uint16_t, uint16_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    uint32_t
@@ -318,6 +413,7 @@ STATIC MGVTBL _mg_vtbl_uint32_t = {
 };
 
 _find_set_x(uint32_t, newSViv(0), uint32_t, SvIV);
+_unpack_x(uint32_t, uint32_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    uint64_t
@@ -341,6 +437,7 @@ STATIC MGVTBL _mg_vtbl_uint64_t = {
 };
 
 _find_set_x(uint64_t, newSViv(0), uint64_t, SvIV);
+_unpack_x(uint64_t, uint64_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    int32_t
@@ -364,16 +461,45 @@ STATIC MGVTBL _mg_vtbl_int32_t = {
 };
 
 _find_set_x(int32_t, newSViv(0), int32_t, SvIV);
+_unpack_x(int32_t, int32_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    END
    ------------------------------------------------------------------ */
 
 #include "xs/webgpu.c"
+#include "xs/x11.c"
 
 MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct::XS		PREFIX = wgpu
 
 INCLUDE: xs/webgpu.xs
+
+MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct		PREFIX = wgpu
+
+SV *
+new_window_x11(CLASS, xw = 640, yh = 360)
+        SV *  CLASS
+        int   xw
+        int   yh
+    PROTOTYPE: $
+    CODE:
+#ifdef HAS_X11
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromXlibWindow") );
+        WGPUSurfaceDescriptorFromXlibWindow *result = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+        if ( ! x11_window(result, xw, yh) )
+        {
+          Perl_croak(aTHX_ "Could not create an X11 window");
+        }
+
+        SV *h = SvRV(THIS);
+        WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack(THIS);
+
+        RETVAL = THIS;
+#else
+        Perl_croak(aTHX_ "Cannot create X11 window: X11 not found");
+#endif
+    OUTPUT:
+        RETVAL
 
 #ifdef HAS_X11
 
@@ -455,40 +581,7 @@ CreateSurface(CLASS)
     OUTPUT:
         RETVAL
 
-WGPUSurfaceDescriptorFromXlibWindow
-new_window_x11(CLASS, xw, yh)
-        char *CLASS = NO_INIT
-        int   xw
-        int   yh
-    PROTOTYPE: $
-    CODE:
-        Zero((void*)&RETVAL, sizeof(RETVAL), char);
-        xw = xw || 640;
-        yh = yh || 360;
-        {
-          RETVAL.chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow;
-          RETVAL.display = XOpenDisplay(NULL);
-
-          if (!RETVAL.display)
-          {
-            XSRETURN_UNDEF;
-          }
-
-          RETVAL.window = XCreateSimpleWindow(RETVAL.display, DefaultRootWindow(RETVAL.display),
-                                    10, 10,
-                                    xw, yh,
-                                    1, 0,
-                                    0
-                                   );
-
-          int scrnum = DefaultScreen( RETVAL.display );
-          Window root = RootWindow( RETVAL.display, scrnum );
-
-          XMapWindow( RETVAL.display, RETVAL.window );
-        }
-    OUTPUT:
-        RETVAL
-
-
 =cut
+
+
 #endif

@@ -223,6 +223,7 @@ while (<$h>)
     my @args = ( $arg =~ m[ \s* ([^,]*) \s+ (\w+) \s* (?: , | $ ) ]xmsg );
 
     my $fn_def = {
+      return => pkg_name($return) . " $return2",
       return => "$return $return2",
       name   => $fn_name,
       args   => [@args],
@@ -298,6 +299,8 @@ foreach my $class ( @classes )
   my $isa       = "";
   my $packs     = "";
   my $addl_pack = "";
+  my $unpacks     = "";
+  my $addl_unpack = "";
   my $c_prefix  = "${class}";
   my $prefix    = "wgpu";
 
@@ -307,12 +310,12 @@ foreach my $class ( @classes )
   {
     $packs = "  SV **f;\n  SV *fp;\n";
 
-    # Disable, we appear to not have any inherited types
-    if ( 0 && $defs[0]->{inline_obj} && 1 == scalar(grep { $_->{inline_obj} } @defs ) )
+    if ( $defs[0]->{inline_obj} && 1 == scalar(grep { $_->{inline_obj} } @defs ) )
     {
-      my $c_prefix = $defs[0]->{typedef} . '::';
+      my $c_prefix = $defs[0]->{return} . '::';
       $c_prefix =~ s/::/__/g;
       $addl_pack = qq{${c_prefix}pack( /*asdf*/ THIS );\n};
+      $addl_unpack = qq{${c_prefix}unpack( /*asdf*/ THIS );\n};
       $isa = qq{push \@$class\::ISA, "$defs[0]->{return}";};
     }
   }
@@ -334,7 +337,15 @@ foreach my $class ( @classes )
 
     my $set_addl = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' ) ? qq{, newSVpvs("$def{return}")} : "";
 
+    # TODO
+    if ( !$set_addl && $def{ctype} ne 'char' && $def{is_ptr} )
+    {
+      $packs .= qq{  // "$def{key}" is a ptr, and that's not quite right yet\n};
+      $unpacks .= qq{  // "$def{key}" is a ptr, and that's not quite right yet\n};
+      next;
+    }
     $packs .= qq{  _find_set_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key} $set_addl);\n};
+    $unpacks .= qq{  _unpack_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key} $set_addl);\n};
 
     say_set_fn($class, $type, %def);
   }
@@ -365,6 +376,16 @@ foreach my $class ( @classes )
           CODE:
               ${c_prefix}__pack( THIS );
               $addl_pack
+
+      SV *
+      bytes(THIS)
+              SV *THIS
+          PROTOTYPE: \$
+          CODE:
+              $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+              RETVAL = newSVpvn((const char *const) n, sizeof($type) );
+          OUTPUT:
+              RETVAL
       EOF
       };
 
@@ -386,6 +407,28 @@ foreach my $class ( @classes )
         sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
       }
     $packs
+    }
+    EOF
+    };
+
+    say $c <<~"EOF"; $n = qq{
+    void ${c_prefix}__unpack( SV *THIS )
+    {
+      if (!SvROK(THIS) || !sv_derived_from(THIS, "$class"))
+      {
+        croak_nocontext("%s: %s is not of type %s",
+          "$class",
+          "THIS", "$class");
+      }
+
+      HV *h = (HV *)SvRV(THIS);
+      $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+      if ( !n )
+      {
+        Newxz(n, 1, $type);
+        sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+      }
+    $unpacks
     }
     EOF
     };
@@ -488,7 +531,7 @@ sub say_set_fn
           CODE:
               HV *h = (HV *)SvRV(THIS);
               $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
-              SV *type_sv = newSVpvs("$type");
+              SV *type_sv = newSVpvs("$def{return}");
               RETVAL = _find_set_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key}, type_sv);
 
               if (items > 1)
