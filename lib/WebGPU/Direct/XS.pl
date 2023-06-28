@@ -192,7 +192,7 @@ package WebGPU::Direct::ChainedStruct {
           if !$class->isa("WebGPU::Direct::ChainedStruct");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -205,7 +205,7 @@ package WebGPU::Direct::ChainedStructOut {
           if !$class->isa("WebGPU::Direct::ChainedStructOut");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -218,7 +218,7 @@ package WebGPU::Direct::AdapterProperties {
           if !$class->isa("WebGPU::Direct::AdapterProperties");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -231,7 +231,7 @@ package WebGPU::Direct::BindGroupEntry {
           if !$class->isa("WebGPU::Direct::BindGroupEntry");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -244,7 +244,7 @@ package WebGPU::Direct::BlendComponent {
           if !$class->isa("WebGPU::Direct::BlendComponent");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -257,7 +257,7 @@ package WebGPU::Direct::BufferBindingLayout {
           if !$class->isa("WebGPU::Direct::BufferBindingLayout");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -270,7 +270,7 @@ package WebGPU::Direct::BufferDescriptor {
           if !$class->isa("WebGPU::Direct::BufferDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -283,7 +283,7 @@ package WebGPU::Direct::Color {
           if !$class->isa("WebGPU::Direct::Color");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -296,7 +296,7 @@ package WebGPU::Direct::CommandBufferDescriptor {
           if !$class->isa("WebGPU::Direct::CommandBufferDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -309,7 +309,7 @@ package WebGPU::Direct::CommandEncoderDescriptor {
           if !$class->isa("WebGPU::Direct::CommandEncoderDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -322,7 +322,7 @@ package WebGPU::Direct::CompilationMessage {
           if !$class->isa("WebGPU::Direct::CompilationMessage");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -335,7 +335,7 @@ package WebGPU::Direct::ComputePassTimestampWrite {
           if !$class->isa("WebGPU::Direct::ComputePassTimestampWrite");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -348,7 +348,7 @@ package WebGPU::Direct::ConstantEntry {
           if !$class->isa("WebGPU::Direct::ConstantEntry");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -361,7 +361,7 @@ package WebGPU::Direct::Extent3D {
           if !$class->isa("WebGPU::Direct::Extent3D");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -374,7 +374,7 @@ package WebGPU::Direct::InstanceDescriptor {
           if !$class->isa("WebGPU::Direct::InstanceDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -387,7 +387,7 @@ package WebGPU::Direct::Limits {
           if !$class->isa("WebGPU::Direct::Limits");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -400,7 +400,7 @@ package WebGPU::Direct::MultisampleState {
           if !$class->isa("WebGPU::Direct::MultisampleState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -413,7 +413,7 @@ package WebGPU::Direct::Origin3D {
           if !$class->isa("WebGPU::Direct::Origin3D");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -426,7 +426,7 @@ package WebGPU::Direct::PipelineLayoutDescriptor {
           if !$class->isa("WebGPU::Direct::PipelineLayoutDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -439,7 +439,7 @@ package WebGPU::Direct::PrimitiveDepthClipControl {
           if !$class->isa("WebGPU::Direct::PrimitiveDepthClipControl");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -452,7 +452,7 @@ package WebGPU::Direct::PrimitiveState {
           if !$class->isa("WebGPU::Direct::PrimitiveState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -465,7 +465,7 @@ package WebGPU::Direct::QuerySetDescriptor {
           if !$class->isa("WebGPU::Direct::QuerySetDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -478,7 +478,7 @@ package WebGPU::Direct::QueueDescriptor {
           if !$class->isa("WebGPU::Direct::QueueDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -491,7 +491,7 @@ package WebGPU::Direct::RenderBundleDescriptor {
           if !$class->isa("WebGPU::Direct::RenderBundleDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -504,7 +504,7 @@ package WebGPU::Direct::RenderBundleEncoderDescriptor {
           if !$class->isa("WebGPU::Direct::RenderBundleEncoderDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -517,7 +517,7 @@ package WebGPU::Direct::RenderPassDepthStencilAttachment {
           if !$class->isa("WebGPU::Direct::RenderPassDepthStencilAttachment");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -530,7 +530,7 @@ package WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
           if !$class->isa("WebGPU::Direct::RenderPassDescriptorMaxDrawCount");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -543,7 +543,7 @@ package WebGPU::Direct::RenderPassTimestampWrite {
           if !$class->isa("WebGPU::Direct::RenderPassTimestampWrite");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -556,7 +556,7 @@ package WebGPU::Direct::RequestAdapterOptions {
           if !$class->isa("WebGPU::Direct::RequestAdapterOptions");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -569,7 +569,7 @@ package WebGPU::Direct::SamplerBindingLayout {
           if !$class->isa("WebGPU::Direct::SamplerBindingLayout");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -582,7 +582,7 @@ package WebGPU::Direct::SamplerDescriptor {
           if !$class->isa("WebGPU::Direct::SamplerDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -595,7 +595,7 @@ package WebGPU::Direct::ShaderModuleCompilationHint {
           if !$class->isa("WebGPU::Direct::ShaderModuleCompilationHint");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -608,7 +608,7 @@ package WebGPU::Direct::ShaderModuleSPIRVDescriptor {
           if !$class->isa("WebGPU::Direct::ShaderModuleSPIRVDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -621,7 +621,7 @@ package WebGPU::Direct::ShaderModuleWGSLDescriptor {
           if !$class->isa("WebGPU::Direct::ShaderModuleWGSLDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -634,7 +634,7 @@ package WebGPU::Direct::StencilFaceState {
           if !$class->isa("WebGPU::Direct::StencilFaceState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -647,7 +647,7 @@ package WebGPU::Direct::StorageTextureBindingLayout {
           if !$class->isa("WebGPU::Direct::StorageTextureBindingLayout");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -660,7 +660,7 @@ package WebGPU::Direct::SurfaceDescriptor {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -673,7 +673,7 @@ package WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -686,7 +686,7 @@ package WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -699,7 +699,7 @@ package WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromMetalLayer");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -712,7 +712,7 @@ package WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWaylandSurface");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -725,7 +725,7 @@ package WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWindowsHWND");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -738,7 +738,7 @@ package WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXcbWindow");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -751,7 +751,7 @@ package WebGPU::Direct::SurfaceDescriptorFromXlibWindow {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXlibWindow");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -764,7 +764,7 @@ package WebGPU::Direct::SwapChainDescriptor {
           if !$class->isa("WebGPU::Direct::SwapChainDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -777,7 +777,7 @@ package WebGPU::Direct::TextureBindingLayout {
           if !$class->isa("WebGPU::Direct::TextureBindingLayout");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -790,7 +790,7 @@ package WebGPU::Direct::TextureDataLayout {
           if !$class->isa("WebGPU::Direct::TextureDataLayout");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -803,7 +803,7 @@ package WebGPU::Direct::TextureViewDescriptor {
           if !$class->isa("WebGPU::Direct::TextureViewDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -816,7 +816,7 @@ package WebGPU::Direct::VertexAttribute {
           if !$class->isa("WebGPU::Direct::VertexAttribute");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -829,7 +829,7 @@ package WebGPU::Direct::BindGroupDescriptor {
           if !$class->isa("WebGPU::Direct::BindGroupDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -842,7 +842,7 @@ package WebGPU::Direct::BindGroupLayoutEntry {
           if !$class->isa("WebGPU::Direct::BindGroupLayoutEntry");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -855,7 +855,7 @@ package WebGPU::Direct::BlendState {
           if !$class->isa("WebGPU::Direct::BlendState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -868,7 +868,7 @@ package WebGPU::Direct::CompilationInfo {
           if !$class->isa("WebGPU::Direct::CompilationInfo");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -881,7 +881,7 @@ package WebGPU::Direct::ComputePassDescriptor {
           if !$class->isa("WebGPU::Direct::ComputePassDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -894,7 +894,7 @@ package WebGPU::Direct::DepthStencilState {
           if !$class->isa("WebGPU::Direct::DepthStencilState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -907,7 +907,7 @@ package WebGPU::Direct::ImageCopyBuffer {
           if !$class->isa("WebGPU::Direct::ImageCopyBuffer");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -920,7 +920,7 @@ package WebGPU::Direct::ImageCopyTexture {
           if !$class->isa("WebGPU::Direct::ImageCopyTexture");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -933,7 +933,7 @@ package WebGPU::Direct::ProgrammableStageDescriptor {
           if !$class->isa("WebGPU::Direct::ProgrammableStageDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -946,7 +946,7 @@ package WebGPU::Direct::RenderPassColorAttachment {
           if !$class->isa("WebGPU::Direct::RenderPassColorAttachment");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -959,7 +959,7 @@ package WebGPU::Direct::RequiredLimits {
           if !$class->isa("WebGPU::Direct::RequiredLimits");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -972,7 +972,7 @@ package WebGPU::Direct::ShaderModuleDescriptor {
           if !$class->isa("WebGPU::Direct::ShaderModuleDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -985,7 +985,7 @@ package WebGPU::Direct::SupportedLimits {
           if !$class->isa("WebGPU::Direct::SupportedLimits");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -998,7 +998,7 @@ package WebGPU::Direct::TextureDescriptor {
           if !$class->isa("WebGPU::Direct::TextureDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1011,7 +1011,7 @@ package WebGPU::Direct::VertexBufferLayout {
           if !$class->isa("WebGPU::Direct::VertexBufferLayout");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1024,7 +1024,7 @@ package WebGPU::Direct::BindGroupLayoutDescriptor {
           if !$class->isa("WebGPU::Direct::BindGroupLayoutDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1037,7 +1037,7 @@ package WebGPU::Direct::ColorTargetState {
           if !$class->isa("WebGPU::Direct::ColorTargetState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1050,7 +1050,7 @@ package WebGPU::Direct::ComputePipelineDescriptor {
           if !$class->isa("WebGPU::Direct::ComputePipelineDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1063,7 +1063,7 @@ package WebGPU::Direct::DeviceDescriptor {
           if !$class->isa("WebGPU::Direct::DeviceDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1076,7 +1076,7 @@ package WebGPU::Direct::RenderPassDescriptor {
           if !$class->isa("WebGPU::Direct::RenderPassDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1089,7 +1089,7 @@ package WebGPU::Direct::VertexState {
           if !$class->isa("WebGPU::Direct::VertexState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1102,7 +1102,7 @@ package WebGPU::Direct::FragmentState {
           if !$class->isa("WebGPU::Direct::FragmentState");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }
@@ -1115,7 +1115,7 @@ package WebGPU::Direct::RenderPipelineDescriptor {
           if !$class->isa("WebGPU::Direct::RenderPipelineDescriptor");
         $class = CORE::ref($class) ? CORE::ref($class) : $class;
         my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->pack;
+        $result->unpack;
         return $result;
     }
 }

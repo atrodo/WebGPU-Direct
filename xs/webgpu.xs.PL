@@ -334,18 +334,9 @@ foreach my $class ( @classes )
   foreach (@defs)
   {
     my %def = %$_;
-
-    my $set_addl = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' ) ? qq{, newSVpvs("$def{return}")} : "";
-
-    # TODO
-    if ( !$set_addl && $def{ctype} ne 'char' && $def{is_ptr} )
-    {
-      $packs .= qq{  // "$def{key}" is a ptr, and that's not quite right yet\n};
-      $unpacks .= qq{  // "$def{key}" is a ptr, and that's not quite right yet\n};
-      next;
-    }
-    $packs .= qq{  _find_set_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key} $set_addl);\n};
-    $unpacks .= qq{  _unpack_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key} $set_addl);\n};
+    my %calls = calls_for(%$_);
+    $packs .= $calls{find_set};#qq{  _find_set_$typedef(aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl);\n};
+    $unpacks .= $calls{unpack};#qq{  _unpack_$typedef(aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl);\n};
 
     say_set_fn($class, $type, %def);
   }
@@ -361,13 +352,14 @@ foreach my $class ( @classes )
                 if !\$class->isa("$class");
               \$class = CORE::ref(\$class) ? CORE::ref(\$class) : \$class;
               my \$result = bless( { ref( \$_[0] ) eq ref {} ? %\$_[0] : \@_ }, \$class );
-              \$result->pack;
+              \$result->unpack;
               return \$result;
           }
       }
       EOF
       };
 
+    # TODO: Better function to intellgently handle new/choose pack/unpack
     say $xs <<~"EOF"; $n = qq{
       void
       pack(THIS)
@@ -375,7 +367,15 @@ foreach my $class ( @classes )
           PROTOTYPE: \$
           CODE:
               ${c_prefix}__pack( THIS );
-              $addl_pack
+              $addl_pack //
+
+      void
+      unpack(THIS)
+              SV *THIS
+          PROTOTYPE: \$
+          CODE:
+              ${c_prefix}__unpack( THIS );
+              $addl_unpack //
 
       SV *
       bytes(THIS)
@@ -512,12 +512,111 @@ T_FETCHPTR
     $arg = ${$type=~tr/:/_/, \$type}__wrap($var);
 EOF
 
+sub calls_for
+{
+  my %def = @_;
+
+  my $cast = '';
+  my $set_addl
+      = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' )
+      ? qq{, newSVpvs("$def{return}")}
+      : "";
+
+  my $typedef = $def{typedef};
+  if ( $typedef eq 'obj' && $def{is_ptr} )
+  {
+    $typedef = "${typedef}ptr";
+    $cast    = '(void **)';
+
+    #$typedef = "void";
+  }
+
+  my %result = (
+    pack     => '',
+    unpack   => '',
+    find_set => '',
+    set      => '',
+    typedef  => undef,
+  );
+
+  # TODO
+  if ( !$set_addl && $def{ctype} ne 'char' && $def{is_ptr} )
+  {
+    my $warning
+        = qq{  // "$def{key}" is a ptr type $def{ctype}, and that's not quite right yet, using opaque\n};
+    $result{pack}     .= $warning;
+    $result{unpack}   .= $warning;
+    $result{find_set} .= $warning;
+    $result{set}      .= $warning;
+
+    $typedef  = 'void';
+    $set_addl = ', NULL';
+  }
+
+  my $call = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl};
+  my $set_call = qq{aTHX_ value,/**/ (void *) &n->$def{key} $set_addl};
+
+  if ( 0 )#$is_obj )
+  {
+    #$set_call = qq{  _set_$typedef(aTHX_ value,/*-*/ (void *) &n->$def{key});\n};
+  }
+
+  $result{pack}     .= qq{  _pack_$typedef($call);\n};
+  $result{unpack}   .= qq{  _unpack_$typedef($call);\n};
+  $result{find_set} .= qq{  _find_set_$typedef($call);\n};
+  $result{set}      .= qq{  _set_$typedef($set_call);\n};
+
+  $result{typedef} = $typedef;
+
+  return %result;
+}
+
 sub say_set_fn
 {
   my $class = shift;
   my $type = shift;
   my %def = @_;
 
+  my %calls = calls_for(%def);
+
+  # TODO: this is causing a compile error because return type for ptrs disagreew ith the find_set call
+  my $typedef = $calls{typedef};
+  my $ret_type = $def{return};
+  my $is_ptr = ( $def{ctype} ne 'char' && $def{is_ptr} );
+  my $is_obj = ( $typedef eq 'obj' || $typedef eq 'void' );
+  my $val_type
+      = $is_ptr ? "SV *"
+      : $is_obj ? "$def{return}"
+      :           "SV *";
+
+  if ( $is_ptr )
+  {
+    $val_type = 'SV *';
+    $ret_type = 'SV *';
+  }
+
+  say $xs <<~"EOF"; my $n = qq{
+    $ret_type
+    $def{key}(THIS, value = NO_INIT)
+            $class THIS
+            $val_type value
+        PROTOTYPE: \$;\$
+        CODE:
+            HV *h = (HV *)SvRV(THIS);
+            $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+            RETVAL = $calls{find_set};
+
+            if (items > 1)
+            {
+                $calls{set}
+                _unpack(THIS);
+            }
+        OUTPUT:
+            RETVAL
+    EOF
+    };
+
+=c
   my $is_obj = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' );
 
   if ( $is_obj )
@@ -537,6 +636,7 @@ sub say_set_fn
               if (items > 1)
               {
                   _set_$def{typedef}(aTHX_ value,/**/ (void *) &n->$def{key}, type_sv);
+                  _unpack(THIS);
               }
           OUTPUT:
               RETVAL
@@ -560,12 +660,14 @@ sub say_set_fn
               if (items > 1)
               {
                   _set_$def{typedef}(aTHX_ value,/*-*/ (void *) &n->$def{key});
+                  _unpack(THIS);
               }
           OUTPUT:
               RETVAL
       EOF
       };
   }
+=cut
 }
 
 sub say_call_fn

@@ -33,7 +33,7 @@ void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
 
 SV *_void__wrap( const void *n )
 {
-  SV *h = newSV(0);
+  SV *h = newSViv( *(int *)n);
   SV *RETVAL = sv_2mortal(newRV(h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
@@ -61,8 +61,37 @@ SV *_new( SV *CLASS )
   return THIS;
 }
 
+void _unpack( SV *THIS )
+{
+  // Do not attempt to call unpack on undef
+  if ( !SvOK(THIS) )
+  {
+    return;
+  }
+
+  dSP;
+  PUSHMARK(SP);
+  EXTEND(SP, 1);
+  PUSHs(THIS);
+  PUTBACK;
+
+  int count = call_method("unpack", G_SCALAR);
+
+  if (count != 1)
+  {
+    croak("Could not call unpack on %s\n", SvPV_nolen(THIS));
+  }
+
+  return;
+}
+
 SV *_new_with( SV *CLASS, void *n)
 {
+  if ( n == NULL )
+  {
+    return SvREFCNT_inc(newSV(0));
+  }
+
   SV *h = (SV *)newHV();
   SV *RETVAL = sv_2mortal(newRV(h));
 
@@ -75,7 +104,7 @@ SV *_new_with( SV *CLASS, void *n)
    obj
    ------------------------------------------------------------------ */
 
-void _set_obj(pTHX_ SV *new_value, void **field, SV *base)
+void _set_obj(pTHX_ SV *new_value, void *field, SV *base)
 {
   if ( !base )
   {
@@ -83,7 +112,7 @@ void _set_obj(pTHX_ SV *new_value, void **field, SV *base)
   }
 
   void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
-  *field = v;
+  field = v;
 }
 
 int _mg_set_obj(pTHX_ SV* sv, MAGIC* mg)
@@ -103,36 +132,164 @@ SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
   SV *fp;
 
   f = hv_fetch(h, key, klen, 0);
-  if ( f && *f )
+  if ( !( f && *f ) )
   {
-    fp = *f;
-  }
-  else
-  {
-    fp = newSV(0);
-    sv_magicext(fp, base, PERL_MAGIC_ext, &_mg_vtbl_obj, (const char *)field, 0);
-    hv_store(h, key, klen, fp, 0);
-  }
-  _set_obj(aTHX_ fp, field, base);
+    SV *val = NULL;
+    if ( field )
+    {
+      val = _new_with(base, field);
+      _unpack(val);
+    }
+    else
+    {
+      val = SvREFCNT_inc(newSV(0));
+    }
+    sv_magicext(val, base, PERL_MAGIC_ext, &_mg_vtbl_obj, (const char *)field, 0);
+    f = hv_store(h, key, klen, val, 0);
 
-  return fp;
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
+  }
+
+  _set_obj(aTHX_ *f, field, base);
+  SvREFCNT_inc(*f);
+
+  return *f;
 }
 
 SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
 {
-  SV **f;
-  SV *fp;
+  SV **f = NULL;
+  SV *fp = NULL;
+                                                       
+  f = hv_fetch(h, key, klen, 1);                   
+  if ( !( f && *f ) )
+  {                                                
+    croak("Could not save new value for %s", key); 
+  }                                                
 
-  f = hv_fetch(h, key, klen, 1);
-  if ( f && *f )
+  void *n = NULL;
+  if ( sv_isobject(*f) )
   {
-    fp = *f;
+    n = _get_struct_ptr(aTHX_ *f, base);
   }
-  else
+
+  if ( n == NULL || n != field )
   {
-    croak("Could not save new value for %s", key);
+    *f  = _new_with(base, field);
   }
-  *f  = _new_with(base, field);
+
+  _unpack(*f);
+
+
+  return *f;
+}
+
+/* ------------------------------------------------------------------
+   objptr
+   ------------------------------------------------------------------ */
+
+void _set_objptr(pTHX_ SV *new_value, void **field, SV *base)
+{
+  if ( !base )
+  {
+    croak("Could not find requirement base for %s", SvPV_nolen(new_value));
+  }
+
+  void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
+  *field = v;
+}
+
+int _mg_set_objptr(pTHX_ SV* sv, MAGIC* mg)
+{
+  SV *base = mg->mg_obj;
+  _set_objptr(aTHX_ sv, (void *) mg->mg_ptr, base);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_objptr = {
+  .svt_set = _mg_set_objptr
+};
+
+SV *_find_set_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base)
+{
+  SV **f;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _find_set_objptr must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  f = hv_fetch(h, key, klen, 0);
+  if ( !( f && *f ) )
+  {
+    SV *val = NULL;
+    if ( *field )
+    {
+      val = _new_with(base, *field);
+      _unpack(val);
+    }
+    else
+    {
+      val = SvREFCNT_inc(newSV(0));
+    }
+    sv_magicext(val, base, PERL_MAGIC_ext, &_mg_vtbl_objptr, (const char *)field, 0);
+    f = hv_store(h, key, klen, val, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
+  }
+
+  _set_objptr(aTHX_ *f, field, base);
+  SvREFCNT_inc(*f);
+
+  return *f;
+}
+
+SV *_unpack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base)
+{
+  SV **f = NULL;
+  SV *fp = NULL;
+                                                       
+  if ( field == NULL )
+  {
+    croak("The field value to _unpack_objptr must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  f = hv_fetch(h, key, klen, 1);                   
+  if ( !( f && *f ) )
+  {                                                
+    croak("Could not save new value for %s", key); 
+  }                                                
+
+  void *n = NULL;
+  if ( sv_isobject(*f) )
+  {
+    n = _get_struct_ptr(aTHX_ *f, base);
+  }
+
+  if ( n == NULL || n != *field )
+  {
+
+    SV *val = _new_with(base, *field);
+    SvREFCNT_inc(val);
+    f = hv_store(h, key, klen, val, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
+  }
+
+  _unpack(*f);
+
 
   return *f;
 }
@@ -143,10 +300,6 @@ SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
 
 void _set_void(pTHX_ SV *new_value, void **field, SV *base)
 {
-  if ( !base )
-  {
-    croak("Could not find requirement base for %s", SvPV_nolen(new_value));
-  }
 
   void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
   *field = v;
@@ -492,7 +645,7 @@ new_window_x11(CLASS, xw = 640, yh = 360)
         }
 
         SV *h = SvRV(THIS);
-        WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack(THIS);
+        _unpack(THIS);
 
         RETVAL = THIS;
 #else
