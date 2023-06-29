@@ -126,50 +126,21 @@ STATIC MGVTBL _mg_vtbl_obj = {
   .svt_set = _mg_set_obj
 };
 
-SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
-{
-  SV **f;
-  SV *fp;
-
-  f = hv_fetch(h, key, klen, 0);
-  if ( !( f && *f ) )
-  {
-    SV *val = NULL;
-    if ( field )
-    {
-      val = _new_with(base, field);
-      _unpack(val);
-    }
-    else
-    {
-      val = SvREFCNT_inc(newSV(0));
-    }
-    sv_magicext(val, base, PERL_MAGIC_ext, &_mg_vtbl_obj, (const char *)field, 0);
-    f = hv_store(h, key, klen, val, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(val);
-      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-    }
-  }
-
-  _set_obj(aTHX_ *f, field, base);
-  SvREFCNT_inc(*f);
-
-  return *f;
-}
-
 SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
 {
   SV **f = NULL;
-  SV *fp = NULL;
-                                                       
-  f = hv_fetch(h, key, klen, 1);                   
+
+  if ( field == NULL )
+  {
+    croak("The field value for objptr must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  f = hv_fetch(h, key, klen, 1);
+
   if ( !( f && *f ) )
-  {                                                
-    croak("Could not save new value for %s", key); 
-  }                                                
+  {
+    croak("Could not save new value for %s", key);
+  }
 
   void *n = NULL;
   if ( sv_isobject(*f) )
@@ -179,13 +150,89 @@ SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
 
   if ( n == NULL || n != field )
   {
-    *f  = _new_with(base, field);
+    SV *val = _new_with(base, field);
+    SvREFCNT_inc(val);
+    f = hv_store(h, key, klen, val, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
+    //*f  = _new_with(base, field);
   }
 
   _unpack(*f);
 
+  return *f;
+}
+
+SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
+{
+  SV **f;
+  SV *fp;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _pack_obj must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_obj(aTHX_ h, key, klen, field, base);
+  }
+
+  // Save the new value to the field
+  _set_obj(aTHX_ *f, field, base);
+  SvREFCNT_inc(*f);
 
   return *f;
+}
+
+SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
+{
+  SV **f;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _find_obj must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_obj(aTHX_ h, key, klen, field, base);
+  }
+
+  return *f;
+}
+
+void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base, SV *value)
+{
+  SvREFCNT_inc(value);
+  SV **f = hv_store(h, "next", 4, value, 0);
+
+  if ( !f )
+  {
+    SvREFCNT_dec(value);
+    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+  }
+
+  _pack_obj(aTHX_ h, key, klen, field, base);
+
+  return;
+}
+
+SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
+{
+  return _pack_obj(aTHX_ h, key, klen, field, base);
 }
 
 /* ------------------------------------------------------------------
@@ -226,9 +273,9 @@ SV *_unpack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
   f = hv_fetch(h, key, klen, 1);
 
   if ( !( f && *f ) )
-  {                                                
-    croak("Could not save new value for %s", key); 
-  }                                                
+  {
+    croak("Could not save new value for %s", key);
+  }
 
   void *n = NULL;
   if ( sv_isobject(*f) )
