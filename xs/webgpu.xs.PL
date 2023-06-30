@@ -518,7 +518,7 @@ sub calls_for
 
   my $cast = '';
   my $set_addl
-      = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' )
+      = ( $def{typedef} eq 'obj' )
       ? qq{, newSVpvs("$def{return}")}
       : "";
 
@@ -534,6 +534,8 @@ sub calls_for
   my %result = (
     pack     => '',
     unpack   => '',
+    store    => '',
+    find     => '',
     find_set => '',
     set      => '',
     typedef  => undef,
@@ -546,11 +548,12 @@ sub calls_for
         = qq{  // "$def{key}" is a ptr type $def{ctype}, and that's not quite right yet, using opaque\n};
     $result{pack}     .= $warning;
     $result{unpack}   .= $warning;
+    $result{store}    .= $warning;
+    $result{find}     .= $warning;
     $result{find_set} .= $warning;
     $result{set}      .= $warning;
 
     $typedef  = 'void';
-    $set_addl = ', NULL';
   }
 
   my $call = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl};
@@ -563,6 +566,8 @@ sub calls_for
 
   $result{pack}     .= qq{  _pack_$typedef($call);\n};
   $result{unpack}   .= qq{  _unpack_$typedef($call);\n};
+  $result{store}    .= qq{  _store_$typedef($call, value);\n};
+  $result{find}     .= qq{  _find_$typedef($call);\n};
   $result{find_set} .= qq{  _find_set_$typedef($call);\n};
   $result{set}      .= qq{  _set_$typedef($set_call);\n};
 
@@ -608,8 +613,7 @@ sub say_set_fn
 
             if (items > 1)
             {
-                $calls{set}
-                _unpack(THIS);
+                $calls{store}
             }
         OUTPUT:
             RETVAL

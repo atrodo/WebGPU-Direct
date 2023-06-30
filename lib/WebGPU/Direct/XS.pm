@@ -9,6 +9,7 @@ use AutoLoader qw(AUTOLOAD);
 
 our @ISA = qw(Exporter);
 
+require 'WebGPU/Direct/XS.pl';
 # Items to export into callers namespace by default. Note: do not export
 # names by default without a very good reason. Use EXPORT_OK instead.
 # Do not simply export all your public functions/methods/constants.

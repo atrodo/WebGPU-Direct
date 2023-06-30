@@ -987,22 +987,8 @@ next(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              SV **f;
-              SvREFCNT_inc(value);
-              f = hv_store(h, "next", 4, value, 0);
+              _store_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-              if ( !f )
-              {
-                SvREFCNT_dec(value);
-                croak("Could not save value to hash for %s in type %s", "next", "WebGPU::Direct::ChainedStruct");
-              }
-              {
-                MAGIC *mg = mg_find(value, PERL_MAGIC_ext);
-                warn("mg: %zX\n", (size_t)mg);
-              }
-              _set_objptr(aTHX_ value,/**/ (void *) &n->next , newSVpvs("WebGPU::Direct::ChainedStruct"));
-
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1020,9 +1006,8 @@ sType(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->sType );
+              _store_enum(aTHX_ h, "sType", 5,  &n->sType , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1069,9 +1054,8 @@ next(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->next , newSVpvs("WebGPU::Direct::ChainedStructOut"));
+              _store_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStructOut"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1089,9 +1073,8 @@ sType(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->sType );
+              _store_enum(aTHX_ h, "sType", 5,  &n->sType , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1138,9 +1121,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1158,9 +1140,8 @@ vendorID(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->vendorID );
+              _store_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1178,9 +1159,8 @@ vendorName(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->vendorName );
+              _store_str(aTHX_ h, "vendorName", 10,  &n->vendorName , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1198,9 +1178,8 @@ architecture(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->architecture );
+              _store_str(aTHX_ h, "architecture", 12,  &n->architecture , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1218,9 +1197,8 @@ deviceID(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->deviceID );
+              _store_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1238,9 +1216,8 @@ name(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->name );
+              _store_str(aTHX_ h, "name", 4,  &n->name , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1258,9 +1235,8 @@ driverDescription(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->driverDescription );
+              _store_str(aTHX_ h, "driverDescription", 17,  &n->driverDescription , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1278,9 +1254,8 @@ adapterType(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->adapterType );
+              _store_enum(aTHX_ h, "adapterType", 11,  &n->adapterType , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1298,9 +1273,8 @@ backendType(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->backendType );
+              _store_enum(aTHX_ h, "backendType", 11,  &n->backendType , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1347,9 +1321,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1367,9 +1340,8 @@ binding(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->binding );
+              _store_uint32_t(aTHX_ h, "binding", 7,  &n->binding , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1382,14 +1354,13 @@ buffer(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "buffer", 6,  &n->buffer , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "buffer", 6,  &n->buffer );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->buffer , newSVpvs("void *"));
+              _store_void(aTHX_ h, "buffer", 6,  &n->buffer , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1407,9 +1378,8 @@ offset(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->offset );
+              _store_uint64_t(aTHX_ h, "offset", 6,  &n->offset , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1427,9 +1397,8 @@ size(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->size );
+              _store_uint64_t(aTHX_ h, "size", 4,  &n->size , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1442,14 +1411,13 @@ sampler(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "sampler", 7,  &n->sampler , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "sampler", 7,  &n->sampler );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->sampler , newSVpvs("void *"));
+              _store_void(aTHX_ h, "sampler", 7,  &n->sampler , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1462,14 +1430,13 @@ textureView(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "textureView", 11,  &n->textureView , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "textureView", 11,  &n->textureView );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->textureView , newSVpvs("void *"));
+              _store_void(aTHX_ h, "textureView", 11,  &n->textureView , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1516,9 +1483,8 @@ operation(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->operation );
+              _store_enum(aTHX_ h, "operation", 9,  &n->operation , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1536,9 +1502,8 @@ srcFactor(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->srcFactor );
+              _store_enum(aTHX_ h, "srcFactor", 9,  &n->srcFactor , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1556,9 +1521,8 @@ dstFactor(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->dstFactor );
+              _store_enum(aTHX_ h, "dstFactor", 9,  &n->dstFactor , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1605,9 +1569,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1625,9 +1588,8 @@ type(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->type );
+              _store_enum(aTHX_ h, "type", 4,  &n->type , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1645,9 +1607,8 @@ hasDynamicOffset(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->hasDynamicOffset );
+              _store_bool(aTHX_ h, "hasDynamicOffset", 16,  &n->hasDynamicOffset , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1665,9 +1626,8 @@ minBindingSize(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->minBindingSize );
+              _store_uint64_t(aTHX_ h, "minBindingSize", 14,  &n->minBindingSize , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1714,9 +1674,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1734,9 +1693,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1754,9 +1712,8 @@ usage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->usage );
+              _store_uint32_t(aTHX_ h, "usage", 5,  &n->usage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1774,9 +1731,8 @@ size(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->size );
+              _store_uint64_t(aTHX_ h, "size", 4,  &n->size , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1794,9 +1750,8 @@ mappedAtCreation(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->mappedAtCreation );
+              _store_bool(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1843,9 +1798,8 @@ r(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_double(aTHX_ value,/**/ (void *) &n->r );
+              _store_double(aTHX_ h, "r", 1,  &n->r , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1863,9 +1817,8 @@ g(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_double(aTHX_ value,/**/ (void *) &n->g );
+              _store_double(aTHX_ h, "g", 1,  &n->g , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1883,9 +1836,8 @@ b(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_double(aTHX_ value,/**/ (void *) &n->b );
+              _store_double(aTHX_ h, "b", 1,  &n->b , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1903,9 +1855,8 @@ a(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_double(aTHX_ value,/**/ (void *) &n->a );
+              _store_double(aTHX_ h, "a", 1,  &n->a , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1952,9 +1903,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -1972,9 +1922,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2021,9 +1970,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2041,9 +1989,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2090,9 +2037,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2110,9 +2056,8 @@ message(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->message );
+              _store_str(aTHX_ h, "message", 7,  &n->message , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2130,9 +2075,8 @@ type(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->type );
+              _store_enum(aTHX_ h, "type", 4,  &n->type , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2150,9 +2094,8 @@ lineNum(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->lineNum );
+              _store_uint64_t(aTHX_ h, "lineNum", 7,  &n->lineNum , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2170,9 +2113,8 @@ linePos(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->linePos );
+              _store_uint64_t(aTHX_ h, "linePos", 7,  &n->linePos , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2190,9 +2132,8 @@ offset(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->offset );
+              _store_uint64_t(aTHX_ h, "offset", 6,  &n->offset , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2210,9 +2151,8 @@ length(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->length );
+              _store_uint64_t(aTHX_ h, "length", 6,  &n->length , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2230,9 +2170,8 @@ utf16LinePos(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->utf16LinePos );
+              _store_uint64_t(aTHX_ h, "utf16LinePos", 12,  &n->utf16LinePos , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2250,9 +2189,8 @@ utf16Offset(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->utf16Offset );
+              _store_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2270,9 +2208,8 @@ utf16Length(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->utf16Length );
+              _store_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2314,14 +2251,13 @@ querySet(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUComputePassTimestampWrite *n = (WGPUComputePassTimestampWrite *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "querySet", 8,  &n->querySet , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "querySet", 8,  &n->querySet );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->querySet , newSVpvs("void *"));
+              _store_void(aTHX_ h, "querySet", 8,  &n->querySet , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2339,9 +2275,8 @@ queryIndex(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->queryIndex );
+              _store_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2359,9 +2294,8 @@ location(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->location );
+              _store_enum(aTHX_ h, "location", 8,  &n->location , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2408,9 +2342,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2428,9 +2361,8 @@ key(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->key );
+              _store_str(aTHX_ h, "key", 3,  &n->key , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2448,9 +2380,8 @@ value(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_double(aTHX_ value,/**/ (void *) &n->value );
+              _store_double(aTHX_ h, "value", 5,  &n->value , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2497,9 +2428,8 @@ width(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->width );
+              _store_uint32_t(aTHX_ h, "width", 5,  &n->width , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2517,9 +2447,8 @@ height(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->height );
+              _store_uint32_t(aTHX_ h, "height", 6,  &n->height , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2537,9 +2466,8 @@ depthOrArrayLayers(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->depthOrArrayLayers );
+              _store_uint32_t(aTHX_ h, "depthOrArrayLayers", 18,  &n->depthOrArrayLayers , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2586,9 +2514,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2635,9 +2562,8 @@ maxTextureDimension1D(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxTextureDimension1D );
+              _store_uint32_t(aTHX_ h, "maxTextureDimension1D", 21,  &n->maxTextureDimension1D , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2655,9 +2581,8 @@ maxTextureDimension2D(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxTextureDimension2D );
+              _store_uint32_t(aTHX_ h, "maxTextureDimension2D", 21,  &n->maxTextureDimension2D , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2675,9 +2600,8 @@ maxTextureDimension3D(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxTextureDimension3D );
+              _store_uint32_t(aTHX_ h, "maxTextureDimension3D", 21,  &n->maxTextureDimension3D , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2695,9 +2619,8 @@ maxTextureArrayLayers(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxTextureArrayLayers );
+              _store_uint32_t(aTHX_ h, "maxTextureArrayLayers", 21,  &n->maxTextureArrayLayers , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2715,9 +2638,8 @@ maxBindGroups(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxBindGroups );
+              _store_uint32_t(aTHX_ h, "maxBindGroups", 13,  &n->maxBindGroups , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2735,9 +2657,8 @@ maxBindingsPerBindGroup(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxBindingsPerBindGroup );
+              _store_uint32_t(aTHX_ h, "maxBindingsPerBindGroup", 23,  &n->maxBindingsPerBindGroup , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2755,9 +2676,8 @@ maxDynamicUniformBuffersPerPipelineLayout(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxDynamicUniformBuffersPerPipelineLayout );
+              _store_uint32_t(aTHX_ h, "maxDynamicUniformBuffersPerPipelineLayout", 41,  &n->maxDynamicUniformBuffersPerPipelineLayout , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2775,9 +2695,8 @@ maxDynamicStorageBuffersPerPipelineLayout(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxDynamicStorageBuffersPerPipelineLayout );
+              _store_uint32_t(aTHX_ h, "maxDynamicStorageBuffersPerPipelineLayout", 41,  &n->maxDynamicStorageBuffersPerPipelineLayout , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2795,9 +2714,8 @@ maxSampledTexturesPerShaderStage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxSampledTexturesPerShaderStage );
+              _store_uint32_t(aTHX_ h, "maxSampledTexturesPerShaderStage", 32,  &n->maxSampledTexturesPerShaderStage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2815,9 +2733,8 @@ maxSamplersPerShaderStage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxSamplersPerShaderStage );
+              _store_uint32_t(aTHX_ h, "maxSamplersPerShaderStage", 25,  &n->maxSamplersPerShaderStage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2835,9 +2752,8 @@ maxStorageBuffersPerShaderStage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxStorageBuffersPerShaderStage );
+              _store_uint32_t(aTHX_ h, "maxStorageBuffersPerShaderStage", 31,  &n->maxStorageBuffersPerShaderStage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2855,9 +2771,8 @@ maxStorageTexturesPerShaderStage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxStorageTexturesPerShaderStage );
+              _store_uint32_t(aTHX_ h, "maxStorageTexturesPerShaderStage", 32,  &n->maxStorageTexturesPerShaderStage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2875,9 +2790,8 @@ maxUniformBuffersPerShaderStage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxUniformBuffersPerShaderStage );
+              _store_uint32_t(aTHX_ h, "maxUniformBuffersPerShaderStage", 31,  &n->maxUniformBuffersPerShaderStage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2895,9 +2809,8 @@ maxUniformBufferBindingSize(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->maxUniformBufferBindingSize );
+              _store_uint64_t(aTHX_ h, "maxUniformBufferBindingSize", 27,  &n->maxUniformBufferBindingSize , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2915,9 +2828,8 @@ maxStorageBufferBindingSize(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->maxStorageBufferBindingSize );
+              _store_uint64_t(aTHX_ h, "maxStorageBufferBindingSize", 27,  &n->maxStorageBufferBindingSize , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2935,9 +2847,8 @@ minUniformBufferOffsetAlignment(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->minUniformBufferOffsetAlignment );
+              _store_uint32_t(aTHX_ h, "minUniformBufferOffsetAlignment", 31,  &n->minUniformBufferOffsetAlignment , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2955,9 +2866,8 @@ minStorageBufferOffsetAlignment(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->minStorageBufferOffsetAlignment );
+              _store_uint32_t(aTHX_ h, "minStorageBufferOffsetAlignment", 31,  &n->minStorageBufferOffsetAlignment , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2975,9 +2885,8 @@ maxVertexBuffers(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxVertexBuffers );
+              _store_uint32_t(aTHX_ h, "maxVertexBuffers", 16,  &n->maxVertexBuffers , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -2995,9 +2904,8 @@ maxBufferSize(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->maxBufferSize );
+              _store_uint64_t(aTHX_ h, "maxBufferSize", 13,  &n->maxBufferSize , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3015,9 +2923,8 @@ maxVertexAttributes(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxVertexAttributes );
+              _store_uint32_t(aTHX_ h, "maxVertexAttributes", 19,  &n->maxVertexAttributes , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3035,9 +2942,8 @@ maxVertexBufferArrayStride(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxVertexBufferArrayStride );
+              _store_uint32_t(aTHX_ h, "maxVertexBufferArrayStride", 26,  &n->maxVertexBufferArrayStride , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3055,9 +2961,8 @@ maxInterStageShaderComponents(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxInterStageShaderComponents );
+              _store_uint32_t(aTHX_ h, "maxInterStageShaderComponents", 29,  &n->maxInterStageShaderComponents , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3075,9 +2980,8 @@ maxInterStageShaderVariables(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxInterStageShaderVariables );
+              _store_uint32_t(aTHX_ h, "maxInterStageShaderVariables", 28,  &n->maxInterStageShaderVariables , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3095,9 +2999,8 @@ maxColorAttachments(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxColorAttachments );
+              _store_uint32_t(aTHX_ h, "maxColorAttachments", 19,  &n->maxColorAttachments , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3115,9 +3018,8 @@ maxColorAttachmentBytesPerSample(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxColorAttachmentBytesPerSample );
+              _store_uint32_t(aTHX_ h, "maxColorAttachmentBytesPerSample", 32,  &n->maxColorAttachmentBytesPerSample , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3135,9 +3037,8 @@ maxComputeWorkgroupStorageSize(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxComputeWorkgroupStorageSize );
+              _store_uint32_t(aTHX_ h, "maxComputeWorkgroupStorageSize", 30,  &n->maxComputeWorkgroupStorageSize , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3155,9 +3056,8 @@ maxComputeInvocationsPerWorkgroup(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxComputeInvocationsPerWorkgroup );
+              _store_uint32_t(aTHX_ h, "maxComputeInvocationsPerWorkgroup", 33,  &n->maxComputeInvocationsPerWorkgroup , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3175,9 +3075,8 @@ maxComputeWorkgroupSizeX(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxComputeWorkgroupSizeX );
+              _store_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeX", 24,  &n->maxComputeWorkgroupSizeX , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3195,9 +3094,8 @@ maxComputeWorkgroupSizeY(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxComputeWorkgroupSizeY );
+              _store_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeY", 24,  &n->maxComputeWorkgroupSizeY , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3215,9 +3113,8 @@ maxComputeWorkgroupSizeZ(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxComputeWorkgroupSizeZ );
+              _store_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeZ", 24,  &n->maxComputeWorkgroupSizeZ , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3235,9 +3132,8 @@ maxComputeWorkgroupsPerDimension(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->maxComputeWorkgroupsPerDimension );
+              _store_uint32_t(aTHX_ h, "maxComputeWorkgroupsPerDimension", 32,  &n->maxComputeWorkgroupsPerDimension , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3284,9 +3180,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3304,9 +3199,8 @@ count(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->count );
+              _store_uint32_t(aTHX_ h, "count", 5,  &n->count , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3324,9 +3218,8 @@ mask(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->mask );
+              _store_uint32_t(aTHX_ h, "mask", 4,  &n->mask , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3344,9 +3237,8 @@ alphaToCoverageEnabled(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->alphaToCoverageEnabled );
+              _store_bool(aTHX_ h, "alphaToCoverageEnabled", 22,  &n->alphaToCoverageEnabled , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3393,9 +3285,8 @@ x(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->x );
+              _store_uint32_t(aTHX_ h, "x", 1,  &n->x , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3413,9 +3304,8 @@ y(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->y );
+              _store_uint32_t(aTHX_ h, "y", 1,  &n->y , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3433,9 +3323,8 @@ z(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->z );
+              _store_uint32_t(aTHX_ h, "z", 1,  &n->z , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3482,9 +3371,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3502,9 +3390,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3522,9 +3409,8 @@ bindGroupLayoutCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->bindGroupLayoutCount );
+              _store_uint32_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3537,14 +3423,15 @@ bindGroupLayouts(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "bindGroupLayouts", 16,  &n->bindGroupLayouts , newSVpvs("void *"));
+        RETVAL =   // "bindGroupLayouts" is a ptr type WGPUBindGroupLayout, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "bindGroupLayouts", 16,  &n->bindGroupLayouts );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->bindGroupLayouts , newSVpvs("void *"));
+              // "bindGroupLayouts" is a ptr type WGPUBindGroupLayout, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "bindGroupLayouts", 16,  &n->bindGroupLayouts , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3591,9 +3478,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3611,9 +3497,8 @@ unclippedDepth(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->unclippedDepth );
+              _store_bool(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3662,9 +3547,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3682,9 +3566,8 @@ topology(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->topology );
+              _store_enum(aTHX_ h, "topology", 8,  &n->topology , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3702,9 +3585,8 @@ stripIndexFormat(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->stripIndexFormat );
+              _store_enum(aTHX_ h, "stripIndexFormat", 16,  &n->stripIndexFormat , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3722,9 +3604,8 @@ frontFace(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->frontFace );
+              _store_enum(aTHX_ h, "frontFace", 9,  &n->frontFace , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3742,9 +3623,8 @@ cullMode(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->cullMode );
+              _store_enum(aTHX_ h, "cullMode", 8,  &n->cullMode , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3791,9 +3671,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3811,9 +3690,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3831,9 +3709,8 @@ type(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->type );
+              _store_enum(aTHX_ h, "type", 4,  &n->type , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3851,9 +3728,8 @@ count(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->count );
+              _store_uint32_t(aTHX_ h, "count", 5,  &n->count , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3867,15 +3743,14 @@ pipelineStatistics(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUQuerySetDescriptor *n = (WGPUQuerySetDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
         RETVAL =   // "pipelineStatistics" is a ptr type WGPUPipelineStatisticName, and that's not quite right yet, using opaque
-  _find_set_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics , NULL);
+  _find_set_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics );
 ;
 
         if (items > 1)
         {
               // "pipelineStatistics" is a ptr type WGPUPipelineStatisticName, and that's not quite right yet, using opaque
-  _set_void(aTHX_ value,/**/ (void *) &n->pipelineStatistics , NULL);
+  _store_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3893,9 +3768,8 @@ pipelineStatisticsCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->pipelineStatisticsCount );
+              _store_uint32_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3942,9 +3816,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -3962,9 +3835,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4011,9 +3883,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4031,9 +3902,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4080,9 +3950,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4100,9 +3969,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4120,9 +3988,8 @@ colorFormatsCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->colorFormatsCount );
+              _store_uint32_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4136,15 +4003,14 @@ colorFormats(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPURenderBundleEncoderDescriptor *n = (WGPURenderBundleEncoderDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
         RETVAL =   // "colorFormats" is a ptr type WGPUTextureFormat, and that's not quite right yet, using opaque
-  _find_set_void(aTHX_ h, "colorFormats", 12,  &n->colorFormats , NULL);
+  _find_set_void(aTHX_ h, "colorFormats", 12,  &n->colorFormats );
 ;
 
         if (items > 1)
         {
               // "colorFormats" is a ptr type WGPUTextureFormat, and that's not quite right yet, using opaque
-  _set_void(aTHX_ value,/**/ (void *) &n->colorFormats , NULL);
+  _store_void(aTHX_ h, "colorFormats", 12,  &n->colorFormats , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4162,9 +4028,8 @@ depthStencilFormat(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->depthStencilFormat );
+              _store_enum(aTHX_ h, "depthStencilFormat", 18,  &n->depthStencilFormat , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4182,9 +4047,8 @@ sampleCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->sampleCount );
+              _store_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4202,9 +4066,8 @@ depthReadOnly(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->depthReadOnly );
+              _store_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4222,9 +4085,8 @@ stencilReadOnly(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->stencilReadOnly );
+              _store_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4266,14 +4128,13 @@ view(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassDepthStencilAttachment *n = (WGPURenderPassDepthStencilAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "view", 4,  &n->view , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "view", 4,  &n->view );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->view , newSVpvs("void *"));
+              _store_void(aTHX_ h, "view", 4,  &n->view , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4291,9 +4152,8 @@ depthLoadOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->depthLoadOp );
+              _store_enum(aTHX_ h, "depthLoadOp", 11,  &n->depthLoadOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4311,9 +4171,8 @@ depthStoreOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->depthStoreOp );
+              _store_enum(aTHX_ h, "depthStoreOp", 12,  &n->depthStoreOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4331,9 +4190,8 @@ depthClearValue(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_float(aTHX_ value,/**/ (void *) &n->depthClearValue );
+              _store_float(aTHX_ h, "depthClearValue", 15,  &n->depthClearValue , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4351,9 +4209,8 @@ depthReadOnly(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->depthReadOnly );
+              _store_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4371,9 +4228,8 @@ stencilLoadOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->stencilLoadOp );
+              _store_enum(aTHX_ h, "stencilLoadOp", 13,  &n->stencilLoadOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4391,9 +4247,8 @@ stencilStoreOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->stencilStoreOp );
+              _store_enum(aTHX_ h, "stencilStoreOp", 14,  &n->stencilStoreOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4411,9 +4266,8 @@ stencilClearValue(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->stencilClearValue );
+              _store_uint32_t(aTHX_ h, "stencilClearValue", 17,  &n->stencilClearValue , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4431,9 +4285,8 @@ stencilReadOnly(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->stencilReadOnly );
+              _store_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4480,9 +4333,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4500,9 +4352,8 @@ maxDrawCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->maxDrawCount );
+              _store_uint64_t(aTHX_ h, "maxDrawCount", 12,  &n->maxDrawCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4546,14 +4397,13 @@ querySet(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassTimestampWrite *n = (WGPURenderPassTimestampWrite *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "querySet", 8,  &n->querySet , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "querySet", 8,  &n->querySet );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->querySet , newSVpvs("void *"));
+              _store_void(aTHX_ h, "querySet", 8,  &n->querySet , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4571,9 +4421,8 @@ queryIndex(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->queryIndex );
+              _store_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4591,9 +4440,8 @@ location(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->location );
+              _store_enum(aTHX_ h, "location", 8,  &n->location , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4640,9 +4488,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4655,14 +4502,13 @@ compatibleSurface(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURequestAdapterOptions *n = (WGPURequestAdapterOptions *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "compatibleSurface", 17,  &n->compatibleSurface , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "compatibleSurface", 17,  &n->compatibleSurface );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->compatibleSurface , newSVpvs("void *"));
+              _store_void(aTHX_ h, "compatibleSurface", 17,  &n->compatibleSurface , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4680,9 +4526,8 @@ powerPreference(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->powerPreference );
+              _store_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4700,9 +4545,8 @@ forceFallbackAdapter(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->forceFallbackAdapter );
+              _store_bool(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4749,9 +4593,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4769,9 +4612,8 @@ type(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->type );
+              _store_enum(aTHX_ h, "type", 4,  &n->type , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4818,9 +4660,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4838,9 +4679,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4858,9 +4698,8 @@ addressModeU(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->addressModeU );
+              _store_enum(aTHX_ h, "addressModeU", 12,  &n->addressModeU , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4878,9 +4717,8 @@ addressModeV(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->addressModeV );
+              _store_enum(aTHX_ h, "addressModeV", 12,  &n->addressModeV , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4898,9 +4736,8 @@ addressModeW(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->addressModeW );
+              _store_enum(aTHX_ h, "addressModeW", 12,  &n->addressModeW , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4918,9 +4755,8 @@ magFilter(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->magFilter );
+              _store_enum(aTHX_ h, "magFilter", 9,  &n->magFilter , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4938,9 +4774,8 @@ minFilter(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->minFilter );
+              _store_enum(aTHX_ h, "minFilter", 9,  &n->minFilter , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4958,9 +4793,8 @@ mipmapFilter(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->mipmapFilter );
+              _store_enum(aTHX_ h, "mipmapFilter", 12,  &n->mipmapFilter , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4978,9 +4812,8 @@ lodMinClamp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_float(aTHX_ value,/**/ (void *) &n->lodMinClamp );
+              _store_float(aTHX_ h, "lodMinClamp", 11,  &n->lodMinClamp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -4998,9 +4831,8 @@ lodMaxClamp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_float(aTHX_ value,/**/ (void *) &n->lodMaxClamp );
+              _store_float(aTHX_ h, "lodMaxClamp", 11,  &n->lodMaxClamp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5018,9 +4850,8 @@ compare(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->compare );
+              _store_enum(aTHX_ h, "compare", 7,  &n->compare , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5038,9 +4869,8 @@ maxAnisotropy(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint16_t(aTHX_ value,/**/ (void *) &n->maxAnisotropy );
+              _store_uint16_t(aTHX_ h, "maxAnisotropy", 13,  &n->maxAnisotropy , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5087,9 +4917,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5107,9 +4936,8 @@ entryPoint(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->entryPoint );
+              _store_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5122,14 +4950,13 @@ layout(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUShaderModuleCompilationHint *n = (WGPUShaderModuleCompilationHint *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->layout , newSVpvs("void *"));
+              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5176,9 +5003,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5196,9 +5022,8 @@ codeSize(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->codeSize );
+              _store_uint32_t(aTHX_ h, "codeSize", 8,  &n->codeSize , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5212,15 +5037,14 @@ code(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUShaderModuleSPIRVDescriptor *n = (WGPUShaderModuleSPIRVDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
         RETVAL =   // "code" is a ptr type uint32_t, and that's not quite right yet, using opaque
-  _find_set_void(aTHX_ h, "code", 4,  &n->code , NULL);
+  _find_set_void(aTHX_ h, "code", 4,  &n->code );
 ;
 
         if (items > 1)
         {
               // "code" is a ptr type uint32_t, and that's not quite right yet, using opaque
-  _set_void(aTHX_ value,/**/ (void *) &n->code , NULL);
+  _store_void(aTHX_ h, "code", 4,  &n->code , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5269,9 +5093,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5289,9 +5112,8 @@ code(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->code );
+              _store_str(aTHX_ h, "code", 4,  &n->code , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5340,9 +5162,8 @@ compare(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->compare );
+              _store_enum(aTHX_ h, "compare", 7,  &n->compare , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5360,9 +5181,8 @@ failOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->failOp );
+              _store_enum(aTHX_ h, "failOp", 6,  &n->failOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5380,9 +5200,8 @@ depthFailOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->depthFailOp );
+              _store_enum(aTHX_ h, "depthFailOp", 11,  &n->depthFailOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5400,9 +5219,8 @@ passOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->passOp );
+              _store_enum(aTHX_ h, "passOp", 6,  &n->passOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5449,9 +5267,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5469,9 +5286,8 @@ access(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->access );
+              _store_enum(aTHX_ h, "access", 6,  &n->access , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5489,9 +5305,8 @@ format(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->format );
+              _store_enum(aTHX_ h, "format", 6,  &n->format , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5509,9 +5324,8 @@ viewDimension(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->viewDimension );
+              _store_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5558,9 +5372,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5578,9 +5391,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5627,9 +5439,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5642,14 +5453,15 @@ window(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromAndroidNativeWindow *n = (WGPUSurfaceDescriptorFromAndroidNativeWindow *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "window", 6,  &n->window , newSVpvs("void *"));
+        RETVAL =   // "window" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "window", 6,  &n->window );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->window , newSVpvs("void *"));
+              // "window" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "window", 6,  &n->window , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5698,9 +5510,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5718,9 +5529,8 @@ selector(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->selector );
+              _store_str(aTHX_ h, "selector", 8,  &n->selector , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5769,9 +5579,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5784,14 +5593,15 @@ layer(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromMetalLayer *n = (WGPUSurfaceDescriptorFromMetalLayer *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layer", 5,  &n->layer , newSVpvs("void *"));
+        RETVAL =   // "layer" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "layer", 5,  &n->layer );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->layer , newSVpvs("void *"));
+              // "layer" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "layer", 5,  &n->layer , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5840,9 +5650,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5855,14 +5664,15 @@ display(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromWaylandSurface *n = (WGPUSurfaceDescriptorFromWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "display", 7,  &n->display , newSVpvs("void *"));
+        RETVAL =   // "display" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "display", 7,  &n->display );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->display , newSVpvs("void *"));
+              // "display" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "display", 7,  &n->display , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5875,14 +5685,15 @@ surface(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromWaylandSurface *n = (WGPUSurfaceDescriptorFromWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "surface", 7,  &n->surface , newSVpvs("void *"));
+        RETVAL =   // "surface" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "surface", 7,  &n->surface );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->surface , newSVpvs("void *"));
+              // "surface" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "surface", 7,  &n->surface , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5931,9 +5742,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5946,14 +5756,15 @@ hinstance(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromWindowsHWND *n = (WGPUSurfaceDescriptorFromWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "hinstance", 9,  &n->hinstance , newSVpvs("void *"));
+        RETVAL =   // "hinstance" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "hinstance", 9,  &n->hinstance );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->hinstance , newSVpvs("void *"));
+              // "hinstance" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "hinstance", 9,  &n->hinstance , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -5966,14 +5777,15 @@ hwnd(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromWindowsHWND *n = (WGPUSurfaceDescriptorFromWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "hwnd", 4,  &n->hwnd , newSVpvs("void *"));
+        RETVAL =   // "hwnd" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "hwnd", 4,  &n->hwnd );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->hwnd , newSVpvs("void *"));
+              // "hwnd" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "hwnd", 4,  &n->hwnd , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6022,9 +5834,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6037,14 +5848,15 @@ connection(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromXcbWindow *n = (WGPUSurfaceDescriptorFromXcbWindow *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "connection", 10,  &n->connection , newSVpvs("void *"));
+        RETVAL =   // "connection" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "connection", 10,  &n->connection );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->connection , newSVpvs("void *"));
+              // "connection" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "connection", 10,  &n->connection , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6062,9 +5874,8 @@ window(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->window );
+              _store_uint32_t(aTHX_ h, "window", 6,  &n->window , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6113,9 +5924,8 @@ chain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_obj(aTHX_ h, "chain", 5,  &n->chain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6128,14 +5938,15 @@ display(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromXlibWindow *n = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "display", 7,  &n->display , newSVpvs("void *"));
+        RETVAL =   // "display" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "display", 7,  &n->display );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->display , newSVpvs("void *"));
+              // "display" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "display", 7,  &n->display , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6153,9 +5964,8 @@ window(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->window );
+              _store_uint32_t(aTHX_ h, "window", 6,  &n->window , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6204,9 +6014,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6224,9 +6033,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6244,9 +6052,8 @@ usage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->usage );
+              _store_uint32_t(aTHX_ h, "usage", 5,  &n->usage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6264,9 +6071,8 @@ format(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->format );
+              _store_enum(aTHX_ h, "format", 6,  &n->format , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6284,9 +6090,8 @@ width(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->width );
+              _store_uint32_t(aTHX_ h, "width", 5,  &n->width , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6304,9 +6109,8 @@ height(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->height );
+              _store_uint32_t(aTHX_ h, "height", 6,  &n->height , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6324,9 +6128,8 @@ presentMode(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->presentMode );
+              _store_enum(aTHX_ h, "presentMode", 11,  &n->presentMode , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6373,9 +6176,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6393,9 +6195,8 @@ sampleType(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->sampleType );
+              _store_enum(aTHX_ h, "sampleType", 10,  &n->sampleType , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6413,9 +6214,8 @@ viewDimension(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->viewDimension );
+              _store_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6433,9 +6233,8 @@ multisampled(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->multisampled );
+              _store_bool(aTHX_ h, "multisampled", 12,  &n->multisampled , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6482,9 +6281,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6502,9 +6300,8 @@ offset(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->offset );
+              _store_uint64_t(aTHX_ h, "offset", 6,  &n->offset , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6522,9 +6319,8 @@ bytesPerRow(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->bytesPerRow );
+              _store_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6542,9 +6338,8 @@ rowsPerImage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->rowsPerImage );
+              _store_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6591,9 +6386,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6611,9 +6405,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6631,9 +6424,8 @@ format(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->format );
+              _store_enum(aTHX_ h, "format", 6,  &n->format , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6651,9 +6443,8 @@ dimension(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->dimension );
+              _store_enum(aTHX_ h, "dimension", 9,  &n->dimension , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6671,9 +6462,8 @@ baseMipLevel(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->baseMipLevel );
+              _store_uint32_t(aTHX_ h, "baseMipLevel", 12,  &n->baseMipLevel , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6691,9 +6481,8 @@ mipLevelCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->mipLevelCount );
+              _store_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6711,9 +6500,8 @@ baseArrayLayer(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->baseArrayLayer );
+              _store_uint32_t(aTHX_ h, "baseArrayLayer", 14,  &n->baseArrayLayer , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6731,9 +6519,8 @@ arrayLayerCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->arrayLayerCount );
+              _store_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6751,9 +6538,8 @@ aspect(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->aspect );
+              _store_enum(aTHX_ h, "aspect", 6,  &n->aspect , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6800,9 +6586,8 @@ format(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->format );
+              _store_enum(aTHX_ h, "format", 6,  &n->format , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6820,9 +6605,8 @@ offset(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->offset );
+              _store_uint64_t(aTHX_ h, "offset", 6,  &n->offset , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6840,9 +6624,8 @@ shaderLocation(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->shaderLocation );
+              _store_uint32_t(aTHX_ h, "shaderLocation", 14,  &n->shaderLocation , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6889,9 +6672,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6909,9 +6691,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6924,14 +6705,13 @@ layout(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupDescriptor *n = (WGPUBindGroupDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->layout , newSVpvs("void *"));
+              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6949,9 +6729,8 @@ entryCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->entryCount );
+              _store_uint32_t(aTHX_ h, "entryCount", 10,  &n->entryCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -6969,9 +6748,8 @@ entries(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->entries , newSVpvs("WebGPU::Direct::BindGroupEntry"));
+              _store_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupEntry"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7018,9 +6796,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7038,9 +6815,8 @@ binding(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->binding );
+              _store_uint32_t(aTHX_ h, "binding", 7,  &n->binding , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7058,9 +6834,8 @@ visibility(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->visibility );
+              _store_uint32_t(aTHX_ h, "visibility", 10,  &n->visibility , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7078,9 +6853,8 @@ buffer(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->buffer , newSVpvs("WebGPU::Direct::BufferBindingLayout"));
+              _store_obj(aTHX_ h, "buffer", 6,  &n->buffer , newSVpvs("WebGPU::Direct::BufferBindingLayout"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7098,9 +6872,8 @@ sampler(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->sampler , newSVpvs("WebGPU::Direct::SamplerBindingLayout"));
+              _store_obj(aTHX_ h, "sampler", 7,  &n->sampler , newSVpvs("WebGPU::Direct::SamplerBindingLayout"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7118,9 +6891,8 @@ texture(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->texture , newSVpvs("WebGPU::Direct::TextureBindingLayout"));
+              _store_obj(aTHX_ h, "texture", 7,  &n->texture , newSVpvs("WebGPU::Direct::TextureBindingLayout"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7138,9 +6910,8 @@ storageTexture(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->storageTexture , newSVpvs("WebGPU::Direct::StorageTextureBindingLayout"));
+              _store_obj(aTHX_ h, "storageTexture", 14,  &n->storageTexture , newSVpvs("WebGPU::Direct::StorageTextureBindingLayout"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7187,9 +6958,8 @@ color(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->color , newSVpvs("WebGPU::Direct::BlendComponent"));
+              _store_obj(aTHX_ h, "color", 5,  &n->color , newSVpvs("WebGPU::Direct::BlendComponent"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7207,9 +6977,8 @@ alpha(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->alpha , newSVpvs("WebGPU::Direct::BlendComponent"));
+              _store_obj(aTHX_ h, "alpha", 5,  &n->alpha , newSVpvs("WebGPU::Direct::BlendComponent"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7256,9 +7025,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7276,9 +7044,8 @@ messageCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->messageCount );
+              _store_uint32_t(aTHX_ h, "messageCount", 12,  &n->messageCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7296,9 +7063,8 @@ messages(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->messages , newSVpvs("WebGPU::Direct::CompilationMessage"));
+              _store_objptr(aTHX_ h, "messages", 8, (void **) &n->messages , newSVpvs("WebGPU::Direct::CompilationMessage"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7345,9 +7111,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7365,9 +7130,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7385,9 +7149,8 @@ timestampWriteCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->timestampWriteCount );
+              _store_uint32_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7405,9 +7168,8 @@ timestampWrites(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->timestampWrites , newSVpvs("WebGPU::Direct::ComputePassTimestampWrite"));
+              _store_objptr(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , newSVpvs("WebGPU::Direct::ComputePassTimestampWrite"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7454,9 +7216,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7474,9 +7235,8 @@ format(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->format );
+              _store_enum(aTHX_ h, "format", 6,  &n->format , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7494,9 +7254,8 @@ depthWriteEnabled(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_bool(aTHX_ value,/**/ (void *) &n->depthWriteEnabled );
+              _store_bool(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7514,9 +7273,8 @@ depthCompare(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->depthCompare );
+              _store_enum(aTHX_ h, "depthCompare", 12,  &n->depthCompare , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7534,9 +7292,8 @@ stencilFront(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->stencilFront , newSVpvs("WebGPU::Direct::StencilFaceState"));
+              _store_obj(aTHX_ h, "stencilFront", 12,  &n->stencilFront , newSVpvs("WebGPU::Direct::StencilFaceState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7554,9 +7311,8 @@ stencilBack(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->stencilBack , newSVpvs("WebGPU::Direct::StencilFaceState"));
+              _store_obj(aTHX_ h, "stencilBack", 11,  &n->stencilBack , newSVpvs("WebGPU::Direct::StencilFaceState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7574,9 +7330,8 @@ stencilReadMask(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->stencilReadMask );
+              _store_uint32_t(aTHX_ h, "stencilReadMask", 15,  &n->stencilReadMask , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7594,9 +7349,8 @@ stencilWriteMask(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->stencilWriteMask );
+              _store_uint32_t(aTHX_ h, "stencilWriteMask", 16,  &n->stencilWriteMask , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7614,9 +7368,8 @@ depthBias(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_int32_t(aTHX_ value,/**/ (void *) &n->depthBias );
+              _store_int32_t(aTHX_ h, "depthBias", 9,  &n->depthBias , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7634,9 +7387,8 @@ depthBiasSlopeScale(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_float(aTHX_ value,/**/ (void *) &n->depthBiasSlopeScale );
+              _store_float(aTHX_ h, "depthBiasSlopeScale", 19,  &n->depthBiasSlopeScale , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7654,9 +7406,8 @@ depthBiasClamp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_float(aTHX_ value,/**/ (void *) &n->depthBiasClamp );
+              _store_float(aTHX_ h, "depthBiasClamp", 14,  &n->depthBiasClamp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7703,9 +7454,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7723,9 +7473,8 @@ layout(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->layout , newSVpvs("WebGPU::Direct::TextureDataLayout"));
+              _store_obj(aTHX_ h, "layout", 6,  &n->layout , newSVpvs("WebGPU::Direct::TextureDataLayout"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7738,14 +7487,13 @@ buffer(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUImageCopyBuffer *n = (WGPUImageCopyBuffer *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "buffer", 6,  &n->buffer , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "buffer", 6,  &n->buffer );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->buffer , newSVpvs("void *"));
+              _store_void(aTHX_ h, "buffer", 6,  &n->buffer , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7792,9 +7540,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7807,14 +7554,13 @@ texture(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUImageCopyTexture *n = (WGPUImageCopyTexture *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "texture", 7,  &n->texture , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "texture", 7,  &n->texture );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->texture , newSVpvs("void *"));
+              _store_void(aTHX_ h, "texture", 7,  &n->texture , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7832,9 +7578,8 @@ mipLevel(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->mipLevel );
+              _store_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7852,9 +7597,8 @@ origin(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->origin , newSVpvs("WebGPU::Direct::Origin3D"));
+              _store_obj(aTHX_ h, "origin", 6,  &n->origin , newSVpvs("WebGPU::Direct::Origin3D"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7872,9 +7616,8 @@ aspect(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->aspect );
+              _store_enum(aTHX_ h, "aspect", 6,  &n->aspect , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7921,9 +7664,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7936,14 +7678,13 @@ module(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUProgrammableStageDescriptor *n = (WGPUProgrammableStageDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->module , newSVpvs("void *"));
+              _store_void(aTHX_ h, "module", 6,  &n->module , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7961,9 +7702,8 @@ entryPoint(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->entryPoint );
+              _store_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -7981,9 +7721,8 @@ constantCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->constantCount );
+              _store_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8001,9 +7740,8 @@ constants(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->constants , newSVpvs("WebGPU::Direct::ConstantEntry"));
+              _store_objptr(aTHX_ h, "constants", 9, (void **) &n->constants , newSVpvs("WebGPU::Direct::ConstantEntry"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8045,14 +7783,13 @@ view(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "view", 4,  &n->view , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "view", 4,  &n->view );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->view , newSVpvs("void *"));
+              _store_void(aTHX_ h, "view", 4,  &n->view , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8065,14 +7802,13 @@ resolveTarget(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "resolveTarget", 13,  &n->resolveTarget , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "resolveTarget", 13,  &n->resolveTarget );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->resolveTarget , newSVpvs("void *"));
+              _store_void(aTHX_ h, "resolveTarget", 13,  &n->resolveTarget , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8090,9 +7826,8 @@ loadOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->loadOp );
+              _store_enum(aTHX_ h, "loadOp", 6,  &n->loadOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8110,9 +7845,8 @@ storeOp(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->storeOp );
+              _store_enum(aTHX_ h, "storeOp", 7,  &n->storeOp , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8130,9 +7864,8 @@ clearValue(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->clearValue , newSVpvs("WebGPU::Direct::Color"));
+              _store_obj(aTHX_ h, "clearValue", 10,  &n->clearValue , newSVpvs("WebGPU::Direct::Color"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8179,9 +7912,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8199,9 +7931,8 @@ limits(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->limits , newSVpvs("WebGPU::Direct::Limits"));
+              _store_obj(aTHX_ h, "limits", 6,  &n->limits , newSVpvs("WebGPU::Direct::Limits"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8248,9 +7979,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8268,9 +7998,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8288,9 +8017,8 @@ hintCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->hintCount );
+              _store_uint32_t(aTHX_ h, "hintCount", 9,  &n->hintCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8308,9 +8036,8 @@ hints(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->hints , newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
+              _store_objptr(aTHX_ h, "hints", 5, (void **) &n->hints , newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8357,9 +8084,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8377,9 +8103,8 @@ limits(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->limits , newSVpvs("WebGPU::Direct::Limits"));
+              _store_obj(aTHX_ h, "limits", 6,  &n->limits , newSVpvs("WebGPU::Direct::Limits"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8426,9 +8151,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8446,9 +8170,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8466,9 +8189,8 @@ usage(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->usage );
+              _store_uint32_t(aTHX_ h, "usage", 5,  &n->usage , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8486,9 +8208,8 @@ dimension(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->dimension );
+              _store_enum(aTHX_ h, "dimension", 9,  &n->dimension , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8506,9 +8227,8 @@ size(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->size , newSVpvs("WebGPU::Direct::Extent3D"));
+              _store_obj(aTHX_ h, "size", 4,  &n->size , newSVpvs("WebGPU::Direct::Extent3D"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8526,9 +8246,8 @@ format(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->format );
+              _store_enum(aTHX_ h, "format", 6,  &n->format , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8546,9 +8265,8 @@ mipLevelCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->mipLevelCount );
+              _store_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8566,9 +8284,8 @@ sampleCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->sampleCount );
+              _store_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8586,9 +8303,8 @@ viewFormatCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->viewFormatCount );
+              _store_uint32_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8602,15 +8318,14 @@ viewFormats(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUTextureDescriptor *n = (WGPUTextureDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
         RETVAL =   // "viewFormats" is a ptr type WGPUTextureFormat, and that's not quite right yet, using opaque
-  _find_set_void(aTHX_ h, "viewFormats", 11,  &n->viewFormats , NULL);
+  _find_set_void(aTHX_ h, "viewFormats", 11,  &n->viewFormats );
 ;
 
         if (items > 1)
         {
               // "viewFormats" is a ptr type WGPUTextureFormat, and that's not quite right yet, using opaque
-  _set_void(aTHX_ value,/**/ (void *) &n->viewFormats , NULL);
+  _store_void(aTHX_ h, "viewFormats", 11,  &n->viewFormats , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8657,9 +8372,8 @@ arrayStride(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint64_t(aTHX_ value,/**/ (void *) &n->arrayStride );
+              _store_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8677,9 +8391,8 @@ stepMode(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->stepMode );
+              _store_enum(aTHX_ h, "stepMode", 8,  &n->stepMode , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8697,9 +8410,8 @@ attributeCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->attributeCount );
+              _store_uint32_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8717,9 +8429,8 @@ attributes(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->attributes , newSVpvs("WebGPU::Direct::VertexAttribute"));
+              _store_objptr(aTHX_ h, "attributes", 10, (void **) &n->attributes , newSVpvs("WebGPU::Direct::VertexAttribute"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8766,9 +8477,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8786,9 +8496,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8806,9 +8515,8 @@ entryCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->entryCount );
+              _store_uint32_t(aTHX_ h, "entryCount", 10,  &n->entryCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8826,9 +8534,8 @@ entries(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->entries , newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
+              _store_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8875,9 +8582,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8895,9 +8601,8 @@ format(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_enum(aTHX_ value,/**/ (void *) &n->format );
+              _store_enum(aTHX_ h, "format", 6,  &n->format , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8915,9 +8620,8 @@ blend(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->blend , newSVpvs("WebGPU::Direct::BlendState"));
+              _store_objptr(aTHX_ h, "blend", 5, (void **) &n->blend , newSVpvs("WebGPU::Direct::BlendState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8935,9 +8639,8 @@ writeMask(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->writeMask );
+              _store_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -8984,9 +8687,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9004,9 +8706,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9019,14 +8720,13 @@ layout(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUComputePipelineDescriptor *n = (WGPUComputePipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->layout , newSVpvs("void *"));
+              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9044,9 +8744,8 @@ compute(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->compute , newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
+              _store_obj(aTHX_ h, "compute", 7,  &n->compute , newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9093,9 +8792,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9113,9 +8811,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9133,9 +8830,8 @@ requiredFeaturesCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->requiredFeaturesCount );
+              _store_uint32_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9149,15 +8845,14 @@ requiredFeatures(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
         RETVAL =   // "requiredFeatures" is a ptr type WGPUFeatureName, and that's not quite right yet, using opaque
-  _find_set_void(aTHX_ h, "requiredFeatures", 16,  &n->requiredFeatures , NULL);
+  _find_set_void(aTHX_ h, "requiredFeatures", 16,  &n->requiredFeatures );
 ;
 
         if (items > 1)
         {
               // "requiredFeatures" is a ptr type WGPUFeatureName, and that's not quite right yet, using opaque
-  _set_void(aTHX_ value,/**/ (void *) &n->requiredFeatures , NULL);
+  _store_void(aTHX_ h, "requiredFeatures", 16,  &n->requiredFeatures , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9175,9 +8870,8 @@ requiredLimits(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->requiredLimits , newSVpvs("WebGPU::Direct::RequiredLimits"));
+              _store_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits , newSVpvs("WebGPU::Direct::RequiredLimits"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9195,9 +8889,8 @@ defaultQueue(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->defaultQueue , newSVpvs("WebGPU::Direct::QueueDescriptor"));
+              _store_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue , newSVpvs("WebGPU::Direct::QueueDescriptor"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9244,9 +8937,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9264,9 +8956,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9284,9 +8975,8 @@ colorAttachmentCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->colorAttachmentCount );
+              _store_uint32_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9304,9 +8994,8 @@ colorAttachments(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->colorAttachments , newSVpvs("WebGPU::Direct::RenderPassColorAttachment"));
+              _store_objptr(aTHX_ h, "colorAttachments", 16, (void **) &n->colorAttachments , newSVpvs("WebGPU::Direct::RenderPassColorAttachment"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9324,9 +9013,8 @@ depthStencilAttachment(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->depthStencilAttachment , newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"));
+              _store_objptr(aTHX_ h, "depthStencilAttachment", 22, (void **) &n->depthStencilAttachment , newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9339,14 +9027,13 @@ occlusionQuerySet(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "occlusionQuerySet", 17,  &n->occlusionQuerySet , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "occlusionQuerySet", 17,  &n->occlusionQuerySet );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->occlusionQuerySet , newSVpvs("void *"));
+              _store_void(aTHX_ h, "occlusionQuerySet", 17,  &n->occlusionQuerySet , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9364,9 +9051,8 @@ timestampWriteCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->timestampWriteCount );
+              _store_uint32_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9384,9 +9070,8 @@ timestampWrites(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->timestampWrites , newSVpvs("WebGPU::Direct::RenderPassTimestampWrite"));
+              _store_objptr(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , newSVpvs("WebGPU::Direct::RenderPassTimestampWrite"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9433,9 +9118,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9448,14 +9132,13 @@ module(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->module , newSVpvs("void *"));
+              _store_void(aTHX_ h, "module", 6,  &n->module , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9473,9 +9156,8 @@ entryPoint(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->entryPoint );
+              _store_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9493,9 +9175,8 @@ constantCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->constantCount );
+              _store_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9513,9 +9194,8 @@ constants(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->constants , newSVpvs("WebGPU::Direct::ConstantEntry"));
+              _store_objptr(aTHX_ h, "constants", 9, (void **) &n->constants , newSVpvs("WebGPU::Direct::ConstantEntry"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9533,9 +9213,8 @@ bufferCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->bufferCount );
+              _store_uint32_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9553,9 +9232,8 @@ buffers(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->buffers , newSVpvs("WebGPU::Direct::VertexBufferLayout"));
+              _store_objptr(aTHX_ h, "buffers", 7, (void **) &n->buffers , newSVpvs("WebGPU::Direct::VertexBufferLayout"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9602,9 +9280,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9617,14 +9294,13 @@ module(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->module , newSVpvs("void *"));
+              _store_void(aTHX_ h, "module", 6,  &n->module , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9642,9 +9318,8 @@ entryPoint(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->entryPoint );
+              _store_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9662,9 +9337,8 @@ constantCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->constantCount );
+              _store_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9682,9 +9356,8 @@ constants(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->constants , newSVpvs("WebGPU::Direct::ConstantEntry"));
+              _store_objptr(aTHX_ h, "constants", 9, (void **) &n->constants , newSVpvs("WebGPU::Direct::ConstantEntry"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9702,9 +9375,8 @@ targetCount(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_uint32_t(aTHX_ value,/**/ (void *) &n->targetCount );
+              _store_uint32_t(aTHX_ h, "targetCount", 11,  &n->targetCount , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9722,9 +9394,8 @@ targets(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->targets , newSVpvs("WebGPU::Direct::ColorTargetState"));
+              _store_objptr(aTHX_ h, "targets", 7, (void **) &n->targets , newSVpvs("WebGPU::Direct::ColorTargetState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9771,9 +9442,8 @@ nextInChain(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+              _store_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9791,9 +9461,8 @@ label(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_str(aTHX_ value,/**/ (void *) &n->label );
+              _store_str(aTHX_ h, "label", 5,  &n->label , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9806,14 +9475,13 @@ layout(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPipelineDescriptor *n = (WGPURenderPipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout , newSVpvs("void *"));
+        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
 ;
 
         if (items > 1)
         {
-              _set_void(aTHX_ value,/**/ (void *) &n->layout , newSVpvs("void *"));
+              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9831,9 +9499,8 @@ vertex(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->vertex , newSVpvs("WebGPU::Direct::VertexState"));
+              _store_obj(aTHX_ h, "vertex", 6,  &n->vertex , newSVpvs("WebGPU::Direct::VertexState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9851,9 +9518,8 @@ primitive(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->primitive , newSVpvs("WebGPU::Direct::PrimitiveState"));
+              _store_obj(aTHX_ h, "primitive", 9,  &n->primitive , newSVpvs("WebGPU::Direct::PrimitiveState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9871,9 +9537,8 @@ depthStencil(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->depthStencil , newSVpvs("WebGPU::Direct::DepthStencilState"));
+              _store_objptr(aTHX_ h, "depthStencil", 12, (void **) &n->depthStencil , newSVpvs("WebGPU::Direct::DepthStencilState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9891,9 +9556,8 @@ multisample(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_obj(aTHX_ value,/**/ (void *) &n->multisample , newSVpvs("WebGPU::Direct::MultisampleState"));
+              _store_obj(aTHX_ h, "multisample", 11,  &n->multisample , newSVpvs("WebGPU::Direct::MultisampleState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL
@@ -9911,9 +9575,8 @@ fragment(THIS, value = NO_INIT)
 
         if (items > 1)
         {
-              _set_objptr(aTHX_ value,/**/ (void *) &n->fragment , newSVpvs("WebGPU::Direct::FragmentState"));
+              _store_objptr(aTHX_ h, "fragment", 8, (void **) &n->fragment , newSVpvs("WebGPU::Direct::FragmentState"), value);
 
-            _unpack(THIS);
         }
     OUTPUT:
         RETVAL

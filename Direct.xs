@@ -375,17 +375,15 @@ SV *_find_set_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* b
    void (Impl)
    ------------------------------------------------------------------ */
 
-void _set_void(pTHX_ SV *new_value, void **field, SV *base)
+void _set_void(pTHX_ SV *new_value, void *field)
 {
-
-  void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
-  *field = v;
+  void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, newSVpvs("WebGPU::Direct::Opaque")) : NULL;
+  field = v;
 }
 
 int _mg_set_void(pTHX_ SV* sv, MAGIC* mg)
 {
-  SV *base = mg->mg_obj;
-  _set_void(aTHX_ sv, (void *) mg->mg_ptr, base);
+  _set_void(aTHX_ sv, (void *) mg->mg_ptr);
   return 0;
 }
 
@@ -393,44 +391,110 @@ STATIC MGVTBL _mg_vtbl_void = {
   .svt_set = _mg_set_void
 };
 
-SV *_find_set_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
+SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
 {
-  SV **f;
-  SV *fp;
+  SV **f = NULL;
 
-  f = hv_fetch(h, key, klen, 0);
-  if ( f && *f )
+  if ( field == NULL )
   {
-    fp = *f;
+    croak("The field value for void must not be null, for %s", key);
   }
-  else
-  {
-    fp = newSV(0);
-    sv_magicext(fp, base, PERL_MAGIC_ext, &_mg_vtbl_void, (const char *)field, 0);
-    hv_store(h, key, klen, fp, 0);
-  }
-  _set_void(aTHX_ fp, field, base);
-
-  return fp;
-}
-
-SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
-{
-  SV **f;
-  SV *fp;
 
   f = hv_fetch(h, key, klen, 1);
-  if ( f && *f )
-  {
-    fp = *f;
-  }
-  else
+
+  if ( !( f && *f ) )
   {
     croak("Could not save new value for %s", key);
   }
-  *f  = _void__wrap(field);
+
+  void *n = NULL;
+  if ( sv_isobject(*f) )
+  {
+    n = _get_struct_ptr(aTHX_ *f, newSVpvs("WebGPU::Direct::Opaque"));
+  }
+
+  if ( n == NULL || n != field )
+  {
+    SV *val = _void__wrap(field);
+    SvREFCNT_inc(val);
+    f = hv_store(h, key, klen, val, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s", key);
+    }
+  }
 
   return *f;
+}
+
+SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
+{
+  SV **f;
+  SV *fp;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _pack_void must not be null, for {%s}", key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_void(aTHX_ h, key, klen, field);
+  }
+
+  // Save the new value to the field
+  _set_void(aTHX_ *f, field);
+  SvREFCNT_inc(*f);
+
+  return *f;
+}
+
+SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
+{
+  SV **f;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _find_void must not be null, for {%s}", key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_void(aTHX_ h, key, klen, field);
+  }
+
+  return *f;
+}
+
+void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *value)
+{
+  SvREFCNT_inc(value);
+  SV **f = hv_store(h, "next", 4, value, 0);
+
+  if ( !f )
+  {
+    SvREFCNT_dec(value);
+    croak("Could not save value to hash for %s", key);
+  }
+
+  _pack_void(aTHX_ h, key, klen, field);
+
+  return;
+}
+
+SV *_find_set_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
+{
+  return _pack_void(aTHX_ h, key, klen, field);
 }
 
 /* Integer and Floating types */ 
