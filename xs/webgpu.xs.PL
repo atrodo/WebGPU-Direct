@@ -601,7 +601,7 @@ sub say_set_fn
   }
 
   say $xs <<~"EOF"; my $n = qq{
-    $ret_type
+    SV *
     $def{key}(THIS, value = NO_INIT)
             $class THIS
             $val_type value

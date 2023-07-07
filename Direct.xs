@@ -101,6 +101,17 @@ SV *_new_with( SV *CLASS, void *n)
 }
 
 /* ------------------------------------------------------------------
+    {
+      set      => 'Sets the field of the struct',
+      unpack   => 'Sets the perl hash from the struct',
+      pack     => 'Sets the struct from the perl hash',
+      find     => '',
+      store    => 'Sets the perl hash and packs the object',
+      find_set => 'Old Alias for pack',
+    }
+   ------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------
    obj
    ------------------------------------------------------------------ */
 
@@ -353,7 +364,7 @@ SV *_find_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
 void _store_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base, SV *value)
 {
   SvREFCNT_inc(value);
-  SV **f = hv_store(h, "next", 4, value, 0);
+  SV **f = hv_store(h, key, klen, value, 0);
 
   if ( !f )
   {
@@ -499,6 +510,82 @@ SV *_find_set_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
 
 /* Integer and Floating types */ 
 
+#define _setup_x(type, ft, constr) \
+int _mg_set_##type(pTHX_ SV* sv, MAGIC* mg)                                     \
+{                                                                               \
+  _set_##type(aTHX_ sv, (void *) mg->mg_ptr);                                   \
+  return 0;                                                                     \
+}                                                                               \
+                                                                                \
+STATIC MGVTBL _mg_vtbl_##type = {                                               \
+  .svt_set = _mg_set_##type                                                     \
+};                                                                              \
+                                                                                \
+SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)           \
+{                                                                               \
+  SV **f = NULL;                                                                \
+/*                                                                              \
+  f = hv_fetch(h, key, klen, 1);                                                \
+                                                                                \
+  if ( !( f && *f ) )                                                           \
+  {                                                                             \
+    croak("Could not save new value for %s", key);                              \
+  }                                                                             \
+*/                                                                              \
+  SV *val = constr;                                                             \
+  SvREFCNT_inc(val);                                                            \
+  f = hv_store(h, key, klen, val, 0);                                           \
+                                                                                \
+  if ( !f )                                                                     \
+  {                                                                             \
+    SvREFCNT_dec(val);                                                          \
+    croak("Could not save value to hash for %s", key);                          \
+  }                                                                             \
+                                                                                \
+  return *f;                                                                    \
+}                                                                               \
+                                                                                \
+SV *_pack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)             \
+{                                                                               \
+  SV **f;                                                                       \
+                                                                                \
+  /* Find the field from the hash */                                            \
+  f = hv_fetch(h, key, klen, 0);                                                \
+                                                                                \
+  /* If the field is not found, create a default one */                         \
+  if ( !( f && *f ) )                                                           \
+  {                                                                             \
+    return _unpack_##type(aTHX_ h, key, klen, field);                           \
+  }                                                                             \
+                                                                                \
+  /* Save the new value to the field */                                         \
+  _set_##type(aTHX_ *f, field);                                                 \
+  SvREFCNT_inc(*f);                                                             \
+                                                                                \
+  return *f;                                                                    \
+}                                                                               \
+                                                                                \
+void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value)   \
+{                                                                               \
+  SvREFCNT_inc(value);                                                          \
+  SV **f = hv_store(h, key, klen, value, 0);                                    \
+                                                                                \
+  if ( !f )                                                                     \
+  {                                                                             \
+    SvREFCNT_dec(value);                                                        \
+    croak("Could not save value to hash for %s", key);                          \
+  }                                                                             \
+                                                                                \
+  _pack_##type(aTHX_ h, key, klen, field);                                      \
+                                                                                \
+  return;                                                                       \
+}                                                                               \
+                                                                                \
+SV *_find_set_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)       \
+{                                                                               \
+  return _pack_##type(aTHX_ h, key, klen, field);                               \
+}                                                                               \
+
 #define _find_set_x(type, init, rt, cast) \
 rt _find_set_##type(pTHX_ HV *h, const char *key, I32 klen, void *field)      \
 {                                                                              \
@@ -545,12 +632,13 @@ SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)           \
    str
    ------------------------------------------------------------------ */
 
-void _set_str(pTHX_ SV *new_value, void **field)
+void _set_str(pTHX_ SV *new_value, const char **field)
 {
   char *v = SvPVbyte_nolen(new_value);
   *field = v;
 }
 
+/*
 int _mg_set_str(pTHX_ SV* sv, MAGIC* mg)
 {
   char **s = (char **) mg->mg_ptr;
@@ -561,9 +649,12 @@ int _mg_set_str(pTHX_ SV* sv, MAGIC* mg)
 STATIC MGVTBL _mg_vtbl_str = {
   .svt_set = _mg_set_str
 };
+*/
 
-_find_set_x(str, newSVpvs(""), char*, SvPVbyte_nolen);
-_unpack_x(str, const char **, newSVpv(*field, 0));
+//_find_set_x(str, newSVpvs(""), char*, SvPVbyte_nolen);
+//_unpack_x(str, const char **, newSVpv(*field, 0));
+//_setup_x(str, newSVpvs(""), char*, SvPVbyte_nolen, const char **, newSVpv(*field, 0));
+_setup_x(str, const char **, newSVpv(*field, 0));
 
 /* ------------------------------------------------------------------
    enum
@@ -575,6 +666,7 @@ void _set_enum(pTHX_ SV *new_value, I32 *field)
   *field = v;
 }
 
+/*
 int _mg_set_enum(pTHX_ SV* sv, MAGIC* mg)
 {
   I32 *s = (I32 *) mg->mg_ptr;
@@ -588,6 +680,8 @@ STATIC MGVTBL _mg_vtbl_enum = {
 
 _find_set_x(enum, newSViv(0), int, SvIV);
 _unpack_x(enum, void *, newSViv(*(int *)field));
+*/
+_setup_x(enum, void *, newSViv(*(int *)field));
 
 /* ------------------------------------------------------------------
    bool
@@ -599,6 +693,7 @@ void _set_bool(pTHX_ SV *new_value, bool *field)
   *field = v;
 }
 
+/*
 int _mg_set_bool(pTHX_ SV* sv, MAGIC* mg)
 {
   bool *s = (bool *) mg->mg_ptr;
@@ -612,6 +707,8 @@ STATIC MGVTBL _mg_vtbl_bool = {
 
 _find_set_x(bool, newSViv(FALSE), bool, SvIV);
 _unpack_x(bool, bool *, newSViv(*field));
+*/
+_setup_x(bool, bool *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    double
@@ -623,6 +720,7 @@ void _set_double(pTHX_ SV *new_value, double *field)
   *field = v;
 }
 
+/*
 int _mg_set_double(pTHX_ SV* sv, MAGIC* mg)
 {
   double *s = (double *) mg->mg_ptr;
@@ -636,6 +734,8 @@ STATIC MGVTBL _mg_vtbl_double = {
 
 _find_set_x(double, newSVnv(0), double, SvNV);
 _unpack_x(double, double *, newSVnv(*field));
+*/
+_setup_x(double, double *, newSVnv(*field));
 
 /* ------------------------------------------------------------------
    float
@@ -647,6 +747,7 @@ void _set_float(pTHX_ SV *new_value, float *field)
   *field = v;
 }
 
+/*
 int _mg_set_float(pTHX_ SV* sv, MAGIC* mg)
 {
   float *s = (float *) mg->mg_ptr;
@@ -660,6 +761,8 @@ STATIC MGVTBL _mg_vtbl_float = {
 
 _find_set_x(float, newSVnv(0), float, SvNV);
 _unpack_x(float, float *, newSVnv(*field));
+*/
+_setup_x(float, float *, newSVnv(*field));
 
 /* ------------------------------------------------------------------
    uint16_t
@@ -671,6 +774,7 @@ void _set_uint16_t(pTHX_ SV *new_value, U16 *field)
   *field = v;
 }
 
+/*
 int _mg_set_uint16_t(pTHX_ SV* sv, MAGIC* mg)
 {
   U16 *s = (U16 *) mg->mg_ptr;
@@ -684,6 +788,8 @@ STATIC MGVTBL _mg_vtbl_uint16_t = {
 
 _find_set_x(uint16_t, newSViv(0), uint16_t, SvIV);
 _unpack_x(uint16_t, uint16_t *, newSViv(*field));
+*/
+_setup_x(uint16_t, uint16_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    uint32_t
@@ -695,6 +801,7 @@ void _set_uint32_t(pTHX_ SV *new_value, U32 *field)
   *field = v;
 }
 
+/*
 int _mg_set_uint32_t(pTHX_ SV* sv, MAGIC* mg)
 {
   U32 *s = (U32 *) mg->mg_ptr;
@@ -708,6 +815,8 @@ STATIC MGVTBL _mg_vtbl_uint32_t = {
 
 _find_set_x(uint32_t, newSViv(0), uint32_t, SvIV);
 _unpack_x(uint32_t, uint32_t *, newSViv(*field));
+*/
+_setup_x(uint32_t, uint32_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    uint64_t
@@ -719,6 +828,7 @@ void _set_uint64_t(pTHX_ SV *new_value, U64 *field)
   *field = v;
 }
 
+/*
 int _mg_set_uint64_t(pTHX_ SV* sv, MAGIC* mg)
 {
   U64 *s = (U64 *) mg->mg_ptr;
@@ -732,6 +842,8 @@ STATIC MGVTBL _mg_vtbl_uint64_t = {
 
 _find_set_x(uint64_t, newSViv(0), uint64_t, SvIV);
 _unpack_x(uint64_t, uint64_t *, newSViv(*field));
+*/
+_setup_x(uint64_t, uint64_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    int32_t
@@ -743,6 +855,7 @@ void _set_int32_t(pTHX_ SV *new_value, I32 *field)
   *field = v;
 }
 
+/*
 int _mg_set_int32_t(pTHX_ SV* sv, MAGIC* mg)
 {
   I32 *s = (I32 *) mg->mg_ptr;
@@ -756,6 +869,8 @@ STATIC MGVTBL _mg_vtbl_int32_t = {
 
 _find_set_x(int32_t, newSViv(0), int32_t, SvIV);
 _unpack_x(int32_t, int32_t *, newSViv(*field));
+*/
+_setup_x(int32_t, int32_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    END

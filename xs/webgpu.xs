@@ -993,7 +993,7 @@ next(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUSType
+SV *
 sType(THIS, value = NO_INIT)
         WebGPU::Direct::ChainedStruct THIS
         SV * value
@@ -1060,7 +1060,7 @@ next(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUSType
+SV *
 sType(THIS, value = NO_INIT)
         WebGPU::Direct::ChainedStructOut THIS
         SV * value
@@ -1127,7 +1127,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 vendorID(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1146,7 +1146,7 @@ vendorID(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 vendorName(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1165,7 +1165,7 @@ vendorName(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 architecture(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1184,7 +1184,7 @@ architecture(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 deviceID(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1203,7 +1203,7 @@ deviceID(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 name(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1222,7 +1222,7 @@ name(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 driverDescription(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1241,7 +1241,7 @@ driverDescription(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUAdapterType
+SV *
 adapterType(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1260,7 +1260,7 @@ adapterType(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUBackendType
+SV *
 backendType(THIS, value = NO_INIT)
         WebGPU::Direct::AdapterProperties THIS
         SV * value
@@ -1327,7 +1327,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 binding(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
         SV * value
@@ -1346,7 +1346,7 @@ binding(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 buffer(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
         void * value
@@ -1365,7 +1365,7 @@ buffer(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 offset(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
         SV * value
@@ -1384,7 +1384,7 @@ offset(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 size(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
         SV * value
@@ -1403,7 +1403,7 @@ size(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 sampler(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
         void * value
@@ -1422,7 +1422,7 @@ sampler(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 textureView(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
         void * value
@@ -1470,7 +1470,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BlendComponent	PREFIX = wgpu
 
-WGPUBlendOperation
+SV *
 operation(THIS, value = NO_INIT)
         WebGPU::Direct::BlendComponent THIS
         SV * value
@@ -1489,7 +1489,7 @@ operation(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUBlendFactor
+SV *
 srcFactor(THIS, value = NO_INIT)
         WebGPU::Direct::BlendComponent THIS
         SV * value
@@ -1508,7 +1508,7 @@ srcFactor(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUBlendFactor
+SV *
 dstFactor(THIS, value = NO_INIT)
         WebGPU::Direct::BlendComponent THIS
         SV * value
@@ -1575,7 +1575,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUBufferBindingType
+SV *
 type(THIS, value = NO_INIT)
         WebGPU::Direct::BufferBindingLayout THIS
         SV * value
@@ -1594,7 +1594,7 @@ type(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 hasDynamicOffset(THIS, value = NO_INIT)
         WebGPU::Direct::BufferBindingLayout THIS
         SV * value
@@ -1613,7 +1613,7 @@ hasDynamicOffset(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 minBindingSize(THIS, value = NO_INIT)
         WebGPU::Direct::BufferBindingLayout THIS
         SV * value
@@ -1680,7 +1680,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::BufferDescriptor THIS
         SV * value
@@ -1699,7 +1699,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUBufferUsageFlags
+SV *
 usage(THIS, value = NO_INIT)
         WebGPU::Direct::BufferDescriptor THIS
         SV * value
@@ -1718,7 +1718,7 @@ usage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 size(THIS, value = NO_INIT)
         WebGPU::Direct::BufferDescriptor THIS
         SV * value
@@ -1737,7 +1737,7 @@ size(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 mappedAtCreation(THIS, value = NO_INIT)
         WebGPU::Direct::BufferDescriptor THIS
         SV * value
@@ -1785,7 +1785,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Color	PREFIX = wgpu
 
-double
+SV *
 r(THIS, value = NO_INIT)
         WebGPU::Direct::Color THIS
         SV * value
@@ -1804,7 +1804,7 @@ r(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-double
+SV *
 g(THIS, value = NO_INIT)
         WebGPU::Direct::Color THIS
         SV * value
@@ -1823,7 +1823,7 @@ g(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-double
+SV *
 b(THIS, value = NO_INIT)
         WebGPU::Direct::Color THIS
         SV * value
@@ -1842,7 +1842,7 @@ b(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-double
+SV *
 a(THIS, value = NO_INIT)
         WebGPU::Direct::Color THIS
         SV * value
@@ -1909,7 +1909,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::CommandBufferDescriptor THIS
         SV * value
@@ -1976,7 +1976,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::CommandEncoderDescriptor THIS
         SV * value
@@ -2043,7 +2043,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 message(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2062,7 +2062,7 @@ message(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUCompilationMessageType
+SV *
 type(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2081,7 +2081,7 @@ type(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 lineNum(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2100,7 +2100,7 @@ lineNum(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 linePos(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2119,7 +2119,7 @@ linePos(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 offset(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2138,7 +2138,7 @@ offset(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 length(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2157,7 +2157,7 @@ length(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 utf16LinePos(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2176,7 +2176,7 @@ utf16LinePos(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 utf16Offset(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2195,7 +2195,7 @@ utf16Offset(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 utf16Length(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationMessage THIS
         SV * value
@@ -2243,7 +2243,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePassTimestampWrite	PREFIX = wgpu
 
-void *
+SV *
 querySet(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePassTimestampWrite THIS
         void * value
@@ -2262,7 +2262,7 @@ querySet(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 queryIndex(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePassTimestampWrite THIS
         SV * value
@@ -2281,7 +2281,7 @@ queryIndex(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUComputePassTimestampLocation
+SV *
 location(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePassTimestampWrite THIS
         SV * value
@@ -2348,7 +2348,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 key(THIS, value = NO_INIT)
         WebGPU::Direct::ConstantEntry THIS
         SV * value
@@ -2367,7 +2367,7 @@ key(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-double
+SV *
 value(THIS, value = NO_INIT)
         WebGPU::Direct::ConstantEntry THIS
         SV * value
@@ -2415,7 +2415,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Extent3D	PREFIX = wgpu
 
-uint32_t
+SV *
 width(THIS, value = NO_INIT)
         WebGPU::Direct::Extent3D THIS
         SV * value
@@ -2434,7 +2434,7 @@ width(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 height(THIS, value = NO_INIT)
         WebGPU::Direct::Extent3D THIS
         SV * value
@@ -2453,7 +2453,7 @@ height(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 depthOrArrayLayers(THIS, value = NO_INIT)
         WebGPU::Direct::Extent3D THIS
         SV * value
@@ -2549,7 +2549,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Limits	PREFIX = wgpu
 
-uint32_t
+SV *
 maxTextureDimension1D(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2568,7 +2568,7 @@ maxTextureDimension1D(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxTextureDimension2D(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2587,7 +2587,7 @@ maxTextureDimension2D(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxTextureDimension3D(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2606,7 +2606,7 @@ maxTextureDimension3D(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxTextureArrayLayers(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2625,7 +2625,7 @@ maxTextureArrayLayers(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxBindGroups(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2644,7 +2644,7 @@ maxBindGroups(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxBindingsPerBindGroup(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2663,7 +2663,7 @@ maxBindingsPerBindGroup(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxDynamicUniformBuffersPerPipelineLayout(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2682,7 +2682,7 @@ maxDynamicUniformBuffersPerPipelineLayout(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxDynamicStorageBuffersPerPipelineLayout(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2701,7 +2701,7 @@ maxDynamicStorageBuffersPerPipelineLayout(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxSampledTexturesPerShaderStage(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2720,7 +2720,7 @@ maxSampledTexturesPerShaderStage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxSamplersPerShaderStage(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2739,7 +2739,7 @@ maxSamplersPerShaderStage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxStorageBuffersPerShaderStage(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2758,7 +2758,7 @@ maxStorageBuffersPerShaderStage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxStorageTexturesPerShaderStage(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2777,7 +2777,7 @@ maxStorageTexturesPerShaderStage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxUniformBuffersPerShaderStage(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2796,7 +2796,7 @@ maxUniformBuffersPerShaderStage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 maxUniformBufferBindingSize(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2815,7 +2815,7 @@ maxUniformBufferBindingSize(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 maxStorageBufferBindingSize(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2834,7 +2834,7 @@ maxStorageBufferBindingSize(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 minUniformBufferOffsetAlignment(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2853,7 +2853,7 @@ minUniformBufferOffsetAlignment(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 minStorageBufferOffsetAlignment(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2872,7 +2872,7 @@ minStorageBufferOffsetAlignment(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxVertexBuffers(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2891,7 +2891,7 @@ maxVertexBuffers(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 maxBufferSize(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2910,7 +2910,7 @@ maxBufferSize(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxVertexAttributes(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2929,7 +2929,7 @@ maxVertexAttributes(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxVertexBufferArrayStride(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2948,7 +2948,7 @@ maxVertexBufferArrayStride(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxInterStageShaderComponents(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2967,7 +2967,7 @@ maxInterStageShaderComponents(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxInterStageShaderVariables(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -2986,7 +2986,7 @@ maxInterStageShaderVariables(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxColorAttachments(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3005,7 +3005,7 @@ maxColorAttachments(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxColorAttachmentBytesPerSample(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3024,7 +3024,7 @@ maxColorAttachmentBytesPerSample(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxComputeWorkgroupStorageSize(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3043,7 +3043,7 @@ maxComputeWorkgroupStorageSize(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxComputeInvocationsPerWorkgroup(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3062,7 +3062,7 @@ maxComputeInvocationsPerWorkgroup(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxComputeWorkgroupSizeX(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3081,7 +3081,7 @@ maxComputeWorkgroupSizeX(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxComputeWorkgroupSizeY(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3100,7 +3100,7 @@ maxComputeWorkgroupSizeY(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxComputeWorkgroupSizeZ(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3119,7 +3119,7 @@ maxComputeWorkgroupSizeZ(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 maxComputeWorkgroupsPerDimension(THIS, value = NO_INIT)
         WebGPU::Direct::Limits THIS
         SV * value
@@ -3186,7 +3186,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 count(THIS, value = NO_INIT)
         WebGPU::Direct::MultisampleState THIS
         SV * value
@@ -3205,7 +3205,7 @@ count(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 mask(THIS, value = NO_INIT)
         WebGPU::Direct::MultisampleState THIS
         SV * value
@@ -3224,7 +3224,7 @@ mask(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 alphaToCoverageEnabled(THIS, value = NO_INIT)
         WebGPU::Direct::MultisampleState THIS
         SV * value
@@ -3272,7 +3272,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Origin3D	PREFIX = wgpu
 
-uint32_t
+SV *
 x(THIS, value = NO_INIT)
         WebGPU::Direct::Origin3D THIS
         SV * value
@@ -3291,7 +3291,7 @@ x(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 y(THIS, value = NO_INIT)
         WebGPU::Direct::Origin3D THIS
         SV * value
@@ -3310,7 +3310,7 @@ y(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 z(THIS, value = NO_INIT)
         WebGPU::Direct::Origin3D THIS
         SV * value
@@ -3377,7 +3377,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::PipelineLayoutDescriptor THIS
         SV * value
@@ -3396,7 +3396,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 bindGroupLayoutCount(THIS, value = NO_INIT)
         WebGPU::Direct::PipelineLayoutDescriptor THIS
         SV * value
@@ -3465,7 +3465,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::PrimitiveDepthClipControl	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::PrimitiveDepthClipControl THIS
         WebGPU::Direct::ChainedStruct value
@@ -3484,7 +3484,7 @@ chain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 unclippedDepth(THIS, value = NO_INIT)
         WebGPU::Direct::PrimitiveDepthClipControl THIS
         SV * value
@@ -3553,7 +3553,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUPrimitiveTopology
+SV *
 topology(THIS, value = NO_INIT)
         WebGPU::Direct::PrimitiveState THIS
         SV * value
@@ -3572,7 +3572,7 @@ topology(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUIndexFormat
+SV *
 stripIndexFormat(THIS, value = NO_INIT)
         WebGPU::Direct::PrimitiveState THIS
         SV * value
@@ -3591,7 +3591,7 @@ stripIndexFormat(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUFrontFace
+SV *
 frontFace(THIS, value = NO_INIT)
         WebGPU::Direct::PrimitiveState THIS
         SV * value
@@ -3610,7 +3610,7 @@ frontFace(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUCullMode
+SV *
 cullMode(THIS, value = NO_INIT)
         WebGPU::Direct::PrimitiveState THIS
         SV * value
@@ -3677,7 +3677,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::QuerySetDescriptor THIS
         SV * value
@@ -3696,7 +3696,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUQueryType
+SV *
 type(THIS, value = NO_INIT)
         WebGPU::Direct::QuerySetDescriptor THIS
         SV * value
@@ -3715,7 +3715,7 @@ type(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 count(THIS, value = NO_INIT)
         WebGPU::Direct::QuerySetDescriptor THIS
         SV * value
@@ -3755,7 +3755,7 @@ pipelineStatistics(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 pipelineStatisticsCount(THIS, value = NO_INIT)
         WebGPU::Direct::QuerySetDescriptor THIS
         SV * value
@@ -3822,7 +3822,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::QueueDescriptor THIS
         SV * value
@@ -3889,7 +3889,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::RenderBundleDescriptor THIS
         SV * value
@@ -3956,7 +3956,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::RenderBundleEncoderDescriptor THIS
         SV * value
@@ -3975,7 +3975,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 colorFormatsCount(THIS, value = NO_INIT)
         WebGPU::Direct::RenderBundleEncoderDescriptor THIS
         SV * value
@@ -4015,7 +4015,7 @@ colorFormats(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureFormat
+SV *
 depthStencilFormat(THIS, value = NO_INIT)
         WebGPU::Direct::RenderBundleEncoderDescriptor THIS
         SV * value
@@ -4034,7 +4034,7 @@ depthStencilFormat(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 sampleCount(THIS, value = NO_INIT)
         WebGPU::Direct::RenderBundleEncoderDescriptor THIS
         SV * value
@@ -4053,7 +4053,7 @@ sampleCount(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 depthReadOnly(THIS, value = NO_INIT)
         WebGPU::Direct::RenderBundleEncoderDescriptor THIS
         SV * value
@@ -4072,7 +4072,7 @@ depthReadOnly(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 stencilReadOnly(THIS, value = NO_INIT)
         WebGPU::Direct::RenderBundleEncoderDescriptor THIS
         SV * value
@@ -4120,7 +4120,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassDepthStencilAttachment	PREFIX = wgpu
 
-void *
+SV *
 view(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         void * value
@@ -4139,7 +4139,7 @@ view(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPULoadOp
+SV *
 depthLoadOp(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4158,7 +4158,7 @@ depthLoadOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUStoreOp
+SV *
 depthStoreOp(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4177,7 +4177,7 @@ depthStoreOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-float
+SV *
 depthClearValue(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4196,7 +4196,7 @@ depthClearValue(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 depthReadOnly(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4215,7 +4215,7 @@ depthReadOnly(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPULoadOp
+SV *
 stencilLoadOp(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4234,7 +4234,7 @@ stencilLoadOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUStoreOp
+SV *
 stencilStoreOp(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4253,7 +4253,7 @@ stencilStoreOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 stencilClearValue(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4272,7 +4272,7 @@ stencilClearValue(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 stencilReadOnly(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
         SV * value
@@ -4320,7 +4320,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassDescriptorMaxDrawCount	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDescriptorMaxDrawCount THIS
         WebGPU::Direct::ChainedStruct value
@@ -4339,7 +4339,7 @@ chain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 maxDrawCount(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDescriptorMaxDrawCount THIS
         SV * value
@@ -4389,7 +4389,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassTimestampWrite	PREFIX = wgpu
 
-void *
+SV *
 querySet(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassTimestampWrite THIS
         void * value
@@ -4408,7 +4408,7 @@ querySet(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 queryIndex(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassTimestampWrite THIS
         SV * value
@@ -4427,7 +4427,7 @@ queryIndex(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPURenderPassTimestampLocation
+SV *
 location(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassTimestampWrite THIS
         SV * value
@@ -4494,7 +4494,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 compatibleSurface(THIS, value = NO_INIT)
         WebGPU::Direct::RequestAdapterOptions THIS
         void * value
@@ -4513,7 +4513,7 @@ compatibleSurface(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUPowerPreference
+SV *
 powerPreference(THIS, value = NO_INIT)
         WebGPU::Direct::RequestAdapterOptions THIS
         SV * value
@@ -4532,7 +4532,7 @@ powerPreference(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 forceFallbackAdapter(THIS, value = NO_INIT)
         WebGPU::Direct::RequestAdapterOptions THIS
         SV * value
@@ -4599,7 +4599,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUSamplerBindingType
+SV *
 type(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerBindingLayout THIS
         SV * value
@@ -4666,7 +4666,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4685,7 +4685,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUAddressMode
+SV *
 addressModeU(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4704,7 +4704,7 @@ addressModeU(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUAddressMode
+SV *
 addressModeV(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4723,7 +4723,7 @@ addressModeV(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUAddressMode
+SV *
 addressModeW(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4742,7 +4742,7 @@ addressModeW(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUFilterMode
+SV *
 magFilter(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4761,7 +4761,7 @@ magFilter(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUFilterMode
+SV *
 minFilter(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4780,7 +4780,7 @@ minFilter(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUMipmapFilterMode
+SV *
 mipmapFilter(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4799,7 +4799,7 @@ mipmapFilter(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-float
+SV *
 lodMinClamp(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4818,7 +4818,7 @@ lodMinClamp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-float
+SV *
 lodMaxClamp(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4837,7 +4837,7 @@ lodMaxClamp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUCompareFunction
+SV *
 compare(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4856,7 +4856,7 @@ compare(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint16_t
+SV *
 maxAnisotropy(THIS, value = NO_INIT)
         WebGPU::Direct::SamplerDescriptor THIS
         SV * value
@@ -4923,7 +4923,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 entryPoint(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleCompilationHint THIS
         SV * value
@@ -4942,7 +4942,7 @@ entryPoint(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleCompilationHint THIS
         void * value
@@ -4990,7 +4990,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ShaderModuleSPIRVDescriptor	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleSPIRVDescriptor THIS
         WebGPU::Direct::ChainedStruct value
@@ -5009,7 +5009,7 @@ chain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 codeSize(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleSPIRVDescriptor THIS
         SV * value
@@ -5080,7 +5080,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ShaderModuleWGSLDescriptor	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleWGSLDescriptor THIS
         WebGPU::Direct::ChainedStruct value
@@ -5099,7 +5099,7 @@ chain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 code(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleWGSLDescriptor THIS
         SV * value
@@ -5149,7 +5149,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::StencilFaceState	PREFIX = wgpu
 
-WGPUCompareFunction
+SV *
 compare(THIS, value = NO_INIT)
         WebGPU::Direct::StencilFaceState THIS
         SV * value
@@ -5168,7 +5168,7 @@ compare(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUStencilOperation
+SV *
 failOp(THIS, value = NO_INIT)
         WebGPU::Direct::StencilFaceState THIS
         SV * value
@@ -5187,7 +5187,7 @@ failOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUStencilOperation
+SV *
 depthFailOp(THIS, value = NO_INIT)
         WebGPU::Direct::StencilFaceState THIS
         SV * value
@@ -5206,7 +5206,7 @@ depthFailOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUStencilOperation
+SV *
 passOp(THIS, value = NO_INIT)
         WebGPU::Direct::StencilFaceState THIS
         SV * value
@@ -5273,7 +5273,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUStorageTextureAccess
+SV *
 access(THIS, value = NO_INIT)
         WebGPU::Direct::StorageTextureBindingLayout THIS
         SV * value
@@ -5292,7 +5292,7 @@ access(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureFormat
+SV *
 format(THIS, value = NO_INIT)
         WebGPU::Direct::StorageTextureBindingLayout THIS
         SV * value
@@ -5311,7 +5311,7 @@ format(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureViewDimension
+SV *
 viewDimension(THIS, value = NO_INIT)
         WebGPU::Direct::StorageTextureBindingLayout THIS
         SV * value
@@ -5378,7 +5378,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptor THIS
         SV * value
@@ -5426,7 +5426,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow THIS
         WebGPU::Direct::ChainedStruct value
@@ -5497,7 +5497,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector THIS
         WebGPU::Direct::ChainedStruct value
@@ -5516,7 +5516,7 @@ chain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 selector(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector THIS
         SV * value
@@ -5566,7 +5566,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceDescriptorFromMetalLayer	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromMetalLayer THIS
         WebGPU::Direct::ChainedStruct value
@@ -5637,7 +5637,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceDescriptorFromWaylandSurface	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromWaylandSurface THIS
         WebGPU::Direct::ChainedStruct value
@@ -5729,7 +5729,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceDescriptorFromWindowsHWND	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromWindowsHWND THIS
         WebGPU::Direct::ChainedStruct value
@@ -5821,7 +5821,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceDescriptorFromXcbWindow	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromXcbWindow THIS
         WebGPU::Direct::ChainedStruct value
@@ -5861,7 +5861,7 @@ connection(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 window(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromXcbWindow THIS
         SV * value
@@ -5911,7 +5911,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceDescriptorFromXlibWindow	PREFIX = wgpu
 
-WebGPU::Direct::ChainedStruct
+SV *
 chain(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromXlibWindow THIS
         WebGPU::Direct::ChainedStruct value
@@ -5951,7 +5951,7 @@ display(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 window(THIS, value = NO_INIT)
         WebGPU::Direct::SurfaceDescriptorFromXlibWindow THIS
         SV * value
@@ -6020,7 +6020,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::SwapChainDescriptor THIS
         SV * value
@@ -6039,7 +6039,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureUsageFlags
+SV *
 usage(THIS, value = NO_INIT)
         WebGPU::Direct::SwapChainDescriptor THIS
         SV * value
@@ -6058,7 +6058,7 @@ usage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureFormat
+SV *
 format(THIS, value = NO_INIT)
         WebGPU::Direct::SwapChainDescriptor THIS
         SV * value
@@ -6077,7 +6077,7 @@ format(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 width(THIS, value = NO_INIT)
         WebGPU::Direct::SwapChainDescriptor THIS
         SV * value
@@ -6096,7 +6096,7 @@ width(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 height(THIS, value = NO_INIT)
         WebGPU::Direct::SwapChainDescriptor THIS
         SV * value
@@ -6115,7 +6115,7 @@ height(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUPresentMode
+SV *
 presentMode(THIS, value = NO_INIT)
         WebGPU::Direct::SwapChainDescriptor THIS
         SV * value
@@ -6182,7 +6182,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureSampleType
+SV *
 sampleType(THIS, value = NO_INIT)
         WebGPU::Direct::TextureBindingLayout THIS
         SV * value
@@ -6201,7 +6201,7 @@ sampleType(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureViewDimension
+SV *
 viewDimension(THIS, value = NO_INIT)
         WebGPU::Direct::TextureBindingLayout THIS
         SV * value
@@ -6220,7 +6220,7 @@ viewDimension(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 multisampled(THIS, value = NO_INIT)
         WebGPU::Direct::TextureBindingLayout THIS
         SV * value
@@ -6287,7 +6287,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 offset(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDataLayout THIS
         SV * value
@@ -6306,7 +6306,7 @@ offset(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 bytesPerRow(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDataLayout THIS
         SV * value
@@ -6325,7 +6325,7 @@ bytesPerRow(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 rowsPerImage(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDataLayout THIS
         SV * value
@@ -6392,7 +6392,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6411,7 +6411,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureFormat
+SV *
 format(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6430,7 +6430,7 @@ format(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureViewDimension
+SV *
 dimension(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6449,7 +6449,7 @@ dimension(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 baseMipLevel(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6468,7 +6468,7 @@ baseMipLevel(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 mipLevelCount(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6487,7 +6487,7 @@ mipLevelCount(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 baseArrayLayer(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6506,7 +6506,7 @@ baseArrayLayer(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 arrayLayerCount(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6525,7 +6525,7 @@ arrayLayerCount(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureAspect
+SV *
 aspect(THIS, value = NO_INIT)
         WebGPU::Direct::TextureViewDescriptor THIS
         SV * value
@@ -6573,7 +6573,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::VertexAttribute	PREFIX = wgpu
 
-WGPUVertexFormat
+SV *
 format(THIS, value = NO_INIT)
         WebGPU::Direct::VertexAttribute THIS
         SV * value
@@ -6592,7 +6592,7 @@ format(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint64_t
+SV *
 offset(THIS, value = NO_INIT)
         WebGPU::Direct::VertexAttribute THIS
         SV * value
@@ -6611,7 +6611,7 @@ offset(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 shaderLocation(THIS, value = NO_INIT)
         WebGPU::Direct::VertexAttribute THIS
         SV * value
@@ -6678,7 +6678,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupDescriptor THIS
         SV * value
@@ -6697,7 +6697,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupDescriptor THIS
         void * value
@@ -6716,7 +6716,7 @@ layout(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 entryCount(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupDescriptor THIS
         SV * value
@@ -6802,7 +6802,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 binding(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutEntry THIS
         SV * value
@@ -6821,7 +6821,7 @@ binding(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUShaderStageFlags
+SV *
 visibility(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutEntry THIS
         SV * value
@@ -6840,7 +6840,7 @@ visibility(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::BufferBindingLayout
+SV *
 buffer(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutEntry THIS
         WebGPU::Direct::BufferBindingLayout value
@@ -6859,7 +6859,7 @@ buffer(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::SamplerBindingLayout
+SV *
 sampler(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutEntry THIS
         WebGPU::Direct::SamplerBindingLayout value
@@ -6878,7 +6878,7 @@ sampler(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::TextureBindingLayout
+SV *
 texture(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutEntry THIS
         WebGPU::Direct::TextureBindingLayout value
@@ -6897,7 +6897,7 @@ texture(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::StorageTextureBindingLayout
+SV *
 storageTexture(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutEntry THIS
         WebGPU::Direct::StorageTextureBindingLayout value
@@ -6945,7 +6945,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BlendState	PREFIX = wgpu
 
-WebGPU::Direct::BlendComponent
+SV *
 color(THIS, value = NO_INIT)
         WebGPU::Direct::BlendState THIS
         WebGPU::Direct::BlendComponent value
@@ -6964,7 +6964,7 @@ color(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::BlendComponent
+SV *
 alpha(THIS, value = NO_INIT)
         WebGPU::Direct::BlendState THIS
         WebGPU::Direct::BlendComponent value
@@ -7031,7 +7031,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 messageCount(THIS, value = NO_INIT)
         WebGPU::Direct::CompilationInfo THIS
         SV * value
@@ -7117,7 +7117,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePassDescriptor THIS
         SV * value
@@ -7136,7 +7136,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 timestampWriteCount(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePassDescriptor THIS
         SV * value
@@ -7222,7 +7222,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureFormat
+SV *
 format(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7241,7 +7241,7 @@ format(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-bool
+SV *
 depthWriteEnabled(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7260,7 +7260,7 @@ depthWriteEnabled(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUCompareFunction
+SV *
 depthCompare(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7279,7 +7279,7 @@ depthCompare(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::StencilFaceState
+SV *
 stencilFront(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         WebGPU::Direct::StencilFaceState value
@@ -7298,7 +7298,7 @@ stencilFront(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::StencilFaceState
+SV *
 stencilBack(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         WebGPU::Direct::StencilFaceState value
@@ -7317,7 +7317,7 @@ stencilBack(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 stencilReadMask(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7336,7 +7336,7 @@ stencilReadMask(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 stencilWriteMask(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7355,7 +7355,7 @@ stencilWriteMask(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-int32_t
+SV *
 depthBias(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7374,7 +7374,7 @@ depthBias(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-float
+SV *
 depthBiasSlopeScale(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7393,7 +7393,7 @@ depthBiasSlopeScale(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-float
+SV *
 depthBiasClamp(THIS, value = NO_INIT)
         WebGPU::Direct::DepthStencilState THIS
         SV * value
@@ -7460,7 +7460,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::TextureDataLayout
+SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyBuffer THIS
         WebGPU::Direct::TextureDataLayout value
@@ -7479,7 +7479,7 @@ layout(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 buffer(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyBuffer THIS
         void * value
@@ -7546,7 +7546,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 texture(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyTexture THIS
         void * value
@@ -7565,7 +7565,7 @@ texture(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 mipLevel(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyTexture THIS
         SV * value
@@ -7584,7 +7584,7 @@ mipLevel(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::Origin3D
+SV *
 origin(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyTexture THIS
         WebGPU::Direct::Origin3D value
@@ -7603,7 +7603,7 @@ origin(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureAspect
+SV *
 aspect(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyTexture THIS
         SV * value
@@ -7670,7 +7670,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 module(THIS, value = NO_INIT)
         WebGPU::Direct::ProgrammableStageDescriptor THIS
         void * value
@@ -7689,7 +7689,7 @@ module(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 entryPoint(THIS, value = NO_INIT)
         WebGPU::Direct::ProgrammableStageDescriptor THIS
         SV * value
@@ -7708,7 +7708,7 @@ entryPoint(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 constantCount(THIS, value = NO_INIT)
         WebGPU::Direct::ProgrammableStageDescriptor THIS
         SV * value
@@ -7775,7 +7775,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassColorAttachment	PREFIX = wgpu
 
-void *
+SV *
 view(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassColorAttachment THIS
         void * value
@@ -7794,7 +7794,7 @@ view(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 resolveTarget(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassColorAttachment THIS
         void * value
@@ -7813,7 +7813,7 @@ resolveTarget(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPULoadOp
+SV *
 loadOp(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassColorAttachment THIS
         SV * value
@@ -7832,7 +7832,7 @@ loadOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUStoreOp
+SV *
 storeOp(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassColorAttachment THIS
         SV * value
@@ -7851,7 +7851,7 @@ storeOp(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::Color
+SV *
 clearValue(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassColorAttachment THIS
         WebGPU::Direct::Color value
@@ -7918,7 +7918,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::Limits
+SV *
 limits(THIS, value = NO_INIT)
         WebGPU::Direct::RequiredLimits THIS
         WebGPU::Direct::Limits value
@@ -7985,7 +7985,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleDescriptor THIS
         SV * value
@@ -8004,7 +8004,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 hintCount(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleDescriptor THIS
         SV * value
@@ -8090,7 +8090,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::Limits
+SV *
 limits(THIS, value = NO_INIT)
         WebGPU::Direct::SupportedLimits THIS
         WebGPU::Direct::Limits value
@@ -8157,7 +8157,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         SV * value
@@ -8176,7 +8176,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureUsageFlags
+SV *
 usage(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         SV * value
@@ -8195,7 +8195,7 @@ usage(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureDimension
+SV *
 dimension(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         SV * value
@@ -8214,7 +8214,7 @@ dimension(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::Extent3D
+SV *
 size(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         WebGPU::Direct::Extent3D value
@@ -8233,7 +8233,7 @@ size(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureFormat
+SV *
 format(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         SV * value
@@ -8252,7 +8252,7 @@ format(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 mipLevelCount(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         SV * value
@@ -8271,7 +8271,7 @@ mipLevelCount(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 sampleCount(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         SV * value
@@ -8290,7 +8290,7 @@ sampleCount(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 viewFormatCount(THIS, value = NO_INIT)
         WebGPU::Direct::TextureDescriptor THIS
         SV * value
@@ -8359,7 +8359,7 @@ bytes(THIS)
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::VertexBufferLayout	PREFIX = wgpu
 
-uint64_t
+SV *
 arrayStride(THIS, value = NO_INIT)
         WebGPU::Direct::VertexBufferLayout THIS
         SV * value
@@ -8378,7 +8378,7 @@ arrayStride(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUVertexStepMode
+SV *
 stepMode(THIS, value = NO_INIT)
         WebGPU::Direct::VertexBufferLayout THIS
         SV * value
@@ -8397,7 +8397,7 @@ stepMode(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 attributeCount(THIS, value = NO_INIT)
         WebGPU::Direct::VertexBufferLayout THIS
         SV * value
@@ -8483,7 +8483,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutDescriptor THIS
         SV * value
@@ -8502,7 +8502,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 entryCount(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupLayoutDescriptor THIS
         SV * value
@@ -8588,7 +8588,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUTextureFormat
+SV *
 format(THIS, value = NO_INIT)
         WebGPU::Direct::ColorTargetState THIS
         SV * value
@@ -8626,7 +8626,7 @@ blend(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WGPUColorWriteMaskFlags
+SV *
 writeMask(THIS, value = NO_INIT)
         WebGPU::Direct::ColorTargetState THIS
         SV * value
@@ -8693,7 +8693,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePipelineDescriptor THIS
         SV * value
@@ -8712,7 +8712,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePipelineDescriptor THIS
         void * value
@@ -8731,7 +8731,7 @@ layout(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::ProgrammableStageDescriptor
+SV *
 compute(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePipelineDescriptor THIS
         WebGPU::Direct::ProgrammableStageDescriptor value
@@ -8798,7 +8798,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::DeviceDescriptor THIS
         SV * value
@@ -8817,7 +8817,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 requiredFeaturesCount(THIS, value = NO_INIT)
         WebGPU::Direct::DeviceDescriptor THIS
         SV * value
@@ -8876,7 +8876,7 @@ requiredLimits(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::QueueDescriptor
+SV *
 defaultQueue(THIS, value = NO_INIT)
         WebGPU::Direct::DeviceDescriptor THIS
         WebGPU::Direct::QueueDescriptor value
@@ -8943,7 +8943,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDescriptor THIS
         SV * value
@@ -8962,7 +8962,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 colorAttachmentCount(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDescriptor THIS
         SV * value
@@ -9019,7 +9019,7 @@ depthStencilAttachment(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 occlusionQuerySet(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDescriptor THIS
         void * value
@@ -9038,7 +9038,7 @@ occlusionQuerySet(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 timestampWriteCount(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDescriptor THIS
         SV * value
@@ -9124,7 +9124,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 module(THIS, value = NO_INIT)
         WebGPU::Direct::VertexState THIS
         void * value
@@ -9143,7 +9143,7 @@ module(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 entryPoint(THIS, value = NO_INIT)
         WebGPU::Direct::VertexState THIS
         SV * value
@@ -9162,7 +9162,7 @@ entryPoint(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 constantCount(THIS, value = NO_INIT)
         WebGPU::Direct::VertexState THIS
         SV * value
@@ -9200,7 +9200,7 @@ constants(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 bufferCount(THIS, value = NO_INIT)
         WebGPU::Direct::VertexState THIS
         SV * value
@@ -9286,7 +9286,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 module(THIS, value = NO_INIT)
         WebGPU::Direct::FragmentState THIS
         void * value
@@ -9305,7 +9305,7 @@ module(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 entryPoint(THIS, value = NO_INIT)
         WebGPU::Direct::FragmentState THIS
         SV * value
@@ -9324,7 +9324,7 @@ entryPoint(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 constantCount(THIS, value = NO_INIT)
         WebGPU::Direct::FragmentState THIS
         SV * value
@@ -9362,7 +9362,7 @@ constants(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-uint32_t
+SV *
 targetCount(THIS, value = NO_INIT)
         WebGPU::Direct::FragmentState THIS
         SV * value
@@ -9448,7 +9448,7 @@ nextInChain(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-char const  * 
+SV *
 label(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPipelineDescriptor THIS
         SV * value
@@ -9467,7 +9467,7 @@ label(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-void *
+SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPipelineDescriptor THIS
         void * value
@@ -9486,7 +9486,7 @@ layout(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::VertexState
+SV *
 vertex(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPipelineDescriptor THIS
         WebGPU::Direct::VertexState value
@@ -9505,7 +9505,7 @@ vertex(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::PrimitiveState
+SV *
 primitive(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPipelineDescriptor THIS
         WebGPU::Direct::PrimitiveState value
@@ -9543,7 +9543,7 @@ depthStencil(THIS, value = NO_INIT)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::MultisampleState
+SV *
 multisample(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPipelineDescriptor THIS
         WebGPU::Direct::MultisampleState value
