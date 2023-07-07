@@ -521,17 +521,9 @@ STATIC MGVTBL _mg_vtbl_##type = {                                               
   .svt_set = _mg_set_##type                                                     \
 };                                                                              \
                                                                                 \
-SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)           \
+SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)            \
 {                                                                               \
   SV **f = NULL;                                                                \
-/*                                                                              \
-  f = hv_fetch(h, key, klen, 1);                                                \
-                                                                                \
-  if ( !( f && *f ) )                                                           \
-  {                                                                             \
-    croak("Could not save new value for %s", key);                              \
-  }                                                                             \
-*/                                                                              \
   SV *val = constr;                                                             \
   SvREFCNT_inc(val);                                                            \
   f = hv_store(h, key, klen, val, 0);                                           \
@@ -545,7 +537,7 @@ SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)           \
   return *f;                                                                    \
 }                                                                               \
                                                                                 \
-SV *_pack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)             \
+SV *_pack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)              \
 {                                                                               \
   SV **f;                                                                       \
                                                                                 \
@@ -565,7 +557,7 @@ SV *_pack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)             \
   return *f;                                                                    \
 }                                                                               \
                                                                                 \
-void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value)   \
+void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value)  \
 {                                                                               \
   SvREFCNT_inc(value);                                                          \
   SV **f = hv_store(h, key, klen, value, 0);                                    \
@@ -581,52 +573,10 @@ void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value) 
   return;                                                                       \
 }                                                                               \
                                                                                 \
-SV *_find_set_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)       \
+SV *_find_set_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)          \
 {                                                                               \
   return _pack_##type(aTHX_ h, key, klen, field);                               \
 }                                                                               \
-
-#define _find_set_x(type, init, rt, cast) \
-rt _find_set_##type(pTHX_ HV *h, const char *key, I32 klen, void *field)      \
-{                                                                              \
-  SV **f;                                                                      \
-  SV *fp;                                                                      \
-                                                                               \
-  f = hv_fetch(h, key, klen, 0);                                               \
-  if ( f && *f )                                                               \
-  {                                                                            \
-    fp = *f;                                                                   \
-  }                                                                            \
-  else                                                                         \
-  {                                                                            \
-    fp = init;                                                                 \
-    sv_magicext(fp, NULL, PERL_MAGIC_ext, &_mg_vtbl_##type, (const char*)field, 0);    \
-    hv_store(h, key, klen, fp, 0);                                             \
-  }                                                                            \
-  _set_##type(aTHX_ fp, field);                                                \
-                                                                               \
-  return cast(fp);                                                             \
-}
-
-#define _unpack_x(type, ft, constr) \
-SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)           \
-{                                                                              \
-  SV **f;                                                                      \
-  SV *fp;                                                                      \
-                                                                               \
-  f = hv_fetch(h, key, klen, 1);                                               \
-  if ( f && *f )                                                               \
-  {                                                                            \
-    fp = *f;                                                                   \
-  }                                                                            \
-  else                                                                         \
-  {                                                                            \
-    croak("Could not save new value for %s", key);                             \
-  }                                                                            \
-  *f  = constr;                                                                \
-                                                                               \
- return *f;                                                                    \
-}
 
 /* ------------------------------------------------------------------
    str
@@ -638,22 +588,6 @@ void _set_str(pTHX_ SV *new_value, const char **field)
   *field = v;
 }
 
-/*
-int _mg_set_str(pTHX_ SV* sv, MAGIC* mg)
-{
-  char **s = (char **) mg->mg_ptr;
-  _set_str(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_str = {
-  .svt_set = _mg_set_str
-};
-*/
-
-//_find_set_x(str, newSVpvs(""), char*, SvPVbyte_nolen);
-//_unpack_x(str, const char **, newSVpv(*field, 0));
-//_setup_x(str, newSVpvs(""), char*, SvPVbyte_nolen, const char **, newSVpv(*field, 0));
 _setup_x(str, const char **, newSVpv(*field, 0));
 
 /* ------------------------------------------------------------------
@@ -666,21 +600,6 @@ void _set_enum(pTHX_ SV *new_value, I32 *field)
   *field = v;
 }
 
-/*
-int _mg_set_enum(pTHX_ SV* sv, MAGIC* mg)
-{
-  I32 *s = (I32 *) mg->mg_ptr;
-  _set_enum(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_enum = {
-  .svt_set = _mg_set_enum
-};
-
-_find_set_x(enum, newSViv(0), int, SvIV);
-_unpack_x(enum, void *, newSViv(*(int *)field));
-*/
 _setup_x(enum, void *, newSViv(*(int *)field));
 
 /* ------------------------------------------------------------------
@@ -693,21 +612,6 @@ void _set_bool(pTHX_ SV *new_value, bool *field)
   *field = v;
 }
 
-/*
-int _mg_set_bool(pTHX_ SV* sv, MAGIC* mg)
-{
-  bool *s = (bool *) mg->mg_ptr;
-  _set_bool(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_bool = {
-  .svt_set = _mg_set_bool
-};
-
-_find_set_x(bool, newSViv(FALSE), bool, SvIV);
-_unpack_x(bool, bool *, newSViv(*field));
-*/
 _setup_x(bool, bool *, newSViv(*field));
 
 /* ------------------------------------------------------------------
@@ -720,21 +624,6 @@ void _set_double(pTHX_ SV *new_value, double *field)
   *field = v;
 }
 
-/*
-int _mg_set_double(pTHX_ SV* sv, MAGIC* mg)
-{
-  double *s = (double *) mg->mg_ptr;
-  _set_double(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_double = {
-  .svt_set = _mg_set_double
-};
-
-_find_set_x(double, newSVnv(0), double, SvNV);
-_unpack_x(double, double *, newSVnv(*field));
-*/
 _setup_x(double, double *, newSVnv(*field));
 
 /* ------------------------------------------------------------------
@@ -747,21 +636,6 @@ void _set_float(pTHX_ SV *new_value, float *field)
   *field = v;
 }
 
-/*
-int _mg_set_float(pTHX_ SV* sv, MAGIC* mg)
-{
-  float *s = (float *) mg->mg_ptr;
-  _set_float(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_float = {
-  .svt_set = _mg_set_float
-};
-
-_find_set_x(float, newSVnv(0), float, SvNV);
-_unpack_x(float, float *, newSVnv(*field));
-*/
 _setup_x(float, float *, newSVnv(*field));
 
 /* ------------------------------------------------------------------
@@ -774,21 +648,6 @@ void _set_uint16_t(pTHX_ SV *new_value, U16 *field)
   *field = v;
 }
 
-/*
-int _mg_set_uint16_t(pTHX_ SV* sv, MAGIC* mg)
-{
-  U16 *s = (U16 *) mg->mg_ptr;
-  _set_uint16_t(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_uint16_t = {
-  .svt_set = _mg_set_uint16_t
-};
-
-_find_set_x(uint16_t, newSViv(0), uint16_t, SvIV);
-_unpack_x(uint16_t, uint16_t *, newSViv(*field));
-*/
 _setup_x(uint16_t, uint16_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
@@ -801,21 +660,6 @@ void _set_uint32_t(pTHX_ SV *new_value, U32 *field)
   *field = v;
 }
 
-/*
-int _mg_set_uint32_t(pTHX_ SV* sv, MAGIC* mg)
-{
-  U32 *s = (U32 *) mg->mg_ptr;
-  _set_uint32_t(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_uint32_t = {
-  .svt_set = _mg_set_uint32_t
-};
-
-_find_set_x(uint32_t, newSViv(0), uint32_t, SvIV);
-_unpack_x(uint32_t, uint32_t *, newSViv(*field));
-*/
 _setup_x(uint32_t, uint32_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
@@ -828,21 +672,6 @@ void _set_uint64_t(pTHX_ SV *new_value, U64 *field)
   *field = v;
 }
 
-/*
-int _mg_set_uint64_t(pTHX_ SV* sv, MAGIC* mg)
-{
-  U64 *s = (U64 *) mg->mg_ptr;
-  _set_uint64_t(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_uint64_t = {
-  .svt_set = _mg_set_uint64_t
-};
-
-_find_set_x(uint64_t, newSViv(0), uint64_t, SvIV);
-_unpack_x(uint64_t, uint64_t *, newSViv(*field));
-*/
 _setup_x(uint64_t, uint64_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
@@ -855,21 +684,6 @@ void _set_int32_t(pTHX_ SV *new_value, I32 *field)
   *field = v;
 }
 
-/*
-int _mg_set_int32_t(pTHX_ SV* sv, MAGIC* mg)
-{
-  I32 *s = (I32 *) mg->mg_ptr;
-  _set_int32_t(aTHX_ sv, (void *) mg->mg_ptr);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_int32_t = {
-  .svt_set = _mg_set_int32_t
-};
-
-_find_set_x(int32_t, newSViv(0), int32_t, SvIV);
-_unpack_x(int32_t, int32_t *, newSViv(*field));
-*/
 _setup_x(int32_t, int32_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
