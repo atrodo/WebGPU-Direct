@@ -28,11 +28,16 @@ my %WriteMakefileArgs = (
   },
 );
 
-my $addl_search = $ENV{ADDL_SEARCH};;
+my $addl_search = $ENV{ADDL_SEARCH} // '';
+if ( $addl_search )
+{
+  $addl_search = "-L$addl_search";
+}
+
 sub is_lib
 {
   my $lib = shift;
-  return !!join('', ExtUtils::Liblist->ext("-L$addl_search -l$lib"));
+  return !!join('', ExtUtils::Liblist->ext("$addl_search -l$lib"));
 }
 
 my $wgpu = 'wgpu_native';
@@ -50,7 +55,7 @@ if ( is_lib('X11') )
   push @defines, '-DHAS_X11';
 }
 
-$WriteMakefileArgs{LIBS} = "-L$addl_search -l$wgpu @libs";
+$WriteMakefileArgs{LIBS} = "$addl_search -l$wgpu @libs";
 $WriteMakefileArgs{DEFINE} = "@defines";
 
 my %FallbackPrereqs = (
