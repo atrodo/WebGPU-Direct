@@ -699,7 +699,7 @@ INCLUDE: xs/webgpu.xs
 
 MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct		PREFIX = wgpu
 
-SV *
+WebGPU::Direct::SurfaceDescriptorFromXlibWindow
 new_window_x11(CLASS, xw = 640, yh = 360)
         SV *  CLASS
         int   xw
