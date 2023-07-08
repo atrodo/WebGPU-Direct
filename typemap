@@ -619,11 +619,11 @@ void const *                                                    T_VOID
 # We do the tr/:/_/ in the output because ParseXS doesn't for outputs
 INPUT
 T_VOID
-    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"$Package\"))
+    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
 T_FETCH
-    $var = *($type *) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"$Package\"))
+    $var = *($type *) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
 T_FETCHPTR
-    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"$Package\"))
+    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
 
 OUTPUT
 T_VOID
