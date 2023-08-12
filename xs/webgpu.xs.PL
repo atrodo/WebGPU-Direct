@@ -834,10 +834,18 @@ sub say_set_fn
 sub say_call_fn
 {
   my %def = @_;
+
+    my $is_cb;
+    my @defargs = $def{args}->@*;
+    if ( @defargs >= 4 && $defargs[-1] eq 'userdata' && $defargs[-3] eq 'callback' )
+    {
+      $is_cb = 1;
+    }
+
     my @args;
     my @keys;
     my @vals;
-    foreach my $pair ( pairs $def{args}->@* )
+    foreach my $pair ( pairs @defargs )
     {
       my ( $key, $value ) = @$pair;
 
@@ -847,10 +855,16 @@ sub say_call_fn
       warn "Unknown type: $type"
           if !exists $typedefs{$pkg} && !exists $typedefs{$type};
 
-      if ( exists $typedefs{$pkg} )
+      if ( $is_cb && $value eq 'callback' )
       {
-        #$key =~ s/^$type/$pkg/;
+        $key = 'CV *';
       }
+
+      if ( $is_cb && $value eq 'userdata' )
+      {
+        $key = 'SV *';
+      }
+
       push @args, "$key $value";
       push @keys, "$key";
       push @vals, "$value";
@@ -863,6 +877,31 @@ sub say_call_fn
     foreach ( @args )
     {
       say $xs "        $_";
+    }
+
+    if ( $is_cb )
+    {
+      my $cb_type = $defargs[-4];
+      my $cb_pkg = pkg_name($cb_type);
+      my @calls = @vals;
+
+      $cb_pkg =~ tr/:/_/;
+      @calls[-2, -1] = qw/c &c_userdata/;
+
+      my $call = join(', ', @calls);
+
+      say $xs <<~"EOF"; my $n = qq{
+          CODE:
+            $cb_type c = &${cb_pkg}__callback;
+            cb_data c_userdata = {
+              .guard1 = CB_GUARD,
+              .guard2 = CB_GUARD,
+              .perlsub = callback,
+              .data = userdata,
+            };
+            $def{prefix}$def{name}($call);
+      EOF
+      };
     }
     say $xs "";
 }
