@@ -5,6 +5,8 @@ use warnings;
 
 use FindBin qw/$Bin/;
 use List::Util qw/pairs/;
+use ExtUtils::Typemaps qw//;
+use ExtUtils::ParseXS::Utilities qw/standard_typemap_locations/;
 use autodie;
 
 open my $h,  '<', "$Bin/../webgpu/webgpu.h";
@@ -26,9 +28,29 @@ my %typedefs = (
     void     => 'void',
 );
 
+my @typemap = (
+  q{# We do the tr/:/_/ in the output because ParseXS doesn't for outputs},
+  q{INPUT},
+  q{T_VOID},
+  q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
+  q{T_FETCH},
+  q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
+  q{T_FETCHPTR},
+  q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
+  q{},
+  q{OUTPUT},
+  q{T_VOID},
+  q{    $arg = _void__wrap($var);},
+  q{T_FETCH},
+  q{    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);},
+  q{T_FETCHPTR},
+  q{    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);},
+);
+
 my @fns;
 my @classes;
 my %classdefs;
+my %callbackdefs;
 
 say $xs q{#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"};
 say $xs q{#pragma GCC diagnostic ignored "-Wformat"};
@@ -121,6 +143,7 @@ while (<$h>)
           class => $class,
           defs  => [@defs],
           fns   => [],
+          ptr_type => '',
         };
       }
       next;
@@ -197,6 +220,18 @@ while (<$h>)
     die "Duplicate typedef: $class"
         if exists $typedefs{$class};
 
+    my @args = ( $definition =~ m[ \s* ([^,]*) \s+ (\w+) \s* (?: , | $ ) ]xmsg );
+
+    # If the last arg is a user-data slot, create a callback situation
+    if ( $return eq 'void' && $args[-2] && $args[-2] =~ m/^void\s+[*]$/ )
+    {
+      $callbackdefs{$class} = {
+        type  => $type,
+        class => $class,
+        args  => \@args,
+      };
+    }
+
     $typedefs{$class} = 'void';
 
     push @classes, $class;
@@ -204,6 +239,7 @@ while (<$h>)
     $classdefs{$class} = {
       type  => $type,
       class => $class,
+      ptr_type => 1,
       defs  => [],
       fns   => [],
     };
@@ -256,9 +292,10 @@ while (<$h>)
     next;
   }
 
-  if (m[^ typedef \s+ struct \s+ (\w+) [*]? \s+ (\w+); $]xms)
+  if (m[^ typedef \s+ struct \s+ (\w+ [*]?) \s+ (\w+); $]xms)
   {
     my $type  = $2;
+    my $is_ptr = ( $1 =~ m/[*]/ );
     my $class = pkg_name($type);
 
     die "Duplicate typedef: $class"
@@ -268,6 +305,7 @@ while (<$h>)
     push @classes, $class;
     $classdefs{$class} = {
       type  => $type,
+      ptr_type => $is_ptr,
       class => $class,
       defs  => [],
       fns   => [],
@@ -285,8 +323,17 @@ foreach (@fns)
 {
   my %def = %$_;
   say_call_fn(%def);
-
 }
+
+# Chosen by fair dice roll
+say $c "#define CB_GUARD 0x25b3eea3";
+say $c "typedef struct cb_data {
+    I32 guard1;
+    CV *perlsub;
+    SV *data;
+    I32 guard2;
+} cb_data;
+";
 
 foreach my $class ( @classes )
 {
@@ -318,6 +365,10 @@ foreach my $class ( @classes )
       $addl_unpack = qq{${c_prefix}unpack( /*asdf*/ THIS );\n};
       $isa = qq{push \@$class\::ISA, "$defs[0]->{return}";};
     }
+  }
+  else
+  {
+    $isa = qq{push \@$class\::ISA, "WebGPU::Direct::Opaque";};
   }
 
   if ( @fns )
@@ -430,6 +481,18 @@ foreach my $class ( @classes )
       }
     $unpacks
     }
+
+    SV *${type}__wrap( const ${type} * n )
+    {
+      HV *h = newHV();
+      SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+      sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+      sv_bless(RETVAL, gv_stashpv("$class", GV_ADD));
+      ${c_prefix}__unpack(RETVAL);
+      return SvREFCNT_inc(RETVAL);
+    }
+    EOF
     EOF
     };
   }
@@ -446,15 +509,19 @@ foreach my $class ( @classes )
       EOF
       };
 
+    # If the def is a ptr type, that is its already a pointer inside the
+    # typedef, we don't add the * here
+    my $ptr = $def{ptr_type} ? '' : '*';
+
     say $c <<~"EOF"; $n = qq{
-    SV *${type}__wrap( void *n )
+    SV *${type}__wrap( ${type} $ptr n )
     {
       HV *h = newHV();
       SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
       sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
       sv_bless(RETVAL, gv_stashpv("$class", GV_ADD));
-      return RETVAL;
+      return SvREFCNT_inc(RETVAL);
     }
     EOF
     };
@@ -482,35 +549,125 @@ foreach my $typedef ( sort keys %typedefs )
   next
       if exists $classdefs{$typedef};
 
-  my $typemap
-      = ( $typedef =~ m/WGPU/i ) ? 'T_IV'
-      : ( $typedef =~ m/_t$/ )   ? 'T_IV'
-      : ( $typedef =~ m/^char$/ )? 'T_PV'
-      :                            'T_' . uc($typedef);
+  my $typemap = tm_of($typedef);
   say $tm sprintf( "%-64s%s", $typedef, $typemap );
   say $tm sprintf( "%-64s%s", "$typedef *", $typemap );
   say $tm sprintf( "%-64s%s", "$typedef const *", $typemap );
 }
 
+say $tm join("\n", @typemap);
 
-say $tm <<'EOF';
-# We do the tr/:/_/ in the output because ParseXS doesn't for outputs
-INPUT
-T_VOID
-    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
-T_FETCH
-    $var = *($type *) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
-T_FETCHPTR
-    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
+$tm->flush;
 
-OUTPUT
-T_VOID
-    $arg = _void__wrap($var);
-T_FETCH
-    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);
-T_FETCHPTR
-    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);
-EOF
+my $tmx = ExtUtils::Typemaps->new;
+foreach my $tm_file ( standard_typemap_locations( \@INC ) )
+{
+  next unless -f $tm_file;
+
+  # skip directories, binary files etc.
+  next
+    if !-T $tm_file;
+
+  $tmx->merge( file => $tm_file, replace => 1 );
+}
+
+foreach my $cb_name ( sort keys %callbackdefs )
+{
+  my $callback = $callbackdefs{$cb_name};
+  my $type = $callback->{type};
+  my $class = $callback->{class};
+  my @args = $callback->{args}->@*;
+  my $c_prefix  = "${class}";
+
+  $c_prefix =~ s/::/__/g;
+
+  my @argdefs;
+  my @keys;
+  my @vals;
+  my @pushs;
+
+  my $argoff = -1;
+  foreach my $pair ( pairs @args )
+  {
+    my ( $key, $value ) = @$pair;
+
+    my ($type) = $key =~ m/^(\w+)/;
+    my $pkg = pkg_name($type);
+
+    warn "Unknown type: $type"
+        if !exists $typedefs{$pkg} && !exists $typedefs{$type};
+
+    push @argdefs, "$key $value";
+    push @keys,    $key;
+    push @vals,    $value;
+
+    if ( $value eq 'userdata' )
+    {
+      push @pushs, "\n    XPUSHs(cb->data);";
+      next;
+    }
+
+    my $outputmap = $tmx->get_outputmap( ctype => $key );
+    $argoff++;
+
+    die "Can't find for ctype $type"
+      if !defined $outputmap;
+
+    {
+      my $arg  = "tm_$value";
+      my $var  = $value;
+      my $type = $type;
+
+      $type =~ tr/:/_/;
+
+      my $expr = $outputmap->cleaned_code;
+
+      {
+        local $@;
+        my $pushget = eval qq{use strict; "$expr;"};
+        die $@
+            if $@;
+        push @pushs, "\n    $c_prefix $arg = newSV(0); $pushget";
+        push @pushs, "\n    XPUSHs($arg);";
+      }
+    }
+  }
+
+  {
+    local $" = ', ';
+    say $c "void ${c_prefix}__callback( @argdefs )";
+  }
+
+  say $c <<~"EOF"; my $n = qq{
+      {
+        cb_data *cb = (cb_data *)userdata;
+        if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+        {
+          croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+        }
+
+        dSP;
+        dTARGET;
+        PUSHMARK(SP);@pushs
+        PUTBACK;
+        call_sv((SV *)cb->perlsub, G_VOID);
+      }
+    EOF
+    };
+}
+
+sub tm_of
+{
+  my $typedef = shift;
+
+  my $typemap
+      = ( $typedef =~ m/WGPU/i ) ? 'T_IV'
+      : ( $typedef =~ m/_t$/ )   ? 'T_IV'
+      : ( $typedef =~ m/^char$/ )? 'T_PV'
+      :                            'T_' . uc($typedef);
+
+  return $typemap;
+}
 
 sub calls_for
 {
