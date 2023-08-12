@@ -45,8 +45,18 @@ void
 wgpuAdapterRequestDevice(adapter, descriptor, callback, userdata)
         WGPUAdapter adapter
         WGPUDeviceDescriptor const * descriptor
-        WGPURequestDeviceCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPURequestDeviceCallback c = &WebGPU__Direct__RequestDeviceCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuAdapterRequestDevice(adapter, descriptor, c, &c_userdata);
+
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BindGroup	PREFIX = wgpuBindGroup
@@ -110,8 +120,18 @@ wgpuBufferMapAsync(buffer, mode, offset, size, callback, userdata)
         WGPUMapModeFlags mode
         size_t offset
         size_t size
-        WGPUBufferMapCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUBufferMapCallback c = &WebGPU__Direct__BufferMapCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuBufferMapAsync(buffer, mode, offset, size, c, &c_userdata);
+
 
 
 void 
@@ -362,8 +382,18 @@ void
 wgpuDeviceCreateComputePipelineAsync(device, descriptor, callback, userdata)
         WGPUDevice device
         WGPUComputePipelineDescriptor const * descriptor
-        WGPUCreateComputePipelineAsyncCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUCreateComputePipelineAsyncCallback c = &WebGPU__Direct__CreateComputePipelineAsyncCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuDeviceCreateComputePipelineAsync(device, descriptor, c, &c_userdata);
+
 
 
 WGPUPipelineLayout 
@@ -394,8 +424,18 @@ void
 wgpuDeviceCreateRenderPipelineAsync(device, descriptor, callback, userdata)
         WGPUDevice device
         WGPURenderPipelineDescriptor const * descriptor
-        WGPUCreateRenderPipelineAsyncCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUCreateRenderPipelineAsyncCallback c = &WebGPU__Direct__CreateRenderPipelineAsyncCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuDeviceCreateRenderPipelineAsync(device, descriptor, c, &c_userdata);
+
 
 
 WGPUSampler 
@@ -454,8 +494,18 @@ wgpuDeviceHasFeature(device, feature)
 bool 
 wgpuDevicePopErrorScope(device, callback, userdata)
         WGPUDevice device
-        WGPUErrorCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUErrorCallback c = &WebGPU__Direct__ErrorCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuDevicePopErrorScope(device, c, &c_userdata);
+
 
 
 void 
@@ -467,8 +517,18 @@ wgpuDevicePushErrorScope(device, filter)
 void 
 wgpuDeviceSetDeviceLostCallback(device, callback, userdata)
         WGPUDevice device
-        WGPUDeviceLostCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUDeviceLostCallback c = &WebGPU__Direct__DeviceLostCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuDeviceSetDeviceLostCallback(device, c, &c_userdata);
+
 
 
 void 
@@ -480,8 +540,18 @@ wgpuDeviceSetLabel(device, label)
 void 
 wgpuDeviceSetUncapturedErrorCallback(device, callback, userdata)
         WGPUDevice device
-        WGPUErrorCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUErrorCallback c = &WebGPU__Direct__ErrorCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuDeviceSetUncapturedErrorCallback(device, c, &c_userdata);
+
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Instance	PREFIX = wgpuInstance
@@ -502,8 +572,18 @@ void
 wgpuInstanceRequestAdapter(instance, options, callback, userdata)
         WGPUInstance instance
         WGPURequestAdapterOptions const * options
-        WGPURequestAdapterCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPURequestAdapterCallback c = &WebGPU__Direct__RequestAdapterCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuInstanceRequestAdapter(instance, options, c, &c_userdata);
+
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::PipelineLayout	PREFIX = wgpuPipelineLayout
@@ -545,8 +625,18 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Queue	PREFIX = wgpuQueue
 void 
 wgpuQueueOnSubmittedWorkDone(queue, callback, userdata)
         WGPUQueue queue
-        WGPUQueueWorkDoneCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUQueueWorkDoneCallback c = &WebGPU__Direct__QueueWorkDoneCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuQueueOnSubmittedWorkDone(queue, c, &c_userdata);
+
 
 
 void 
@@ -871,8 +961,18 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ShaderModule	PREFIX = wgpuShad
 void 
 wgpuShaderModuleGetCompilationInfo(shaderModule, callback, userdata)
         WGPUShaderModule shaderModule
-        WGPUCompilationInfoCallback callback
-        void * userdata
+        CV * callback
+        SV * userdata
+    CODE:
+      WGPUCompilationInfoCallback c = &WebGPU__Direct__CompilationInfoCallback__callback;
+      cb_data c_userdata = {
+        .guard1 = CB_GUARD,
+        .guard2 = CB_GUARD,
+        .perlsub = callback,
+        .data = userdata,
+      };
+      wgpuShaderModuleGetCompilationInfo(shaderModule, c, &c_userdata);
+
 
 
 void 

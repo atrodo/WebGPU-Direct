@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package WebGPU::Direct::Adapter {
-    
+    push @WebGPU::Direct::Adapter::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -9,7 +9,7 @@ package WebGPU::Direct::Adapter {
 }
 
 package WebGPU::Direct::BindGroup {
-    
+    push @WebGPU::Direct::BindGroup::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -17,7 +17,7 @@ package WebGPU::Direct::BindGroup {
 }
 
 package WebGPU::Direct::BindGroupLayout {
-    
+    push @WebGPU::Direct::BindGroupLayout::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -25,7 +25,7 @@ package WebGPU::Direct::BindGroupLayout {
 }
 
 package WebGPU::Direct::Buffer {
-    
+    push @WebGPU::Direct::Buffer::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -33,7 +33,7 @@ package WebGPU::Direct::Buffer {
 }
 
 package WebGPU::Direct::CommandBuffer {
-    
+    push @WebGPU::Direct::CommandBuffer::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -41,7 +41,7 @@ package WebGPU::Direct::CommandBuffer {
 }
 
 package WebGPU::Direct::CommandEncoder {
-    
+    push @WebGPU::Direct::CommandEncoder::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -49,7 +49,7 @@ package WebGPU::Direct::CommandEncoder {
 }
 
 package WebGPU::Direct::ComputePassEncoder {
-    
+    push @WebGPU::Direct::ComputePassEncoder::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -57,7 +57,7 @@ package WebGPU::Direct::ComputePassEncoder {
 }
 
 package WebGPU::Direct::ComputePipeline {
-    
+    push @WebGPU::Direct::ComputePipeline::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -65,7 +65,7 @@ package WebGPU::Direct::ComputePipeline {
 }
 
 package WebGPU::Direct::Device {
-    
+    push @WebGPU::Direct::Device::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -73,7 +73,7 @@ package WebGPU::Direct::Device {
 }
 
 package WebGPU::Direct::Instance {
-    
+    push @WebGPU::Direct::Instance::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -81,7 +81,7 @@ package WebGPU::Direct::Instance {
 }
 
 package WebGPU::Direct::PipelineLayout {
-    
+    push @WebGPU::Direct::PipelineLayout::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -89,7 +89,7 @@ package WebGPU::Direct::PipelineLayout {
 }
 
 package WebGPU::Direct::QuerySet {
-    
+    push @WebGPU::Direct::QuerySet::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -97,7 +97,7 @@ package WebGPU::Direct::QuerySet {
 }
 
 package WebGPU::Direct::Queue {
-    
+    push @WebGPU::Direct::Queue::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -105,7 +105,7 @@ package WebGPU::Direct::Queue {
 }
 
 package WebGPU::Direct::RenderBundle {
-    
+    push @WebGPU::Direct::RenderBundle::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -113,7 +113,7 @@ package WebGPU::Direct::RenderBundle {
 }
 
 package WebGPU::Direct::RenderBundleEncoder {
-    
+    push @WebGPU::Direct::RenderBundleEncoder::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -121,7 +121,7 @@ package WebGPU::Direct::RenderBundleEncoder {
 }
 
 package WebGPU::Direct::RenderPassEncoder {
-    
+    push @WebGPU::Direct::RenderPassEncoder::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -129,7 +129,7 @@ package WebGPU::Direct::RenderPassEncoder {
 }
 
 package WebGPU::Direct::RenderPipeline {
-    
+    push @WebGPU::Direct::RenderPipeline::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -137,7 +137,7 @@ package WebGPU::Direct::RenderPipeline {
 }
 
 package WebGPU::Direct::Sampler {
-    
+    push @WebGPU::Direct::Sampler::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -145,7 +145,7 @@ package WebGPU::Direct::Sampler {
 }
 
 package WebGPU::Direct::ShaderModule {
-    
+    push @WebGPU::Direct::ShaderModule::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -153,7 +153,7 @@ package WebGPU::Direct::ShaderModule {
 }
 
 package WebGPU::Direct::Surface {
-    
+    push @WebGPU::Direct::Surface::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -161,7 +161,7 @@ package WebGPU::Direct::Surface {
 }
 
 package WebGPU::Direct::SwapChain {
-    
+    push @WebGPU::Direct::SwapChain::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -169,7 +169,7 @@ package WebGPU::Direct::SwapChain {
 }
 
 package WebGPU::Direct::Texture {
-    
+    push @WebGPU::Direct::Texture::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -177,7 +177,7 @@ package WebGPU::Direct::Texture {
 }
 
 package WebGPU::Direct::TextureView {
-    
+    push @WebGPU::Direct::TextureView::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1121,7 +1121,7 @@ package WebGPU::Direct::RenderPipelineDescriptor {
 }
 
 package WebGPU::Direct::BufferMapCallback {
-    
+    push @WebGPU::Direct::BufferMapCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1129,7 +1129,7 @@ package WebGPU::Direct::BufferMapCallback {
 }
 
 package WebGPU::Direct::CompilationInfoCallback {
-    
+    push @WebGPU::Direct::CompilationInfoCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1137,7 +1137,7 @@ package WebGPU::Direct::CompilationInfoCallback {
 }
 
 package WebGPU::Direct::CreateComputePipelineAsyncCallback {
-    
+    push @WebGPU::Direct::CreateComputePipelineAsyncCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1145,7 +1145,7 @@ package WebGPU::Direct::CreateComputePipelineAsyncCallback {
 }
 
 package WebGPU::Direct::CreateRenderPipelineAsyncCallback {
-    
+    push @WebGPU::Direct::CreateRenderPipelineAsyncCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1153,7 +1153,7 @@ package WebGPU::Direct::CreateRenderPipelineAsyncCallback {
 }
 
 package WebGPU::Direct::DeviceLostCallback {
-    
+    push @WebGPU::Direct::DeviceLostCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1161,7 +1161,7 @@ package WebGPU::Direct::DeviceLostCallback {
 }
 
 package WebGPU::Direct::ErrorCallback {
-    
+    push @WebGPU::Direct::ErrorCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1169,7 +1169,7 @@ package WebGPU::Direct::ErrorCallback {
 }
 
 package WebGPU::Direct::Proc {
-    
+    push @WebGPU::Direct::Proc::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1177,7 +1177,7 @@ package WebGPU::Direct::Proc {
 }
 
 package WebGPU::Direct::QueueWorkDoneCallback {
-    
+    push @WebGPU::Direct::QueueWorkDoneCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1185,7 +1185,7 @@ package WebGPU::Direct::QueueWorkDoneCallback {
 }
 
 package WebGPU::Direct::RequestAdapterCallback {
-    
+    push @WebGPU::Direct::RequestAdapterCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1193,7 +1193,7 @@ package WebGPU::Direct::RequestAdapterCallback {
 }
 
 package WebGPU::Direct::RequestDeviceCallback {
-    
+    push @WebGPU::Direct::RequestDeviceCallback::ISA, "WebGPU::Direct::Opaque";
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
