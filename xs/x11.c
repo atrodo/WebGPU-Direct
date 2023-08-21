@@ -24,6 +24,7 @@ bool x11_window(WGPUSurfaceDescriptorFromXlibWindow *result, int xw, int yh)
     return false;
   }
 
+  int scrnum = DefaultScreen( result->display );
   result->window = XCreateSimpleWindow(result->display, DefaultRootWindow(result->display),
 			    10, 10,
 			    xw, yh,
@@ -31,7 +32,6 @@ bool x11_window(WGPUSurfaceDescriptorFromXlibWindow *result, int xw, int yh)
 			    0
 			   );
 
-  int scrnum = DefaultScreen( result->display );
   Window root = RootWindow( result->display, scrnum );
 
   if ( !root )
@@ -42,6 +42,17 @@ bool x11_window(WGPUSurfaceDescriptorFromXlibWindow *result, int xw, int yh)
 
   XMapWindow( result->display, result->window );
   result->chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow;
+
+  XSelectInput(result->display, result->window, ExposureMask | KeyPressMask);
+  for (int i = 0; i < 10; i++)
+  {
+    XEvent e = {};
+    XNextEvent(result->display, &e);
+    if (e.type == Expose) {
+      XFillRectangle(result->display, result->window, DefaultGC(result->display, scrnum), 20, 20, 10, 10);
+      break;
+    }
+  }
 
   return true;
 }
