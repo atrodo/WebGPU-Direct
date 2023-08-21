@@ -32,7 +32,7 @@ my @typemap = (
   q{# We do the tr/:/_/ in the output because ParseXS doesn't for outputs},
   q{INPUT},
   q{T_VOID},
-  q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
+  q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, NULL)},
   q{T_FETCH},
   q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
   q{T_FETCHPTR},
@@ -77,6 +77,7 @@ while (<$h>)
   chomp;
   s[// .* $][]xms;
   s[/[*] .*? [*]/][]xms;
+  s[ \s (?:WGPU_OBJECT_ATTRIBUTE|WGPU_ENUM_ATTRIBUTE|WGPU_STRUCTURE_ATTRIBUTE|WGPU_FUNCTION_ATTRIBUTE|WGPU_NULLABLE)][]xmsg;
 
   # Skip the WGPU_SKIP_PROCS definitions
   if ( m{^ [#] if \s+ [!] defined [(] WGPU_SKIP_PROCS [)] }xms .. m[^ [#] endif ]xms )
@@ -85,6 +86,12 @@ while (<$h>)
   }
 
   if (m/^ [#] | ^ \s* $ | ^ extern \s* "C" \s* { | ^ } \s* $ /xms)
+  {
+    next;
+  }
+
+  # Skip forward declares
+  if (m/^ \s* struct \s+ \w+ ; $/xms)
   {
     next;
   }
@@ -111,6 +118,7 @@ while (<$h>)
     next;
   }
 
+  # Struct definitions
   if ( m[^ typedef \s+ (struct) \s+ (\w+) \s+ { $]xms ..  m[ ^ } \s+ (\w+) ; $]xms )
   {
     state $type;
@@ -169,12 +177,17 @@ while (<$h>)
       my $typedef    = $typedefs{$ctype} // $typedefs{$return};
       my $inline_obj = !$is_ptr && $typedef eq 'obj';
 
+      if ( $inline_obj && $classdefs{$return} && $classdefs{$return}->{ptr_type})
+      {
+        $inline_obj = undef;
+      }
+
       if ( !defined $typedef )
       {
         die "Unknown typedef: $ctype";
       }
 
-      if ( $typedef ne 'obj' && $typedef ne 'void' )
+      if ( $typedef ne 'obj' && $typedef ne 'opaque' )
       {
         $return = $ctype;
       }
@@ -268,7 +281,7 @@ while (<$h>)
     my $first_arg = $args[0];
     my $first_pkg = pkg_name($first_arg);
 
-    if ( ( ( $typedefs{$first_pkg} // '' ) eq 'obj' || ( $typedefs{$first_pkg} // '' ) eq 'void' )&& $fn_name =~ m/^($first_arg)/i )
+    if ( ( ( $typedefs{$first_pkg} // '' ) eq 'obj' || ( $typedefs{$first_pkg} // '' ) eq 'opaque' )&& $fn_name =~ m/^($first_arg)/i )
     {
       $fn_def->{name} =~ s/^($first_arg)//i;
       $fn_def->{prefix} = $1;
@@ -292,6 +305,7 @@ while (<$h>)
     next;
   }
 
+  # Handle opaque sturcts that may be used as specifc types
   if (m[^ typedef \s+ struct \s+ (\w+ [*]?) \s+ (\w+); $]xms)
   {
     my $type  = $2;
@@ -301,11 +315,15 @@ while (<$h>)
     die "Duplicate typedef: $class"
         if exists $typedefs{$class};
 
-    $typedefs{$class} = 'void';
+    die
+      if !$is_ptr;
+
+    $typedefs{$class} = 'opaque';
     push @classes, $class;
     $classdefs{$class} = {
       type  => $type,
       ptr_type => $is_ptr,
+      opaque => 1,
       class => $class,
       defs  => [],
       fns   => [],
@@ -516,12 +534,7 @@ foreach my $class ( @classes )
     say $c <<~"EOF"; $n = qq{
     SV *${type}__wrap( ${type} $ptr n )
     {
-      HV *h = newHV();
-      SV *RETVAL = sv_2mortal(newRV((SV*)h));
-
-      sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-      sv_bless(RETVAL, gv_stashpv("$class", GV_ADD));
-      return SvREFCNT_inc(RETVAL);
+      return _new_opaque(newSVpvs("$class"), n);
     }
     EOF
     };
@@ -537,6 +550,7 @@ foreach my $class ( @classes )
   say $tm sprintf("%-64s%s", $type, "T_FETCH");
   say $tm sprintf("%-64s%s", "$type *", 'T_FETCHPTR');
   say $tm sprintf("%-64s%s", "$type const *", 'T_FETCHPTR');
+  say $tm sprintf("%-64s%s", "struct $type const *", 'T_FETCHPTR');
   say $tm sprintf("%-64s%s", $class, $typemap);
   #say $tm sprintf("%-64s%s", "$class *", 'T_FETCHPTR');
   #say $tm sprintf("%-64s%s", "$class const *", 'T_FETCHPTR');
@@ -591,7 +605,7 @@ foreach my $cb_name ( sort keys %callbackdefs )
   {
     my ( $key, $value ) = @$pair;
 
-    my ($type) = $key =~ m/^(\w+)/;
+    my ($type) = $key =~ m/^(?:struct\s+)?(\w+)/;
     my $pkg = pkg_name($type);
 
     warn "Unknown type: $type"
@@ -610,7 +624,7 @@ foreach my $cb_name ( sort keys %callbackdefs )
     my $outputmap = $tmx->get_outputmap( ctype => $key );
     $argoff++;
 
-    die "Can't find for ctype $type"
+    die "Can't find for ctype $key"
       if !defined $outputmap;
 
     {
@@ -675,17 +689,20 @@ sub calls_for
 
   my $cast = '';
   my $set_addl
-      = ( $def{typedef} eq 'obj' )
-      ? qq{, newSVpvs("$def{return}")}
-      : "";
+      = ( $def{typedef} eq 'obj' )  ? qq{, newSVpvs("$def{return}")}
+      : ( $def{typedef} eq 'opaque' ) ? qq{, newSVpvs("$def{return}")}
+      :                               "";
 
   my $typedef = $def{typedef};
   if ( $typedef eq 'obj' && $def{is_ptr} )
   {
     $typedef = "${typedef}ptr";
     $cast    = '(void **)';
+  }
 
-    #$typedef = "void";
+  if ( $typedef eq 'opaque' )
+  {
+    $cast    = '(void **)';
   }
 
   my %result = (

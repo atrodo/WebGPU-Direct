@@ -59,6 +59,16 @@ wgpuAdapterRequestDevice(adapter, descriptor, callback, userdata)
 
 
 
+void 
+wgpuAdapterReference(adapter)
+        WGPUAdapter adapter
+
+
+void 
+wgpuAdapterRelease(adapter)
+        WGPUAdapter adapter
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BindGroup	PREFIX = wgpuBindGroup
 
 
@@ -68,6 +78,16 @@ wgpuBindGroupSetLabel(bindGroup, label)
         char const * label
 
 
+void 
+wgpuBindGroupReference(bindGroup)
+        WGPUBindGroup bindGroup
+
+
+void 
+wgpuBindGroupRelease(bindGroup)
+        WGPUBindGroup bindGroup
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BindGroupLayout	PREFIX = wgpuBindGroupLayout
 
 
@@ -75,6 +95,16 @@ void
 wgpuBindGroupLayoutSetLabel(bindGroupLayout, label)
         WGPUBindGroupLayout bindGroupLayout
         char const * label
+
+
+void 
+wgpuBindGroupLayoutReference(bindGroupLayout)
+        WGPUBindGroupLayout bindGroupLayout
+
+
+void 
+wgpuBindGroupLayoutRelease(bindGroupLayout)
+        WGPUBindGroupLayout bindGroupLayout
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Buffer	PREFIX = wgpuBuffer
@@ -109,7 +139,7 @@ wgpuBufferGetSize(buffer)
         WGPUBuffer buffer
 
 
-WGPUBufferUsage 
+WGPUBufferUsageFlags 
 wgpuBufferGetUsage(buffer)
         WGPUBuffer buffer
 
@@ -145,6 +175,16 @@ wgpuBufferUnmap(buffer)
         WGPUBuffer buffer
 
 
+void 
+wgpuBufferReference(buffer)
+        WGPUBuffer buffer
+
+
+void 
+wgpuBufferRelease(buffer)
+        WGPUBuffer buffer
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CommandBuffer	PREFIX = wgpuCommandBuffer
 
 
@@ -152,6 +192,16 @@ void
 wgpuCommandBufferSetLabel(commandBuffer, label)
         WGPUCommandBuffer commandBuffer
         char const * label
+
+
+void 
+wgpuCommandBufferReference(commandBuffer)
+        WGPUCommandBuffer commandBuffer
+
+
+void 
+wgpuCommandBufferRelease(commandBuffer)
+        WGPUCommandBuffer commandBuffer
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CommandEncoder	PREFIX = wgpuCommandEncoder
@@ -257,6 +307,16 @@ wgpuCommandEncoderWriteTimestamp(commandEncoder, querySet, queryIndex)
         uint32_t queryIndex
 
 
+void 
+wgpuCommandEncoderReference(commandEncoder)
+        WGPUCommandEncoder commandEncoder
+
+
+void 
+wgpuCommandEncoderRelease(commandEncoder)
+        WGPUCommandEncoder commandEncoder
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePassEncoder	PREFIX = wgpuComputePassEncoder
 
 
@@ -314,7 +374,7 @@ wgpuComputePassEncoderSetBindGroup(computePassEncoder, groupIndex, group, dynami
         WGPUComputePassEncoder computePassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
-        uint32_t dynamicOffsetCount
+        size_t dynamicOffsetCount
         uint32_t const * dynamicOffsets
 
 
@@ -330,6 +390,16 @@ wgpuComputePassEncoderSetPipeline(computePassEncoder, pipeline)
         WGPUComputePipeline pipeline
 
 
+void 
+wgpuComputePassEncoderReference(computePassEncoder)
+        WGPUComputePassEncoder computePassEncoder
+
+
+void 
+wgpuComputePassEncoderRelease(computePassEncoder)
+        WGPUComputePassEncoder computePassEncoder
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePipeline	PREFIX = wgpuComputePipeline
 
 
@@ -343,6 +413,16 @@ void
 wgpuComputePipelineSetLabel(computePipeline, label)
         WGPUComputePipeline computePipeline
         char const * label
+
+
+void 
+wgpuComputePipelineReference(computePipeline)
+        WGPUComputePipeline computePipeline
+
+
+void 
+wgpuComputePipelineRelease(computePipeline)
+        WGPUComputePipeline computePipeline
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Device	PREFIX = wgpuDevice
@@ -491,7 +571,7 @@ wgpuDeviceHasFeature(device, feature)
         WGPUFeatureName feature
 
 
-bool 
+void 
 wgpuDevicePopErrorScope(device, callback, userdata)
         WGPUDevice device
         CV * callback
@@ -515,23 +595,6 @@ wgpuDevicePushErrorScope(device, filter)
 
 
 void 
-wgpuDeviceSetDeviceLostCallback(device, callback, userdata)
-        WGPUDevice device
-        CV * callback
-        SV * userdata
-    CODE:
-      WGPUDeviceLostCallback c = &WebGPU__Direct__DeviceLostCallback__callback;
-      cb_data c_userdata = {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      wgpuDeviceSetDeviceLostCallback(device, c, &c_userdata);
-
-
-
-void 
 wgpuDeviceSetLabel(device, label)
         WGPUDevice device
         char const * label
@@ -552,6 +615,16 @@ wgpuDeviceSetUncapturedErrorCallback(device, callback, userdata)
       };
       wgpuDeviceSetUncapturedErrorCallback(device, c, &c_userdata);
 
+
+
+void 
+wgpuDeviceReference(device)
+        WGPUDevice device
+
+
+void 
+wgpuDeviceRelease(device)
+        WGPUDevice device
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Instance	PREFIX = wgpuInstance
@@ -586,6 +659,16 @@ wgpuInstanceRequestAdapter(instance, options, callback, userdata)
 
 
 
+void 
+wgpuInstanceReference(instance)
+        WGPUInstance instance
+
+
+void 
+wgpuInstanceRelease(instance)
+        WGPUInstance instance
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::PipelineLayout	PREFIX = wgpuPipelineLayout
 
 
@@ -593,6 +676,16 @@ void
 wgpuPipelineLayoutSetLabel(pipelineLayout, label)
         WGPUPipelineLayout pipelineLayout
         char const * label
+
+
+void 
+wgpuPipelineLayoutReference(pipelineLayout)
+        WGPUPipelineLayout pipelineLayout
+
+
+void 
+wgpuPipelineLayoutRelease(pipelineLayout)
+        WGPUPipelineLayout pipelineLayout
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::QuerySet	PREFIX = wgpuQuerySet
@@ -617,6 +710,16 @@ void
 wgpuQuerySetSetLabel(querySet, label)
         WGPUQuerySet querySet
         char const * label
+
+
+void 
+wgpuQuerySetReference(querySet)
+        WGPUQuerySet querySet
+
+
+void 
+wgpuQuerySetRelease(querySet)
+        WGPUQuerySet querySet
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Queue	PREFIX = wgpuQueue
@@ -648,7 +751,7 @@ wgpuQueueSetLabel(queue, label)
 void 
 wgpuQueueSubmit(queue, commandCount, commands)
         WGPUQueue queue
-        uint32_t commandCount
+        size_t commandCount
         WGPUCommandBuffer const * commands
 
 
@@ -671,7 +774,33 @@ wgpuQueueWriteTexture(queue, destination, data, dataSize, dataLayout, writeSize)
         WGPUExtent3D const * writeSize
 
 
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderBundle	PREFIX = wgpu
+void 
+wgpuQueueReference(queue)
+        WGPUQueue queue
+
+
+void 
+wgpuQueueRelease(queue)
+        WGPUQueue queue
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderBundle	PREFIX = wgpuRenderBundle
+
+
+void 
+wgpuRenderBundleSetLabel(renderBundle, label)
+        WGPURenderBundle renderBundle
+        char const * label
+
+
+void 
+wgpuRenderBundleReference(renderBundle)
+        WGPURenderBundle renderBundle
+
+
+void 
+wgpuRenderBundleRelease(renderBundle)
+        WGPURenderBundle renderBundle
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderBundleEncoder	PREFIX = wgpuRenderBundleEncoder
@@ -738,7 +867,7 @@ wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dyna
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t groupIndex
         WGPUBindGroup group
-        uint32_t dynamicOffsetCount
+        size_t dynamicOffsetCount
         uint32_t const * dynamicOffsets
 
 
@@ -770,6 +899,16 @@ wgpuRenderBundleEncoderSetVertexBuffer(renderBundleEncoder, slot, buffer, offset
         WGPUBuffer buffer
         uint64_t offset
         uint64_t size
+
+
+void 
+wgpuRenderBundleEncoderReference(renderBundleEncoder)
+        WGPURenderBundleEncoder renderBundleEncoder
+
+
+void 
+wgpuRenderBundleEncoderRelease(renderBundleEncoder)
+        WGPURenderBundleEncoder renderBundleEncoder
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassEncoder	PREFIX = wgpuRenderPassEncoder
@@ -839,7 +978,7 @@ wgpuRenderPassEncoderEndPipelineStatisticsQuery(renderPassEncoder)
 void 
 wgpuRenderPassEncoderExecuteBundles(renderPassEncoder, bundleCount, bundles)
         WGPURenderPassEncoder renderPassEncoder
-        uint32_t bundleCount
+        size_t bundleCount
         WGPURenderBundle const * bundles
 
 
@@ -865,7 +1004,7 @@ wgpuRenderPassEncoderSetBindGroup(renderPassEncoder, groupIndex, group, dynamicO
         WGPURenderPassEncoder renderPassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
-        uint32_t dynamicOffsetCount
+        size_t dynamicOffsetCount
         uint32_t const * dynamicOffsets
 
 
@@ -931,6 +1070,16 @@ wgpuRenderPassEncoderSetViewport(renderPassEncoder, x, y, width, height, minDept
         float maxDepth
 
 
+void 
+wgpuRenderPassEncoderReference(renderPassEncoder)
+        WGPURenderPassEncoder renderPassEncoder
+
+
+void 
+wgpuRenderPassEncoderRelease(renderPassEncoder)
+        WGPURenderPassEncoder renderPassEncoder
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPipeline	PREFIX = wgpuRenderPipeline
 
 
@@ -946,6 +1095,16 @@ wgpuRenderPipelineSetLabel(renderPipeline, label)
         char const * label
 
 
+void 
+wgpuRenderPipelineReference(renderPipeline)
+        WGPURenderPipeline renderPipeline
+
+
+void 
+wgpuRenderPipelineRelease(renderPipeline)
+        WGPURenderPipeline renderPipeline
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Sampler	PREFIX = wgpuSampler
 
 
@@ -953,6 +1112,16 @@ void
 wgpuSamplerSetLabel(sampler, label)
         WGPUSampler sampler
         char const * label
+
+
+void 
+wgpuSamplerReference(sampler)
+        WGPUSampler sampler
+
+
+void 
+wgpuSamplerRelease(sampler)
+        WGPUSampler sampler
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ShaderModule	PREFIX = wgpuShaderModule
@@ -981,6 +1150,16 @@ wgpuShaderModuleSetLabel(shaderModule, label)
         char const * label
 
 
+void 
+wgpuShaderModuleReference(shaderModule)
+        WGPUShaderModule shaderModule
+
+
+void 
+wgpuShaderModuleRelease(shaderModule)
+        WGPUShaderModule shaderModule
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Surface	PREFIX = wgpuSurface
 
 
@@ -988,6 +1167,16 @@ WGPUTextureFormat
 wgpuSurfaceGetPreferredFormat(surface, adapter)
         WGPUSurface surface
         WGPUAdapter adapter
+
+
+void 
+wgpuSurfaceReference(surface)
+        WGPUSurface surface
+
+
+void 
+wgpuSurfaceRelease(surface)
+        WGPUSurface surface
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SwapChain	PREFIX = wgpuSwapChain
@@ -1000,6 +1189,16 @@ wgpuSwapChainGetCurrentTextureView(swapChain)
 
 void 
 wgpuSwapChainPresent(swapChain)
+        WGPUSwapChain swapChain
+
+
+void 
+wgpuSwapChainReference(swapChain)
+        WGPUSwapChain swapChain
+
+
+void 
+wgpuSwapChainRelease(swapChain)
         WGPUSwapChain swapChain
 
 
@@ -1047,7 +1246,7 @@ wgpuTextureGetSampleCount(texture)
         WGPUTexture texture
 
 
-WGPUTextureUsage 
+WGPUTextureUsageFlags 
 wgpuTextureGetUsage(texture)
         WGPUTexture texture
 
@@ -1063,6 +1262,16 @@ wgpuTextureSetLabel(texture, label)
         char const * label
 
 
+void 
+wgpuTextureReference(texture)
+        WGPUTexture texture
+
+
+void 
+wgpuTextureRelease(texture)
+        WGPUTexture texture
+
+
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::TextureView	PREFIX = wgpuTextureView
 
 
@@ -1070,6 +1279,46 @@ void
 wgpuTextureViewSetLabel(textureView, label)
         WGPUTextureView textureView
         char const * label
+
+
+void 
+wgpuTextureViewReference(textureView)
+        WGPUTextureView textureView
+
+
+void 
+wgpuTextureViewRelease(textureView)
+        WGPUTextureView textureView
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BufferMapCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CompilationInfoCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CreateComputePipelineAsyncCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CreateRenderPipelineAsyncCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::DeviceLostCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ErrorCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Proc	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::QueueWorkDoneCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RequestAdapterCallback	PREFIX = wgpu
+
+
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RequestDeviceCallback	PREFIX = wgpu
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ChainedStruct	PREFIX = wgpu
@@ -1449,17 +1698,17 @@ binding(THIS, value = NO_INIT)
 SV *
 buffer(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "buffer", 6,  &n->buffer );
+        RETVAL =   _find_set_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "buffer", 6,  &n->buffer , value);
+              _store_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"), value);
 
         }
     OUTPUT:
@@ -1506,17 +1755,17 @@ size(THIS, value = NO_INIT)
 SV *
 sampler(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "sampler", 7,  &n->sampler );
+        RETVAL =   _find_set_opaque(aTHX_ h, "sampler", 7, (void **) &n->sampler , newSVpvs("WebGPU::Direct::Sampler"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "sampler", 7,  &n->sampler , value);
+              _store_opaque(aTHX_ h, "sampler", 7, (void **) &n->sampler , newSVpvs("WebGPU::Direct::Sampler"), value);
 
         }
     OUTPUT:
@@ -1525,17 +1774,17 @@ sampler(THIS, value = NO_INIT)
 SV *
 textureView(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupEntry THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "textureView", 11,  &n->textureView );
+        RETVAL =   _find_set_opaque(aTHX_ h, "textureView", 11, (void **) &n->textureView , newSVpvs("WebGPU::Direct::TextureView"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "textureView", 11,  &n->textureView , value);
+              _store_opaque(aTHX_ h, "textureView", 11, (void **) &n->textureView , newSVpvs("WebGPU::Direct::TextureView"), value);
 
         }
     OUTPUT:
@@ -2346,17 +2595,17 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePassTimestampWrite	PREF
 SV *
 querySet(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePassTimestampWrite THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUComputePassTimestampWrite *n = (WGPUComputePassTimestampWrite *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "querySet", 8,  &n->querySet );
+        RETVAL =   _find_set_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "querySet", 8,  &n->querySet , value);
+              _store_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"), value);
 
         }
     OUTPUT:
@@ -3504,12 +3753,12 @@ bindGroupLayoutCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount , value);
+              _store_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount , value);
 
         }
     OUTPUT:
@@ -3523,14 +3772,12 @@ bindGroupLayouts(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   // "bindGroupLayouts" is a ptr type WGPUBindGroupLayout, and that's not quite right yet, using opaque
-  _find_set_void(aTHX_ h, "bindGroupLayouts", 16,  &n->bindGroupLayouts );
+        RETVAL =   _find_set_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts , newSVpvs("WebGPU::Direct::BindGroupLayout"));
 ;
 
         if (items > 1)
         {
-              // "bindGroupLayouts" is a ptr type WGPUBindGroupLayout, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "bindGroupLayouts", 16,  &n->bindGroupLayouts , value);
+              _store_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts , newSVpvs("WebGPU::Direct::BindGroupLayout"), value);
 
         }
     OUTPUT:
@@ -3863,12 +4110,12 @@ pipelineStatisticsCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUQuerySetDescriptor *n = (WGPUQuerySetDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount , value);
+              _store_size_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount , value);
 
         }
     OUTPUT:
@@ -4083,12 +4330,12 @@ colorFormatsCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderBundleEncoderDescriptor *n = (WGPURenderBundleEncoderDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount , value);
+              _store_size_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount , value);
 
         }
     OUTPUT:
@@ -4223,17 +4470,17 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassDepthStencilAttachme
 SV *
 view(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDepthStencilAttachment THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassDepthStencilAttachment *n = (WGPURenderPassDepthStencilAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "view", 4,  &n->view );
+        RETVAL =   _find_set_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "view", 4,  &n->view , value);
+              _store_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"), value);
 
         }
     OUTPUT:
@@ -4492,17 +4739,17 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassTimestampWrite	PREFI
 SV *
 querySet(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassTimestampWrite THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassTimestampWrite *n = (WGPURenderPassTimestampWrite *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "querySet", 8,  &n->querySet );
+        RETVAL =   _find_set_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "querySet", 8,  &n->querySet , value);
+              _store_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"), value);
 
         }
     OUTPUT:
@@ -4597,17 +4844,17 @@ nextInChain(THIS, value = NO_INIT)
 SV *
 compatibleSurface(THIS, value = NO_INIT)
         WebGPU::Direct::RequestAdapterOptions THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURequestAdapterOptions *n = (WGPURequestAdapterOptions *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "compatibleSurface", 17,  &n->compatibleSurface );
+        RETVAL =   _find_set_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface , newSVpvs("WebGPU::Direct::Surface"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "compatibleSurface", 17,  &n->compatibleSurface , value);
+              _store_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface , newSVpvs("WebGPU::Direct::Surface"), value);
 
         }
     OUTPUT:
@@ -4627,6 +4874,25 @@ powerPreference(THIS, value = NO_INIT)
         if (items > 1)
         {
               _store_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference , value);
+
+        }
+    OUTPUT:
+        RETVAL
+
+SV *
+backendType(THIS, value = NO_INIT)
+        WebGPU::Direct::RequestAdapterOptions THIS
+        SV * value
+    PROTOTYPE: $;$
+    CODE:
+        HV *h = (HV *)SvRV(THIS);
+        WGPURequestAdapterOptions *n = (WGPURequestAdapterOptions *) _get_struct_ptr(aTHX, THIS, NULL);
+        RETVAL =   _find_set_enum(aTHX_ h, "backendType", 11,  &n->backendType );
+;
+
+        if (items > 1)
+        {
+              _store_enum(aTHX_ h, "backendType", 11,  &n->backendType , value);
 
         }
     OUTPUT:
@@ -5045,17 +5311,17 @@ entryPoint(THIS, value = NO_INIT)
 SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::ShaderModuleCompilationHint THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUShaderModuleCompilationHint *n = (WGPUShaderModuleCompilationHint *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
+        RETVAL =   _find_set_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
+              _store_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"), value);
 
         }
     OUTPUT:
@@ -6800,17 +7066,17 @@ label(THIS, value = NO_INIT)
 SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::BindGroupDescriptor THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupDescriptor *n = (WGPUBindGroupDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
+        RETVAL =   _find_set_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::BindGroupLayout"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
+              _store_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::BindGroupLayout"), value);
 
         }
     OUTPUT:
@@ -6824,12 +7090,12 @@ entryCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupDescriptor *n = (WGPUBindGroupDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "entryCount", 10,  &n->entryCount , value);
+              _store_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount , value);
 
         }
     OUTPUT:
@@ -7139,12 +7405,12 @@ messageCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUCompilationInfo *n = (WGPUCompilationInfo *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "messageCount", 12,  &n->messageCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "messageCount", 12,  &n->messageCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "messageCount", 12,  &n->messageCount , value);
+              _store_size_t(aTHX_ h, "messageCount", 12,  &n->messageCount , value);
 
         }
     OUTPUT:
@@ -7244,12 +7510,12 @@ timestampWriteCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUComputePassDescriptor *n = (WGPUComputePassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount , value);
+              _store_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount , value);
 
         }
     OUTPUT:
@@ -7582,17 +7848,17 @@ layout(THIS, value = NO_INIT)
 SV *
 buffer(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyBuffer THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUImageCopyBuffer *n = (WGPUImageCopyBuffer *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "buffer", 6,  &n->buffer );
+        RETVAL =   _find_set_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "buffer", 6,  &n->buffer , value);
+              _store_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"), value);
 
         }
     OUTPUT:
@@ -7649,17 +7915,17 @@ nextInChain(THIS, value = NO_INIT)
 SV *
 texture(THIS, value = NO_INIT)
         WebGPU::Direct::ImageCopyTexture THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUImageCopyTexture *n = (WGPUImageCopyTexture *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "texture", 7,  &n->texture );
+        RETVAL =   _find_set_opaque(aTHX_ h, "texture", 7, (void **) &n->texture , newSVpvs("WebGPU::Direct::Texture"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "texture", 7,  &n->texture , value);
+              _store_opaque(aTHX_ h, "texture", 7, (void **) &n->texture , newSVpvs("WebGPU::Direct::Texture"), value);
 
         }
     OUTPUT:
@@ -7773,17 +8039,17 @@ nextInChain(THIS, value = NO_INIT)
 SV *
 module(THIS, value = NO_INIT)
         WebGPU::Direct::ProgrammableStageDescriptor THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUProgrammableStageDescriptor *n = (WGPUProgrammableStageDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module );
+        RETVAL =   _find_set_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "module", 6,  &n->module , value);
+              _store_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"), value);
 
         }
     OUTPUT:
@@ -7816,12 +8082,12 @@ constantCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUProgrammableStageDescriptor *n = (WGPUProgrammableStageDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
+              _store_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
 
         }
     OUTPUT:
@@ -7878,17 +8144,17 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassColorAttachment	PREF
 SV *
 view(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassColorAttachment THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "view", 4,  &n->view );
+        RETVAL =   _find_set_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "view", 4,  &n->view , value);
+              _store_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"), value);
 
         }
     OUTPUT:
@@ -7897,17 +8163,17 @@ view(THIS, value = NO_INIT)
 SV *
 resolveTarget(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassColorAttachment THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "resolveTarget", 13,  &n->resolveTarget );
+        RETVAL =   _find_set_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget , newSVpvs("WebGPU::Direct::TextureView"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "resolveTarget", 13,  &n->resolveTarget , value);
+              _store_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget , newSVpvs("WebGPU::Direct::TextureView"), value);
 
         }
     OUTPUT:
@@ -8112,12 +8378,12 @@ hintCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "hintCount", 9,  &n->hintCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "hintCount", 9,  &n->hintCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "hintCount", 9,  &n->hintCount , value);
+              _store_size_t(aTHX_ h, "hintCount", 9,  &n->hintCount , value);
 
         }
     OUTPUT:
@@ -8398,12 +8664,12 @@ viewFormatCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUTextureDescriptor *n = (WGPUTextureDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount , value);
+              _store_size_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount , value);
 
         }
     OUTPUT:
@@ -8505,12 +8771,12 @@ attributeCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUVertexBufferLayout *n = (WGPUVertexBufferLayout *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount , value);
+              _store_size_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount , value);
 
         }
     OUTPUT:
@@ -8610,12 +8876,12 @@ entryCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupLayoutDescriptor *n = (WGPUBindGroupLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "entryCount", 10,  &n->entryCount , value);
+              _store_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount , value);
 
         }
     OUTPUT:
@@ -8815,17 +9081,17 @@ label(THIS, value = NO_INIT)
 SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::ComputePipelineDescriptor THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUComputePipelineDescriptor *n = (WGPUComputePipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
+        RETVAL =   _find_set_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
+              _store_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"), value);
 
         }
     OUTPUT:
@@ -8925,12 +9191,12 @@ requiredFeaturesCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount , value);
+              _store_size_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount , value);
 
         }
     OUTPUT:
@@ -8990,6 +9256,46 @@ defaultQueue(THIS, value = NO_INIT)
         if (items > 1)
         {
               _store_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue , newSVpvs("WebGPU::Direct::QueueDescriptor"), value);
+
+        }
+    OUTPUT:
+        RETVAL
+
+SV *
+deviceLostCallback(THIS, value = NO_INIT)
+        WebGPU::Direct::DeviceDescriptor THIS
+        void * value
+    PROTOTYPE: $;$
+    CODE:
+        HV *h = (HV *)SvRV(THIS);
+        WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+        RETVAL =   _find_set_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback );
+;
+
+        if (items > 1)
+        {
+              _store_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback , value);
+
+        }
+    OUTPUT:
+        RETVAL
+
+SV *
+deviceLostUserdata(THIS, value = NO_INIT)
+        WebGPU::Direct::DeviceDescriptor THIS
+        SV * value
+    PROTOTYPE: $;$
+    CODE:
+        HV *h = (HV *)SvRV(THIS);
+        WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+        RETVAL =   // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
+  _find_set_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata );
+;
+
+        if (items > 1)
+        {
+              // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
+  _store_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata , value);
 
         }
     OUTPUT:
@@ -9070,12 +9376,12 @@ colorAttachmentCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount , value);
+              _store_size_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount , value);
 
         }
     OUTPUT:
@@ -9122,17 +9428,17 @@ depthStencilAttachment(THIS, value = NO_INIT)
 SV *
 occlusionQuerySet(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPassDescriptor THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "occlusionQuerySet", 17,  &n->occlusionQuerySet );
+        RETVAL =   _find_set_opaque(aTHX_ h, "occlusionQuerySet", 17, (void **) &n->occlusionQuerySet , newSVpvs("WebGPU::Direct::QuerySet"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "occlusionQuerySet", 17,  &n->occlusionQuerySet , value);
+              _store_opaque(aTHX_ h, "occlusionQuerySet", 17, (void **) &n->occlusionQuerySet , newSVpvs("WebGPU::Direct::QuerySet"), value);
 
         }
     OUTPUT:
@@ -9146,12 +9452,12 @@ timestampWriteCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount , value);
+              _store_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount , value);
 
         }
     OUTPUT:
@@ -9227,17 +9533,17 @@ nextInChain(THIS, value = NO_INIT)
 SV *
 module(THIS, value = NO_INIT)
         WebGPU::Direct::VertexState THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module );
+        RETVAL =   _find_set_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "module", 6,  &n->module , value);
+              _store_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"), value);
 
         }
     OUTPUT:
@@ -9270,12 +9576,12 @@ constantCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
+              _store_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
 
         }
     OUTPUT:
@@ -9308,12 +9614,12 @@ bufferCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount , value);
+              _store_size_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount , value);
 
         }
     OUTPUT:
@@ -9389,17 +9695,17 @@ nextInChain(THIS, value = NO_INIT)
 SV *
 module(THIS, value = NO_INIT)
         WebGPU::Direct::FragmentState THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "module", 6,  &n->module );
+        RETVAL =   _find_set_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "module", 6,  &n->module , value);
+              _store_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"), value);
 
         }
     OUTPUT:
@@ -9432,12 +9738,12 @@ constantCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
+              _store_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount , value);
 
         }
     OUTPUT:
@@ -9470,12 +9776,12 @@ targetCount(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_uint32_t(aTHX_ h, "targetCount", 11,  &n->targetCount );
+        RETVAL =   _find_set_size_t(aTHX_ h, "targetCount", 11,  &n->targetCount );
 ;
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "targetCount", 11,  &n->targetCount , value);
+              _store_size_t(aTHX_ h, "targetCount", 11,  &n->targetCount , value);
 
         }
     OUTPUT:
@@ -9570,17 +9876,17 @@ label(THIS, value = NO_INIT)
 SV *
 layout(THIS, value = NO_INIT)
         WebGPU::Direct::RenderPipelineDescriptor THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPURenderPipelineDescriptor *n = (WGPURenderPipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_set_void(aTHX_ h, "layout", 6,  &n->layout );
+        RETVAL =   _find_set_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
 ;
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "layout", 6,  &n->layout , value);
+              _store_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"), value);
 
         }
     OUTPUT:
@@ -9706,34 +10012,4 @@ bytes(THIS)
         RETVAL = newSVpvn((const char *const) n, sizeof(WGPURenderPipelineDescriptor) );
     OUTPUT:
         RETVAL
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BufferMapCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CompilationInfoCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CreateComputePipelineAsyncCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CreateRenderPipelineAsyncCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::DeviceLostCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ErrorCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Proc	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::QueueWorkDoneCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RequestAdapterCallback	PREFIX = wgpu
-
-
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RequestDeviceCallback	PREFIX = wgpu
 

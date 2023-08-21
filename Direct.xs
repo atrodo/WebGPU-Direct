@@ -8,6 +8,11 @@
 
 void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
 {
+  if ( !SvOK(obj) )
+  {
+    return NULL;
+  }
+
   if ( !sv_isobject(obj) )
   {
     croak("%s is not an object", SvPVbyte_nolen(obj));
@@ -16,7 +21,7 @@ void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
   {
     if (!sv_derived_from(obj, SvPVbyte_nolen(base)))
     {
-      croak("%s is not of type %s", SvPVbyte_nolen(obj), SvPVbyte_nolen(base));
+      croak("_get_struct_ptr: %s is not of type %s", SvPVbyte_nolen(obj), SvPVbyte_nolen(base));
     }
   }
 
@@ -93,6 +98,21 @@ SV *_new_with( SV *CLASS, void *n)
   }
 
   SV *h = (SV *)newHV();
+  SV *RETVAL = sv_2mortal(newRV(h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv(SvPV_nolen(CLASS), GV_ADD));
+  return SvREFCNT_inc(RETVAL);
+}
+
+SV *_new_opaque( SV *CLASS, void *n)
+{
+  if ( n == NULL )
+  {
+    return SvREFCNT_inc(newSV(0));
+  }
+
+  SV *h = newSViv( *(int *)n);
   SV *RETVAL = sv_2mortal(newRV(h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
@@ -228,7 +248,7 @@ SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base, SV *value)
 {
   SvREFCNT_inc(value);
-  SV **f = hv_store(h, "next", 4, value, 0);
+  SV **f = hv_store(h, key, klen, value, 0);
 
   if ( !f )
   {
@@ -383,7 +403,139 @@ SV *_find_set_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* b
 }
 
 /* ------------------------------------------------------------------
-   void (Impl)
+   opaque (Impl)
+   ------------------------------------------------------------------ */
+
+void _set_opaque(pTHX_ SV *new_value, void **field, SV *base)
+{
+  if ( !base )
+  {
+    croak("Could not find requirement base for %s", SvPV_nolen(new_value));
+  }
+
+  void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
+  *field = v;
+}
+
+int _mg_set_opaque(pTHX_ SV* sv, MAGIC* mg)
+{
+  SV *base = mg->mg_obj;
+  _set_opaque(aTHX_ sv, (void *) mg->mg_ptr, base);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_opaque = {
+  .svt_set = _mg_set_opaque
+};
+
+SV *_unpack_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base)
+{
+  SV **f = NULL;
+
+  if ( field == NULL )
+  {
+    croak("The field value for void must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  f = hv_fetch(h, key, klen, 1);
+
+  if ( !( f && *f ) )
+  {
+    croak("Could not save new value for %s", key);
+  }
+
+  void *n = NULL;
+  if ( sv_isobject(*f) )
+  {
+    n = _get_struct_ptr(aTHX_ *f, base);
+  }
+
+  if ( n == NULL || n != *field )
+  {
+    SV *val = _new_opaque(base, *field);
+    SvREFCNT_inc(val);
+    f = hv_store(h, key, klen, val, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
+  }
+
+  return *f;
+}
+
+SV *_pack_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
+{
+  SV **f;
+  SV *fp;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _pack_opaque must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_opaque(aTHX_ h, key, klen, field, base);
+  }
+
+  // Save the new value to the field
+  _set_opaque(aTHX_ *f, field, base);
+  SvREFCNT_inc(*f);
+
+  return *f;
+}
+
+SV *_find_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
+{
+  SV **f;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _find_opaque must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_opaque(aTHX_ h, key, klen, field, base);
+  }
+
+  return *f;
+}
+
+void _store_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base, SV *value)
+{
+  SvREFCNT_inc(value);
+  SV **f = hv_store(h, key, klen, value, 0);
+
+  if ( !f )
+  {
+    SvREFCNT_dec(value);
+    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+  }
+
+  _pack_opaque(aTHX_ h, key, klen, field, base);
+
+  return;
+}
+
+SV *_find_set_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base)
+{
+  return _pack_opaque(aTHX_ h, key, klen, field, base);
+}
+
+/* ------------------------------------------------------------------
+   void
    ------------------------------------------------------------------ */
 
 void _set_void(pTHX_ SV *new_value, void *field)
@@ -490,7 +642,7 @@ SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
 void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *value)
 {
   SvREFCNT_inc(value);
-  SV **f = hv_store(h, "next", 4, value, 0);
+  SV **f = hv_store(h, key, klen, value, 0);
 
   if ( !f )
   {
@@ -507,7 +659,6 @@ SV *_find_set_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
 {
   return _pack_void(aTHX_ h, key, klen, field);
 }
-
 /* Integer and Floating types */ 
 
 #define _setup_x(type, ft, constr) \
@@ -685,6 +836,18 @@ void _set_int32_t(pTHX_ SV *new_value, I32 *field)
 }
 
 _setup_x(int32_t, int32_t *, newSViv(*field));
+
+/* ------------------------------------------------------------------
+   size_t
+   ------------------------------------------------------------------ */
+
+void _set_size_t(pTHX_ SV *new_value, size_t *field)
+{
+  Size_t v = (Size_t)SvIV(new_value);
+  *field = v;
+}
+
+_setup_x(size_t, size_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
    END
