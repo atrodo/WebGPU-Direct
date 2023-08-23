@@ -12,47 +12,56 @@
 
 bool x11_window(WGPUSurfaceDescriptorFromXlibWindow *result, int xw, int yh)
 {
+  Display *dis;
+  Window   win;
+
+
   Zero((void*)result, 1, WGPUSurfaceDescriptorFromXlibWindow);
-  xw = xw || 640;
-  yh = yh || 360;
+  xw = xw ? xw : 640;
+  yh = yh ? yh : 360;
 
-  result->chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow;
-  result->display = XOpenDisplay(NULL);
+  dis = XOpenDisplay(NULL);
 
-  if (!result->display)
+  if (!dis)
   {
     return false;
   }
 
-  int scrnum = DefaultScreen( result->display );
-  result->window = XCreateSimpleWindow(result->display, DefaultRootWindow(result->display),
-			    10, 10,
-			    xw, yh,
-			    1, 0,
-			    0
-			   );
-
-  Window root = RootWindow( result->display, scrnum );
+  int scr = DefaultScreen( dis );
+  Window root = RootWindow( dis, scr );
 
   if ( !root )
   {
-    XCloseDisplay( result->display );
+    XCloseDisplay( dis );
     return false;
   }
 
-  XMapWindow( result->display, result->window );
-  result->chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow;
+  win = XCreateSimpleWindow(
+        dis,
+        root,
+        10, 10,
+        xw, yh,
+        1, 0,
+        0
+  );
 
-  XSelectInput(result->display, result->window, ExposureMask | KeyPressMask);
+  XSelectInput(dis, win, ExposureMask);
+  XMapWindow( dis, win);
+
   for (int i = 0; i < 10; i++)
   {
     XEvent e = {};
-    XNextEvent(result->display, &e);
+    XNextEvent(dis, &e);
     if (e.type == Expose) {
-      XFillRectangle(result->display, result->window, DefaultGC(result->display, scrnum), 20, 20, 10, 10);
       break;
     }
   }
+
+  XSelectInput(dis, win, 0);
+
+  result->chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow;
+  result->display = dis;
+  result->window  = win;
 
   return true;
 }
