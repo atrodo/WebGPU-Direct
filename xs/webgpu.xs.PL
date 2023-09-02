@@ -700,6 +700,11 @@ sub calls_for
     $cast    = '(void **)';
   }
 
+  if ( $typedef eq 'obj' && !$def{is_ptr} )
+  {
+    $set_addl = qq{, sizeof(n->$def{key})$set_addl};
+  }
+
   if ( $typedef eq 'opaque' )
   {
     $cast    = '(void **)';

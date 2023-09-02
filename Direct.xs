@@ -135,21 +135,26 @@ SV *_new_opaque( SV *CLASS, void *n)
    obj
    ------------------------------------------------------------------ */
 
-void _set_obj(pTHX_ SV *new_value, void *field, SV *base)
+void _set_obj(pTHX_ SV *new_value, void *field, size_t size, SV *base)
 {
   if ( !base )
   {
     croak("Could not find requirement base for %s", SvPV_nolen(new_value));
   }
 
+  if ( !size )
+  {
+    croak("Could not find size for %s", SvPV_nolen(new_value));
+  }
+
   void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
-  field = v;
+  Copy(v, field, size, char);
 }
 
 int _mg_set_obj(pTHX_ SV* sv, MAGIC* mg)
 {
   SV *base = mg->mg_obj;
-  _set_obj(aTHX_ sv, (void *) mg->mg_ptr, base);
+  _set_obj(aTHX_ sv, (void *) mg->mg_ptr, 0, base);
   return 0;
 }
 
@@ -157,7 +162,7 @@ STATIC MGVTBL _mg_vtbl_obj = {
   .svt_set = _mg_set_obj
 };
 
-SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
+SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV* base)
 {
   SV **f = NULL;
 
@@ -198,7 +203,7 @@ SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
   return *f;
 }
 
-SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
+SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV *base)
 {
   SV **f;
   SV *fp;
@@ -214,17 +219,25 @@ SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   // If the field is not found, create a default one
   if ( !( f && *f ) )
   {
-    return _unpack_obj(aTHX_ h, key, klen, field, base);
+    return _unpack_obj(aTHX_ h, key, klen, field, size, base);
   }
 
   // Save the new value to the field
-  _set_obj(aTHX_ *f, field, base);
+  _set_obj(aTHX_ *f, field, size, base);
   SvREFCNT_inc(*f);
+
+  // If the struct ptrs differ, build a new object to store
+  // Its a bit of action at a distance, but it reflects what the C
+  // level would be doing
+  if ( SvOK(*f) && _get_struct_ptr(aTHX_ *f, base) != field )
+  {
+    return _unpack_obj(aTHX_ h, key, klen, field, size, base);
+  }
 
   return *f;
 }
 
-SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
+SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV *base)
 {
   SV **f;
 
@@ -239,13 +252,13 @@ SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   // If the field is not found, create a default one
   if ( !( f && *f ) )
   {
-    return _unpack_obj(aTHX_ h, key, klen, field, base);
+    return _unpack_obj(aTHX_ h, key, klen, field, size, base);
   }
 
   return *f;
 }
 
-void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base, SV *value)
+void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV* base, SV *value)
 {
   SvREFCNT_inc(value);
   SV **f = hv_store(h, key, klen, value, 0);
@@ -256,14 +269,14 @@ void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base, S
     croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
   }
 
-  _pack_obj(aTHX_ h, key, klen, field, base);
+  _pack_obj(aTHX_ h, key, klen, field, size, base);
 
   return;
 }
 
-SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, SV* base)
+SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV* base)
 {
-  return _pack_obj(aTHX_ h, key, klen, field, base);
+  return _pack_obj(aTHX_ h, key, klen, field, size, base);
 }
 
 /* ------------------------------------------------------------------
