@@ -90,6 +90,30 @@ void _unpack( SV *THIS )
   return;
 }
 
+void _pack( SV *THIS )
+{
+  // Do not attempt to call unpack on undef
+  if ( !SvOK(THIS) )
+  {
+    return;
+  }
+
+  dSP;
+  PUSHMARK(SP);
+  EXTEND(SP, 1);
+  PUSHs(THIS);
+  PUTBACK;
+
+  int count = call_method("pack", G_SCALAR);
+
+  if (count != 1)
+  {
+    croak("Could not call pack on %s\n", SvPV_nolen(THIS));
+  }
+
+  return;
+}
+
 SV *_new_with( SV *CLASS, void *n)
 {
   if ( n == NULL )
@@ -127,7 +151,6 @@ SV *_new_opaque( SV *CLASS, void *n)
       pack     => 'Sets the struct from the perl hash',
       find     => '',
       store    => 'Sets the perl hash and packs the object',
-      find_set => 'Old Alias for pack',
     }
    ------------------------------------------------------------------ */
 
@@ -274,11 +297,6 @@ void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size
   return;
 }
 
-SV *_find_set_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV* base)
-{
-  return _pack_obj(aTHX_ h, key, klen, field, size, base);
-}
-
 /* ------------------------------------------------------------------
    objptr
    ------------------------------------------------------------------ */
@@ -370,6 +388,8 @@ SV *_pack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
   _set_objptr(aTHX_ *f, field, base);
   SvREFCNT_inc(*f);
 
+  _pack(*f);
+
   return *f;
 }
 
@@ -408,11 +428,6 @@ void _store_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
   _pack_objptr(aTHX_ h, key, klen, field, base);
 
   return;
-}
-
-SV *_find_set_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base)
-{
-  return _pack_objptr(aTHX_ h, key, klen, field, base);
 }
 
 /* ------------------------------------------------------------------
@@ -542,11 +557,6 @@ void _store_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
   return;
 }
 
-SV *_find_set_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base)
-{
-  return _pack_opaque(aTHX_ h, key, klen, field, base);
-}
-
 /* ------------------------------------------------------------------
    void
    ------------------------------------------------------------------ */
@@ -668,10 +678,6 @@ void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *value)
   return;
 }
 
-SV *_find_set_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
-{
-  return _pack_void(aTHX_ h, key, klen, field);
-}
 /* Integer and Floating types */ 
 
 #define _setup_x(type, ft, constr) \
@@ -721,6 +727,22 @@ SV *_pack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)              
   return *f;                                                                    \
 }                                                                               \
                                                                                 \
+SV *_find_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)              \
+{                                                                               \
+  SV **f;                                                                       \
+                                                                                \
+  /* Find the field from the hash */                                            \
+  f = hv_fetch(h, key, klen, 0);                                                \
+                                                                                \
+  /* If the field is not found, create a default one */                         \
+  if ( !( f && *f ) )                                                           \
+  {                                                                             \
+    return _unpack_##type(aTHX_ h, key, klen, field);                           \
+  }                                                                             \
+                                                                                \
+  return *f;                                                                    \
+}                                                                               \
+                                                                                \
 void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value)  \
 {                                                                               \
   SvREFCNT_inc(value);                                                          \
@@ -737,10 +759,7 @@ void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value) 
   return;                                                                       \
 }                                                                               \
                                                                                 \
-SV *_find_set_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)          \
-{                                                                               \
-  return _pack_##type(aTHX_ h, key, klen, field);                               \
-}                                                                               \
+
 
 /* ------------------------------------------------------------------
    str

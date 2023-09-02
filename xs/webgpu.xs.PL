@@ -404,7 +404,7 @@ foreach my $class ( @classes )
   {
     my %def = %$_;
     my %calls = calls_for(%$_);
-    $packs .= $calls{find_set};#qq{  _find_set_$typedef(aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl);\n};
+    $packs .= $calls{pack};
     $unpacks .= $calls{unpack};#qq{  _unpack_$typedef(aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl);\n};
 
     say_set_fn($class, $type, %def);
@@ -419,9 +419,9 @@ foreach my $class ( @classes )
               my \$class = shift;
               die "\$class does not inherit from $class\\n"
                 if !\$class->isa("$class");
-              \$class = CORE::ref(\$class) ? CORE::ref(\$class) : \$class;
-              my \$result = bless( { ref( \$_[0] ) eq ref {} ? %\$_[0] : \@_ }, \$class );
-              \$result->unpack;
+              \$class = ref(\$class) ? ref(\$class) : \$class;
+              my \$result = bless( { ref( \$_[0] ) eq ref {} ? %{\$_[0]} : \@_ }, \$class );
+              \$result->pack;
               return \$result;
           }
       }
@@ -715,7 +715,6 @@ sub calls_for
     unpack   => '',
     store    => '',
     find     => '',
-    find_set => '',
     set      => '',
     typedef  => undef,
   );
@@ -729,7 +728,6 @@ sub calls_for
     $result{unpack}   .= $warning;
     $result{store}    .= $warning;
     $result{find}     .= $warning;
-    $result{find_set} .= $warning;
     $result{set}      .= $warning;
 
     $typedef  = 'void';
@@ -747,7 +745,6 @@ sub calls_for
   $result{unpack}   .= qq{  _unpack_$typedef($call);\n};
   $result{store}    .= qq{  _store_$typedef($call, value);\n};
   $result{find}     .= qq{  _find_$typedef($call);\n};
-  $result{find_set} .= qq{  _find_set_$typedef($call);\n};
   $result{set}      .= qq{  _set_$typedef($set_call);\n};
 
   $result{typedef} = $typedef;
@@ -763,7 +760,6 @@ sub say_set_fn
 
   my %calls = calls_for(%def);
 
-  # TODO: this is causing a compile error because return type for ptrs disagreew ith the find_set call
   my $typedef = $calls{typedef};
   my $ret_type = $def{return};
   my $is_ptr = ( $def{ctype} ne 'char' && $def{is_ptr} );
@@ -788,11 +784,15 @@ sub say_set_fn
         CODE:
             HV *h = (HV *)SvRV(THIS);
             $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
-            RETVAL = $calls{find_set};
+            RETVAL = $calls{find};
 
             if (items > 1)
             {
                 $calls{store}
+            }
+            else
+            {
+                SvREFCNT_inc(RETVAL);
             }
         OUTPUT:
             RETVAL
