@@ -270,9 +270,9 @@ package WebGPU::Direct::ChainedStruct {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ChainedStruct\n"
           if !$class->isa("WebGPU::Direct::ChainedStruct");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -283,9 +283,9 @@ package WebGPU::Direct::ChainedStructOut {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ChainedStructOut\n"
           if !$class->isa("WebGPU::Direct::ChainedStructOut");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -296,9 +296,9 @@ package WebGPU::Direct::AdapterProperties {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::AdapterProperties\n"
           if !$class->isa("WebGPU::Direct::AdapterProperties");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -309,9 +309,9 @@ package WebGPU::Direct::BindGroupEntry {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupEntry\n"
           if !$class->isa("WebGPU::Direct::BindGroupEntry");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -322,9 +322,9 @@ package WebGPU::Direct::BlendComponent {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BlendComponent\n"
           if !$class->isa("WebGPU::Direct::BlendComponent");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -335,9 +335,9 @@ package WebGPU::Direct::BufferBindingLayout {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BufferBindingLayout\n"
           if !$class->isa("WebGPU::Direct::BufferBindingLayout");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -348,9 +348,9 @@ package WebGPU::Direct::BufferDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BufferDescriptor\n"
           if !$class->isa("WebGPU::Direct::BufferDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -361,9 +361,9 @@ package WebGPU::Direct::Color {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Color\n"
           if !$class->isa("WebGPU::Direct::Color");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -374,9 +374,9 @@ package WebGPU::Direct::CommandBufferDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CommandBufferDescriptor\n"
           if !$class->isa("WebGPU::Direct::CommandBufferDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -387,9 +387,9 @@ package WebGPU::Direct::CommandEncoderDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CommandEncoderDescriptor\n"
           if !$class->isa("WebGPU::Direct::CommandEncoderDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -400,9 +400,9 @@ package WebGPU::Direct::CompilationMessage {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CompilationMessage\n"
           if !$class->isa("WebGPU::Direct::CompilationMessage");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -413,9 +413,9 @@ package WebGPU::Direct::ComputePassTimestampWrite {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ComputePassTimestampWrite\n"
           if !$class->isa("WebGPU::Direct::ComputePassTimestampWrite");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -426,9 +426,9 @@ package WebGPU::Direct::ConstantEntry {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ConstantEntry\n"
           if !$class->isa("WebGPU::Direct::ConstantEntry");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -439,9 +439,9 @@ package WebGPU::Direct::Extent3D {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Extent3D\n"
           if !$class->isa("WebGPU::Direct::Extent3D");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -452,9 +452,9 @@ package WebGPU::Direct::InstanceDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::InstanceDescriptor\n"
           if !$class->isa("WebGPU::Direct::InstanceDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -465,9 +465,9 @@ package WebGPU::Direct::Limits {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Limits\n"
           if !$class->isa("WebGPU::Direct::Limits");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -478,9 +478,9 @@ package WebGPU::Direct::MultisampleState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::MultisampleState\n"
           if !$class->isa("WebGPU::Direct::MultisampleState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -491,9 +491,9 @@ package WebGPU::Direct::Origin3D {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Origin3D\n"
           if !$class->isa("WebGPU::Direct::Origin3D");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -504,9 +504,9 @@ package WebGPU::Direct::PipelineLayoutDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::PipelineLayoutDescriptor\n"
           if !$class->isa("WebGPU::Direct::PipelineLayoutDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -517,9 +517,9 @@ package WebGPU::Direct::PrimitiveDepthClipControl {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::PrimitiveDepthClipControl\n"
           if !$class->isa("WebGPU::Direct::PrimitiveDepthClipControl");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -530,9 +530,9 @@ package WebGPU::Direct::PrimitiveState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::PrimitiveState\n"
           if !$class->isa("WebGPU::Direct::PrimitiveState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -543,9 +543,9 @@ package WebGPU::Direct::QuerySetDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::QuerySetDescriptor\n"
           if !$class->isa("WebGPU::Direct::QuerySetDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -556,9 +556,9 @@ package WebGPU::Direct::QueueDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::QueueDescriptor\n"
           if !$class->isa("WebGPU::Direct::QueueDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -569,9 +569,9 @@ package WebGPU::Direct::RenderBundleDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderBundleDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderBundleDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -582,9 +582,9 @@ package WebGPU::Direct::RenderBundleEncoderDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderBundleEncoderDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderBundleEncoderDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -595,9 +595,9 @@ package WebGPU::Direct::RenderPassDepthStencilAttachment {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassDepthStencilAttachment\n"
           if !$class->isa("WebGPU::Direct::RenderPassDepthStencilAttachment");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -608,9 +608,9 @@ package WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassDescriptorMaxDrawCount\n"
           if !$class->isa("WebGPU::Direct::RenderPassDescriptorMaxDrawCount");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -621,9 +621,9 @@ package WebGPU::Direct::RenderPassTimestampWrite {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassTimestampWrite\n"
           if !$class->isa("WebGPU::Direct::RenderPassTimestampWrite");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -634,9 +634,9 @@ package WebGPU::Direct::RequestAdapterOptions {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RequestAdapterOptions\n"
           if !$class->isa("WebGPU::Direct::RequestAdapterOptions");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -647,9 +647,9 @@ package WebGPU::Direct::SamplerBindingLayout {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SamplerBindingLayout\n"
           if !$class->isa("WebGPU::Direct::SamplerBindingLayout");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -660,9 +660,9 @@ package WebGPU::Direct::SamplerDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SamplerDescriptor\n"
           if !$class->isa("WebGPU::Direct::SamplerDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -673,9 +673,9 @@ package WebGPU::Direct::ShaderModuleCompilationHint {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderModuleCompilationHint\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleCompilationHint");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -686,9 +686,9 @@ package WebGPU::Direct::ShaderModuleSPIRVDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderModuleSPIRVDescriptor\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleSPIRVDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -699,9 +699,9 @@ package WebGPU::Direct::ShaderModuleWGSLDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderModuleWGSLDescriptor\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleWGSLDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -712,9 +712,9 @@ package WebGPU::Direct::StencilFaceState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::StencilFaceState\n"
           if !$class->isa("WebGPU::Direct::StencilFaceState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -725,9 +725,9 @@ package WebGPU::Direct::StorageTextureBindingLayout {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::StorageTextureBindingLayout\n"
           if !$class->isa("WebGPU::Direct::StorageTextureBindingLayout");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -738,9 +738,9 @@ package WebGPU::Direct::SurfaceDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptor\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -751,9 +751,9 @@ package WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -764,9 +764,9 @@ package WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -777,9 +777,9 @@ package WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromMetalLayer\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromMetalLayer");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -790,9 +790,9 @@ package WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromWaylandSurface\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWaylandSurface");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -803,9 +803,9 @@ package WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromWindowsHWND\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWindowsHWND");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -816,9 +816,9 @@ package WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromXcbWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXcbWindow");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -829,9 +829,9 @@ package WebGPU::Direct::SurfaceDescriptorFromXlibWindow {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromXlibWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXlibWindow");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -842,9 +842,9 @@ package WebGPU::Direct::SwapChainDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SwapChainDescriptor\n"
           if !$class->isa("WebGPU::Direct::SwapChainDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -855,9 +855,9 @@ package WebGPU::Direct::TextureBindingLayout {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TextureBindingLayout\n"
           if !$class->isa("WebGPU::Direct::TextureBindingLayout");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -868,9 +868,9 @@ package WebGPU::Direct::TextureDataLayout {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TextureDataLayout\n"
           if !$class->isa("WebGPU::Direct::TextureDataLayout");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -881,9 +881,9 @@ package WebGPU::Direct::TextureViewDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TextureViewDescriptor\n"
           if !$class->isa("WebGPU::Direct::TextureViewDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -894,9 +894,9 @@ package WebGPU::Direct::VertexAttribute {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::VertexAttribute\n"
           if !$class->isa("WebGPU::Direct::VertexAttribute");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -907,9 +907,9 @@ package WebGPU::Direct::BindGroupDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupDescriptor\n"
           if !$class->isa("WebGPU::Direct::BindGroupDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -920,9 +920,9 @@ package WebGPU::Direct::BindGroupLayoutEntry {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupLayoutEntry\n"
           if !$class->isa("WebGPU::Direct::BindGroupLayoutEntry");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -933,9 +933,9 @@ package WebGPU::Direct::BlendState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BlendState\n"
           if !$class->isa("WebGPU::Direct::BlendState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -946,9 +946,9 @@ package WebGPU::Direct::CompilationInfo {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CompilationInfo\n"
           if !$class->isa("WebGPU::Direct::CompilationInfo");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -959,9 +959,9 @@ package WebGPU::Direct::ComputePassDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ComputePassDescriptor\n"
           if !$class->isa("WebGPU::Direct::ComputePassDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -972,9 +972,9 @@ package WebGPU::Direct::DepthStencilState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::DepthStencilState\n"
           if !$class->isa("WebGPU::Direct::DepthStencilState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -985,9 +985,9 @@ package WebGPU::Direct::ImageCopyBuffer {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ImageCopyBuffer\n"
           if !$class->isa("WebGPU::Direct::ImageCopyBuffer");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -998,9 +998,9 @@ package WebGPU::Direct::ImageCopyTexture {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ImageCopyTexture\n"
           if !$class->isa("WebGPU::Direct::ImageCopyTexture");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1011,9 +1011,9 @@ package WebGPU::Direct::ProgrammableStageDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ProgrammableStageDescriptor\n"
           if !$class->isa("WebGPU::Direct::ProgrammableStageDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1024,9 +1024,9 @@ package WebGPU::Direct::RenderPassColorAttachment {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassColorAttachment\n"
           if !$class->isa("WebGPU::Direct::RenderPassColorAttachment");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1037,9 +1037,9 @@ package WebGPU::Direct::RequiredLimits {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RequiredLimits\n"
           if !$class->isa("WebGPU::Direct::RequiredLimits");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1050,9 +1050,9 @@ package WebGPU::Direct::ShaderModuleDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderModuleDescriptor\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1063,9 +1063,9 @@ package WebGPU::Direct::SupportedLimits {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SupportedLimits\n"
           if !$class->isa("WebGPU::Direct::SupportedLimits");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1076,9 +1076,9 @@ package WebGPU::Direct::TextureDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TextureDescriptor\n"
           if !$class->isa("WebGPU::Direct::TextureDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1089,9 +1089,9 @@ package WebGPU::Direct::VertexBufferLayout {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::VertexBufferLayout\n"
           if !$class->isa("WebGPU::Direct::VertexBufferLayout");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1102,9 +1102,9 @@ package WebGPU::Direct::BindGroupLayoutDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupLayoutDescriptor\n"
           if !$class->isa("WebGPU::Direct::BindGroupLayoutDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1115,9 +1115,9 @@ package WebGPU::Direct::ColorTargetState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ColorTargetState\n"
           if !$class->isa("WebGPU::Direct::ColorTargetState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1128,9 +1128,9 @@ package WebGPU::Direct::ComputePipelineDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ComputePipelineDescriptor\n"
           if !$class->isa("WebGPU::Direct::ComputePipelineDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1141,9 +1141,9 @@ package WebGPU::Direct::DeviceDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::DeviceDescriptor\n"
           if !$class->isa("WebGPU::Direct::DeviceDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1154,9 +1154,9 @@ package WebGPU::Direct::RenderPassDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderPassDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1167,9 +1167,9 @@ package WebGPU::Direct::VertexState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::VertexState\n"
           if !$class->isa("WebGPU::Direct::VertexState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1180,9 +1180,9 @@ package WebGPU::Direct::FragmentState {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::FragmentState\n"
           if !$class->isa("WebGPU::Direct::FragmentState");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
@@ -1193,9 +1193,9 @@ package WebGPU::Direct::RenderPipelineDescriptor {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPipelineDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderPipelineDescriptor");
-        $class = CORE::ref($class) ? CORE::ref($class) : $class;
-        my $result = bless( { ref( $_[0] ) eq ref {} ? %$_[0] : @_ }, $class );
-        $result->unpack;
+        $class = ref($class) ? ref($class) : $class;
+        my $result = bless( { ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ }, $class );
+        $result->pack;
         return $result;
     }
 }
