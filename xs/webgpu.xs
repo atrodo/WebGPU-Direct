@@ -55,8 +55,8 @@ wgpuAdapterRequestDevice(adapter, descriptor, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuAdapterRequestDevice(adapter, descriptor, c, &c_userdata);
 
+      wgpuAdapterRequestDevice(adapter, descriptor, c, &c_userdata);
 
 
 void 
@@ -160,8 +160,8 @@ wgpuBufferMapAsync(buffer, mode, offset, size, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuBufferMapAsync(buffer, mode, offset, size, c, &c_userdata);
 
+      wgpuBufferMapAsync(buffer, mode, offset, size, c, &c_userdata);
 
 
 void 
@@ -370,12 +370,26 @@ wgpuComputePassEncoderPushDebugGroup(computePassEncoder, groupLabel)
 
 
 void 
-wgpuComputePassEncoderSetBindGroup(computePassEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffsets)
+wgpuComputePassEncoderSetBindGroup(computePassEncoder, groupIndex, group, dynamicOffsets)
         WGPUComputePassEncoder computePassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
-        size_t dynamicOffsetCount
-        uint32_t const * dynamicOffsets
+        AV * dynamicOffsets
+    CODE:
+      Size_t dynamicOffsetCount = av_count(dynamicOffsets);
+      uint32_t   dynamicOffset[dynamicOffsetCount+1];
+      for ( Size_t i = 0; i < dynamicOffsetCount; i++ )
+      {
+        SV **item = av_fetch(dynamicOffsets, i, 0);
+        if ( *item != NULL )
+        {
+          uint32_t   n = SvIV(*item);
+          dynamicOffset[i] = n;
+        }
+      }
+      dynamicOffset[dynamicOffsetCount+1] = (uint32_t  ) 0;
+
+      wgpuComputePassEncoderSetBindGroup(computePassEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffset);
 
 
 void 
@@ -472,8 +486,8 @@ wgpuDeviceCreateComputePipelineAsync(device, descriptor, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuDeviceCreateComputePipelineAsync(device, descriptor, c, &c_userdata);
 
+      wgpuDeviceCreateComputePipelineAsync(device, descriptor, c, &c_userdata);
 
 
 WGPUPipelineLayout 
@@ -514,8 +528,8 @@ wgpuDeviceCreateRenderPipelineAsync(device, descriptor, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuDeviceCreateRenderPipelineAsync(device, descriptor, c, &c_userdata);
 
+      wgpuDeviceCreateRenderPipelineAsync(device, descriptor, c, &c_userdata);
 
 
 WGPUSampler 
@@ -584,8 +598,8 @@ wgpuDevicePopErrorScope(device, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuDevicePopErrorScope(device, c, &c_userdata);
 
+      wgpuDevicePopErrorScope(device, c, &c_userdata);
 
 
 void 
@@ -613,8 +627,8 @@ wgpuDeviceSetUncapturedErrorCallback(device, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuDeviceSetUncapturedErrorCallback(device, c, &c_userdata);
 
+      wgpuDeviceSetUncapturedErrorCallback(device, c, &c_userdata);
 
 
 void 
@@ -655,8 +669,8 @@ wgpuInstanceRequestAdapter(instance, options, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuInstanceRequestAdapter(instance, options, c, &c_userdata);
 
+      wgpuInstanceRequestAdapter(instance, options, c, &c_userdata);
 
 
 void 
@@ -738,8 +752,8 @@ wgpuQueueOnSubmittedWorkDone(queue, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuQueueOnSubmittedWorkDone(queue, c, &c_userdata);
 
+      wgpuQueueOnSubmittedWorkDone(queue, c, &c_userdata);
 
 
 void 
@@ -749,10 +763,24 @@ wgpuQueueSetLabel(queue, label)
 
 
 void 
-wgpuQueueSubmit(queue, commandCount, commands)
+wgpuQueueSubmit(queue, commands)
         WGPUQueue queue
-        size_t commandCount
-        WGPUCommandBuffer const * commands
+        AV * commands
+    CODE:
+      Size_t commandCount = av_count(commands);
+      WGPUCommandBuffer   command[commandCount+1];
+      for ( Size_t i = 0; i < commandCount; i++ )
+      {
+        SV **item = av_fetch(commands, i, 0);
+        if ( *item != NULL )
+        {
+          WGPUCommandBuffer   n = (WGPUCommandBuffer  ) _get_struct_ptr(aTHX_ *item, NULL);
+          command[i] = n;
+        }
+      }
+      command[commandCount+1] = (WGPUCommandBuffer  ) 0;
+
+      wgpuQueueSubmit(queue, commandCount, command);
 
 
 void 
@@ -863,12 +891,26 @@ wgpuRenderBundleEncoderPushDebugGroup(renderBundleEncoder, groupLabel)
 
 
 void 
-wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffsets)
+wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsets)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t groupIndex
         WGPUBindGroup group
-        size_t dynamicOffsetCount
-        uint32_t const * dynamicOffsets
+        AV * dynamicOffsets
+    CODE:
+      Size_t dynamicOffsetCount = av_count(dynamicOffsets);
+      uint32_t   dynamicOffset[dynamicOffsetCount+1];
+      for ( Size_t i = 0; i < dynamicOffsetCount; i++ )
+      {
+        SV **item = av_fetch(dynamicOffsets, i, 0);
+        if ( *item != NULL )
+        {
+          uint32_t   n = SvIV(*item);
+          dynamicOffset[i] = n;
+        }
+      }
+      dynamicOffset[dynamicOffsetCount+1] = (uint32_t  ) 0;
+
+      wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffset);
 
 
 void 
@@ -976,10 +1018,24 @@ wgpuRenderPassEncoderEndPipelineStatisticsQuery(renderPassEncoder)
 
 
 void 
-wgpuRenderPassEncoderExecuteBundles(renderPassEncoder, bundleCount, bundles)
+wgpuRenderPassEncoderExecuteBundles(renderPassEncoder, bundles)
         WGPURenderPassEncoder renderPassEncoder
-        size_t bundleCount
-        WGPURenderBundle const * bundles
+        AV * bundles
+    CODE:
+      Size_t bundleCount = av_count(bundles);
+      WGPURenderBundle   bundle[bundleCount+1];
+      for ( Size_t i = 0; i < bundleCount; i++ )
+      {
+        SV **item = av_fetch(bundles, i, 0);
+        if ( *item != NULL )
+        {
+          WGPURenderBundle   n = (WGPURenderBundle  ) _get_struct_ptr(aTHX_ *item, NULL);
+          bundle[i] = n;
+        }
+      }
+      bundle[bundleCount+1] = (WGPURenderBundle  ) 0;
+
+      wgpuRenderPassEncoderExecuteBundles(renderPassEncoder, bundleCount, bundle);
 
 
 void 
@@ -1000,12 +1056,26 @@ wgpuRenderPassEncoderPushDebugGroup(renderPassEncoder, groupLabel)
 
 
 void 
-wgpuRenderPassEncoderSetBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffsets)
+wgpuRenderPassEncoderSetBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsets)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
-        size_t dynamicOffsetCount
-        uint32_t const * dynamicOffsets
+        AV * dynamicOffsets
+    CODE:
+      Size_t dynamicOffsetCount = av_count(dynamicOffsets);
+      uint32_t   dynamicOffset[dynamicOffsetCount+1];
+      for ( Size_t i = 0; i < dynamicOffsetCount; i++ )
+      {
+        SV **item = av_fetch(dynamicOffsets, i, 0);
+        if ( *item != NULL )
+        {
+          uint32_t   n = SvIV(*item);
+          dynamicOffset[i] = n;
+        }
+      }
+      dynamicOffset[dynamicOffsetCount+1] = (uint32_t  ) 0;
+
+      wgpuRenderPassEncoderSetBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsetCount, dynamicOffset);
 
 
 void 
@@ -1140,8 +1210,8 @@ wgpuShaderModuleGetCompilationInfo(shaderModule, callback, userdata)
         .perlsub = callback,
         .data = userdata,
       };
-      wgpuShaderModuleGetCompilationInfo(shaderModule, c, &c_userdata);
 
+      wgpuShaderModuleGetCompilationInfo(shaderModule, c, &c_userdata);
 
 
 void 

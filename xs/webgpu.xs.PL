@@ -857,75 +857,156 @@ sub say_call_fn
 {
   my %def = @_;
 
-    my $is_cb;
-    my @defargs = $def{args}->@*;
-    if ( @defargs >= 4 && $defargs[-1] eq 'userdata' && $defargs[-3] eq 'callback' )
+  state $arrcnt_re = qr/^(\w+)Count$/xms;
+  state $arrnme_re = qr/^(\w+)s$/xms;
+
+  my $is_cb;
+  my @defargs = $def{args}->@*;
+  if ( @defargs >= 4
+    && $defargs[-1] eq 'userdata'
+    && $defargs[-3] eq 'callback' )
+  {
+    $is_cb = 1;
+  }
+
+  my %arrays;
+  my $array_can;
+  foreach my $i ( 0 .. @defargs )
+  {
+    next
+        unless $i % 2;
+
+    my $key   = $defargs[$i];
+    my $value = $defargs[ $i - 1 ];
+    if ( $value eq 'size_t' && $key =~ m/$arrcnt_re/ )
     {
-      $is_cb = 1;
+      $array_can = $1;
+      next;
+    }
+    if ( $array_can && $key =~ $arrnme_re && $1 eq $array_can )
+    {
+      $arrays{$array_can} = $value;
     }
 
-    my @args;
-    my @keys;
-    my @vals;
-    foreach my $pair ( pairs @defargs )
+    undef $array_can;
+  }
+
+  my @args;
+  my @keys;
+  my @vals;
+  foreach my $pair ( pairs @defargs )
+  {
+    my ( $key, $value ) = @$pair;
+
+    my ($type) = $key =~ m/^(\w+)/;
+    my $pkg = pkg_name($type);
+
+    warn "Unknown type: $type"
+        if !exists $typedefs{$pkg} && !exists $typedefs{$type};
+
+    if ( $is_cb && $value eq 'callback' )
     {
-      my ( $key, $value ) = @$pair;
-
-      my ($type) = $key =~ m/^(\w+)/;
-      my $pkg = pkg_name($type);
-
-      warn "Unknown type: $type"
-          if !exists $typedefs{$pkg} && !exists $typedefs{$type};
-
-      if ( $is_cb && $value eq 'callback' )
-      {
-        $key = 'CV *';
-      }
-
-      if ( $is_cb && $value eq 'userdata' )
-      {
-        $key = 'SV *';
-      }
-
-      push @args, "$key $value";
-      push @keys, "$key";
-      push @vals, "$value";
+      $key = 'CV *';
     }
 
-    local $" = ', ';
-    say $xs "";
-    say $xs "$def{return}";
-    say $xs "$def{prefix}$def{name}(@vals)";
-    foreach ( @args )
+    if ( $is_cb && $value eq 'userdata' )
     {
-      say $xs "        $_";
+      $key = 'SV *';
     }
 
-    if ( $is_cb )
+    if ( $value =~ $arrcnt_re && exists $arrays{$1} )
+
+        #if ( $arrays{"${value}Count"} )
+    {
+      next;
+    }
+
+    if ( $value =~ $arrnme_re && exists $arrays{$1} )
+    {
+      #die;
+      #next;
+      $key = 'AV *';
+    }
+
+    if ( $value =~ m/$arrnme_re/ && $1 eq 'bundle' )
+    {
+    }
+
+    push @args, "$key $value";
+    push @keys, "$key";
+    push @vals, "$value";
+  }
+
+  local $" = ', ';
+  say $xs "";
+  say $xs "$def{return}";
+  say $xs "$def{prefix}$def{name}(@vals)";
+  foreach (@args)
+  {
+    say $xs "        $_";
+  }
+
+  if ( $is_cb || keys %arrays )
+  {
+    my @calls = @vals;
+
+    say $xs "    CODE:";
+    if ($is_cb)
     {
       my $cb_type = $defargs[-4];
-      my $cb_pkg = pkg_name($cb_type);
-      my @calls = @vals;
+      my $cb_pkg  = pkg_name($cb_type);
 
       $cb_pkg =~ tr/:/_/;
-      @calls[-2, -1] = qw/c &c_userdata/;
-
-      my $call = join(', ', @calls);
+      @calls[ -2, -1 ] = qw/c &c_userdata/;
 
       say $xs <<~"EOF"; my $n = qq{
-          CODE:
-            $cb_type c = &${cb_pkg}__callback;
-            cb_data c_userdata = {
-              .guard1 = CB_GUARD,
-              .guard2 = CB_GUARD,
-              .perlsub = callback,
-              .data = userdata,
-            };
-            $def{prefix}$def{name}($call);
-      EOF
-      };
+              $cb_type c = &${cb_pkg}__callback;
+              cb_data c_userdata = {
+                .guard1 = CB_GUARD,
+                .guard2 = CB_GUARD,
+                .perlsub = callback,
+                .data = userdata,
+              };
+        EOF
+        };
     }
-    say $xs "";
+
+    foreach my $array ( keys %arrays )
+    {
+      my $type = $arrays{$array};
+      $type =~ s/[*]$//;
+      $type =~ s/const//;
+
+      my $fetch = "($type) _get_struct_ptr(aTHX_ *item, NULL)";
+      if ( $type =~ m/^\s*uint\d+_t\s*$/xms )
+      {
+        $fetch = "SvIV(*item)";
+      }
+
+      say $xs <<~"EOF"; my $n = qq{
+              Size_t ${array}Count = av_count(${array}s);
+              $type $array\[${array}Count+1];
+              for ( Size_t i = 0; i < ${array}Count; i++ )
+              {
+                SV **item = av_fetch(${array}s, i, 0);
+                if ( *item != NULL )
+                {
+                  $type n = $fetch;
+                  $array\[i] = n;
+                }
+              }
+              $array\[${array}Count+1] = ($type) 0;
+        EOF
+        };
+
+      @calls = map { $_ eq "${array}s" ? ( "${array}Count", $array ) : $_ }
+          @calls;
+    }
+
+    my $call = join( ', ', @calls );
+    say $xs "      $def{prefix}$def{name}($call);";
+  }
+  say $xs "";
 }
 
 say $pm q{1;};
