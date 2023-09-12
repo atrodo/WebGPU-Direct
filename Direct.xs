@@ -6,12 +6,18 @@
 
 #include <webgpu/webgpu.h>
 
+// Call new if possible, otherwise return fields
+SV *_coerce_obj( SV *CLASS, SV *fields );
+SV *_new( SV *CLASS, SV *fields );
+
 void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
 {
   if ( !SvOK(obj) )
   {
     return NULL;
   }
+
+  obj = _coerce_obj(base, obj);
 
   if ( !sv_isobject(obj) )
   {
@@ -46,15 +52,50 @@ SV *_void__wrap( const void *n )
   return SvREFCNT_inc(RETVAL);
 }
 
-SV *_new( SV *CLASS )
+SV *_coerce_obj( SV *CLASS, SV *fields )
+{
+  // If its already an object, don't bother
+  if ( sv_isobject(fields) )
+  {
+    return fields;
+  }
+
+  // If it's null or not a hashref, don't bother either
+  if ( CLASS == NULL )
+  {
+    return fields;
+  }
+  if ( !SvROK(fields) )
+  {
+    return fields;
+  }
+  if ( SvTYPE(SvRV(fields)) != SVt_PVHV )
+  {
+    return fields;
+  }
+  return _new(CLASS, fields);
+}
+
+SV *_new( SV *CLASS, SV *fields )
 {
   dSP;
+
+  ENTER;
+  SAVETMPS;
+
   PUSHMARK(SP);
-  EXTEND(SP, 1);
+  EXTEND(SP, 2);
   PUSHs(CLASS);
+  if ( fields != NULL )
+  {
+    EXTEND(SP, 1);
+    PUSHs(fields);
+  }
   PUTBACK;
 
   int count = call_method("new", G_SCALAR);
+
+  SPAGAIN;
 
   if (count != 1)
   {
@@ -62,6 +103,10 @@ SV *_new( SV *CLASS )
   }
 
   SV *THIS = SvREFCNT_inc(POPs);
+
+  PUTBACK;
+  FREETMPS;
+  LEAVE;
 
   return THIS;
 }
@@ -382,6 +427,19 @@ SV *_pack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
   if ( !( f && *f ) )
   {
     return _unpack_objptr(aTHX_ h, key, klen, field, base);
+  }
+
+  // If _new returns something different, it coerced it up to an object
+  SV *obj = _coerce_obj(base, *f);
+  if ( obj != *f )
+  {
+    f = hv_store(h, key, klen, obj, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(obj);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
   }
 
   // Save the new value to the field
