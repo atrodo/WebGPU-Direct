@@ -13,7 +13,7 @@ open my $h,  '<', "$Bin/../webgpu/webgpu.h";
 open my $xs, '>', "$Bin/webgpu.xs";
 open my $c,  '>', "$Bin/webgpu.c";
 open my $tm, '>', "$Bin/../typemap";
-open my $pm, '>', "$Bin/../lib/WebGPU/Direct/XS.pl";
+open my $pm, '>', "$Bin/../lib/WebGPU/Direct/XS.pm";
 
 my %typedefs = (
     bool     => 'bool',
@@ -58,6 +58,12 @@ say $xs q{};
 
 say $pm q{use strict;};
 say $pm q{use warnings;};
+say $pm q[package WebGPU::Direct::XS {];
+say $pm q[  our $VERSION = '0.01';];
+say $pm q[  require XSLoader;];
+say $pm q[  XSLoader::load('WebGPU::Direct', $VERSION);];
+say $pm q[}];
+say $pm q[];
 
 sub pkg_name
 {
