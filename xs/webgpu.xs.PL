@@ -49,6 +49,7 @@ my @typemap = (
 
 my @fns;
 my @classes;
+my %enums;
 my %classdefs;
 my %callbackdefs;
 
@@ -113,6 +114,7 @@ while (<$h>)
         die "Duplicate typedef: $2"
             if exists $typedefs{$2};
         $type = $2;
+        $enums{$type} = {};
       }
       else
       {
@@ -121,6 +123,26 @@ while (<$h>)
         $typedefs{$type} = 'enum';
       }
     }
+
+    if (
+      m[^ \s*
+              (\w+) \s*
+              = \s*
+              (\w+) \s*
+              ,? \s* $]xms
+        )
+    {
+      my $const = $1;
+      my $value = $2;
+      my $short = $const;
+      $short =~ s/$type\_//;
+      if ( $short =~ m/^\d/ )
+      {
+        $short = "_$short";
+      }
+      $enums{$type}->{$value} = "use constant '$short' => dualvar($value, '$const');";
+    }
+
     next;
   }
 
@@ -573,6 +595,25 @@ foreach my $typedef ( sort keys %typedefs )
   say $tm sprintf( "%-64s%s", $typedef, $typemap );
   say $tm sprintf( "%-64s%s", "$typedef *", $typemap );
   say $tm sprintf( "%-64s%s", "$typedef const *", $typemap );
+}
+
+foreach my $enum (sort keys %enums)
+{
+  my $pkg = "WebGPU::Direct::$enum";
+  $pkg =~ s/::WGPU/::/;
+
+  say $pm qq[package $pkg {];
+  say $pm qq[  use Scalar::Util qw/dualvar/;];
+
+  my %consts = %{ $enums{$enum} };
+
+  foreach my $value ( sort keys %consts )
+  {
+    say $pm qq[  $consts{$value}];
+  }
+
+  say $pm qq[};];
+  say $pm qq[];
 }
 
 say $tm join("\n", @typemap);
