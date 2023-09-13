@@ -364,12 +364,17 @@ while (<$h>)
 }
 
 say $xs qq{MODULE = WebGPU::Direct\t\tPACKAGE = WebGPU::Direct::XS\t\tPREFIX = wgpu};
+say $pm qq[package WebGPU::Direct {];
 
 foreach (@fns)
 {
   my %def = %$_;
   say_call_fn(%def);
+  say $pm qq[  sub $def{name} { my \$class = shift; WebGPU::Direct::XS::$def{name}(\@_); }];
 }
+
+say $pm qq[};];
+say $pm qq[];
 
 # Chosen by fair dice roll
 say $c "#define CB_GUARD 0x25b3eea3";

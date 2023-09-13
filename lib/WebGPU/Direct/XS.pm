@@ -6,6 +6,11 @@ package WebGPU::Direct::XS {
   XSLoader::load('WebGPU::Direct', $VERSION);
 }
 
+package WebGPU::Direct {
+  sub CreateInstance { my $class = shift; WebGPU::Direct::XS::CreateInstance(@_); }
+  sub GetProcAddress { my $class = shift; WebGPU::Direct::XS::GetProcAddress(@_); }
+};
+
 package WebGPU::Direct::Adapter {
     push @WebGPU::Direct::Adapter::ISA, "WebGPU::Direct::Opaque";
     sub new {
@@ -1205,5 +1210,602 @@ package WebGPU::Direct::RenderPipelineDescriptor {
         return $result;
     }
 }
+
+package WebGPU::Direct::AdapterType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'DiscreteGPU' => dualvar(0x00000000, 'WGPUAdapterType_DiscreteGPU');
+  use constant 'IntegratedGPU' => dualvar(0x00000001, 'WGPUAdapterType_IntegratedGPU');
+  use constant 'CPU' => dualvar(0x00000002, 'WGPUAdapterType_CPU');
+  use constant 'Unknown' => dualvar(0x00000003, 'WGPUAdapterType_Unknown');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUAdapterType_Force32');
+};
+
+package WebGPU::Direct::AddressMode {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Repeat' => dualvar(0x00000000, 'WGPUAddressMode_Repeat');
+  use constant 'MirrorRepeat' => dualvar(0x00000001, 'WGPUAddressMode_MirrorRepeat');
+  use constant 'ClampToEdge' => dualvar(0x00000002, 'WGPUAddressMode_ClampToEdge');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUAddressMode_Force32');
+};
+
+package WebGPU::Direct::BackendType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUBackendType_Undefined');
+  use constant 'Null' => dualvar(0x00000001, 'WGPUBackendType_Null');
+  use constant 'WebGPU' => dualvar(0x00000002, 'WGPUBackendType_WebGPU');
+  use constant 'D3D11' => dualvar(0x00000003, 'WGPUBackendType_D3D11');
+  use constant 'D3D12' => dualvar(0x00000004, 'WGPUBackendType_D3D12');
+  use constant 'Metal' => dualvar(0x00000005, 'WGPUBackendType_Metal');
+  use constant 'Vulkan' => dualvar(0x00000006, 'WGPUBackendType_Vulkan');
+  use constant 'OpenGL' => dualvar(0x00000007, 'WGPUBackendType_OpenGL');
+  use constant 'OpenGLES' => dualvar(0x00000008, 'WGPUBackendType_OpenGLES');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUBackendType_Force32');
+};
+
+package WebGPU::Direct::BlendFactor {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Zero' => dualvar(0x00000000, 'WGPUBlendFactor_Zero');
+  use constant 'One' => dualvar(0x00000001, 'WGPUBlendFactor_One');
+  use constant 'Src' => dualvar(0x00000002, 'WGPUBlendFactor_Src');
+  use constant 'OneMinusSrc' => dualvar(0x00000003, 'WGPUBlendFactor_OneMinusSrc');
+  use constant 'SrcAlpha' => dualvar(0x00000004, 'WGPUBlendFactor_SrcAlpha');
+  use constant 'OneMinusSrcAlpha' => dualvar(0x00000005, 'WGPUBlendFactor_OneMinusSrcAlpha');
+  use constant 'Dst' => dualvar(0x00000006, 'WGPUBlendFactor_Dst');
+  use constant 'OneMinusDst' => dualvar(0x00000007, 'WGPUBlendFactor_OneMinusDst');
+  use constant 'DstAlpha' => dualvar(0x00000008, 'WGPUBlendFactor_DstAlpha');
+  use constant 'OneMinusDstAlpha' => dualvar(0x00000009, 'WGPUBlendFactor_OneMinusDstAlpha');
+  use constant 'SrcAlphaSaturated' => dualvar(0x0000000A, 'WGPUBlendFactor_SrcAlphaSaturated');
+  use constant 'Constant' => dualvar(0x0000000B, 'WGPUBlendFactor_Constant');
+  use constant 'OneMinusConstant' => dualvar(0x0000000C, 'WGPUBlendFactor_OneMinusConstant');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUBlendFactor_Force32');
+};
+
+package WebGPU::Direct::BlendOperation {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Add' => dualvar(0x00000000, 'WGPUBlendOperation_Add');
+  use constant 'Subtract' => dualvar(0x00000001, 'WGPUBlendOperation_Subtract');
+  use constant 'ReverseSubtract' => dualvar(0x00000002, 'WGPUBlendOperation_ReverseSubtract');
+  use constant 'Min' => dualvar(0x00000003, 'WGPUBlendOperation_Min');
+  use constant 'Max' => dualvar(0x00000004, 'WGPUBlendOperation_Max');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUBlendOperation_Force32');
+};
+
+package WebGPU::Direct::BufferBindingType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUBufferBindingType_Undefined');
+  use constant 'Uniform' => dualvar(0x00000001, 'WGPUBufferBindingType_Uniform');
+  use constant 'Storage' => dualvar(0x00000002, 'WGPUBufferBindingType_Storage');
+  use constant 'ReadOnlyStorage' => dualvar(0x00000003, 'WGPUBufferBindingType_ReadOnlyStorage');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUBufferBindingType_Force32');
+};
+
+package WebGPU::Direct::BufferMapAsyncStatus {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Success' => dualvar(0x00000000, 'WGPUBufferMapAsyncStatus_Success');
+  use constant 'ValidationError' => dualvar(0x00000001, 'WGPUBufferMapAsyncStatus_ValidationError');
+  use constant 'Unknown' => dualvar(0x00000002, 'WGPUBufferMapAsyncStatus_Unknown');
+  use constant 'DeviceLost' => dualvar(0x00000003, 'WGPUBufferMapAsyncStatus_DeviceLost');
+  use constant 'DestroyedBeforeCallback' => dualvar(0x00000004, 'WGPUBufferMapAsyncStatus_DestroyedBeforeCallback');
+  use constant 'UnmappedBeforeCallback' => dualvar(0x00000005, 'WGPUBufferMapAsyncStatus_UnmappedBeforeCallback');
+  use constant 'MappingAlreadyPending' => dualvar(0x00000006, 'WGPUBufferMapAsyncStatus_MappingAlreadyPending');
+  use constant 'OffsetOutOfRange' => dualvar(0x00000007, 'WGPUBufferMapAsyncStatus_OffsetOutOfRange');
+  use constant 'SizeOutOfRange' => dualvar(0x00000008, 'WGPUBufferMapAsyncStatus_SizeOutOfRange');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUBufferMapAsyncStatus_Force32');
+};
+
+package WebGPU::Direct::BufferMapState {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Unmapped' => dualvar(0x00000000, 'WGPUBufferMapState_Unmapped');
+  use constant 'Pending' => dualvar(0x00000001, 'WGPUBufferMapState_Pending');
+  use constant 'Mapped' => dualvar(0x00000002, 'WGPUBufferMapState_Mapped');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUBufferMapState_Force32');
+};
+
+package WebGPU::Direct::BufferUsage {
+  use Scalar::Util qw/dualvar/;
+  use constant 'None' => dualvar(0x00000000, 'WGPUBufferUsage_None');
+  use constant 'MapRead' => dualvar(0x00000001, 'WGPUBufferUsage_MapRead');
+  use constant 'MapWrite' => dualvar(0x00000002, 'WGPUBufferUsage_MapWrite');
+  use constant 'CopySrc' => dualvar(0x00000004, 'WGPUBufferUsage_CopySrc');
+  use constant 'CopyDst' => dualvar(0x00000008, 'WGPUBufferUsage_CopyDst');
+  use constant 'Index' => dualvar(0x00000010, 'WGPUBufferUsage_Index');
+  use constant 'Vertex' => dualvar(0x00000020, 'WGPUBufferUsage_Vertex');
+  use constant 'Uniform' => dualvar(0x00000040, 'WGPUBufferUsage_Uniform');
+  use constant 'Storage' => dualvar(0x00000080, 'WGPUBufferUsage_Storage');
+  use constant 'Indirect' => dualvar(0x00000100, 'WGPUBufferUsage_Indirect');
+  use constant 'QueryResolve' => dualvar(0x00000200, 'WGPUBufferUsage_QueryResolve');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUBufferUsage_Force32');
+};
+
+package WebGPU::Direct::ColorWriteMask {
+  use Scalar::Util qw/dualvar/;
+  use constant 'None' => dualvar(0x00000000, 'WGPUColorWriteMask_None');
+  use constant 'Red' => dualvar(0x00000001, 'WGPUColorWriteMask_Red');
+  use constant 'Green' => dualvar(0x00000002, 'WGPUColorWriteMask_Green');
+  use constant 'Blue' => dualvar(0x00000004, 'WGPUColorWriteMask_Blue');
+  use constant 'Alpha' => dualvar(0x00000008, 'WGPUColorWriteMask_Alpha');
+  use constant 'All' => dualvar(0x0000000F, 'WGPUColorWriteMask_All');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUColorWriteMask_Force32');
+};
+
+package WebGPU::Direct::CompareFunction {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUCompareFunction_Undefined');
+  use constant 'Never' => dualvar(0x00000001, 'WGPUCompareFunction_Never');
+  use constant 'Less' => dualvar(0x00000002, 'WGPUCompareFunction_Less');
+  use constant 'LessEqual' => dualvar(0x00000003, 'WGPUCompareFunction_LessEqual');
+  use constant 'Greater' => dualvar(0x00000004, 'WGPUCompareFunction_Greater');
+  use constant 'GreaterEqual' => dualvar(0x00000005, 'WGPUCompareFunction_GreaterEqual');
+  use constant 'Equal' => dualvar(0x00000006, 'WGPUCompareFunction_Equal');
+  use constant 'NotEqual' => dualvar(0x00000007, 'WGPUCompareFunction_NotEqual');
+  use constant 'Always' => dualvar(0x00000008, 'WGPUCompareFunction_Always');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUCompareFunction_Force32');
+};
+
+package WebGPU::Direct::CompilationInfoRequestStatus {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Success' => dualvar(0x00000000, 'WGPUCompilationInfoRequestStatus_Success');
+  use constant 'Error' => dualvar(0x00000001, 'WGPUCompilationInfoRequestStatus_Error');
+  use constant 'DeviceLost' => dualvar(0x00000002, 'WGPUCompilationInfoRequestStatus_DeviceLost');
+  use constant 'Unknown' => dualvar(0x00000003, 'WGPUCompilationInfoRequestStatus_Unknown');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUCompilationInfoRequestStatus_Force32');
+};
+
+package WebGPU::Direct::CompilationMessageType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Error' => dualvar(0x00000000, 'WGPUCompilationMessageType_Error');
+  use constant 'Warning' => dualvar(0x00000001, 'WGPUCompilationMessageType_Warning');
+  use constant 'Info' => dualvar(0x00000002, 'WGPUCompilationMessageType_Info');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUCompilationMessageType_Force32');
+};
+
+package WebGPU::Direct::ComputePassTimestampLocation {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Beginning' => dualvar(0x00000000, 'WGPUComputePassTimestampLocation_Beginning');
+  use constant 'End' => dualvar(0x00000001, 'WGPUComputePassTimestampLocation_End');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUComputePassTimestampLocation_Force32');
+};
+
+package WebGPU::Direct::CreatePipelineAsyncStatus {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Success' => dualvar(0x00000000, 'WGPUCreatePipelineAsyncStatus_Success');
+  use constant 'ValidationError' => dualvar(0x00000001, 'WGPUCreatePipelineAsyncStatus_ValidationError');
+  use constant 'InternalError' => dualvar(0x00000002, 'WGPUCreatePipelineAsyncStatus_InternalError');
+  use constant 'DeviceLost' => dualvar(0x00000003, 'WGPUCreatePipelineAsyncStatus_DeviceLost');
+  use constant 'DeviceDestroyed' => dualvar(0x00000004, 'WGPUCreatePipelineAsyncStatus_DeviceDestroyed');
+  use constant 'Unknown' => dualvar(0x00000005, 'WGPUCreatePipelineAsyncStatus_Unknown');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUCreatePipelineAsyncStatus_Force32');
+};
+
+package WebGPU::Direct::CullMode {
+  use Scalar::Util qw/dualvar/;
+  use constant 'None' => dualvar(0x00000000, 'WGPUCullMode_None');
+  use constant 'Front' => dualvar(0x00000001, 'WGPUCullMode_Front');
+  use constant 'Back' => dualvar(0x00000002, 'WGPUCullMode_Back');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUCullMode_Force32');
+};
+
+package WebGPU::Direct::DeviceLostReason {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUDeviceLostReason_Undefined');
+  use constant 'Destroyed' => dualvar(0x00000001, 'WGPUDeviceLostReason_Destroyed');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUDeviceLostReason_Force32');
+};
+
+package WebGPU::Direct::ErrorFilter {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Validation' => dualvar(0x00000000, 'WGPUErrorFilter_Validation');
+  use constant 'OutOfMemory' => dualvar(0x00000001, 'WGPUErrorFilter_OutOfMemory');
+  use constant 'Internal' => dualvar(0x00000002, 'WGPUErrorFilter_Internal');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUErrorFilter_Force32');
+};
+
+package WebGPU::Direct::ErrorType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'NoError' => dualvar(0x00000000, 'WGPUErrorType_NoError');
+  use constant 'Validation' => dualvar(0x00000001, 'WGPUErrorType_Validation');
+  use constant 'OutOfMemory' => dualvar(0x00000002, 'WGPUErrorType_OutOfMemory');
+  use constant 'Internal' => dualvar(0x00000003, 'WGPUErrorType_Internal');
+  use constant 'Unknown' => dualvar(0x00000004, 'WGPUErrorType_Unknown');
+  use constant 'DeviceLost' => dualvar(0x00000005, 'WGPUErrorType_DeviceLost');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUErrorType_Force32');
+};
+
+package WebGPU::Direct::FeatureName {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUFeatureName_Undefined');
+  use constant 'DepthClipControl' => dualvar(0x00000001, 'WGPUFeatureName_DepthClipControl');
+  use constant 'Depth32FloatStencil8' => dualvar(0x00000002, 'WGPUFeatureName_Depth32FloatStencil8');
+  use constant 'TimestampQuery' => dualvar(0x00000003, 'WGPUFeatureName_TimestampQuery');
+  use constant 'PipelineStatisticsQuery' => dualvar(0x00000004, 'WGPUFeatureName_PipelineStatisticsQuery');
+  use constant 'TextureCompressionBC' => dualvar(0x00000005, 'WGPUFeatureName_TextureCompressionBC');
+  use constant 'TextureCompressionETC2' => dualvar(0x00000006, 'WGPUFeatureName_TextureCompressionETC2');
+  use constant 'TextureCompressionASTC' => dualvar(0x00000007, 'WGPUFeatureName_TextureCompressionASTC');
+  use constant 'IndirectFirstInstance' => dualvar(0x00000008, 'WGPUFeatureName_IndirectFirstInstance');
+  use constant 'ShaderF16' => dualvar(0x00000009, 'WGPUFeatureName_ShaderF16');
+  use constant 'RG11B10UfloatRenderable' => dualvar(0x0000000A, 'WGPUFeatureName_RG11B10UfloatRenderable');
+  use constant 'BGRA8UnormStorage' => dualvar(0x0000000B, 'WGPUFeatureName_BGRA8UnormStorage');
+  use constant 'Float32Filterable' => dualvar(0x0000000C, 'WGPUFeatureName_Float32Filterable');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUFeatureName_Force32');
+};
+
+package WebGPU::Direct::FilterMode {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Nearest' => dualvar(0x00000000, 'WGPUFilterMode_Nearest');
+  use constant 'Linear' => dualvar(0x00000001, 'WGPUFilterMode_Linear');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUFilterMode_Force32');
+};
+
+package WebGPU::Direct::FrontFace {
+  use Scalar::Util qw/dualvar/;
+  use constant 'CCW' => dualvar(0x00000000, 'WGPUFrontFace_CCW');
+  use constant 'CW' => dualvar(0x00000001, 'WGPUFrontFace_CW');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUFrontFace_Force32');
+};
+
+package WebGPU::Direct::IndexFormat {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUIndexFormat_Undefined');
+  use constant 'Uint16' => dualvar(0x00000001, 'WGPUIndexFormat_Uint16');
+  use constant 'Uint32' => dualvar(0x00000002, 'WGPUIndexFormat_Uint32');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUIndexFormat_Force32');
+};
+
+package WebGPU::Direct::LoadOp {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPULoadOp_Undefined');
+  use constant 'Clear' => dualvar(0x00000001, 'WGPULoadOp_Clear');
+  use constant 'Load' => dualvar(0x00000002, 'WGPULoadOp_Load');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPULoadOp_Force32');
+};
+
+package WebGPU::Direct::MapMode {
+  use Scalar::Util qw/dualvar/;
+  use constant 'None' => dualvar(0x00000000, 'WGPUMapMode_None');
+  use constant 'Read' => dualvar(0x00000001, 'WGPUMapMode_Read');
+  use constant 'Write' => dualvar(0x00000002, 'WGPUMapMode_Write');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUMapMode_Force32');
+};
+
+package WebGPU::Direct::MipmapFilterMode {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Nearest' => dualvar(0x00000000, 'WGPUMipmapFilterMode_Nearest');
+  use constant 'Linear' => dualvar(0x00000001, 'WGPUMipmapFilterMode_Linear');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUMipmapFilterMode_Force32');
+};
+
+package WebGPU::Direct::PipelineStatisticName {
+  use Scalar::Util qw/dualvar/;
+  use constant 'VertexShaderInvocations' => dualvar(0x00000000, 'WGPUPipelineStatisticName_VertexShaderInvocations');
+  use constant 'ClipperInvocations' => dualvar(0x00000001, 'WGPUPipelineStatisticName_ClipperInvocations');
+  use constant 'ClipperPrimitivesOut' => dualvar(0x00000002, 'WGPUPipelineStatisticName_ClipperPrimitivesOut');
+  use constant 'FragmentShaderInvocations' => dualvar(0x00000003, 'WGPUPipelineStatisticName_FragmentShaderInvocations');
+  use constant 'ComputeShaderInvocations' => dualvar(0x00000004, 'WGPUPipelineStatisticName_ComputeShaderInvocations');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUPipelineStatisticName_Force32');
+};
+
+package WebGPU::Direct::PowerPreference {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUPowerPreference_Undefined');
+  use constant 'LowPower' => dualvar(0x00000001, 'WGPUPowerPreference_LowPower');
+  use constant 'HighPerformance' => dualvar(0x00000002, 'WGPUPowerPreference_HighPerformance');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUPowerPreference_Force32');
+};
+
+package WebGPU::Direct::PresentMode {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Immediate' => dualvar(0x00000000, 'WGPUPresentMode_Immediate');
+  use constant 'Mailbox' => dualvar(0x00000001, 'WGPUPresentMode_Mailbox');
+  use constant 'Fifo' => dualvar(0x00000002, 'WGPUPresentMode_Fifo');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUPresentMode_Force32');
+};
+
+package WebGPU::Direct::PrimitiveTopology {
+  use Scalar::Util qw/dualvar/;
+  use constant 'PointList' => dualvar(0x00000000, 'WGPUPrimitiveTopology_PointList');
+  use constant 'LineList' => dualvar(0x00000001, 'WGPUPrimitiveTopology_LineList');
+  use constant 'LineStrip' => dualvar(0x00000002, 'WGPUPrimitiveTopology_LineStrip');
+  use constant 'TriangleList' => dualvar(0x00000003, 'WGPUPrimitiveTopology_TriangleList');
+  use constant 'TriangleStrip' => dualvar(0x00000004, 'WGPUPrimitiveTopology_TriangleStrip');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUPrimitiveTopology_Force32');
+};
+
+package WebGPU::Direct::QueryType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Occlusion' => dualvar(0x00000000, 'WGPUQueryType_Occlusion');
+  use constant 'PipelineStatistics' => dualvar(0x00000001, 'WGPUQueryType_PipelineStatistics');
+  use constant 'Timestamp' => dualvar(0x00000002, 'WGPUQueryType_Timestamp');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUQueryType_Force32');
+};
+
+package WebGPU::Direct::QueueWorkDoneStatus {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Success' => dualvar(0x00000000, 'WGPUQueueWorkDoneStatus_Success');
+  use constant 'Error' => dualvar(0x00000001, 'WGPUQueueWorkDoneStatus_Error');
+  use constant 'Unknown' => dualvar(0x00000002, 'WGPUQueueWorkDoneStatus_Unknown');
+  use constant 'DeviceLost' => dualvar(0x00000003, 'WGPUQueueWorkDoneStatus_DeviceLost');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUQueueWorkDoneStatus_Force32');
+};
+
+package WebGPU::Direct::RenderPassTimestampLocation {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Beginning' => dualvar(0x00000000, 'WGPURenderPassTimestampLocation_Beginning');
+  use constant 'End' => dualvar(0x00000001, 'WGPURenderPassTimestampLocation_End');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPURenderPassTimestampLocation_Force32');
+};
+
+package WebGPU::Direct::RequestAdapterStatus {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Success' => dualvar(0x00000000, 'WGPURequestAdapterStatus_Success');
+  use constant 'Unavailable' => dualvar(0x00000001, 'WGPURequestAdapterStatus_Unavailable');
+  use constant 'Error' => dualvar(0x00000002, 'WGPURequestAdapterStatus_Error');
+  use constant 'Unknown' => dualvar(0x00000003, 'WGPURequestAdapterStatus_Unknown');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPURequestAdapterStatus_Force32');
+};
+
+package WebGPU::Direct::RequestDeviceStatus {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Success' => dualvar(0x00000000, 'WGPURequestDeviceStatus_Success');
+  use constant 'Error' => dualvar(0x00000001, 'WGPURequestDeviceStatus_Error');
+  use constant 'Unknown' => dualvar(0x00000002, 'WGPURequestDeviceStatus_Unknown');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPURequestDeviceStatus_Force32');
+};
+
+package WebGPU::Direct::SType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Invalid' => dualvar(0x00000000, 'WGPUSType_Invalid');
+  use constant 'SurfaceDescriptorFromMetalLayer' => dualvar(0x00000001, 'WGPUSType_SurfaceDescriptorFromMetalLayer');
+  use constant 'SurfaceDescriptorFromWindowsHWND' => dualvar(0x00000002, 'WGPUSType_SurfaceDescriptorFromWindowsHWND');
+  use constant 'SurfaceDescriptorFromXlibWindow' => dualvar(0x00000003, 'WGPUSType_SurfaceDescriptorFromXlibWindow');
+  use constant 'SurfaceDescriptorFromCanvasHTMLSelector' => dualvar(0x00000004, 'WGPUSType_SurfaceDescriptorFromCanvasHTMLSelector');
+  use constant 'ShaderModuleSPIRVDescriptor' => dualvar(0x00000005, 'WGPUSType_ShaderModuleSPIRVDescriptor');
+  use constant 'ShaderModuleWGSLDescriptor' => dualvar(0x00000006, 'WGPUSType_ShaderModuleWGSLDescriptor');
+  use constant 'PrimitiveDepthClipControl' => dualvar(0x00000007, 'WGPUSType_PrimitiveDepthClipControl');
+  use constant 'SurfaceDescriptorFromWaylandSurface' => dualvar(0x00000008, 'WGPUSType_SurfaceDescriptorFromWaylandSurface');
+  use constant 'SurfaceDescriptorFromAndroidNativeWindow' => dualvar(0x00000009, 'WGPUSType_SurfaceDescriptorFromAndroidNativeWindow');
+  use constant 'SurfaceDescriptorFromXcbWindow' => dualvar(0x0000000A, 'WGPUSType_SurfaceDescriptorFromXcbWindow');
+  use constant 'RenderPassDescriptorMaxDrawCount' => dualvar(0x0000000F, 'WGPUSType_RenderPassDescriptorMaxDrawCount');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUSType_Force32');
+};
+
+package WebGPU::Direct::SamplerBindingType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUSamplerBindingType_Undefined');
+  use constant 'Filtering' => dualvar(0x00000001, 'WGPUSamplerBindingType_Filtering');
+  use constant 'NonFiltering' => dualvar(0x00000002, 'WGPUSamplerBindingType_NonFiltering');
+  use constant 'Comparison' => dualvar(0x00000003, 'WGPUSamplerBindingType_Comparison');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUSamplerBindingType_Force32');
+};
+
+package WebGPU::Direct::ShaderStage {
+  use Scalar::Util qw/dualvar/;
+  use constant 'None' => dualvar(0x00000000, 'WGPUShaderStage_None');
+  use constant 'Vertex' => dualvar(0x00000001, 'WGPUShaderStage_Vertex');
+  use constant 'Fragment' => dualvar(0x00000002, 'WGPUShaderStage_Fragment');
+  use constant 'Compute' => dualvar(0x00000004, 'WGPUShaderStage_Compute');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUShaderStage_Force32');
+};
+
+package WebGPU::Direct::StencilOperation {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Keep' => dualvar(0x00000000, 'WGPUStencilOperation_Keep');
+  use constant 'Zero' => dualvar(0x00000001, 'WGPUStencilOperation_Zero');
+  use constant 'Replace' => dualvar(0x00000002, 'WGPUStencilOperation_Replace');
+  use constant 'Invert' => dualvar(0x00000003, 'WGPUStencilOperation_Invert');
+  use constant 'IncrementClamp' => dualvar(0x00000004, 'WGPUStencilOperation_IncrementClamp');
+  use constant 'DecrementClamp' => dualvar(0x00000005, 'WGPUStencilOperation_DecrementClamp');
+  use constant 'IncrementWrap' => dualvar(0x00000006, 'WGPUStencilOperation_IncrementWrap');
+  use constant 'DecrementWrap' => dualvar(0x00000007, 'WGPUStencilOperation_DecrementWrap');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUStencilOperation_Force32');
+};
+
+package WebGPU::Direct::StorageTextureAccess {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUStorageTextureAccess_Undefined');
+  use constant 'WriteOnly' => dualvar(0x00000001, 'WGPUStorageTextureAccess_WriteOnly');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUStorageTextureAccess_Force32');
+};
+
+package WebGPU::Direct::StoreOp {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUStoreOp_Undefined');
+  use constant 'Store' => dualvar(0x00000001, 'WGPUStoreOp_Store');
+  use constant 'Discard' => dualvar(0x00000002, 'WGPUStoreOp_Discard');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUStoreOp_Force32');
+};
+
+package WebGPU::Direct::TextureAspect {
+  use Scalar::Util qw/dualvar/;
+  use constant 'All' => dualvar(0x00000000, 'WGPUTextureAspect_All');
+  use constant 'StencilOnly' => dualvar(0x00000001, 'WGPUTextureAspect_StencilOnly');
+  use constant 'DepthOnly' => dualvar(0x00000002, 'WGPUTextureAspect_DepthOnly');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUTextureAspect_Force32');
+};
+
+package WebGPU::Direct::TextureDimension {
+  use Scalar::Util qw/dualvar/;
+  use constant '_1D' => dualvar(0x00000000, 'WGPUTextureDimension_1D');
+  use constant '_2D' => dualvar(0x00000001, 'WGPUTextureDimension_2D');
+  use constant '_3D' => dualvar(0x00000002, 'WGPUTextureDimension_3D');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUTextureDimension_Force32');
+};
+
+package WebGPU::Direct::TextureFormat {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUTextureFormat_Undefined');
+  use constant 'R8Unorm' => dualvar(0x00000001, 'WGPUTextureFormat_R8Unorm');
+  use constant 'R8Snorm' => dualvar(0x00000002, 'WGPUTextureFormat_R8Snorm');
+  use constant 'R8Uint' => dualvar(0x00000003, 'WGPUTextureFormat_R8Uint');
+  use constant 'R8Sint' => dualvar(0x00000004, 'WGPUTextureFormat_R8Sint');
+  use constant 'R16Uint' => dualvar(0x00000005, 'WGPUTextureFormat_R16Uint');
+  use constant 'R16Sint' => dualvar(0x00000006, 'WGPUTextureFormat_R16Sint');
+  use constant 'R16Float' => dualvar(0x00000007, 'WGPUTextureFormat_R16Float');
+  use constant 'RG8Unorm' => dualvar(0x00000008, 'WGPUTextureFormat_RG8Unorm');
+  use constant 'RG8Snorm' => dualvar(0x00000009, 'WGPUTextureFormat_RG8Snorm');
+  use constant 'RG8Uint' => dualvar(0x0000000A, 'WGPUTextureFormat_RG8Uint');
+  use constant 'RG8Sint' => dualvar(0x0000000B, 'WGPUTextureFormat_RG8Sint');
+  use constant 'R32Float' => dualvar(0x0000000C, 'WGPUTextureFormat_R32Float');
+  use constant 'R32Uint' => dualvar(0x0000000D, 'WGPUTextureFormat_R32Uint');
+  use constant 'R32Sint' => dualvar(0x0000000E, 'WGPUTextureFormat_R32Sint');
+  use constant 'RG16Uint' => dualvar(0x0000000F, 'WGPUTextureFormat_RG16Uint');
+  use constant 'RG16Sint' => dualvar(0x00000010, 'WGPUTextureFormat_RG16Sint');
+  use constant 'RG16Float' => dualvar(0x00000011, 'WGPUTextureFormat_RG16Float');
+  use constant 'RGBA8Unorm' => dualvar(0x00000012, 'WGPUTextureFormat_RGBA8Unorm');
+  use constant 'RGBA8UnormSrgb' => dualvar(0x00000013, 'WGPUTextureFormat_RGBA8UnormSrgb');
+  use constant 'RGBA8Snorm' => dualvar(0x00000014, 'WGPUTextureFormat_RGBA8Snorm');
+  use constant 'RGBA8Uint' => dualvar(0x00000015, 'WGPUTextureFormat_RGBA8Uint');
+  use constant 'RGBA8Sint' => dualvar(0x00000016, 'WGPUTextureFormat_RGBA8Sint');
+  use constant 'BGRA8Unorm' => dualvar(0x00000017, 'WGPUTextureFormat_BGRA8Unorm');
+  use constant 'BGRA8UnormSrgb' => dualvar(0x00000018, 'WGPUTextureFormat_BGRA8UnormSrgb');
+  use constant 'RGB10A2Unorm' => dualvar(0x00000019, 'WGPUTextureFormat_RGB10A2Unorm');
+  use constant 'RG11B10Ufloat' => dualvar(0x0000001A, 'WGPUTextureFormat_RG11B10Ufloat');
+  use constant 'RGB9E5Ufloat' => dualvar(0x0000001B, 'WGPUTextureFormat_RGB9E5Ufloat');
+  use constant 'RG32Float' => dualvar(0x0000001C, 'WGPUTextureFormat_RG32Float');
+  use constant 'RG32Uint' => dualvar(0x0000001D, 'WGPUTextureFormat_RG32Uint');
+  use constant 'RG32Sint' => dualvar(0x0000001E, 'WGPUTextureFormat_RG32Sint');
+  use constant 'RGBA16Uint' => dualvar(0x0000001F, 'WGPUTextureFormat_RGBA16Uint');
+  use constant 'RGBA16Sint' => dualvar(0x00000020, 'WGPUTextureFormat_RGBA16Sint');
+  use constant 'RGBA16Float' => dualvar(0x00000021, 'WGPUTextureFormat_RGBA16Float');
+  use constant 'RGBA32Float' => dualvar(0x00000022, 'WGPUTextureFormat_RGBA32Float');
+  use constant 'RGBA32Uint' => dualvar(0x00000023, 'WGPUTextureFormat_RGBA32Uint');
+  use constant 'RGBA32Sint' => dualvar(0x00000024, 'WGPUTextureFormat_RGBA32Sint');
+  use constant 'Stencil8' => dualvar(0x00000025, 'WGPUTextureFormat_Stencil8');
+  use constant 'Depth16Unorm' => dualvar(0x00000026, 'WGPUTextureFormat_Depth16Unorm');
+  use constant 'Depth24Plus' => dualvar(0x00000027, 'WGPUTextureFormat_Depth24Plus');
+  use constant 'Depth24PlusStencil8' => dualvar(0x00000028, 'WGPUTextureFormat_Depth24PlusStencil8');
+  use constant 'Depth32Float' => dualvar(0x00000029, 'WGPUTextureFormat_Depth32Float');
+  use constant 'Depth32FloatStencil8' => dualvar(0x0000002A, 'WGPUTextureFormat_Depth32FloatStencil8');
+  use constant 'BC1RGBAUnorm' => dualvar(0x0000002B, 'WGPUTextureFormat_BC1RGBAUnorm');
+  use constant 'BC1RGBAUnormSrgb' => dualvar(0x0000002C, 'WGPUTextureFormat_BC1RGBAUnormSrgb');
+  use constant 'BC2RGBAUnorm' => dualvar(0x0000002D, 'WGPUTextureFormat_BC2RGBAUnorm');
+  use constant 'BC2RGBAUnormSrgb' => dualvar(0x0000002E, 'WGPUTextureFormat_BC2RGBAUnormSrgb');
+  use constant 'BC3RGBAUnorm' => dualvar(0x0000002F, 'WGPUTextureFormat_BC3RGBAUnorm');
+  use constant 'BC3RGBAUnormSrgb' => dualvar(0x00000030, 'WGPUTextureFormat_BC3RGBAUnormSrgb');
+  use constant 'BC4RUnorm' => dualvar(0x00000031, 'WGPUTextureFormat_BC4RUnorm');
+  use constant 'BC4RSnorm' => dualvar(0x00000032, 'WGPUTextureFormat_BC4RSnorm');
+  use constant 'BC5RGUnorm' => dualvar(0x00000033, 'WGPUTextureFormat_BC5RGUnorm');
+  use constant 'BC5RGSnorm' => dualvar(0x00000034, 'WGPUTextureFormat_BC5RGSnorm');
+  use constant 'BC6HRGBUfloat' => dualvar(0x00000035, 'WGPUTextureFormat_BC6HRGBUfloat');
+  use constant 'BC6HRGBFloat' => dualvar(0x00000036, 'WGPUTextureFormat_BC6HRGBFloat');
+  use constant 'BC7RGBAUnorm' => dualvar(0x00000037, 'WGPUTextureFormat_BC7RGBAUnorm');
+  use constant 'BC7RGBAUnormSrgb' => dualvar(0x00000038, 'WGPUTextureFormat_BC7RGBAUnormSrgb');
+  use constant 'ETC2RGB8Unorm' => dualvar(0x00000039, 'WGPUTextureFormat_ETC2RGB8Unorm');
+  use constant 'ETC2RGB8UnormSrgb' => dualvar(0x0000003A, 'WGPUTextureFormat_ETC2RGB8UnormSrgb');
+  use constant 'ETC2RGB8A1Unorm' => dualvar(0x0000003B, 'WGPUTextureFormat_ETC2RGB8A1Unorm');
+  use constant 'ETC2RGB8A1UnormSrgb' => dualvar(0x0000003C, 'WGPUTextureFormat_ETC2RGB8A1UnormSrgb');
+  use constant 'ETC2RGBA8Unorm' => dualvar(0x0000003D, 'WGPUTextureFormat_ETC2RGBA8Unorm');
+  use constant 'ETC2RGBA8UnormSrgb' => dualvar(0x0000003E, 'WGPUTextureFormat_ETC2RGBA8UnormSrgb');
+  use constant 'EACR11Unorm' => dualvar(0x0000003F, 'WGPUTextureFormat_EACR11Unorm');
+  use constant 'EACR11Snorm' => dualvar(0x00000040, 'WGPUTextureFormat_EACR11Snorm');
+  use constant 'EACRG11Unorm' => dualvar(0x00000041, 'WGPUTextureFormat_EACRG11Unorm');
+  use constant 'EACRG11Snorm' => dualvar(0x00000042, 'WGPUTextureFormat_EACRG11Snorm');
+  use constant 'ASTC4x4Unorm' => dualvar(0x00000043, 'WGPUTextureFormat_ASTC4x4Unorm');
+  use constant 'ASTC4x4UnormSrgb' => dualvar(0x00000044, 'WGPUTextureFormat_ASTC4x4UnormSrgb');
+  use constant 'ASTC5x4Unorm' => dualvar(0x00000045, 'WGPUTextureFormat_ASTC5x4Unorm');
+  use constant 'ASTC5x4UnormSrgb' => dualvar(0x00000046, 'WGPUTextureFormat_ASTC5x4UnormSrgb');
+  use constant 'ASTC5x5Unorm' => dualvar(0x00000047, 'WGPUTextureFormat_ASTC5x5Unorm');
+  use constant 'ASTC5x5UnormSrgb' => dualvar(0x00000048, 'WGPUTextureFormat_ASTC5x5UnormSrgb');
+  use constant 'ASTC6x5Unorm' => dualvar(0x00000049, 'WGPUTextureFormat_ASTC6x5Unorm');
+  use constant 'ASTC6x5UnormSrgb' => dualvar(0x0000004A, 'WGPUTextureFormat_ASTC6x5UnormSrgb');
+  use constant 'ASTC6x6Unorm' => dualvar(0x0000004B, 'WGPUTextureFormat_ASTC6x6Unorm');
+  use constant 'ASTC6x6UnormSrgb' => dualvar(0x0000004C, 'WGPUTextureFormat_ASTC6x6UnormSrgb');
+  use constant 'ASTC8x5Unorm' => dualvar(0x0000004D, 'WGPUTextureFormat_ASTC8x5Unorm');
+  use constant 'ASTC8x5UnormSrgb' => dualvar(0x0000004E, 'WGPUTextureFormat_ASTC8x5UnormSrgb');
+  use constant 'ASTC8x6Unorm' => dualvar(0x0000004F, 'WGPUTextureFormat_ASTC8x6Unorm');
+  use constant 'ASTC8x6UnormSrgb' => dualvar(0x00000050, 'WGPUTextureFormat_ASTC8x6UnormSrgb');
+  use constant 'ASTC8x8Unorm' => dualvar(0x00000051, 'WGPUTextureFormat_ASTC8x8Unorm');
+  use constant 'ASTC8x8UnormSrgb' => dualvar(0x00000052, 'WGPUTextureFormat_ASTC8x8UnormSrgb');
+  use constant 'ASTC10x5Unorm' => dualvar(0x00000053, 'WGPUTextureFormat_ASTC10x5Unorm');
+  use constant 'ASTC10x5UnormSrgb' => dualvar(0x00000054, 'WGPUTextureFormat_ASTC10x5UnormSrgb');
+  use constant 'ASTC10x6Unorm' => dualvar(0x00000055, 'WGPUTextureFormat_ASTC10x6Unorm');
+  use constant 'ASTC10x6UnormSrgb' => dualvar(0x00000056, 'WGPUTextureFormat_ASTC10x6UnormSrgb');
+  use constant 'ASTC10x8Unorm' => dualvar(0x00000057, 'WGPUTextureFormat_ASTC10x8Unorm');
+  use constant 'ASTC10x8UnormSrgb' => dualvar(0x00000058, 'WGPUTextureFormat_ASTC10x8UnormSrgb');
+  use constant 'ASTC10x10Unorm' => dualvar(0x00000059, 'WGPUTextureFormat_ASTC10x10Unorm');
+  use constant 'ASTC10x10UnormSrgb' => dualvar(0x0000005A, 'WGPUTextureFormat_ASTC10x10UnormSrgb');
+  use constant 'ASTC12x10Unorm' => dualvar(0x0000005B, 'WGPUTextureFormat_ASTC12x10Unorm');
+  use constant 'ASTC12x10UnormSrgb' => dualvar(0x0000005C, 'WGPUTextureFormat_ASTC12x10UnormSrgb');
+  use constant 'ASTC12x12Unorm' => dualvar(0x0000005D, 'WGPUTextureFormat_ASTC12x12Unorm');
+  use constant 'ASTC12x12UnormSrgb' => dualvar(0x0000005E, 'WGPUTextureFormat_ASTC12x12UnormSrgb');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUTextureFormat_Force32');
+};
+
+package WebGPU::Direct::TextureSampleType {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUTextureSampleType_Undefined');
+  use constant 'Float' => dualvar(0x00000001, 'WGPUTextureSampleType_Float');
+  use constant 'UnfilterableFloat' => dualvar(0x00000002, 'WGPUTextureSampleType_UnfilterableFloat');
+  use constant 'Depth' => dualvar(0x00000003, 'WGPUTextureSampleType_Depth');
+  use constant 'Sint' => dualvar(0x00000004, 'WGPUTextureSampleType_Sint');
+  use constant 'Uint' => dualvar(0x00000005, 'WGPUTextureSampleType_Uint');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUTextureSampleType_Force32');
+};
+
+package WebGPU::Direct::TextureUsage {
+  use Scalar::Util qw/dualvar/;
+  use constant 'None' => dualvar(0x00000000, 'WGPUTextureUsage_None');
+  use constant 'CopySrc' => dualvar(0x00000001, 'WGPUTextureUsage_CopySrc');
+  use constant 'CopyDst' => dualvar(0x00000002, 'WGPUTextureUsage_CopyDst');
+  use constant 'TextureBinding' => dualvar(0x00000004, 'WGPUTextureUsage_TextureBinding');
+  use constant 'StorageBinding' => dualvar(0x00000008, 'WGPUTextureUsage_StorageBinding');
+  use constant 'RenderAttachment' => dualvar(0x00000010, 'WGPUTextureUsage_RenderAttachment');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUTextureUsage_Force32');
+};
+
+package WebGPU::Direct::TextureViewDimension {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUTextureViewDimension_Undefined');
+  use constant '_1D' => dualvar(0x00000001, 'WGPUTextureViewDimension_1D');
+  use constant '_2D' => dualvar(0x00000002, 'WGPUTextureViewDimension_2D');
+  use constant '_2DArray' => dualvar(0x00000003, 'WGPUTextureViewDimension_2DArray');
+  use constant 'Cube' => dualvar(0x00000004, 'WGPUTextureViewDimension_Cube');
+  use constant 'CubeArray' => dualvar(0x00000005, 'WGPUTextureViewDimension_CubeArray');
+  use constant '_3D' => dualvar(0x00000006, 'WGPUTextureViewDimension_3D');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUTextureViewDimension_Force32');
+};
+
+package WebGPU::Direct::VertexFormat {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Undefined' => dualvar(0x00000000, 'WGPUVertexFormat_Undefined');
+  use constant 'Uint8x2' => dualvar(0x00000001, 'WGPUVertexFormat_Uint8x2');
+  use constant 'Uint8x4' => dualvar(0x00000002, 'WGPUVertexFormat_Uint8x4');
+  use constant 'Sint8x2' => dualvar(0x00000003, 'WGPUVertexFormat_Sint8x2');
+  use constant 'Sint8x4' => dualvar(0x00000004, 'WGPUVertexFormat_Sint8x4');
+  use constant 'Unorm8x2' => dualvar(0x00000005, 'WGPUVertexFormat_Unorm8x2');
+  use constant 'Unorm8x4' => dualvar(0x00000006, 'WGPUVertexFormat_Unorm8x4');
+  use constant 'Snorm8x2' => dualvar(0x00000007, 'WGPUVertexFormat_Snorm8x2');
+  use constant 'Snorm8x4' => dualvar(0x00000008, 'WGPUVertexFormat_Snorm8x4');
+  use constant 'Uint16x2' => dualvar(0x00000009, 'WGPUVertexFormat_Uint16x2');
+  use constant 'Uint16x4' => dualvar(0x0000000A, 'WGPUVertexFormat_Uint16x4');
+  use constant 'Sint16x2' => dualvar(0x0000000B, 'WGPUVertexFormat_Sint16x2');
+  use constant 'Sint16x4' => dualvar(0x0000000C, 'WGPUVertexFormat_Sint16x4');
+  use constant 'Unorm16x2' => dualvar(0x0000000D, 'WGPUVertexFormat_Unorm16x2');
+  use constant 'Unorm16x4' => dualvar(0x0000000E, 'WGPUVertexFormat_Unorm16x4');
+  use constant 'Snorm16x2' => dualvar(0x0000000F, 'WGPUVertexFormat_Snorm16x2');
+  use constant 'Snorm16x4' => dualvar(0x00000010, 'WGPUVertexFormat_Snorm16x4');
+  use constant 'Float16x2' => dualvar(0x00000011, 'WGPUVertexFormat_Float16x2');
+  use constant 'Float16x4' => dualvar(0x00000012, 'WGPUVertexFormat_Float16x4');
+  use constant 'Float32' => dualvar(0x00000013, 'WGPUVertexFormat_Float32');
+  use constant 'Float32x2' => dualvar(0x00000014, 'WGPUVertexFormat_Float32x2');
+  use constant 'Float32x3' => dualvar(0x00000015, 'WGPUVertexFormat_Float32x3');
+  use constant 'Float32x4' => dualvar(0x00000016, 'WGPUVertexFormat_Float32x4');
+  use constant 'Uint32' => dualvar(0x00000017, 'WGPUVertexFormat_Uint32');
+  use constant 'Uint32x2' => dualvar(0x00000018, 'WGPUVertexFormat_Uint32x2');
+  use constant 'Uint32x3' => dualvar(0x00000019, 'WGPUVertexFormat_Uint32x3');
+  use constant 'Uint32x4' => dualvar(0x0000001A, 'WGPUVertexFormat_Uint32x4');
+  use constant 'Sint32' => dualvar(0x0000001B, 'WGPUVertexFormat_Sint32');
+  use constant 'Sint32x2' => dualvar(0x0000001C, 'WGPUVertexFormat_Sint32x2');
+  use constant 'Sint32x3' => dualvar(0x0000001D, 'WGPUVertexFormat_Sint32x3');
+  use constant 'Sint32x4' => dualvar(0x0000001E, 'WGPUVertexFormat_Sint32x4');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUVertexFormat_Force32');
+};
+
+package WebGPU::Direct::VertexStepMode {
+  use Scalar::Util qw/dualvar/;
+  use constant 'Vertex' => dualvar(0x00000000, 'WGPUVertexStepMode_Vertex');
+  use constant 'Instance' => dualvar(0x00000001, 'WGPUVertexStepMode_Instance');
+  use constant 'VertexBufferNotUsed' => dualvar(0x00000002, 'WGPUVertexStepMode_VertexBufferNotUsed');
+  use constant 'Force32' => dualvar(0x7FFFFFFF, 'WGPUVertexStepMode_Force32');
+};
 
 1;
