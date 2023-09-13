@@ -4,23 +4,24 @@ use v5.30;
 use Data::Dumper;
 use Time::HiRes qw/time/;
 use WebGPU::Direct;
-use WebGPU::Direct::XS;
+
+my $wgpu = WebGPU::Direct->new;
+
+$wgpu->InstanceDescriptor;
+$wgpu->InstanceDescriptor;
 
 # Create instance
-my $id       = WebGPU::Direct::InstanceDescriptor->new;
-my $instance = WebGPU::Direct::XS::CreateInstance($id);
+my $instance = $wgpu->CreateInstance( $wgpu->InstanceDescriptor );
 
 # Build X11 Surface
-my $x11 = WebGPU::Direct->new_window_x11;
-my $descriptor
-    = WebGPU::Direct::SurfaceDescriptor->new( nextInChain => $x11 );
+my $x11        = WebGPU::Direct->new_window_x11;
+my $descriptor = $wgpu->SurfaceDescriptor( nextInChain => $x11 );
 
 # Build surface
 my $surface = $instance->CreateSurface($descriptor);
 
 # Acquire an adapter and device
-my $ra_opt = WebGPU::Direct::RequestAdapterOptions->new(
-  compatibleSurface => $surface );
+my $ra_opt = $wgpu->RequestAdapterOptions( compatibleSurface => $surface );
 
 my $adapter;
 my $device;
@@ -60,23 +61,21 @@ sub handle_request_device
   }
 }
 
-$instance->RequestAdapter( $ra_opt, \&handle_request_adapter,
-  { asdf => 1, } );
-my $supported_limits = WebGPU::Direct::SupportedLimits->new;
+$instance->RequestAdapter( $ra_opt, \&handle_request_adapter, {} );
+my $supported_limits = $wgpu->SupportedLimits;
 
 $adapter->GetLimits($supported_limits);
 my $limits = $supported_limits->limits;
 
-my $req_limits = WebGPU::Direct::RequiredLimits->new( { limits => $limits } );
-my $devdesc
-    = WebGPU::Direct::DeviceDescriptor->new( requiredLimits => $req_limits );
-$adapter->RequestDevice( $devdesc, \&handle_request_device, { asdf => 1, } );
+my $req_limits = $wgpu->RequiredLimits( { limits => $limits } );
+my $devdesc    = $wgpu->DeviceDescriptor( requiredLimits => $req_limits );
+$adapter->RequestDevice( $devdesc, \&handle_request_device, {} );
 
 # Build the shader
-my $shaderdesc = WebGPU::Direct::ShaderModuleDescriptor->new(
+my $shaderdesc = $wgpu->ShaderModuleDescriptor(
   {
     label       => 'shader.wsgl',
-    nextInChain => WebGPU::Direct::ShaderModuleWGSLDescriptor->new(
+    nextInChain => $wgpu->ShaderModuleWGSLDescriptor(
       {
         sType => 0x00000006,
         code  => join( '', <DATA> ),
@@ -89,31 +88,30 @@ my $shader = $device->CreateShaderModule($shaderdesc);
 
 # Build the pipeline pieces
 my $queue   = $device->GetQueue;
-my $pl_desc = WebGPU::Direct::PipelineLayoutDescriptor->new(
-  label => 'pipeline_layout' );
+my $pl_desc = $wgpu->PipelineLayoutDescriptor( label => 'pipeline_layout' );
 my $pipeline_layout = $device->CreatePipelineLayout($pl_desc);
 my $tex_fmt         = $surface->GetPreferredFormat($adapter);
 
-my $rpd = WebGPU::Direct::RenderPipelineDescriptor->new(
+my $rpd = $wgpu->RenderPipelineDescriptor(
   label  => 'render_pipeline',
   layout => $pipeline_layout,
-  vertex => WebGPU::Direct::VertexState->new(
+  vertex => $wgpu->VertexState(
     module     => $shader,
     entryPoint => 'vs_main',
   ),
-  fragment => WebGPU::Direct::FragmentState->new(
+  fragment => $wgpu->FragmentState(
     module      => $shader,
     entryPoint  => 'fs_main',
     targetCount => 1,
-    targets     => WebGPU::Direct::ColorTargetState->new(
+    targets     => $wgpu->ColorTargetState(
       format    => $tex_fmt,
       writeMask => 0x0000000F,
     ),
   ),
-  primitive => WebGPU::Direct::PrimitiveState->new(
+  primitive => $wgpu->PrimitiveState(
     topology => 0x00000003,
   ),
-  multisample => WebGPU::Direct::MultisampleState->new(
+  multisample => $wgpu->MultisampleState(
     count => 1,
     mask  => 0xFFFFFFFF,
   ),
@@ -121,7 +119,7 @@ my $rpd = WebGPU::Direct::RenderPipelineDescriptor->new(
 
 my $pipeline = $device->CreateRenderPipeline($rpd);
 
-my $sc_config = WebGPU::Direct::SwapChainDescriptor->new(
+my $sc_config = $wgpu->SwapChainDescriptor(
   usage       => 0x00000010,
   format      => $tex_fmt,
   presentMode => 0x00000002,
@@ -131,10 +129,10 @@ my $sc_config = WebGPU::Direct::SwapChainDescriptor->new(
 
 my $swapchain = $device->CreateSwapChain( $surface, $sc_config );
 
-my $passcolor = WebGPU::Direct::RenderPassColorAttachment->new(
+my $passcolor = $wgpu->RenderPassColorAttachment(
   loadOp     => 0x00000001,
   storeOp    => 0x00000001,
-  clearValue => WebGPU::Direct::Color->new(
+  clearValue => $wgpu->Color(
     r => 0.0,
     g => 1.0,
     b => 0.0,
@@ -142,11 +140,14 @@ my $passcolor = WebGPU::Direct::RenderPassColorAttachment->new(
   ),
 );
 
-my $passdesc = WebGPU::Direct::RenderPassDescriptor->new(
+my $passdesc = $wgpu->RenderPassDescriptor(
   label                => "render_pass_encoder",
   colorAttachmentCount => 1,
   colorAttachments     => $passcolor,
 );
+
+my $cwdesc = $wgpu->CommandEncoderDescriptor;
+my $cbdesc = $wgpu->CommandBufferDescriptor;
 
 my $start  = time;
 my $frames = 1000;
@@ -154,8 +155,7 @@ for ( 1 .. 1000 )
 {
   my $next_tex = $swapchain->GetCurrentTextureView;
 
-  my $cmdenc = $device->CreateCommandEncoder(
-    WebGPU::Direct::CommandEncoderDescriptor->new );
+  my $cmdenc = $device->CreateCommandEncoder($cwdesc);
 
   $passcolor->view($next_tex);
   my $passenc = $cmdenc->BeginRenderPass($passdesc);
@@ -164,8 +164,7 @@ for ( 1 .. 1000 )
   $passenc->Draw( 3, 1, 0, 0 );
   $passenc->End;
 
-  my $cmdbuf
-      = $cmdenc->Finish( WebGPU::Direct::CommandBufferDescriptor->new );
+  my $cmdbuf = $cmdenc->Finish($cbdesc);
 
   $queue->Submit( [$cmdbuf] );
   $swapchain->Present;
