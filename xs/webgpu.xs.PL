@@ -373,6 +373,14 @@ foreach (@fns)
   say $pm qq[  sub $def{name} { my \$class = shift; WebGPU::Direct::XS::$def{name}(\@_); }];
 }
 
+say $pm qq[  our \@export_all;];
+foreach my $enum ( sort keys %enums )
+{
+  $enum =~ s/^WGPU//;
+  my $pkg = "WebGPU::Direct::$enum";
+  say $pm qq[  sub $enum () { '$pkg' }; push \@export_all, '$enum'; ];
+}
+
 say $pm qq[};];
 say $pm qq[];
 
