@@ -6,6 +6,13 @@ our $VERSION = '0.01';
 
 use WebGPU::Direct::XS;
 
+use Exporter 'import';
+
+our @export_all;
+our %EXPORT_TAGS = ( 'all' => [ @export_all ] );
+our @EXPORT_OK = ( @export_all );
+our @EXPORT = qw//;
+
 sub new
 {
   my $class = shift;

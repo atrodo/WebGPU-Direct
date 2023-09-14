@@ -378,7 +378,7 @@ foreach my $enum ( sort keys %enums )
 {
   $enum =~ s/^WGPU//;
   my $pkg = "WebGPU::Direct::$enum";
-  say $pm qq[  sub $enum () { '$pkg' }; push \@export_all, '$enum'; ];
+  say $pm qq[  sub $enum () { '$pkg' }; push \@export_all, '$enum';];
 }
 
 say $pm qq[};];

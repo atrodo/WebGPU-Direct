@@ -9,6 +9,56 @@ package WebGPU::Direct::XS {
 package WebGPU::Direct {
   sub CreateInstance { my $class = shift; WebGPU::Direct::XS::CreateInstance(@_); }
   sub GetProcAddress { my $class = shift; WebGPU::Direct::XS::GetProcAddress(@_); }
+  our @export_all;
+  sub AdapterType () { 'WebGPU::Direct::AdapterType' }; push @export_all, 'AdapterType';
+  sub AddressMode () { 'WebGPU::Direct::AddressMode' }; push @export_all, 'AddressMode';
+  sub BackendType () { 'WebGPU::Direct::BackendType' }; push @export_all, 'BackendType';
+  sub BlendFactor () { 'WebGPU::Direct::BlendFactor' }; push @export_all, 'BlendFactor';
+  sub BlendOperation () { 'WebGPU::Direct::BlendOperation' }; push @export_all, 'BlendOperation';
+  sub BufferBindingType () { 'WebGPU::Direct::BufferBindingType' }; push @export_all, 'BufferBindingType';
+  sub BufferMapAsyncStatus () { 'WebGPU::Direct::BufferMapAsyncStatus' }; push @export_all, 'BufferMapAsyncStatus';
+  sub BufferMapState () { 'WebGPU::Direct::BufferMapState' }; push @export_all, 'BufferMapState';
+  sub BufferUsage () { 'WebGPU::Direct::BufferUsage' }; push @export_all, 'BufferUsage';
+  sub ColorWriteMask () { 'WebGPU::Direct::ColorWriteMask' }; push @export_all, 'ColorWriteMask';
+  sub CompareFunction () { 'WebGPU::Direct::CompareFunction' }; push @export_all, 'CompareFunction';
+  sub CompilationInfoRequestStatus () { 'WebGPU::Direct::CompilationInfoRequestStatus' }; push @export_all, 'CompilationInfoRequestStatus';
+  sub CompilationMessageType () { 'WebGPU::Direct::CompilationMessageType' }; push @export_all, 'CompilationMessageType';
+  sub ComputePassTimestampLocation () { 'WebGPU::Direct::ComputePassTimestampLocation' }; push @export_all, 'ComputePassTimestampLocation';
+  sub CreatePipelineAsyncStatus () { 'WebGPU::Direct::CreatePipelineAsyncStatus' }; push @export_all, 'CreatePipelineAsyncStatus';
+  sub CullMode () { 'WebGPU::Direct::CullMode' }; push @export_all, 'CullMode';
+  sub DeviceLostReason () { 'WebGPU::Direct::DeviceLostReason' }; push @export_all, 'DeviceLostReason';
+  sub ErrorFilter () { 'WebGPU::Direct::ErrorFilter' }; push @export_all, 'ErrorFilter';
+  sub ErrorType () { 'WebGPU::Direct::ErrorType' }; push @export_all, 'ErrorType';
+  sub FeatureName () { 'WebGPU::Direct::FeatureName' }; push @export_all, 'FeatureName';
+  sub FilterMode () { 'WebGPU::Direct::FilterMode' }; push @export_all, 'FilterMode';
+  sub FrontFace () { 'WebGPU::Direct::FrontFace' }; push @export_all, 'FrontFace';
+  sub IndexFormat () { 'WebGPU::Direct::IndexFormat' }; push @export_all, 'IndexFormat';
+  sub LoadOp () { 'WebGPU::Direct::LoadOp' }; push @export_all, 'LoadOp';
+  sub MapMode () { 'WebGPU::Direct::MapMode' }; push @export_all, 'MapMode';
+  sub MipmapFilterMode () { 'WebGPU::Direct::MipmapFilterMode' }; push @export_all, 'MipmapFilterMode';
+  sub PipelineStatisticName () { 'WebGPU::Direct::PipelineStatisticName' }; push @export_all, 'PipelineStatisticName';
+  sub PowerPreference () { 'WebGPU::Direct::PowerPreference' }; push @export_all, 'PowerPreference';
+  sub PresentMode () { 'WebGPU::Direct::PresentMode' }; push @export_all, 'PresentMode';
+  sub PrimitiveTopology () { 'WebGPU::Direct::PrimitiveTopology' }; push @export_all, 'PrimitiveTopology';
+  sub QueryType () { 'WebGPU::Direct::QueryType' }; push @export_all, 'QueryType';
+  sub QueueWorkDoneStatus () { 'WebGPU::Direct::QueueWorkDoneStatus' }; push @export_all, 'QueueWorkDoneStatus';
+  sub RenderPassTimestampLocation () { 'WebGPU::Direct::RenderPassTimestampLocation' }; push @export_all, 'RenderPassTimestampLocation';
+  sub RequestAdapterStatus () { 'WebGPU::Direct::RequestAdapterStatus' }; push @export_all, 'RequestAdapterStatus';
+  sub RequestDeviceStatus () { 'WebGPU::Direct::RequestDeviceStatus' }; push @export_all, 'RequestDeviceStatus';
+  sub SType () { 'WebGPU::Direct::SType' }; push @export_all, 'SType';
+  sub SamplerBindingType () { 'WebGPU::Direct::SamplerBindingType' }; push @export_all, 'SamplerBindingType';
+  sub ShaderStage () { 'WebGPU::Direct::ShaderStage' }; push @export_all, 'ShaderStage';
+  sub StencilOperation () { 'WebGPU::Direct::StencilOperation' }; push @export_all, 'StencilOperation';
+  sub StorageTextureAccess () { 'WebGPU::Direct::StorageTextureAccess' }; push @export_all, 'StorageTextureAccess';
+  sub StoreOp () { 'WebGPU::Direct::StoreOp' }; push @export_all, 'StoreOp';
+  sub TextureAspect () { 'WebGPU::Direct::TextureAspect' }; push @export_all, 'TextureAspect';
+  sub TextureDimension () { 'WebGPU::Direct::TextureDimension' }; push @export_all, 'TextureDimension';
+  sub TextureFormat () { 'WebGPU::Direct::TextureFormat' }; push @export_all, 'TextureFormat';
+  sub TextureSampleType () { 'WebGPU::Direct::TextureSampleType' }; push @export_all, 'TextureSampleType';
+  sub TextureUsage () { 'WebGPU::Direct::TextureUsage' }; push @export_all, 'TextureUsage';
+  sub TextureViewDimension () { 'WebGPU::Direct::TextureViewDimension' }; push @export_all, 'TextureViewDimension';
+  sub VertexFormat () { 'WebGPU::Direct::VertexFormat' }; push @export_all, 'VertexFormat';
+  sub VertexStepMode () { 'WebGPU::Direct::VertexStepMode' }; push @export_all, 'VertexStepMode';
 };
 
 package WebGPU::Direct::Adapter {

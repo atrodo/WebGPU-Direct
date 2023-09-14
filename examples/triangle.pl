@@ -3,7 +3,7 @@
 use v5.30;
 use Data::Dumper;
 use Time::HiRes qw/time/;
-use WebGPU::Direct;
+use WebGPU::Direct qw/:all/;
 
 my $wgpu = WebGPU::Direct->new;
 
@@ -33,7 +33,7 @@ sub handle_request_adapter
   my $msg  = shift;
   my $data = shift;
 
-  if ( $status == 0x00000000 )    #WGPURequestAdapterStatus_Success)
+  if ( $status == RequestAdapterStatus->Success )
   {
     $data->{adapter} = $adapter;
   }
@@ -51,7 +51,7 @@ sub handle_request_device
   my $msg  = shift;
   my $data = shift;
 
-  if ( $status == 0x00000000 )    #WGPURequestDeviceStatus_Success
+  if ( $status == RequestDeviceStatus->Success )
   {
     $data->{device} = $device;
   }
@@ -77,7 +77,7 @@ my $shaderdesc = $wgpu->ShaderModuleDescriptor(
     label       => 'shader.wsgl',
     nextInChain => $wgpu->ShaderModuleWGSLDescriptor(
       {
-        sType => 0x00000006,
+        sType => SType->ShaderModuleWGSLDescriptor,
         code  => join( '', <DATA> ),
       }
     ),
@@ -105,11 +105,11 @@ my $rpd = $wgpu->RenderPipelineDescriptor(
     targetCount => 1,
     targets     => $wgpu->ColorTargetState(
       format    => $tex_fmt,
-      writeMask => 0x0000000F,
+      writeMask => ColorWriteMask->All,
     ),
   ),
   primitive => $wgpu->PrimitiveState(
-    topology => 0x00000003,
+    topology => PrimitiveTopology->TriangleList,
   ),
   multisample => $wgpu->MultisampleState(
     count => 1,
@@ -120,9 +120,9 @@ my $rpd = $wgpu->RenderPipelineDescriptor(
 my $pipeline = $device->CreateRenderPipeline($rpd);
 
 my $sc_config = $wgpu->SwapChainDescriptor(
-  usage       => 0x00000010,
+  usage       => TextureUsage->RenderAttachment,
   format      => $tex_fmt,
-  presentMode => 0x00000002,
+  presentMode => PresentMode->Fifo,
   width       => 640,
   height      => 360,
 );
@@ -130,8 +130,8 @@ my $sc_config = $wgpu->SwapChainDescriptor(
 my $swapchain = $device->CreateSwapChain( $surface, $sc_config );
 
 my $passcolor = $wgpu->RenderPassColorAttachment(
-  loadOp     => 0x00000001,
-  storeOp    => 0x00000001,
+  loadOp     => LoadOp->Clear,
+  storeOp    => StoreOp->Store,
   clearValue => $wgpu->Color(
     r => 0.0,
     g => 1.0,
