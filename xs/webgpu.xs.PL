@@ -1006,11 +1006,11 @@ sub say_call_fn
     say $xs "        $_";
   }
 
+  my @calls = @vals;
+  say $xs "    CODE:";
+
   if ( $is_cb || keys %arrays )
   {
-    my @calls = @vals;
-
-    say $xs "    CODE:";
     if ($is_cb)
     {
       my $cb_type = $defargs[-4];
@@ -1062,9 +1062,16 @@ sub say_call_fn
       @calls = map { $_ eq "${array}s" ? ( "${array}Count", $array ) : $_ }
           @calls;
     }
+  }
 
-    my $call = join( ', ', @calls );
-    say $xs "      $def{prefix}$def{name}($call);";
+  my $call = join( ', ', @calls );
+  my $retval = $def{return} =~ m/^void\s*$/ ? '' : 'RETVAL = ';
+
+  say $xs "      $retval$def{prefix}$def{name}($call);";
+  if ( $retval )
+  {
+    say $xs "    OUTPUT:";
+    say $xs "      RETVAL";
   }
   say $xs "";
 }
