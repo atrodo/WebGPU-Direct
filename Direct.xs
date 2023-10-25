@@ -10,7 +10,7 @@
 SV *_coerce_obj( SV *CLASS, SV *fields );
 SV *_new( SV *CLASS, SV *fields );
 
-void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
+SV * _get_mg_obj(pTHX_ SV *obj, SV *base)
 {
   if ( !SvOK(obj) )
   {
@@ -32,13 +32,25 @@ void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
   }
 
   SV *h = SvRV(obj);
+  return h;
+}
+
+void * _get_mg(pTHX_ SV *obj, SV *base)
+{
+  SV *h = _get_mg_obj(aTHX_ obj, base);
   MAGIC *mg = mg_find(h, PERL_MAGIC_ext);
+
+  return mg;
+}
+
+void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
+{
+  MAGIC *mg = _get_mg(aTHX_ obj, base);
 
   if ( mg == NULL )
   {
     return NULL;
   }
-
   return mg->mg_ptr;
 }
 
@@ -484,6 +496,320 @@ void _store_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
   }
 
   _pack_objptr(aTHX_ h, key, klen, field, base);
+
+  return;
+}
+
+/* ------------------------------------------------------------------
+   objarray
+   ------------------------------------------------------------------ */
+
+SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
+{
+  AV *ret = newAV();
+  av_extend(ret, count);
+
+  void *field = n;
+  for ( int i = 0; i < count; i++ )
+  {
+    SV *val = _new_with(base, n);
+    SvREFCNT_inc(val);
+    SV **f = av_store(ret, i, val);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to array for %d in type %s", i, SvPV_nolen(base));
+    }
+    _unpack(*f);
+
+    field = ((char *)field) + size;
+  }
+
+  return sv_2mortal(newRV((SV*)ret));
+}
+
+void _set_objarray(pTHX_ SV *new_value, void **field, Size_t *cntField, Size_t size, SV *base)
+{
+  if ( !base )
+  {
+    croak("Could not find requirement base for %s", SvPV_nolen(new_value));
+  }
+
+  if ( new_value == &PL_sv_undef )
+  {
+    *field = NULL;
+    *cntField = 0;
+    return;
+  }
+
+  if ( !SvROK(new_value) )
+  {
+    croak("The field value to _set_objarray must be a reference, for %s", SvPV_nolen(base));
+  }
+
+  if ( SvTYPE(SvRV(new_value)) != SVt_PVAV )
+  {
+    croak("The field value to _set_objarray must be an array reference, for %s", SvPV_nolen(base));
+  }
+
+  void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
+  *field = v;
+  *cntField = av_count(SvRV(new_value));
+}
+
+int _mg_set_objarray(pTHX_ SV* sv, MAGIC* mg)
+{
+  SV *base = mg->mg_obj;
+  _set_objarray(aTHX_ sv, (void *) mg->mg_ptr, NULL, 0, base);
+  return 0;
+}
+
+STATIC MGVTBL _mg_vtbl_objarray = {
+  .svt_set = _mg_set_objarray
+};
+
+SV *_unpack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t *cntField, Size_t size, SV* base)
+{
+  SV **f = NULL;
+  SV **c = NULL;
+  SV *keyCnt = NULL;
+  Size_t count = 0;
+
+  if ( field == NULL )
+  {
+    croak("The field value for objarray must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  f = hv_fetch(h, key, klen, 1);
+
+  if ( !( f && *f ) )
+  {
+    croak("Could not save new value for %s", key);
+  }
+
+  // -1 so it removes the s at the end of the key
+  keyCnt = newSVpv(key, klen-1);
+  sv_catpvs(keyCnt, "Count");
+  Size_t keyCntLen = sv_len(keyCnt);
+  c = hv_fetch(h, SvPV_nolen(keyCnt), keyCntLen, 1);
+
+  if ( !( c && *c ) )
+  {
+    croak("Could not save new value for %s", SvPV_nolen(keyCnt));
+  }
+
+  *c = newSViv(*cntField);
+
+  void *n = NULL;
+  if ( sv_isobject(*f) )
+  {
+    n = _get_struct_ptr(aTHX_ *f, NULL);
+  }
+
+  if ( n == NULL || n != *field )
+  {
+    SV *val = _array_new(base, *field, size, *cntField);
+
+    SvREFCNT_inc(val);
+    f = hv_store(h, key, klen, val, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
+  }
+
+  return *f;
+}
+
+SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t *cntField, Size_t size, SV *base)
+{
+  SV **f;
+  SV **c = NULL;
+  SV *keyCnt = NULL;
+  I32 keyCntLen;
+  Size_t count = 0;
+  void *arr = NULL;
+  AV *objs = NULL;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _pack_objarray must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_objarray(aTHX_ h, key, klen, field, cntField, size, base);
+  }
+
+  // -1 so it removes the s at the end of the key
+  keyCnt = newSVpv(key, klen-1);
+  sv_catpvs(keyCnt, "Count");
+  keyCntLen = sv_len(keyCnt);
+
+  SV *array_base = newSVsv(base);
+  sv_catpvs(array_base, "::Array");
+
+  if ( !SvROK(*f) )
+  {
+    croak("The field value to _pack_objarray must be a reference, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  if ( SvTYPE(SvRV(*f)) == SVt_PVHV )
+  {
+    AV *new_fields = newAV();
+
+    SvREFCNT_inc(*f);
+    SV **arrf = av_store(new_fields, 0, *f);
+    SV **new_array = NULL;
+
+    if ( !arrf )
+    {
+      SvREFCNT_dec(*f);
+      croak("Could not save value to array for %s in type %s", key, SvPV_nolen(base));
+    }
+
+    *f = sv_2mortal(newRV((SV*)new_fields));
+  }
+
+  if ( SvTYPE(SvRV(*f)) != SVt_PVAV )
+  {
+    croak("The field value to _pack_objarray must be an array, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  objs = (AV *)SvRV(*f);
+  count = av_count(objs);
+
+  if ( count == 0 )
+  {
+    // TODO: Free what is there
+    *f = &PL_sv_undef;
+    _set_objarray(aTHX_ *f, field, cntField, size, array_base);
+    return *f;
+  }
+
+  arr = _get_struct_ptr(aTHX_ (SV *)objs, array_base);
+  if ( arr != NULL )
+  {
+    Renew(arr, (count+1) * size, char);
+  }
+  else
+  {
+    Newxz(arr, (count+1) * size, char);
+  }
+
+  void *new_ptr = arr;
+
+  for ( Size_t i = 0; i < count; i++ )
+  {
+    SV **f = av_fetch(objs, i, 1);
+
+    if ( !( f && *f ) )
+    {
+      croak("Could not fetch array entry %zd, for %s{%s}", i, SvPV_nolen(base), key);
+    }
+
+    SV *obj = _coerce_obj(base, *f);
+    if ( obj != *f )
+    {
+      f = av_store(objs, i, obj);
+
+      if ( !f )
+      {
+        SvREFCNT_dec(obj);
+        croak("Could not save value to array for %zd, for %s{%s}", i, SvPV_nolen(base), key);
+      }
+    }
+
+    assert(SvOK(*f));
+    void *old_ptr = _get_struct_ptr(aTHX_ *f, base);
+    if ( old_ptr && old_ptr != new_ptr )
+    {
+      // TODO: object should probably be duplicated (if refcnt is minimal?)
+      Copy(old_ptr, new_ptr, size, char);
+
+      MAGIC *mg = _get_mg(aTHX_ *f, base);
+      if ( mg == NULL )
+      {
+        sv_magicext(*f, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
+      }
+      else
+      {
+        mg->mg_ptr = new_ptr;
+      }
+      Safefree(old_ptr);
+    }
+    else
+    {
+      SV *h = _get_mg_obj(aTHX_ *f, base);
+      sv_magicext(h, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
+    }
+
+    new_ptr = ((char *)new_ptr) + size;
+  }
+
+  Zero(new_ptr, size, char);
+
+  {
+    SV *cnt = SvREFCNT_inc(newSViv(count));
+    SV **cnt_f = hv_store(h, SvPV_nolen(keyCnt), keyCntLen, cnt, 0);
+
+    if ( !cnt_f )
+    {
+      SvREFCNT_dec(cnt);
+      croak("Could not save value to hash for %s in type %s", SvPV_nolen(keyCnt), SvPV_nolen(base));
+    }
+  }
+
+  SvREFCNT_inc(*f);
+
+  sv_magicext((SV *)objs, NULL, PERL_MAGIC_ext, NULL, (const char *)arr, 0);
+  sv_bless(*f, gv_stashpv(SvPV_nolen(array_base), GV_ADD));
+
+  _set_objarray(aTHX_ *f, field, cntField, size, array_base);
+
+  return *f;
+}
+
+SV *_find_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t *cntField, Size_t size, SV *base)
+{
+  SV **f;
+
+  if ( field == NULL )
+  {
+    croak("The field value to _find_objarray must not be null, for %s{%s}", SvPV_nolen(base), key);
+  }
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_objarray(aTHX_ h, key, klen, field, cntField, size, base);
+  }
+
+  return *f;
+}
+
+void _store_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t *cntField, Size_t size, SV* base, SV *value)
+{
+  SvREFCNT_inc(value);
+  SV **f = hv_store(h, key, klen, value, 0);
+
+  if ( !f )
+  {
+    SvREFCNT_dec(value);
+    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+  }
+
+  _pack_objarray(aTHX_ h, key, klen, field, cntField, size, base);
 
   return;
 }

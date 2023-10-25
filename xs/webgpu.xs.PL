@@ -430,6 +430,48 @@ foreach my $class ( @classes )
       $addl_unpack = qq{${c_prefix}unpack( /*asdf*/ THIS );\n};
       $preamble = qq{push \@$class\::ISA, "$defs[0]->{return}";};
     }
+
+    # Check for array-type elements
+    state $maybe_array;
+    foreach my $i (0..$#defs)
+    {
+      my %def = $defs[$i]->%*;
+
+      my $match;
+      if ( $def{ctype} eq 'size_t' && $def{key} =~ m/$arrcnt_re/ )
+      {
+        $match = $1;
+      }
+      if ( $def{key} =~ $arrnme_re )
+      {
+        $match = $1;
+      }
+
+      if ($match)
+      {
+        # If there is not yet a match
+        if ( !$maybe_array )
+        {
+          $maybe_array = $match;
+          next;
+        }
+
+        # Or the match doesn't match the last try
+        if ( $match ne $maybe_array )
+        {
+          $maybe_array = $match;
+          next;
+        }
+
+        my $cnt_i = $def{key} =~ m/$arrcnt_re/ ? $i : $i - 1;
+        my $arr_i = $cnt_i == $i ? $i - 1 : $i;
+
+        $defs[$cnt_i]->{ro}    = 1;
+        $defs[$arr_i]->{array} = $match;
+      }
+
+      undef $maybe_array;
+    }
   }
   else
   {
@@ -789,10 +831,21 @@ sub calls_for
       :                               "";
 
   my $typedef = $def{typedef};
-  if ( $typedef eq 'obj' && $def{is_ptr} )
+
+  if ( $def{is_ptr} )
   {
-    $typedef = "${typedef}ptr";
-    $cast    = '(void **)';
+    if ( $typedef eq 'obj' && $def{array} )
+    {
+      $typedef = "${typedef}array";
+      $set_addl = qq{, sizeof(*n->$def{key})$set_addl};
+      $set_addl = qq{, &n->$def{array}Count$set_addl};
+      $cast    = '(void **)';
+    }
+    elsif ( $typedef eq 'obj' )
+    {
+      $typedef = "${typedef}ptr";
+      $cast    = '(void **)';
+    }
   }
 
   if ( $typedef eq 'obj' && !$def{is_ptr} )
@@ -814,8 +867,7 @@ sub calls_for
     typedef  => undef,
   );
 
-  # TODO
-  if ( !$set_addl && $def{ctype} ne 'char' && $def{is_ptr} )
+  if ( !$set_addl && $def{ctype} ne 'char' && $def{is_ptr} && !$def{array} )
   {
     my $warning
         = qq{  // "$def{key}" is a ptr type $def{ctype}, and that's not quite right yet, using opaque\n};
@@ -830,11 +882,6 @@ sub calls_for
 
   my $call = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl};
   my $set_call = qq{aTHX_ value,/**/ (void *) &n->$def{key} $set_addl};
-
-  if ( 0 )#$is_obj )
-  {
-    #$set_call = qq{  _set_$typedef(aTHX_ value,/*-*/ (void *) &n->$def{key});\n};
-  }
 
   $result{pack}     .= qq{  _pack_$typedef($call);\n};
   $result{unpack}   .= qq{  _unpack_$typedef($call);\n};
@@ -859,6 +906,9 @@ sub say_set_fn
   my $ret_type = $def{return};
   my $is_ptr = ( $def{ctype} ne 'char' && $def{is_ptr} );
   my $is_obj = ( $typedef eq 'obj' || $typedef eq 'void' );
+  my $is_ro  = $def{ro};
+  my $is_arr = $def{array};
+
   my $val_type
       = $is_ptr ? "SV *"
       : $is_obj ? "$def{return}"
@@ -870,6 +920,22 @@ sub say_set_fn
     $ret_type = 'SV *';
   }
 
+  my $mut = 'SvREFCNT_inc(RETVAL);';
+  if ( !$is_ro )
+  {
+    $mut = <<~"EOF"; my $n = qq{
+    if (items > 1)
+            {
+                $calls{store}
+            }
+            else
+            {
+                SvREFCNT_inc(RETVAL);
+            }
+    EOF
+    };
+  }
+
   say $xs <<~"EOF"; my $n = qq{
     SV *
     $def{key}(THIS, value = NO_INIT)
@@ -879,16 +945,9 @@ sub say_set_fn
         CODE:
             HV *h = (HV *)SvRV(THIS);
             $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
-            RETVAL = $calls{find};
+            RETVAL = $calls{find}
+            $mut
 
-            if (items > 1)
-            {
-                $calls{store}
-            }
-            else
-            {
-                SvREFCNT_inc(RETVAL);
-            }
         OUTPUT:
             RETVAL
     EOF
@@ -951,9 +1010,6 @@ sub say_set_fn
 sub say_call_fn
 {
   my %def = @_;
-
-  state $arrcnt_re = qr/^(\w+)Count$/xms;
-  state $arrnme_re = qr/^(\w+)s$/xms;
 
   my $is_cb;
   my @defargs = $def{args}->@*;
@@ -1032,10 +1088,12 @@ sub say_call_fn
     push @vals, "$value";
   }
 
+  my $fn_name = $def{as} // $def{name};
+
   local $" = ', ';
   say $xs "";
   say $xs "$def{return}";
-  say $xs "$def{prefix}$def{name}(@vals)";
+  say $xs "$def{prefix}$fn_name(@vals)";
   foreach (@args)
   {
     say $xs "        $_";
