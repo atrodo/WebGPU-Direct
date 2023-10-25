@@ -47,6 +47,9 @@ my @typemap = (
   q{    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);},
 );
 
+my $arrcnt_re = qr/^(\w+)Count$/xms;
+my $arrnme_re = qr/^(\w+)s$/xms;
+
 my @fns;
 my @classes;
 my %enums;
@@ -63,6 +66,9 @@ say $pm q[package WebGPU::Direct::XS {];
 say $pm q[  our $VERSION = '0.01';];
 say $pm q[  require XSLoader;];
 say $pm q[  XSLoader::load('WebGPU::Direct', $VERSION);];
+say $pm q[}];
+say $pm q[];
+say $pm q[package WebGPU::Direct::Opaque {];
 say $pm q[}];
 say $pm q[];
 
@@ -402,7 +408,7 @@ foreach my $class ( @classes )
   my @defs = $def{defs}->@*;
   my @fns  = $def{fns}->@*;
 
-  my $isa       = "";
+  my $preamble  = "";
   my $packs     = "";
   my $addl_pack = "";
   my $unpacks     = "";
@@ -422,12 +428,12 @@ foreach my $class ( @classes )
       $c_prefix =~ s/::/__/g;
       $addl_pack = qq{${c_prefix}pack( /*asdf*/ THIS );\n};
       $addl_unpack = qq{${c_prefix}unpack( /*asdf*/ THIS );\n};
-      $isa = qq{push \@$class\::ISA, "$defs[0]->{return}";};
+      $preamble = qq{push \@$class\::ISA, "$defs[0]->{return}";};
     }
   }
   else
   {
-    $isa = qq{push \@$class\::ISA, "WebGPU::Direct::Opaque";};
+    $preamble = qq{push \@$class\::ISA, "WebGPU::Direct::Opaque";};
   }
 
   if ( @fns )
@@ -435,6 +441,35 @@ foreach my $class ( @classes )
     $prefix = $fns[0]->{prefix};
     warn "prefix is inconsistent: $prefix"
       if grep { $_->{prefix} && $_->{prefix} ne $prefix } @fns;
+
+    my $class_pm = "$class.pm";
+    $class_pm =~ s[::][/]g;
+    $class_pm = "$Bin/../lib/$class_pm";
+
+    if ( -e $class_pm )
+    {
+      $preamble .= "\nrequire $class;";
+
+      open my $class_fh, '<', $class_pm;
+      my %subs;
+
+      while (<$class_fh>)
+      {
+        if ( m/sub \s* (\w*)/xms )
+        {
+          $subs{$1} = 1;
+        }
+      }
+
+      foreach ( @fns )
+      {
+        my %fn_def = %$_;
+        if ( exists $subs{ $fn_def{name} } )
+        {
+          $_->{as} = "_$fn_def{name}";
+        }
+      }
+    }
   }
 
   say $xs '';
@@ -455,7 +490,7 @@ foreach my $class ( @classes )
   {
     say $pm <<~"EOF"; my $n = qq{
       package $class {
-          $isa
+          $preamble
           sub new {
               my \$class = shift;
               die "\$class does not inherit from $class\\n"
@@ -559,7 +594,7 @@ foreach my $class ( @classes )
   {
     say $pm <<~"EOF"; my $n = qq{
       package $class {
-          $isa
+          $preamble
           sub new {
               my \$class = __PACKAGE__;
               die "Cannot call new on abstract class \$class";

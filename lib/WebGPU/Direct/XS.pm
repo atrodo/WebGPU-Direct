@@ -6,6 +6,9 @@ package WebGPU::Direct::XS {
   XSLoader::load('WebGPU::Direct', $VERSION);
 }
 
+package WebGPU::Direct::Opaque {
+}
+
 package WebGPU::Direct {
   sub CreateInstance { my $class = shift; WebGPU::Direct::XS::CreateInstance(@_); }
   sub GetProcAddress { my $class = shift; WebGPU::Direct::XS::GetProcAddress(@_); }
@@ -63,6 +66,7 @@ package WebGPU::Direct {
 
 package WebGPU::Direct::Adapter {
     push @WebGPU::Direct::Adapter::ISA, "WebGPU::Direct::Opaque";
+require WebGPU::Direct::Adapter;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -127,6 +131,7 @@ package WebGPU::Direct::ComputePipeline {
 
 package WebGPU::Direct::Device {
     push @WebGPU::Direct::Device::ISA, "WebGPU::Direct::Opaque";
+require WebGPU::Direct::Device;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -135,6 +140,7 @@ package WebGPU::Direct::Device {
 
 package WebGPU::Direct::Instance {
     push @WebGPU::Direct::Instance::ISA, "WebGPU::Direct::Opaque";
+require WebGPU::Direct::Instance;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
