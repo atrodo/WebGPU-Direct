@@ -1,4 +1,9 @@
+# Constants, by a name, are scalar refs, and are fixed up later
 {
+  ColorTargetState => {
+    blend => undef,
+    writeMask => \'ColorWriteMask->All',
+  },
   RenderPipelineDescriptor => {
     multisample => {
       alphaToCoverageEnabled => 0,

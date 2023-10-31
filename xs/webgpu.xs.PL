@@ -403,6 +403,25 @@ say $c "typedef struct cb_data {
 } cb_data;
 ";
 
+foreach my $enum (sort keys %enums)
+{
+  my $pkg = "WebGPU::Direct::$enum";
+  $pkg =~ s/::WGPU/::/;
+
+  say $pm qq[package $pkg {];
+  say $pm qq[  use Scalar::Util qw/dualvar/;];
+
+  my %consts = %{ $enums{$enum} };
+
+  foreach my $value ( sort keys %consts )
+  {
+    say $pm qq[  $consts{$value}];
+  }
+
+  say $pm qq[};];
+  say $pm qq[];
+}
+
 foreach my $class ( @classes )
 {
   my %def = $classdefs{$class}->%*;
@@ -536,6 +555,9 @@ foreach my $class ( @classes )
     my $short_class = $class;
     $short_class =~ s/WebGPU::Direct:://;
     my $default = Data::Dumper->Dump([$class_defaults->{$short_class} // {}], [qw/default/]);
+
+    # Any scalar refs, strip the decoration and fully-qualify the call
+    $default =~ s[\\'([\w\:\-\>]*)'][WebGPU::Direct::$1];
 
     say $pm <<~"EOF"; my $n = qq{
       package $class {
@@ -694,25 +716,6 @@ foreach my $typedef ( sort keys %typedefs )
   say $tm sprintf( "%-64s%s", $typedef, $typemap );
   say $tm sprintf( "%-64s%s", "$typedef *", $typemap );
   say $tm sprintf( "%-64s%s", "$typedef const *", $typemap );
-}
-
-foreach my $enum (sort keys %enums)
-{
-  my $pkg = "WebGPU::Direct::$enum";
-  $pkg =~ s/::WGPU/::/;
-
-  say $pm qq[package $pkg {];
-  say $pm qq[  use Scalar::Util qw/dualvar/;];
-
-  my %consts = %{ $enums{$enum} };
-
-  foreach my $value ( sort keys %consts )
-  {
-    say $pm qq[  $consts{$value}];
-  }
-
-  say $pm qq[};];
-  say $pm qq[];
 }
 
 say $tm join("\n", @typemap);
