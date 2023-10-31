@@ -7,9 +7,6 @@ use WebGPU::Direct qw/:all/;
 
 my $wgpu = WebGPU::Direct->new;
 
-$wgpu->InstanceDescriptor;
-$wgpu->InstanceDescriptor;
-
 # Create instance
 my $instance = $wgpu->CreateInstance( $wgpu->InstanceDescriptor );
 
@@ -169,10 +166,10 @@ for ( 1 .. 1000 )
   $queue->Submit( [$cmdbuf] );
   $swapchain->Present;
 
-  $cmdbuf->Release;
-  $passenc->Release;
-  $cmdenc->Release;
-  $next_tex->Release;
+  #$cmdbuf->Release;
+  #$passenc->Release;
+  #$cmdenc->Release;
+  #$next_tex->Release;
 }
 
 my $total = time - $start;

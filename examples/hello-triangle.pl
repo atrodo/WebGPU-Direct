@@ -44,11 +44,7 @@ warn;
 my $fragmentStageDescriptor = {
   module     => $shaderModule,
   entryPoint => "fsmain",
-
-  #TODO
   targets => { format => TextureFormat->BGRA8Unorm, },
-
-  #targetCount => 1, #[ { format => "bgra8unorm" }, ],
 };
 
 # GPURenderPipelineDescriptor
@@ -63,7 +59,6 @@ my $renderPipelineDescriptor = {
 
 # GPURenderPipeline
 my $renderPipeline = $device->CreateRenderPipeline($renderPipelineDescriptor);
-warn;
 
 #*** Swap Chain Setup ***
 
@@ -94,6 +89,7 @@ my $swapChain = $device->CreateSwapChain(
 # Acquire Texture To Render To
 
 # GPUTextureView
+# This is done in the render loop
 #my $renderAttachment = $swapChain->GetCurrentTextureView;
 
 # GPUColor
@@ -107,16 +103,16 @@ my $colorAttachmentDescriptor = {
   clearColor => $darkBlue,
 };
 
-# GPURenderPassDescriptor
-my $renderPassDescriptor
-    = { colorAttachments => [$colorAttachmentDescriptor] };
-
 #*** Rendering ***
 
 my $start  = time;
 my $frames = 1000;
 for ( 1 .. 1000 )
 {
+  # GPURenderPassDescriptor
+  my $renderPassDescriptor
+      = { colorAttachments => [$colorAttachmentDescriptor] };
+
   # GPUCommandEncoder
   my $commandEncoder = $device->CreateCommandEncoder;
 
@@ -127,7 +123,7 @@ for ( 1 .. 1000 )
 
   $renderPassEncoder->SetPipeline($renderPipeline);
   my $vertexBufferSlot = 0;
-  $renderPassEncoder->SetVertexBuffer( $vertexBufferSlot, $vertexBuffer, 0 );
+  $renderPassEncoder->SetVertexBuffer( $vertexBufferSlot, $vertexBuffer );
   $renderPassEncoder->Draw( 3, 1, 0, 0 );    # 3 vertices, 1 instance, 0th vertex, 0th instance.
   $renderPassEncoder->End;
 
@@ -138,11 +134,6 @@ for ( 1 .. 1000 )
   my $queue = $device->GetQueue;
   $queue->Submit( [$commandBuffer] );
   $swapChain->Present;
-
-  $commandBuffer->Release;
-  $renderPassEncoder->Release;
-  $commandEncoder->Release;
-  $colorAttachmentDescriptor->{view}->Release;
 }
 
 my $total = time - $start;
