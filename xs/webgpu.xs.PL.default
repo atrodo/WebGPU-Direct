@@ -1,0 +1,11 @@
+{
+  RenderPipelineDescriptor => {
+    multisample => {
+      alphaToCoverageEnabled => 0,
+      count                  => 1,
+      mask                   => 0xFFFFFFFF,
+    },
+  },
+}
+
+# vim: syn=perl

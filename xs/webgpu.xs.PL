@@ -3,8 +3,9 @@
 use v5.20;
 use warnings;
 
-use FindBin qw/$Bin/;
+use FindBin qw/$Bin $Script/;
 use List::Util qw/pairs/;
+use Data::Dumper qw//;
 use ExtUtils::Typemaps qw//;
 use ExtUtils::ParseXS::Utilities qw/standard_typemap_locations/;
 use autodie;
@@ -14,6 +15,8 @@ open my $xs, '>', "$Bin/webgpu.xs";
 open my $c,  '>', "$Bin/webgpu.c";
 open my $tm, '>', "$Bin/../typemap";
 open my $pm, '>', "$Bin/../lib/WebGPU/Direct/XS.pm";
+
+my $class_defaults = require "$Bin/$Script.default";
 
 my %typedefs = (
     bool     => 'bool',
@@ -530,15 +533,21 @@ foreach my $class ( @classes )
 
   if ( @defs )
   {
+    my $short_class = $class;
+    $short_class =~ s/WebGPU::Direct:://;
+    my $default = Data::Dumper->Dump([$class_defaults->{$short_class} // {}], [qw/default/]);
+
     say $pm <<~"EOF"; my $n = qq{
       package $class {
           $preamble
+          my $default
           sub new {
               my \$class = shift;
               die "\$class does not inherit from $class\\n"
                 if !\$class->isa("$class");
               \$class = ref(\$class) ? ref(\$class) : \$class;
-              my \$result = bless( { ref( \$_[0] ) eq ref {} ? %{\$_[0]} : \@_ }, \$class );
+              my \$result = { \%\$default, ref( \$_[0] ) eq ref {} ? %{\$_[0]} : \@_ };
+              \$result = bless( \$result, \$class );
               \$result->pack;
               return \$result;
           }
