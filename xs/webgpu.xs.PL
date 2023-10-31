@@ -435,6 +435,7 @@ foreach my $class ( @classes )
   my $addl_pack = "";
   my $unpacks     = "";
   my $addl_unpack = "";
+  my $destroy = '';
   my $c_prefix  = "${class}";
   my $prefix    = "wgpu";
 
@@ -540,6 +541,18 @@ foreach my $class ( @classes )
   say $xs qq{MODULE = WebGPU::Direct\tPACKAGE = $class\tPREFIX = $prefix};
   say $xs '';
 
+  if ( grep { $_->{name} eq 'Release' } @fns )
+  {
+    $destroy = <<~"EOF"; my $n = qq{
+
+        sub DESTROY
+        {
+          \$_[0]->Release;
+        }
+    EOF
+    };
+  }
+
   foreach (@defs)
   {
     my %def = %$_;
@@ -573,6 +586,7 @@ foreach my $class ( @classes )
               \$result->pack;
               return \$result;
           }
+          $destroy
       }
       EOF
       };
@@ -671,7 +685,7 @@ foreach my $class ( @classes )
           sub new {
               my \$class = __PACKAGE__;
               die "Cannot call new on abstract class \$class";
-          }
+          }$destroy
       }
       EOF
       };
