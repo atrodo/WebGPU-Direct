@@ -85,6 +85,7 @@ SV *_coerce_obj( SV *CLASS, SV *fields )
   {
     return fields;
   }
+
   return _new(CLASS, fields);
 }
 
@@ -215,7 +216,7 @@ SV *_new_opaque( SV *CLASS, void *n)
    obj
    ------------------------------------------------------------------ */
 
-void _set_obj(pTHX_ SV *new_value, void *field, size_t size, SV *base)
+void _set_obj(pTHX_ SV *new_value, void *field, Size_t size, SV *base)
 {
   if ( !base )
   {
@@ -242,7 +243,7 @@ STATIC MGVTBL _mg_vtbl_obj = {
   .svt_set = _mg_set_obj
 };
 
-SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV* base)
+SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, SV* base)
 {
   SV **f = NULL;
 
@@ -283,7 +284,7 @@ SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size
   return *f;
 }
 
-SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV *base)
+SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, SV *base)
 {
   SV **f;
   SV *fp;
@@ -317,7 +318,7 @@ SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, 
   return *f;
 }
 
-SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV *base)
+SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, SV *base)
 {
   SV **f;
 
@@ -338,7 +339,7 @@ SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, 
   return *f;
 }
 
-void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, size_t size, SV* base, SV *value)
+void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, SV* base, SV *value)
 {
   SvREFCNT_inc(value);
   SV **f = hv_store(h, key, klen, value, 0);
@@ -404,7 +405,6 @@ SV *_unpack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
 
   if ( n == NULL || n != *field )
   {
-
     SV *val = _new_with(base, *field);
     SvREFCNT_inc(val);
     f = hv_store(h, key, klen, val, 0);
