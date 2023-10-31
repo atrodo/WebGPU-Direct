@@ -354,7 +354,7 @@ wgpuCommandEncoderCopyTextureToTexture(commandEncoder, source, destination, copy
 
 
 WGPUCommandBuffer 
-wgpuCommandEncoderFinish(commandEncoder, descriptor)
+wgpuCommandEncoder_Finish(commandEncoder, descriptor)
         WGPUCommandEncoder commandEncoder
         WGPUCommandBufferDescriptor const * descriptor
     CODE:
@@ -1459,7 +1459,7 @@ wgpuRenderPassEncoderSetStencilReference(renderPassEncoder, reference)
 
 
 void 
-wgpuRenderPassEncoderSetVertexBuffer(renderPassEncoder, slot, buffer, offset, size)
+wgpuRenderPassEncoder_SetVertexBuffer(renderPassEncoder, slot, buffer, offset, size)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t slot
         WGPUBuffer buffer
