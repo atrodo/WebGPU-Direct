@@ -4,6 +4,7 @@ use strict;
 use 5.008_005;
 our $VERSION = '0.01';
 
+use Carp;
 use WebGPU::Direct::XS;
 
 use Exporter 'import';
@@ -13,13 +14,21 @@ our %EXPORT_TAGS = ( 'all' => [ @export_all ] );
 our @EXPORT_OK = ( @export_all );
 our @EXPORT = qw//;
 
+use base 'WebGPU::Direct::Instance';
+
 sub new
 {
   my $class = shift;
   die "$class does not inherit from WebGPU::Direct\n"
       if !$class->isa("WebGPU::Direct");
   $class = ref($class) ? ref($class) : $class;
-  my $result = bless( { ref( $_[0] ) eq ref {} ? %{ $_[0] } : @_ }, $class );
+
+  my $ref = { ref( $_[0] ) eq ref {} ? %{ $_[0] } : @_ };
+  my $result = WebGPU::Direct::XS::CreateInstance($ref);
+
+  # Rebless into our class, which inherits from Instance
+  $result = bless( $result, $class );
+
   return $result;
 }
 
@@ -36,6 +45,10 @@ sub AUTOLOAD
     die $@ if $@;
     goto &$sub;
   }
+
+  my ($pkg, $fn) = $sub =~ m/(.*)::([^:]*)/;
+  croak(qq[Can't locate object method "$fn" via package "$pkg"])
+    if $fn ne uc $fn;
 
   return;
 }
