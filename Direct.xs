@@ -1286,7 +1286,7 @@ new_window_x11(CLASS, xw = 640, yh = 360)
     PROTOTYPE: $
     CODE:
 #ifdef HAS_X11
-        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromXlibWindow") );
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromXlibWindow"), NULL );
         WGPUSurfaceDescriptorFromXlibWindow *result = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
         if ( ! x11_window(result, xw, yh) )
         {
@@ -1303,87 +1303,3 @@ new_window_x11(CLASS, xw = 640, yh = 360)
     OUTPUT:
         RETVAL
 
-#ifdef HAS_X11
-
-MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS::Backend         PREFIX = wgpu
-
-=c
-int
-desc(w)
-       WGPUSurfaceDescriptor const *w
-   CODE:
-       warn("%zu\n", __LINE__);
-       const WGPUChainedStruct * n = w->nextInChain;
-       warn("%zu\n", __LINE__);
-       warn("%zx\n", w);
-       warn("%zx\n", n);
-       warn("%zu\n", __LINE__);
-       RETVAL = w->nextInChain->sType;
-       warn("%zu\n", __LINE__);
-   OUTPUT:
-       RETVAL
-
-#include <X11/Xlib.h>
-
-WGPUSurface
-CreateSurface(CLASS)
-        char *CLASS = NO_INIT
-    PROTOTYPE: $
-    CODE:
-        Zero((void*)&RETVAL, sizeof(RETVAL), char);
-        {
-          WGPUInstance instance;
-          WGPUSurface surface;
-          WGPUAdapter adapter;
-          WGPUDevice device;
-          WGPUSwapChainDescriptor config;
-          WGPUSwapChain swapchain;
-          instance = wgpuCreateInstance(&(const WGPUInstanceDescriptor){0});
-          warn("%d\n", &(const WGPUInstanceDescriptor){0});
-
-	  int xw = 640;
-	  int yh = 360;
-	  {
-            Display *display = NULL;
-            Window window = 0;
-	    display = XOpenDisplay(NULL);
-
-	    if (!display)
-	    {
-	      XSRETURN_UNDEF;
-	    }
-
-	    window = XCreateSimpleWindow(display, DefaultRootWindow(display),
-				      10, 10,
-				      xw, yh,
-				      1, 0,
-				      0
-				     );
-
-	    int scrnum = DefaultScreen( display );
-	    Window root = RootWindow( display, scrnum );
-
-	    XMapWindow( display, window );
-
-            const WGPUSurfaceDescriptor *d = &(const WGPUSurfaceDescriptor){
-              .nextInChain =
-                  (const WGPUChainedStruct *)&(
-                      const WGPUSurfaceDescriptorFromXlibWindow){
-                      .chain =
-                          (const WGPUChainedStruct){
-                              .sType = WGPUSType_SurfaceDescriptorFromXlibWindow,
-                          },
-                      .display = display,
-                      .window = window,
-                  },
-            };
-            RETVAL = wgpuInstanceCreateSurface(instance, d);
-	  }
-        }
-    OUTPUT:
-        RETVAL
-
-=cut
-
-
-#endif

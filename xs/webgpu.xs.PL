@@ -338,6 +338,7 @@ while (<$h>)
   {
     die "Unknown typedef: $1"
       if !$typedefs{$1};
+
     $typedefs{$2} = $typedefs{$1};
     next;
   }
@@ -368,7 +369,6 @@ while (<$h>)
     next;
   }
 
-  say $_;
   die "Unparsed line: $_";
 }
 
@@ -558,15 +558,19 @@ foreach my $class ( @classes )
     my %def = %$_;
     my %calls = calls_for(%$_);
     $packs .= $calls{pack};
-    $unpacks .= $calls{unpack};#qq{  _unpack_$typedef(aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl);\n};
+    $unpacks .= $calls{unpack};
 
     say_set_fn($class, $type, %def);
+
   }
 
   if ( @defs )
   {
     my $short_class = $class;
     $short_class =~ s/WebGPU::Direct:://;
+
+    local $Data::Dumper::Trailingcomma = 1;
+    local $Data::Dumper::Sortkeys = 1;
     my $default = Data::Dumper->Dump([$class_defaults->{$short_class} // {}], [qw/default/]);
 
     # Any scalar refs, strip the decoration and fully-qualify the call
@@ -591,7 +595,6 @@ foreach my $class ( @classes )
       EOF
       };
 
-    # TODO: Better function to intellgently handle new/choose pack/unpack
     say $xs <<~"EOF"; $n = qq{
       void
       pack(THIS)
@@ -715,8 +718,6 @@ foreach my $class ( @classes )
   say $tm sprintf("%-64s%s", "$type const *", 'T_FETCHPTR');
   say $tm sprintf("%-64s%s", "struct $type const *", 'T_FETCHPTR');
   say $tm sprintf("%-64s%s", $class, $typemap);
-  #say $tm sprintf("%-64s%s", "$class *", 'T_FETCHPTR');
-  #say $tm sprintf("%-64s%s", "$class const *", 'T_FETCHPTR');
 
   say $c "typedef SV* $c_prefix;";
 }
@@ -978,59 +979,6 @@ sub say_set_fn
             RETVAL
     EOF
     };
-
-=c
-  my $is_obj = ( $def{typedef} eq 'obj' || $def{typedef} eq 'void' );
-
-  if ( $is_obj )
-  {
-    say $xs <<~"EOF"; my $n = qq{
-      $def{return}
-      $def{key}(THIS, value = NO_INIT)
-              $class THIS
-              $def{return} value
-          PROTOTYPE: \$;\$
-          CODE:
-              HV *h = (HV *)SvRV(THIS);
-              $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
-              SV *type_sv = newSVpvs("$def{return}");
-              RETVAL = _find_set_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key}, type_sv);
-
-              if (items > 1)
-              {
-                  _set_$def{typedef}(aTHX_ value,/**/ (void *) &n->$def{key}, type_sv);
-                  _unpack(THIS);
-              }
-          OUTPUT:
-              RETVAL
-      EOF
-      };
-  }
-  else
-  {
-    say $xs <<~"EOF"; my $n = qq{
-      $def{return}
-      $def{key}(THIS, value = NO_INIT)
-              $class THIS
-              SV *value
-          PROTOTYPE: \$;\$
-          CODE:
-              HV *h = (HV *)SvRV(THIS);
-              $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
-              SV *type_sv = newSVpvs("$type");
-              RETVAL = _find_set_$def{typedef}(aTHX_ h, "$def{key}", $def{klen}, &n->$def{key});
-
-              if (items > 1)
-              {
-                  _set_$def{typedef}(aTHX_ value,/*-*/ (void *) &n->$def{key});
-                  _unpack(THIS);
-              }
-          OUTPUT:
-              RETVAL
-      EOF
-      };
-  }
-=cut
 }
 
 sub say_call_fn
@@ -1092,21 +1040,13 @@ sub say_call_fn
     }
 
     if ( $value =~ $arrcnt_re && exists $arrays{$1} )
-
-        #if ( $arrays{"${value}Count"} )
     {
       next;
     }
 
     if ( $value =~ $arrnme_re && exists $arrays{$1} )
     {
-      #die;
-      #next;
       $key = 'AV *';
-    }
-
-    if ( $value =~ m/$arrnme_re/ && $1 eq 'bundle' )
-    {
     }
 
     push @args, "$key $value";
@@ -1196,5 +1136,7 @@ sub say_call_fn
 }
 
 say $pm q{1;};
+
+warn Data::Dumper::Dumper(\%typedefs);
 
 1;

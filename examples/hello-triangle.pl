@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+# Hello Triangle, adapted from webkit:
+# https://webkit.org/demos/webgpu/scripts/hello-triangle.js
+
 use v5.30;
 use Data::Dumper;
 use Time::HiRes qw/time/;

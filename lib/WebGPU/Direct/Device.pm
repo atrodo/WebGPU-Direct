@@ -42,6 +42,14 @@ package WebGPU::Direct::Device
 
     return $self->_CreateShaderModule($descriptor);
   }
+
+  sub CreateCommandEncoder (
+    $self,
+    $descriptor = {},
+  )
+  {
+    return $self->_CreateCommandEncoder($descriptor);
+  }
 };
 
 1;

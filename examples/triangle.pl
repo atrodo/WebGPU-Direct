@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+# Triangle Example, adapted from wgpu-native:
+# https://github.com/gfx-rs/wgpu-native/blob/trunk/examples/triangle/main.c
+
 use v5.30;
 use Data::Dumper;
 use Time::HiRes qw/time/;

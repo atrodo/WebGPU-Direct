@@ -619,7 +619,7 @@ wgpuDeviceCreateBuffer(device, descriptor)
 
 
 WGPUCommandEncoder 
-wgpuDeviceCreateCommandEncoder(device, descriptor)
+wgpuDevice_CreateCommandEncoder(device, descriptor)
         WGPUDevice device
         WGPUCommandEncoderDescriptor const * descriptor
     CODE:

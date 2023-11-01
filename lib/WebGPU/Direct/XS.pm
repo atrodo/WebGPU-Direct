@@ -2154,7 +2154,7 @@ package WebGPU::Direct::ColorTargetState {
     
     my $default = {
              'blend' => undef,
-             'writeMask' => WebGPU::Direct::ColorWriteMask->All
+             'writeMask' => WebGPU::Direct::ColorWriteMask->All,
            };
 
     sub new {
@@ -2261,8 +2261,8 @@ package WebGPU::Direct::RenderPipelineDescriptor {
              'multisample' => {
                                 'alphaToCoverageEnabled' => 0,
                                 'count' => 1,
-                                'mask' => 4294967295
-                              }
+                                'mask' => 4294967295,
+                              },
            };
 
     sub new {
