@@ -26,6 +26,9 @@ my %WriteMakefileArgs = (
   "test" => {
     "TESTS" => "t/*.t"
   },
+  depend => {
+    'Direct.c' => 'Direct.xs xs/*.xs xs/*.c',
+  },
 );
 
 my $addl_search = $ENV{ADDL_SEARCH} // '';
