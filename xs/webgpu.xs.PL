@@ -65,7 +65,9 @@ say $xs q{};
 
 say $pm q{use strict;};
 say $pm q{use warnings;};
-say $pm q[package WebGPU::Direct::XS {];
+say $pm q[package # Hide from PAUSE];
+say $pm q[    WebGPU::Direct::XS];
+say $pm q[{];
 say $pm q[  our $VERSION = '0.01';];
 say $pm q[  require XSLoader;];
 say $pm q[  XSLoader::load('WebGPU::Direct', $VERSION);];
@@ -403,11 +405,16 @@ say $c "typedef struct cb_data {
 } cb_data;
 ";
 
+open my $const_pod, '>', "$Bin/../lib/WebGPU/Direct/Constants.pod";
+open my $types_pod, '>', "$Bin/../lib/WebGPU/Direct/Types.pod";
+
 foreach my $enum (sort keys %enums)
 {
   my $pkg = "WebGPU::Direct::$enum";
   $pkg =~ s/::WGPU/::/;
 
+  $const_pod->say(qq[\n=head1 $pkg]);
+  $const_pod->say(qq[\n=over]);
   say $pm qq[package $pkg {];
   say $pm qq[  use Scalar::Util qw/dualvar/;];
 
@@ -415,9 +422,12 @@ foreach my $enum (sort keys %enums)
 
   foreach my $value ( sort keys %consts )
   {
+    my ($short) = $consts{$value} =~ m/'(\w*)'/;
+    $const_pod->say(qq[\n=item $short]);
     say $pm qq[  $consts{$value}];
   }
 
+  $const_pod->say(qq[\n=back]);
   say $pm qq[};];
   say $pm qq[];
 }
@@ -440,6 +450,13 @@ foreach my $class ( @classes )
   my $prefix    = "wgpu";
 
   $c_prefix =~ s/::/__/g;
+
+  my $class_path = "$class";
+  $class_path =~ s[::][/]g;
+  $class_path = "$Bin/../lib/$class_path";
+
+  die "Class definition doesn't expect to have attributes and functions"
+    if @defs && @fns;
 
   if ( @defs )
   {
@@ -507,9 +524,7 @@ foreach my $class ( @classes )
     warn "prefix is inconsistent: $prefix"
       if grep { $_->{prefix} && $_->{prefix} ne $prefix } @fns;
 
-    my $class_pm = "$class.pm";
-    $class_pm =~ s[::][/]g;
-    $class_pm = "$Bin/../lib/$class_pm";
+    my $class_pm = "$class_path.pm";
 
     if ( -e $class_pm )
     {
@@ -553,6 +568,13 @@ foreach my $class ( @classes )
     };
   }
 
+  if ( @defs )
+  {
+    $types_pod->say(qq[=head1 $class\n]);
+    $types_pod->say(qq[=head2 Attributes\n]);
+    $types_pod->say(qq[=over\n]);
+  }
+
   foreach (@defs)
   {
     my %def = %$_;
@@ -562,10 +584,14 @@ foreach my $class ( @classes )
 
     say_set_fn($class, $type, %def);
 
+    my $type = typed_pod($def{return});
+    $types_pod->say(qq[=item $def{key} ($type)\n]);
   }
 
   if ( @defs )
   {
+    $types_pod->say(qq[=back\n]);
+
     my $short_class = $class;
     $short_class =~ s/WebGPU::Direct:://;
 
@@ -706,10 +732,44 @@ foreach my $class ( @classes )
     };
   }
 
-  foreach (@fns)
+  if (@fns)
   {
-    my %def = %$_;
-    say_call_fn(%def);
+    my $pod_file = "$class_path.pod";
+    open my $pod, '>', $pod_file;
+    $pod->say("=pod\n");
+    $pod->say("=encoding UTF-8\n");
+    $pod->say("=head1 NAME\n");
+    $pod->say("$class\n");
+
+    $pod->say(qq[=head2 Methods\n]);
+    foreach (@fns)
+    {
+      my %def = %$_;
+      say_call_fn(%def);
+
+      my $type = typed_pod( $def{return} );
+
+      $pod->say(qq[=head3 $def{name} ($type)\n]);
+
+      # Remove the first item, which will always be $self
+      my @pairs = pairs $def{args}->@*;
+      shift @pairs;
+
+      if (@pairs)
+      {
+        $pod->say(qq[=over\n]);
+        $pod->say(qq[=item Arguments\n]);
+        $pod->say(qq[=over\n]);
+        foreach my $pair (@pairs)
+        {
+          my ( $return, $arg ) = @$pair;
+          my $type = typed_pod( pkg_name($return) );
+          $pod->say(qq[=item $arg ($type)\n]);
+        }
+        $pod->say(qq[=back\n]);
+        $pod->say(qq[=back\n]);
+      }
+    }
   }
   
   my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : 'T_VOID';
@@ -832,6 +892,34 @@ foreach my $cb_name ( sort keys %callbackdefs )
       }
     EOF
     };
+}
+
+sub typed_pod
+{
+  my $type = shift;
+
+  $type =~ s/\s*[*]\s*$//xms;
+  $type =~ s/\s*const$//xms;
+  $type =~ s/\s+$//xms;
+
+  my $result = $type;
+
+  if ( $type =~ m/::/ )
+  {
+    $result = "L<$type>";
+  }
+
+  if ( $classdefs{$type} && $classdefs{$type}->{defs}->@* )
+  {
+    $result = "L<$type|WebGPU::Direct::Types/$type>";
+  }
+
+  if ( $enums{$type} )
+  {
+    $result = "L<$type|WebGPU::Direct::Constants/$type>";
+  }
+
+  return $result;
 }
 
 sub tm_of
