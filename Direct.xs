@@ -31,13 +31,18 @@ SV * _get_mg_obj(pTHX_ SV *obj, SV *base)
     }
   }
 
-  SV *h = SvRV(obj);
-  return h;
+  return obj;
+}
+
+SV * _get_mg_hash(pTHX_ SV *obj, SV *base)
+{
+  SV *result = _get_mg_obj(aTHX_ obj, base);
+  return result == NULL ? NULL : SvRV(result);
 }
 
 void * _get_mg(pTHX_ SV *obj, SV *base)
 {
-  SV *h = _get_mg_obj(aTHX_ obj, base);
+  SV *h = _get_mg_hash(aTHX_ obj, base);
   MAGIC *mg = mg_find(h, PERL_MAGIC_ext);
 
   return mg;
@@ -303,8 +308,28 @@ SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, 
     return _unpack_obj(aTHX_ h, key, klen, field, size, base);
   }
 
-  // Save the new value to the field
-  _set_obj(aTHX_ *f, field, size, base);
+  SV *obj = _get_mg_obj(aTHX_ *f, base);
+  ASSUME( obj != NULL );
+
+  if ( *f != obj )
+  {
+    // Since we know it was coerced, we can go ahead and reuse the obj
+    MAGIC *mg = _get_mg(aTHX_ obj, base);
+    ASSUME( mg != NULL );
+    void *old_ptr = mg->mg_ptr;
+    Copy(old_ptr, field, size, char);
+    mg->mg_ptr = field;
+    Safefree(old_ptr);
+
+    f = hv_store(h, key, klen, obj, 0);
+  }
+  else
+  {
+    // Save the new value to the field
+    // This will copy the C struct from *f to field
+    _set_obj(aTHX_ *f, field, size, base);
+  }
+
   SvREFCNT_inc(*f);
 
   // If the struct ptrs differ, build a new object to store
