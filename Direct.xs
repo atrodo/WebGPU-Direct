@@ -177,7 +177,7 @@ void _pack( SV *THIS )
   return;
 }
 
-SV *_new_with( SV *CLASS, void *n)
+SV *_empty_with( SV *CLASS, void *n)
 {
   if ( n == NULL )
   {
@@ -190,6 +190,32 @@ SV *_new_with( SV *CLASS, void *n)
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   sv_bless(RETVAL, gv_stashpv(SvPV_nolen(CLASS), GV_ADD));
   return SvREFCNT_inc(RETVAL);
+}
+
+SV *_new_with( void *field, SV *base, Size_t size)
+{
+  if ( field == NULL )
+  {
+    croak("_new_with requires a defined field pointer");
+  }
+
+  // Coerce an empty hash into an object, and copy to the field ptr
+  SV *href = sv_2mortal(newRV( (SV *)newHV() ));
+
+  SV *RETVAL = _get_mg_obj(aTHX_ href, base);
+
+  ASSUME( RETVAL != NULL );
+
+  MAGIC *mg = _get_mg(aTHX_ RETVAL, base);
+  ASSUME( mg != NULL );
+
+  void *old_ptr = mg->mg_ptr;
+  Copy(old_ptr, field, size, char);
+
+  mg->mg_ptr = field;
+  Safefree(old_ptr);
+
+  return RETVAL;
 }
 
 SV *_new_opaque( SV *CLASS, void *n)
@@ -272,16 +298,15 @@ SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size
 
   if ( n == NULL || n != field )
   {
-    SV *val = _new_with(base, field);
-    SvREFCNT_inc(val);
-    f = hv_store(h, key, klen, val, 0);
+    SV *obj = _empty_with(base, field);
+    SvREFCNT_inc(obj);
+    f = hv_store(h, key, klen, obj, 0);
 
     if ( !f )
     {
-      SvREFCNT_dec(val);
+      SvREFCNT_dec(obj);
       croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
     }
-    //*f  = _new_with(base, field);
   }
 
   _unpack(*f);
@@ -305,7 +330,15 @@ SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, 
   // If the field is not found, create a default one
   if ( !( f && *f ) )
   {
-    return _unpack_obj(aTHX_ h, key, klen, field, size, base);
+    SV *val = _new_with(field, base, size);
+    SvREFCNT_inc(val);
+    f = hv_store(h, key, klen, val, 0);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(val);
+      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+    }
   }
 
   SV *obj = _get_mg_obj(aTHX_ *f, base);
@@ -430,16 +463,15 @@ SV *_unpack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
 
   if ( n == NULL || n != *field )
   {
-    SV *val = _new_with(base, *field);
-    SvREFCNT_inc(val);
-    f = hv_store(h, key, klen, val, 0);
+    SV *obj = _empty_with(base, *field);
+    SvREFCNT_inc(obj);
+    f = hv_store(h, key, klen, obj, 0);
 
     if ( !f )
     {
-      SvREFCNT_dec(val);
+      SvREFCNT_dec(obj);
       croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
     }
-    //*f  = _new_with(base, *field);
   }
 
   _unpack(*f);
@@ -537,13 +569,13 @@ SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
   void *field = n;
   for ( int i = 0; i < count; i++ )
   {
-    SV *val = _new_with(base, n);
-    SvREFCNT_inc(val);
-    SV **f = av_store(ret, i, val);
+    SV *obj = _new_with(base, field, size);
+    SvREFCNT_inc(obj);
+    SV **f = av_store(ret, i, obj);
 
     if ( !f )
     {
-      SvREFCNT_dec(val);
+      SvREFCNT_dec(obj);
       croak("Could not save value to array for %d in type %s", i, SvPV_nolen(base));
     }
     _unpack(*f);
