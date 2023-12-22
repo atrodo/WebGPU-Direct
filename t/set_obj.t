@@ -68,4 +68,13 @@ unlike( $obj->bytes, qr/^\0+$/, 'Bytes are not all empty');
   unlike( $obj, qr/^\0+$/, 'Source bytes are not all empty');
 }
 
+# Defaults with inline structs
+{
+  my $a = $wgpu->RenderPipelineDescriptor->new;
+
+  unlike( $a->bytes, qr/^\0+$/, 'Default object is not all empty');
+  unlike( $a->multisample->bytes, qr/^\0+$/, 'Default object is not all empty');
+  is($a->multisample->count, 1, 'Default used the default of inline struct');
+}
+
 done_testing;
