@@ -26,6 +26,7 @@ local *WebGPU::Direct::Limits::unpack = sub { $unpack_calls++; $rl_unpack->(@_) 
 isnt( refaddr $h, refaddr %$obj, 'Original hash does not share an address' );
 ok( explain($h),   'The original hash can be iterated without segfault' );
 ok( explain($obj), 'The obj can be iterated without segfault' );
+unlike( $obj->bytes, qr/^\0+$/, 'Bytes are not all empty');
 
 {
   $pack_calls   = 0;
@@ -42,6 +43,7 @@ ok( explain($obj), 'The obj can be iterated without segfault' );
   is( $a->limits->maxTextureDimension2D, 2, 'set_obj got a good value' );
   is( $a->limits->maxTextureDimension3D, 3, 'set_obj got a good value' );
   is( $a->limits->maxBindGroups,         5, 'set_obj got a good value' );
+  unlike( $a->limits->bytes, qr/^\0+$/, 'Bytes are not all empty');
 }
 
 {
@@ -59,9 +61,11 @@ ok( explain($obj), 'The obj can be iterated without segfault' );
   is( $a->limits->maxTextureDimension2D, 2, 'set_obj got a good value' );
   is( $a->limits->maxTextureDimension3D, 3, 'set_obj got a good value' );
   is( $a->limits->maxBindGroups,         5, 'set_obj got a good value' );
+  unlike( $a->limits->bytes, qr/^\0+$/, 'Bytes are not all empty');
 
   $obj->maxTextureDimension1D(0);
   is( $a->limits->maxTextureDimension1D, 1, 'set_obj made a real copy' );
+  unlike( $obj, qr/^\0+$/, 'Source bytes are not all empty');
 }
 
 done_testing;
