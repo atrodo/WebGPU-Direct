@@ -1,15 +1,22 @@
 # Constants, by a name, are scalar refs, and are fixed up later
 {
   ColorTargetState => {
-    blend => undef,
+    blend     => undef,
     writeMask => \'ColorWriteMask->All',
   },
+  DepthStencilState => {
+    depthBias           => 0,
+    depthBiasClamp      => 0,
+    depthBiasSlopeScale => 0,
+    stencilReadMask     => 0xFFFFFFFF,
+    stencilWriteMask    => 0xFFFFFFFF,
+  },
   RenderPipelineDescriptor => {
-    multisample => {
-      alphaToCoverageEnabled => 0,
-      count                  => 1,
-      mask                   => 0xFFFFFFFF,
-    },
+  },
+  MultisampleState => {
+    alphaToCoverageEnabled => 0,
+    count                  => 1,
+    mask                   => 0xFFFFFFFF,
   },
 }
 
