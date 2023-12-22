@@ -10,6 +10,8 @@ use ExtUtils::Typemaps qw//;
 use ExtUtils::ParseXS::Utilities qw/standard_typemap_locations/;
 use autodie;
 
+my $add_trace = $ENV{WGPU_PL_TRACE} // 0;
+
 open my $h,  '<', "$Bin/../webgpu/webgpu.h";
 open my $xs, '>', "$Bin/webgpu.xs";
 open my $c,  '>', "$Bin/webgpu.c";
@@ -63,8 +65,9 @@ say $xs q{#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"};
 say $xs q{#pragma GCC diagnostic ignored "-Wformat"};
 say $xs q{};
 
-say $pm q{use strict;};
+say $pm q{use v5.30;};
 say $pm q{use warnings;};
+say $pm q{};
 say $pm q[package # Hide from PAUSE];
 say $pm q[    WebGPU::Direct::XS];
 say $pm q[{];
@@ -88,6 +91,17 @@ sub pkg_name
   $ctype =~ s/::WGPU/::/;
 
   return $ctype;
+}
+
+sub trace_c
+{
+  my $name  = shift;
+  my $stage = shift;
+
+  return \''
+      unless $add_trace;
+
+  return \qq{printf("$name: $stage L%d\\n", __LINE__);};
 }
 
 while (<$h>)
@@ -653,6 +667,7 @@ foreach my $class ( @classes )
     say $c <<~"EOF"; $n = qq{
     void ${c_prefix}__pack( SV *THIS )
     {
+      ${trace_c("${c_prefix}__pack", "start")}
       if (!SvROK(THIS) || !sv_derived_from(THIS, "$class"))
       {
         croak_nocontext("%s: %s is not of type %s",
@@ -668,6 +683,7 @@ foreach my $class ( @classes )
         sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
       }
     $packs
+      ${trace_c("${c_prefix}__pack", "end")}
     }
     EOF
     };
@@ -995,7 +1011,11 @@ sub calls_for
     $typedef  = 'void';
   }
 
-  my $call = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl};
+  my $c_prefix = $def{c_prefix} // '';
+  $result{pack}   .= ${ trace_c( "${c_prefix}__pack",   "pack $def{key}" ) };
+  $result{unpack} .= ${ trace_c( "${c_prefix}__unpack", "unpack $def{key}" ) };
+
+  my $call     = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl};
   my $set_call = qq{aTHX_ value,/**/ (void *) &n->$def{key} $set_addl};
 
   $result{pack}     .= qq{  _pack_$typedef($call);\n};
