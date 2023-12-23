@@ -59,6 +59,36 @@ void * _get_struct_ptr(pTHX_ SV *obj, SV *base)
   return mg->mg_ptr;
 }
 
+PERL_STATIC_INLINE
+SV **nn_hv_store(pTHX_ HV *h, const char *key, I32 klen, SV *obj, SV *base)
+{
+  SvREFCNT_inc(obj);
+  SV ** f = hv_store(h, key, klen, obj, 0);
+
+  if ( !f )
+  {
+    SvREFCNT_dec(obj);
+    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
+  }
+
+  return f;
+}
+
+PERL_STATIC_INLINE
+SV **nn_av_store(pTHX_ AV *h, const Size_t idx, SV *obj, SV *base)
+{
+  SvREFCNT_inc(obj);
+  SV ** f = av_store(h, idx, obj);
+
+  if ( !f )
+  {
+    SvREFCNT_dec(obj);
+    croak("Could not save value to array for item %zd in type %s", idx, SvPV_nolen(base));
+  }
+
+  return f;
+}
+
 SV *_void__wrap( const void *n )
 {
   SV *h = newSViv( *(int *)n);
@@ -299,14 +329,7 @@ SV *_unpack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size
   if ( n == NULL || n != field )
   {
     SV *obj = _empty_with(base, field);
-    SvREFCNT_inc(obj);
-    f = hv_store(h, key, klen, obj, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(obj);
-      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-    }
+    f = nn_hv_store(aTHX_ h, key, klen, obj, base);
   }
 
   _unpack(*f);
@@ -331,14 +354,7 @@ SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, 
   if ( !( f && *f ) )
   {
     SV *val = _new_with(field, base, size);
-    SvREFCNT_inc(val);
-    f = hv_store(h, key, klen, val, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(val);
-      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-    }
+    f = nn_hv_store(aTHX_ h, key, klen, val, base);
   }
 
   SV *obj = _get_mg_obj(aTHX_ *f, base);
@@ -354,7 +370,7 @@ SV *_pack_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, 
     mg->mg_ptr = field;
     Safefree(old_ptr);
 
-    f = hv_store(h, key, klen, obj, 0);
+    f = nn_hv_store(aTHX_ h, key, klen, obj, base);
   }
   else
   {
@@ -399,14 +415,7 @@ SV *_find_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, 
 
 void _store_obj(pTHX_ HV *h, const char *key, I32 klen, void *field, Size_t size, SV* base, SV *value)
 {
-  SvREFCNT_inc(value);
-  SV **f = hv_store(h, key, klen, value, 0);
-
-  if ( !f )
-  {
-    SvREFCNT_dec(value);
-    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-  }
+  SV **f = nn_hv_store(aTHX_ h, key, klen, value, base);
 
   _pack_obj(aTHX_ h, key, klen, field, size, base);
 
@@ -464,14 +473,7 @@ SV *_unpack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
   if ( n == NULL || n != *field )
   {
     SV *obj = _empty_with(base, *field);
-    SvREFCNT_inc(obj);
-    f = hv_store(h, key, klen, obj, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(obj);
-      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-    }
+    f = nn_hv_store(aTHX_ h, key, klen, obj, base);
   }
 
   _unpack(*f);
@@ -502,13 +504,7 @@ SV *_pack_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
   SV *obj = _coerce_obj(base, *f);
   if ( obj != *f )
   {
-    f = hv_store(h, key, klen, obj, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(obj);
-      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-    }
+    f = nn_hv_store(aTHX_ h, key, klen, obj, base);
   }
 
   // Save the new value to the field
@@ -543,14 +539,7 @@ SV *_find_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
 
 void _store_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base, SV *value)
 {
-  SvREFCNT_inc(value);
-  SV **f = hv_store(h, key, klen, value, 0);
-
-  if ( !f )
-  {
-    SvREFCNT_dec(value);
-    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-  }
+  SV **f = nn_hv_store(aTHX_ h, key, klen, value, base);
 
   _pack_objptr(aTHX_ h, key, klen, field, base);
 
@@ -570,15 +559,7 @@ SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
   for ( int i = 0; i < count; i++ )
   {
     SV *obj = _new_with(base, field, size);
-    SvREFCNT_inc(obj);
-    SV **f = av_store(ret, i, obj);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(obj);
-      croak("Could not save value to array for %d in type %s", i, SvPV_nolen(base));
-    }
-    _unpack(*f);
+    SV **f = nn_av_store(aTHX_ ret, i, obj, base);
 
     field = ((char *)field) + size;
   }
@@ -667,15 +648,7 @@ SV *_unpack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_
   if ( n == NULL || n != *field )
   {
     SV *val = _array_new(base, *field, size, *cntField);
-
-    SvREFCNT_inc(val);
-    f = hv_store(h, key, klen, val, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(val);
-      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-    }
+    f = nn_hv_store(aTHX_ h, key, klen, val, base);
   }
 
   return *f;
@@ -722,15 +695,8 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
   {
     AV *new_fields = newAV();
 
-    SvREFCNT_inc(*f);
-    SV **arrf = av_store(new_fields, 0, *f);
+    SV **arrf = nn_av_store(aTHX_ new_fields, 0, *f, base);
     SV **new_array = NULL;
-
-    if ( !arrf )
-    {
-      SvREFCNT_dec(*f);
-      croak("Could not save value to array for %s in type %s", key, SvPV_nolen(base));
-    }
 
     *f = sv_2mortal(newRV((SV*)new_fields));
   }
@@ -775,13 +741,7 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     SV *obj = _coerce_obj(base, *f);
     if ( obj != *f )
     {
-      f = av_store(objs, i, obj);
-
-      if ( !f )
-      {
-        SvREFCNT_dec(obj);
-        croak("Could not save value to array for %zd, for %s{%s}", i, SvPV_nolen(base), key);
-      }
+      f = nn_av_store(aTHX_ objs, i, obj, base);
     }
 
     assert(SvOK(*f));
@@ -814,14 +774,8 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
   Zero(new_ptr, size, char);
 
   {
-    SV *cnt = SvREFCNT_inc(newSViv(count));
-    SV **cnt_f = hv_store(h, SvPV_nolen(keyCnt), keyCntLen, cnt, 0);
-
-    if ( !cnt_f )
-    {
-      SvREFCNT_dec(cnt);
-      croak("Could not save value to hash for %s in type %s", SvPV_nolen(keyCnt), SvPV_nolen(base));
-    }
+    SV *cnt = newSViv(count);
+    SV **cnt_f = nn_hv_store(aTHX_ h, SvPV_nolen(keyCnt), keyCntLen, cnt, base);
   }
 
   SvREFCNT_inc(*f);
@@ -857,14 +811,7 @@ SV *_find_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
 
 void _store_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t *cntField, Size_t size, SV* base, SV *value)
 {
-  SvREFCNT_inc(value);
-  SV **f = hv_store(h, key, klen, value, 0);
-
-  if ( !f )
-  {
-    SvREFCNT_dec(value);
-    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-  }
+  SV **f = nn_hv_store(aTHX_ h, key, klen, value, base);
 
   _pack_objarray(aTHX_ h, key, klen, field, cntField, size, base);
 
@@ -922,14 +869,7 @@ SV *_unpack_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
   if ( n == NULL || n != *field )
   {
     SV *val = _new_opaque(base, *field);
-    SvREFCNT_inc(val);
-    f = hv_store(h, key, klen, val, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(val);
-      croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-    }
+    f = nn_hv_store(aTHX_ h, key, klen, val, base);
   }
 
   return *f;
@@ -984,14 +924,7 @@ SV *_find_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
 
 void _store_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* base, SV *value)
 {
-  SvREFCNT_inc(value);
-  SV **f = hv_store(h, key, klen, value, 0);
-
-  if ( !f )
-  {
-    SvREFCNT_dec(value);
-    croak("Could not save value to hash for %s in type %s", key, SvPV_nolen(base));
-  }
+  SV **f = nn_hv_store(aTHX_ h, key, klen, value, base);
 
   _pack_opaque(aTHX_ h, key, klen, field, base);
 
@@ -1043,14 +976,7 @@ SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
   if ( n == NULL || n != field )
   {
     SV *val = _void__wrap(field);
-    SvREFCNT_inc(val);
-    f = hv_store(h, key, klen, val, 0);
-
-    if ( !f )
-    {
-      SvREFCNT_dec(val);
-      croak("Could not save value to hash for %s", key);
-    }
+    f = nn_hv_store(aTHX_ h, key, klen, val, &PL_sv_undef);
   }
 
   return *f;
@@ -1105,14 +1031,7 @@ SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field)
 
 void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *value)
 {
-  SvREFCNT_inc(value);
-  SV **f = hv_store(h, key, klen, value, 0);
-
-  if ( !f )
-  {
-    SvREFCNT_dec(value);
-    croak("Could not save value to hash for %s", key);
-  }
+  SV **f = nn_hv_store(aTHX_ h, key, klen, value, &PL_sv_undef);
 
   _pack_void(aTHX_ h, key, klen, field);
 
@@ -1136,14 +1055,7 @@ SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)            
 {                                                                               \
   SV **f = NULL;                                                                \
   SV *val = constr;                                                             \
-  SvREFCNT_inc(val);                                                            \
-  f = hv_store(h, key, klen, val, 0);                                           \
-                                                                                \
-  if ( !f )                                                                     \
-  {                                                                             \
-    SvREFCNT_dec(val);                                                          \
-    croak("Could not save value to hash for %s", key);                          \
-  }                                                                             \
+  f = nn_hv_store(aTHX_ h, key, klen, val, &PL_sv_undef);                       \
                                                                                 \
   return *f;                                                                    \
 }                                                                               \
@@ -1184,16 +1096,9 @@ SV *_find_##type(pTHX_ HV *h, const char *key, I32 klen, ft field)              
   return *f;                                                                    \
 }                                                                               \
                                                                                 \
-void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value)  \
+void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *value) \
 {                                                                               \
-  SvREFCNT_inc(value);                                                          \
-  SV **f = hv_store(h, key, klen, value, 0);                                    \
-                                                                                \
-  if ( !f )                                                                     \
-  {                                                                             \
-    SvREFCNT_dec(value);                                                        \
-    croak("Could not save value to hash for %s", key);                          \
-  }                                                                             \
+  SV **f = nn_hv_store(aTHX_ h, key, klen, value, &PL_sv_undef);                \
                                                                                 \
   _pack_##type(aTHX_ h, key, klen, field);                                      \
                                                                                 \
