@@ -207,6 +207,7 @@ void _pack( SV *THIS )
   return;
 }
 
+// Generate a new, empty blessed hashref that can be unpacked into
 SV *_empty_with( SV *CLASS, void *n)
 {
   if ( n == NULL )
@@ -222,6 +223,7 @@ SV *_empty_with( SV *CLASS, void *n)
   return SvREFCNT_inc(RETVAL);
 }
 
+// Generate a new blessed hashref that can be packed from
 SV *_new_with( void *field, SV *base, Size_t size)
 {
   if ( field == NULL )
@@ -552,6 +554,12 @@ void _store_objptr(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
 
 SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
 {
+  /* Make sure the count is less than an excessive limit */
+  if ( count > 268435456 )
+  {
+    croak("Array count of %zd cannot be that large", count);
+  }
+
   AV *ret = newAV();
   av_extend(ret, count);
 
@@ -574,7 +582,7 @@ void _set_objarray(pTHX_ SV *new_value, void **field, Size_t *cntField, Size_t s
     croak("Could not find requirement base for %s", SvPV_nolen(new_value));
   }
 
-  if ( new_value == &PL_sv_undef )
+  if ( !SvOK(new_value) )
   {
     *field = NULL;
     *cntField = 0;
