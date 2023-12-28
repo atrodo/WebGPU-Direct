@@ -206,6 +206,7 @@ SV *WGPURequestDeviceCallback__wrap( WGPURequestDeviceCallback  n )
 typedef SV* WebGPU__Direct__RequestDeviceCallback;
 void WebGPU__Direct__ChainedStruct__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ChainedStruct"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -225,6 +226,7 @@ void WebGPU__Direct__ChainedStruct__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_enum(aTHX_ h, "sType", 5,  &n->sType );
 
+  
 }
 
 void WebGPU__Direct__ChainedStruct__unpack( SV *THIS )
@@ -262,6 +264,7 @@ SV *WGPUChainedStruct__wrap( const WGPUChainedStruct * n )
 typedef SV* WebGPU__Direct__ChainedStruct;
 void WebGPU__Direct__ChainedStructOut__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ChainedStructOut"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -281,6 +284,7 @@ void WebGPU__Direct__ChainedStructOut__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStructOut"));
   _pack_enum(aTHX_ h, "sType", 5,  &n->sType );
 
+  
 }
 
 void WebGPU__Direct__ChainedStructOut__unpack( SV *THIS )
@@ -318,6 +322,7 @@ SV *WGPUChainedStructOut__wrap( const WGPUChainedStructOut * n )
 typedef SV* WebGPU__Direct__ChainedStructOut;
 void WebGPU__Direct__AdapterProperties__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::AdapterProperties"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -344,6 +349,7 @@ void WebGPU__Direct__AdapterProperties__pack( SV *THIS )
   _pack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType );
   _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType );
 
+  
 }
 
 void WebGPU__Direct__AdapterProperties__unpack( SV *THIS )
@@ -388,6 +394,7 @@ SV *WGPUAdapterProperties__wrap( const WGPUAdapterProperties * n )
 typedef SV* WebGPU__Direct__AdapterProperties;
 void WebGPU__Direct__BindGroupEntry__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BindGroupEntry"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -412,6 +419,7 @@ void WebGPU__Direct__BindGroupEntry__pack( SV *THIS )
   _pack_opaque(aTHX_ h, "sampler", 7, (void **) &n->sampler , newSVpvs("WebGPU::Direct::Sampler"));
   _pack_opaque(aTHX_ h, "textureView", 11, (void **) &n->textureView , newSVpvs("WebGPU::Direct::TextureView"));
 
+  
 }
 
 void WebGPU__Direct__BindGroupEntry__unpack( SV *THIS )
@@ -454,6 +462,7 @@ SV *WGPUBindGroupEntry__wrap( const WGPUBindGroupEntry * n )
 typedef SV* WebGPU__Direct__BindGroupEntry;
 void WebGPU__Direct__BlendComponent__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BlendComponent"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -474,6 +483,7 @@ void WebGPU__Direct__BlendComponent__pack( SV *THIS )
   _pack_enum(aTHX_ h, "srcFactor", 9,  &n->srcFactor );
   _pack_enum(aTHX_ h, "dstFactor", 9,  &n->dstFactor );
 
+  
 }
 
 void WebGPU__Direct__BlendComponent__unpack( SV *THIS )
@@ -512,6 +522,7 @@ SV *WGPUBlendComponent__wrap( const WGPUBlendComponent * n )
 typedef SV* WebGPU__Direct__BlendComponent;
 void WebGPU__Direct__BufferBindingLayout__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BufferBindingLayout"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -533,6 +544,7 @@ void WebGPU__Direct__BufferBindingLayout__pack( SV *THIS )
   _pack_bool(aTHX_ h, "hasDynamicOffset", 16,  &n->hasDynamicOffset );
   _pack_uint64_t(aTHX_ h, "minBindingSize", 14,  &n->minBindingSize );
 
+  
 }
 
 void WebGPU__Direct__BufferBindingLayout__unpack( SV *THIS )
@@ -572,6 +584,7 @@ SV *WGPUBufferBindingLayout__wrap( const WGPUBufferBindingLayout * n )
 typedef SV* WebGPU__Direct__BufferBindingLayout;
 void WebGPU__Direct__BufferDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BufferDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -594,6 +607,7 @@ void WebGPU__Direct__BufferDescriptor__pack( SV *THIS )
   _pack_uint64_t(aTHX_ h, "size", 4,  &n->size );
   _pack_bool(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation );
 
+  
 }
 
 void WebGPU__Direct__BufferDescriptor__unpack( SV *THIS )
@@ -634,6 +648,7 @@ SV *WGPUBufferDescriptor__wrap( const WGPUBufferDescriptor * n )
 typedef SV* WebGPU__Direct__BufferDescriptor;
 void WebGPU__Direct__Color__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::Color"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -655,6 +670,7 @@ void WebGPU__Direct__Color__pack( SV *THIS )
   _pack_double(aTHX_ h, "b", 1,  &n->b );
   _pack_double(aTHX_ h, "a", 1,  &n->a );
 
+  
 }
 
 void WebGPU__Direct__Color__unpack( SV *THIS )
@@ -694,6 +710,7 @@ SV *WGPUColor__wrap( const WGPUColor * n )
 typedef SV* WebGPU__Direct__Color;
 void WebGPU__Direct__CommandBufferDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CommandBufferDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -713,6 +730,7 @@ void WebGPU__Direct__CommandBufferDescriptor__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "label", 5,  &n->label );
 
+  
 }
 
 void WebGPU__Direct__CommandBufferDescriptor__unpack( SV *THIS )
@@ -750,6 +768,7 @@ SV *WGPUCommandBufferDescriptor__wrap( const WGPUCommandBufferDescriptor * n )
 typedef SV* WebGPU__Direct__CommandBufferDescriptor;
 void WebGPU__Direct__CommandEncoderDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CommandEncoderDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -769,6 +788,7 @@ void WebGPU__Direct__CommandEncoderDescriptor__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "label", 5,  &n->label );
 
+  
 }
 
 void WebGPU__Direct__CommandEncoderDescriptor__unpack( SV *THIS )
@@ -806,6 +826,7 @@ SV *WGPUCommandEncoderDescriptor__wrap( const WGPUCommandEncoderDescriptor * n )
 typedef SV* WebGPU__Direct__CommandEncoderDescriptor;
 void WebGPU__Direct__CompilationMessage__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CompilationMessage"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -833,6 +854,7 @@ void WebGPU__Direct__CompilationMessage__pack( SV *THIS )
   _pack_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset );
   _pack_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length );
 
+  
 }
 
 void WebGPU__Direct__CompilationMessage__unpack( SV *THIS )
@@ -878,6 +900,7 @@ SV *WGPUCompilationMessage__wrap( const WGPUCompilationMessage * n )
 typedef SV* WebGPU__Direct__CompilationMessage;
 void WebGPU__Direct__ComputePassTimestampWrite__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ComputePassTimestampWrite"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -898,6 +921,7 @@ void WebGPU__Direct__ComputePassTimestampWrite__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex );
   _pack_enum(aTHX_ h, "location", 8,  &n->location );
 
+  
 }
 
 void WebGPU__Direct__ComputePassTimestampWrite__unpack( SV *THIS )
@@ -936,6 +960,7 @@ SV *WGPUComputePassTimestampWrite__wrap( const WGPUComputePassTimestampWrite * n
 typedef SV* WebGPU__Direct__ComputePassTimestampWrite;
 void WebGPU__Direct__ConstantEntry__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ConstantEntry"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -956,6 +981,7 @@ void WebGPU__Direct__ConstantEntry__pack( SV *THIS )
   _pack_str(aTHX_ h, "key", 3,  &n->key );
   _pack_double(aTHX_ h, "value", 5,  &n->value );
 
+  
 }
 
 void WebGPU__Direct__ConstantEntry__unpack( SV *THIS )
@@ -994,6 +1020,7 @@ SV *WGPUConstantEntry__wrap( const WGPUConstantEntry * n )
 typedef SV* WebGPU__Direct__ConstantEntry;
 void WebGPU__Direct__Extent3D__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::Extent3D"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1014,6 +1041,7 @@ void WebGPU__Direct__Extent3D__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "height", 6,  &n->height );
   _pack_uint32_t(aTHX_ h, "depthOrArrayLayers", 18,  &n->depthOrArrayLayers );
 
+  
 }
 
 void WebGPU__Direct__Extent3D__unpack( SV *THIS )
@@ -1052,6 +1080,7 @@ SV *WGPUExtent3D__wrap( const WGPUExtent3D * n )
 typedef SV* WebGPU__Direct__Extent3D;
 void WebGPU__Direct__InstanceDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::InstanceDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1070,6 +1099,7 @@ void WebGPU__Direct__InstanceDescriptor__pack( SV *THIS )
   SV *fp;
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
 
+  
 }
 
 void WebGPU__Direct__InstanceDescriptor__unpack( SV *THIS )
@@ -1106,6 +1136,7 @@ SV *WGPUInstanceDescriptor__wrap( const WGPUInstanceDescriptor * n )
 typedef SV* WebGPU__Direct__InstanceDescriptor;
 void WebGPU__Direct__Limits__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::Limits"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1154,6 +1185,7 @@ void WebGPU__Direct__Limits__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeZ", 24,  &n->maxComputeWorkgroupSizeZ );
   _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupsPerDimension", 32,  &n->maxComputeWorkgroupsPerDimension );
 
+  
 }
 
 void WebGPU__Direct__Limits__unpack( SV *THIS )
@@ -1220,6 +1252,7 @@ SV *WGPULimits__wrap( const WGPULimits * n )
 typedef SV* WebGPU__Direct__Limits;
 void WebGPU__Direct__MultisampleState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::MultisampleState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1241,6 +1274,7 @@ void WebGPU__Direct__MultisampleState__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "mask", 4,  &n->mask );
   _pack_bool(aTHX_ h, "alphaToCoverageEnabled", 22,  &n->alphaToCoverageEnabled );
 
+  
 }
 
 void WebGPU__Direct__MultisampleState__unpack( SV *THIS )
@@ -1280,6 +1314,7 @@ SV *WGPUMultisampleState__wrap( const WGPUMultisampleState * n )
 typedef SV* WebGPU__Direct__MultisampleState;
 void WebGPU__Direct__Origin3D__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::Origin3D"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1300,6 +1335,7 @@ void WebGPU__Direct__Origin3D__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "y", 1,  &n->y );
   _pack_uint32_t(aTHX_ h, "z", 1,  &n->z );
 
+  
 }
 
 void WebGPU__Direct__Origin3D__unpack( SV *THIS )
@@ -1338,6 +1374,7 @@ SV *WGPUOrigin3D__wrap( const WGPUOrigin3D * n )
 typedef SV* WebGPU__Direct__Origin3D;
 void WebGPU__Direct__PipelineLayoutDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::PipelineLayoutDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1359,6 +1396,7 @@ void WebGPU__Direct__PipelineLayoutDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount );
   _pack_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts , newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
+  
 }
 
 void WebGPU__Direct__PipelineLayoutDescriptor__unpack( SV *THIS )
@@ -1398,6 +1436,7 @@ SV *WGPUPipelineLayoutDescriptor__wrap( const WGPUPipelineLayoutDescriptor * n )
 typedef SV* WebGPU__Direct__PipelineLayoutDescriptor;
 void WebGPU__Direct__PrimitiveDepthClipControl__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::PrimitiveDepthClipControl"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1417,6 +1456,7 @@ void WebGPU__Direct__PrimitiveDepthClipControl__pack( SV *THIS )
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_bool(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth );
 
+  
 }
 
 void WebGPU__Direct__PrimitiveDepthClipControl__unpack( SV *THIS )
@@ -1454,6 +1494,7 @@ SV *WGPUPrimitiveDepthClipControl__wrap( const WGPUPrimitiveDepthClipControl * n
 typedef SV* WebGPU__Direct__PrimitiveDepthClipControl;
 void WebGPU__Direct__PrimitiveState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::PrimitiveState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1476,6 +1517,7 @@ void WebGPU__Direct__PrimitiveState__pack( SV *THIS )
   _pack_enum(aTHX_ h, "frontFace", 9,  &n->frontFace );
   _pack_enum(aTHX_ h, "cullMode", 8,  &n->cullMode );
 
+  
 }
 
 void WebGPU__Direct__PrimitiveState__unpack( SV *THIS )
@@ -1516,6 +1558,7 @@ SV *WGPUPrimitiveState__wrap( const WGPUPrimitiveState * n )
 typedef SV* WebGPU__Direct__PrimitiveState;
 void WebGPU__Direct__QuerySetDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::QuerySetDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1540,6 +1583,7 @@ void WebGPU__Direct__QuerySetDescriptor__pack( SV *THIS )
   _pack_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics );
   _pack_size_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount );
 
+  
 }
 
 void WebGPU__Direct__QuerySetDescriptor__unpack( SV *THIS )
@@ -1582,6 +1626,7 @@ SV *WGPUQuerySetDescriptor__wrap( const WGPUQuerySetDescriptor * n )
 typedef SV* WebGPU__Direct__QuerySetDescriptor;
 void WebGPU__Direct__QueueDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::QueueDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1601,6 +1646,7 @@ void WebGPU__Direct__QueueDescriptor__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "label", 5,  &n->label );
 
+  
 }
 
 void WebGPU__Direct__QueueDescriptor__unpack( SV *THIS )
@@ -1638,6 +1684,7 @@ SV *WGPUQueueDescriptor__wrap( const WGPUQueueDescriptor * n )
 typedef SV* WebGPU__Direct__QueueDescriptor;
 void WebGPU__Direct__RenderBundleDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderBundleDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1657,6 +1704,7 @@ void WebGPU__Direct__RenderBundleDescriptor__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "label", 5,  &n->label );
 
+  
 }
 
 void WebGPU__Direct__RenderBundleDescriptor__unpack( SV *THIS )
@@ -1694,6 +1742,7 @@ SV *WGPURenderBundleDescriptor__wrap( const WGPURenderBundleDescriptor * n )
 typedef SV* WebGPU__Direct__RenderBundleDescriptor;
 void WebGPU__Direct__RenderBundleEncoderDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderBundleEncoderDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1720,6 +1769,7 @@ void WebGPU__Direct__RenderBundleEncoderDescriptor__pack( SV *THIS )
   _pack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly );
   _pack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly );
 
+  
 }
 
 void WebGPU__Direct__RenderBundleEncoderDescriptor__unpack( SV *THIS )
@@ -1764,6 +1814,7 @@ SV *WGPURenderBundleEncoderDescriptor__wrap( const WGPURenderBundleEncoderDescri
 typedef SV* WebGPU__Direct__RenderBundleEncoderDescriptor;
 void WebGPU__Direct__RenderPassDepthStencilAttachment__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassDepthStencilAttachment"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1790,6 +1841,7 @@ void WebGPU__Direct__RenderPassDepthStencilAttachment__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "stencilClearValue", 17,  &n->stencilClearValue );
   _pack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly );
 
+  
 }
 
 void WebGPU__Direct__RenderPassDepthStencilAttachment__unpack( SV *THIS )
@@ -1834,6 +1886,7 @@ SV *WGPURenderPassDepthStencilAttachment__wrap( const WGPURenderPassDepthStencil
 typedef SV* WebGPU__Direct__RenderPassDepthStencilAttachment;
 void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassDescriptorMaxDrawCount"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1853,6 +1906,7 @@ void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__pack( SV *THIS )
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_uint64_t(aTHX_ h, "maxDrawCount", 12,  &n->maxDrawCount );
 
+  
 }
 
 void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__unpack( SV *THIS )
@@ -1890,6 +1944,7 @@ SV *WGPURenderPassDescriptorMaxDrawCount__wrap( const WGPURenderPassDescriptorMa
 typedef SV* WebGPU__Direct__RenderPassDescriptorMaxDrawCount;
 void WebGPU__Direct__RenderPassTimestampWrite__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassTimestampWrite"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1910,6 +1965,7 @@ void WebGPU__Direct__RenderPassTimestampWrite__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex );
   _pack_enum(aTHX_ h, "location", 8,  &n->location );
 
+  
 }
 
 void WebGPU__Direct__RenderPassTimestampWrite__unpack( SV *THIS )
@@ -1948,6 +2004,7 @@ SV *WGPURenderPassTimestampWrite__wrap( const WGPURenderPassTimestampWrite * n )
 typedef SV* WebGPU__Direct__RenderPassTimestampWrite;
 void WebGPU__Direct__RequestAdapterOptions__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequestAdapterOptions"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -1970,6 +2027,7 @@ void WebGPU__Direct__RequestAdapterOptions__pack( SV *THIS )
   _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType );
   _pack_bool(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter );
 
+  
 }
 
 void WebGPU__Direct__RequestAdapterOptions__unpack( SV *THIS )
@@ -2010,6 +2068,7 @@ SV *WGPURequestAdapterOptions__wrap( const WGPURequestAdapterOptions * n )
 typedef SV* WebGPU__Direct__RequestAdapterOptions;
 void WebGPU__Direct__SamplerBindingLayout__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SamplerBindingLayout"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2029,6 +2088,7 @@ void WebGPU__Direct__SamplerBindingLayout__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_enum(aTHX_ h, "type", 4,  &n->type );
 
+  
 }
 
 void WebGPU__Direct__SamplerBindingLayout__unpack( SV *THIS )
@@ -2066,6 +2126,7 @@ SV *WGPUSamplerBindingLayout__wrap( const WGPUSamplerBindingLayout * n )
 typedef SV* WebGPU__Direct__SamplerBindingLayout;
 void WebGPU__Direct__SamplerDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SamplerDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2095,6 +2156,7 @@ void WebGPU__Direct__SamplerDescriptor__pack( SV *THIS )
   _pack_enum(aTHX_ h, "compare", 7,  &n->compare );
   _pack_uint16_t(aTHX_ h, "maxAnisotropy", 13,  &n->maxAnisotropy );
 
+  
 }
 
 void WebGPU__Direct__SamplerDescriptor__unpack( SV *THIS )
@@ -2142,6 +2204,7 @@ SV *WGPUSamplerDescriptor__wrap( const WGPUSamplerDescriptor * n )
 typedef SV* WebGPU__Direct__SamplerDescriptor;
 void WebGPU__Direct__ShaderModuleCompilationHint__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleCompilationHint"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2162,6 +2225,7 @@ void WebGPU__Direct__ShaderModuleCompilationHint__pack( SV *THIS )
   _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
   _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
 
+  
 }
 
 void WebGPU__Direct__ShaderModuleCompilationHint__unpack( SV *THIS )
@@ -2200,6 +2264,7 @@ SV *WGPUShaderModuleCompilationHint__wrap( const WGPUShaderModuleCompilationHint
 typedef SV* WebGPU__Direct__ShaderModuleCompilationHint;
 void WebGPU__Direct__ShaderModuleSPIRVDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleSPIRVDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2221,6 +2286,7 @@ void WebGPU__Direct__ShaderModuleSPIRVDescriptor__pack( SV *THIS )
   // "code" is a ptr type uint32_t, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "code", 4,  &n->code );
 
+  
 }
 
 void WebGPU__Direct__ShaderModuleSPIRVDescriptor__unpack( SV *THIS )
@@ -2260,6 +2326,7 @@ SV *WGPUShaderModuleSPIRVDescriptor__wrap( const WGPUShaderModuleSPIRVDescriptor
 typedef SV* WebGPU__Direct__ShaderModuleSPIRVDescriptor;
 void WebGPU__Direct__ShaderModuleWGSLDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleWGSLDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2279,6 +2346,7 @@ void WebGPU__Direct__ShaderModuleWGSLDescriptor__pack( SV *THIS )
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "code", 4,  &n->code );
 
+  
 }
 
 void WebGPU__Direct__ShaderModuleWGSLDescriptor__unpack( SV *THIS )
@@ -2316,6 +2384,7 @@ SV *WGPUShaderModuleWGSLDescriptor__wrap( const WGPUShaderModuleWGSLDescriptor *
 typedef SV* WebGPU__Direct__ShaderModuleWGSLDescriptor;
 void WebGPU__Direct__StencilFaceState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::StencilFaceState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2337,6 +2406,7 @@ void WebGPU__Direct__StencilFaceState__pack( SV *THIS )
   _pack_enum(aTHX_ h, "depthFailOp", 11,  &n->depthFailOp );
   _pack_enum(aTHX_ h, "passOp", 6,  &n->passOp );
 
+  
 }
 
 void WebGPU__Direct__StencilFaceState__unpack( SV *THIS )
@@ -2376,6 +2446,7 @@ SV *WGPUStencilFaceState__wrap( const WGPUStencilFaceState * n )
 typedef SV* WebGPU__Direct__StencilFaceState;
 void WebGPU__Direct__StorageTextureBindingLayout__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::StorageTextureBindingLayout"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2397,6 +2468,7 @@ void WebGPU__Direct__StorageTextureBindingLayout__pack( SV *THIS )
   _pack_enum(aTHX_ h, "format", 6,  &n->format );
   _pack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension );
 
+  
 }
 
 void WebGPU__Direct__StorageTextureBindingLayout__unpack( SV *THIS )
@@ -2436,6 +2508,7 @@ SV *WGPUStorageTextureBindingLayout__wrap( const WGPUStorageTextureBindingLayout
 typedef SV* WebGPU__Direct__StorageTextureBindingLayout;
 void WebGPU__Direct__SurfaceDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2455,6 +2528,7 @@ void WebGPU__Direct__SurfaceDescriptor__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "label", 5,  &n->label );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptor__unpack( SV *THIS )
@@ -2492,6 +2566,7 @@ SV *WGPUSurfaceDescriptor__wrap( const WGPUSurfaceDescriptor * n )
 typedef SV* WebGPU__Direct__SurfaceDescriptor;
 void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2512,6 +2587,7 @@ void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__pack( SV *THIS )
   // "window" is a ptr type void, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "window", 6,  &n->window );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__unpack( SV *THIS )
@@ -2550,6 +2626,7 @@ SV *WGPUSurfaceDescriptorFromAndroidNativeWindow__wrap( const WGPUSurfaceDescrip
 typedef SV* WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow;
 void WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2569,6 +2646,7 @@ void WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__pack( SV *THIS )
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "selector", 8,  &n->selector );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__unpack( SV *THIS )
@@ -2606,6 +2684,7 @@ SV *WGPUSurfaceDescriptorFromCanvasHTMLSelector__wrap( const WGPUSurfaceDescript
 typedef SV* WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector;
 void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromMetalLayer"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2626,6 +2705,7 @@ void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__pack( SV *THIS )
   // "layer" is a ptr type void, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "layer", 5,  &n->layer );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__unpack( SV *THIS )
@@ -2664,6 +2744,7 @@ SV *WGPUSurfaceDescriptorFromMetalLayer__wrap( const WGPUSurfaceDescriptorFromMe
 typedef SV* WebGPU__Direct__SurfaceDescriptorFromMetalLayer;
 void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromWaylandSurface"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2686,6 +2767,7 @@ void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__pack( SV *THIS )
   // "surface" is a ptr type void, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "surface", 7,  &n->surface );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__unpack( SV *THIS )
@@ -2726,6 +2808,7 @@ SV *WGPUSurfaceDescriptorFromWaylandSurface__wrap( const WGPUSurfaceDescriptorFr
 typedef SV* WebGPU__Direct__SurfaceDescriptorFromWaylandSurface;
 void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromWindowsHWND"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2748,6 +2831,7 @@ void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__pack( SV *THIS )
   // "hwnd" is a ptr type void, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "hwnd", 4,  &n->hwnd );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__unpack( SV *THIS )
@@ -2788,6 +2872,7 @@ SV *WGPUSurfaceDescriptorFromWindowsHWND__wrap( const WGPUSurfaceDescriptorFromW
 typedef SV* WebGPU__Direct__SurfaceDescriptorFromWindowsHWND;
 void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromXcbWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2809,6 +2894,7 @@ void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__pack( SV *THIS )
   _pack_void(aTHX_ h, "connection", 10,  &n->connection );
   _pack_uint32_t(aTHX_ h, "window", 6,  &n->window );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__unpack( SV *THIS )
@@ -2848,6 +2934,7 @@ SV *WGPUSurfaceDescriptorFromXcbWindow__wrap( const WGPUSurfaceDescriptorFromXcb
 typedef SV* WebGPU__Direct__SurfaceDescriptorFromXcbWindow;
 void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromXlibWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2869,6 +2956,7 @@ void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__pack( SV *THIS )
   _pack_void(aTHX_ h, "display", 7,  &n->display );
   _pack_uint32_t(aTHX_ h, "window", 6,  &n->window );
 
+  
 }
 
 void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack( SV *THIS )
@@ -2908,6 +2996,7 @@ SV *WGPUSurfaceDescriptorFromXlibWindow__wrap( const WGPUSurfaceDescriptorFromXl
 typedef SV* WebGPU__Direct__SurfaceDescriptorFromXlibWindow;
 void WebGPU__Direct__SwapChainDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SwapChainDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2932,6 +3021,7 @@ void WebGPU__Direct__SwapChainDescriptor__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "height", 6,  &n->height );
   _pack_enum(aTHX_ h, "presentMode", 11,  &n->presentMode );
 
+  
 }
 
 void WebGPU__Direct__SwapChainDescriptor__unpack( SV *THIS )
@@ -2974,6 +3064,7 @@ SV *WGPUSwapChainDescriptor__wrap( const WGPUSwapChainDescriptor * n )
 typedef SV* WebGPU__Direct__SwapChainDescriptor;
 void WebGPU__Direct__TextureBindingLayout__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TextureBindingLayout"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -2995,6 +3086,7 @@ void WebGPU__Direct__TextureBindingLayout__pack( SV *THIS )
   _pack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension );
   _pack_bool(aTHX_ h, "multisampled", 12,  &n->multisampled );
 
+  
 }
 
 void WebGPU__Direct__TextureBindingLayout__unpack( SV *THIS )
@@ -3034,6 +3126,7 @@ SV *WGPUTextureBindingLayout__wrap( const WGPUTextureBindingLayout * n )
 typedef SV* WebGPU__Direct__TextureBindingLayout;
 void WebGPU__Direct__TextureDataLayout__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TextureDataLayout"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3055,6 +3148,7 @@ void WebGPU__Direct__TextureDataLayout__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow );
   _pack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage );
 
+  
 }
 
 void WebGPU__Direct__TextureDataLayout__unpack( SV *THIS )
@@ -3094,6 +3188,7 @@ SV *WGPUTextureDataLayout__wrap( const WGPUTextureDataLayout * n )
 typedef SV* WebGPU__Direct__TextureDataLayout;
 void WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TextureViewDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3120,6 +3215,7 @@ void WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount );
   _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect );
 
+  
 }
 
 void WebGPU__Direct__TextureViewDescriptor__unpack( SV *THIS )
@@ -3164,6 +3260,7 @@ SV *WGPUTextureViewDescriptor__wrap( const WGPUTextureViewDescriptor * n )
 typedef SV* WebGPU__Direct__TextureViewDescriptor;
 void WebGPU__Direct__VertexAttribute__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::VertexAttribute"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3184,6 +3281,7 @@ void WebGPU__Direct__VertexAttribute__pack( SV *THIS )
   _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
   _pack_uint32_t(aTHX_ h, "shaderLocation", 14,  &n->shaderLocation );
 
+  
 }
 
 void WebGPU__Direct__VertexAttribute__unpack( SV *THIS )
@@ -3222,6 +3320,7 @@ SV *WGPUVertexAttribute__wrap( const WGPUVertexAttribute * n )
 typedef SV* WebGPU__Direct__VertexAttribute;
 void WebGPU__Direct__BindGroupDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BindGroupDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3244,6 +3343,7 @@ void WebGPU__Direct__BindGroupDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
   _pack_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupEntry"));
 
+  
 }
 
 void WebGPU__Direct__BindGroupDescriptor__unpack( SV *THIS )
@@ -3284,6 +3384,7 @@ SV *WGPUBindGroupDescriptor__wrap( const WGPUBindGroupDescriptor * n )
 typedef SV* WebGPU__Direct__BindGroupDescriptor;
 void WebGPU__Direct__BindGroupLayoutEntry__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BindGroupLayoutEntry"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3308,6 +3409,7 @@ void WebGPU__Direct__BindGroupLayoutEntry__pack( SV *THIS )
   _pack_obj(aTHX_ h, "texture", 7,  &n->texture , sizeof(n->texture), newSVpvs("WebGPU::Direct::TextureBindingLayout"));
   _pack_obj(aTHX_ h, "storageTexture", 14,  &n->storageTexture , sizeof(n->storageTexture), newSVpvs("WebGPU::Direct::StorageTextureBindingLayout"));
 
+  
 }
 
 void WebGPU__Direct__BindGroupLayoutEntry__unpack( SV *THIS )
@@ -3350,6 +3452,7 @@ SV *WGPUBindGroupLayoutEntry__wrap( const WGPUBindGroupLayoutEntry * n )
 typedef SV* WebGPU__Direct__BindGroupLayoutEntry;
 void WebGPU__Direct__BlendState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BlendState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3369,6 +3472,7 @@ void WebGPU__Direct__BlendState__pack( SV *THIS )
   _pack_obj(aTHX_ h, "color", 5,  &n->color , sizeof(n->color), newSVpvs("WebGPU::Direct::BlendComponent"));
   _pack_obj(aTHX_ h, "alpha", 5,  &n->alpha , sizeof(n->alpha), newSVpvs("WebGPU::Direct::BlendComponent"));
 
+  
 }
 
 void WebGPU__Direct__BlendState__unpack( SV *THIS )
@@ -3406,6 +3510,7 @@ SV *WGPUBlendState__wrap( const WGPUBlendState * n )
 typedef SV* WebGPU__Direct__BlendState;
 void WebGPU__Direct__CompilationInfo__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CompilationInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3426,6 +3531,7 @@ void WebGPU__Direct__CompilationInfo__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "messageCount", 12,  &n->messageCount );
   _pack_objarray(aTHX_ h, "messages", 8, (void **) &n->messages , &n->messageCount, sizeof(*n->messages), newSVpvs("WebGPU::Direct::CompilationMessage"));
 
+  
 }
 
 void WebGPU__Direct__CompilationInfo__unpack( SV *THIS )
@@ -3464,6 +3570,7 @@ SV *WGPUCompilationInfo__wrap( const WGPUCompilationInfo * n )
 typedef SV* WebGPU__Direct__CompilationInfo;
 void WebGPU__Direct__ComputePassDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ComputePassDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3485,6 +3592,7 @@ void WebGPU__Direct__ComputePassDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
   _pack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::ComputePassTimestampWrite"));
 
+  
 }
 
 void WebGPU__Direct__ComputePassDescriptor__unpack( SV *THIS )
@@ -3524,6 +3632,7 @@ SV *WGPUComputePassDescriptor__wrap( const WGPUComputePassDescriptor * n )
 typedef SV* WebGPU__Direct__ComputePassDescriptor;
 void WebGPU__Direct__DepthStencilState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DepthStencilState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3552,6 +3661,7 @@ void WebGPU__Direct__DepthStencilState__pack( SV *THIS )
   _pack_float(aTHX_ h, "depthBiasSlopeScale", 19,  &n->depthBiasSlopeScale );
   _pack_float(aTHX_ h, "depthBiasClamp", 14,  &n->depthBiasClamp );
 
+  
 }
 
 void WebGPU__Direct__DepthStencilState__unpack( SV *THIS )
@@ -3598,6 +3708,7 @@ SV *WGPUDepthStencilState__wrap( const WGPUDepthStencilState * n )
 typedef SV* WebGPU__Direct__DepthStencilState;
 void WebGPU__Direct__ImageCopyBuffer__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ImageCopyBuffer"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3618,6 +3729,7 @@ void WebGPU__Direct__ImageCopyBuffer__pack( SV *THIS )
   _pack_obj(aTHX_ h, "layout", 6,  &n->layout , sizeof(n->layout), newSVpvs("WebGPU::Direct::TextureDataLayout"));
   _pack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"));
 
+  
 }
 
 void WebGPU__Direct__ImageCopyBuffer__unpack( SV *THIS )
@@ -3656,6 +3768,7 @@ SV *WGPUImageCopyBuffer__wrap( const WGPUImageCopyBuffer * n )
 typedef SV* WebGPU__Direct__ImageCopyBuffer;
 void WebGPU__Direct__ImageCopyTexture__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ImageCopyTexture"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3678,6 +3791,7 @@ void WebGPU__Direct__ImageCopyTexture__pack( SV *THIS )
   _pack_obj(aTHX_ h, "origin", 6,  &n->origin , sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
   _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect );
 
+  
 }
 
 void WebGPU__Direct__ImageCopyTexture__unpack( SV *THIS )
@@ -3718,6 +3832,7 @@ SV *WGPUImageCopyTexture__wrap( const WGPUImageCopyTexture * n )
 typedef SV* WebGPU__Direct__ImageCopyTexture;
 void WebGPU__Direct__ProgrammableStageDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ProgrammableStageDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3740,6 +3855,7 @@ void WebGPU__Direct__ProgrammableStageDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
   _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants , &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
 
+  
 }
 
 void WebGPU__Direct__ProgrammableStageDescriptor__unpack( SV *THIS )
@@ -3780,6 +3896,7 @@ SV *WGPUProgrammableStageDescriptor__wrap( const WGPUProgrammableStageDescriptor
 typedef SV* WebGPU__Direct__ProgrammableStageDescriptor;
 void WebGPU__Direct__RenderPassColorAttachment__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassColorAttachment"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3802,6 +3919,7 @@ void WebGPU__Direct__RenderPassColorAttachment__pack( SV *THIS )
   _pack_enum(aTHX_ h, "storeOp", 7,  &n->storeOp );
   _pack_obj(aTHX_ h, "clearValue", 10,  &n->clearValue , sizeof(n->clearValue), newSVpvs("WebGPU::Direct::Color"));
 
+  
 }
 
 void WebGPU__Direct__RenderPassColorAttachment__unpack( SV *THIS )
@@ -3842,6 +3960,7 @@ SV *WGPURenderPassColorAttachment__wrap( const WGPURenderPassColorAttachment * n
 typedef SV* WebGPU__Direct__RenderPassColorAttachment;
 void WebGPU__Direct__RequiredLimits__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequiredLimits"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3861,6 +3980,7 @@ void WebGPU__Direct__RequiredLimits__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_obj(aTHX_ h, "limits", 6,  &n->limits , sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
 
+  
 }
 
 void WebGPU__Direct__RequiredLimits__unpack( SV *THIS )
@@ -3898,6 +4018,7 @@ SV *WGPURequiredLimits__wrap( const WGPURequiredLimits * n )
 typedef SV* WebGPU__Direct__RequiredLimits;
 void WebGPU__Direct__ShaderModuleDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3919,6 +4040,7 @@ void WebGPU__Direct__ShaderModuleDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "hintCount", 9,  &n->hintCount );
   _pack_objarray(aTHX_ h, "hints", 5, (void **) &n->hints , &n->hintCount, sizeof(*n->hints), newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
 
+  
 }
 
 void WebGPU__Direct__ShaderModuleDescriptor__unpack( SV *THIS )
@@ -3958,6 +4080,7 @@ SV *WGPUShaderModuleDescriptor__wrap( const WGPUShaderModuleDescriptor * n )
 typedef SV* WebGPU__Direct__ShaderModuleDescriptor;
 void WebGPU__Direct__SupportedLimits__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SupportedLimits"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -3977,6 +4100,7 @@ void WebGPU__Direct__SupportedLimits__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"));
   _pack_obj(aTHX_ h, "limits", 6,  &n->limits , sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
 
+  
 }
 
 void WebGPU__Direct__SupportedLimits__unpack( SV *THIS )
@@ -4014,6 +4138,7 @@ SV *WGPUSupportedLimits__wrap( const WGPUSupportedLimits * n )
 typedef SV* WebGPU__Direct__SupportedLimits;
 void WebGPU__Direct__TextureDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TextureDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4041,6 +4166,7 @@ void WebGPU__Direct__TextureDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount );
   _pack_enum(aTHX_ h, "viewFormats", 11,  &n->viewFormats );
 
+  
 }
 
 void WebGPU__Direct__TextureDescriptor__unpack( SV *THIS )
@@ -4086,6 +4212,7 @@ SV *WGPUTextureDescriptor__wrap( const WGPUTextureDescriptor * n )
 typedef SV* WebGPU__Direct__TextureDescriptor;
 void WebGPU__Direct__VertexBufferLayout__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::VertexBufferLayout"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4107,6 +4234,7 @@ void WebGPU__Direct__VertexBufferLayout__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount );
   _pack_objarray(aTHX_ h, "attributes", 10, (void **) &n->attributes , &n->attributeCount, sizeof(*n->attributes), newSVpvs("WebGPU::Direct::VertexAttribute"));
 
+  
 }
 
 void WebGPU__Direct__VertexBufferLayout__unpack( SV *THIS )
@@ -4146,6 +4274,7 @@ SV *WGPUVertexBufferLayout__wrap( const WGPUVertexBufferLayout * n )
 typedef SV* WebGPU__Direct__VertexBufferLayout;
 void WebGPU__Direct__BindGroupLayoutDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BindGroupLayoutDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4167,6 +4296,7 @@ void WebGPU__Direct__BindGroupLayoutDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
   _pack_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
 
+  
 }
 
 void WebGPU__Direct__BindGroupLayoutDescriptor__unpack( SV *THIS )
@@ -4206,6 +4336,7 @@ SV *WGPUBindGroupLayoutDescriptor__wrap( const WGPUBindGroupLayoutDescriptor * n
 typedef SV* WebGPU__Direct__BindGroupLayoutDescriptor;
 void WebGPU__Direct__ColorTargetState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ColorTargetState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4227,6 +4358,7 @@ void WebGPU__Direct__ColorTargetState__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "blend", 5, (void **) &n->blend , newSVpvs("WebGPU::Direct::BlendState"));
   _pack_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask );
 
+  
 }
 
 void WebGPU__Direct__ColorTargetState__unpack( SV *THIS )
@@ -4266,6 +4398,7 @@ SV *WGPUColorTargetState__wrap( const WGPUColorTargetState * n )
 typedef SV* WebGPU__Direct__ColorTargetState;
 void WebGPU__Direct__ComputePipelineDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ComputePipelineDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4287,6 +4420,7 @@ void WebGPU__Direct__ComputePipelineDescriptor__pack( SV *THIS )
   _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
   _pack_obj(aTHX_ h, "compute", 7,  &n->compute , sizeof(n->compute), newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
 
+  
 }
 
 void WebGPU__Direct__ComputePipelineDescriptor__unpack( SV *THIS )
@@ -4326,6 +4460,7 @@ SV *WGPUComputePipelineDescriptor__wrap( const WGPUComputePipelineDescriptor * n
 typedef SV* WebGPU__Direct__ComputePipelineDescriptor;
 void WebGPU__Direct__DeviceDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DeviceDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4353,6 +4488,7 @@ void WebGPU__Direct__DeviceDescriptor__pack( SV *THIS )
   // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata );
 
+  
 }
 
 void WebGPU__Direct__DeviceDescriptor__unpack( SV *THIS )
@@ -4398,6 +4534,7 @@ SV *WGPUDeviceDescriptor__wrap( const WGPUDeviceDescriptor * n )
 typedef SV* WebGPU__Direct__DeviceDescriptor;
 void WebGPU__Direct__RenderPassDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4423,6 +4560,7 @@ void WebGPU__Direct__RenderPassDescriptor__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
   _pack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::RenderPassTimestampWrite"));
 
+  
 }
 
 void WebGPU__Direct__RenderPassDescriptor__unpack( SV *THIS )
@@ -4466,6 +4604,7 @@ SV *WGPURenderPassDescriptor__wrap( const WGPURenderPassDescriptor * n )
 typedef SV* WebGPU__Direct__RenderPassDescriptor;
 void WebGPU__Direct__VertexState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::VertexState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4490,6 +4629,7 @@ void WebGPU__Direct__VertexState__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount );
   _pack_objarray(aTHX_ h, "buffers", 7, (void **) &n->buffers , &n->bufferCount, sizeof(*n->buffers), newSVpvs("WebGPU::Direct::VertexBufferLayout"));
 
+  
 }
 
 void WebGPU__Direct__VertexState__unpack( SV *THIS )
@@ -4532,6 +4672,7 @@ SV *WGPUVertexState__wrap( const WGPUVertexState * n )
 typedef SV* WebGPU__Direct__VertexState;
 void WebGPU__Direct__FragmentState__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::FragmentState"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4556,6 +4697,7 @@ void WebGPU__Direct__FragmentState__pack( SV *THIS )
   _pack_size_t(aTHX_ h, "targetCount", 11,  &n->targetCount );
   _pack_objarray(aTHX_ h, "targets", 7, (void **) &n->targets , &n->targetCount, sizeof(*n->targets), newSVpvs("WebGPU::Direct::ColorTargetState"));
 
+  
 }
 
 void WebGPU__Direct__FragmentState__unpack( SV *THIS )
@@ -4598,6 +4740,7 @@ SV *WGPUFragmentState__wrap( const WGPUFragmentState * n )
 typedef SV* WebGPU__Direct__FragmentState;
 void WebGPU__Direct__RenderPipelineDescriptor__pack( SV *THIS )
 {
+  
   if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPipelineDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
@@ -4623,6 +4766,7 @@ void WebGPU__Direct__RenderPipelineDescriptor__pack( SV *THIS )
   _pack_obj(aTHX_ h, "multisample", 11,  &n->multisample , sizeof(n->multisample), newSVpvs("WebGPU::Direct::MultisampleState"));
   _pack_objptr(aTHX_ h, "fragment", 8, (void **) &n->fragment , newSVpvs("WebGPU::Direct::FragmentState"));
 
+  
 }
 
 void WebGPU__Direct__RenderPipelineDescriptor__unpack( SV *THIS )

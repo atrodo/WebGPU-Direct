@@ -176,7 +176,7 @@ wgpuBufferGetMapState(buffer)
 
 
 void * 
-wgpuBufferGetMappedRange(buffer, offset, size)
+wgpuBuffer_GetMappedRange(buffer, offset, size)
         WGPUBuffer buffer
         size_t offset
         size_t size
@@ -1662,7 +1662,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Texture	PREFIX = wgpuTexture
 
 
 WGPUTextureView 
-wgpuTextureCreateView(texture, descriptor)
+wgpuTexture_CreateView(texture, descriptor)
         WGPUTexture texture
         WGPUTextureViewDescriptor const * descriptor
     CODE:
