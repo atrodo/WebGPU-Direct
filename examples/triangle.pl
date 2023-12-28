@@ -11,17 +11,17 @@ use WebGPU::Direct qw/:all/;
 my $wgpu = WebGPU::Direct->new;
 
 # Create instance
-my $instance = $wgpu->CreateInstance( $wgpu->InstanceDescriptor );
+my $instance = $wgpu->CreateInstance( $wgpu->InstanceDescriptor->new );
 
 # Build X11 Surface
 my $x11        = WebGPU::Direct->new_window_x11;
-my $descriptor = $wgpu->SurfaceDescriptor( nextInChain => $x11 );
+my $descriptor = $wgpu->SurfaceDescriptor->new( nextInChain => $x11 );
 
 # Build surface
 my $surface = $instance->CreateSurface($descriptor);
 
 # Acquire an adapter and device
-my $ra_opt = $wgpu->RequestAdapterOptions( compatibleSurface => $surface );
+my $ra_opt = $wgpu->RequestAdapterOptions->new( compatibleSurface => $surface );
 
 my $adapter;
 my $device;
@@ -62,20 +62,20 @@ sub handle_request_device
 }
 
 $instance->RequestAdapter( $ra_opt, \&handle_request_adapter, {} );
-my $supported_limits = $wgpu->SupportedLimits;
+my $supported_limits = $wgpu->SupportedLimits->new;
 
 $adapter->GetLimits($supported_limits);
 my $limits = $supported_limits->limits;
 
-my $req_limits = $wgpu->RequiredLimits( { limits => $limits } );
-my $devdesc    = $wgpu->DeviceDescriptor( requiredLimits => $req_limits );
+my $req_limits = $wgpu->RequiredLimits->new( { limits => $limits } );
+my $devdesc    = $wgpu->DeviceDescriptor->new( requiredLimits => $req_limits );
 $adapter->RequestDevice( $devdesc, \&handle_request_device, {} );
 
 # Build the shader
-my $shaderdesc = $wgpu->ShaderModuleDescriptor(
+my $shaderdesc = $wgpu->ShaderModuleDescriptor->new(
   {
     label       => 'shader.wsgl',
-    nextInChain => $wgpu->ShaderModuleWGSLDescriptor(
+    nextInChain => $wgpu->ShaderModuleWGSLDescriptor->new(
       {
         sType => SType->ShaderModuleWGSLDescriptor,
         code  => join( '', <DATA> ),
@@ -88,30 +88,30 @@ my $shader = $device->CreateShaderModule($shaderdesc);
 
 # Build the pipeline pieces
 my $queue   = $device->GetQueue;
-my $pl_desc = $wgpu->PipelineLayoutDescriptor( label => 'pipeline_layout' );
+my $pl_desc = $wgpu->PipelineLayoutDescriptor->new( label => 'pipeline_layout' );
 my $pipeline_layout = $device->CreatePipelineLayout($pl_desc);
 my $tex_fmt         = $surface->GetPreferredFormat($adapter);
 
-my $rpd = $wgpu->RenderPipelineDescriptor(
+my $rpd = $wgpu->RenderPipelineDescriptor->new(
   label  => 'render_pipeline',
   layout => $pipeline_layout,
-  vertex => $wgpu->VertexState(
+  vertex => $wgpu->VertexState->new(
     module     => $shader,
     entryPoint => 'vs_main',
   ),
-  fragment => $wgpu->FragmentState(
+  fragment => $wgpu->FragmentState->new(
     module      => $shader,
     entryPoint  => 'fs_main',
     targetCount => 1,
-    targets     => $wgpu->ColorTargetState(
+    targets     => $wgpu->ColorTargetState->new(
       format    => $tex_fmt,
       writeMask => ColorWriteMask->All,
     ),
   ),
-  primitive => $wgpu->PrimitiveState(
+  primitive => $wgpu->PrimitiveState->new(
     topology => PrimitiveTopology->TriangleList,
   ),
-  multisample => $wgpu->MultisampleState(
+  multisample => $wgpu->MultisampleState->new(
     count => 1,
     mask  => 0xFFFFFFFF,
   ),
@@ -119,7 +119,7 @@ my $rpd = $wgpu->RenderPipelineDescriptor(
 
 my $pipeline = $device->CreateRenderPipeline($rpd);
 
-my $sc_config = $wgpu->SwapChainDescriptor(
+my $sc_config = $wgpu->SwapChainDescriptor->new(
   usage       => TextureUsage->RenderAttachment,
   format      => $tex_fmt,
   presentMode => PresentMode->Fifo,
@@ -129,10 +129,10 @@ my $sc_config = $wgpu->SwapChainDescriptor(
 
 my $swapchain = $device->CreateSwapChain( $surface, $sc_config );
 
-my $passcolor = $wgpu->RenderPassColorAttachment(
+my $passcolor = $wgpu->RenderPassColorAttachment->new(
   loadOp     => LoadOp->Clear,
   storeOp    => StoreOp->Store,
-  clearValue => $wgpu->Color(
+  clearValue => $wgpu->Color->new(
     r => 0.0,
     g => 1.0,
     b => 0.0,
@@ -140,14 +140,14 @@ my $passcolor = $wgpu->RenderPassColorAttachment(
   ),
 );
 
-my $passdesc = $wgpu->RenderPassDescriptor(
+my $passdesc = $wgpu->RenderPassDescriptor->new(
   label                => "render_pass_encoder",
   colorAttachmentCount => 1,
   colorAttachments     => $passcolor,
 );
 
-my $cwdesc = $wgpu->CommandEncoderDescriptor;
-my $cbdesc = $wgpu->CommandBufferDescriptor;
+my $cwdesc = $wgpu->CommandEncoderDescriptor->new;
+my $cbdesc = $wgpu->CommandBufferDescriptor->new;
 
 my $start  = time;
 my $frames = 1000;

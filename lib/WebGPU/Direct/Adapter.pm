@@ -31,15 +31,15 @@ package WebGPU::Direct::Adapter
 
     if ( !defined $descriptor )
     {
-      my $supported_limits = WebGPU::Direct->SupportedLimits;
+      my $supported_limits = WebGPU::Direct->SupportedLimits->new;
 
       $self->GetLimits($supported_limits);
       my $limits = $supported_limits->limits;
 
       my $req_limits
-          = WebGPU::Direct->RequiredLimits( { limits => $limits } );
+          = WebGPU::Direct->RequiredLimits->new( { limits => $limits } );
       $descriptor
-          = WebGPU::Direct->DeviceDescriptor( requiredLimits => $req_limits );
+          = WebGPU::Direct->DeviceDescriptor->new( requiredLimits => $req_limits );
     }
 
     $self->_RequestDevice( $descriptor, $callback, $userdata );

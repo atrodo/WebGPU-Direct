@@ -406,6 +406,20 @@ foreach my $enum ( sort keys %enums )
   say $pm qq[  sub $enum () { '$pkg' }; push \@export_all, '$enum';];
 }
 
+{
+  my @new;
+  my @pkgs;
+  foreach my $pkg ( sort @classes )
+  {
+    my $fn = $pkg;
+    $fn =~ s/^WebGPU::Direct:://;
+    push @pkgs, qq[  sub $fn () { Carp::croak if \@_>1; '$pkg' }];
+    push @new,  qq[  sub new$fn { my \$class = shift; return $pkg\->new(\@_); }];
+  }
+  say $pm join( "\n", @pkgs );
+  say $pm join( "\n", @new );
+}
+
 say $pm qq[};];
 say $pm qq[];
 

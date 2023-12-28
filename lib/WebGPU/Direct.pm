@@ -32,27 +32,6 @@ sub new
   return $result;
 }
 
-sub AUTOLOAD
-{
-  our $AUTOLOAD;
-  my $sub = $AUTOLOAD;
-
-  if ( my $new = $sub->can('new') )
-  {
-    no strict 'refs';
-    local $@;
-    eval "*$sub = sub { my \$class = shift; $sub\->new(\@_); };";
-    die $@ if $@;
-    goto &$sub;
-  }
-
-  my ($pkg, $fn) = $sub =~ m/(.*)::([^:]*)/;
-  croak(qq[Can't locate object method "$fn" via package "$pkg"])
-    if $fn ne uc $fn;
-
-  return;
-}
-
 1;
 __END__
 

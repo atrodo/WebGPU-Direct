@@ -24,10 +24,10 @@ package WebGPU::Direct::Device
         my $label = delete $descriptor->{label} // '(anon).wsgl';
         my $code  = delete $descriptor->{code};
 
-        $descriptor = WebGPU::Direct->ShaderModuleDescriptor(
+        $descriptor = WebGPU::Direct->ShaderModuleDescriptor->new(
           {
             label       => $label,
-            nextInChain => WebGPU::Direct->ShaderModuleWGSLDescriptor(
+            nextInChain => WebGPU::Direct->ShaderModuleWGSLDescriptor->new(
               {
                 sType => $stype->ShaderModuleWGSLDescriptor,
                 code  => $code,
