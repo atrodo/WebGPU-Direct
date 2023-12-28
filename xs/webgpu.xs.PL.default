@@ -11,12 +11,28 @@
     stencilReadMask     => 0xFFFFFFFF,
     stencilWriteMask    => 0xFFFFFFFF,
   },
-  RenderPipelineDescriptor => {
-  },
   MultisampleState => {
     alphaToCoverageEnabled => 0,
     count                  => 1,
     mask                   => 0xFFFFFFFF,
+  },
+  RenderPipelineDescriptor => {},
+  StencilFaceState         => {
+    compare     => \'CompareFunction->Always',
+    failOp      => \'StencilOperation->Keep',
+    depthFailOp => \'StencilOperation->Keep',
+    passOp      => \'StencilOperation->Keep',
+  },
+  TextureDescriptor => {
+    dimension     => \'TextureDimension->_2D',
+    size          => { height => 1, depthOrArrayLayers => 1 },
+    mipLevelCount => 1,
+    sampleCount   => 1,
+  },
+  TextureViewDescriptor => {
+    aspect         => \'TextureAspect->All',
+    baseArrayLayer => 0,
+    baseMipLevel   => 0,
   },
 }
 
