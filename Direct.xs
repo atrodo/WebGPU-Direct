@@ -694,6 +694,12 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
   SV *array_base = newSVsv(base);
   sv_catpvs(array_base, "::Array");
 
+  if ( !SvOK(*f) )
+  {
+    SV *val = sv_2mortal(newRV( (SV *)newAV() ));
+    f = nn_hv_store(aTHX_ h, key, klen, val, base);
+  }
+
   if ( !SvROK(*f) )
   {
     croak("The field value to _pack_objarray must be a reference, for %s{%s}", SvPV_nolen(base), key);
@@ -754,25 +760,28 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
 
     assert(SvOK(*f));
     void *old_ptr = _get_struct_ptr(aTHX_ *f, base);
-    if ( old_ptr && old_ptr != new_ptr )
+    if ( old_ptr )
     {
-      // TODO: object should probably be duplicated (if refcnt is minimal?)
-      Copy(old_ptr, new_ptr, size, char);
+      if ( old_ptr != new_ptr )
+      {
+        // TODO: object should probably be duplicated (if refcnt is minimal?)
+        Copy(old_ptr, new_ptr, size, char);
 
-      MAGIC *mg = _get_mg(aTHX_ *f, base);
-      if ( mg == NULL )
-      {
-        sv_magicext(*f, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
+        MAGIC *mg = _get_mg(aTHX_ *f, base);
+        if ( mg == NULL )
+        {
+          sv_magicext(*f, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
+        }
+        else
+        {
+          mg->mg_ptr = new_ptr;
+        }
+        Safefree(old_ptr);
       }
-      else
-      {
-        mg->mg_ptr = new_ptr;
-      }
-      Safefree(old_ptr);
     }
     else
     {
-      SV *h = _get_mg_obj(aTHX_ *f, base);
+      SV *h = _get_mg_hash(aTHX_ *f, base);
       sv_magicext(h, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
     }
 
