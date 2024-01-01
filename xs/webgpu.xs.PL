@@ -56,6 +56,8 @@ my @typemap = (
 
 my $arrcnt_re = qr/^(\w+)Count$/xms;
 my $arrnme_re = qr/^(\w+)s$/xms;
+my $bufcnt_re = qr/^(data)?[sS]ize$/xms;
+my $bufnme_re = qr/^data$/xms;
 
 my @fns;
 my @classes;
@@ -1126,6 +1128,9 @@ sub say_call_fn
 
   my %arrays;
   my $array_can;
+  my %buffers;
+  my $buffer_can;
+
   foreach my $i ( 0 .. @defargs )
   {
     next
@@ -1156,7 +1161,20 @@ sub say_call_fn
       $arrays{$array_can} = $value;
     }
 
+    # Check for data buffer parameters
+    if ( $value ne 'size_t' && $key =~ m/$bufnme_re/ )
+    {
+      $buffer_can = $key;
+      next;
+    }
+    if ( $buffer_can && $key =~ $bufcnt_re )
+    {
+      $buffers{$buffer_can} = $key;
+      $buffers{$key}        = $buffer_can;
+    }
+
     undef $array_can;
+    undef $buffer_can;
   }
 
   my @args;
@@ -1172,24 +1190,34 @@ sub say_call_fn
     warn "Unknown type: $type"
         if !exists $typedefs{$pkg} && !exists $typedefs{$type};
 
+    # Handle the callback cases
     if ( $is_cb && $value eq 'callback' )
     {
       $key = 'CV *';
     }
-
     if ( $is_cb && $value eq 'userdata' )
     {
       $key = 'SV *';
     }
 
+    # Handle the array cases
     if ( $value =~ $arrcnt_re && exists $arrays{$1} )
     {
       next;
     }
-
     if ( $value =~ $arrnme_re && exists $arrays{$1} )
     {
       $key = 'AV *';
+    }
+
+    # Handle the data buffer cases
+    if ( $value =~ $bufnme_re && exists $buffers{$value} )
+    {
+      $key = 'SV *';
+    }
+    if ( $value =~ $bufcnt_re && exists $buffers{$value} )
+    {
+      next;
     }
 
     push @args, "$key $value";
@@ -1218,7 +1246,7 @@ sub say_call_fn
   my @calls = @vals;
   say $xs "    CODE:";
 
-  if ( $is_cb || keys %arrays )
+  if ( $is_cb || keys %arrays || keys %buffers )
   {
     if ($is_cb)
     {
@@ -1269,6 +1297,25 @@ sub say_call_fn
         };
 
       @calls = map { $_ eq "${array}s" ? ( "${array}Count", $array ) : $_ }
+          @calls;
+    }
+
+    foreach my $buffer ( sort keys %buffers )
+    {
+      next
+        if $buffer =~ m/size/i;
+
+      my $type = $buffers{$buffer};
+      $type =~ s/[*]$//;
+      $type =~ s/const//;
+
+      say $xs <<~"EOF"; my $n = qq{
+              STRLEN ${buffer}Size;
+              const char *${buffer}Data = SvPV_const(${buffer}, ${buffer}Size);
+        EOF
+        };
+
+      @calls = map { $_ eq "${buffer}" ? ( "${buffer}Data", "${buffer}Size" ) : $_ }
           @calls;
     }
   }
