@@ -65,8 +65,6 @@ my %enums;
 my %classdefs;
 my %callbackdefs;
 
-say $xs q{#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"};
-say $xs q{#pragma GCC diagnostic ignored "-Wformat"};
 say $xs q{};
 
 say $pm q{use v5.30;};
@@ -113,7 +111,7 @@ while (<$h>)
   chomp;
   s[// .* $][]xms;
   s[/[*] .*? [*]/][]xms;
-  s[ \s (?:WGPU_OBJECT_ATTRIBUTE|WGPU_ENUM_ATTRIBUTE|WGPU_STRUCTURE_ATTRIBUTE|WGPU_FUNCTION_ATTRIBUTE|WGPU_NULLABLE)][]xmsg;
+  s[ (?:\s|\b) (?:WGPU_OBJECT_ATTRIBUTE|WGPU_ENUM_ATTRIBUTE|WGPU_STRUCTURE_ATTRIBUTE|WGPU_FUNCTION_ATTRIBUTE|WGPU_NULLABLE)][]xmsg;
 
   # Skip the WGPU_SKIP_PROCS definitions
   if ( m{^ [#] if \s+ [!] defined [(] WGPU_SKIP_PROCS [)] }xms .. m[^ [#] endif ]xms )
@@ -492,8 +490,6 @@ foreach my $class ( @classes )
 
   if ( @defs )
   {
-    $packs = "  SV **f;\n  SV *fp;\n";
-
     if ( $defs[0]->{inline_obj} && 1 == scalar(grep { $_->{inline_obj} } @defs ) )
     {
       my $c_prefix = $defs[0]->{return} . '::';
@@ -505,7 +501,7 @@ foreach my $class ( @classes )
 
     # Check for array-type elements
     my $maybe_array;
-    foreach my $i (0..$#defs)
+    foreach my $i ( 0 .. $#defs )
     {
       my %def = $defs[$i]->%*;
 
@@ -568,19 +564,23 @@ foreach my $class ( @classes )
     $prefix = $fns[0]->{prefix};
     warn "prefix is inconsistent: $prefix"
       if grep { $_->{prefix} && $_->{prefix} ne $prefix } @fns;
+  }
+
+  # Check for any specialized functions
+  {
 
     my $class_pm = "$class_path.pm";
 
     if ( -e $class_pm )
     {
-      $preamble .= "\nrequire $class;";
+      $preamble .= "\n    require $class;";
 
       open my $class_fh, '<', $class_pm;
       my %subs;
 
       while (<$class_fh>)
       {
-        if ( m/sub \s* (\w*)/xms )
+        if ( m/sub \s* (\w+)/xms )
         {
           $subs{$1} = 1;
         }
@@ -645,7 +645,7 @@ foreach my $class ( @classes )
     my $default = Data::Dumper->Dump([$class_defaults->{$short_class} // {}], [qw/default/]);
 
     # Any scalar refs, strip the decoration and fully-qualify the call
-    $default =~ s[\\'([\w\:\-\>]*)'][WebGPU::Direct::$1];
+    $default =~ s[\\'([\w\:\-\>]*)'][WebGPU::Direct::$1]g;
 
     say $pm <<~"EOF"; my $n = qq{
       package $class {
@@ -1062,6 +1062,11 @@ sub calls_for
 
   $result{typedef} = $typedef;
 
+  if ( $def{ro} )
+  {
+    $result{pack} = '';
+  }
+
   return %result;
 }
 
@@ -1286,7 +1291,7 @@ sub say_call_fn
         };
     }
 
-    foreach my $array ( keys %arrays )
+    foreach my $array ( sort keys %arrays )
     {
       my $type = $arrays{$array};
       $type =~ s/[*]$//;
