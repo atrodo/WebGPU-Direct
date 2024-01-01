@@ -623,7 +623,7 @@ foreach my $class ( @classes )
   foreach (@defs)
   {
     my %def = %$_;
-    my %calls = calls_for(%$_);
+    my %calls = calls_for(%$_, c_prefix => $c_prefix);
     $packs .= $calls{pack};
     $unpacks .= $calls{unpack};
 
@@ -1071,7 +1071,7 @@ sub say_set_fn
   my $type = shift;
   my %def = @_;
 
-  my %calls = calls_for(%def);
+  my %calls = calls_for(%def, c_prefix => $class);
 
   my $typedef = $calls{typedef};
   my $ret_type = $def{return};
