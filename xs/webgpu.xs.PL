@@ -21,16 +21,16 @@ open my $pm, '>', "$Bin/../lib/WebGPU/Direct/XS.pm";
 my $class_defaults = require "$Bin/$Script.default";
 
 my %typedefs = (
-    bool     => 'bool',
-    double   => 'double',
-    float    => 'float',
-    uint16_t => 'uint16_t',
-    uint32_t => 'uint32_t',
-    uint64_t => 'uint64_t',
-    int32_t  => 'int32_t',
-    size_t   => 'size_t',
-    char     => 'str',
-    void     => 'void',
+  bool     => 'bool',
+  double   => 'double',
+  float    => 'float',
+  uint16_t => 'uint16_t',
+  uint32_t => 'uint32_t',
+  uint64_t => 'uint64_t',
+  int32_t  => 'int32_t',
+  size_t   => 'size_t',
+  char     => 'str',
+  void     => 'void',
 );
 
 my @typemap = (
@@ -87,7 +87,7 @@ sub pkg_name
   my $ctype = shift;
 
   return $ctype
-    if exists $typedefs{$ctype};
+      if exists $typedefs{$ctype};
 
   $ctype = "WebGPU::Direct::$ctype";
   $ctype =~ s/::WGPU/::/;
@@ -130,8 +130,7 @@ while (<$h>)
     next;
   }
 
-  if (
-    m[^ typedef \s+ (enum) \s+ (\w+) \s+ { $]xms .. m[ ^ } \s+ (\w+) ; $]xms )
+  if ( m[^ typedef \s+ (enum) \s+ (\w+) \s+ { $]xms .. m[ ^ } \s+ (\w+) ; $]xms )
   {
     state $type;
     if ($1)
@@ -174,7 +173,7 @@ while (<$h>)
   }
 
   # Struct definitions
-  if ( m[^ typedef \s+ (struct) \s+ (\w+) \s+ { $]xms ..  m[ ^ } \s+ (\w+) ; $]xms )
+  if ( m[^ typedef \s+ (struct) \s+ (\w+) \s+ { $]xms .. m[ ^ } \s+ (\w+) ; $]xms )
   {
     state $type;
     state $class;
@@ -202,10 +201,10 @@ while (<$h>)
 
         push @classes, $class;
         $classdefs{$class} = {
-          type  => $type,
-          class => $class,
-          defs  => [@defs],
-          fns   => [],
+          type     => $type,
+          class    => $class,
+          defs     => [@defs],
+          fns      => [],
           ptr_type => '',
         };
       }
@@ -232,7 +231,7 @@ while (<$h>)
       my $typedef    = $typedefs{$ctype} // $typedefs{$return};
       my $inline_obj = !$is_ptr && $typedef eq 'obj';
 
-      if ( $inline_obj && $classdefs{$return} && $classdefs{$return}->{ptr_type})
+      if ( $inline_obj && $classdefs{$return} && $classdefs{$return}->{ptr_type} )
       {
         $inline_obj = undef;
       }
@@ -279,8 +278,8 @@ while (<$h>)
   # Ignore all other function call typdefs
   if (m[^ typedef \s+ (\w+) \s+ [(][*] (\w*) [)] [(] ([^)]+) [)] ; ]xms)
   {
-    my $return = $1;
-    my $type = $2;
+    my $return     = $1;
+    my $type       = $2;
     my $definition = $3;
 
     my $class = pkg_name($type);
@@ -305,11 +304,11 @@ while (<$h>)
     push @classes, $class;
 
     $classdefs{$class} = {
-      type  => $type,
-      class => $class,
+      type     => $type,
+      class    => $class,
       ptr_type => 1,
-      defs  => [],
-      fns   => [],
+      defs     => [],
+      fns      => [],
     };
 
     next;
@@ -336,7 +335,8 @@ while (<$h>)
     my $first_arg = $args[0];
     my $first_pkg = pkg_name($first_arg);
 
-    if ( ( ( $typedefs{$first_pkg} // '' ) eq 'obj' || ( $typedefs{$first_pkg} // '' ) eq 'opaque' )&& $fn_name =~ m/^($first_arg)/i )
+    if ( ( ( $typedefs{$first_pkg} // '' ) eq 'obj' || ( $typedefs{$first_pkg} // '' ) eq 'opaque' )
+      && $fn_name =~ m/^($first_arg)/i )
     {
       $fn_def->{name} =~ s/^($first_arg)//i;
       $fn_def->{prefix} = $1;
@@ -355,7 +355,7 @@ while (<$h>)
   if (m[^ typedef \s+ (\w+[*]?) \s+ (\w+); $]xms)
   {
     die "Unknown typedef: $1"
-      if !$typedefs{$1};
+        if !$typedefs{$1};
 
     $typedefs{$2} = $typedefs{$1};
     next;
@@ -364,25 +364,25 @@ while (<$h>)
   # Handle opaque sturcts that may be used as specifc types
   if (m[^ typedef \s+ struct \s+ (\w+ [*]?) \s+ (\w+); $]xms)
   {
-    my $type  = $2;
+    my $type   = $2;
     my $is_ptr = ( $1 =~ m/[*]/ );
-    my $class = pkg_name($type);
+    my $class  = pkg_name($type);
 
     die "Duplicate typedef: $class"
         if exists $typedefs{$class};
 
     die
-      if !$is_ptr;
+        if !$is_ptr;
 
     $typedefs{$class} = 'opaque';
     push @classes, $class;
     $classdefs{$class} = {
-      type  => $type,
+      type     => $type,
       ptr_type => $is_ptr,
-      opaque => 1,
-      class => $class,
-      defs  => [],
-      fns   => [],
+      opaque   => 1,
+      class    => $class,
+      defs     => [],
+      fns      => [],
     };
     next;
   }
@@ -438,7 +438,7 @@ say $c "typedef struct cb_data {
 open my $const_pod, '>', "$Bin/../lib/WebGPU/Direct/Constants.pod";
 open my $types_pod, '>', "$Bin/../lib/WebGPU/Direct/Types.pod";
 
-foreach my $enum (sort keys %enums)
+foreach my $enum ( sort keys %enums )
 {
   my $pkg = "WebGPU::Direct::$enum";
   $pkg =~ s/::WGPU/::/;
@@ -462,7 +462,7 @@ foreach my $enum (sort keys %enums)
   say $pm qq[];
 }
 
-foreach my $class ( @classes )
+foreach my $class (@classes)
 {
   my %def = $classdefs{$class}->%*;
 
@@ -470,14 +470,14 @@ foreach my $class ( @classes )
   my @defs = $def{defs}->@*;
   my @fns  = $def{fns}->@*;
 
-  my $preamble  = "";
-  my $packs     = "";
-  my $addl_pack = "";
+  my $preamble    = "";
+  my $packs       = "";
+  my $addl_pack   = "";
   my $unpacks     = "";
   my $addl_unpack = "";
-  my $destroy = '';
-  my $c_prefix  = "${class}";
-  my $prefix    = "wgpu";
+  my $destroy     = '';
+  my $c_prefix    = "${class}";
+  my $prefix      = "wgpu";
 
   $c_prefix =~ s/::/__/g;
 
@@ -485,18 +485,18 @@ foreach my $class ( @classes )
   $class_path =~ s[::][/]g;
   $class_path = "$Bin/../lib/$class_path";
 
-  die "Class definition doesn't expect to have attributes and functions"
-    if @defs && @fns;
+  die "Class definition for $type doesn't expect to have attributes and functions"
+      if @defs && @fns;
 
-  if ( @defs )
+  if (@defs)
   {
-    if ( $defs[0]->{inline_obj} && 1 == scalar(grep { $_->{inline_obj} } @defs ) )
+    if ( $defs[0]->{inline_obj} && 1 == scalar( grep { $_->{inline_obj} } @defs ) )
     {
       my $c_prefix = $defs[0]->{return} . '::';
       $c_prefix =~ s/::/__/g;
-      $addl_pack = qq{${c_prefix}pack( /*asdf*/ THIS );\n};
+      $addl_pack   = qq{${c_prefix}pack( /*asdf*/ THIS );\n};
       $addl_unpack = qq{${c_prefix}unpack( /*asdf*/ THIS );\n};
-      $preamble = qq{push \@$class\::ISA, "$defs[0]->{return}";};
+      $preamble    = qq{push \@$class\::ISA, "$defs[0]->{return}";};
     }
 
     # Check for array-type elements
@@ -559,16 +559,15 @@ foreach my $class ( @classes )
     $preamble = qq{push \@$class\::ISA, "WebGPU::Direct::Opaque";};
   }
 
-  if ( @fns )
+  if (@fns)
   {
     $prefix = $fns[0]->{prefix};
     warn "prefix is inconsistent: $prefix"
-      if grep { $_->{prefix} && $_->{prefix} ne $prefix } @fns;
+        if grep { $_->{prefix} && $_->{prefix} ne $prefix } @fns;
   }
 
   # Check for any specialized functions
   {
-
     my $class_pm = "$class_path.pm";
 
     if ( -e $class_pm )
@@ -580,13 +579,13 @@ foreach my $class ( @classes )
 
       while (<$class_fh>)
       {
-        if ( m/sub \s* (\w+)/xms )
+        if (m/sub \s* (\w+)/xms)
         {
           $subs{$1} = 1;
         }
       }
 
-      foreach ( @fns )
+      foreach (@fns)
       {
         my %fn_def = %$_;
         if ( exists $subs{ $fn_def{name} } )
@@ -613,7 +612,7 @@ foreach my $class ( @classes )
     };
   }
 
-  if ( @defs )
+  if (@defs)
   {
     $types_pod->say(qq[=head1 $class\n]);
     $types_pod->say(qq[=head2 Attributes\n]);
@@ -622,18 +621,18 @@ foreach my $class ( @classes )
 
   foreach (@defs)
   {
-    my %def = %$_;
-    my %calls = calls_for(%$_, c_prefix => $c_prefix);
-    $packs .= $calls{pack};
+    my %def   = %$_;
+    my %calls = calls_for( %$_, c_prefix => $c_prefix );
+    $packs   .= $calls{pack};
     $unpacks .= $calls{unpack};
 
-    say_set_fn($class, $type, %def);
+    say_set_fn( $class, $type, %def );
 
-    my $type = typed_pod($def{return});
+    my $type = typed_pod( $def{return} );
     $types_pod->say(qq[=item $def{key} ($type)\n]);
   }
 
-  if ( @defs )
+  if (@defs)
   {
     $types_pod->say(qq[=back\n]);
 
@@ -641,8 +640,8 @@ foreach my $class ( @classes )
     $short_class =~ s/WebGPU::Direct:://;
 
     local $Data::Dumper::Trailingcomma = 1;
-    local $Data::Dumper::Sortkeys = 1;
-    my $default = Data::Dumper->Dump([$class_defaults->{$short_class} // {}], [qw/default/]);
+    local $Data::Dumper::Sortkeys      = 1;
+    my $default = Data::Dumper->Dump( [ $class_defaults->{$short_class} // {} ], [qw/default/] );
 
     # Any scalar refs, strip the decoration and fully-qualify the call
     $default =~ s[\\'([\w\:\-\>]*)'][WebGPU::Direct::$1]g;
@@ -820,13 +819,13 @@ foreach my $class ( @classes )
       }
     }
   }
-  
+
   my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : '';
-  say $tm sprintf("%-64s%s", $type, "T_FETCH");
-  say $tm sprintf("%-64s%s", "$type *", 'T_FETCHPTR');
-  say $tm sprintf("%-64s%s", "$type const *", 'T_FETCHPTR');
-  say $tm sprintf("%-64s%s", "struct $type const *", 'T_FETCHPTR');
-  say $tm sprintf("%-64s%s", $class, $typemap) if $typemap;
+  say $tm sprintf( "%-64s%s", $type,                  "T_FETCH" );
+  say $tm sprintf( "%-64s%s", "$type *",              'T_FETCHPTR' );
+  say $tm sprintf( "%-64s%s", "$type const *",        'T_FETCHPTR' );
+  say $tm sprintf( "%-64s%s", "struct $type const *", 'T_FETCHPTR' );
+  say $tm sprintf( "%-64s%s", $class,                 $typemap ) if $typemap;
 
   say $c "typedef SV* $c_prefix;";
 }
@@ -837,12 +836,12 @@ foreach my $typedef ( sort keys %typedefs )
       if exists $classdefs{$typedef};
 
   my $typemap = tm_of($typedef);
-  say $tm sprintf( "%-64s%s", $typedef, $typemap );
-  say $tm sprintf( "%-64s%s", "$typedef *", $typemap );
+  say $tm sprintf( "%-64s%s", $typedef,           $typemap );
+  say $tm sprintf( "%-64s%s", "$typedef *",       $typemap );
   say $tm sprintf( "%-64s%s", "$typedef const *", $typemap );
 }
 
-say $tm join("\n", @typemap);
+say $tm join( "\n", @typemap );
 
 $tm->flush;
 
@@ -853,7 +852,7 @@ foreach my $tm_file ( standard_typemap_locations( \@INC ) )
 
   # skip directories, binary files etc.
   next
-    if !-T $tm_file;
+      if !-T $tm_file;
 
   $tmx->merge( file => $tm_file, replace => 1 );
 }
@@ -861,10 +860,10 @@ foreach my $tm_file ( standard_typemap_locations( \@INC ) )
 foreach my $cb_name ( sort keys %callbackdefs )
 {
   my $callback = $callbackdefs{$cb_name};
-  my $type = $callback->{type};
-  my $class = $callback->{class};
-  my @args = $callback->{args}->@*;
-  my $c_prefix  = "${class}";
+  my $type     = $callback->{type};
+  my $class    = $callback->{class};
+  my @args     = $callback->{args}->@*;
+  my $c_prefix = "${class}";
 
   $c_prefix =~ s/::/__/g;
 
@@ -898,7 +897,7 @@ foreach my $cb_name ( sort keys %callbackdefs )
     $argoff++;
 
     die "Can't find for ctype $key"
-      if !defined $outputmap;
+        if !defined $outputmap;
 
     {
       my $arg  = "tm_$value";
@@ -976,10 +975,10 @@ sub tm_of
   my $typedef = shift;
 
   my $typemap
-      = ( $typedef =~ m/WGPU/i ) ? 'T_IV'
-      : ( $typedef =~ m/_t$/ )   ? 'T_IV'
-      : ( $typedef =~ m/^char$/ )? 'T_PV'
-      :                            'T_' . uc($typedef);
+      = ( $typedef =~ m/WGPU/i )  ? 'T_IV'
+      : ( $typedef =~ m/_t$/ )    ? 'T_IV'
+      : ( $typedef =~ m/^char$/ ) ? 'T_PV'
+      :                             'T_' . uc($typedef);
 
   return $typemap;
 }
@@ -1003,10 +1002,10 @@ sub calls_for
   {
     if ( $typedef eq 'obj' && $def{array} )
     {
-      $typedef = "${typedef}array";
+      $typedef  = "${typedef}array";
       $set_addl = qq{, sizeof(*n->$def{key})$set_addl};
       $set_addl = qq{, &n->$def{array}Count$set_addl};
-      $cast    = '(void **)';
+      $cast     = '(void **)';
     }
     elsif ( $typedef eq 'obj' )
     {
@@ -1022,43 +1021,42 @@ sub calls_for
 
   if ( $typedef eq 'opaque' )
   {
-    $cast    = '(void **)';
+    $cast = '(void **)';
   }
 
   my %result = (
-    pack     => '',
-    unpack   => '',
-    store    => '',
-    find     => '',
-    set      => '',
-    typedef  => undef,
+    pack    => '',
+    unpack  => '',
+    store   => '',
+    find    => '',
+    set     => '',
+    typedef => undef,
   );
 
   if ( !$is_obj_opaque && $def{ctype} ne 'char' && $def{is_ptr} && !$def{array} )
   {
-    my $warning
-        = qq{  // "$def{key}" is a ptr type $def{ctype}, and that's not quite right yet, using opaque\n};
-    $result{pack}     .= $warning;
-    $result{unpack}   .= $warning;
-    $result{store}    .= $warning;
-    $result{find}     .= $warning;
-    $result{set}      .= $warning;
+    my $warning = qq{  // "$def{key}" is a ptr type $def{ctype}, and that's not quite right yet, using opaque\n};
+    $result{pack}   .= $warning;
+    $result{unpack} .= $warning;
+    $result{store}  .= $warning;
+    $result{find}   .= $warning;
+    $result{set}    .= $warning;
 
-    $typedef  = 'void';
+    $typedef = 'void';
   }
 
   my $c_prefix = $def{c_prefix} // '';
-  $result{pack} .= ${trace_c("${c_prefix}__pack", "pack $def{key}")};
-  $result{unpack} .= ${trace_c("${c_prefix}__unpack", "unpack $def{key}")};
+  $result{pack}   .= ${ trace_c( "${c_prefix}__pack",   "pack $def{key}" ) };
+  $result{unpack} .= ${ trace_c( "${c_prefix}__unpack", "unpack $def{key}" ) };
 
-  my $call = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key}$set_addl, $base};
+  my $call     = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key}$set_addl, $base};
   my $set_call = qq{aTHX_ value,/**/ (void *) &n->$def{key}$set_addl, $base};
 
-  $result{pack}     .= qq{  _pack_$typedef($call);\n};
-  $result{unpack}   .= qq{  _unpack_$typedef($call);\n};
-  $result{store}    .= qq{  _store_$typedef($call, value);\n};
-  $result{find}     .= qq{  _find_$typedef($call);\n};
-  $result{set}      .= qq{  _set_$typedef($set_call);\n};
+  $result{pack}   .= qq{  _pack_$typedef($call);\n};
+  $result{unpack} .= qq{  _unpack_$typedef($call);\n};
+  $result{store}  .= qq{  _store_$typedef($call, value);\n};
+  $result{find}   .= qq{  _find_$typedef($call);\n};
+  $result{set}    .= qq{  _set_$typedef($set_call);\n};
 
   $result{typedef} = $typedef;
 
@@ -1073,24 +1071,24 @@ sub calls_for
 sub say_set_fn
 {
   my $class = shift;
-  my $type = shift;
-  my %def = @_;
+  my $type  = shift;
+  my %def   = @_;
 
-  my %calls = calls_for(%def, c_prefix => $class);
+  my %calls = calls_for( %def, c_prefix => $class );
 
-  my $typedef = $calls{typedef};
+  my $typedef  = $calls{typedef};
   my $ret_type = $def{return};
-  my $is_ptr = ( $def{ctype} ne 'char' && $def{is_ptr} );
-  my $is_obj = ( $typedef eq 'obj' || $typedef eq 'void' );
-  my $is_ro  = $def{ro};
-  my $is_arr = $def{array};
+  my $is_ptr   = ( $def{ctype} ne 'char' && $def{is_ptr} );
+  my $is_obj   = ( $typedef eq 'obj' || $typedef eq 'void' );
+  my $is_ro    = $def{ro};
+  my $is_arr   = $def{array};
 
   my $val_type
       = $is_ptr ? "SV *"
       : $is_obj ? "$def{return}"
       :           "SV *";
 
-  if ( $is_ptr )
+  if ($is_ptr)
   {
     $val_type = 'SV *';
     $ret_type = 'SV *';
@@ -1163,12 +1161,12 @@ sub say_call_fn
     my $value = $defargs[ $i - 1 ];
 
     # Check if this has size and offset for MappedBuffer
-    if ( $key eq 'size' && !($has_mb & 0x2) )
+    if ( $key eq 'size' && !( $has_mb & 0x2 ) )
     {
       $has_mb |= 0x2;
     }
 
-    if ( $key eq 'offset' && !($has_mb & 0x1) )
+    if ( $key eq 'offset' && !( $has_mb & 0x1 ) )
     {
       $has_mb |= 0x1;
     }
@@ -1319,14 +1317,13 @@ sub say_call_fn
         EOF
         };
 
-      @calls = map { $_ eq "${array}s" ? ( "${array}Count", $array ) : $_ }
-          @calls;
+      @calls = map { $_ eq "${array}s" ? ( "${array}Count", $array ) : $_ } @calls;
     }
 
     foreach my $buffer ( sort keys %buffers )
     {
       next
-        if $buffer =~ m/size/i;
+          if $buffer =~ m/size/i;
 
       my $type = $buffers{$buffer};
       $type =~ s/[*]$//;
@@ -1338,17 +1335,16 @@ sub say_call_fn
         EOF
         };
 
-      @calls = map { $_ eq "${buffer}" ? ( "${buffer}Data", "${buffer}Size" ) : $_ }
-          @calls;
+      @calls = map { $_ eq "${buffer}" ? ( "${buffer}Data", "${buffer}Size" ) : $_ } @calls;
     }
   }
 
-  my $call = join( ', ', @calls );
+  my $call   = join( ', ', @calls );
   my $retval = $return =~ m/^void\s*$/ ? '' : 'RETVAL = ';
 
   if ( $has_mb > 0x6 )
   {
-    if ( ! $has_mb & 0x1 )
+    if ( !$has_mb & 0x1 )
     {
       say $xs "      Size_t offset = 0;";
     }
@@ -1360,7 +1356,7 @@ sub say_call_fn
     say $xs "      $retval$def{prefix}$def{name}($call);";
   }
 
-  if ( $retval )
+  if ($retval)
   {
     say $xs "    OUTPUT:";
     say $xs "      RETVAL";
@@ -1370,6 +1366,6 @@ sub say_call_fn
 
 say $pm q{1;};
 
-warn Data::Dumper::Dumper(\%typedefs);
+warn Data::Dumper::Dumper( \%typedefs );
 
 1;
