@@ -644,6 +644,8 @@ foreach my $class ( @classes )
                 if !\$class->isa("$class");
               \$class = ref(\$class) ? ref(\$class) : \$class;
               my \$result = { \%\$default, ref( \$_[0] ) eq ref {} ? %{\$_[0]} : \@_ };
+              \$result = \$class->BUILDARGS(\$result)
+                if \$class->can('BUILDARGS');
               \$result = bless( \$result, \$class );
               \$result->pack;
               return \$result;
