@@ -821,12 +821,12 @@ foreach my $class ( @classes )
     }
   }
   
-  my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : 'T_VOID';
+  my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : '';
   say $tm sprintf("%-64s%s", $type, "T_FETCH");
   say $tm sprintf("%-64s%s", "$type *", 'T_FETCHPTR');
   say $tm sprintf("%-64s%s", "$type const *", 'T_FETCHPTR');
   say $tm sprintf("%-64s%s", "struct $type const *", 'T_FETCHPTR');
-  say $tm sprintf("%-64s%s", $class, $typemap);
+  say $tm sprintf("%-64s%s", $class, $typemap) if $typemap;
 
   say $c "typedef SV* $c_prefix;";
 }
