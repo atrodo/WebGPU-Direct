@@ -1236,6 +1236,154 @@ void _set_size_t(pTHX_ SV *new_value, size_t *field)
 _setup_x(size_t, size_t *, newSViv(*field));
 
 /* ------------------------------------------------------------------
+   WebGPU::Direct::MappedBuffer
+   ------------------------------------------------------------------ */
+
+typedef SV* WebGPU__Direct__MappedBuffer;
+
+typedef struct mapped_buffer {
+  Size_t size;
+  const char *buffer;
+} mapped_buffer;
+
+void WebGPU__Direct__MappedBuffer__unpack(pTHX_ SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::MappedBuffer"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::MappedBuffer",
+      "THIS", "WebGPU::Direct::MappedBuffer");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  mapped_buffer *n = (mapped_buffer *) _get_struct_ptr(aTHX, THIS, newSVpvs("WebGPU::Direct::MappedBuffer"));
+  if ( !n )
+  {
+    croak("%s: Cannot find Memory Bufffer", "WebGPU::Direct::MappedBuffer");
+  }
+
+  SV **f;
+
+  /* Find the field from the hash */
+  f = hv_fetchs(h, "buffer", 1);
+
+  /* If the field cannot be used, croak*/
+  if ( !( f && *f ) )
+  {
+    croak("%s: Cannot save buffer to object", "WebGPU::Direct::MappedBuffer");
+  }
+
+    if ( SvREADONLY(*f) )
+    {
+      SV *new = newSV(0);
+      f = hv_stores(h, "buffer", new);
+
+      if ( !( f && *f ) )
+      {
+        croak("%s: Could not save new value for buffer", "WebGPU::Direct::MappedBuffer");
+      }
+      SvREFCNT_inc(*f);
+    }
+
+  sv_setpvn(*f, n->buffer, n->size);
+
+  {
+    SV *size = newSViv(n->size);
+    SvREFCNT_inc(size);
+    f = hv_stores(h, "size", size);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(size);
+      croak("Could not save value to hash for size in type %s", "WebGPU::Direct::MappedBuffer");
+    }
+  }
+
+  return;
+}
+
+void WebGPU__Direct__MappedBuffer__pack(pTHX_ SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::MappedBuffer"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::MappedBuffer",
+      "THIS", "WebGPU::Direct::MappedBuffer");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  mapped_buffer *n = (mapped_buffer *) _get_struct_ptr(aTHX, THIS, newSVpvs("WebGPU::Direct::MappedBuffer"));
+  if ( !n )
+  {
+    croak("%s: Cannot find Memory Bufffer", "WebGPU::Direct::MappedBuffer");
+  }
+
+  SV **f;
+
+  /* Find the field from the hash */
+  f = hv_fetchs(h, "buffer", 0);
+
+  /* Save the new value to the field */
+  if ( f && *f )
+  {
+    STRLEN len = n->size;
+    STRLEN vlen;
+    const char *v = SvPVbyte(*f, vlen);
+
+    if ( vlen < len )
+    {
+      Zero(n->buffer+vlen, len-vlen, char);
+      len = vlen;
+    }
+    Copy(v, n->buffer, len, char);
+  }
+
+  return WebGPU__Direct__MappedBuffer__unpack(aTHX_ THIS);
+}
+
+SV *WebGPU__Direct__MappedBuffer_buffer(pTHX_ SV *THIS, SV *value)
+{
+  HV *h = (HV *)SvRV(THIS);
+  SV **f;
+
+  if ( value && SvOK(value) )
+  {
+    SvREFCNT_inc(value);
+    f = hv_stores(h, "buffer", value);
+
+    if ( !f )
+    {
+      SvREFCNT_dec(value);
+      croak("%s: Could not save value to hash for %s", "WebGPU::Direct::MappedBuffer", "buffer");
+    }
+
+    WebGPU__Direct__MappedBuffer__pack(aTHX_ THIS);
+  }
+
+  f = hv_fetchs(h, "buffer", 0);
+  SvREFCNT_inc(*f);
+
+  return *f;
+}
+
+SV *WebGPU__Direct__MappedBuffer__wrap(pTHX_ const char * buffer, Size_t size)
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  mapped_buffer *n;
+  Newxz(n, 1, mapped_buffer);
+
+  n->buffer = buffer;
+  n->size = size;
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::MappedBuffer", GV_ADD));
+  WebGPU__Direct__MappedBuffer__unpack(aTHX_ RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+/* ------------------------------------------------------------------
    END
    ------------------------------------------------------------------ */
 
@@ -1246,7 +1394,33 @@ MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct::XS		PREFIX = wgpu
 
 INCLUDE: xs/webgpu.xs
 
-MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct		PREFIX = wgpu
+MODULE = WebGPU::Direct 	PACKAGE = WebGPU::Direct::MappedBuffer      PREFIX = wgpu
+
+void
+pack(THIS)
+        SV *THIS
+    PROTOTYPE: $
+    CODE:
+        WebGPU__Direct__MappedBuffer__pack( aTHX_ THIS );
+
+void
+unpack(THIS)
+        SV *THIS
+    PROTOTYPE: $
+    CODE:
+        WebGPU__Direct__MappedBuffer__unpack( aTHX_ THIS );
+
+SV *
+buffer(THIS, value = NULL)
+        SV *THIS
+        SV *value
+    PROTOTYPE: $;$
+    CODE:
+        RETVAL = WebGPU__Direct__MappedBuffer_buffer( aTHX_ THIS, value );
+    OUTPUT:
+        RETVAL
+
+MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct                PREFIX = wgpu
 
 WebGPU::Direct::SurfaceDescriptorFromXlibWindow
 new_window_x11(CLASS, xw = 640, yh = 360)

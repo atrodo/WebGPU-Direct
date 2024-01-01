@@ -34,6 +34,8 @@ my %typedefs = (
 );
 
 my @typemap = (
+  q{WebGPU::Direct::MappedBuffer                                    T_FETCHPTR},
+  q{},
   q{# We do the tr/:/_/ in the output because ParseXS doesn't for outputs},
   q{INPUT},
   q{T_VOID},
@@ -1107,7 +1109,13 @@ sub say_call_fn
 {
   my %def = @_;
 
+  # 0b001: has offset
+  # 0b010: has size
+  # 0b100: is a MappedBuffer return
+  my $has_mb = 0;
   my $is_cb;
+
+  # Handle callbacks in a perl-ish way
   my @defargs = $def{args}->@*;
   if ( @defargs >= 4
     && $defargs[-1] eq 'userdata'
@@ -1125,6 +1133,19 @@ sub say_call_fn
 
     my $key   = $defargs[$i];
     my $value = $defargs[ $i - 1 ];
+
+    # Check if this has size and offset for MappedBuffer
+    if ( $key eq 'size' && !($has_mb & 0x2) )
+    {
+      $has_mb |= 0x2;
+    }
+
+    if ( $key eq 'offset' && !($has_mb & 0x1) )
+    {
+      $has_mb |= 0x1;
+    }
+
+    # Check for array parameters
     if ( $value eq 'size_t' && $key =~ m/$arrcnt_re/ )
     {
       $array_can = $1;
@@ -1177,10 +1198,17 @@ sub say_call_fn
   }
 
   my $fn_name = $def{as} // $def{name};
+  my $return  = $def{return};
+
+  if ( $return =~ m[^void \s* [*] \s* $ ]xms && $has_mb > 0x2 )
+  {
+    $has_mb |= 0x4;
+    $return = 'SV *';
+  }
 
   local $" = ', ';
   say $xs "";
-  say $xs "$def{return}";
+  say $xs "$return";
   say $xs "$def{prefix}$fn_name(@vals)";
   foreach (@args)
   {
@@ -1246,9 +1274,22 @@ sub say_call_fn
   }
 
   my $call = join( ', ', @calls );
-  my $retval = $def{return} =~ m/^void\s*$/ ? '' : 'RETVAL = ';
+  my $retval = $return =~ m/^void\s*$/ ? '' : 'RETVAL = ';
 
-  say $xs "      $retval$def{prefix}$def{name}($call);";
+  if ( $has_mb > 0x6 )
+  {
+    if ( ! $has_mb & 0x1 )
+    {
+      say $xs "      Size_t offset = 0;";
+    }
+    say $xs "      void *n = $def{prefix}$def{name}($call);";
+    say $xs "      RETVAL =  WebGPU__Direct__MappedBuffer__wrap(aTHX_ n, size-offset);";
+  }
+  else
+  {
+    say $xs "      $retval$def{prefix}$def{name}($call);";
+  }
+
   if ( $retval )
   {
     say $xs "    OUTPUT:";
