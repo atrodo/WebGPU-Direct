@@ -973,11 +973,14 @@ sub calls_for
 {
   my %def = @_;
 
-  my $cast = '';
-  my $set_addl
-      = ( $def{typedef} eq 'obj' )  ? qq{, newSVpvs("$def{return}")}
-      : ( $def{typedef} eq 'opaque' ) ? qq{, newSVpvs("$def{return}")}
-      :                               "";
+  my $cast          = '';
+  my $set_addl      = '';
+  my $is_obj_opaque = $def{typedef} eq 'obj' || $def{typedef} eq 'opaque';
+  my $base
+      = ( $def{typedef} eq 'obj' )    ? qq{newSVpvs("$def{return}")}
+      : ( $def{typedef} eq 'opaque' ) ? qq{newSVpvs("$def{return}")}
+      : ( $def{typedef} eq 'enum' )   ? qq{newSVpvs("$def{return}")}
+      :                                 "NULL";
 
   my $typedef = $def{typedef};
 
@@ -1016,7 +1019,7 @@ sub calls_for
     typedef  => undef,
   );
 
-  if ( !$set_addl && $def{ctype} ne 'char' && $def{is_ptr} && !$def{array} )
+  if ( !$is_obj_opaque && $def{ctype} ne 'char' && $def{is_ptr} && !$def{array} )
   {
     my $warning
         = qq{  // "$def{key}" is a ptr type $def{ctype}, and that's not quite right yet, using opaque\n};
@@ -1030,11 +1033,11 @@ sub calls_for
   }
 
   my $c_prefix = $def{c_prefix} // '';
-  $result{pack}   .= ${ trace_c( "${c_prefix}__pack",   "pack $def{key}" ) };
-  $result{unpack} .= ${ trace_c( "${c_prefix}__unpack", "unpack $def{key}" ) };
+  $result{pack} .= ${trace_c("${c_prefix}__pack", "pack $def{key}")};
+  $result{unpack} .= ${trace_c("${c_prefix}__unpack", "unpack $def{key}")};
 
-  my $call     = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key} $set_addl};
-  my $set_call = qq{aTHX_ value,/**/ (void *) &n->$def{key} $set_addl};
+  my $call = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key}$set_addl, $base};
+  my $set_call = qq{aTHX_ value,/**/ (void *) &n->$def{key}$set_addl, $base};
 
   $result{pack}     .= qq{  _pack_$typedef($call);\n};
   $result{unpack}   .= qq{  _unpack_$typedef($call);\n};
