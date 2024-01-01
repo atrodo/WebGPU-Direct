@@ -687,9 +687,21 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
   }
 
   // -1 so it removes the s at the end of the key
-  keyCnt = newSVpv(key, klen-1);
-  sv_catpvs(keyCnt, "Count");
-  keyCntLen = sv_len(keyCnt);
+  {
+    I32 rmlen = 1;
+    ASSUME( key[klen-1] == 's' );
+    if ( key[klen-2] == 'e' && key[klen-3] == 'i' )
+    {
+      rmlen = 3;
+    }
+    keyCnt = newSVpv(key, klen-rmlen);
+    if ( rmlen != 1 )
+    {
+      sv_catpvs(keyCnt, "y");
+    }
+    sv_catpvs(keyCnt, "Count");
+    keyCntLen = sv_len(keyCnt);
+  }
 
   SV *array_base = newSVsv(base);
   sv_catpvs(array_base, "::Array");

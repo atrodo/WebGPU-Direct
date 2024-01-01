@@ -504,7 +504,7 @@ foreach my $class ( @classes )
     }
 
     # Check for array-type elements
-    state $maybe_array;
+    my $maybe_array;
     foreach my $i (0..$#defs)
     {
       my %def = $defs[$i]->%*;
@@ -531,8 +531,21 @@ foreach my $class ( @classes )
         # Or the match doesn't match the last try
         if ( $match ne $maybe_array )
         {
-          $maybe_array = $match;
-          next;
+          if ( $match =~ m/^(.*)y$/ && $maybe_array =~ m/^$1ie$/ )
+          {
+            # Count came second, so $match is the key we want
+            $maybe_array = $match;
+          }
+          elsif ( $match =~ m/^(.*)ie$/ && $maybe_array =~ m/^$1y$/ )
+          {
+            # Count came second, so $maybe_array has what we wnat
+            $match = $maybe_array;
+          }
+          else
+          {
+            $maybe_array = $match;
+            next;
+          }
         }
 
         my $cnt_i = $def{key} =~ m/$arrcnt_re/ ? $i : $i - 1;
