@@ -221,10 +221,8 @@ void WebGPU__Direct__ChainedStruct__pack( SV *THIS )
     Newxz(n, 1, WGPUChainedStruct);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "sType", 5,  &n->sType );
+  _pack_objptr(aTHX_ h, "next", 4, (void **) &n->next, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "sType", 5,  &n->sType, newSVpvs("WGPUSType"));
 
   
 }
@@ -245,8 +243,8 @@ void WebGPU__Direct__ChainedStruct__unpack( SV *THIS )
     Newxz(n, 1, WGPUChainedStruct);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "sType", 5,  &n->sType );
+  _unpack_objptr(aTHX_ h, "next", 4, (void **) &n->next, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "sType", 5,  &n->sType, newSVpvs("WGPUSType"));
 
 }
 
@@ -279,10 +277,8 @@ void WebGPU__Direct__ChainedStructOut__pack( SV *THIS )
     Newxz(n, 1, WGPUChainedStructOut);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _pack_enum(aTHX_ h, "sType", 5,  &n->sType );
+  _pack_objptr(aTHX_ h, "next", 4, (void **) &n->next, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _pack_enum(aTHX_ h, "sType", 5,  &n->sType, newSVpvs("WGPUSType"));
 
   
 }
@@ -303,8 +299,8 @@ void WebGPU__Direct__ChainedStructOut__unpack( SV *THIS )
     Newxz(n, 1, WGPUChainedStructOut);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "next", 4, (void **) &n->next , newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _unpack_enum(aTHX_ h, "sType", 5,  &n->sType );
+  _unpack_objptr(aTHX_ h, "next", 4, (void **) &n->next, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _unpack_enum(aTHX_ h, "sType", 5,  &n->sType, newSVpvs("WGPUSType"));
 
 }
 
@@ -337,17 +333,15 @@ void WebGPU__Direct__AdapterProperties__pack( SV *THIS )
     Newxz(n, 1, WGPUAdapterProperties);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _pack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID );
-  _pack_str(aTHX_ h, "vendorName", 10,  &n->vendorName );
-  _pack_str(aTHX_ h, "architecture", 12,  &n->architecture );
-  _pack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID );
-  _pack_str(aTHX_ h, "name", 4,  &n->name );
-  _pack_str(aTHX_ h, "driverDescription", 17,  &n->driverDescription );
-  _pack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType );
-  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _pack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID, NULL);
+  _pack_str(aTHX_ h, "vendorName", 10,  &n->vendorName, NULL);
+  _pack_str(aTHX_ h, "architecture", 12,  &n->architecture, NULL);
+  _pack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID, NULL);
+  _pack_str(aTHX_ h, "name", 4,  &n->name, NULL);
+  _pack_str(aTHX_ h, "driverDescription", 17,  &n->driverDescription, NULL);
+  _pack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType, newSVpvs("WGPUAdapterType"));
+  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WGPUBackendType"));
 
   
 }
@@ -368,15 +362,15 @@ void WebGPU__Direct__AdapterProperties__unpack( SV *THIS )
     Newxz(n, 1, WGPUAdapterProperties);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _unpack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID );
-  _unpack_str(aTHX_ h, "vendorName", 10,  &n->vendorName );
-  _unpack_str(aTHX_ h, "architecture", 12,  &n->architecture );
-  _unpack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID );
-  _unpack_str(aTHX_ h, "name", 4,  &n->name );
-  _unpack_str(aTHX_ h, "driverDescription", 17,  &n->driverDescription );
-  _unpack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType );
-  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _unpack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID, NULL);
+  _unpack_str(aTHX_ h, "vendorName", 10,  &n->vendorName, NULL);
+  _unpack_str(aTHX_ h, "architecture", 12,  &n->architecture, NULL);
+  _unpack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID, NULL);
+  _unpack_str(aTHX_ h, "name", 4,  &n->name, NULL);
+  _unpack_str(aTHX_ h, "driverDescription", 17,  &n->driverDescription, NULL);
+  _unpack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType, newSVpvs("WGPUAdapterType"));
+  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WGPUBackendType"));
 
 }
 
@@ -409,15 +403,13 @@ void WebGPU__Direct__BindGroupEntry__pack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupEntry);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint32_t(aTHX_ h, "binding", 7,  &n->binding );
-  _pack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"));
-  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _pack_uint64_t(aTHX_ h, "size", 4,  &n->size );
-  _pack_opaque(aTHX_ h, "sampler", 7, (void **) &n->sampler , newSVpvs("WebGPU::Direct::Sampler"));
-  _pack_opaque(aTHX_ h, "textureView", 11, (void **) &n->textureView , newSVpvs("WebGPU::Direct::TextureView"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_uint32_t(aTHX_ h, "binding", 7,  &n->binding, NULL);
+  _pack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
+  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _pack_uint64_t(aTHX_ h, "size", 4,  &n->size, NULL);
+  _pack_opaque(aTHX_ h, "sampler", 7, (void **) &n->sampler, newSVpvs("WebGPU::Direct::Sampler"));
+  _pack_opaque(aTHX_ h, "textureView", 11, (void **) &n->textureView, newSVpvs("WebGPU::Direct::TextureView"));
 
   
 }
@@ -438,13 +430,13 @@ void WebGPU__Direct__BindGroupEntry__unpack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupEntry);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint32_t(aTHX_ h, "binding", 7,  &n->binding );
-  _unpack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"));
-  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _unpack_uint64_t(aTHX_ h, "size", 4,  &n->size );
-  _unpack_opaque(aTHX_ h, "sampler", 7, (void **) &n->sampler , newSVpvs("WebGPU::Direct::Sampler"));
-  _unpack_opaque(aTHX_ h, "textureView", 11, (void **) &n->textureView , newSVpvs("WebGPU::Direct::TextureView"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_uint32_t(aTHX_ h, "binding", 7,  &n->binding, NULL);
+  _unpack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
+  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _unpack_uint64_t(aTHX_ h, "size", 4,  &n->size, NULL);
+  _unpack_opaque(aTHX_ h, "sampler", 7, (void **) &n->sampler, newSVpvs("WebGPU::Direct::Sampler"));
+  _unpack_opaque(aTHX_ h, "textureView", 11, (void **) &n->textureView, newSVpvs("WebGPU::Direct::TextureView"));
 
 }
 
@@ -477,11 +469,9 @@ void WebGPU__Direct__BlendComponent__pack( SV *THIS )
     Newxz(n, 1, WGPUBlendComponent);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_enum(aTHX_ h, "operation", 9,  &n->operation );
-  _pack_enum(aTHX_ h, "srcFactor", 9,  &n->srcFactor );
-  _pack_enum(aTHX_ h, "dstFactor", 9,  &n->dstFactor );
+  _pack_enum(aTHX_ h, "operation", 9,  &n->operation, newSVpvs("WGPUBlendOperation"));
+  _pack_enum(aTHX_ h, "srcFactor", 9,  &n->srcFactor, newSVpvs("WGPUBlendFactor"));
+  _pack_enum(aTHX_ h, "dstFactor", 9,  &n->dstFactor, newSVpvs("WGPUBlendFactor"));
 
   
 }
@@ -502,9 +492,9 @@ void WebGPU__Direct__BlendComponent__unpack( SV *THIS )
     Newxz(n, 1, WGPUBlendComponent);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_enum(aTHX_ h, "operation", 9,  &n->operation );
-  _unpack_enum(aTHX_ h, "srcFactor", 9,  &n->srcFactor );
-  _unpack_enum(aTHX_ h, "dstFactor", 9,  &n->dstFactor );
+  _unpack_enum(aTHX_ h, "operation", 9,  &n->operation, newSVpvs("WGPUBlendOperation"));
+  _unpack_enum(aTHX_ h, "srcFactor", 9,  &n->srcFactor, newSVpvs("WGPUBlendFactor"));
+  _unpack_enum(aTHX_ h, "dstFactor", 9,  &n->dstFactor, newSVpvs("WGPUBlendFactor"));
 
 }
 
@@ -537,12 +527,10 @@ void WebGPU__Direct__BufferBindingLayout__pack( SV *THIS )
     Newxz(n, 1, WGPUBufferBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "type", 4,  &n->type );
-  _pack_bool(aTHX_ h, "hasDynamicOffset", 16,  &n->hasDynamicOffset );
-  _pack_uint64_t(aTHX_ h, "minBindingSize", 14,  &n->minBindingSize );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUBufferBindingType"));
+  _pack_bool(aTHX_ h, "hasDynamicOffset", 16,  &n->hasDynamicOffset, NULL);
+  _pack_uint64_t(aTHX_ h, "minBindingSize", 14,  &n->minBindingSize, NULL);
 
   
 }
@@ -563,10 +551,10 @@ void WebGPU__Direct__BufferBindingLayout__unpack( SV *THIS )
     Newxz(n, 1, WGPUBufferBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "type", 4,  &n->type );
-  _unpack_bool(aTHX_ h, "hasDynamicOffset", 16,  &n->hasDynamicOffset );
-  _unpack_uint64_t(aTHX_ h, "minBindingSize", 14,  &n->minBindingSize );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUBufferBindingType"));
+  _unpack_bool(aTHX_ h, "hasDynamicOffset", 16,  &n->hasDynamicOffset, NULL);
+  _unpack_uint64_t(aTHX_ h, "minBindingSize", 14,  &n->minBindingSize, NULL);
 
 }
 
@@ -599,13 +587,11 @@ void WebGPU__Direct__BufferDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUBufferDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage );
-  _pack_uint64_t(aTHX_ h, "size", 4,  &n->size );
-  _pack_bool(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _pack_uint64_t(aTHX_ h, "size", 4,  &n->size, NULL);
+  _pack_bool(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation, NULL);
 
   
 }
@@ -626,11 +612,11 @@ void WebGPU__Direct__BufferDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUBufferDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage );
-  _unpack_uint64_t(aTHX_ h, "size", 4,  &n->size );
-  _unpack_bool(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _unpack_uint64_t(aTHX_ h, "size", 4,  &n->size, NULL);
+  _unpack_bool(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation, NULL);
 
 }
 
@@ -663,12 +649,10 @@ void WebGPU__Direct__Color__pack( SV *THIS )
     Newxz(n, 1, WGPUColor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_double(aTHX_ h, "r", 1,  &n->r );
-  _pack_double(aTHX_ h, "g", 1,  &n->g );
-  _pack_double(aTHX_ h, "b", 1,  &n->b );
-  _pack_double(aTHX_ h, "a", 1,  &n->a );
+  _pack_double(aTHX_ h, "r", 1,  &n->r, NULL);
+  _pack_double(aTHX_ h, "g", 1,  &n->g, NULL);
+  _pack_double(aTHX_ h, "b", 1,  &n->b, NULL);
+  _pack_double(aTHX_ h, "a", 1,  &n->a, NULL);
 
   
 }
@@ -689,10 +673,10 @@ void WebGPU__Direct__Color__unpack( SV *THIS )
     Newxz(n, 1, WGPUColor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_double(aTHX_ h, "r", 1,  &n->r );
-  _unpack_double(aTHX_ h, "g", 1,  &n->g );
-  _unpack_double(aTHX_ h, "b", 1,  &n->b );
-  _unpack_double(aTHX_ h, "a", 1,  &n->a );
+  _unpack_double(aTHX_ h, "r", 1,  &n->r, NULL);
+  _unpack_double(aTHX_ h, "g", 1,  &n->g, NULL);
+  _unpack_double(aTHX_ h, "b", 1,  &n->b, NULL);
+  _unpack_double(aTHX_ h, "a", 1,  &n->a, NULL);
 
 }
 
@@ -725,10 +709,8 @@ void WebGPU__Direct__CommandBufferDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUCommandBufferDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
   
 }
@@ -749,8 +731,8 @@ void WebGPU__Direct__CommandBufferDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUCommandBufferDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
 }
 
@@ -783,10 +765,8 @@ void WebGPU__Direct__CommandEncoderDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUCommandEncoderDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
   
 }
@@ -807,8 +787,8 @@ void WebGPU__Direct__CommandEncoderDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUCommandEncoderDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
 }
 
@@ -841,18 +821,16 @@ void WebGPU__Direct__CompilationMessage__pack( SV *THIS )
     Newxz(n, 1, WGPUCompilationMessage);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "message", 7,  &n->message );
-  _pack_enum(aTHX_ h, "type", 4,  &n->type );
-  _pack_uint64_t(aTHX_ h, "lineNum", 7,  &n->lineNum );
-  _pack_uint64_t(aTHX_ h, "linePos", 7,  &n->linePos );
-  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _pack_uint64_t(aTHX_ h, "length", 6,  &n->length );
-  _pack_uint64_t(aTHX_ h, "utf16LinePos", 12,  &n->utf16LinePos );
-  _pack_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset );
-  _pack_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "message", 7,  &n->message, NULL);
+  _pack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUCompilationMessageType"));
+  _pack_uint64_t(aTHX_ h, "lineNum", 7,  &n->lineNum, NULL);
+  _pack_uint64_t(aTHX_ h, "linePos", 7,  &n->linePos, NULL);
+  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _pack_uint64_t(aTHX_ h, "length", 6,  &n->length, NULL);
+  _pack_uint64_t(aTHX_ h, "utf16LinePos", 12,  &n->utf16LinePos, NULL);
+  _pack_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset, NULL);
+  _pack_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length, NULL);
 
   
 }
@@ -873,16 +851,16 @@ void WebGPU__Direct__CompilationMessage__unpack( SV *THIS )
     Newxz(n, 1, WGPUCompilationMessage);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "message", 7,  &n->message );
-  _unpack_enum(aTHX_ h, "type", 4,  &n->type );
-  _unpack_uint64_t(aTHX_ h, "lineNum", 7,  &n->lineNum );
-  _unpack_uint64_t(aTHX_ h, "linePos", 7,  &n->linePos );
-  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _unpack_uint64_t(aTHX_ h, "length", 6,  &n->length );
-  _unpack_uint64_t(aTHX_ h, "utf16LinePos", 12,  &n->utf16LinePos );
-  _unpack_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset );
-  _unpack_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "message", 7,  &n->message, NULL);
+  _unpack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUCompilationMessageType"));
+  _unpack_uint64_t(aTHX_ h, "lineNum", 7,  &n->lineNum, NULL);
+  _unpack_uint64_t(aTHX_ h, "linePos", 7,  &n->linePos, NULL);
+  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _unpack_uint64_t(aTHX_ h, "length", 6,  &n->length, NULL);
+  _unpack_uint64_t(aTHX_ h, "utf16LinePos", 12,  &n->utf16LinePos, NULL);
+  _unpack_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset, NULL);
+  _unpack_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length, NULL);
 
 }
 
@@ -915,11 +893,9 @@ void WebGPU__Direct__ComputePassTimestampWrite__pack( SV *THIS )
     Newxz(n, 1, WGPUComputePassTimestampWrite);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"));
-  _pack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex );
-  _pack_enum(aTHX_ h, "location", 8,  &n->location );
+  _pack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet, newSVpvs("WebGPU::Direct::QuerySet"));
+  _pack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex, NULL);
+  _pack_enum(aTHX_ h, "location", 8,  &n->location, newSVpvs("WGPUComputePassTimestampLocation"));
 
   
 }
@@ -940,9 +916,9 @@ void WebGPU__Direct__ComputePassTimestampWrite__unpack( SV *THIS )
     Newxz(n, 1, WGPUComputePassTimestampWrite);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"));
-  _unpack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex );
-  _unpack_enum(aTHX_ h, "location", 8,  &n->location );
+  _unpack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet, newSVpvs("WebGPU::Direct::QuerySet"));
+  _unpack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex, NULL);
+  _unpack_enum(aTHX_ h, "location", 8,  &n->location, newSVpvs("WGPUComputePassTimestampLocation"));
 
 }
 
@@ -975,11 +951,9 @@ void WebGPU__Direct__ConstantEntry__pack( SV *THIS )
     Newxz(n, 1, WGPUConstantEntry);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "key", 3,  &n->key );
-  _pack_double(aTHX_ h, "value", 5,  &n->value );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "key", 3,  &n->key, NULL);
+  _pack_double(aTHX_ h, "value", 5,  &n->value, NULL);
 
   
 }
@@ -1000,9 +974,9 @@ void WebGPU__Direct__ConstantEntry__unpack( SV *THIS )
     Newxz(n, 1, WGPUConstantEntry);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "key", 3,  &n->key );
-  _unpack_double(aTHX_ h, "value", 5,  &n->value );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "key", 3,  &n->key, NULL);
+  _unpack_double(aTHX_ h, "value", 5,  &n->value, NULL);
 
 }
 
@@ -1035,11 +1009,9 @@ void WebGPU__Direct__Extent3D__pack( SV *THIS )
     Newxz(n, 1, WGPUExtent3D);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_uint32_t(aTHX_ h, "width", 5,  &n->width );
-  _pack_uint32_t(aTHX_ h, "height", 6,  &n->height );
-  _pack_uint32_t(aTHX_ h, "depthOrArrayLayers", 18,  &n->depthOrArrayLayers );
+  _pack_uint32_t(aTHX_ h, "width", 5,  &n->width, NULL);
+  _pack_uint32_t(aTHX_ h, "height", 6,  &n->height, NULL);
+  _pack_uint32_t(aTHX_ h, "depthOrArrayLayers", 18,  &n->depthOrArrayLayers, NULL);
 
   
 }
@@ -1060,9 +1032,9 @@ void WebGPU__Direct__Extent3D__unpack( SV *THIS )
     Newxz(n, 1, WGPUExtent3D);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_uint32_t(aTHX_ h, "width", 5,  &n->width );
-  _unpack_uint32_t(aTHX_ h, "height", 6,  &n->height );
-  _unpack_uint32_t(aTHX_ h, "depthOrArrayLayers", 18,  &n->depthOrArrayLayers );
+  _unpack_uint32_t(aTHX_ h, "width", 5,  &n->width, NULL);
+  _unpack_uint32_t(aTHX_ h, "height", 6,  &n->height, NULL);
+  _unpack_uint32_t(aTHX_ h, "depthOrArrayLayers", 18,  &n->depthOrArrayLayers, NULL);
 
 }
 
@@ -1095,9 +1067,7 @@ void WebGPU__Direct__InstanceDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUInstanceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
 
   
 }
@@ -1118,7 +1088,7 @@ void WebGPU__Direct__InstanceDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUInstanceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
 
 }
 
@@ -1151,39 +1121,37 @@ void WebGPU__Direct__Limits__pack( SV *THIS )
     Newxz(n, 1, WGPULimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_uint32_t(aTHX_ h, "maxTextureDimension1D", 21,  &n->maxTextureDimension1D );
-  _pack_uint32_t(aTHX_ h, "maxTextureDimension2D", 21,  &n->maxTextureDimension2D );
-  _pack_uint32_t(aTHX_ h, "maxTextureDimension3D", 21,  &n->maxTextureDimension3D );
-  _pack_uint32_t(aTHX_ h, "maxTextureArrayLayers", 21,  &n->maxTextureArrayLayers );
-  _pack_uint32_t(aTHX_ h, "maxBindGroups", 13,  &n->maxBindGroups );
-  _pack_uint32_t(aTHX_ h, "maxBindingsPerBindGroup", 23,  &n->maxBindingsPerBindGroup );
-  _pack_uint32_t(aTHX_ h, "maxDynamicUniformBuffersPerPipelineLayout", 41,  &n->maxDynamicUniformBuffersPerPipelineLayout );
-  _pack_uint32_t(aTHX_ h, "maxDynamicStorageBuffersPerPipelineLayout", 41,  &n->maxDynamicStorageBuffersPerPipelineLayout );
-  _pack_uint32_t(aTHX_ h, "maxSampledTexturesPerShaderStage", 32,  &n->maxSampledTexturesPerShaderStage );
-  _pack_uint32_t(aTHX_ h, "maxSamplersPerShaderStage", 25,  &n->maxSamplersPerShaderStage );
-  _pack_uint32_t(aTHX_ h, "maxStorageBuffersPerShaderStage", 31,  &n->maxStorageBuffersPerShaderStage );
-  _pack_uint32_t(aTHX_ h, "maxStorageTexturesPerShaderStage", 32,  &n->maxStorageTexturesPerShaderStage );
-  _pack_uint32_t(aTHX_ h, "maxUniformBuffersPerShaderStage", 31,  &n->maxUniformBuffersPerShaderStage );
-  _pack_uint64_t(aTHX_ h, "maxUniformBufferBindingSize", 27,  &n->maxUniformBufferBindingSize );
-  _pack_uint64_t(aTHX_ h, "maxStorageBufferBindingSize", 27,  &n->maxStorageBufferBindingSize );
-  _pack_uint32_t(aTHX_ h, "minUniformBufferOffsetAlignment", 31,  &n->minUniformBufferOffsetAlignment );
-  _pack_uint32_t(aTHX_ h, "minStorageBufferOffsetAlignment", 31,  &n->minStorageBufferOffsetAlignment );
-  _pack_uint32_t(aTHX_ h, "maxVertexBuffers", 16,  &n->maxVertexBuffers );
-  _pack_uint64_t(aTHX_ h, "maxBufferSize", 13,  &n->maxBufferSize );
-  _pack_uint32_t(aTHX_ h, "maxVertexAttributes", 19,  &n->maxVertexAttributes );
-  _pack_uint32_t(aTHX_ h, "maxVertexBufferArrayStride", 26,  &n->maxVertexBufferArrayStride );
-  _pack_uint32_t(aTHX_ h, "maxInterStageShaderComponents", 29,  &n->maxInterStageShaderComponents );
-  _pack_uint32_t(aTHX_ h, "maxInterStageShaderVariables", 28,  &n->maxInterStageShaderVariables );
-  _pack_uint32_t(aTHX_ h, "maxColorAttachments", 19,  &n->maxColorAttachments );
-  _pack_uint32_t(aTHX_ h, "maxColorAttachmentBytesPerSample", 32,  &n->maxColorAttachmentBytesPerSample );
-  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupStorageSize", 30,  &n->maxComputeWorkgroupStorageSize );
-  _pack_uint32_t(aTHX_ h, "maxComputeInvocationsPerWorkgroup", 33,  &n->maxComputeInvocationsPerWorkgroup );
-  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeX", 24,  &n->maxComputeWorkgroupSizeX );
-  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeY", 24,  &n->maxComputeWorkgroupSizeY );
-  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeZ", 24,  &n->maxComputeWorkgroupSizeZ );
-  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupsPerDimension", 32,  &n->maxComputeWorkgroupsPerDimension );
+  _pack_uint32_t(aTHX_ h, "maxTextureDimension1D", 21,  &n->maxTextureDimension1D, NULL);
+  _pack_uint32_t(aTHX_ h, "maxTextureDimension2D", 21,  &n->maxTextureDimension2D, NULL);
+  _pack_uint32_t(aTHX_ h, "maxTextureDimension3D", 21,  &n->maxTextureDimension3D, NULL);
+  _pack_uint32_t(aTHX_ h, "maxTextureArrayLayers", 21,  &n->maxTextureArrayLayers, NULL);
+  _pack_uint32_t(aTHX_ h, "maxBindGroups", 13,  &n->maxBindGroups, NULL);
+  _pack_uint32_t(aTHX_ h, "maxBindingsPerBindGroup", 23,  &n->maxBindingsPerBindGroup, NULL);
+  _pack_uint32_t(aTHX_ h, "maxDynamicUniformBuffersPerPipelineLayout", 41,  &n->maxDynamicUniformBuffersPerPipelineLayout, NULL);
+  _pack_uint32_t(aTHX_ h, "maxDynamicStorageBuffersPerPipelineLayout", 41,  &n->maxDynamicStorageBuffersPerPipelineLayout, NULL);
+  _pack_uint32_t(aTHX_ h, "maxSampledTexturesPerShaderStage", 32,  &n->maxSampledTexturesPerShaderStage, NULL);
+  _pack_uint32_t(aTHX_ h, "maxSamplersPerShaderStage", 25,  &n->maxSamplersPerShaderStage, NULL);
+  _pack_uint32_t(aTHX_ h, "maxStorageBuffersPerShaderStage", 31,  &n->maxStorageBuffersPerShaderStage, NULL);
+  _pack_uint32_t(aTHX_ h, "maxStorageTexturesPerShaderStage", 32,  &n->maxStorageTexturesPerShaderStage, NULL);
+  _pack_uint32_t(aTHX_ h, "maxUniformBuffersPerShaderStage", 31,  &n->maxUniformBuffersPerShaderStage, NULL);
+  _pack_uint64_t(aTHX_ h, "maxUniformBufferBindingSize", 27,  &n->maxUniformBufferBindingSize, NULL);
+  _pack_uint64_t(aTHX_ h, "maxStorageBufferBindingSize", 27,  &n->maxStorageBufferBindingSize, NULL);
+  _pack_uint32_t(aTHX_ h, "minUniformBufferOffsetAlignment", 31,  &n->minUniformBufferOffsetAlignment, NULL);
+  _pack_uint32_t(aTHX_ h, "minStorageBufferOffsetAlignment", 31,  &n->minStorageBufferOffsetAlignment, NULL);
+  _pack_uint32_t(aTHX_ h, "maxVertexBuffers", 16,  &n->maxVertexBuffers, NULL);
+  _pack_uint64_t(aTHX_ h, "maxBufferSize", 13,  &n->maxBufferSize, NULL);
+  _pack_uint32_t(aTHX_ h, "maxVertexAttributes", 19,  &n->maxVertexAttributes, NULL);
+  _pack_uint32_t(aTHX_ h, "maxVertexBufferArrayStride", 26,  &n->maxVertexBufferArrayStride, NULL);
+  _pack_uint32_t(aTHX_ h, "maxInterStageShaderComponents", 29,  &n->maxInterStageShaderComponents, NULL);
+  _pack_uint32_t(aTHX_ h, "maxInterStageShaderVariables", 28,  &n->maxInterStageShaderVariables, NULL);
+  _pack_uint32_t(aTHX_ h, "maxColorAttachments", 19,  &n->maxColorAttachments, NULL);
+  _pack_uint32_t(aTHX_ h, "maxColorAttachmentBytesPerSample", 32,  &n->maxColorAttachmentBytesPerSample, NULL);
+  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupStorageSize", 30,  &n->maxComputeWorkgroupStorageSize, NULL);
+  _pack_uint32_t(aTHX_ h, "maxComputeInvocationsPerWorkgroup", 33,  &n->maxComputeInvocationsPerWorkgroup, NULL);
+  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeX", 24,  &n->maxComputeWorkgroupSizeX, NULL);
+  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeY", 24,  &n->maxComputeWorkgroupSizeY, NULL);
+  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeZ", 24,  &n->maxComputeWorkgroupSizeZ, NULL);
+  _pack_uint32_t(aTHX_ h, "maxComputeWorkgroupsPerDimension", 32,  &n->maxComputeWorkgroupsPerDimension, NULL);
 
   
 }
@@ -1204,37 +1172,37 @@ void WebGPU__Direct__Limits__unpack( SV *THIS )
     Newxz(n, 1, WGPULimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_uint32_t(aTHX_ h, "maxTextureDimension1D", 21,  &n->maxTextureDimension1D );
-  _unpack_uint32_t(aTHX_ h, "maxTextureDimension2D", 21,  &n->maxTextureDimension2D );
-  _unpack_uint32_t(aTHX_ h, "maxTextureDimension3D", 21,  &n->maxTextureDimension3D );
-  _unpack_uint32_t(aTHX_ h, "maxTextureArrayLayers", 21,  &n->maxTextureArrayLayers );
-  _unpack_uint32_t(aTHX_ h, "maxBindGroups", 13,  &n->maxBindGroups );
-  _unpack_uint32_t(aTHX_ h, "maxBindingsPerBindGroup", 23,  &n->maxBindingsPerBindGroup );
-  _unpack_uint32_t(aTHX_ h, "maxDynamicUniformBuffersPerPipelineLayout", 41,  &n->maxDynamicUniformBuffersPerPipelineLayout );
-  _unpack_uint32_t(aTHX_ h, "maxDynamicStorageBuffersPerPipelineLayout", 41,  &n->maxDynamicStorageBuffersPerPipelineLayout );
-  _unpack_uint32_t(aTHX_ h, "maxSampledTexturesPerShaderStage", 32,  &n->maxSampledTexturesPerShaderStage );
-  _unpack_uint32_t(aTHX_ h, "maxSamplersPerShaderStage", 25,  &n->maxSamplersPerShaderStage );
-  _unpack_uint32_t(aTHX_ h, "maxStorageBuffersPerShaderStage", 31,  &n->maxStorageBuffersPerShaderStage );
-  _unpack_uint32_t(aTHX_ h, "maxStorageTexturesPerShaderStage", 32,  &n->maxStorageTexturesPerShaderStage );
-  _unpack_uint32_t(aTHX_ h, "maxUniformBuffersPerShaderStage", 31,  &n->maxUniformBuffersPerShaderStage );
-  _unpack_uint64_t(aTHX_ h, "maxUniformBufferBindingSize", 27,  &n->maxUniformBufferBindingSize );
-  _unpack_uint64_t(aTHX_ h, "maxStorageBufferBindingSize", 27,  &n->maxStorageBufferBindingSize );
-  _unpack_uint32_t(aTHX_ h, "minUniformBufferOffsetAlignment", 31,  &n->minUniformBufferOffsetAlignment );
-  _unpack_uint32_t(aTHX_ h, "minStorageBufferOffsetAlignment", 31,  &n->minStorageBufferOffsetAlignment );
-  _unpack_uint32_t(aTHX_ h, "maxVertexBuffers", 16,  &n->maxVertexBuffers );
-  _unpack_uint64_t(aTHX_ h, "maxBufferSize", 13,  &n->maxBufferSize );
-  _unpack_uint32_t(aTHX_ h, "maxVertexAttributes", 19,  &n->maxVertexAttributes );
-  _unpack_uint32_t(aTHX_ h, "maxVertexBufferArrayStride", 26,  &n->maxVertexBufferArrayStride );
-  _unpack_uint32_t(aTHX_ h, "maxInterStageShaderComponents", 29,  &n->maxInterStageShaderComponents );
-  _unpack_uint32_t(aTHX_ h, "maxInterStageShaderVariables", 28,  &n->maxInterStageShaderVariables );
-  _unpack_uint32_t(aTHX_ h, "maxColorAttachments", 19,  &n->maxColorAttachments );
-  _unpack_uint32_t(aTHX_ h, "maxColorAttachmentBytesPerSample", 32,  &n->maxColorAttachmentBytesPerSample );
-  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupStorageSize", 30,  &n->maxComputeWorkgroupStorageSize );
-  _unpack_uint32_t(aTHX_ h, "maxComputeInvocationsPerWorkgroup", 33,  &n->maxComputeInvocationsPerWorkgroup );
-  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeX", 24,  &n->maxComputeWorkgroupSizeX );
-  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeY", 24,  &n->maxComputeWorkgroupSizeY );
-  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeZ", 24,  &n->maxComputeWorkgroupSizeZ );
-  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupsPerDimension", 32,  &n->maxComputeWorkgroupsPerDimension );
+  _unpack_uint32_t(aTHX_ h, "maxTextureDimension1D", 21,  &n->maxTextureDimension1D, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxTextureDimension2D", 21,  &n->maxTextureDimension2D, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxTextureDimension3D", 21,  &n->maxTextureDimension3D, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxTextureArrayLayers", 21,  &n->maxTextureArrayLayers, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxBindGroups", 13,  &n->maxBindGroups, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxBindingsPerBindGroup", 23,  &n->maxBindingsPerBindGroup, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxDynamicUniformBuffersPerPipelineLayout", 41,  &n->maxDynamicUniformBuffersPerPipelineLayout, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxDynamicStorageBuffersPerPipelineLayout", 41,  &n->maxDynamicStorageBuffersPerPipelineLayout, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxSampledTexturesPerShaderStage", 32,  &n->maxSampledTexturesPerShaderStage, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxSamplersPerShaderStage", 25,  &n->maxSamplersPerShaderStage, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxStorageBuffersPerShaderStage", 31,  &n->maxStorageBuffersPerShaderStage, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxStorageTexturesPerShaderStage", 32,  &n->maxStorageTexturesPerShaderStage, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxUniformBuffersPerShaderStage", 31,  &n->maxUniformBuffersPerShaderStage, NULL);
+  _unpack_uint64_t(aTHX_ h, "maxUniformBufferBindingSize", 27,  &n->maxUniformBufferBindingSize, NULL);
+  _unpack_uint64_t(aTHX_ h, "maxStorageBufferBindingSize", 27,  &n->maxStorageBufferBindingSize, NULL);
+  _unpack_uint32_t(aTHX_ h, "minUniformBufferOffsetAlignment", 31,  &n->minUniformBufferOffsetAlignment, NULL);
+  _unpack_uint32_t(aTHX_ h, "minStorageBufferOffsetAlignment", 31,  &n->minStorageBufferOffsetAlignment, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxVertexBuffers", 16,  &n->maxVertexBuffers, NULL);
+  _unpack_uint64_t(aTHX_ h, "maxBufferSize", 13,  &n->maxBufferSize, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxVertexAttributes", 19,  &n->maxVertexAttributes, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxVertexBufferArrayStride", 26,  &n->maxVertexBufferArrayStride, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxInterStageShaderComponents", 29,  &n->maxInterStageShaderComponents, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxInterStageShaderVariables", 28,  &n->maxInterStageShaderVariables, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxColorAttachments", 19,  &n->maxColorAttachments, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxColorAttachmentBytesPerSample", 32,  &n->maxColorAttachmentBytesPerSample, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupStorageSize", 30,  &n->maxComputeWorkgroupStorageSize, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxComputeInvocationsPerWorkgroup", 33,  &n->maxComputeInvocationsPerWorkgroup, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeX", 24,  &n->maxComputeWorkgroupSizeX, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeY", 24,  &n->maxComputeWorkgroupSizeY, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupSizeZ", 24,  &n->maxComputeWorkgroupSizeZ, NULL);
+  _unpack_uint32_t(aTHX_ h, "maxComputeWorkgroupsPerDimension", 32,  &n->maxComputeWorkgroupsPerDimension, NULL);
 
 }
 
@@ -1267,12 +1235,10 @@ void WebGPU__Direct__MultisampleState__pack( SV *THIS )
     Newxz(n, 1, WGPUMultisampleState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint32_t(aTHX_ h, "count", 5,  &n->count );
-  _pack_uint32_t(aTHX_ h, "mask", 4,  &n->mask );
-  _pack_bool(aTHX_ h, "alphaToCoverageEnabled", 22,  &n->alphaToCoverageEnabled );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_uint32_t(aTHX_ h, "count", 5,  &n->count, NULL);
+  _pack_uint32_t(aTHX_ h, "mask", 4,  &n->mask, NULL);
+  _pack_bool(aTHX_ h, "alphaToCoverageEnabled", 22,  &n->alphaToCoverageEnabled, NULL);
 
   
 }
@@ -1293,10 +1259,10 @@ void WebGPU__Direct__MultisampleState__unpack( SV *THIS )
     Newxz(n, 1, WGPUMultisampleState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint32_t(aTHX_ h, "count", 5,  &n->count );
-  _unpack_uint32_t(aTHX_ h, "mask", 4,  &n->mask );
-  _unpack_bool(aTHX_ h, "alphaToCoverageEnabled", 22,  &n->alphaToCoverageEnabled );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_uint32_t(aTHX_ h, "count", 5,  &n->count, NULL);
+  _unpack_uint32_t(aTHX_ h, "mask", 4,  &n->mask, NULL);
+  _unpack_bool(aTHX_ h, "alphaToCoverageEnabled", 22,  &n->alphaToCoverageEnabled, NULL);
 
 }
 
@@ -1329,11 +1295,9 @@ void WebGPU__Direct__Origin3D__pack( SV *THIS )
     Newxz(n, 1, WGPUOrigin3D);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_uint32_t(aTHX_ h, "x", 1,  &n->x );
-  _pack_uint32_t(aTHX_ h, "y", 1,  &n->y );
-  _pack_uint32_t(aTHX_ h, "z", 1,  &n->z );
+  _pack_uint32_t(aTHX_ h, "x", 1,  &n->x, NULL);
+  _pack_uint32_t(aTHX_ h, "y", 1,  &n->y, NULL);
+  _pack_uint32_t(aTHX_ h, "z", 1,  &n->z, NULL);
 
   
 }
@@ -1354,9 +1318,9 @@ void WebGPU__Direct__Origin3D__unpack( SV *THIS )
     Newxz(n, 1, WGPUOrigin3D);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_uint32_t(aTHX_ h, "x", 1,  &n->x );
-  _unpack_uint32_t(aTHX_ h, "y", 1,  &n->y );
-  _unpack_uint32_t(aTHX_ h, "z", 1,  &n->z );
+  _unpack_uint32_t(aTHX_ h, "x", 1,  &n->x, NULL);
+  _unpack_uint32_t(aTHX_ h, "y", 1,  &n->y, NULL);
+  _unpack_uint32_t(aTHX_ h, "z", 1,  &n->z, NULL);
 
 }
 
@@ -1389,12 +1353,9 @@ void WebGPU__Direct__PipelineLayoutDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUPipelineLayoutDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount );
-  _pack_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts , newSVpvs("WebGPU::Direct::BindGroupLayout"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
   
 }
@@ -1415,10 +1376,10 @@ void WebGPU__Direct__PipelineLayoutDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUPipelineLayoutDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount );
-  _unpack_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts , newSVpvs("WebGPU::Direct::BindGroupLayout"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount, NULL);
+  _unpack_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
 }
 
@@ -1451,10 +1412,8 @@ void WebGPU__Direct__PrimitiveDepthClipControl__pack( SV *THIS )
     Newxz(n, 1, WGPUPrimitiveDepthClipControl);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_bool(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth );
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_bool(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth, NULL);
 
   
 }
@@ -1475,8 +1434,8 @@ void WebGPU__Direct__PrimitiveDepthClipControl__unpack( SV *THIS )
     Newxz(n, 1, WGPUPrimitiveDepthClipControl);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_bool(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth );
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_bool(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth, NULL);
 
 }
 
@@ -1509,13 +1468,11 @@ void WebGPU__Direct__PrimitiveState__pack( SV *THIS )
     Newxz(n, 1, WGPUPrimitiveState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "topology", 8,  &n->topology );
-  _pack_enum(aTHX_ h, "stripIndexFormat", 16,  &n->stripIndexFormat );
-  _pack_enum(aTHX_ h, "frontFace", 9,  &n->frontFace );
-  _pack_enum(aTHX_ h, "cullMode", 8,  &n->cullMode );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "topology", 8,  &n->topology, newSVpvs("WGPUPrimitiveTopology"));
+  _pack_enum(aTHX_ h, "stripIndexFormat", 16,  &n->stripIndexFormat, newSVpvs("WGPUIndexFormat"));
+  _pack_enum(aTHX_ h, "frontFace", 9,  &n->frontFace, newSVpvs("WGPUFrontFace"));
+  _pack_enum(aTHX_ h, "cullMode", 8,  &n->cullMode, newSVpvs("WGPUCullMode"));
 
   
 }
@@ -1536,11 +1493,11 @@ void WebGPU__Direct__PrimitiveState__unpack( SV *THIS )
     Newxz(n, 1, WGPUPrimitiveState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "topology", 8,  &n->topology );
-  _unpack_enum(aTHX_ h, "stripIndexFormat", 16,  &n->stripIndexFormat );
-  _unpack_enum(aTHX_ h, "frontFace", 9,  &n->frontFace );
-  _unpack_enum(aTHX_ h, "cullMode", 8,  &n->cullMode );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "topology", 8,  &n->topology, newSVpvs("WGPUPrimitiveTopology"));
+  _unpack_enum(aTHX_ h, "stripIndexFormat", 16,  &n->stripIndexFormat, newSVpvs("WGPUIndexFormat"));
+  _unpack_enum(aTHX_ h, "frontFace", 9,  &n->frontFace, newSVpvs("WGPUFrontFace"));
+  _unpack_enum(aTHX_ h, "cullMode", 8,  &n->cullMode, newSVpvs("WGPUCullMode"));
 
 }
 
@@ -1573,15 +1530,13 @@ void WebGPU__Direct__QuerySetDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUQuerySetDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_enum(aTHX_ h, "type", 4,  &n->type );
-  _pack_uint32_t(aTHX_ h, "count", 5,  &n->count );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUQueryType"));
+  _pack_uint32_t(aTHX_ h, "count", 5,  &n->count, NULL);
   // "pipelineStatistics" is a ptr type WGPUPipelineStatisticName, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics );
-  _pack_size_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount );
+  _pack_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics, newSVpvs("WGPUPipelineStatisticName"));
+  _pack_size_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount, NULL);
 
   
 }
@@ -1602,13 +1557,13 @@ void WebGPU__Direct__QuerySetDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUQuerySetDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_enum(aTHX_ h, "type", 4,  &n->type );
-  _unpack_uint32_t(aTHX_ h, "count", 5,  &n->count );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUQueryType"));
+  _unpack_uint32_t(aTHX_ h, "count", 5,  &n->count, NULL);
   // "pipelineStatistics" is a ptr type WGPUPipelineStatisticName, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics );
-  _unpack_size_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount );
+  _unpack_void(aTHX_ h, "pipelineStatistics", 18,  &n->pipelineStatistics, newSVpvs("WGPUPipelineStatisticName"));
+  _unpack_size_t(aTHX_ h, "pipelineStatisticsCount", 23,  &n->pipelineStatisticsCount, NULL);
 
 }
 
@@ -1641,10 +1596,8 @@ void WebGPU__Direct__QueueDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUQueueDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
   
 }
@@ -1665,8 +1618,8 @@ void WebGPU__Direct__QueueDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUQueueDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
 }
 
@@ -1699,10 +1652,8 @@ void WebGPU__Direct__RenderBundleDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPURenderBundleDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
   
 }
@@ -1723,8 +1674,8 @@ void WebGPU__Direct__RenderBundleDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderBundleDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
 }
 
@@ -1757,17 +1708,15 @@ void WebGPU__Direct__RenderBundleEncoderDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPURenderBundleEncoderDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_size_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_size_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount, NULL);
   // "colorFormats" is a ptr type WGPUTextureFormat, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "colorFormats", 12,  &n->colorFormats );
-  _pack_enum(aTHX_ h, "depthStencilFormat", 18,  &n->depthStencilFormat );
-  _pack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount );
-  _pack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly );
-  _pack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly );
+  _pack_void(aTHX_ h, "colorFormats", 12,  &n->colorFormats, newSVpvs("WGPUTextureFormat"));
+  _pack_enum(aTHX_ h, "depthStencilFormat", 18,  &n->depthStencilFormat, newSVpvs("WGPUTextureFormat"));
+  _pack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount, NULL);
+  _pack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly, NULL);
+  _pack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly, NULL);
 
   
 }
@@ -1788,15 +1737,15 @@ void WebGPU__Direct__RenderBundleEncoderDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderBundleEncoderDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_size_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_size_t(aTHX_ h, "colorFormatsCount", 17,  &n->colorFormatsCount, NULL);
   // "colorFormats" is a ptr type WGPUTextureFormat, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "colorFormats", 12,  &n->colorFormats );
-  _unpack_enum(aTHX_ h, "depthStencilFormat", 18,  &n->depthStencilFormat );
-  _unpack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount );
-  _unpack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly );
-  _unpack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly );
+  _unpack_void(aTHX_ h, "colorFormats", 12,  &n->colorFormats, newSVpvs("WGPUTextureFormat"));
+  _unpack_enum(aTHX_ h, "depthStencilFormat", 18,  &n->depthStencilFormat, newSVpvs("WGPUTextureFormat"));
+  _unpack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount, NULL);
+  _unpack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly, NULL);
+  _unpack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly, NULL);
 
 }
 
@@ -1829,17 +1778,15 @@ void WebGPU__Direct__RenderPassDepthStencilAttachment__pack( SV *THIS )
     Newxz(n, 1, WGPURenderPassDepthStencilAttachment);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"));
-  _pack_enum(aTHX_ h, "depthLoadOp", 11,  &n->depthLoadOp );
-  _pack_enum(aTHX_ h, "depthStoreOp", 12,  &n->depthStoreOp );
-  _pack_float(aTHX_ h, "depthClearValue", 15,  &n->depthClearValue );
-  _pack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly );
-  _pack_enum(aTHX_ h, "stencilLoadOp", 13,  &n->stencilLoadOp );
-  _pack_enum(aTHX_ h, "stencilStoreOp", 14,  &n->stencilStoreOp );
-  _pack_uint32_t(aTHX_ h, "stencilClearValue", 17,  &n->stencilClearValue );
-  _pack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly );
+  _pack_opaque(aTHX_ h, "view", 4, (void **) &n->view, newSVpvs("WebGPU::Direct::TextureView"));
+  _pack_enum(aTHX_ h, "depthLoadOp", 11,  &n->depthLoadOp, newSVpvs("WGPULoadOp"));
+  _pack_enum(aTHX_ h, "depthStoreOp", 12,  &n->depthStoreOp, newSVpvs("WGPUStoreOp"));
+  _pack_float(aTHX_ h, "depthClearValue", 15,  &n->depthClearValue, NULL);
+  _pack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly, NULL);
+  _pack_enum(aTHX_ h, "stencilLoadOp", 13,  &n->stencilLoadOp, newSVpvs("WGPULoadOp"));
+  _pack_enum(aTHX_ h, "stencilStoreOp", 14,  &n->stencilStoreOp, newSVpvs("WGPUStoreOp"));
+  _pack_uint32_t(aTHX_ h, "stencilClearValue", 17,  &n->stencilClearValue, NULL);
+  _pack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly, NULL);
 
   
 }
@@ -1860,15 +1807,15 @@ void WebGPU__Direct__RenderPassDepthStencilAttachment__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderPassDepthStencilAttachment);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"));
-  _unpack_enum(aTHX_ h, "depthLoadOp", 11,  &n->depthLoadOp );
-  _unpack_enum(aTHX_ h, "depthStoreOp", 12,  &n->depthStoreOp );
-  _unpack_float(aTHX_ h, "depthClearValue", 15,  &n->depthClearValue );
-  _unpack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly );
-  _unpack_enum(aTHX_ h, "stencilLoadOp", 13,  &n->stencilLoadOp );
-  _unpack_enum(aTHX_ h, "stencilStoreOp", 14,  &n->stencilStoreOp );
-  _unpack_uint32_t(aTHX_ h, "stencilClearValue", 17,  &n->stencilClearValue );
-  _unpack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly );
+  _unpack_opaque(aTHX_ h, "view", 4, (void **) &n->view, newSVpvs("WebGPU::Direct::TextureView"));
+  _unpack_enum(aTHX_ h, "depthLoadOp", 11,  &n->depthLoadOp, newSVpvs("WGPULoadOp"));
+  _unpack_enum(aTHX_ h, "depthStoreOp", 12,  &n->depthStoreOp, newSVpvs("WGPUStoreOp"));
+  _unpack_float(aTHX_ h, "depthClearValue", 15,  &n->depthClearValue, NULL);
+  _unpack_bool(aTHX_ h, "depthReadOnly", 13,  &n->depthReadOnly, NULL);
+  _unpack_enum(aTHX_ h, "stencilLoadOp", 13,  &n->stencilLoadOp, newSVpvs("WGPULoadOp"));
+  _unpack_enum(aTHX_ h, "stencilStoreOp", 14,  &n->stencilStoreOp, newSVpvs("WGPUStoreOp"));
+  _unpack_uint32_t(aTHX_ h, "stencilClearValue", 17,  &n->stencilClearValue, NULL);
+  _unpack_bool(aTHX_ h, "stencilReadOnly", 15,  &n->stencilReadOnly, NULL);
 
 }
 
@@ -1901,10 +1848,8 @@ void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__pack( SV *THIS )
     Newxz(n, 1, WGPURenderPassDescriptorMaxDrawCount);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint64_t(aTHX_ h, "maxDrawCount", 12,  &n->maxDrawCount );
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_uint64_t(aTHX_ h, "maxDrawCount", 12,  &n->maxDrawCount, NULL);
 
   
 }
@@ -1925,8 +1870,8 @@ void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderPassDescriptorMaxDrawCount);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint64_t(aTHX_ h, "maxDrawCount", 12,  &n->maxDrawCount );
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_uint64_t(aTHX_ h, "maxDrawCount", 12,  &n->maxDrawCount, NULL);
 
 }
 
@@ -1959,11 +1904,9 @@ void WebGPU__Direct__RenderPassTimestampWrite__pack( SV *THIS )
     Newxz(n, 1, WGPURenderPassTimestampWrite);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"));
-  _pack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex );
-  _pack_enum(aTHX_ h, "location", 8,  &n->location );
+  _pack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet, newSVpvs("WebGPU::Direct::QuerySet"));
+  _pack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex, NULL);
+  _pack_enum(aTHX_ h, "location", 8,  &n->location, newSVpvs("WGPURenderPassTimestampLocation"));
 
   
 }
@@ -1984,9 +1927,9 @@ void WebGPU__Direct__RenderPassTimestampWrite__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderPassTimestampWrite);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet , newSVpvs("WebGPU::Direct::QuerySet"));
-  _unpack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex );
-  _unpack_enum(aTHX_ h, "location", 8,  &n->location );
+  _unpack_opaque(aTHX_ h, "querySet", 8, (void **) &n->querySet, newSVpvs("WebGPU::Direct::QuerySet"));
+  _unpack_uint32_t(aTHX_ h, "queryIndex", 10,  &n->queryIndex, NULL);
+  _unpack_enum(aTHX_ h, "location", 8,  &n->location, newSVpvs("WGPURenderPassTimestampLocation"));
 
 }
 
@@ -2019,13 +1962,11 @@ void WebGPU__Direct__RequestAdapterOptions__pack( SV *THIS )
     Newxz(n, 1, WGPURequestAdapterOptions);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface , newSVpvs("WebGPU::Direct::Surface"));
-  _pack_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference );
-  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType );
-  _pack_bool(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface, newSVpvs("WebGPU::Direct::Surface"));
+  _pack_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference, newSVpvs("WGPUPowerPreference"));
+  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WGPUBackendType"));
+  _pack_bool(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter, NULL);
 
   
 }
@@ -2046,11 +1987,11 @@ void WebGPU__Direct__RequestAdapterOptions__unpack( SV *THIS )
     Newxz(n, 1, WGPURequestAdapterOptions);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface , newSVpvs("WebGPU::Direct::Surface"));
-  _unpack_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference );
-  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType );
-  _unpack_bool(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface, newSVpvs("WebGPU::Direct::Surface"));
+  _unpack_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference, newSVpvs("WGPUPowerPreference"));
+  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WGPUBackendType"));
+  _unpack_bool(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter, NULL);
 
 }
 
@@ -2083,10 +2024,8 @@ void WebGPU__Direct__SamplerBindingLayout__pack( SV *THIS )
     Newxz(n, 1, WGPUSamplerBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "type", 4,  &n->type );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUSamplerBindingType"));
 
   
 }
@@ -2107,8 +2046,8 @@ void WebGPU__Direct__SamplerBindingLayout__unpack( SV *THIS )
     Newxz(n, 1, WGPUSamplerBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "type", 4,  &n->type );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WGPUSamplerBindingType"));
 
 }
 
@@ -2141,20 +2080,18 @@ void WebGPU__Direct__SamplerDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUSamplerDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_enum(aTHX_ h, "addressModeU", 12,  &n->addressModeU );
-  _pack_enum(aTHX_ h, "addressModeV", 12,  &n->addressModeV );
-  _pack_enum(aTHX_ h, "addressModeW", 12,  &n->addressModeW );
-  _pack_enum(aTHX_ h, "magFilter", 9,  &n->magFilter );
-  _pack_enum(aTHX_ h, "minFilter", 9,  &n->minFilter );
-  _pack_enum(aTHX_ h, "mipmapFilter", 12,  &n->mipmapFilter );
-  _pack_float(aTHX_ h, "lodMinClamp", 11,  &n->lodMinClamp );
-  _pack_float(aTHX_ h, "lodMaxClamp", 11,  &n->lodMaxClamp );
-  _pack_enum(aTHX_ h, "compare", 7,  &n->compare );
-  _pack_uint16_t(aTHX_ h, "maxAnisotropy", 13,  &n->maxAnisotropy );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_enum(aTHX_ h, "addressModeU", 12,  &n->addressModeU, newSVpvs("WGPUAddressMode"));
+  _pack_enum(aTHX_ h, "addressModeV", 12,  &n->addressModeV, newSVpvs("WGPUAddressMode"));
+  _pack_enum(aTHX_ h, "addressModeW", 12,  &n->addressModeW, newSVpvs("WGPUAddressMode"));
+  _pack_enum(aTHX_ h, "magFilter", 9,  &n->magFilter, newSVpvs("WGPUFilterMode"));
+  _pack_enum(aTHX_ h, "minFilter", 9,  &n->minFilter, newSVpvs("WGPUFilterMode"));
+  _pack_enum(aTHX_ h, "mipmapFilter", 12,  &n->mipmapFilter, newSVpvs("WGPUMipmapFilterMode"));
+  _pack_float(aTHX_ h, "lodMinClamp", 11,  &n->lodMinClamp, NULL);
+  _pack_float(aTHX_ h, "lodMaxClamp", 11,  &n->lodMaxClamp, NULL);
+  _pack_enum(aTHX_ h, "compare", 7,  &n->compare, newSVpvs("WGPUCompareFunction"));
+  _pack_uint16_t(aTHX_ h, "maxAnisotropy", 13,  &n->maxAnisotropy, NULL);
 
   
 }
@@ -2175,18 +2112,18 @@ void WebGPU__Direct__SamplerDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUSamplerDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_enum(aTHX_ h, "addressModeU", 12,  &n->addressModeU );
-  _unpack_enum(aTHX_ h, "addressModeV", 12,  &n->addressModeV );
-  _unpack_enum(aTHX_ h, "addressModeW", 12,  &n->addressModeW );
-  _unpack_enum(aTHX_ h, "magFilter", 9,  &n->magFilter );
-  _unpack_enum(aTHX_ h, "minFilter", 9,  &n->minFilter );
-  _unpack_enum(aTHX_ h, "mipmapFilter", 12,  &n->mipmapFilter );
-  _unpack_float(aTHX_ h, "lodMinClamp", 11,  &n->lodMinClamp );
-  _unpack_float(aTHX_ h, "lodMaxClamp", 11,  &n->lodMaxClamp );
-  _unpack_enum(aTHX_ h, "compare", 7,  &n->compare );
-  _unpack_uint16_t(aTHX_ h, "maxAnisotropy", 13,  &n->maxAnisotropy );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_enum(aTHX_ h, "addressModeU", 12,  &n->addressModeU, newSVpvs("WGPUAddressMode"));
+  _unpack_enum(aTHX_ h, "addressModeV", 12,  &n->addressModeV, newSVpvs("WGPUAddressMode"));
+  _unpack_enum(aTHX_ h, "addressModeW", 12,  &n->addressModeW, newSVpvs("WGPUAddressMode"));
+  _unpack_enum(aTHX_ h, "magFilter", 9,  &n->magFilter, newSVpvs("WGPUFilterMode"));
+  _unpack_enum(aTHX_ h, "minFilter", 9,  &n->minFilter, newSVpvs("WGPUFilterMode"));
+  _unpack_enum(aTHX_ h, "mipmapFilter", 12,  &n->mipmapFilter, newSVpvs("WGPUMipmapFilterMode"));
+  _unpack_float(aTHX_ h, "lodMinClamp", 11,  &n->lodMinClamp, NULL);
+  _unpack_float(aTHX_ h, "lodMaxClamp", 11,  &n->lodMaxClamp, NULL);
+  _unpack_enum(aTHX_ h, "compare", 7,  &n->compare, newSVpvs("WGPUCompareFunction"));
+  _unpack_uint16_t(aTHX_ h, "maxAnisotropy", 13,  &n->maxAnisotropy, NULL);
 
 }
 
@@ -2219,11 +2156,9 @@ void WebGPU__Direct__ShaderModuleCompilationHint__pack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleCompilationHint);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
 
   
 }
@@ -2244,9 +2179,9 @@ void WebGPU__Direct__ShaderModuleCompilationHint__unpack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleCompilationHint);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
 
 }
 
@@ -2279,12 +2214,10 @@ void WebGPU__Direct__ShaderModuleSPIRVDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleSPIRVDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint32_t(aTHX_ h, "codeSize", 8,  &n->codeSize );
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_uint32_t(aTHX_ h, "codeSize", 8,  &n->codeSize, NULL);
   // "code" is a ptr type uint32_t, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "code", 4,  &n->code );
+  _pack_void(aTHX_ h, "code", 4,  &n->code, NULL);
 
   
 }
@@ -2305,10 +2238,10 @@ void WebGPU__Direct__ShaderModuleSPIRVDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleSPIRVDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint32_t(aTHX_ h, "codeSize", 8,  &n->codeSize );
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_uint32_t(aTHX_ h, "codeSize", 8,  &n->codeSize, NULL);
   // "code" is a ptr type uint32_t, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "code", 4,  &n->code );
+  _unpack_void(aTHX_ h, "code", 4,  &n->code, NULL);
 
 }
 
@@ -2341,10 +2274,8 @@ void WebGPU__Direct__ShaderModuleWGSLDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleWGSLDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "code", 4,  &n->code );
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "code", 4,  &n->code, NULL);
 
   
 }
@@ -2365,8 +2296,8 @@ void WebGPU__Direct__ShaderModuleWGSLDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleWGSLDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "code", 4,  &n->code );
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "code", 4,  &n->code, NULL);
 
 }
 
@@ -2399,12 +2330,10 @@ void WebGPU__Direct__StencilFaceState__pack( SV *THIS )
     Newxz(n, 1, WGPUStencilFaceState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_enum(aTHX_ h, "compare", 7,  &n->compare );
-  _pack_enum(aTHX_ h, "failOp", 6,  &n->failOp );
-  _pack_enum(aTHX_ h, "depthFailOp", 11,  &n->depthFailOp );
-  _pack_enum(aTHX_ h, "passOp", 6,  &n->passOp );
+  _pack_enum(aTHX_ h, "compare", 7,  &n->compare, newSVpvs("WGPUCompareFunction"));
+  _pack_enum(aTHX_ h, "failOp", 6,  &n->failOp, newSVpvs("WGPUStencilOperation"));
+  _pack_enum(aTHX_ h, "depthFailOp", 11,  &n->depthFailOp, newSVpvs("WGPUStencilOperation"));
+  _pack_enum(aTHX_ h, "passOp", 6,  &n->passOp, newSVpvs("WGPUStencilOperation"));
 
   
 }
@@ -2425,10 +2354,10 @@ void WebGPU__Direct__StencilFaceState__unpack( SV *THIS )
     Newxz(n, 1, WGPUStencilFaceState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_enum(aTHX_ h, "compare", 7,  &n->compare );
-  _unpack_enum(aTHX_ h, "failOp", 6,  &n->failOp );
-  _unpack_enum(aTHX_ h, "depthFailOp", 11,  &n->depthFailOp );
-  _unpack_enum(aTHX_ h, "passOp", 6,  &n->passOp );
+  _unpack_enum(aTHX_ h, "compare", 7,  &n->compare, newSVpvs("WGPUCompareFunction"));
+  _unpack_enum(aTHX_ h, "failOp", 6,  &n->failOp, newSVpvs("WGPUStencilOperation"));
+  _unpack_enum(aTHX_ h, "depthFailOp", 11,  &n->depthFailOp, newSVpvs("WGPUStencilOperation"));
+  _unpack_enum(aTHX_ h, "passOp", 6,  &n->passOp, newSVpvs("WGPUStencilOperation"));
 
 }
 
@@ -2461,12 +2390,10 @@ void WebGPU__Direct__StorageTextureBindingLayout__pack( SV *THIS )
     Newxz(n, 1, WGPUStorageTextureBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "access", 6,  &n->access );
-  _pack_enum(aTHX_ h, "format", 6,  &n->format );
-  _pack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "access", 6,  &n->access, newSVpvs("WGPUStorageTextureAccess"));
+  _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _pack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension, newSVpvs("WGPUTextureViewDimension"));
 
   
 }
@@ -2487,10 +2414,10 @@ void WebGPU__Direct__StorageTextureBindingLayout__unpack( SV *THIS )
     Newxz(n, 1, WGPUStorageTextureBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "access", 6,  &n->access );
-  _unpack_enum(aTHX_ h, "format", 6,  &n->format );
-  _unpack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "access", 6,  &n->access, newSVpvs("WGPUStorageTextureAccess"));
+  _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _unpack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension, newSVpvs("WGPUTextureViewDimension"));
 
 }
 
@@ -2523,10 +2450,8 @@ void WebGPU__Direct__SurfaceDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
   
 }
@@ -2547,8 +2472,8 @@ void WebGPU__Direct__SurfaceDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
 
 }
 
@@ -2581,11 +2506,9 @@ void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromAndroidNativeWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "window" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "window", 6,  &n->window );
+  _pack_void(aTHX_ h, "window", 6,  &n->window, NULL);
 
   
 }
@@ -2606,9 +2529,9 @@ void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__unpack( SV *THIS 
     Newxz(n, 1, WGPUSurfaceDescriptorFromAndroidNativeWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "window" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "window", 6,  &n->window );
+  _unpack_void(aTHX_ h, "window", 6,  &n->window, NULL);
 
 }
 
@@ -2641,10 +2564,8 @@ void WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromCanvasHTMLSelector);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "selector", 8,  &n->selector );
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "selector", 8,  &n->selector, NULL);
 
   
 }
@@ -2665,8 +2586,8 @@ void WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromCanvasHTMLSelector);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "selector", 8,  &n->selector );
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "selector", 8,  &n->selector, NULL);
 
 }
 
@@ -2699,11 +2620,9 @@ void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromMetalLayer);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "layer" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "layer", 5,  &n->layer );
+  _pack_void(aTHX_ h, "layer", 5,  &n->layer, NULL);
 
   
 }
@@ -2724,9 +2643,9 @@ void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromMetalLayer);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "layer" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "layer", 5,  &n->layer );
+  _unpack_void(aTHX_ h, "layer", 5,  &n->layer, NULL);
 
 }
 
@@ -2759,13 +2678,11 @@ void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromWaylandSurface);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "display", 7,  &n->display );
+  _pack_void(aTHX_ h, "display", 7,  &n->display, NULL);
   // "surface" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "surface", 7,  &n->surface );
+  _pack_void(aTHX_ h, "surface", 7,  &n->surface, NULL);
 
   
 }
@@ -2786,11 +2703,11 @@ void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromWaylandSurface);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "display", 7,  &n->display );
+  _unpack_void(aTHX_ h, "display", 7,  &n->display, NULL);
   // "surface" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "surface", 7,  &n->surface );
+  _unpack_void(aTHX_ h, "surface", 7,  &n->surface, NULL);
 
 }
 
@@ -2823,13 +2740,11 @@ void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromWindowsHWND);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "hinstance" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "hinstance", 9,  &n->hinstance );
+  _pack_void(aTHX_ h, "hinstance", 9,  &n->hinstance, NULL);
   // "hwnd" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "hwnd", 4,  &n->hwnd );
+  _pack_void(aTHX_ h, "hwnd", 4,  &n->hwnd, NULL);
 
   
 }
@@ -2850,11 +2765,11 @@ void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromWindowsHWND);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "hinstance" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "hinstance", 9,  &n->hinstance );
+  _unpack_void(aTHX_ h, "hinstance", 9,  &n->hinstance, NULL);
   // "hwnd" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "hwnd", 4,  &n->hwnd );
+  _unpack_void(aTHX_ h, "hwnd", 4,  &n->hwnd, NULL);
 
 }
 
@@ -2887,12 +2802,10 @@ void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromXcbWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "connection" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "connection", 10,  &n->connection );
-  _pack_uint32_t(aTHX_ h, "window", 6,  &n->window );
+  _pack_void(aTHX_ h, "connection", 10,  &n->connection, NULL);
+  _pack_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL);
 
   
 }
@@ -2913,10 +2826,10 @@ void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromXcbWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "connection" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "connection", 10,  &n->connection );
-  _unpack_uint32_t(aTHX_ h, "window", 6,  &n->window );
+  _unpack_void(aTHX_ h, "connection", 10,  &n->connection, NULL);
+  _unpack_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL);
 
 }
 
@@ -2949,12 +2862,10 @@ void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromXlibWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "display", 7,  &n->display );
-  _pack_uint32_t(aTHX_ h, "window", 6,  &n->window );
+  _pack_void(aTHX_ h, "display", 7,  &n->display, NULL);
+  _pack_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL);
 
   
 }
@@ -2975,10 +2886,10 @@ void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceDescriptorFromXlibWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain , sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "display", 7,  &n->display );
-  _unpack_uint32_t(aTHX_ h, "window", 6,  &n->window );
+  _unpack_void(aTHX_ h, "display", 7,  &n->display, NULL);
+  _unpack_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL);
 
 }
 
@@ -3011,15 +2922,13 @@ void WebGPU__Direct__SwapChainDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUSwapChainDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage );
-  _pack_enum(aTHX_ h, "format", 6,  &n->format );
-  _pack_uint32_t(aTHX_ h, "width", 5,  &n->width );
-  _pack_uint32_t(aTHX_ h, "height", 6,  &n->height );
-  _pack_enum(aTHX_ h, "presentMode", 11,  &n->presentMode );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _pack_uint32_t(aTHX_ h, "width", 5,  &n->width, NULL);
+  _pack_uint32_t(aTHX_ h, "height", 6,  &n->height, NULL);
+  _pack_enum(aTHX_ h, "presentMode", 11,  &n->presentMode, newSVpvs("WGPUPresentMode"));
 
   
 }
@@ -3040,13 +2949,13 @@ void WebGPU__Direct__SwapChainDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUSwapChainDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage );
-  _unpack_enum(aTHX_ h, "format", 6,  &n->format );
-  _unpack_uint32_t(aTHX_ h, "width", 5,  &n->width );
-  _unpack_uint32_t(aTHX_ h, "height", 6,  &n->height );
-  _unpack_enum(aTHX_ h, "presentMode", 11,  &n->presentMode );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _unpack_uint32_t(aTHX_ h, "width", 5,  &n->width, NULL);
+  _unpack_uint32_t(aTHX_ h, "height", 6,  &n->height, NULL);
+  _unpack_enum(aTHX_ h, "presentMode", 11,  &n->presentMode, newSVpvs("WGPUPresentMode"));
 
 }
 
@@ -3079,12 +2988,10 @@ void WebGPU__Direct__TextureBindingLayout__pack( SV *THIS )
     Newxz(n, 1, WGPUTextureBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "sampleType", 10,  &n->sampleType );
-  _pack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension );
-  _pack_bool(aTHX_ h, "multisampled", 12,  &n->multisampled );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "sampleType", 10,  &n->sampleType, newSVpvs("WGPUTextureSampleType"));
+  _pack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension, newSVpvs("WGPUTextureViewDimension"));
+  _pack_bool(aTHX_ h, "multisampled", 12,  &n->multisampled, NULL);
 
   
 }
@@ -3105,10 +3012,10 @@ void WebGPU__Direct__TextureBindingLayout__unpack( SV *THIS )
     Newxz(n, 1, WGPUTextureBindingLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "sampleType", 10,  &n->sampleType );
-  _unpack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension );
-  _unpack_bool(aTHX_ h, "multisampled", 12,  &n->multisampled );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "sampleType", 10,  &n->sampleType, newSVpvs("WGPUTextureSampleType"));
+  _unpack_enum(aTHX_ h, "viewDimension", 13,  &n->viewDimension, newSVpvs("WGPUTextureViewDimension"));
+  _unpack_bool(aTHX_ h, "multisampled", 12,  &n->multisampled, NULL);
 
 }
 
@@ -3141,12 +3048,10 @@ void WebGPU__Direct__TextureDataLayout__pack( SV *THIS )
     Newxz(n, 1, WGPUTextureDataLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _pack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow );
-  _pack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _pack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow, NULL);
+  _pack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage, NULL);
 
   
 }
@@ -3167,10 +3072,10 @@ void WebGPU__Direct__TextureDataLayout__unpack( SV *THIS )
     Newxz(n, 1, WGPUTextureDataLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _unpack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow );
-  _unpack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _unpack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow, NULL);
+  _unpack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage, NULL);
 
 }
 
@@ -3203,17 +3108,15 @@ void WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUTextureViewDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_enum(aTHX_ h, "format", 6,  &n->format );
-  _pack_enum(aTHX_ h, "dimension", 9,  &n->dimension );
-  _pack_uint32_t(aTHX_ h, "baseMipLevel", 12,  &n->baseMipLevel );
-  _pack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount );
-  _pack_uint32_t(aTHX_ h, "baseArrayLayer", 14,  &n->baseArrayLayer );
-  _pack_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount );
-  _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _pack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WGPUTextureViewDimension"));
+  _pack_uint32_t(aTHX_ h, "baseMipLevel", 12,  &n->baseMipLevel, NULL);
+  _pack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount, NULL);
+  _pack_uint32_t(aTHX_ h, "baseArrayLayer", 14,  &n->baseArrayLayer, NULL);
+  _pack_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount, NULL);
+  _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WGPUTextureAspect"));
 
   
 }
@@ -3234,15 +3137,15 @@ void WebGPU__Direct__TextureViewDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUTextureViewDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_enum(aTHX_ h, "format", 6,  &n->format );
-  _unpack_enum(aTHX_ h, "dimension", 9,  &n->dimension );
-  _unpack_uint32_t(aTHX_ h, "baseMipLevel", 12,  &n->baseMipLevel );
-  _unpack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount );
-  _unpack_uint32_t(aTHX_ h, "baseArrayLayer", 14,  &n->baseArrayLayer );
-  _unpack_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount );
-  _unpack_enum(aTHX_ h, "aspect", 6,  &n->aspect );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _unpack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WGPUTextureViewDimension"));
+  _unpack_uint32_t(aTHX_ h, "baseMipLevel", 12,  &n->baseMipLevel, NULL);
+  _unpack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount, NULL);
+  _unpack_uint32_t(aTHX_ h, "baseArrayLayer", 14,  &n->baseArrayLayer, NULL);
+  _unpack_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount, NULL);
+  _unpack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WGPUTextureAspect"));
 
 }
 
@@ -3275,11 +3178,9 @@ void WebGPU__Direct__VertexAttribute__pack( SV *THIS )
     Newxz(n, 1, WGPUVertexAttribute);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_enum(aTHX_ h, "format", 6,  &n->format );
-  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _pack_uint32_t(aTHX_ h, "shaderLocation", 14,  &n->shaderLocation );
+  _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUVertexFormat"));
+  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _pack_uint32_t(aTHX_ h, "shaderLocation", 14,  &n->shaderLocation, NULL);
 
   
 }
@@ -3300,9 +3201,9 @@ void WebGPU__Direct__VertexAttribute__unpack( SV *THIS )
     Newxz(n, 1, WGPUVertexAttribute);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_enum(aTHX_ h, "format", 6,  &n->format );
-  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset );
-  _unpack_uint32_t(aTHX_ h, "shaderLocation", 14,  &n->shaderLocation );
+  _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUVertexFormat"));
+  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _unpack_uint32_t(aTHX_ h, "shaderLocation", 14,  &n->shaderLocation, NULL);
 
 }
 
@@ -3335,13 +3236,10 @@ void WebGPU__Direct__BindGroupDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::BindGroupLayout"));
-  _pack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
-  _pack_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupEntry"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::BindGroupLayout"));
+  _pack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupEntry"));
 
   
 }
@@ -3362,11 +3260,11 @@ void WebGPU__Direct__BindGroupDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::BindGroupLayout"));
-  _unpack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
-  _unpack_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupEntry"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::BindGroupLayout"));
+  _unpack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount, NULL);
+  _unpack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupEntry"));
 
 }
 
@@ -3399,15 +3297,13 @@ void WebGPU__Direct__BindGroupLayoutEntry__pack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupLayoutEntry);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint32_t(aTHX_ h, "binding", 7,  &n->binding );
-  _pack_uint32_t(aTHX_ h, "visibility", 10,  &n->visibility );
-  _pack_obj(aTHX_ h, "buffer", 6,  &n->buffer , sizeof(n->buffer), newSVpvs("WebGPU::Direct::BufferBindingLayout"));
-  _pack_obj(aTHX_ h, "sampler", 7,  &n->sampler , sizeof(n->sampler), newSVpvs("WebGPU::Direct::SamplerBindingLayout"));
-  _pack_obj(aTHX_ h, "texture", 7,  &n->texture , sizeof(n->texture), newSVpvs("WebGPU::Direct::TextureBindingLayout"));
-  _pack_obj(aTHX_ h, "storageTexture", 14,  &n->storageTexture , sizeof(n->storageTexture), newSVpvs("WebGPU::Direct::StorageTextureBindingLayout"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_uint32_t(aTHX_ h, "binding", 7,  &n->binding, NULL);
+  _pack_uint32_t(aTHX_ h, "visibility", 10,  &n->visibility, NULL);
+  _pack_obj(aTHX_ h, "buffer", 6,  &n->buffer, sizeof(n->buffer), newSVpvs("WebGPU::Direct::BufferBindingLayout"));
+  _pack_obj(aTHX_ h, "sampler", 7,  &n->sampler, sizeof(n->sampler), newSVpvs("WebGPU::Direct::SamplerBindingLayout"));
+  _pack_obj(aTHX_ h, "texture", 7,  &n->texture, sizeof(n->texture), newSVpvs("WebGPU::Direct::TextureBindingLayout"));
+  _pack_obj(aTHX_ h, "storageTexture", 14,  &n->storageTexture, sizeof(n->storageTexture), newSVpvs("WebGPU::Direct::StorageTextureBindingLayout"));
 
   
 }
@@ -3428,13 +3324,13 @@ void WebGPU__Direct__BindGroupLayoutEntry__unpack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupLayoutEntry);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint32_t(aTHX_ h, "binding", 7,  &n->binding );
-  _unpack_uint32_t(aTHX_ h, "visibility", 10,  &n->visibility );
-  _unpack_obj(aTHX_ h, "buffer", 6,  &n->buffer , sizeof(n->buffer), newSVpvs("WebGPU::Direct::BufferBindingLayout"));
-  _unpack_obj(aTHX_ h, "sampler", 7,  &n->sampler , sizeof(n->sampler), newSVpvs("WebGPU::Direct::SamplerBindingLayout"));
-  _unpack_obj(aTHX_ h, "texture", 7,  &n->texture , sizeof(n->texture), newSVpvs("WebGPU::Direct::TextureBindingLayout"));
-  _unpack_obj(aTHX_ h, "storageTexture", 14,  &n->storageTexture , sizeof(n->storageTexture), newSVpvs("WebGPU::Direct::StorageTextureBindingLayout"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_uint32_t(aTHX_ h, "binding", 7,  &n->binding, NULL);
+  _unpack_uint32_t(aTHX_ h, "visibility", 10,  &n->visibility, NULL);
+  _unpack_obj(aTHX_ h, "buffer", 6,  &n->buffer, sizeof(n->buffer), newSVpvs("WebGPU::Direct::BufferBindingLayout"));
+  _unpack_obj(aTHX_ h, "sampler", 7,  &n->sampler, sizeof(n->sampler), newSVpvs("WebGPU::Direct::SamplerBindingLayout"));
+  _unpack_obj(aTHX_ h, "texture", 7,  &n->texture, sizeof(n->texture), newSVpvs("WebGPU::Direct::TextureBindingLayout"));
+  _unpack_obj(aTHX_ h, "storageTexture", 14,  &n->storageTexture, sizeof(n->storageTexture), newSVpvs("WebGPU::Direct::StorageTextureBindingLayout"));
 
 }
 
@@ -3467,10 +3363,8 @@ void WebGPU__Direct__BlendState__pack( SV *THIS )
     Newxz(n, 1, WGPUBlendState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_obj(aTHX_ h, "color", 5,  &n->color , sizeof(n->color), newSVpvs("WebGPU::Direct::BlendComponent"));
-  _pack_obj(aTHX_ h, "alpha", 5,  &n->alpha , sizeof(n->alpha), newSVpvs("WebGPU::Direct::BlendComponent"));
+  _pack_obj(aTHX_ h, "color", 5,  &n->color, sizeof(n->color), newSVpvs("WebGPU::Direct::BlendComponent"));
+  _pack_obj(aTHX_ h, "alpha", 5,  &n->alpha, sizeof(n->alpha), newSVpvs("WebGPU::Direct::BlendComponent"));
 
   
 }
@@ -3491,8 +3385,8 @@ void WebGPU__Direct__BlendState__unpack( SV *THIS )
     Newxz(n, 1, WGPUBlendState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_obj(aTHX_ h, "color", 5,  &n->color , sizeof(n->color), newSVpvs("WebGPU::Direct::BlendComponent"));
-  _unpack_obj(aTHX_ h, "alpha", 5,  &n->alpha , sizeof(n->alpha), newSVpvs("WebGPU::Direct::BlendComponent"));
+  _unpack_obj(aTHX_ h, "color", 5,  &n->color, sizeof(n->color), newSVpvs("WebGPU::Direct::BlendComponent"));
+  _unpack_obj(aTHX_ h, "alpha", 5,  &n->alpha, sizeof(n->alpha), newSVpvs("WebGPU::Direct::BlendComponent"));
 
 }
 
@@ -3525,11 +3419,8 @@ void WebGPU__Direct__CompilationInfo__pack( SV *THIS )
     Newxz(n, 1, WGPUCompilationInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_size_t(aTHX_ h, "messageCount", 12,  &n->messageCount );
-  _pack_objarray(aTHX_ h, "messages", 8, (void **) &n->messages , &n->messageCount, sizeof(*n->messages), newSVpvs("WebGPU::Direct::CompilationMessage"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_objarray(aTHX_ h, "messages", 8, (void **) &n->messages, &n->messageCount, sizeof(*n->messages), newSVpvs("WebGPU::Direct::CompilationMessage"));
 
   
 }
@@ -3550,9 +3441,9 @@ void WebGPU__Direct__CompilationInfo__unpack( SV *THIS )
     Newxz(n, 1, WGPUCompilationInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_size_t(aTHX_ h, "messageCount", 12,  &n->messageCount );
-  _unpack_objarray(aTHX_ h, "messages", 8, (void **) &n->messages , &n->messageCount, sizeof(*n->messages), newSVpvs("WebGPU::Direct::CompilationMessage"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_size_t(aTHX_ h, "messageCount", 12,  &n->messageCount, NULL);
+  _unpack_objarray(aTHX_ h, "messages", 8, (void **) &n->messages, &n->messageCount, sizeof(*n->messages), newSVpvs("WebGPU::Direct::CompilationMessage"));
 
 }
 
@@ -3585,12 +3476,9 @@ void WebGPU__Direct__ComputePassDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUComputePassDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
-  _pack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::ComputePassTimestampWrite"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites, &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::ComputePassTimestampWrite"));
 
   
 }
@@ -3611,10 +3499,10 @@ void WebGPU__Direct__ComputePassDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUComputePassDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
-  _unpack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::ComputePassTimestampWrite"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount, NULL);
+  _unpack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites, &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::ComputePassTimestampWrite"));
 
 }
 
@@ -3647,19 +3535,17 @@ void WebGPU__Direct__DepthStencilState__pack( SV *THIS )
     Newxz(n, 1, WGPUDepthStencilState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "format", 6,  &n->format );
-  _pack_bool(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled );
-  _pack_enum(aTHX_ h, "depthCompare", 12,  &n->depthCompare );
-  _pack_obj(aTHX_ h, "stencilFront", 12,  &n->stencilFront , sizeof(n->stencilFront), newSVpvs("WebGPU::Direct::StencilFaceState"));
-  _pack_obj(aTHX_ h, "stencilBack", 11,  &n->stencilBack , sizeof(n->stencilBack), newSVpvs("WebGPU::Direct::StencilFaceState"));
-  _pack_uint32_t(aTHX_ h, "stencilReadMask", 15,  &n->stencilReadMask );
-  _pack_uint32_t(aTHX_ h, "stencilWriteMask", 16,  &n->stencilWriteMask );
-  _pack_int32_t(aTHX_ h, "depthBias", 9,  &n->depthBias );
-  _pack_float(aTHX_ h, "depthBiasSlopeScale", 19,  &n->depthBiasSlopeScale );
-  _pack_float(aTHX_ h, "depthBiasClamp", 14,  &n->depthBiasClamp );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _pack_bool(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled, NULL);
+  _pack_enum(aTHX_ h, "depthCompare", 12,  &n->depthCompare, newSVpvs("WGPUCompareFunction"));
+  _pack_obj(aTHX_ h, "stencilFront", 12,  &n->stencilFront, sizeof(n->stencilFront), newSVpvs("WebGPU::Direct::StencilFaceState"));
+  _pack_obj(aTHX_ h, "stencilBack", 11,  &n->stencilBack, sizeof(n->stencilBack), newSVpvs("WebGPU::Direct::StencilFaceState"));
+  _pack_uint32_t(aTHX_ h, "stencilReadMask", 15,  &n->stencilReadMask, NULL);
+  _pack_uint32_t(aTHX_ h, "stencilWriteMask", 16,  &n->stencilWriteMask, NULL);
+  _pack_int32_t(aTHX_ h, "depthBias", 9,  &n->depthBias, NULL);
+  _pack_float(aTHX_ h, "depthBiasSlopeScale", 19,  &n->depthBiasSlopeScale, NULL);
+  _pack_float(aTHX_ h, "depthBiasClamp", 14,  &n->depthBiasClamp, NULL);
 
   
 }
@@ -3680,17 +3566,17 @@ void WebGPU__Direct__DepthStencilState__unpack( SV *THIS )
     Newxz(n, 1, WGPUDepthStencilState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "format", 6,  &n->format );
-  _unpack_bool(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled );
-  _unpack_enum(aTHX_ h, "depthCompare", 12,  &n->depthCompare );
-  _unpack_obj(aTHX_ h, "stencilFront", 12,  &n->stencilFront , sizeof(n->stencilFront), newSVpvs("WebGPU::Direct::StencilFaceState"));
-  _unpack_obj(aTHX_ h, "stencilBack", 11,  &n->stencilBack , sizeof(n->stencilBack), newSVpvs("WebGPU::Direct::StencilFaceState"));
-  _unpack_uint32_t(aTHX_ h, "stencilReadMask", 15,  &n->stencilReadMask );
-  _unpack_uint32_t(aTHX_ h, "stencilWriteMask", 16,  &n->stencilWriteMask );
-  _unpack_int32_t(aTHX_ h, "depthBias", 9,  &n->depthBias );
-  _unpack_float(aTHX_ h, "depthBiasSlopeScale", 19,  &n->depthBiasSlopeScale );
-  _unpack_float(aTHX_ h, "depthBiasClamp", 14,  &n->depthBiasClamp );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _unpack_bool(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled, NULL);
+  _unpack_enum(aTHX_ h, "depthCompare", 12,  &n->depthCompare, newSVpvs("WGPUCompareFunction"));
+  _unpack_obj(aTHX_ h, "stencilFront", 12,  &n->stencilFront, sizeof(n->stencilFront), newSVpvs("WebGPU::Direct::StencilFaceState"));
+  _unpack_obj(aTHX_ h, "stencilBack", 11,  &n->stencilBack, sizeof(n->stencilBack), newSVpvs("WebGPU::Direct::StencilFaceState"));
+  _unpack_uint32_t(aTHX_ h, "stencilReadMask", 15,  &n->stencilReadMask, NULL);
+  _unpack_uint32_t(aTHX_ h, "stencilWriteMask", 16,  &n->stencilWriteMask, NULL);
+  _unpack_int32_t(aTHX_ h, "depthBias", 9,  &n->depthBias, NULL);
+  _unpack_float(aTHX_ h, "depthBiasSlopeScale", 19,  &n->depthBiasSlopeScale, NULL);
+  _unpack_float(aTHX_ h, "depthBiasClamp", 14,  &n->depthBiasClamp, NULL);
 
 }
 
@@ -3723,11 +3609,9 @@ void WebGPU__Direct__ImageCopyBuffer__pack( SV *THIS )
     Newxz(n, 1, WGPUImageCopyBuffer);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_obj(aTHX_ h, "layout", 6,  &n->layout , sizeof(n->layout), newSVpvs("WebGPU::Direct::TextureDataLayout"));
-  _pack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "layout", 6,  &n->layout, sizeof(n->layout), newSVpvs("WebGPU::Direct::TextureDataLayout"));
+  _pack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
 
   
 }
@@ -3748,9 +3632,9 @@ void WebGPU__Direct__ImageCopyBuffer__unpack( SV *THIS )
     Newxz(n, 1, WGPUImageCopyBuffer);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_obj(aTHX_ h, "layout", 6,  &n->layout , sizeof(n->layout), newSVpvs("WebGPU::Direct::TextureDataLayout"));
-  _unpack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer , newSVpvs("WebGPU::Direct::Buffer"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "layout", 6,  &n->layout, sizeof(n->layout), newSVpvs("WebGPU::Direct::TextureDataLayout"));
+  _unpack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
 
 }
 
@@ -3783,13 +3667,11 @@ void WebGPU__Direct__ImageCopyTexture__pack( SV *THIS )
     Newxz(n, 1, WGPUImageCopyTexture);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture , newSVpvs("WebGPU::Direct::Texture"));
-  _pack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel );
-  _pack_obj(aTHX_ h, "origin", 6,  &n->origin , sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
-  _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
+  _pack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel, NULL);
+  _pack_obj(aTHX_ h, "origin", 6,  &n->origin, sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
+  _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WGPUTextureAspect"));
 
   
 }
@@ -3810,11 +3692,11 @@ void WebGPU__Direct__ImageCopyTexture__unpack( SV *THIS )
     Newxz(n, 1, WGPUImageCopyTexture);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture , newSVpvs("WebGPU::Direct::Texture"));
-  _unpack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel );
-  _unpack_obj(aTHX_ h, "origin", 6,  &n->origin , sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
-  _unpack_enum(aTHX_ h, "aspect", 6,  &n->aspect );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
+  _unpack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel, NULL);
+  _unpack_obj(aTHX_ h, "origin", 6,  &n->origin, sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
+  _unpack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WGPUTextureAspect"));
 
 }
 
@@ -3847,13 +3729,10 @@ void WebGPU__Direct__ProgrammableStageDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUProgrammableStageDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _pack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
-  _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants , &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
+  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
 
   
 }
@@ -3874,11 +3753,11 @@ void WebGPU__Direct__ProgrammableStageDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUProgrammableStageDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
-  _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants , &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
+  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount, NULL);
+  _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
 
 }
 
@@ -3911,13 +3790,11 @@ void WebGPU__Direct__RenderPassColorAttachment__pack( SV *THIS )
     Newxz(n, 1, WGPURenderPassColorAttachment);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"));
-  _pack_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget , newSVpvs("WebGPU::Direct::TextureView"));
-  _pack_enum(aTHX_ h, "loadOp", 6,  &n->loadOp );
-  _pack_enum(aTHX_ h, "storeOp", 7,  &n->storeOp );
-  _pack_obj(aTHX_ h, "clearValue", 10,  &n->clearValue , sizeof(n->clearValue), newSVpvs("WebGPU::Direct::Color"));
+  _pack_opaque(aTHX_ h, "view", 4, (void **) &n->view, newSVpvs("WebGPU::Direct::TextureView"));
+  _pack_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget, newSVpvs("WebGPU::Direct::TextureView"));
+  _pack_enum(aTHX_ h, "loadOp", 6,  &n->loadOp, newSVpvs("WGPULoadOp"));
+  _pack_enum(aTHX_ h, "storeOp", 7,  &n->storeOp, newSVpvs("WGPUStoreOp"));
+  _pack_obj(aTHX_ h, "clearValue", 10,  &n->clearValue, sizeof(n->clearValue), newSVpvs("WebGPU::Direct::Color"));
 
   
 }
@@ -3938,11 +3815,11 @@ void WebGPU__Direct__RenderPassColorAttachment__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderPassColorAttachment);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_opaque(aTHX_ h, "view", 4, (void **) &n->view , newSVpvs("WebGPU::Direct::TextureView"));
-  _unpack_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget , newSVpvs("WebGPU::Direct::TextureView"));
-  _unpack_enum(aTHX_ h, "loadOp", 6,  &n->loadOp );
-  _unpack_enum(aTHX_ h, "storeOp", 7,  &n->storeOp );
-  _unpack_obj(aTHX_ h, "clearValue", 10,  &n->clearValue , sizeof(n->clearValue), newSVpvs("WebGPU::Direct::Color"));
+  _unpack_opaque(aTHX_ h, "view", 4, (void **) &n->view, newSVpvs("WebGPU::Direct::TextureView"));
+  _unpack_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget, newSVpvs("WebGPU::Direct::TextureView"));
+  _unpack_enum(aTHX_ h, "loadOp", 6,  &n->loadOp, newSVpvs("WGPULoadOp"));
+  _unpack_enum(aTHX_ h, "storeOp", 7,  &n->storeOp, newSVpvs("WGPUStoreOp"));
+  _unpack_obj(aTHX_ h, "clearValue", 10,  &n->clearValue, sizeof(n->clearValue), newSVpvs("WebGPU::Direct::Color"));
 
 }
 
@@ -3975,10 +3852,8 @@ void WebGPU__Direct__RequiredLimits__pack( SV *THIS )
     Newxz(n, 1, WGPURequiredLimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_obj(aTHX_ h, "limits", 6,  &n->limits , sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
 
   
 }
@@ -3999,8 +3874,8 @@ void WebGPU__Direct__RequiredLimits__unpack( SV *THIS )
     Newxz(n, 1, WGPURequiredLimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_obj(aTHX_ h, "limits", 6,  &n->limits , sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
 
 }
 
@@ -4033,12 +3908,9 @@ void WebGPU__Direct__ShaderModuleDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_size_t(aTHX_ h, "hintCount", 9,  &n->hintCount );
-  _pack_objarray(aTHX_ h, "hints", 5, (void **) &n->hints , &n->hintCount, sizeof(*n->hints), newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_objarray(aTHX_ h, "hints", 5, (void **) &n->hints, &n->hintCount, sizeof(*n->hints), newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
 
   
 }
@@ -4059,10 +3931,10 @@ void WebGPU__Direct__ShaderModuleDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUShaderModuleDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_size_t(aTHX_ h, "hintCount", 9,  &n->hintCount );
-  _unpack_objarray(aTHX_ h, "hints", 5, (void **) &n->hints , &n->hintCount, sizeof(*n->hints), newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_size_t(aTHX_ h, "hintCount", 9,  &n->hintCount, NULL);
+  _unpack_objarray(aTHX_ h, "hints", 5, (void **) &n->hints, &n->hintCount, sizeof(*n->hints), newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
 
 }
 
@@ -4095,10 +3967,8 @@ void WebGPU__Direct__SupportedLimits__pack( SV *THIS )
     Newxz(n, 1, WGPUSupportedLimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _pack_obj(aTHX_ h, "limits", 6,  &n->limits , sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _pack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
 
   
 }
@@ -4119,8 +3989,8 @@ void WebGPU__Direct__SupportedLimits__unpack( SV *THIS )
     Newxz(n, 1, WGPUSupportedLimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _unpack_obj(aTHX_ h, "limits", 6,  &n->limits , sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _unpack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
 
 }
 
@@ -4153,18 +4023,15 @@ void WebGPU__Direct__TextureDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUTextureDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage );
-  _pack_enum(aTHX_ h, "dimension", 9,  &n->dimension );
-  _pack_obj(aTHX_ h, "size", 4,  &n->size , sizeof(n->size), newSVpvs("WebGPU::Direct::Extent3D"));
-  _pack_enum(aTHX_ h, "format", 6,  &n->format );
-  _pack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount );
-  _pack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount );
-  _pack_size_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount );
-  _pack_enum(aTHX_ h, "viewFormats", 11,  &n->viewFormats );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _pack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WGPUTextureDimension"));
+  _pack_obj(aTHX_ h, "size", 4,  &n->size, sizeof(n->size), newSVpvs("WebGPU::Direct::Extent3D"));
+  _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _pack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount, NULL);
+  _pack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount, NULL);
+  _pack_enum(aTHX_ h, "viewFormats", 11,  &n->viewFormats, newSVpvs("WGPUTextureFormat"));
 
   
 }
@@ -4185,16 +4052,16 @@ void WebGPU__Direct__TextureDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUTextureDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage );
-  _unpack_enum(aTHX_ h, "dimension", 9,  &n->dimension );
-  _unpack_obj(aTHX_ h, "size", 4,  &n->size , sizeof(n->size), newSVpvs("WebGPU::Direct::Extent3D"));
-  _unpack_enum(aTHX_ h, "format", 6,  &n->format );
-  _unpack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount );
-  _unpack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount );
-  _unpack_size_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount );
-  _unpack_enum(aTHX_ h, "viewFormats", 11,  &n->viewFormats );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _unpack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WGPUTextureDimension"));
+  _unpack_obj(aTHX_ h, "size", 4,  &n->size, sizeof(n->size), newSVpvs("WebGPU::Direct::Extent3D"));
+  _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _unpack_uint32_t(aTHX_ h, "mipLevelCount", 13,  &n->mipLevelCount, NULL);
+  _unpack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount, NULL);
+  _unpack_size_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount, NULL);
+  _unpack_enum(aTHX_ h, "viewFormats", 11,  &n->viewFormats, newSVpvs("WGPUTextureFormat"));
 
 }
 
@@ -4227,12 +4094,9 @@ void WebGPU__Direct__VertexBufferLayout__pack( SV *THIS )
     Newxz(n, 1, WGPUVertexBufferLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride );
-  _pack_enum(aTHX_ h, "stepMode", 8,  &n->stepMode );
-  _pack_size_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount );
-  _pack_objarray(aTHX_ h, "attributes", 10, (void **) &n->attributes , &n->attributeCount, sizeof(*n->attributes), newSVpvs("WebGPU::Direct::VertexAttribute"));
+  _pack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride, NULL);
+  _pack_enum(aTHX_ h, "stepMode", 8,  &n->stepMode, newSVpvs("WGPUVertexStepMode"));
+  _pack_objarray(aTHX_ h, "attributes", 10, (void **) &n->attributes, &n->attributeCount, sizeof(*n->attributes), newSVpvs("WebGPU::Direct::VertexAttribute"));
 
   
 }
@@ -4253,10 +4117,10 @@ void WebGPU__Direct__VertexBufferLayout__unpack( SV *THIS )
     Newxz(n, 1, WGPUVertexBufferLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride );
-  _unpack_enum(aTHX_ h, "stepMode", 8,  &n->stepMode );
-  _unpack_size_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount );
-  _unpack_objarray(aTHX_ h, "attributes", 10, (void **) &n->attributes , &n->attributeCount, sizeof(*n->attributes), newSVpvs("WebGPU::Direct::VertexAttribute"));
+  _unpack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride, NULL);
+  _unpack_enum(aTHX_ h, "stepMode", 8,  &n->stepMode, newSVpvs("WGPUVertexStepMode"));
+  _unpack_size_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount, NULL);
+  _unpack_objarray(aTHX_ h, "attributes", 10, (void **) &n->attributes, &n->attributeCount, sizeof(*n->attributes), newSVpvs("WebGPU::Direct::VertexAttribute"));
 
 }
 
@@ -4289,12 +4153,9 @@ void WebGPU__Direct__BindGroupLayoutDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupLayoutDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
-  _pack_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
 
   
 }
@@ -4315,10 +4176,10 @@ void WebGPU__Direct__BindGroupLayoutDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUBindGroupLayoutDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount );
-  _unpack_objptr(aTHX_ h, "entries", 7, (void **) &n->entries , newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount, NULL);
+  _unpack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
 
 }
 
@@ -4351,12 +4212,10 @@ void WebGPU__Direct__ColorTargetState__pack( SV *THIS )
     Newxz(n, 1, WGPUColorTargetState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_enum(aTHX_ h, "format", 6,  &n->format );
-  _pack_objptr(aTHX_ h, "blend", 5, (void **) &n->blend , newSVpvs("WebGPU::Direct::BlendState"));
-  _pack_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _pack_objptr(aTHX_ h, "blend", 5, (void **) &n->blend, newSVpvs("WebGPU::Direct::BlendState"));
+  _pack_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL);
 
   
 }
@@ -4377,10 +4236,10 @@ void WebGPU__Direct__ColorTargetState__unpack( SV *THIS )
     Newxz(n, 1, WGPUColorTargetState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_enum(aTHX_ h, "format", 6,  &n->format );
-  _unpack_objptr(aTHX_ h, "blend", 5, (void **) &n->blend , newSVpvs("WebGPU::Direct::BlendState"));
-  _unpack_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WGPUTextureFormat"));
+  _unpack_objptr(aTHX_ h, "blend", 5, (void **) &n->blend, newSVpvs("WebGPU::Direct::BlendState"));
+  _unpack_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL);
 
 }
 
@@ -4413,12 +4272,10 @@ void WebGPU__Direct__ComputePipelineDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUComputePipelineDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
-  _pack_obj(aTHX_ h, "compute", 7,  &n->compute , sizeof(n->compute), newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _pack_obj(aTHX_ h, "compute", 7,  &n->compute, sizeof(n->compute), newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
 
   
 }
@@ -4439,10 +4296,10 @@ void WebGPU__Direct__ComputePipelineDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUComputePipelineDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
-  _unpack_obj(aTHX_ h, "compute", 7,  &n->compute , sizeof(n->compute), newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _unpack_obj(aTHX_ h, "compute", 7,  &n->compute, sizeof(n->compute), newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
 
 }
 
@@ -4475,18 +4332,16 @@ void WebGPU__Direct__DeviceDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPUDeviceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_size_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount );
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_size_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount, NULL);
   // "requiredFeatures" is a ptr type WGPUFeatureName, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "requiredFeatures", 16,  &n->requiredFeatures );
-  _pack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits , newSVpvs("WebGPU::Direct::RequiredLimits"));
-  _pack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue , sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
-  _pack_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback );
+  _pack_void(aTHX_ h, "requiredFeatures", 16,  &n->requiredFeatures, newSVpvs("WGPUFeatureName"));
+  _pack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::RequiredLimits"));
+  _pack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
+  _pack_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
   // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata );
+  _pack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata, NULL);
 
   
 }
@@ -4507,16 +4362,16 @@ void WebGPU__Direct__DeviceDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPUDeviceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_size_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount );
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_size_t(aTHX_ h, "requiredFeaturesCount", 21,  &n->requiredFeaturesCount, NULL);
   // "requiredFeatures" is a ptr type WGPUFeatureName, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "requiredFeatures", 16,  &n->requiredFeatures );
-  _unpack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits , newSVpvs("WebGPU::Direct::RequiredLimits"));
-  _unpack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue , sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
-  _unpack_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback );
+  _unpack_void(aTHX_ h, "requiredFeatures", 16,  &n->requiredFeatures, newSVpvs("WGPUFeatureName"));
+  _unpack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::RequiredLimits"));
+  _unpack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
+  _unpack_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
   // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata );
+  _unpack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata, NULL);
 
 }
 
@@ -4549,16 +4404,12 @@ void WebGPU__Direct__RenderPassDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPURenderPassDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_size_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount );
-  _pack_objarray(aTHX_ h, "colorAttachments", 16, (void **) &n->colorAttachments , &n->colorAttachmentCount, sizeof(*n->colorAttachments), newSVpvs("WebGPU::Direct::RenderPassColorAttachment"));
-  _pack_objptr(aTHX_ h, "depthStencilAttachment", 22, (void **) &n->depthStencilAttachment , newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"));
-  _pack_opaque(aTHX_ h, "occlusionQuerySet", 17, (void **) &n->occlusionQuerySet , newSVpvs("WebGPU::Direct::QuerySet"));
-  _pack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
-  _pack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::RenderPassTimestampWrite"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_objarray(aTHX_ h, "colorAttachments", 16, (void **) &n->colorAttachments, &n->colorAttachmentCount, sizeof(*n->colorAttachments), newSVpvs("WebGPU::Direct::RenderPassColorAttachment"));
+  _pack_objptr(aTHX_ h, "depthStencilAttachment", 22, (void **) &n->depthStencilAttachment, newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"));
+  _pack_opaque(aTHX_ h, "occlusionQuerySet", 17, (void **) &n->occlusionQuerySet, newSVpvs("WebGPU::Direct::QuerySet"));
+  _pack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites, &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::RenderPassTimestampWrite"));
 
   
 }
@@ -4579,14 +4430,14 @@ void WebGPU__Direct__RenderPassDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderPassDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_size_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount );
-  _unpack_objarray(aTHX_ h, "colorAttachments", 16, (void **) &n->colorAttachments , &n->colorAttachmentCount, sizeof(*n->colorAttachments), newSVpvs("WebGPU::Direct::RenderPassColorAttachment"));
-  _unpack_objptr(aTHX_ h, "depthStencilAttachment", 22, (void **) &n->depthStencilAttachment , newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"));
-  _unpack_opaque(aTHX_ h, "occlusionQuerySet", 17, (void **) &n->occlusionQuerySet , newSVpvs("WebGPU::Direct::QuerySet"));
-  _unpack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount );
-  _unpack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites , &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::RenderPassTimestampWrite"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_size_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount, NULL);
+  _unpack_objarray(aTHX_ h, "colorAttachments", 16, (void **) &n->colorAttachments, &n->colorAttachmentCount, sizeof(*n->colorAttachments), newSVpvs("WebGPU::Direct::RenderPassColorAttachment"));
+  _unpack_objptr(aTHX_ h, "depthStencilAttachment", 22, (void **) &n->depthStencilAttachment, newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"));
+  _unpack_opaque(aTHX_ h, "occlusionQuerySet", 17, (void **) &n->occlusionQuerySet, newSVpvs("WebGPU::Direct::QuerySet"));
+  _unpack_size_t(aTHX_ h, "timestampWriteCount", 19,  &n->timestampWriteCount, NULL);
+  _unpack_objarray(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites, &n->timestampWriteCount, sizeof(*n->timestampWrites), newSVpvs("WebGPU::Direct::RenderPassTimestampWrite"));
 
 }
 
@@ -4619,15 +4470,11 @@ void WebGPU__Direct__VertexState__pack( SV *THIS )
     Newxz(n, 1, WGPUVertexState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _pack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
-  _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants , &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
-  _pack_size_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount );
-  _pack_objarray(aTHX_ h, "buffers", 7, (void **) &n->buffers , &n->bufferCount, sizeof(*n->buffers), newSVpvs("WebGPU::Direct::VertexBufferLayout"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
+  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
+  _pack_objarray(aTHX_ h, "buffers", 7, (void **) &n->buffers, &n->bufferCount, sizeof(*n->buffers), newSVpvs("WebGPU::Direct::VertexBufferLayout"));
 
   
 }
@@ -4648,13 +4495,13 @@ void WebGPU__Direct__VertexState__unpack( SV *THIS )
     Newxz(n, 1, WGPUVertexState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
-  _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants , &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
-  _unpack_size_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount );
-  _unpack_objarray(aTHX_ h, "buffers", 7, (void **) &n->buffers , &n->bufferCount, sizeof(*n->buffers), newSVpvs("WebGPU::Direct::VertexBufferLayout"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
+  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount, NULL);
+  _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
+  _unpack_size_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount, NULL);
+  _unpack_objarray(aTHX_ h, "buffers", 7, (void **) &n->buffers, &n->bufferCount, sizeof(*n->buffers), newSVpvs("WebGPU::Direct::VertexBufferLayout"));
 
 }
 
@@ -4687,15 +4534,11 @@ void WebGPU__Direct__FragmentState__pack( SV *THIS )
     Newxz(n, 1, WGPUFragmentState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _pack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
-  _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants , &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
-  _pack_size_t(aTHX_ h, "targetCount", 11,  &n->targetCount );
-  _pack_objarray(aTHX_ h, "targets", 7, (void **) &n->targets , &n->targetCount, sizeof(*n->targets), newSVpvs("WebGPU::Direct::ColorTargetState"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
+  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
+  _pack_objarray(aTHX_ h, "targets", 7, (void **) &n->targets, &n->targetCount, sizeof(*n->targets), newSVpvs("WebGPU::Direct::ColorTargetState"));
 
   
 }
@@ -4716,13 +4559,13 @@ void WebGPU__Direct__FragmentState__unpack( SV *THIS )
     Newxz(n, 1, WGPUFragmentState);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module , newSVpvs("WebGPU::Direct::ShaderModule"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint );
-  _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount );
-  _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants , &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
-  _unpack_size_t(aTHX_ h, "targetCount", 11,  &n->targetCount );
-  _unpack_objarray(aTHX_ h, "targets", 7, (void **) &n->targets , &n->targetCount, sizeof(*n->targets), newSVpvs("WebGPU::Direct::ColorTargetState"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
+  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount, NULL);
+  _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
+  _unpack_size_t(aTHX_ h, "targetCount", 11,  &n->targetCount, NULL);
+  _unpack_objarray(aTHX_ h, "targets", 7, (void **) &n->targets, &n->targetCount, sizeof(*n->targets), newSVpvs("WebGPU::Direct::ColorTargetState"));
 
 }
 
@@ -4755,16 +4598,14 @@ void WebGPU__Direct__RenderPipelineDescriptor__pack( SV *THIS )
     Newxz(n, 1, WGPURenderPipelineDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  SV **f;
-  SV *fp;
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label );
-  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
-  _pack_obj(aTHX_ h, "vertex", 6,  &n->vertex , sizeof(n->vertex), newSVpvs("WebGPU::Direct::VertexState"));
-  _pack_obj(aTHX_ h, "primitive", 9,  &n->primitive , sizeof(n->primitive), newSVpvs("WebGPU::Direct::PrimitiveState"));
-  _pack_objptr(aTHX_ h, "depthStencil", 12, (void **) &n->depthStencil , newSVpvs("WebGPU::Direct::DepthStencilState"));
-  _pack_obj(aTHX_ h, "multisample", 11,  &n->multisample , sizeof(n->multisample), newSVpvs("WebGPU::Direct::MultisampleState"));
-  _pack_objptr(aTHX_ h, "fragment", 8, (void **) &n->fragment , newSVpvs("WebGPU::Direct::FragmentState"));
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _pack_obj(aTHX_ h, "vertex", 6,  &n->vertex, sizeof(n->vertex), newSVpvs("WebGPU::Direct::VertexState"));
+  _pack_obj(aTHX_ h, "primitive", 9,  &n->primitive, sizeof(n->primitive), newSVpvs("WebGPU::Direct::PrimitiveState"));
+  _pack_objptr(aTHX_ h, "depthStencil", 12, (void **) &n->depthStencil, newSVpvs("WebGPU::Direct::DepthStencilState"));
+  _pack_obj(aTHX_ h, "multisample", 11,  &n->multisample, sizeof(n->multisample), newSVpvs("WebGPU::Direct::MultisampleState"));
+  _pack_objptr(aTHX_ h, "fragment", 8, (void **) &n->fragment, newSVpvs("WebGPU::Direct::FragmentState"));
 
   
 }
@@ -4785,14 +4626,14 @@ void WebGPU__Direct__RenderPipelineDescriptor__unpack( SV *THIS )
     Newxz(n, 1, WGPURenderPipelineDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain , newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label );
-  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout , newSVpvs("WebGPU::Direct::PipelineLayout"));
-  _unpack_obj(aTHX_ h, "vertex", 6,  &n->vertex , sizeof(n->vertex), newSVpvs("WebGPU::Direct::VertexState"));
-  _unpack_obj(aTHX_ h, "primitive", 9,  &n->primitive , sizeof(n->primitive), newSVpvs("WebGPU::Direct::PrimitiveState"));
-  _unpack_objptr(aTHX_ h, "depthStencil", 12, (void **) &n->depthStencil , newSVpvs("WebGPU::Direct::DepthStencilState"));
-  _unpack_obj(aTHX_ h, "multisample", 11,  &n->multisample , sizeof(n->multisample), newSVpvs("WebGPU::Direct::MultisampleState"));
-  _unpack_objptr(aTHX_ h, "fragment", 8, (void **) &n->fragment , newSVpvs("WebGPU::Direct::FragmentState"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _unpack_obj(aTHX_ h, "vertex", 6,  &n->vertex, sizeof(n->vertex), newSVpvs("WebGPU::Direct::VertexState"));
+  _unpack_obj(aTHX_ h, "primitive", 9,  &n->primitive, sizeof(n->primitive), newSVpvs("WebGPU::Direct::PrimitiveState"));
+  _unpack_objptr(aTHX_ h, "depthStencil", 12, (void **) &n->depthStencil, newSVpvs("WebGPU::Direct::DepthStencilState"));
+  _unpack_obj(aTHX_ h, "multisample", 11,  &n->multisample, sizeof(n->multisample), newSVpvs("WebGPU::Direct::MultisampleState"));
+  _unpack_objptr(aTHX_ h, "fragment", 8, (void **) &n->fragment, newSVpvs("WebGPU::Direct::FragmentState"));
 
 }
 

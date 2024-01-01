@@ -2,167 +2,134 @@ WGPUAdapter                                                     T_FETCH
 WGPUAdapter *                                                   T_FETCHPTR
 WGPUAdapter const *                                             T_FETCHPTR
 struct WGPUAdapter const *                                      T_FETCHPTR
-WebGPU::Direct::Adapter                                         T_VOID
 WGPUBindGroup                                                   T_FETCH
 WGPUBindGroup *                                                 T_FETCHPTR
 WGPUBindGroup const *                                           T_FETCHPTR
 struct WGPUBindGroup const *                                    T_FETCHPTR
-WebGPU::Direct::BindGroup                                       T_VOID
 WGPUBindGroupLayout                                             T_FETCH
 WGPUBindGroupLayout *                                           T_FETCHPTR
 WGPUBindGroupLayout const *                                     T_FETCHPTR
 struct WGPUBindGroupLayout const *                              T_FETCHPTR
-WebGPU::Direct::BindGroupLayout                                 T_VOID
 WGPUBuffer                                                      T_FETCH
 WGPUBuffer *                                                    T_FETCHPTR
 WGPUBuffer const *                                              T_FETCHPTR
 struct WGPUBuffer const *                                       T_FETCHPTR
-WebGPU::Direct::Buffer                                          T_VOID
 WGPUCommandBuffer                                               T_FETCH
 WGPUCommandBuffer *                                             T_FETCHPTR
 WGPUCommandBuffer const *                                       T_FETCHPTR
 struct WGPUCommandBuffer const *                                T_FETCHPTR
-WebGPU::Direct::CommandBuffer                                   T_VOID
 WGPUCommandEncoder                                              T_FETCH
 WGPUCommandEncoder *                                            T_FETCHPTR
 WGPUCommandEncoder const *                                      T_FETCHPTR
 struct WGPUCommandEncoder const *                               T_FETCHPTR
-WebGPU::Direct::CommandEncoder                                  T_VOID
 WGPUComputePassEncoder                                          T_FETCH
 WGPUComputePassEncoder *                                        T_FETCHPTR
 WGPUComputePassEncoder const *                                  T_FETCHPTR
 struct WGPUComputePassEncoder const *                           T_FETCHPTR
-WebGPU::Direct::ComputePassEncoder                              T_VOID
 WGPUComputePipeline                                             T_FETCH
 WGPUComputePipeline *                                           T_FETCHPTR
 WGPUComputePipeline const *                                     T_FETCHPTR
 struct WGPUComputePipeline const *                              T_FETCHPTR
-WebGPU::Direct::ComputePipeline                                 T_VOID
 WGPUDevice                                                      T_FETCH
 WGPUDevice *                                                    T_FETCHPTR
 WGPUDevice const *                                              T_FETCHPTR
 struct WGPUDevice const *                                       T_FETCHPTR
-WebGPU::Direct::Device                                          T_VOID
 WGPUInstance                                                    T_FETCH
 WGPUInstance *                                                  T_FETCHPTR
 WGPUInstance const *                                            T_FETCHPTR
 struct WGPUInstance const *                                     T_FETCHPTR
-WebGPU::Direct::Instance                                        T_VOID
 WGPUPipelineLayout                                              T_FETCH
 WGPUPipelineLayout *                                            T_FETCHPTR
 WGPUPipelineLayout const *                                      T_FETCHPTR
 struct WGPUPipelineLayout const *                               T_FETCHPTR
-WebGPU::Direct::PipelineLayout                                  T_VOID
 WGPUQuerySet                                                    T_FETCH
 WGPUQuerySet *                                                  T_FETCHPTR
 WGPUQuerySet const *                                            T_FETCHPTR
 struct WGPUQuerySet const *                                     T_FETCHPTR
-WebGPU::Direct::QuerySet                                        T_VOID
 WGPUQueue                                                       T_FETCH
 WGPUQueue *                                                     T_FETCHPTR
 WGPUQueue const *                                               T_FETCHPTR
 struct WGPUQueue const *                                        T_FETCHPTR
-WebGPU::Direct::Queue                                           T_VOID
 WGPURenderBundle                                                T_FETCH
 WGPURenderBundle *                                              T_FETCHPTR
 WGPURenderBundle const *                                        T_FETCHPTR
 struct WGPURenderBundle const *                                 T_FETCHPTR
-WebGPU::Direct::RenderBundle                                    T_VOID
 WGPURenderBundleEncoder                                         T_FETCH
 WGPURenderBundleEncoder *                                       T_FETCHPTR
 WGPURenderBundleEncoder const *                                 T_FETCHPTR
 struct WGPURenderBundleEncoder const *                          T_FETCHPTR
-WebGPU::Direct::RenderBundleEncoder                             T_VOID
 WGPURenderPassEncoder                                           T_FETCH
 WGPURenderPassEncoder *                                         T_FETCHPTR
 WGPURenderPassEncoder const *                                   T_FETCHPTR
 struct WGPURenderPassEncoder const *                            T_FETCHPTR
-WebGPU::Direct::RenderPassEncoder                               T_VOID
 WGPURenderPipeline                                              T_FETCH
 WGPURenderPipeline *                                            T_FETCHPTR
 WGPURenderPipeline const *                                      T_FETCHPTR
 struct WGPURenderPipeline const *                               T_FETCHPTR
-WebGPU::Direct::RenderPipeline                                  T_VOID
 WGPUSampler                                                     T_FETCH
 WGPUSampler *                                                   T_FETCHPTR
 WGPUSampler const *                                             T_FETCHPTR
 struct WGPUSampler const *                                      T_FETCHPTR
-WebGPU::Direct::Sampler                                         T_VOID
 WGPUShaderModule                                                T_FETCH
 WGPUShaderModule *                                              T_FETCHPTR
 WGPUShaderModule const *                                        T_FETCHPTR
 struct WGPUShaderModule const *                                 T_FETCHPTR
-WebGPU::Direct::ShaderModule                                    T_VOID
 WGPUSurface                                                     T_FETCH
 WGPUSurface *                                                   T_FETCHPTR
 WGPUSurface const *                                             T_FETCHPTR
 struct WGPUSurface const *                                      T_FETCHPTR
-WebGPU::Direct::Surface                                         T_VOID
 WGPUSwapChain                                                   T_FETCH
 WGPUSwapChain *                                                 T_FETCHPTR
 WGPUSwapChain const *                                           T_FETCHPTR
 struct WGPUSwapChain const *                                    T_FETCHPTR
-WebGPU::Direct::SwapChain                                       T_VOID
 WGPUTexture                                                     T_FETCH
 WGPUTexture *                                                   T_FETCHPTR
 WGPUTexture const *                                             T_FETCHPTR
 struct WGPUTexture const *                                      T_FETCHPTR
-WebGPU::Direct::Texture                                         T_VOID
 WGPUTextureView                                                 T_FETCH
 WGPUTextureView *                                               T_FETCHPTR
 WGPUTextureView const *                                         T_FETCHPTR
 struct WGPUTextureView const *                                  T_FETCHPTR
-WebGPU::Direct::TextureView                                     T_VOID
 WGPUBufferMapCallback                                           T_FETCH
 WGPUBufferMapCallback *                                         T_FETCHPTR
 WGPUBufferMapCallback const *                                   T_FETCHPTR
 struct WGPUBufferMapCallback const *                            T_FETCHPTR
-WebGPU::Direct::BufferMapCallback                               T_VOID
 WGPUCompilationInfoCallback                                     T_FETCH
 WGPUCompilationInfoCallback *                                   T_FETCHPTR
 WGPUCompilationInfoCallback const *                             T_FETCHPTR
 struct WGPUCompilationInfoCallback const *                      T_FETCHPTR
-WebGPU::Direct::CompilationInfoCallback                         T_VOID
 WGPUCreateComputePipelineAsyncCallback                          T_FETCH
 WGPUCreateComputePipelineAsyncCallback *                        T_FETCHPTR
 WGPUCreateComputePipelineAsyncCallback const *                  T_FETCHPTR
 struct WGPUCreateComputePipelineAsyncCallback const *           T_FETCHPTR
-WebGPU::Direct::CreateComputePipelineAsyncCallback              T_VOID
 WGPUCreateRenderPipelineAsyncCallback                           T_FETCH
 WGPUCreateRenderPipelineAsyncCallback *                         T_FETCHPTR
 WGPUCreateRenderPipelineAsyncCallback const *                   T_FETCHPTR
 struct WGPUCreateRenderPipelineAsyncCallback const *            T_FETCHPTR
-WebGPU::Direct::CreateRenderPipelineAsyncCallback               T_VOID
 WGPUDeviceLostCallback                                          T_FETCH
 WGPUDeviceLostCallback *                                        T_FETCHPTR
 WGPUDeviceLostCallback const *                                  T_FETCHPTR
 struct WGPUDeviceLostCallback const *                           T_FETCHPTR
-WebGPU::Direct::DeviceLostCallback                              T_VOID
 WGPUErrorCallback                                               T_FETCH
 WGPUErrorCallback *                                             T_FETCHPTR
 WGPUErrorCallback const *                                       T_FETCHPTR
 struct WGPUErrorCallback const *                                T_FETCHPTR
-WebGPU::Direct::ErrorCallback                                   T_VOID
 WGPUProc                                                        T_FETCH
 WGPUProc *                                                      T_FETCHPTR
 WGPUProc const *                                                T_FETCHPTR
 struct WGPUProc const *                                         T_FETCHPTR
-WebGPU::Direct::Proc                                            T_VOID
 WGPUQueueWorkDoneCallback                                       T_FETCH
 WGPUQueueWorkDoneCallback *                                     T_FETCHPTR
 WGPUQueueWorkDoneCallback const *                               T_FETCHPTR
 struct WGPUQueueWorkDoneCallback const *                        T_FETCHPTR
-WebGPU::Direct::QueueWorkDoneCallback                           T_VOID
 WGPURequestAdapterCallback                                      T_FETCH
 WGPURequestAdapterCallback *                                    T_FETCHPTR
 WGPURequestAdapterCallback const *                              T_FETCHPTR
 struct WGPURequestAdapterCallback const *                       T_FETCHPTR
-WebGPU::Direct::RequestAdapterCallback                          T_VOID
 WGPURequestDeviceCallback                                       T_FETCH
 WGPURequestDeviceCallback *                                     T_FETCHPTR
 WGPURequestDeviceCallback const *                               T_FETCHPTR
 struct WGPURequestDeviceCallback const *                        T_FETCHPTR
-WebGPU::Direct::RequestDeviceCallback                           T_VOID
 WGPUChainedStruct                                               T_FETCH
 WGPUChainedStruct *                                             T_FETCHPTR
 WGPUChainedStruct const *                                       T_FETCHPTR
@@ -718,6 +685,8 @@ uint64_t const *                                                T_IV
 void                                                            T_VOID
 void *                                                          T_VOID
 void const *                                                    T_VOID
+WebGPU::Direct::MappedBuffer                                    T_FETCHPTR
+
 # We do the tr/:/_/ in the output because ParseXS doesn't for outputs
 INPUT
 T_VOID

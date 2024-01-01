@@ -876,7 +876,7 @@ package WebGPU::Direct::VertexStepMode {
 
 package WebGPU::Direct::Adapter {
     push @WebGPU::Direct::Adapter::ISA, "WebGPU::Direct::Opaque";
-require WebGPU::Direct::Adapter;
+    require WebGPU::Direct::Adapter;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -916,7 +916,7 @@ package WebGPU::Direct::BindGroupLayout {
 
 package WebGPU::Direct::Buffer {
     push @WebGPU::Direct::Buffer::ISA, "WebGPU::Direct::Opaque";
-require WebGPU::Direct::Buffer;
+    require WebGPU::Direct::Buffer;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -943,7 +943,7 @@ package WebGPU::Direct::CommandBuffer {
 
 package WebGPU::Direct::CommandEncoder {
     push @WebGPU::Direct::CommandEncoder::ISA, "WebGPU::Direct::Opaque";
-require WebGPU::Direct::CommandEncoder;
+    require WebGPU::Direct::CommandEncoder;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -983,7 +983,7 @@ package WebGPU::Direct::ComputePipeline {
 
 package WebGPU::Direct::Device {
     push @WebGPU::Direct::Device::ISA, "WebGPU::Direct::Opaque";
-require WebGPU::Direct::Device;
+    require WebGPU::Direct::Device;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -997,7 +997,7 @@ require WebGPU::Direct::Device;
 
 package WebGPU::Direct::Instance {
     push @WebGPU::Direct::Instance::ISA, "WebGPU::Direct::Opaque";
-require WebGPU::Direct::Instance;
+    require WebGPU::Direct::Instance;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1076,7 +1076,7 @@ package WebGPU::Direct::RenderBundleEncoder {
 
 package WebGPU::Direct::RenderPassEncoder {
     push @WebGPU::Direct::RenderPassEncoder::ISA, "WebGPU::Direct::Opaque";
-require WebGPU::Direct::RenderPassEncoder;
+    require WebGPU::Direct::RenderPassEncoder;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1155,7 +1155,7 @@ package WebGPU::Direct::SwapChain {
 
 package WebGPU::Direct::Texture {
     push @WebGPU::Direct::Texture::ISA, "WebGPU::Direct::Opaque";
-require WebGPU::Direct::Texture;
+    require WebGPU::Direct::Texture;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1270,6 +1270,8 @@ package WebGPU::Direct::ChainedStruct {
           if !$class->isa("WebGPU::Direct::ChainedStruct");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1287,6 +1289,8 @@ package WebGPU::Direct::ChainedStructOut {
           if !$class->isa("WebGPU::Direct::ChainedStructOut");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1304,6 +1308,8 @@ package WebGPU::Direct::AdapterProperties {
           if !$class->isa("WebGPU::Direct::AdapterProperties");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1313,6 +1319,7 @@ package WebGPU::Direct::AdapterProperties {
 
 package WebGPU::Direct::BindGroupEntry {
     
+    require WebGPU::Direct::BindGroupEntry;
     my $default = {};
 
     sub new {
@@ -1321,6 +1328,8 @@ package WebGPU::Direct::BindGroupEntry {
           if !$class->isa("WebGPU::Direct::BindGroupEntry");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1338,6 +1347,8 @@ package WebGPU::Direct::BlendComponent {
           if !$class->isa("WebGPU::Direct::BlendComponent");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1355,6 +1366,8 @@ package WebGPU::Direct::BufferBindingLayout {
           if !$class->isa("WebGPU::Direct::BufferBindingLayout");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1372,6 +1385,8 @@ package WebGPU::Direct::BufferDescriptor {
           if !$class->isa("WebGPU::Direct::BufferDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1389,6 +1404,8 @@ package WebGPU::Direct::Color {
           if !$class->isa("WebGPU::Direct::Color");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1406,6 +1423,8 @@ package WebGPU::Direct::CommandBufferDescriptor {
           if !$class->isa("WebGPU::Direct::CommandBufferDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1423,6 +1442,8 @@ package WebGPU::Direct::CommandEncoderDescriptor {
           if !$class->isa("WebGPU::Direct::CommandEncoderDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1440,6 +1461,8 @@ package WebGPU::Direct::CompilationMessage {
           if !$class->isa("WebGPU::Direct::CompilationMessage");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1457,6 +1480,8 @@ package WebGPU::Direct::ComputePassTimestampWrite {
           if !$class->isa("WebGPU::Direct::ComputePassTimestampWrite");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1474,6 +1499,8 @@ package WebGPU::Direct::ConstantEntry {
           if !$class->isa("WebGPU::Direct::ConstantEntry");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1491,6 +1518,8 @@ package WebGPU::Direct::Extent3D {
           if !$class->isa("WebGPU::Direct::Extent3D");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1508,6 +1537,8 @@ package WebGPU::Direct::InstanceDescriptor {
           if !$class->isa("WebGPU::Direct::InstanceDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1525,6 +1556,8 @@ package WebGPU::Direct::Limits {
           if !$class->isa("WebGPU::Direct::Limits");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1546,6 +1579,8 @@ package WebGPU::Direct::MultisampleState {
           if !$class->isa("WebGPU::Direct::MultisampleState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1563,6 +1598,8 @@ package WebGPU::Direct::Origin3D {
           if !$class->isa("WebGPU::Direct::Origin3D");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1580,6 +1617,8 @@ package WebGPU::Direct::PipelineLayoutDescriptor {
           if !$class->isa("WebGPU::Direct::PipelineLayoutDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1597,6 +1636,8 @@ package WebGPU::Direct::PrimitiveDepthClipControl {
           if !$class->isa("WebGPU::Direct::PrimitiveDepthClipControl");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1614,6 +1655,8 @@ package WebGPU::Direct::PrimitiveState {
           if !$class->isa("WebGPU::Direct::PrimitiveState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1631,6 +1674,8 @@ package WebGPU::Direct::QuerySetDescriptor {
           if !$class->isa("WebGPU::Direct::QuerySetDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1648,6 +1693,8 @@ package WebGPU::Direct::QueueDescriptor {
           if !$class->isa("WebGPU::Direct::QueueDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1665,6 +1712,8 @@ package WebGPU::Direct::RenderBundleDescriptor {
           if !$class->isa("WebGPU::Direct::RenderBundleDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1682,6 +1731,8 @@ package WebGPU::Direct::RenderBundleEncoderDescriptor {
           if !$class->isa("WebGPU::Direct::RenderBundleEncoderDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1699,6 +1750,8 @@ package WebGPU::Direct::RenderPassDepthStencilAttachment {
           if !$class->isa("WebGPU::Direct::RenderPassDepthStencilAttachment");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1716,6 +1769,8 @@ package WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
           if !$class->isa("WebGPU::Direct::RenderPassDescriptorMaxDrawCount");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1733,6 +1788,8 @@ package WebGPU::Direct::RenderPassTimestampWrite {
           if !$class->isa("WebGPU::Direct::RenderPassTimestampWrite");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1750,6 +1807,8 @@ package WebGPU::Direct::RequestAdapterOptions {
           if !$class->isa("WebGPU::Direct::RequestAdapterOptions");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1767,6 +1826,8 @@ package WebGPU::Direct::SamplerBindingLayout {
           if !$class->isa("WebGPU::Direct::SamplerBindingLayout");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1784,6 +1845,8 @@ package WebGPU::Direct::SamplerDescriptor {
           if !$class->isa("WebGPU::Direct::SamplerDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1801,6 +1864,8 @@ package WebGPU::Direct::ShaderModuleCompilationHint {
           if !$class->isa("WebGPU::Direct::ShaderModuleCompilationHint");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1818,6 +1883,8 @@ package WebGPU::Direct::ShaderModuleSPIRVDescriptor {
           if !$class->isa("WebGPU::Direct::ShaderModuleSPIRVDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1835,6 +1902,8 @@ package WebGPU::Direct::ShaderModuleWGSLDescriptor {
           if !$class->isa("WebGPU::Direct::ShaderModuleWGSLDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1846,9 +1915,9 @@ package WebGPU::Direct::StencilFaceState {
     
     my $default = {
              'compare' => WebGPU::Direct::CompareFunction->Always,
-             'depthFailOp' => \'StencilOperation->Keep',
-             'failOp' => \'StencilOperation->Keep',
-             'passOp' => \'StencilOperation->Keep',
+             'depthFailOp' => WebGPU::Direct::StencilOperation->Keep,
+             'failOp' => WebGPU::Direct::StencilOperation->Keep,
+             'passOp' => WebGPU::Direct::StencilOperation->Keep,
            };
 
     sub new {
@@ -1857,6 +1926,8 @@ package WebGPU::Direct::StencilFaceState {
           if !$class->isa("WebGPU::Direct::StencilFaceState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1874,6 +1945,8 @@ package WebGPU::Direct::StorageTextureBindingLayout {
           if !$class->isa("WebGPU::Direct::StorageTextureBindingLayout");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1891,6 +1964,8 @@ package WebGPU::Direct::SurfaceDescriptor {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1908,6 +1983,8 @@ package WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1925,6 +2002,8 @@ package WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1942,6 +2021,8 @@ package WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromMetalLayer");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1959,6 +2040,8 @@ package WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWaylandSurface");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1976,6 +2059,8 @@ package WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWindowsHWND");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -1993,6 +2078,8 @@ package WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXcbWindow");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2010,6 +2097,8 @@ package WebGPU::Direct::SurfaceDescriptorFromXlibWindow {
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXlibWindow");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2027,6 +2116,8 @@ package WebGPU::Direct::SwapChainDescriptor {
           if !$class->isa("WebGPU::Direct::SwapChainDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2044,6 +2135,8 @@ package WebGPU::Direct::TextureBindingLayout {
           if !$class->isa("WebGPU::Direct::TextureBindingLayout");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2061,6 +2154,8 @@ package WebGPU::Direct::TextureDataLayout {
           if !$class->isa("WebGPU::Direct::TextureDataLayout");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2082,6 +2177,8 @@ package WebGPU::Direct::TextureViewDescriptor {
           if !$class->isa("WebGPU::Direct::TextureViewDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2099,6 +2196,8 @@ package WebGPU::Direct::VertexAttribute {
           if !$class->isa("WebGPU::Direct::VertexAttribute");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2116,6 +2215,8 @@ package WebGPU::Direct::BindGroupDescriptor {
           if !$class->isa("WebGPU::Direct::BindGroupDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2133,6 +2234,8 @@ package WebGPU::Direct::BindGroupLayoutEntry {
           if !$class->isa("WebGPU::Direct::BindGroupLayoutEntry");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2150,6 +2253,8 @@ package WebGPU::Direct::BlendState {
           if !$class->isa("WebGPU::Direct::BlendState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2167,6 +2272,8 @@ package WebGPU::Direct::CompilationInfo {
           if !$class->isa("WebGPU::Direct::CompilationInfo");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2184,6 +2291,8 @@ package WebGPU::Direct::ComputePassDescriptor {
           if !$class->isa("WebGPU::Direct::ComputePassDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2207,6 +2316,8 @@ package WebGPU::Direct::DepthStencilState {
           if !$class->isa("WebGPU::Direct::DepthStencilState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2224,6 +2335,8 @@ package WebGPU::Direct::ImageCopyBuffer {
           if !$class->isa("WebGPU::Direct::ImageCopyBuffer");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2241,6 +2354,8 @@ package WebGPU::Direct::ImageCopyTexture {
           if !$class->isa("WebGPU::Direct::ImageCopyTexture");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2258,6 +2373,8 @@ package WebGPU::Direct::ProgrammableStageDescriptor {
           if !$class->isa("WebGPU::Direct::ProgrammableStageDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2275,6 +2392,8 @@ package WebGPU::Direct::RenderPassColorAttachment {
           if !$class->isa("WebGPU::Direct::RenderPassColorAttachment");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2292,6 +2411,8 @@ package WebGPU::Direct::RequiredLimits {
           if !$class->isa("WebGPU::Direct::RequiredLimits");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2309,6 +2430,8 @@ package WebGPU::Direct::ShaderModuleDescriptor {
           if !$class->isa("WebGPU::Direct::ShaderModuleDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2326,6 +2449,8 @@ package WebGPU::Direct::SupportedLimits {
           if !$class->isa("WebGPU::Direct::SupportedLimits");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2351,6 +2476,8 @@ package WebGPU::Direct::TextureDescriptor {
           if !$class->isa("WebGPU::Direct::TextureDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2368,6 +2495,8 @@ package WebGPU::Direct::VertexBufferLayout {
           if !$class->isa("WebGPU::Direct::VertexBufferLayout");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2385,6 +2514,8 @@ package WebGPU::Direct::BindGroupLayoutDescriptor {
           if !$class->isa("WebGPU::Direct::BindGroupLayoutDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2405,6 +2536,8 @@ package WebGPU::Direct::ColorTargetState {
           if !$class->isa("WebGPU::Direct::ColorTargetState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2422,6 +2555,8 @@ package WebGPU::Direct::ComputePipelineDescriptor {
           if !$class->isa("WebGPU::Direct::ComputePipelineDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2439,6 +2574,8 @@ package WebGPU::Direct::DeviceDescriptor {
           if !$class->isa("WebGPU::Direct::DeviceDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2456,6 +2593,8 @@ package WebGPU::Direct::RenderPassDescriptor {
           if !$class->isa("WebGPU::Direct::RenderPassDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2473,6 +2612,8 @@ package WebGPU::Direct::VertexState {
           if !$class->isa("WebGPU::Direct::VertexState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2490,6 +2631,8 @@ package WebGPU::Direct::FragmentState {
           if !$class->isa("WebGPU::Direct::FragmentState");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
@@ -2507,6 +2650,8 @@ package WebGPU::Direct::RenderPipelineDescriptor {
           if !$class->isa("WebGPU::Direct::RenderPipelineDescriptor");
         $class = ref($class) ? ref($class) : $class;
         my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        $result = $class->BUILDARGS($result)
+          if $class->can('BUILDARGS');
         $result = bless( $result, $class );
         $result->pack;
         return $result;
