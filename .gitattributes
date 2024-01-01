@@ -1,4 +1,4 @@
-xs/webgpu.xs linguist-generated
-xs/webgpu.c linguist-generated
-typemap linguist-generated
-lib/WebGPU/Direct/XS.pm linguist-generated
+xs/webgpu.xs            -diff   linguist-generated
+xs/webgpu.c             -diff   linguist-generated
+typemap                 -diff   linguist-generated
+lib/WebGPU/Direct/XS.pm -diff   linguist-generated
