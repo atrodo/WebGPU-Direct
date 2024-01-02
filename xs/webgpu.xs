@@ -39,6 +39,10 @@ wgpuAdapterGetLimits(adapter, limits)
         WGPUSupportedLimits * limits
     CODE:
       RETVAL = wgpuAdapterGetLimits(adapter, limits);
+      {
+        SV *u = ST(1);
+        if ( sv_isobject(u) ) { _unpack(u); }
+      }
     OUTPUT:
       RETVAL
 
@@ -49,6 +53,10 @@ wgpuAdapterGetProperties(adapter, properties)
         WGPUAdapterProperties * properties
     CODE:
       wgpuAdapterGetProperties(adapter, properties);
+      {
+        SV *u = ST(1);
+        if ( sv_isobject(u) ) { _unpack(u); }
+      }
 
 
 bool 
@@ -777,6 +785,10 @@ wgpuDeviceGetLimits(device, limits)
         WGPUSupportedLimits * limits
     CODE:
       RETVAL = wgpuDeviceGetLimits(device, limits);
+      {
+        SV *u = ST(1);
+        if ( sv_isobject(u) ) { _unpack(u); }
+      }
     OUTPUT:
       RETVAL
 

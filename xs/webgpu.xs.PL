@@ -1201,6 +1201,7 @@ sub say_call_fn
   my @args;
   my @keys;
   my @vals;
+  my @unpacks;
   foreach my $pair ( pairs @defargs )
   {
     my ( $key, $value ) = @$pair;
@@ -1239,6 +1240,12 @@ sub say_call_fn
     if ( $value =~ $bufcnt_re && exists $buffers{$value} )
     {
       next;
+    }
+
+    if ( $typedefs{$pkg} eq 'obj' && $key !~ m/const/ )
+    {
+      # We have to count ST so that we can call it on the original SV arg
+      push @unpacks, scalar @keys;
     }
 
     push @args, "$key $value";
@@ -1354,6 +1361,14 @@ sub say_call_fn
   else
   {
     say $xs "      $retval$def{prefix}$def{name}($call);";
+  }
+
+  foreach my $unpack (@unpacks)
+  {
+    say $xs "      {";
+    say $xs "        SV *u = ST($unpack);";
+    say $xs "        if ( sv_isobject(u) ) { _unpack(u); }";
+    say $xs "      }";
   }
 
   if ($retval)
