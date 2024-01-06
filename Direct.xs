@@ -560,19 +560,40 @@ SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
     croak("Array count of %zd cannot be that large", count);
   }
 
+  bool is_enum   = sv_derived_from(base, "WebGPU::Direct::Enum");
+  bool is_opaque = sv_derived_from(base, "WebGPU::Direct::Opaque");
+
   AV *ret = newAV();
   av_extend(ret, count);
 
   void *field = n;
   for ( int i = 0; i < count; i++ )
   {
-    SV *obj = _new_with(base, field, size);
+    SV *obj = NULL;
+    if ( is_enum )
+    {
+      obj = _new(base, newSViv(*(int *)field));
+    }
+    else if ( is_opaque )
+    {
+      obj = _new_opaque(base, field);
+    }
+    else
+    {
+      obj = _new_with(field, base, size);
+    }
     SV **f = nn_av_store(aTHX_ ret, i, obj, base);
 
     field = ((char *)field) + size;
   }
 
-  return sv_2mortal(newRV((SV*)ret));
+  SV *aref = sv_2mortal(newRV((SV*)ret));
+  SV *array_base = newSVsv(base);
+  sv_catpvs(array_base, "::Array");
+
+  sv_bless(aref, gv_stashpv(SvPV_nolen(array_base), GV_ADD));
+
+  return aref;
 }
 
 void _set_objarray(pTHX_ SV *new_value, void **field, Size_t *cntField, Size_t size, SV *base)
@@ -603,17 +624,6 @@ void _set_objarray(pTHX_ SV *new_value, void **field, Size_t *cntField, Size_t s
   *field = v;
   *cntField = av_count(SvRV(new_value));
 }
-
-int _mg_set_objarray(pTHX_ SV* sv, MAGIC* mg)
-{
-  SV *base = mg->mg_obj;
-  _set_objarray(aTHX_ sv, (void *) mg->mg_ptr, NULL, 0, base);
-  return 0;
-}
-
-STATIC MGVTBL _mg_vtbl_objarray = {
-  .svt_set = _mg_set_objarray
-};
 
 SV *_unpack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t *cntField, Size_t size, SV* base)
 {
@@ -647,10 +657,13 @@ SV *_unpack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_
 
   *c = newSViv(*cntField);
 
+  SV *array_base = newSVsv(base);
+  sv_catpvs(array_base, "::Array");
+
   void *n = NULL;
   if ( sv_isobject(*f) )
   {
-    n = _get_struct_ptr(aTHX_ *f, NULL);
+    n = _get_struct_ptr(aTHX_ *f, array_base);
   }
 
   if ( n == NULL || n != *field )
@@ -753,6 +766,8 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     Newxz(arr, (count+1) * size, char);
   }
 
+  bool is_enum   = sv_derived_from(base, "WebGPU::Direct::Enum");
+
   void *new_ptr = arr;
 
   for ( Size_t i = 0; i < count; i++ )
@@ -771,30 +786,37 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     }
 
     assert(SvOK(*f));
-    void *old_ptr = _get_struct_ptr(aTHX_ *f, base);
-    if ( old_ptr )
+    if ( is_enum )
     {
-      if ( old_ptr != new_ptr )
-      {
-        // TODO: object should probably be duplicated (if refcnt is minimal?)
-        Copy(old_ptr, new_ptr, size, char);
-
-        MAGIC *mg = _get_mg(aTHX_ *f, base);
-        if ( mg == NULL )
-        {
-          sv_magicext(*f, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
-        }
-        else
-        {
-          mg->mg_ptr = new_ptr;
-        }
-        Safefree(old_ptr);
-      }
+      *(I32 *)new_ptr = (I32)SvIV(*f);
     }
     else
     {
-      SV *h = _get_mg_hash(aTHX_ *f, base);
-      sv_magicext(h, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
+      void *old_ptr = _get_struct_ptr(aTHX_ *f, base);
+      if ( old_ptr )
+      {
+        if ( old_ptr != new_ptr )
+        {
+          // TODO: object should probably be duplicated (if refcnt is minimal?)
+          Copy(old_ptr, new_ptr, size, char);
+
+          MAGIC *mg = _get_mg(aTHX_ *f, base);
+          if ( mg == NULL )
+          {
+            sv_magicext(*f, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
+          }
+          else
+          {
+            mg->mg_ptr = new_ptr;
+          }
+          Safefree(old_ptr);
+        }
+      }
+      else
+      {
+        SV *h = _get_mg_hash(aTHX_ *f, base);
+        sv_magicext(h, NULL, PERL_MAGIC_ext, NULL, (const char *)new_ptr, 0);
+      }
     }
 
     new_ptr = ((char *)new_ptr) + size;
