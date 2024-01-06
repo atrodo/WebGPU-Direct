@@ -71,6 +71,8 @@ my $req_limits = $wgpu->RequiredLimits->new( { limits => $limits } );
 my $devdesc    = $wgpu->DeviceDescriptor->new( requiredLimits => $req_limits );
 $adapter->RequestDevice( $devdesc, \&handle_request_device, {} );
 
+my $queue = $device->GetQueue;
+
 # Build the shader
 my $shaderdesc = $wgpu->ShaderModuleDescriptor->new(
   {
@@ -87,10 +89,12 @@ my $shaderdesc = $wgpu->ShaderModuleDescriptor->new(
 my $shader = $device->CreateShaderModule($shaderdesc);
 
 # Build the pipeline pieces
-my $queue   = $device->GetQueue;
-my $pl_desc = $wgpu->PipelineLayoutDescriptor->new( label => 'pipeline_layout' );
+my $pl_desc         = $wgpu->PipelineLayoutDescriptor->new( label => 'pipeline_layout' );
 my $pipeline_layout = $device->CreatePipelineLayout($pl_desc);
-my $tex_fmt         = $surface->GetPreferredFormat($adapter);
+
+my $tex_fmt              = $surface->GetPreferredFormat($adapter);
+my $surface_capabilities = $wgpu->SurfaceCapabilities->new;
+$surface->GetCapabilities( $adapter, $surface_capabilities );
 
 my $rpd = $wgpu->RenderPipelineDescriptor->new(
   label  => 'render_pipeline',
@@ -100,11 +104,10 @@ my $rpd = $wgpu->RenderPipelineDescriptor->new(
     entryPoint => 'vs_main',
   ),
   fragment => $wgpu->FragmentState->new(
-    module      => $shader,
-    entryPoint  => 'fs_main',
-    targetCount => 1,
-    targets     => $wgpu->ColorTargetState->new(
-      format    => $tex_fmt,
+    module     => $shader,
+    entryPoint => 'fs_main',
+    targets    => $wgpu->ColorTargetState->new(
+      format    => $surface_capabilities->formats->[0],
       writeMask => ColorWriteMask->All,
     ),
   ),
@@ -119,16 +122,19 @@ my $rpd = $wgpu->RenderPipelineDescriptor->new(
 
 my $pipeline = $device->CreateRenderPipeline($rpd);
 
-my $sc_config = $wgpu->SwapChainDescriptor->new(
+my $sc_config = $wgpu->SurfaceConfiguration->new(
+  device      => $device,
   usage       => TextureUsage->RenderAttachment,
-  format      => $tex_fmt,
+  format      => $surface_capabilities->formats->[0],
   presentMode => PresentMode->Fifo,
+  alphaMode   => $surface_capabilities->alphaModes->[0],
   width       => 640,
   height      => 360,
 );
 
-my $swapchain = $device->CreateSwapChain( $surface, $sc_config );
+$surface->Configure($sc_config);
 
+# Precreate some objects used in the loop
 my $passcolor = $wgpu->RenderPassColorAttachment->new(
   loadOp     => LoadOp->Clear,
   storeOp    => StoreOp->Store,
@@ -141,23 +147,58 @@ my $passcolor = $wgpu->RenderPassColorAttachment->new(
 );
 
 my $passdesc = $wgpu->RenderPassDescriptor->new(
-  label                => "render_pass_encoder",
-  colorAttachmentCount => 1,
-  colorAttachments     => $passcolor,
+  label            => "render_pass_encoder",
+  colorAttachments => $passcolor,
 );
 
-my $cwdesc = $wgpu->CommandEncoderDescriptor->new;
-my $cbdesc = $wgpu->CommandBufferDescriptor->new;
+my $cwdesc          = $wgpu->CommandEncoderDescriptor->new;
+my $cbdesc          = $wgpu->CommandBufferDescriptor->new;
+my $surface_texture = $wgpu->SurfaceTexture->new;
+my $status          = $wgpu->SurfaceGetCurrentTextureStatus;
 
 my $start  = time;
 my $frames = 1000;
 for ( 1 .. 1000 )
 {
-  my $next_tex = $swapchain->GetCurrentTextureView;
+  $surface->GetCurrentTexture($surface_texture);
+
+  for ( $surface_texture->status )
+  {
+    if ( $_ == $status->Success )
+    {
+      # All good, could check for `surface_texture.suboptimal` here.
+      last;
+    }
+    if ( $_ == $status->Timeout
+      || $_ == $status->Outdated
+      || $_ == $status->Lost )
+    {
+      # Skip this frame, and re-configure surface.
+      # This is a bit different from the reference example since we can't get
+      # the window size. This could result in an infinte loop
+      if ( defined $surface_texture->texture )
+      {
+        $surface_texture->texture->Release;
+      }
+      $sc_config->width(640);
+      $sc_config->height(360);
+      $surface->Configure($sc_config);
+      redo;
+    }
+    if ( $_ == $status->OutOfMemory
+      || $_ == $status->DeviceLost
+      || $_ == $status->Force32 )
+    {
+      # Fatal error
+      die "get_current_texture status=$_";
+    }
+  }
+
+  my $frame = $surface_texture->texture->CreateView;
 
   my $cmdenc = $device->CreateCommandEncoder($cwdesc);
 
-  $passcolor->view($next_tex);
+  $passcolor->view($frame);
   my $passenc = $cmdenc->BeginRenderPass($passdesc);
 
   $passenc->SetPipeline($pipeline);
@@ -167,12 +208,7 @@ for ( 1 .. 1000 )
   my $cmdbuf = $cmdenc->Finish($cbdesc);
 
   $queue->Submit( [$cmdbuf] );
-  $swapchain->Present;
-
-  #$cmdbuf->Release;
-  #$passenc->Release;
-  #$cmdenc->Release;
-  #$next_tex->Release;
+  $surface->Present;
 }
 
 my $total = time - $start;
