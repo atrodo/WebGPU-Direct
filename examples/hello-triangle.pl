@@ -57,24 +57,24 @@ my $renderPipeline = $device->CreateRenderPipeline($renderPipelineDescriptor);
 my $width  = 600;
 my $height = 600;
 
-my $surface = $wgpu->CreateSurface(
+my $gpuContext = $wgpu->CreateSurface(
   {
     nextInChain => WebGPU::Direct->new_window_x11( $width, $height ),
   }
 );
 
 # GPUCanvasConfiguration
+my $canvasConfiguration = {
+  width  => $width,
+  height => $height,
+  device => $device,
+  format => TextureFormat->BGRA8Unorm,
+};
+$gpuContext->Configure($canvasConfiguration);
+
 # GPUTexture
-my $swapChain = $device->CreateSwapChain(
-  $surface,
-  {
-    usage       => TextureUsage->RenderAttachment,
-    format      => TextureFormat->BGRA8Unorm,
-    presentMode => PresentMode->Fifo,
-    width       => $width,
-    height      => $height,
-  }
-);
+# This is done in the render loop
+my $currentTexture;    # = $gpuContext->GetCurrentTexture;
 
 #*** Render Pass Setup ***
 
@@ -82,13 +82,14 @@ my $swapChain = $device->CreateSwapChain(
 
 # GPUTextureView
 # This is done in the render loop
-#my $renderAttachment = $swapChain->GetCurrentTextureView;
+my $renderAttachment;    # = $currentTexture->texture->CreateView;
 
 # GPUColor
 my $darkBlue = { r => 0.15, g => 0.15, b => 0.5, a => 1 };
 
 # GPURenderPassColorATtachmentDescriptor
 my $colorAttachmentDescriptor = {
+  view       => $renderAttachment,
   loadOp     => LoadOp->Clear,
   storeOp    => StoreOp->Store,
   clearColor => $darkBlue,
@@ -107,7 +108,8 @@ for ( 1 .. 1000 )
   my $commandEncoder = $device->CreateCommandEncoder;
 
   # GPURenderPassEncoder
-  $colorAttachmentDescriptor->{view} = $swapChain->GetCurrentTextureView;
+  $currentTexture = $gpuContext->GetCurrentTexture;
+  $colorAttachmentDescriptor->{view} = $currentTexture->texture->CreateView;
   my $renderPassEncoder = $commandEncoder->BeginRenderPass($renderPassDescriptor);
 
   $renderPassEncoder->SetPipeline($renderPipeline);
@@ -122,7 +124,7 @@ for ( 1 .. 1000 )
   # GPUQueue
   my $queue = $device->GetQueue;
   $queue->Submit( [$commandBuffer] );
-  $swapChain->Present;
+  $gpuContext->Present;
 }
 
 my $total = time - $start;
