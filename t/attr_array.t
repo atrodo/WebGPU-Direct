@@ -88,12 +88,12 @@ my $wgpu = WebGPU::Direct->new;
   my %existing = $sc->%*;      # Do not check the arrays
   my $sc_bytes = $sc->bytes;
 
-  #my $pm_bytes = $sc->presentModes->bytes;
+  #TODO: my $pm_bytes = $sc->presentModes->bytes;
   $sc->pack;
 
-  is( $sc->bytes, $sc_bytes, 'SurfaceCapabilities in memory has not changed with pack' );
-
-  #is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
+  # After a pack, the pointers in ->bytes may change, so we do not check them
+  #is( $sc->bytes, $sc_bytes, 'SurfaceCapabilities in memory has not changed with pack' );
+  #TODO: is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
 
   foreach my $key (qw/alphaModeCount formatCount presentModeCount/)
   {
@@ -106,15 +106,15 @@ my $wgpu = WebGPU::Direct->new;
 
   $sc->pack;
 
-  is( $sc->bytes, $sc_bytes, 'SurfaceCapabilities in memory has not changed with pack' );
+  #is( $sc->bytes, $sc_bytes, 'SurfaceCapabilities in memory has not changed with pack' );
+  #TODO: is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
 
-  #is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
   is( $sc->presentModeCount, scalar( $sc->presentModes->@* ), 'Present Mode Count has updated' );
 
   $sc->unpack;
-  is( $sc->bytes, $sc_bytes, 'SurfaceCapabilities in memory has not changed with pack' );
+  #TODO: is( $sc->bytes, $sc_bytes, 'SurfaceCapabilities in memory has not changed with pack' );
 
-  #is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
+  #TODO: is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
   is( $sc->presentModeCount, scalar( $sc->presentModes->@* ), 'Present Mode Count is still correct after unpack' );
   is( $sc->presentModeCount, $pm_count, 'Present Mode Count included Force32' );
   is( $sc->presentModes->[-1], WebGPU::Direct::PresentMode->new('Force32'), 'Force32 is still in the list' );

@@ -1085,7 +1085,7 @@ void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base, 
   return;
 }
 
-/* Integer and Floating types */ 
+/* Integer and Floating types */
 
 #define _setup_x(type, ft, constr) \
 SV *_unpack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *base)  \
@@ -1111,7 +1111,11 @@ SV *_pack_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV *base)    
   }                                                                             \
                                                                                 \
   /* Save the new value to the field */                                         \
-  _set_##type(aTHX_ *f, field, base);                                           \
+  SV *val = _set_##type(aTHX_ *f, field, base);                                 \
+  if ( val != *f )                                                              \
+  {                                                                             \
+    f = nn_hv_store(aTHX_ h, key, klen, val, base);                             \
+  }                                                                             \
   SvREFCNT_inc(*f);                                                             \
                                                                                 \
   return *f;                                                                    \
@@ -1149,10 +1153,11 @@ void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV * base, 
    str
    ------------------------------------------------------------------ */
 
-void _set_str(pTHX_ SV *new_value, const char **field, SV *base)
+SV *_set_str(pTHX_ SV *new_value, const char **field, SV *base)
 {
   char *v = SvPVbyte_nolen(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(str, const char **, newSVpv(*field, 0));
@@ -1161,22 +1166,40 @@ _setup_x(str, const char **, newSVpv(*field, 0));
    enum
    ------------------------------------------------------------------ */
 
-void _set_enum(pTHX_ SV *new_value, I32 *field, SV *base)
+SV *_set_enum(pTHX_ SV *new_value, I32 *field, SV *base)
 {
+  /* Coerce this SV to an enum value
+     The SV is marked as an IV, PV and NV all so we can check quick. This
+     combo is going to be pretty rare, so in general packing a string or
+     a simple number will get upgraded, but we also don't have to always
+     coerce it */
+  if ( !( SvIOK(new_value) && SvPOK(new_value) && SvNOK(new_value) ) )
+  {
+    new_value = _new(base, new_value);
+  }
   I32 v = (I32)SvIV(new_value);
   *field = v;
+  return new_value;
 }
 
-_setup_x(enum, void *, newSViv(*(int *)field));
+SV *_coerce_enum(pTHX_ void *field, SV *base)
+{
+  // In order to support strings as values, we need the enum type
+  SV *result = _new(base, newSViv(*(int *)field));
+  return result;
+}
+
+_setup_x(enum, void *, _coerce_enum(aTHX_ field, base));
 
 /* ------------------------------------------------------------------
    bool
    ------------------------------------------------------------------ */
 
-void _set_bool(pTHX_ SV *new_value, bool *field, SV *base)
+SV *_set_bool(pTHX_ SV *new_value, bool *field, SV *base)
 {
   bool v = (bool)SvIV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(bool, bool *, newSViv(*field));
@@ -1185,10 +1208,11 @@ _setup_x(bool, bool *, newSViv(*field));
    double
    ------------------------------------------------------------------ */
 
-void _set_double(pTHX_ SV *new_value, double *field, SV *base)
+SV *_set_double(pTHX_ SV *new_value, double *field, SV *base)
 {
   double v = (double)SvNV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(double, double *, newSVnv(*field));
@@ -1197,10 +1221,11 @@ _setup_x(double, double *, newSVnv(*field));
    float
    ------------------------------------------------------------------ */
 
-void _set_float(pTHX_ SV *new_value, float *field, SV *base)
+SV *_set_float(pTHX_ SV *new_value, float *field, SV *base)
 {
   float v = (U16)SvNV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(float, float *, newSVnv(*field));
@@ -1209,10 +1234,11 @@ _setup_x(float, float *, newSVnv(*field));
    uint16_t
    ------------------------------------------------------------------ */
 
-void _set_uint16_t(pTHX_ SV *new_value, U16 *field, SV *base)
+SV *_set_uint16_t(pTHX_ SV *new_value, U16 *field, SV *base)
 {
   U16 v = (U16)SvIV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(uint16_t, uint16_t *, newSViv(*field));
@@ -1221,10 +1247,11 @@ _setup_x(uint16_t, uint16_t *, newSViv(*field));
    uint32_t
    ------------------------------------------------------------------ */
 
-void _set_uint32_t(pTHX_ SV *new_value, U32 *field, SV *base)
+SV *_set_uint32_t(pTHX_ SV *new_value, U32 *field, SV *base)
 {
   U32 v = (U32)SvIV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(uint32_t, uint32_t *, newSViv(*field));
@@ -1233,10 +1260,11 @@ _setup_x(uint32_t, uint32_t *, newSViv(*field));
    uint64_t
    ------------------------------------------------------------------ */
 
-void _set_uint64_t(pTHX_ SV *new_value, U64 *field, SV *base)
+SV *_set_uint64_t(pTHX_ SV *new_value, U64 *field, SV *base)
 {
   U64 v = (U64)SvIV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(uint64_t, uint64_t *, newSViv(*field));
@@ -1245,10 +1273,11 @@ _setup_x(uint64_t, uint64_t *, newSViv(*field));
    int32_t
    ------------------------------------------------------------------ */
 
-void _set_int32_t(pTHX_ SV *new_value, I32 *field, SV *base)
+SV *_set_int32_t(pTHX_ SV *new_value, I32 *field, SV *base)
 {
   I32 v = (I32)SvIV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(int32_t, int32_t *, newSViv(*field));
@@ -1257,10 +1286,11 @@ _setup_x(int32_t, int32_t *, newSViv(*field));
    size_t
    ------------------------------------------------------------------ */
 
-void _set_size_t(pTHX_ SV *new_value, size_t *field, SV *base)
+SV *_set_size_t(pTHX_ SV *new_value, size_t *field, SV *base)
 {
   Size_t v = (Size_t)SvIV(new_value);
   *field = v;
+  return new_value;
 }
 
 _setup_x(size_t, size_t *, newSViv(*field));
@@ -1420,11 +1450,25 @@ SV *WebGPU__Direct__MappedBuffer__wrap(pTHX_ const char * buffer, Size_t size)
 #include "xs/webgpu.c"
 #include "xs/x11.c"
 
-MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct::XS		PREFIX = wgpu
+MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
 INCLUDE: xs/webgpu.xs
 
-MODULE = WebGPU::Direct 	PACKAGE = WebGPU::Direct::MappedBuffer      PREFIX = wgpu
+MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::Enum      PREFIX = wgpu
+
+# /* Mark an SV as an Enum to make the check faster. We cleverly do this by
+#    making THIS a trivar: intentionally ensuring that IV, NV and PV are all set */
+
+SV *
+_mark_enum(THIS)
+        SV *THIS
+    PROTOTYPE: $
+    CODE:
+        SvNV(THIS);
+    OUTPUT:
+        THIS
+
+MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::MappedBuffer      PREFIX = wgpu
 
 void
 pack(THIS)

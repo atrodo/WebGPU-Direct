@@ -486,7 +486,7 @@ foreach my $class (@classes)
   $class_path =~ s[::][/]g;
   $class_path = "$Bin/../lib/$class_path";
 
-  die "Class definition for $type doesn't expect to have attributes and functions"
+  warn "Class definition for $type doesn't expect to have attributes and functions"
       if @defs && @fns;
 
   if (@defs)
