@@ -78,10 +78,6 @@ WGPUSurface                                                     T_FETCH
 WGPUSurface *                                                   T_FETCHPTR
 WGPUSurface const *                                             T_FETCHPTR
 struct WGPUSurface const *                                      T_FETCHPTR
-WGPUSwapChain                                                   T_FETCH
-WGPUSwapChain *                                                 T_FETCHPTR
-WGPUSwapChain const *                                           T_FETCHPTR
-struct WGPUSwapChain const *                                    T_FETCHPTR
 WGPUTexture                                                     T_FETCH
 WGPUTexture *                                                   T_FETCHPTR
 WGPUTexture const *                                             T_FETCHPTR
@@ -185,11 +181,11 @@ WGPUCompilationMessage *                                        T_FETCHPTR
 WGPUCompilationMessage const *                                  T_FETCHPTR
 struct WGPUCompilationMessage const *                           T_FETCHPTR
 WebGPU::Direct::CompilationMessage                              T_SV
-WGPUComputePassTimestampWrite                                   T_FETCH
-WGPUComputePassTimestampWrite *                                 T_FETCHPTR
-WGPUComputePassTimestampWrite const *                           T_FETCHPTR
-struct WGPUComputePassTimestampWrite const *                    T_FETCHPTR
-WebGPU::Direct::ComputePassTimestampWrite                       T_SV
+WGPUComputePassTimestampWrites                                  T_FETCH
+WGPUComputePassTimestampWrites *                                T_FETCHPTR
+WGPUComputePassTimestampWrites const *                          T_FETCHPTR
+struct WGPUComputePassTimestampWrites const *                   T_FETCHPTR
+WebGPU::Direct::ComputePassTimestampWrites                      T_SV
 WGPUConstantEntry                                               T_FETCH
 WGPUConstantEntry *                                             T_FETCHPTR
 WGPUConstantEntry const *                                       T_FETCHPTR
@@ -265,11 +261,11 @@ WGPURenderPassDescriptorMaxDrawCount *                          T_FETCHPTR
 WGPURenderPassDescriptorMaxDrawCount const *                    T_FETCHPTR
 struct WGPURenderPassDescriptorMaxDrawCount const *             T_FETCHPTR
 WebGPU::Direct::RenderPassDescriptorMaxDrawCount                T_SV
-WGPURenderPassTimestampWrite                                    T_FETCH
-WGPURenderPassTimestampWrite *                                  T_FETCHPTR
-WGPURenderPassTimestampWrite const *                            T_FETCHPTR
-struct WGPURenderPassTimestampWrite const *                     T_FETCHPTR
-WebGPU::Direct::RenderPassTimestampWrite                        T_SV
+WGPURenderPassTimestampWrites                                   T_FETCH
+WGPURenderPassTimestampWrites *                                 T_FETCHPTR
+WGPURenderPassTimestampWrites const *                           T_FETCHPTR
+struct WGPURenderPassTimestampWrites const *                    T_FETCHPTR
+WebGPU::Direct::RenderPassTimestampWrites                       T_SV
 WGPURequestAdapterOptions                                       T_FETCH
 WGPURequestAdapterOptions *                                     T_FETCHPTR
 WGPURequestAdapterOptions const *                               T_FETCHPTR
@@ -310,6 +306,16 @@ WGPUStorageTextureBindingLayout *                               T_FETCHPTR
 WGPUStorageTextureBindingLayout const *                         T_FETCHPTR
 struct WGPUStorageTextureBindingLayout const *                  T_FETCHPTR
 WebGPU::Direct::StorageTextureBindingLayout                     T_SV
+WGPUSurfaceCapabilities                                         T_FETCH
+WGPUSurfaceCapabilities *                                       T_FETCHPTR
+WGPUSurfaceCapabilities const *                                 T_FETCHPTR
+struct WGPUSurfaceCapabilities const *                          T_FETCHPTR
+WebGPU::Direct::SurfaceCapabilities                             T_SV
+WGPUSurfaceConfiguration                                        T_FETCH
+WGPUSurfaceConfiguration *                                      T_FETCHPTR
+WGPUSurfaceConfiguration const *                                T_FETCHPTR
+struct WGPUSurfaceConfiguration const *                         T_FETCHPTR
+WebGPU::Direct::SurfaceConfiguration                            T_SV
 WGPUSurfaceDescriptor                                           T_FETCH
 WGPUSurfaceDescriptor *                                         T_FETCHPTR
 WGPUSurfaceDescriptor const *                                   T_FETCHPTR
@@ -350,11 +356,11 @@ WGPUSurfaceDescriptorFromXlibWindow *                           T_FETCHPTR
 WGPUSurfaceDescriptorFromXlibWindow const *                     T_FETCHPTR
 struct WGPUSurfaceDescriptorFromXlibWindow const *              T_FETCHPTR
 WebGPU::Direct::SurfaceDescriptorFromXlibWindow                 T_SV
-WGPUSwapChainDescriptor                                         T_FETCH
-WGPUSwapChainDescriptor *                                       T_FETCHPTR
-WGPUSwapChainDescriptor const *                                 T_FETCHPTR
-struct WGPUSwapChainDescriptor const *                          T_FETCHPTR
-WebGPU::Direct::SwapChainDescriptor                             T_SV
+WGPUSurfaceTexture                                              T_FETCH
+WGPUSurfaceTexture *                                            T_FETCHPTR
+WGPUSurfaceTexture const *                                      T_FETCHPTR
+struct WGPUSurfaceTexture const *                               T_FETCHPTR
+WebGPU::Direct::SurfaceTexture                                  T_SV
 WGPUTextureBindingLayout                                        T_FETCH
 WGPUTextureBindingLayout *                                      T_FETCHPTR
 WGPUTextureBindingLayout const *                                T_FETCHPTR
@@ -505,6 +511,9 @@ WGPUBlendFactor const *                                         T_IV
 WGPUBlendOperation                                              T_IV
 WGPUBlendOperation *                                            T_IV
 WGPUBlendOperation const *                                      T_IV
+WGPUBool                                                        T_IV
+WGPUBool *                                                      T_IV
+WGPUBool const *                                                T_IV
 WGPUBufferBindingType                                           T_IV
 WGPUBufferBindingType *                                         T_IV
 WGPUBufferBindingType const *                                   T_IV
@@ -535,9 +544,9 @@ WGPUCompilationInfoRequestStatus const *                        T_IV
 WGPUCompilationMessageType                                      T_IV
 WGPUCompilationMessageType *                                    T_IV
 WGPUCompilationMessageType const *                              T_IV
-WGPUComputePassTimestampLocation                                T_IV
-WGPUComputePassTimestampLocation *                              T_IV
-WGPUComputePassTimestampLocation const *                        T_IV
+WGPUCompositeAlphaMode                                          T_IV
+WGPUCompositeAlphaMode *                                        T_IV
+WGPUCompositeAlphaMode const *                                  T_IV
 WGPUCreatePipelineAsyncStatus                                   T_IV
 WGPUCreatePipelineAsyncStatus *                                 T_IV
 WGPUCreatePipelineAsyncStatus const *                           T_IV
@@ -580,9 +589,6 @@ WGPUMapModeFlags const *                                        T_IV
 WGPUMipmapFilterMode                                            T_IV
 WGPUMipmapFilterMode *                                          T_IV
 WGPUMipmapFilterMode const *                                    T_IV
-WGPUPipelineStatisticName                                       T_IV
-WGPUPipelineStatisticName *                                     T_IV
-WGPUPipelineStatisticName const *                               T_IV
 WGPUPowerPreference                                             T_IV
 WGPUPowerPreference *                                           T_IV
 WGPUPowerPreference const *                                     T_IV
@@ -598,9 +604,6 @@ WGPUQueryType const *                                           T_IV
 WGPUQueueWorkDoneStatus                                         T_IV
 WGPUQueueWorkDoneStatus *                                       T_IV
 WGPUQueueWorkDoneStatus const *                                 T_IV
-WGPURenderPassTimestampLocation                                 T_IV
-WGPURenderPassTimestampLocation *                               T_IV
-WGPURenderPassTimestampLocation const *                         T_IV
 WGPURequestAdapterStatus                                        T_IV
 WGPURequestAdapterStatus *                                      T_IV
 WGPURequestAdapterStatus const *                                T_IV
@@ -628,6 +631,9 @@ WGPUStorageTextureAccess const *                                T_IV
 WGPUStoreOp                                                     T_IV
 WGPUStoreOp *                                                   T_IV
 WGPUStoreOp const *                                             T_IV
+WGPUSurfaceGetCurrentTextureStatus                              T_IV
+WGPUSurfaceGetCurrentTextureStatus *                            T_IV
+WGPUSurfaceGetCurrentTextureStatus const *                      T_IV
 WGPUTextureAspect                                               T_IV
 WGPUTextureAspect *                                             T_IV
 WGPUTextureAspect const *                                       T_IV

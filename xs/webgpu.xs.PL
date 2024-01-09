@@ -166,7 +166,7 @@ while (<$h>)
       {
         $short = "_$short";
       }
-      $enums{$type}->{$value} = "use constant '$short' => dualvar($value, '$const');";
+      $enums{$type}->{$value} = "__PACKAGE__->_add_enum('$short' => ($value, '$const'));";
     }
 
     next;
@@ -446,7 +446,7 @@ foreach my $enum ( sort keys %enums )
   $const_pod->say(qq[\n=head1 $pkg]);
   $const_pod->say(qq[\n=over]);
   say $pm qq[package $pkg {];
-  say $pm qq[  use Scalar::Util qw/dualvar/;];
+  say $pm qq{  use base "WebGPU::Direct::Enum";};
 
   my %consts = %{ $enums{$enum} };
 
@@ -458,6 +458,7 @@ foreach my $enum ( sort keys %enums )
   }
 
   $const_pod->say(qq[\n=back]);
+  say $pm qq[  $pkg\->_build_const_lut;];
   say $pm qq[};];
   say $pm qq[];
 }
@@ -989,20 +990,27 @@ sub calls_for
 
   my $cast          = '';
   my $set_addl      = '';
+  my $typedef = $def{typedef};
+  my $return  = $def{return};
+
+  if ( $typedef eq 'enum' )
+  {
+    $return = "WebGPU::Direct::$return";
+    $return =~ s/::WGPU/::/;
+  }
+
   my $is_obj_opaque = $def{typedef} eq 'obj' || $def{typedef} eq 'opaque';
   my $base
-      = ( $def{typedef} eq 'obj' )    ? qq{newSVpvs("$def{return}")}
-      : ( $def{typedef} eq 'opaque' ) ? qq{newSVpvs("$def{return}")}
-      : ( $def{typedef} eq 'enum' )   ? qq{newSVpvs("$def{return}")}
+      = ( $typedef eq 'obj' )    ? qq{newSVpvs("$return")}
+      : ( $typedef eq 'opaque' ) ? qq{newSVpvs("$return")}
+      : ( $typedef eq 'enum' )   ? qq{newSVpvs("$return")}
       :                                 "NULL";
-
-  my $typedef = $def{typedef};
 
   if ( $def{is_ptr} )
   {
-    if ( $typedef eq 'obj' && $def{array} )
+    if ( ( $typedef eq 'obj' || $typedef eq 'enum' ) && $def{array} )
     {
-      $typedef  = "${typedef}array";
+      $typedef  = "objarray";
       $set_addl = qq{, sizeof(*n->$def{key})$set_addl};
       $set_addl = qq{, &n->$def{array}Count$set_addl};
       $cast     = '(void **)';

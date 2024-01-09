@@ -603,7 +603,7 @@ void _set_objarray(pTHX_ SV *new_value, void **field, Size_t *cntField, Size_t s
     croak("Could not find requirement base for %s", SvPV_nolen(new_value));
   }
 
-  if ( !SvOK(new_value) )
+  if ( new_value == NULL || !SvOK(new_value) )
   {
     *field = NULL;
     *cntField = 0;
@@ -620,7 +620,7 @@ void _set_objarray(pTHX_ SV *new_value, void **field, Size_t *cntField, Size_t s
     croak("The field value to _set_objarray must be an array reference, for %s", SvPV_nolen(base));
   }
 
-  void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, base) : NULL;
+  void *v = _get_struct_ptr(aTHX_ new_value, base);
   *field = v;
   *cntField = av_count(SvRV(new_value));
 }
@@ -745,18 +745,15 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     croak("The field value to _pack_objarray must be an array, for %s{%s}", SvPV_nolen(base), key);
   }
 
-  objs = (AV *)SvRV(*f);
-  count = av_count(objs);
-
-  if ( count == 0 )
+  if ( !sv_isobject(*f) )
   {
-    // TODO: Free what is there
-    *f = &PL_sv_undef;
-    _set_objarray(aTHX_ *f, field, cntField, size, array_base);
-    return *f;
+    sv_bless(*f, gv_stashpv(SvPV_nolen(array_base), GV_ADD));
   }
 
-  arr = _get_struct_ptr(aTHX_ (SV *)objs, array_base);
+  objs = (AV *)SvRV(*f);
+  count = av_count(objs);
+  arr = _get_struct_ptr(aTHX_ *f, array_base);
+
   if ( arr != NULL )
   {
     Renew(arr, (count+1) * size, char);
@@ -832,9 +829,8 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
   SvREFCNT_inc(*f);
 
   sv_magicext((SV *)objs, NULL, PERL_MAGIC_ext, NULL, (const char *)arr, 0);
-  sv_bless(*f, gv_stashpv(SvPV_nolen(array_base), GV_ADD));
 
-  _set_objarray(aTHX_ *f, field, cntField, size, array_base);
+  _set_objarray(aTHX_ (count == 0 ? NULL : *f), field, cntField, size, array_base);
 
   return *f;
 }
