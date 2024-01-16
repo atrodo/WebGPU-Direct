@@ -41,7 +41,7 @@ my @typemap = (
   q{T_VOID},
   q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, NULL)},
   q{T_FETCH},
-  q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
+  q{    $var = *($type *) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
   q{T_FETCHPTR},
   q{    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))},
   q{},
@@ -822,10 +822,18 @@ foreach my $class (@classes)
   }
 
   my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : '';
-  say $tm sprintf( "%-64s%s", $type,                  "T_FETCH" );
-  say $tm sprintf( "%-64s%s", "$type *",              'T_FETCHPTR' );
-  say $tm sprintf( "%-64s%s", "$type const *",        'T_FETCHPTR' );
-  say $tm sprintf( "%-64s%s", "struct $type const *", 'T_FETCHPTR' );
+  if ( $def{ptr_type} && $def{ptr_type} )
+  {
+    say $tm sprintf( "%-64s%s", $type,                  'T_FETCHPTR' );
+  }
+  else
+  {
+    say $tm sprintf( "%-64s%s", $type,                  'T_FETCH' );
+    say $tm sprintf( "%-64s%s", "$type *",              'T_FETCHPTR' );
+    say $tm sprintf( "%-64s%s", "$type const *",        'T_FETCHPTR' );
+    say $tm sprintf( "%-64s%s", "struct $type const *", 'T_FETCHPTR' );
+  }
+
   say $tm sprintf( "%-64s%s", $class,                 $typemap ) if $typemap;
 
   say $c "typedef SV* $c_prefix;";

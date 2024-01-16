@@ -1174,6 +1174,7 @@ package WebGPU::Direct::ShaderModule {
 
 package WebGPU::Direct::Surface {
     push @WebGPU::Direct::Surface::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::Surface;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -2007,7 +2008,10 @@ package WebGPU::Direct::SurfaceCapabilities {
 
 package WebGPU::Direct::SurfaceConfiguration {
     
-    my $default = {};
+    my $default = {
+             'alphaMode' => WebGPU::Direct::CompositeAlphaMode->Auto,
+             'usage' => WebGPU::Direct::TextureUsage->RenderAttachment,
+           };
 
     sub new {
         my $class = shift;

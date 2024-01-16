@@ -1595,7 +1595,7 @@ wgpuSurfaceGetCapabilities(surface, adapter, capabilities)
 
 
 void 
-wgpuSurfaceGetCurrentTexture(surface, surfaceTexture)
+wgpuSurface_GetCurrentTexture(surface, surfaceTexture)
         WGPUSurface surface
         WGPUSurfaceTexture * surfaceTexture
     CODE:
@@ -7049,7 +7049,7 @@ bytes(THIS)
         RETVAL
 
 
-MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceCapabilities	PREFIX = wgpu
+MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceCapabilities	PREFIX = wgpuSurfaceCapabilities
 
 SV *
 nextInChain(THIS, value = NO_INIT)
@@ -7217,6 +7217,17 @@ bytes(THIS)
         RETVAL = newSVpvn((const char *const) n, sizeof(WGPUSurfaceCapabilities) );
     OUTPUT:
         RETVAL
+
+
+void 
+wgpuSurfaceCapabilitiesFreeMembers(capabilities)
+        WGPUSurfaceCapabilities capabilities
+    CODE:
+      wgpuSurfaceCapabilitiesFreeMembers(capabilities);
+      {
+        SV *u = ST(0);
+        if ( sv_isobject(u) ) { _unpack(u); }
+      }
 
 
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::SurfaceConfiguration	PREFIX = wgpu

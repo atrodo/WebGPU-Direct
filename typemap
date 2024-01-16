@@ -1,131 +1,35 @@
-WGPUAdapter                                                     T_FETCH
-WGPUAdapter *                                                   T_FETCHPTR
-WGPUAdapter const *                                             T_FETCHPTR
-struct WGPUAdapter const *                                      T_FETCHPTR
-WGPUBindGroup                                                   T_FETCH
-WGPUBindGroup *                                                 T_FETCHPTR
-WGPUBindGroup const *                                           T_FETCHPTR
-struct WGPUBindGroup const *                                    T_FETCHPTR
-WGPUBindGroupLayout                                             T_FETCH
-WGPUBindGroupLayout *                                           T_FETCHPTR
-WGPUBindGroupLayout const *                                     T_FETCHPTR
-struct WGPUBindGroupLayout const *                              T_FETCHPTR
-WGPUBuffer                                                      T_FETCH
-WGPUBuffer *                                                    T_FETCHPTR
-WGPUBuffer const *                                              T_FETCHPTR
-struct WGPUBuffer const *                                       T_FETCHPTR
-WGPUCommandBuffer                                               T_FETCH
-WGPUCommandBuffer *                                             T_FETCHPTR
-WGPUCommandBuffer const *                                       T_FETCHPTR
-struct WGPUCommandBuffer const *                                T_FETCHPTR
-WGPUCommandEncoder                                              T_FETCH
-WGPUCommandEncoder *                                            T_FETCHPTR
-WGPUCommandEncoder const *                                      T_FETCHPTR
-struct WGPUCommandEncoder const *                               T_FETCHPTR
-WGPUComputePassEncoder                                          T_FETCH
-WGPUComputePassEncoder *                                        T_FETCHPTR
-WGPUComputePassEncoder const *                                  T_FETCHPTR
-struct WGPUComputePassEncoder const *                           T_FETCHPTR
-WGPUComputePipeline                                             T_FETCH
-WGPUComputePipeline *                                           T_FETCHPTR
-WGPUComputePipeline const *                                     T_FETCHPTR
-struct WGPUComputePipeline const *                              T_FETCHPTR
-WGPUDevice                                                      T_FETCH
-WGPUDevice *                                                    T_FETCHPTR
-WGPUDevice const *                                              T_FETCHPTR
-struct WGPUDevice const *                                       T_FETCHPTR
-WGPUInstance                                                    T_FETCH
-WGPUInstance *                                                  T_FETCHPTR
-WGPUInstance const *                                            T_FETCHPTR
-struct WGPUInstance const *                                     T_FETCHPTR
-WGPUPipelineLayout                                              T_FETCH
-WGPUPipelineLayout *                                            T_FETCHPTR
-WGPUPipelineLayout const *                                      T_FETCHPTR
-struct WGPUPipelineLayout const *                               T_FETCHPTR
-WGPUQuerySet                                                    T_FETCH
-WGPUQuerySet *                                                  T_FETCHPTR
-WGPUQuerySet const *                                            T_FETCHPTR
-struct WGPUQuerySet const *                                     T_FETCHPTR
-WGPUQueue                                                       T_FETCH
-WGPUQueue *                                                     T_FETCHPTR
-WGPUQueue const *                                               T_FETCHPTR
-struct WGPUQueue const *                                        T_FETCHPTR
-WGPURenderBundle                                                T_FETCH
-WGPURenderBundle *                                              T_FETCHPTR
-WGPURenderBundle const *                                        T_FETCHPTR
-struct WGPURenderBundle const *                                 T_FETCHPTR
-WGPURenderBundleEncoder                                         T_FETCH
-WGPURenderBundleEncoder *                                       T_FETCHPTR
-WGPURenderBundleEncoder const *                                 T_FETCHPTR
-struct WGPURenderBundleEncoder const *                          T_FETCHPTR
-WGPURenderPassEncoder                                           T_FETCH
-WGPURenderPassEncoder *                                         T_FETCHPTR
-WGPURenderPassEncoder const *                                   T_FETCHPTR
-struct WGPURenderPassEncoder const *                            T_FETCHPTR
-WGPURenderPipeline                                              T_FETCH
-WGPURenderPipeline *                                            T_FETCHPTR
-WGPURenderPipeline const *                                      T_FETCHPTR
-struct WGPURenderPipeline const *                               T_FETCHPTR
-WGPUSampler                                                     T_FETCH
-WGPUSampler *                                                   T_FETCHPTR
-WGPUSampler const *                                             T_FETCHPTR
-struct WGPUSampler const *                                      T_FETCHPTR
-WGPUShaderModule                                                T_FETCH
-WGPUShaderModule *                                              T_FETCHPTR
-WGPUShaderModule const *                                        T_FETCHPTR
-struct WGPUShaderModule const *                                 T_FETCHPTR
-WGPUSurface                                                     T_FETCH
-WGPUSurface *                                                   T_FETCHPTR
-WGPUSurface const *                                             T_FETCHPTR
-struct WGPUSurface const *                                      T_FETCHPTR
-WGPUTexture                                                     T_FETCH
-WGPUTexture *                                                   T_FETCHPTR
-WGPUTexture const *                                             T_FETCHPTR
-struct WGPUTexture const *                                      T_FETCHPTR
-WGPUTextureView                                                 T_FETCH
-WGPUTextureView *                                               T_FETCHPTR
-WGPUTextureView const *                                         T_FETCHPTR
-struct WGPUTextureView const *                                  T_FETCHPTR
-WGPUBufferMapCallback                                           T_FETCH
-WGPUBufferMapCallback *                                         T_FETCHPTR
-WGPUBufferMapCallback const *                                   T_FETCHPTR
-struct WGPUBufferMapCallback const *                            T_FETCHPTR
-WGPUCompilationInfoCallback                                     T_FETCH
-WGPUCompilationInfoCallback *                                   T_FETCHPTR
-WGPUCompilationInfoCallback const *                             T_FETCHPTR
-struct WGPUCompilationInfoCallback const *                      T_FETCHPTR
-WGPUCreateComputePipelineAsyncCallback                          T_FETCH
-WGPUCreateComputePipelineAsyncCallback *                        T_FETCHPTR
-WGPUCreateComputePipelineAsyncCallback const *                  T_FETCHPTR
-struct WGPUCreateComputePipelineAsyncCallback const *           T_FETCHPTR
-WGPUCreateRenderPipelineAsyncCallback                           T_FETCH
-WGPUCreateRenderPipelineAsyncCallback *                         T_FETCHPTR
-WGPUCreateRenderPipelineAsyncCallback const *                   T_FETCHPTR
-struct WGPUCreateRenderPipelineAsyncCallback const *            T_FETCHPTR
-WGPUDeviceLostCallback                                          T_FETCH
-WGPUDeviceLostCallback *                                        T_FETCHPTR
-WGPUDeviceLostCallback const *                                  T_FETCHPTR
-struct WGPUDeviceLostCallback const *                           T_FETCHPTR
-WGPUErrorCallback                                               T_FETCH
-WGPUErrorCallback *                                             T_FETCHPTR
-WGPUErrorCallback const *                                       T_FETCHPTR
-struct WGPUErrorCallback const *                                T_FETCHPTR
-WGPUProc                                                        T_FETCH
-WGPUProc *                                                      T_FETCHPTR
-WGPUProc const *                                                T_FETCHPTR
-struct WGPUProc const *                                         T_FETCHPTR
-WGPUQueueWorkDoneCallback                                       T_FETCH
-WGPUQueueWorkDoneCallback *                                     T_FETCHPTR
-WGPUQueueWorkDoneCallback const *                               T_FETCHPTR
-struct WGPUQueueWorkDoneCallback const *                        T_FETCHPTR
-WGPURequestAdapterCallback                                      T_FETCH
-WGPURequestAdapterCallback *                                    T_FETCHPTR
-WGPURequestAdapterCallback const *                              T_FETCHPTR
-struct WGPURequestAdapterCallback const *                       T_FETCHPTR
-WGPURequestDeviceCallback                                       T_FETCH
-WGPURequestDeviceCallback *                                     T_FETCHPTR
-WGPURequestDeviceCallback const *                               T_FETCHPTR
-struct WGPURequestDeviceCallback const *                        T_FETCHPTR
+WGPUAdapter                                                     T_FETCHPTR
+WGPUBindGroup                                                   T_FETCHPTR
+WGPUBindGroupLayout                                             T_FETCHPTR
+WGPUBuffer                                                      T_FETCHPTR
+WGPUCommandBuffer                                               T_FETCHPTR
+WGPUCommandEncoder                                              T_FETCHPTR
+WGPUComputePassEncoder                                          T_FETCHPTR
+WGPUComputePipeline                                             T_FETCHPTR
+WGPUDevice                                                      T_FETCHPTR
+WGPUInstance                                                    T_FETCHPTR
+WGPUPipelineLayout                                              T_FETCHPTR
+WGPUQuerySet                                                    T_FETCHPTR
+WGPUQueue                                                       T_FETCHPTR
+WGPURenderBundle                                                T_FETCHPTR
+WGPURenderBundleEncoder                                         T_FETCHPTR
+WGPURenderPassEncoder                                           T_FETCHPTR
+WGPURenderPipeline                                              T_FETCHPTR
+WGPUSampler                                                     T_FETCHPTR
+WGPUShaderModule                                                T_FETCHPTR
+WGPUSurface                                                     T_FETCHPTR
+WGPUTexture                                                     T_FETCHPTR
+WGPUTextureView                                                 T_FETCHPTR
+WGPUBufferMapCallback                                           T_FETCHPTR
+WGPUCompilationInfoCallback                                     T_FETCHPTR
+WGPUCreateComputePipelineAsyncCallback                          T_FETCHPTR
+WGPUCreateRenderPipelineAsyncCallback                           T_FETCHPTR
+WGPUDeviceLostCallback                                          T_FETCHPTR
+WGPUErrorCallback                                               T_FETCHPTR
+WGPUProc                                                        T_FETCHPTR
+WGPUQueueWorkDoneCallback                                       T_FETCHPTR
+WGPURequestAdapterCallback                                      T_FETCHPTR
+WGPURequestDeviceCallback                                       T_FETCHPTR
 WGPUChainedStruct                                               T_FETCH
 WGPUChainedStruct *                                             T_FETCHPTR
 WGPUChainedStruct const *                                       T_FETCHPTR
@@ -698,7 +602,7 @@ INPUT
 T_VOID
     $var = ($type) _get_struct_ptr(aTHX_ $arg, NULL)
 T_FETCH
-    $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
+    $var = *($type *) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
 T_FETCHPTR
     $var = ($type) _get_struct_ptr(aTHX_ $arg, newSVpvs(\"${ my $t=$type; $t=~s/ .*//; $t=~tr/_/:/; $t=~s/^WGPU/WebGPU::Direct::/; \$t}\"))
 

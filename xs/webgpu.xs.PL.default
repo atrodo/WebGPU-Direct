@@ -23,6 +23,10 @@
     depthFailOp => \'StencilOperation->Keep',
     passOp      => \'StencilOperation->Keep',
   },
+  SurfaceConfiguration => {
+    alphaMode => \'CompositeAlphaMode->Auto',
+    usage     => \'TextureUsage->RenderAttachment',
+  },
   TextureDescriptor => {
     dimension     => \'TextureDimension->_2D',
     size          => { height => 1, depthOrArrayLayers => 1 },
