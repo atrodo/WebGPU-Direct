@@ -1504,6 +1504,7 @@ new_window_x11(CLASS, xw = 640, yh = 360)
     PROTOTYPE: $
     CODE:
 #ifdef HAS_X11
+#define _DEF_X11 1
         SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromXlibWindow"), NULL );
         WGPUSurfaceDescriptorFromXlibWindow *result = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
         if ( ! x11_window(result, xw, yh) )
@@ -1516,8 +1517,18 @@ new_window_x11(CLASS, xw = 640, yh = 360)
 
         RETVAL = THIS;
 #else
+#define _DEF_X11 0
         Perl_croak(aTHX_ "Cannot create X11 window: X11 not found");
 #endif
     OUTPUT:
         RETVAL
+
+MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
+
+BOOT:
+{
+  HV *stash = gv_stashpv("WebGPU::Direct::XS", 0);
+
+  newCONSTSUB(stash, "HAS_X11", newSViv(_DEF_X11));
+}
 
