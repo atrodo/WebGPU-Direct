@@ -11,7 +11,7 @@ my %WriteMakefileArgs = (
   "CONFIGURE_REQUIRES" => { "ExtUtils::MakeMaker" => 0 },
   "DISTNAME"           => "WebGPU-Direct",
   "LICENSE"            => "perl",
-  "MIN_PERL_VERSION"   => "5.008005",
+  "MIN_PERL_VERSION"   => "5.030000",
   "NAME"               => "WebGPU::Direct",
   "PREREQ_PM"          => {},
   "TEST_REQUIRES"      => { "Test::More" => "0.96" },
