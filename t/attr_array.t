@@ -63,7 +63,15 @@ my $wgpu = WebGPU::Direct->new;
 }
 
 # TODO Check unpack and pack both create blessed array
+subtest 'Enum array', sub
 {
+  my $window_nic = eval { WebGPU::Direct->new_window_x11( 1, 1 ) };
+
+  if ( !$window_nic )
+  {
+    plan skip_all => 'Test requires working window';
+  }
+
   my $adapter = $wgpu->RequestAdapter;
   my $surface = $wgpu->CreateSurface( { nextInChain => WebGPU::Direct->new_window_x11( 1, 1 ) } );
   my $sc      = $wgpu->SurfaceCapabilities->new;
@@ -133,7 +141,7 @@ my $wgpu = WebGPU::Direct->new;
   $sc->unpack;
   is( scalar( $sc->presentModes->@* ), 0, 'Present Mode is still an empty array after unpack' );
   is( $sc->presentModeCount,           0, 'Present Mode Count is still 0 after unpack' );
-}
+};
 
 # TODO ? Check opaque arrays
 
