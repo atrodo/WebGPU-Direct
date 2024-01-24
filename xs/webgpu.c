@@ -2986,7 +2986,7 @@ void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__pack( SV *THIS )
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "display" is a ptr type void, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "display", 7,  &n->display, NULL);
-  _pack_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL);
+  _pack_uint64_t(aTHX_ h, "window", 6,  &n->window, NULL);
 
   
 }
@@ -3010,7 +3010,7 @@ void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack( SV *THIS )
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
   // "display" is a ptr type void, and that's not quite right yet, using opaque
   _unpack_void(aTHX_ h, "display", 7,  &n->display, NULL);
-  _unpack_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL);
+  _unpack_uint64_t(aTHX_ h, "window", 6,  &n->window, NULL);
 
 }
 

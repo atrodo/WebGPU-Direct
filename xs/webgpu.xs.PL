@@ -78,7 +78,8 @@ say $pm q[  require XSLoader;];
 say $pm q[  XSLoader::load('WebGPU::Direct', $VERSION);];
 say $pm q[}];
 say $pm q[];
-say $pm q[package WebGPU::Direct::Opaque {];
+say $pm q[package # Hide from PAUSE];
+say $pm q[    WebGPU::Direct::Opaque {];
 say $pm q[}];
 say $pm q[];
 
@@ -391,7 +392,7 @@ while (<$h>)
 }
 
 say $xs qq{MODULE = WebGPU::Direct\t\tPACKAGE = WebGPU::Direct::XS\t\tPREFIX = wgpu};
-say $pm qq[package WebGPU::Direct {];
+say $pm qq[package\n\tWebGPU::Direct {];
 
 foreach (@fns)
 {
@@ -445,7 +446,7 @@ foreach my $enum ( sort keys %enums )
 
   $const_pod->say(qq[\n=head1 $pkg]);
   $const_pod->say(qq[\n=over]);
-  say $pm qq[package $pkg {];
+  say $pm qq[package\n\t$pkg {];
   say $pm qq{  use base "WebGPU::Direct::Enum";};
 
   my %consts = %{ $enums{$enum} };
@@ -648,7 +649,7 @@ foreach my $class (@classes)
     $default =~ s[\\'([\w\:\-\>]*)'][WebGPU::Direct::$1]g;
 
     say $pm <<~"EOF"; my $n = qq{
-      package $class {
+      package\n\t$class {
           $preamble
           my $default
           sub new {

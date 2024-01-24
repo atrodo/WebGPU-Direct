@@ -8187,11 +8187,11 @@ window(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceDescriptorFromXlibWindow *n = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL);
+        RETVAL =   _find_uint64_t(aTHX_ h, "window", 6,  &n->window, NULL);
 
         if (items > 1)
         {
-              _store_uint32_t(aTHX_ h, "window", 6,  &n->window, NULL, value);
+              _store_uint64_t(aTHX_ h, "window", 6,  &n->window, NULL, value);
 
         }
         else

@@ -9,10 +9,12 @@ package # Hide from PAUSE
   XSLoader::load('WebGPU::Direct', $VERSION);
 }
 
-package WebGPU::Direct::Opaque {
+package # Hide from PAUSE
+    WebGPU::Direct::Opaque {
 }
 
-package WebGPU::Direct {
+package
+	WebGPU::Direct {
   sub CreateInstance { my $class = shift; WebGPU::Direct::XS::CreateInstance(@_); }
   sub GetProcAddress { my $class = shift; WebGPU::Direct::XS::GetProcAddress(@_); }
   our @export_all;
@@ -278,7 +280,8 @@ package WebGPU::Direct {
   sub newVertexState { my $class = shift; return WebGPU::Direct::VertexState->new(@_); }
 };
 
-package WebGPU::Direct::AdapterType {
+package
+	WebGPU::Direct::AdapterType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('DiscreteGPU' => (0x00000000, 'WGPUAdapterType_DiscreteGPU'));
   __PACKAGE__->_add_enum('IntegratedGPU' => (0x00000001, 'WGPUAdapterType_IntegratedGPU'));
@@ -288,7 +291,8 @@ package WebGPU::Direct::AdapterType {
   WebGPU::Direct::AdapterType->_build_const_lut;
 };
 
-package WebGPU::Direct::AddressMode {
+package
+	WebGPU::Direct::AddressMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Repeat' => (0x00000000, 'WGPUAddressMode_Repeat'));
   __PACKAGE__->_add_enum('MirrorRepeat' => (0x00000001, 'WGPUAddressMode_MirrorRepeat'));
@@ -297,7 +301,8 @@ package WebGPU::Direct::AddressMode {
   WebGPU::Direct::AddressMode->_build_const_lut;
 };
 
-package WebGPU::Direct::BackendType {
+package
+	WebGPU::Direct::BackendType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUBackendType_Undefined'));
   __PACKAGE__->_add_enum('Null' => (0x00000001, 'WGPUBackendType_Null'));
@@ -312,7 +317,8 @@ package WebGPU::Direct::BackendType {
   WebGPU::Direct::BackendType->_build_const_lut;
 };
 
-package WebGPU::Direct::BlendFactor {
+package
+	WebGPU::Direct::BlendFactor {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Zero' => (0x00000000, 'WGPUBlendFactor_Zero'));
   __PACKAGE__->_add_enum('One' => (0x00000001, 'WGPUBlendFactor_One'));
@@ -331,7 +337,8 @@ package WebGPU::Direct::BlendFactor {
   WebGPU::Direct::BlendFactor->_build_const_lut;
 };
 
-package WebGPU::Direct::BlendOperation {
+package
+	WebGPU::Direct::BlendOperation {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Add' => (0x00000000, 'WGPUBlendOperation_Add'));
   __PACKAGE__->_add_enum('Subtract' => (0x00000001, 'WGPUBlendOperation_Subtract'));
@@ -342,7 +349,8 @@ package WebGPU::Direct::BlendOperation {
   WebGPU::Direct::BlendOperation->_build_const_lut;
 };
 
-package WebGPU::Direct::BufferBindingType {
+package
+	WebGPU::Direct::BufferBindingType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUBufferBindingType_Undefined'));
   __PACKAGE__->_add_enum('Uniform' => (0x00000001, 'WGPUBufferBindingType_Uniform'));
@@ -352,7 +360,8 @@ package WebGPU::Direct::BufferBindingType {
   WebGPU::Direct::BufferBindingType->_build_const_lut;
 };
 
-package WebGPU::Direct::BufferMapAsyncStatus {
+package
+	WebGPU::Direct::BufferMapAsyncStatus {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPUBufferMapAsyncStatus_Success'));
   __PACKAGE__->_add_enum('ValidationError' => (0x00000001, 'WGPUBufferMapAsyncStatus_ValidationError'));
@@ -367,7 +376,8 @@ package WebGPU::Direct::BufferMapAsyncStatus {
   WebGPU::Direct::BufferMapAsyncStatus->_build_const_lut;
 };
 
-package WebGPU::Direct::BufferMapState {
+package
+	WebGPU::Direct::BufferMapState {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Unmapped' => (0x00000000, 'WGPUBufferMapState_Unmapped'));
   __PACKAGE__->_add_enum('Pending' => (0x00000001, 'WGPUBufferMapState_Pending'));
@@ -376,7 +386,8 @@ package WebGPU::Direct::BufferMapState {
   WebGPU::Direct::BufferMapState->_build_const_lut;
 };
 
-package WebGPU::Direct::BufferUsage {
+package
+	WebGPU::Direct::BufferUsage {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUBufferUsage_None'));
   __PACKAGE__->_add_enum('MapRead' => (0x00000001, 'WGPUBufferUsage_MapRead'));
@@ -393,7 +404,8 @@ package WebGPU::Direct::BufferUsage {
   WebGPU::Direct::BufferUsage->_build_const_lut;
 };
 
-package WebGPU::Direct::ColorWriteMask {
+package
+	WebGPU::Direct::ColorWriteMask {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUColorWriteMask_None'));
   __PACKAGE__->_add_enum('Red' => (0x00000001, 'WGPUColorWriteMask_Red'));
@@ -405,7 +417,8 @@ package WebGPU::Direct::ColorWriteMask {
   WebGPU::Direct::ColorWriteMask->_build_const_lut;
 };
 
-package WebGPU::Direct::CompareFunction {
+package
+	WebGPU::Direct::CompareFunction {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUCompareFunction_Undefined'));
   __PACKAGE__->_add_enum('Never' => (0x00000001, 'WGPUCompareFunction_Never'));
@@ -420,7 +433,8 @@ package WebGPU::Direct::CompareFunction {
   WebGPU::Direct::CompareFunction->_build_const_lut;
 };
 
-package WebGPU::Direct::CompilationInfoRequestStatus {
+package
+	WebGPU::Direct::CompilationInfoRequestStatus {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPUCompilationInfoRequestStatus_Success'));
   __PACKAGE__->_add_enum('Error' => (0x00000001, 'WGPUCompilationInfoRequestStatus_Error'));
@@ -430,7 +444,8 @@ package WebGPU::Direct::CompilationInfoRequestStatus {
   WebGPU::Direct::CompilationInfoRequestStatus->_build_const_lut;
 };
 
-package WebGPU::Direct::CompilationMessageType {
+package
+	WebGPU::Direct::CompilationMessageType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Error' => (0x00000000, 'WGPUCompilationMessageType_Error'));
   __PACKAGE__->_add_enum('Warning' => (0x00000001, 'WGPUCompilationMessageType_Warning'));
@@ -439,7 +454,8 @@ package WebGPU::Direct::CompilationMessageType {
   WebGPU::Direct::CompilationMessageType->_build_const_lut;
 };
 
-package WebGPU::Direct::CompositeAlphaMode {
+package
+	WebGPU::Direct::CompositeAlphaMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Auto' => (0x00000000, 'WGPUCompositeAlphaMode_Auto'));
   __PACKAGE__->_add_enum('Opaque' => (0x00000001, 'WGPUCompositeAlphaMode_Opaque'));
@@ -450,7 +466,8 @@ package WebGPU::Direct::CompositeAlphaMode {
   WebGPU::Direct::CompositeAlphaMode->_build_const_lut;
 };
 
-package WebGPU::Direct::CreatePipelineAsyncStatus {
+package
+	WebGPU::Direct::CreatePipelineAsyncStatus {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPUCreatePipelineAsyncStatus_Success'));
   __PACKAGE__->_add_enum('ValidationError' => (0x00000001, 'WGPUCreatePipelineAsyncStatus_ValidationError'));
@@ -462,7 +479,8 @@ package WebGPU::Direct::CreatePipelineAsyncStatus {
   WebGPU::Direct::CreatePipelineAsyncStatus->_build_const_lut;
 };
 
-package WebGPU::Direct::CullMode {
+package
+	WebGPU::Direct::CullMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUCullMode_None'));
   __PACKAGE__->_add_enum('Front' => (0x00000001, 'WGPUCullMode_Front'));
@@ -471,7 +489,8 @@ package WebGPU::Direct::CullMode {
   WebGPU::Direct::CullMode->_build_const_lut;
 };
 
-package WebGPU::Direct::DeviceLostReason {
+package
+	WebGPU::Direct::DeviceLostReason {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUDeviceLostReason_Undefined'));
   __PACKAGE__->_add_enum('Destroyed' => (0x00000001, 'WGPUDeviceLostReason_Destroyed'));
@@ -479,7 +498,8 @@ package WebGPU::Direct::DeviceLostReason {
   WebGPU::Direct::DeviceLostReason->_build_const_lut;
 };
 
-package WebGPU::Direct::ErrorFilter {
+package
+	WebGPU::Direct::ErrorFilter {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Validation' => (0x00000000, 'WGPUErrorFilter_Validation'));
   __PACKAGE__->_add_enum('OutOfMemory' => (0x00000001, 'WGPUErrorFilter_OutOfMemory'));
@@ -488,7 +508,8 @@ package WebGPU::Direct::ErrorFilter {
   WebGPU::Direct::ErrorFilter->_build_const_lut;
 };
 
-package WebGPU::Direct::ErrorType {
+package
+	WebGPU::Direct::ErrorType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('NoError' => (0x00000000, 'WGPUErrorType_NoError'));
   __PACKAGE__->_add_enum('Validation' => (0x00000001, 'WGPUErrorType_Validation'));
@@ -500,7 +521,8 @@ package WebGPU::Direct::ErrorType {
   WebGPU::Direct::ErrorType->_build_const_lut;
 };
 
-package WebGPU::Direct::FeatureName {
+package
+	WebGPU::Direct::FeatureName {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUFeatureName_Undefined'));
   __PACKAGE__->_add_enum('DepthClipControl' => (0x00000001, 'WGPUFeatureName_DepthClipControl'));
@@ -518,7 +540,8 @@ package WebGPU::Direct::FeatureName {
   WebGPU::Direct::FeatureName->_build_const_lut;
 };
 
-package WebGPU::Direct::FilterMode {
+package
+	WebGPU::Direct::FilterMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Nearest' => (0x00000000, 'WGPUFilterMode_Nearest'));
   __PACKAGE__->_add_enum('Linear' => (0x00000001, 'WGPUFilterMode_Linear'));
@@ -526,7 +549,8 @@ package WebGPU::Direct::FilterMode {
   WebGPU::Direct::FilterMode->_build_const_lut;
 };
 
-package WebGPU::Direct::FrontFace {
+package
+	WebGPU::Direct::FrontFace {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('CCW' => (0x00000000, 'WGPUFrontFace_CCW'));
   __PACKAGE__->_add_enum('CW' => (0x00000001, 'WGPUFrontFace_CW'));
@@ -534,7 +558,8 @@ package WebGPU::Direct::FrontFace {
   WebGPU::Direct::FrontFace->_build_const_lut;
 };
 
-package WebGPU::Direct::IndexFormat {
+package
+	WebGPU::Direct::IndexFormat {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUIndexFormat_Undefined'));
   __PACKAGE__->_add_enum('Uint16' => (0x00000001, 'WGPUIndexFormat_Uint16'));
@@ -543,7 +568,8 @@ package WebGPU::Direct::IndexFormat {
   WebGPU::Direct::IndexFormat->_build_const_lut;
 };
 
-package WebGPU::Direct::LoadOp {
+package
+	WebGPU::Direct::LoadOp {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPULoadOp_Undefined'));
   __PACKAGE__->_add_enum('Clear' => (0x00000001, 'WGPULoadOp_Clear'));
@@ -552,7 +578,8 @@ package WebGPU::Direct::LoadOp {
   WebGPU::Direct::LoadOp->_build_const_lut;
 };
 
-package WebGPU::Direct::MapMode {
+package
+	WebGPU::Direct::MapMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUMapMode_None'));
   __PACKAGE__->_add_enum('Read' => (0x00000001, 'WGPUMapMode_Read'));
@@ -561,7 +588,8 @@ package WebGPU::Direct::MapMode {
   WebGPU::Direct::MapMode->_build_const_lut;
 };
 
-package WebGPU::Direct::MipmapFilterMode {
+package
+	WebGPU::Direct::MipmapFilterMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Nearest' => (0x00000000, 'WGPUMipmapFilterMode_Nearest'));
   __PACKAGE__->_add_enum('Linear' => (0x00000001, 'WGPUMipmapFilterMode_Linear'));
@@ -569,7 +597,8 @@ package WebGPU::Direct::MipmapFilterMode {
   WebGPU::Direct::MipmapFilterMode->_build_const_lut;
 };
 
-package WebGPU::Direct::PowerPreference {
+package
+	WebGPU::Direct::PowerPreference {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUPowerPreference_Undefined'));
   __PACKAGE__->_add_enum('LowPower' => (0x00000001, 'WGPUPowerPreference_LowPower'));
@@ -578,7 +607,8 @@ package WebGPU::Direct::PowerPreference {
   WebGPU::Direct::PowerPreference->_build_const_lut;
 };
 
-package WebGPU::Direct::PresentMode {
+package
+	WebGPU::Direct::PresentMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Fifo' => (0x00000000, 'WGPUPresentMode_Fifo'));
   __PACKAGE__->_add_enum('FifoRelaxed' => (0x00000001, 'WGPUPresentMode_FifoRelaxed'));
@@ -588,7 +618,8 @@ package WebGPU::Direct::PresentMode {
   WebGPU::Direct::PresentMode->_build_const_lut;
 };
 
-package WebGPU::Direct::PrimitiveTopology {
+package
+	WebGPU::Direct::PrimitiveTopology {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('PointList' => (0x00000000, 'WGPUPrimitiveTopology_PointList'));
   __PACKAGE__->_add_enum('LineList' => (0x00000001, 'WGPUPrimitiveTopology_LineList'));
@@ -599,7 +630,8 @@ package WebGPU::Direct::PrimitiveTopology {
   WebGPU::Direct::PrimitiveTopology->_build_const_lut;
 };
 
-package WebGPU::Direct::QueryType {
+package
+	WebGPU::Direct::QueryType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Occlusion' => (0x00000000, 'WGPUQueryType_Occlusion'));
   __PACKAGE__->_add_enum('Timestamp' => (0x00000001, 'WGPUQueryType_Timestamp'));
@@ -607,7 +639,8 @@ package WebGPU::Direct::QueryType {
   WebGPU::Direct::QueryType->_build_const_lut;
 };
 
-package WebGPU::Direct::QueueWorkDoneStatus {
+package
+	WebGPU::Direct::QueueWorkDoneStatus {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPUQueueWorkDoneStatus_Success'));
   __PACKAGE__->_add_enum('Error' => (0x00000001, 'WGPUQueueWorkDoneStatus_Error'));
@@ -617,7 +650,8 @@ package WebGPU::Direct::QueueWorkDoneStatus {
   WebGPU::Direct::QueueWorkDoneStatus->_build_const_lut;
 };
 
-package WebGPU::Direct::RequestAdapterStatus {
+package
+	WebGPU::Direct::RequestAdapterStatus {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPURequestAdapterStatus_Success'));
   __PACKAGE__->_add_enum('Unavailable' => (0x00000001, 'WGPURequestAdapterStatus_Unavailable'));
@@ -627,7 +661,8 @@ package WebGPU::Direct::RequestAdapterStatus {
   WebGPU::Direct::RequestAdapterStatus->_build_const_lut;
 };
 
-package WebGPU::Direct::RequestDeviceStatus {
+package
+	WebGPU::Direct::RequestDeviceStatus {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPURequestDeviceStatus_Success'));
   __PACKAGE__->_add_enum('Error' => (0x00000001, 'WGPURequestDeviceStatus_Error'));
@@ -636,7 +671,8 @@ package WebGPU::Direct::RequestDeviceStatus {
   WebGPU::Direct::RequestDeviceStatus->_build_const_lut;
 };
 
-package WebGPU::Direct::SType {
+package
+	WebGPU::Direct::SType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Invalid' => (0x00000000, 'WGPUSType_Invalid'));
   __PACKAGE__->_add_enum('SurfaceDescriptorFromMetalLayer' => (0x00000001, 'WGPUSType_SurfaceDescriptorFromMetalLayer'));
@@ -654,7 +690,8 @@ package WebGPU::Direct::SType {
   WebGPU::Direct::SType->_build_const_lut;
 };
 
-package WebGPU::Direct::SamplerBindingType {
+package
+	WebGPU::Direct::SamplerBindingType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUSamplerBindingType_Undefined'));
   __PACKAGE__->_add_enum('Filtering' => (0x00000001, 'WGPUSamplerBindingType_Filtering'));
@@ -664,7 +701,8 @@ package WebGPU::Direct::SamplerBindingType {
   WebGPU::Direct::SamplerBindingType->_build_const_lut;
 };
 
-package WebGPU::Direct::ShaderStage {
+package
+	WebGPU::Direct::ShaderStage {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUShaderStage_None'));
   __PACKAGE__->_add_enum('Vertex' => (0x00000001, 'WGPUShaderStage_Vertex'));
@@ -674,7 +712,8 @@ package WebGPU::Direct::ShaderStage {
   WebGPU::Direct::ShaderStage->_build_const_lut;
 };
 
-package WebGPU::Direct::StencilOperation {
+package
+	WebGPU::Direct::StencilOperation {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Keep' => (0x00000000, 'WGPUStencilOperation_Keep'));
   __PACKAGE__->_add_enum('Zero' => (0x00000001, 'WGPUStencilOperation_Zero'));
@@ -688,15 +727,19 @@ package WebGPU::Direct::StencilOperation {
   WebGPU::Direct::StencilOperation->_build_const_lut;
 };
 
-package WebGPU::Direct::StorageTextureAccess {
+package
+	WebGPU::Direct::StorageTextureAccess {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUStorageTextureAccess_Undefined'));
   __PACKAGE__->_add_enum('WriteOnly' => (0x00000001, 'WGPUStorageTextureAccess_WriteOnly'));
+  __PACKAGE__->_add_enum('ReadOnly' => (0x00000002, 'WGPUStorageTextureAccess_ReadOnly'));
+  __PACKAGE__->_add_enum('ReadWrite' => (0x00000003, 'WGPUStorageTextureAccess_ReadWrite'));
   __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUStorageTextureAccess_Force32'));
   WebGPU::Direct::StorageTextureAccess->_build_const_lut;
 };
 
-package WebGPU::Direct::StoreOp {
+package
+	WebGPU::Direct::StoreOp {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUStoreOp_Undefined'));
   __PACKAGE__->_add_enum('Store' => (0x00000001, 'WGPUStoreOp_Store'));
@@ -705,7 +748,8 @@ package WebGPU::Direct::StoreOp {
   WebGPU::Direct::StoreOp->_build_const_lut;
 };
 
-package WebGPU::Direct::SurfaceGetCurrentTextureStatus {
+package
+	WebGPU::Direct::SurfaceGetCurrentTextureStatus {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPUSurfaceGetCurrentTextureStatus_Success'));
   __PACKAGE__->_add_enum('Timeout' => (0x00000001, 'WGPUSurfaceGetCurrentTextureStatus_Timeout'));
@@ -717,7 +761,8 @@ package WebGPU::Direct::SurfaceGetCurrentTextureStatus {
   WebGPU::Direct::SurfaceGetCurrentTextureStatus->_build_const_lut;
 };
 
-package WebGPU::Direct::TextureAspect {
+package
+	WebGPU::Direct::TextureAspect {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('All' => (0x00000000, 'WGPUTextureAspect_All'));
   __PACKAGE__->_add_enum('StencilOnly' => (0x00000001, 'WGPUTextureAspect_StencilOnly'));
@@ -726,7 +771,8 @@ package WebGPU::Direct::TextureAspect {
   WebGPU::Direct::TextureAspect->_build_const_lut;
 };
 
-package WebGPU::Direct::TextureDimension {
+package
+	WebGPU::Direct::TextureDimension {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('_1D' => (0x00000000, 'WGPUTextureDimension_1D'));
   __PACKAGE__->_add_enum('_2D' => (0x00000001, 'WGPUTextureDimension_2D'));
@@ -735,7 +781,8 @@ package WebGPU::Direct::TextureDimension {
   WebGPU::Direct::TextureDimension->_build_const_lut;
 };
 
-package WebGPU::Direct::TextureFormat {
+package
+	WebGPU::Direct::TextureFormat {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUTextureFormat_Undefined'));
   __PACKAGE__->_add_enum('R8Unorm' => (0x00000001, 'WGPUTextureFormat_R8Unorm'));
@@ -762,81 +809,83 @@ package WebGPU::Direct::TextureFormat {
   __PACKAGE__->_add_enum('RGBA8Sint' => (0x00000016, 'WGPUTextureFormat_RGBA8Sint'));
   __PACKAGE__->_add_enum('BGRA8Unorm' => (0x00000017, 'WGPUTextureFormat_BGRA8Unorm'));
   __PACKAGE__->_add_enum('BGRA8UnormSrgb' => (0x00000018, 'WGPUTextureFormat_BGRA8UnormSrgb'));
-  __PACKAGE__->_add_enum('RGB10A2Unorm' => (0x00000019, 'WGPUTextureFormat_RGB10A2Unorm'));
-  __PACKAGE__->_add_enum('RG11B10Ufloat' => (0x0000001A, 'WGPUTextureFormat_RG11B10Ufloat'));
-  __PACKAGE__->_add_enum('RGB9E5Ufloat' => (0x0000001B, 'WGPUTextureFormat_RGB9E5Ufloat'));
-  __PACKAGE__->_add_enum('RG32Float' => (0x0000001C, 'WGPUTextureFormat_RG32Float'));
-  __PACKAGE__->_add_enum('RG32Uint' => (0x0000001D, 'WGPUTextureFormat_RG32Uint'));
-  __PACKAGE__->_add_enum('RG32Sint' => (0x0000001E, 'WGPUTextureFormat_RG32Sint'));
-  __PACKAGE__->_add_enum('RGBA16Uint' => (0x0000001F, 'WGPUTextureFormat_RGBA16Uint'));
-  __PACKAGE__->_add_enum('RGBA16Sint' => (0x00000020, 'WGPUTextureFormat_RGBA16Sint'));
-  __PACKAGE__->_add_enum('RGBA16Float' => (0x00000021, 'WGPUTextureFormat_RGBA16Float'));
-  __PACKAGE__->_add_enum('RGBA32Float' => (0x00000022, 'WGPUTextureFormat_RGBA32Float'));
-  __PACKAGE__->_add_enum('RGBA32Uint' => (0x00000023, 'WGPUTextureFormat_RGBA32Uint'));
-  __PACKAGE__->_add_enum('RGBA32Sint' => (0x00000024, 'WGPUTextureFormat_RGBA32Sint'));
-  __PACKAGE__->_add_enum('Stencil8' => (0x00000025, 'WGPUTextureFormat_Stencil8'));
-  __PACKAGE__->_add_enum('Depth16Unorm' => (0x00000026, 'WGPUTextureFormat_Depth16Unorm'));
-  __PACKAGE__->_add_enum('Depth24Plus' => (0x00000027, 'WGPUTextureFormat_Depth24Plus'));
-  __PACKAGE__->_add_enum('Depth24PlusStencil8' => (0x00000028, 'WGPUTextureFormat_Depth24PlusStencil8'));
-  __PACKAGE__->_add_enum('Depth32Float' => (0x00000029, 'WGPUTextureFormat_Depth32Float'));
-  __PACKAGE__->_add_enum('Depth32FloatStencil8' => (0x0000002A, 'WGPUTextureFormat_Depth32FloatStencil8'));
-  __PACKAGE__->_add_enum('BC1RGBAUnorm' => (0x0000002B, 'WGPUTextureFormat_BC1RGBAUnorm'));
-  __PACKAGE__->_add_enum('BC1RGBAUnormSrgb' => (0x0000002C, 'WGPUTextureFormat_BC1RGBAUnormSrgb'));
-  __PACKAGE__->_add_enum('BC2RGBAUnorm' => (0x0000002D, 'WGPUTextureFormat_BC2RGBAUnorm'));
-  __PACKAGE__->_add_enum('BC2RGBAUnormSrgb' => (0x0000002E, 'WGPUTextureFormat_BC2RGBAUnormSrgb'));
-  __PACKAGE__->_add_enum('BC3RGBAUnorm' => (0x0000002F, 'WGPUTextureFormat_BC3RGBAUnorm'));
-  __PACKAGE__->_add_enum('BC3RGBAUnormSrgb' => (0x00000030, 'WGPUTextureFormat_BC3RGBAUnormSrgb'));
-  __PACKAGE__->_add_enum('BC4RUnorm' => (0x00000031, 'WGPUTextureFormat_BC4RUnorm'));
-  __PACKAGE__->_add_enum('BC4RSnorm' => (0x00000032, 'WGPUTextureFormat_BC4RSnorm'));
-  __PACKAGE__->_add_enum('BC5RGUnorm' => (0x00000033, 'WGPUTextureFormat_BC5RGUnorm'));
-  __PACKAGE__->_add_enum('BC5RGSnorm' => (0x00000034, 'WGPUTextureFormat_BC5RGSnorm'));
-  __PACKAGE__->_add_enum('BC6HRGBUfloat' => (0x00000035, 'WGPUTextureFormat_BC6HRGBUfloat'));
-  __PACKAGE__->_add_enum('BC6HRGBFloat' => (0x00000036, 'WGPUTextureFormat_BC6HRGBFloat'));
-  __PACKAGE__->_add_enum('BC7RGBAUnorm' => (0x00000037, 'WGPUTextureFormat_BC7RGBAUnorm'));
-  __PACKAGE__->_add_enum('BC7RGBAUnormSrgb' => (0x00000038, 'WGPUTextureFormat_BC7RGBAUnormSrgb'));
-  __PACKAGE__->_add_enum('ETC2RGB8Unorm' => (0x00000039, 'WGPUTextureFormat_ETC2RGB8Unorm'));
-  __PACKAGE__->_add_enum('ETC2RGB8UnormSrgb' => (0x0000003A, 'WGPUTextureFormat_ETC2RGB8UnormSrgb'));
-  __PACKAGE__->_add_enum('ETC2RGB8A1Unorm' => (0x0000003B, 'WGPUTextureFormat_ETC2RGB8A1Unorm'));
-  __PACKAGE__->_add_enum('ETC2RGB8A1UnormSrgb' => (0x0000003C, 'WGPUTextureFormat_ETC2RGB8A1UnormSrgb'));
-  __PACKAGE__->_add_enum('ETC2RGBA8Unorm' => (0x0000003D, 'WGPUTextureFormat_ETC2RGBA8Unorm'));
-  __PACKAGE__->_add_enum('ETC2RGBA8UnormSrgb' => (0x0000003E, 'WGPUTextureFormat_ETC2RGBA8UnormSrgb'));
-  __PACKAGE__->_add_enum('EACR11Unorm' => (0x0000003F, 'WGPUTextureFormat_EACR11Unorm'));
-  __PACKAGE__->_add_enum('EACR11Snorm' => (0x00000040, 'WGPUTextureFormat_EACR11Snorm'));
-  __PACKAGE__->_add_enum('EACRG11Unorm' => (0x00000041, 'WGPUTextureFormat_EACRG11Unorm'));
-  __PACKAGE__->_add_enum('EACRG11Snorm' => (0x00000042, 'WGPUTextureFormat_EACRG11Snorm'));
-  __PACKAGE__->_add_enum('ASTC4x4Unorm' => (0x00000043, 'WGPUTextureFormat_ASTC4x4Unorm'));
-  __PACKAGE__->_add_enum('ASTC4x4UnormSrgb' => (0x00000044, 'WGPUTextureFormat_ASTC4x4UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC5x4Unorm' => (0x00000045, 'WGPUTextureFormat_ASTC5x4Unorm'));
-  __PACKAGE__->_add_enum('ASTC5x4UnormSrgb' => (0x00000046, 'WGPUTextureFormat_ASTC5x4UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC5x5Unorm' => (0x00000047, 'WGPUTextureFormat_ASTC5x5Unorm'));
-  __PACKAGE__->_add_enum('ASTC5x5UnormSrgb' => (0x00000048, 'WGPUTextureFormat_ASTC5x5UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC6x5Unorm' => (0x00000049, 'WGPUTextureFormat_ASTC6x5Unorm'));
-  __PACKAGE__->_add_enum('ASTC6x5UnormSrgb' => (0x0000004A, 'WGPUTextureFormat_ASTC6x5UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC6x6Unorm' => (0x0000004B, 'WGPUTextureFormat_ASTC6x6Unorm'));
-  __PACKAGE__->_add_enum('ASTC6x6UnormSrgb' => (0x0000004C, 'WGPUTextureFormat_ASTC6x6UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC8x5Unorm' => (0x0000004D, 'WGPUTextureFormat_ASTC8x5Unorm'));
-  __PACKAGE__->_add_enum('ASTC8x5UnormSrgb' => (0x0000004E, 'WGPUTextureFormat_ASTC8x5UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC8x6Unorm' => (0x0000004F, 'WGPUTextureFormat_ASTC8x6Unorm'));
-  __PACKAGE__->_add_enum('ASTC8x6UnormSrgb' => (0x00000050, 'WGPUTextureFormat_ASTC8x6UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC8x8Unorm' => (0x00000051, 'WGPUTextureFormat_ASTC8x8Unorm'));
-  __PACKAGE__->_add_enum('ASTC8x8UnormSrgb' => (0x00000052, 'WGPUTextureFormat_ASTC8x8UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC10x5Unorm' => (0x00000053, 'WGPUTextureFormat_ASTC10x5Unorm'));
-  __PACKAGE__->_add_enum('ASTC10x5UnormSrgb' => (0x00000054, 'WGPUTextureFormat_ASTC10x5UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC10x6Unorm' => (0x00000055, 'WGPUTextureFormat_ASTC10x6Unorm'));
-  __PACKAGE__->_add_enum('ASTC10x6UnormSrgb' => (0x00000056, 'WGPUTextureFormat_ASTC10x6UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC10x8Unorm' => (0x00000057, 'WGPUTextureFormat_ASTC10x8Unorm'));
-  __PACKAGE__->_add_enum('ASTC10x8UnormSrgb' => (0x00000058, 'WGPUTextureFormat_ASTC10x8UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC10x10Unorm' => (0x00000059, 'WGPUTextureFormat_ASTC10x10Unorm'));
-  __PACKAGE__->_add_enum('ASTC10x10UnormSrgb' => (0x0000005A, 'WGPUTextureFormat_ASTC10x10UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC12x10Unorm' => (0x0000005B, 'WGPUTextureFormat_ASTC12x10Unorm'));
-  __PACKAGE__->_add_enum('ASTC12x10UnormSrgb' => (0x0000005C, 'WGPUTextureFormat_ASTC12x10UnormSrgb'));
-  __PACKAGE__->_add_enum('ASTC12x12Unorm' => (0x0000005D, 'WGPUTextureFormat_ASTC12x12Unorm'));
-  __PACKAGE__->_add_enum('ASTC12x12UnormSrgb' => (0x0000005E, 'WGPUTextureFormat_ASTC12x12UnormSrgb'));
+  __PACKAGE__->_add_enum('RGB10A2Uint' => (0x00000019, 'WGPUTextureFormat_RGB10A2Uint'));
+  __PACKAGE__->_add_enum('RGB10A2Unorm' => (0x0000001A, 'WGPUTextureFormat_RGB10A2Unorm'));
+  __PACKAGE__->_add_enum('RG11B10Ufloat' => (0x0000001B, 'WGPUTextureFormat_RG11B10Ufloat'));
+  __PACKAGE__->_add_enum('RGB9E5Ufloat' => (0x0000001C, 'WGPUTextureFormat_RGB9E5Ufloat'));
+  __PACKAGE__->_add_enum('RG32Float' => (0x0000001D, 'WGPUTextureFormat_RG32Float'));
+  __PACKAGE__->_add_enum('RG32Uint' => (0x0000001E, 'WGPUTextureFormat_RG32Uint'));
+  __PACKAGE__->_add_enum('RG32Sint' => (0x0000001F, 'WGPUTextureFormat_RG32Sint'));
+  __PACKAGE__->_add_enum('RGBA16Uint' => (0x00000020, 'WGPUTextureFormat_RGBA16Uint'));
+  __PACKAGE__->_add_enum('RGBA16Sint' => (0x00000021, 'WGPUTextureFormat_RGBA16Sint'));
+  __PACKAGE__->_add_enum('RGBA16Float' => (0x00000022, 'WGPUTextureFormat_RGBA16Float'));
+  __PACKAGE__->_add_enum('RGBA32Float' => (0x00000023, 'WGPUTextureFormat_RGBA32Float'));
+  __PACKAGE__->_add_enum('RGBA32Uint' => (0x00000024, 'WGPUTextureFormat_RGBA32Uint'));
+  __PACKAGE__->_add_enum('RGBA32Sint' => (0x00000025, 'WGPUTextureFormat_RGBA32Sint'));
+  __PACKAGE__->_add_enum('Stencil8' => (0x00000026, 'WGPUTextureFormat_Stencil8'));
+  __PACKAGE__->_add_enum('Depth16Unorm' => (0x00000027, 'WGPUTextureFormat_Depth16Unorm'));
+  __PACKAGE__->_add_enum('Depth24Plus' => (0x00000028, 'WGPUTextureFormat_Depth24Plus'));
+  __PACKAGE__->_add_enum('Depth24PlusStencil8' => (0x00000029, 'WGPUTextureFormat_Depth24PlusStencil8'));
+  __PACKAGE__->_add_enum('Depth32Float' => (0x0000002A, 'WGPUTextureFormat_Depth32Float'));
+  __PACKAGE__->_add_enum('Depth32FloatStencil8' => (0x0000002B, 'WGPUTextureFormat_Depth32FloatStencil8'));
+  __PACKAGE__->_add_enum('BC1RGBAUnorm' => (0x0000002C, 'WGPUTextureFormat_BC1RGBAUnorm'));
+  __PACKAGE__->_add_enum('BC1RGBAUnormSrgb' => (0x0000002D, 'WGPUTextureFormat_BC1RGBAUnormSrgb'));
+  __PACKAGE__->_add_enum('BC2RGBAUnorm' => (0x0000002E, 'WGPUTextureFormat_BC2RGBAUnorm'));
+  __PACKAGE__->_add_enum('BC2RGBAUnormSrgb' => (0x0000002F, 'WGPUTextureFormat_BC2RGBAUnormSrgb'));
+  __PACKAGE__->_add_enum('BC3RGBAUnorm' => (0x00000030, 'WGPUTextureFormat_BC3RGBAUnorm'));
+  __PACKAGE__->_add_enum('BC3RGBAUnormSrgb' => (0x00000031, 'WGPUTextureFormat_BC3RGBAUnormSrgb'));
+  __PACKAGE__->_add_enum('BC4RUnorm' => (0x00000032, 'WGPUTextureFormat_BC4RUnorm'));
+  __PACKAGE__->_add_enum('BC4RSnorm' => (0x00000033, 'WGPUTextureFormat_BC4RSnorm'));
+  __PACKAGE__->_add_enum('BC5RGUnorm' => (0x00000034, 'WGPUTextureFormat_BC5RGUnorm'));
+  __PACKAGE__->_add_enum('BC5RGSnorm' => (0x00000035, 'WGPUTextureFormat_BC5RGSnorm'));
+  __PACKAGE__->_add_enum('BC6HRGBUfloat' => (0x00000036, 'WGPUTextureFormat_BC6HRGBUfloat'));
+  __PACKAGE__->_add_enum('BC6HRGBFloat' => (0x00000037, 'WGPUTextureFormat_BC6HRGBFloat'));
+  __PACKAGE__->_add_enum('BC7RGBAUnorm' => (0x00000038, 'WGPUTextureFormat_BC7RGBAUnorm'));
+  __PACKAGE__->_add_enum('BC7RGBAUnormSrgb' => (0x00000039, 'WGPUTextureFormat_BC7RGBAUnormSrgb'));
+  __PACKAGE__->_add_enum('ETC2RGB8Unorm' => (0x0000003A, 'WGPUTextureFormat_ETC2RGB8Unorm'));
+  __PACKAGE__->_add_enum('ETC2RGB8UnormSrgb' => (0x0000003B, 'WGPUTextureFormat_ETC2RGB8UnormSrgb'));
+  __PACKAGE__->_add_enum('ETC2RGB8A1Unorm' => (0x0000003C, 'WGPUTextureFormat_ETC2RGB8A1Unorm'));
+  __PACKAGE__->_add_enum('ETC2RGB8A1UnormSrgb' => (0x0000003D, 'WGPUTextureFormat_ETC2RGB8A1UnormSrgb'));
+  __PACKAGE__->_add_enum('ETC2RGBA8Unorm' => (0x0000003E, 'WGPUTextureFormat_ETC2RGBA8Unorm'));
+  __PACKAGE__->_add_enum('ETC2RGBA8UnormSrgb' => (0x0000003F, 'WGPUTextureFormat_ETC2RGBA8UnormSrgb'));
+  __PACKAGE__->_add_enum('EACR11Unorm' => (0x00000040, 'WGPUTextureFormat_EACR11Unorm'));
+  __PACKAGE__->_add_enum('EACR11Snorm' => (0x00000041, 'WGPUTextureFormat_EACR11Snorm'));
+  __PACKAGE__->_add_enum('EACRG11Unorm' => (0x00000042, 'WGPUTextureFormat_EACRG11Unorm'));
+  __PACKAGE__->_add_enum('EACRG11Snorm' => (0x00000043, 'WGPUTextureFormat_EACRG11Snorm'));
+  __PACKAGE__->_add_enum('ASTC4x4Unorm' => (0x00000044, 'WGPUTextureFormat_ASTC4x4Unorm'));
+  __PACKAGE__->_add_enum('ASTC4x4UnormSrgb' => (0x00000045, 'WGPUTextureFormat_ASTC4x4UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC5x4Unorm' => (0x00000046, 'WGPUTextureFormat_ASTC5x4Unorm'));
+  __PACKAGE__->_add_enum('ASTC5x4UnormSrgb' => (0x00000047, 'WGPUTextureFormat_ASTC5x4UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC5x5Unorm' => (0x00000048, 'WGPUTextureFormat_ASTC5x5Unorm'));
+  __PACKAGE__->_add_enum('ASTC5x5UnormSrgb' => (0x00000049, 'WGPUTextureFormat_ASTC5x5UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC6x5Unorm' => (0x0000004A, 'WGPUTextureFormat_ASTC6x5Unorm'));
+  __PACKAGE__->_add_enum('ASTC6x5UnormSrgb' => (0x0000004B, 'WGPUTextureFormat_ASTC6x5UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC6x6Unorm' => (0x0000004C, 'WGPUTextureFormat_ASTC6x6Unorm'));
+  __PACKAGE__->_add_enum('ASTC6x6UnormSrgb' => (0x0000004D, 'WGPUTextureFormat_ASTC6x6UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC8x5Unorm' => (0x0000004E, 'WGPUTextureFormat_ASTC8x5Unorm'));
+  __PACKAGE__->_add_enum('ASTC8x5UnormSrgb' => (0x0000004F, 'WGPUTextureFormat_ASTC8x5UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC8x6Unorm' => (0x00000050, 'WGPUTextureFormat_ASTC8x6Unorm'));
+  __PACKAGE__->_add_enum('ASTC8x6UnormSrgb' => (0x00000051, 'WGPUTextureFormat_ASTC8x6UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC8x8Unorm' => (0x00000052, 'WGPUTextureFormat_ASTC8x8Unorm'));
+  __PACKAGE__->_add_enum('ASTC8x8UnormSrgb' => (0x00000053, 'WGPUTextureFormat_ASTC8x8UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC10x5Unorm' => (0x00000054, 'WGPUTextureFormat_ASTC10x5Unorm'));
+  __PACKAGE__->_add_enum('ASTC10x5UnormSrgb' => (0x00000055, 'WGPUTextureFormat_ASTC10x5UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC10x6Unorm' => (0x00000056, 'WGPUTextureFormat_ASTC10x6Unorm'));
+  __PACKAGE__->_add_enum('ASTC10x6UnormSrgb' => (0x00000057, 'WGPUTextureFormat_ASTC10x6UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC10x8Unorm' => (0x00000058, 'WGPUTextureFormat_ASTC10x8Unorm'));
+  __PACKAGE__->_add_enum('ASTC10x8UnormSrgb' => (0x00000059, 'WGPUTextureFormat_ASTC10x8UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC10x10Unorm' => (0x0000005A, 'WGPUTextureFormat_ASTC10x10Unorm'));
+  __PACKAGE__->_add_enum('ASTC10x10UnormSrgb' => (0x0000005B, 'WGPUTextureFormat_ASTC10x10UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC12x10Unorm' => (0x0000005C, 'WGPUTextureFormat_ASTC12x10Unorm'));
+  __PACKAGE__->_add_enum('ASTC12x10UnormSrgb' => (0x0000005D, 'WGPUTextureFormat_ASTC12x10UnormSrgb'));
+  __PACKAGE__->_add_enum('ASTC12x12Unorm' => (0x0000005E, 'WGPUTextureFormat_ASTC12x12Unorm'));
+  __PACKAGE__->_add_enum('ASTC12x12UnormSrgb' => (0x0000005F, 'WGPUTextureFormat_ASTC12x12UnormSrgb'));
   __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUTextureFormat_Force32'));
   WebGPU::Direct::TextureFormat->_build_const_lut;
 };
 
-package WebGPU::Direct::TextureSampleType {
+package
+	WebGPU::Direct::TextureSampleType {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUTextureSampleType_Undefined'));
   __PACKAGE__->_add_enum('Float' => (0x00000001, 'WGPUTextureSampleType_Float'));
@@ -848,7 +897,8 @@ package WebGPU::Direct::TextureSampleType {
   WebGPU::Direct::TextureSampleType->_build_const_lut;
 };
 
-package WebGPU::Direct::TextureUsage {
+package
+	WebGPU::Direct::TextureUsage {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUTextureUsage_None'));
   __PACKAGE__->_add_enum('CopySrc' => (0x00000001, 'WGPUTextureUsage_CopySrc'));
@@ -860,7 +910,8 @@ package WebGPU::Direct::TextureUsage {
   WebGPU::Direct::TextureUsage->_build_const_lut;
 };
 
-package WebGPU::Direct::TextureViewDimension {
+package
+	WebGPU::Direct::TextureViewDimension {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUTextureViewDimension_Undefined'));
   __PACKAGE__->_add_enum('_1D' => (0x00000001, 'WGPUTextureViewDimension_1D'));
@@ -873,7 +924,8 @@ package WebGPU::Direct::TextureViewDimension {
   WebGPU::Direct::TextureViewDimension->_build_const_lut;
 };
 
-package WebGPU::Direct::VertexFormat {
+package
+	WebGPU::Direct::VertexFormat {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUVertexFormat_Undefined'));
   __PACKAGE__->_add_enum('Uint8x2' => (0x00000001, 'WGPUVertexFormat_Uint8x2'));
@@ -910,7 +962,8 @@ package WebGPU::Direct::VertexFormat {
   WebGPU::Direct::VertexFormat->_build_const_lut;
 };
 
-package WebGPU::Direct::VertexStepMode {
+package
+	WebGPU::Direct::VertexStepMode {
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Vertex' => (0x00000000, 'WGPUVertexStepMode_Vertex'));
   __PACKAGE__->_add_enum('Instance' => (0x00000001, 'WGPUVertexStepMode_Instance'));
@@ -1293,7 +1346,8 @@ package WebGPU::Direct::RequestDeviceCallback {
     }
 }
 
-package WebGPU::Direct::ChainedStruct {
+package
+	WebGPU::Direct::ChainedStruct {
     
     my $default = {};
 
@@ -1312,7 +1366,8 @@ package WebGPU::Direct::ChainedStruct {
     
 }
 
-package WebGPU::Direct::ChainedStructOut {
+package
+	WebGPU::Direct::ChainedStructOut {
     
     my $default = {};
 
@@ -1331,7 +1386,8 @@ package WebGPU::Direct::ChainedStructOut {
     
 }
 
-package WebGPU::Direct::AdapterProperties {
+package
+	WebGPU::Direct::AdapterProperties {
     
     my $default = {};
 
@@ -1350,7 +1406,8 @@ package WebGPU::Direct::AdapterProperties {
     
 }
 
-package WebGPU::Direct::BindGroupEntry {
+package
+	WebGPU::Direct::BindGroupEntry {
     
     require WebGPU::Direct::BindGroupEntry;
     my $default = {};
@@ -1370,7 +1427,8 @@ package WebGPU::Direct::BindGroupEntry {
     
 }
 
-package WebGPU::Direct::BlendComponent {
+package
+	WebGPU::Direct::BlendComponent {
     
     my $default = {};
 
@@ -1389,7 +1447,8 @@ package WebGPU::Direct::BlendComponent {
     
 }
 
-package WebGPU::Direct::BufferBindingLayout {
+package
+	WebGPU::Direct::BufferBindingLayout {
     
     my $default = {};
 
@@ -1408,7 +1467,8 @@ package WebGPU::Direct::BufferBindingLayout {
     
 }
 
-package WebGPU::Direct::BufferDescriptor {
+package
+	WebGPU::Direct::BufferDescriptor {
     
     my $default = {};
 
@@ -1427,7 +1487,8 @@ package WebGPU::Direct::BufferDescriptor {
     
 }
 
-package WebGPU::Direct::Color {
+package
+	WebGPU::Direct::Color {
     
     my $default = {};
 
@@ -1446,7 +1507,8 @@ package WebGPU::Direct::Color {
     
 }
 
-package WebGPU::Direct::CommandBufferDescriptor {
+package
+	WebGPU::Direct::CommandBufferDescriptor {
     
     my $default = {};
 
@@ -1465,7 +1527,8 @@ package WebGPU::Direct::CommandBufferDescriptor {
     
 }
 
-package WebGPU::Direct::CommandEncoderDescriptor {
+package
+	WebGPU::Direct::CommandEncoderDescriptor {
     
     my $default = {};
 
@@ -1484,7 +1547,8 @@ package WebGPU::Direct::CommandEncoderDescriptor {
     
 }
 
-package WebGPU::Direct::CompilationMessage {
+package
+	WebGPU::Direct::CompilationMessage {
     
     my $default = {};
 
@@ -1503,7 +1567,8 @@ package WebGPU::Direct::CompilationMessage {
     
 }
 
-package WebGPU::Direct::ComputePassTimestampWrites {
+package
+	WebGPU::Direct::ComputePassTimestampWrites {
     
     my $default = {};
 
@@ -1522,7 +1587,8 @@ package WebGPU::Direct::ComputePassTimestampWrites {
     
 }
 
-package WebGPU::Direct::ConstantEntry {
+package
+	WebGPU::Direct::ConstantEntry {
     
     my $default = {};
 
@@ -1541,7 +1607,8 @@ package WebGPU::Direct::ConstantEntry {
     
 }
 
-package WebGPU::Direct::Extent3D {
+package
+	WebGPU::Direct::Extent3D {
     
     my $default = {};
 
@@ -1560,7 +1627,8 @@ package WebGPU::Direct::Extent3D {
     
 }
 
-package WebGPU::Direct::InstanceDescriptor {
+package
+	WebGPU::Direct::InstanceDescriptor {
     
     my $default = {};
 
@@ -1579,7 +1647,8 @@ package WebGPU::Direct::InstanceDescriptor {
     
 }
 
-package WebGPU::Direct::Limits {
+package
+	WebGPU::Direct::Limits {
     
     my $default = {};
 
@@ -1598,7 +1667,8 @@ package WebGPU::Direct::Limits {
     
 }
 
-package WebGPU::Direct::MultisampleState {
+package
+	WebGPU::Direct::MultisampleState {
     
     my $default = {
              'alphaToCoverageEnabled' => 0,
@@ -1621,7 +1691,8 @@ package WebGPU::Direct::MultisampleState {
     
 }
 
-package WebGPU::Direct::Origin3D {
+package
+	WebGPU::Direct::Origin3D {
     
     my $default = {};
 
@@ -1640,7 +1711,8 @@ package WebGPU::Direct::Origin3D {
     
 }
 
-package WebGPU::Direct::PipelineLayoutDescriptor {
+package
+	WebGPU::Direct::PipelineLayoutDescriptor {
     
     my $default = {};
 
@@ -1659,7 +1731,8 @@ package WebGPU::Direct::PipelineLayoutDescriptor {
     
 }
 
-package WebGPU::Direct::PrimitiveDepthClipControl {
+package
+	WebGPU::Direct::PrimitiveDepthClipControl {
     push @WebGPU::Direct::PrimitiveDepthClipControl::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -1678,7 +1751,8 @@ package WebGPU::Direct::PrimitiveDepthClipControl {
     
 }
 
-package WebGPU::Direct::PrimitiveState {
+package
+	WebGPU::Direct::PrimitiveState {
     
     my $default = {};
 
@@ -1697,7 +1771,8 @@ package WebGPU::Direct::PrimitiveState {
     
 }
 
-package WebGPU::Direct::QuerySetDescriptor {
+package
+	WebGPU::Direct::QuerySetDescriptor {
     
     my $default = {};
 
@@ -1716,7 +1791,8 @@ package WebGPU::Direct::QuerySetDescriptor {
     
 }
 
-package WebGPU::Direct::QueueDescriptor {
+package
+	WebGPU::Direct::QueueDescriptor {
     
     my $default = {};
 
@@ -1735,7 +1811,8 @@ package WebGPU::Direct::QueueDescriptor {
     
 }
 
-package WebGPU::Direct::RenderBundleDescriptor {
+package
+	WebGPU::Direct::RenderBundleDescriptor {
     
     my $default = {};
 
@@ -1754,7 +1831,8 @@ package WebGPU::Direct::RenderBundleDescriptor {
     
 }
 
-package WebGPU::Direct::RenderBundleEncoderDescriptor {
+package
+	WebGPU::Direct::RenderBundleEncoderDescriptor {
     
     my $default = {};
 
@@ -1773,7 +1851,8 @@ package WebGPU::Direct::RenderBundleEncoderDescriptor {
     
 }
 
-package WebGPU::Direct::RenderPassDepthStencilAttachment {
+package
+	WebGPU::Direct::RenderPassDepthStencilAttachment {
     
     my $default = {};
 
@@ -1792,7 +1871,8 @@ package WebGPU::Direct::RenderPassDepthStencilAttachment {
     
 }
 
-package WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
+package
+	WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
     push @WebGPU::Direct::RenderPassDescriptorMaxDrawCount::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -1811,7 +1891,8 @@ package WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
     
 }
 
-package WebGPU::Direct::RenderPassTimestampWrites {
+package
+	WebGPU::Direct::RenderPassTimestampWrites {
     
     my $default = {};
 
@@ -1830,7 +1911,8 @@ package WebGPU::Direct::RenderPassTimestampWrites {
     
 }
 
-package WebGPU::Direct::RequestAdapterOptions {
+package
+	WebGPU::Direct::RequestAdapterOptions {
     
     my $default = {};
 
@@ -1849,7 +1931,8 @@ package WebGPU::Direct::RequestAdapterOptions {
     
 }
 
-package WebGPU::Direct::SamplerBindingLayout {
+package
+	WebGPU::Direct::SamplerBindingLayout {
     
     my $default = {};
 
@@ -1868,7 +1951,8 @@ package WebGPU::Direct::SamplerBindingLayout {
     
 }
 
-package WebGPU::Direct::SamplerDescriptor {
+package
+	WebGPU::Direct::SamplerDescriptor {
     
     my $default = {};
 
@@ -1887,7 +1971,8 @@ package WebGPU::Direct::SamplerDescriptor {
     
 }
 
-package WebGPU::Direct::ShaderModuleCompilationHint {
+package
+	WebGPU::Direct::ShaderModuleCompilationHint {
     
     my $default = {};
 
@@ -1906,7 +1991,8 @@ package WebGPU::Direct::ShaderModuleCompilationHint {
     
 }
 
-package WebGPU::Direct::ShaderModuleSPIRVDescriptor {
+package
+	WebGPU::Direct::ShaderModuleSPIRVDescriptor {
     push @WebGPU::Direct::ShaderModuleSPIRVDescriptor::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -1925,7 +2011,8 @@ package WebGPU::Direct::ShaderModuleSPIRVDescriptor {
     
 }
 
-package WebGPU::Direct::ShaderModuleWGSLDescriptor {
+package
+	WebGPU::Direct::ShaderModuleWGSLDescriptor {
     push @WebGPU::Direct::ShaderModuleWGSLDescriptor::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -1944,7 +2031,8 @@ package WebGPU::Direct::ShaderModuleWGSLDescriptor {
     
 }
 
-package WebGPU::Direct::StencilFaceState {
+package
+	WebGPU::Direct::StencilFaceState {
     
     my $default = {
              'compare' => WebGPU::Direct::CompareFunction->Always,
@@ -1968,7 +2056,8 @@ package WebGPU::Direct::StencilFaceState {
     
 }
 
-package WebGPU::Direct::StorageTextureBindingLayout {
+package
+	WebGPU::Direct::StorageTextureBindingLayout {
     
     my $default = {};
 
@@ -1987,7 +2076,8 @@ package WebGPU::Direct::StorageTextureBindingLayout {
     
 }
 
-package WebGPU::Direct::SurfaceCapabilities {
+package
+	WebGPU::Direct::SurfaceCapabilities {
     
     my $default = {};
 
@@ -2006,7 +2096,8 @@ package WebGPU::Direct::SurfaceCapabilities {
     
 }
 
-package WebGPU::Direct::SurfaceConfiguration {
+package
+	WebGPU::Direct::SurfaceConfiguration {
     
     my $default = {
              'alphaMode' => WebGPU::Direct::CompositeAlphaMode->Auto,
@@ -2028,7 +2119,8 @@ package WebGPU::Direct::SurfaceConfiguration {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptor {
+package
+	WebGPU::Direct::SurfaceDescriptor {
     
     my $default = {};
 
@@ -2047,7 +2139,8 @@ package WebGPU::Direct::SurfaceDescriptor {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
+package
+	WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
     push @WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -2066,7 +2159,8 @@ package WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
+package
+	WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
     push @WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -2085,7 +2179,8 @@ package WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
+package
+	WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
     push @WebGPU::Direct::SurfaceDescriptorFromMetalLayer::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -2104,7 +2199,8 @@ package WebGPU::Direct::SurfaceDescriptorFromMetalLayer {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
+package
+	WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
     push @WebGPU::Direct::SurfaceDescriptorFromWaylandSurface::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -2123,7 +2219,8 @@ package WebGPU::Direct::SurfaceDescriptorFromWaylandSurface {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
+package
+	WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
     push @WebGPU::Direct::SurfaceDescriptorFromWindowsHWND::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -2142,7 +2239,8 @@ package WebGPU::Direct::SurfaceDescriptorFromWindowsHWND {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
+package
+	WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
     push @WebGPU::Direct::SurfaceDescriptorFromXcbWindow::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -2161,7 +2259,8 @@ package WebGPU::Direct::SurfaceDescriptorFromXcbWindow {
     
 }
 
-package WebGPU::Direct::SurfaceDescriptorFromXlibWindow {
+package
+	WebGPU::Direct::SurfaceDescriptorFromXlibWindow {
     push @WebGPU::Direct::SurfaceDescriptorFromXlibWindow::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
@@ -2180,7 +2279,8 @@ package WebGPU::Direct::SurfaceDescriptorFromXlibWindow {
     
 }
 
-package WebGPU::Direct::SurfaceTexture {
+package
+	WebGPU::Direct::SurfaceTexture {
     
     my $default = {};
 
@@ -2199,7 +2299,8 @@ package WebGPU::Direct::SurfaceTexture {
     
 }
 
-package WebGPU::Direct::TextureBindingLayout {
+package
+	WebGPU::Direct::TextureBindingLayout {
     
     my $default = {};
 
@@ -2218,7 +2319,8 @@ package WebGPU::Direct::TextureBindingLayout {
     
 }
 
-package WebGPU::Direct::TextureDataLayout {
+package
+	WebGPU::Direct::TextureDataLayout {
     
     my $default = {};
 
@@ -2237,7 +2339,8 @@ package WebGPU::Direct::TextureDataLayout {
     
 }
 
-package WebGPU::Direct::TextureViewDescriptor {
+package
+	WebGPU::Direct::TextureViewDescriptor {
     
     my $default = {
              'aspect' => WebGPU::Direct::TextureAspect->All,
@@ -2260,7 +2363,8 @@ package WebGPU::Direct::TextureViewDescriptor {
     
 }
 
-package WebGPU::Direct::VertexAttribute {
+package
+	WebGPU::Direct::VertexAttribute {
     
     my $default = {};
 
@@ -2279,7 +2383,8 @@ package WebGPU::Direct::VertexAttribute {
     
 }
 
-package WebGPU::Direct::BindGroupDescriptor {
+package
+	WebGPU::Direct::BindGroupDescriptor {
     
     my $default = {};
 
@@ -2298,7 +2403,8 @@ package WebGPU::Direct::BindGroupDescriptor {
     
 }
 
-package WebGPU::Direct::BindGroupLayoutEntry {
+package
+	WebGPU::Direct::BindGroupLayoutEntry {
     
     my $default = {};
 
@@ -2317,7 +2423,8 @@ package WebGPU::Direct::BindGroupLayoutEntry {
     
 }
 
-package WebGPU::Direct::BlendState {
+package
+	WebGPU::Direct::BlendState {
     
     my $default = {};
 
@@ -2336,7 +2443,8 @@ package WebGPU::Direct::BlendState {
     
 }
 
-package WebGPU::Direct::CompilationInfo {
+package
+	WebGPU::Direct::CompilationInfo {
     
     my $default = {};
 
@@ -2355,7 +2463,8 @@ package WebGPU::Direct::CompilationInfo {
     
 }
 
-package WebGPU::Direct::ComputePassDescriptor {
+package
+	WebGPU::Direct::ComputePassDescriptor {
     
     my $default = {};
 
@@ -2374,7 +2483,8 @@ package WebGPU::Direct::ComputePassDescriptor {
     
 }
 
-package WebGPU::Direct::DepthStencilState {
+package
+	WebGPU::Direct::DepthStencilState {
     
     my $default = {
              'depthBias' => 0,
@@ -2399,7 +2509,8 @@ package WebGPU::Direct::DepthStencilState {
     
 }
 
-package WebGPU::Direct::ImageCopyBuffer {
+package
+	WebGPU::Direct::ImageCopyBuffer {
     
     my $default = {};
 
@@ -2418,7 +2529,8 @@ package WebGPU::Direct::ImageCopyBuffer {
     
 }
 
-package WebGPU::Direct::ImageCopyTexture {
+package
+	WebGPU::Direct::ImageCopyTexture {
     
     my $default = {};
 
@@ -2437,7 +2549,8 @@ package WebGPU::Direct::ImageCopyTexture {
     
 }
 
-package WebGPU::Direct::ProgrammableStageDescriptor {
+package
+	WebGPU::Direct::ProgrammableStageDescriptor {
     
     my $default = {};
 
@@ -2456,7 +2569,8 @@ package WebGPU::Direct::ProgrammableStageDescriptor {
     
 }
 
-package WebGPU::Direct::RenderPassColorAttachment {
+package
+	WebGPU::Direct::RenderPassColorAttachment {
     
     my $default = {};
 
@@ -2475,7 +2589,8 @@ package WebGPU::Direct::RenderPassColorAttachment {
     
 }
 
-package WebGPU::Direct::RequiredLimits {
+package
+	WebGPU::Direct::RequiredLimits {
     
     my $default = {};
 
@@ -2494,7 +2609,8 @@ package WebGPU::Direct::RequiredLimits {
     
 }
 
-package WebGPU::Direct::ShaderModuleDescriptor {
+package
+	WebGPU::Direct::ShaderModuleDescriptor {
     
     my $default = {};
 
@@ -2513,7 +2629,8 @@ package WebGPU::Direct::ShaderModuleDescriptor {
     
 }
 
-package WebGPU::Direct::SupportedLimits {
+package
+	WebGPU::Direct::SupportedLimits {
     
     my $default = {};
 
@@ -2532,7 +2649,8 @@ package WebGPU::Direct::SupportedLimits {
     
 }
 
-package WebGPU::Direct::TextureDescriptor {
+package
+	WebGPU::Direct::TextureDescriptor {
     
     my $default = {
              'dimension' => WebGPU::Direct::TextureDimension->_2D,
@@ -2559,7 +2677,8 @@ package WebGPU::Direct::TextureDescriptor {
     
 }
 
-package WebGPU::Direct::VertexBufferLayout {
+package
+	WebGPU::Direct::VertexBufferLayout {
     
     my $default = {};
 
@@ -2578,7 +2697,8 @@ package WebGPU::Direct::VertexBufferLayout {
     
 }
 
-package WebGPU::Direct::BindGroupLayoutDescriptor {
+package
+	WebGPU::Direct::BindGroupLayoutDescriptor {
     
     my $default = {};
 
@@ -2597,7 +2717,8 @@ package WebGPU::Direct::BindGroupLayoutDescriptor {
     
 }
 
-package WebGPU::Direct::ColorTargetState {
+package
+	WebGPU::Direct::ColorTargetState {
     
     my $default = {
              'blend' => undef,
@@ -2619,7 +2740,8 @@ package WebGPU::Direct::ColorTargetState {
     
 }
 
-package WebGPU::Direct::ComputePipelineDescriptor {
+package
+	WebGPU::Direct::ComputePipelineDescriptor {
     
     my $default = {};
 
@@ -2638,7 +2760,8 @@ package WebGPU::Direct::ComputePipelineDescriptor {
     
 }
 
-package WebGPU::Direct::DeviceDescriptor {
+package
+	WebGPU::Direct::DeviceDescriptor {
     
     my $default = {};
 
@@ -2657,7 +2780,8 @@ package WebGPU::Direct::DeviceDescriptor {
     
 }
 
-package WebGPU::Direct::RenderPassDescriptor {
+package
+	WebGPU::Direct::RenderPassDescriptor {
     
     my $default = {};
 
@@ -2676,7 +2800,8 @@ package WebGPU::Direct::RenderPassDescriptor {
     
 }
 
-package WebGPU::Direct::VertexState {
+package
+	WebGPU::Direct::VertexState {
     
     my $default = {};
 
@@ -2695,7 +2820,8 @@ package WebGPU::Direct::VertexState {
     
 }
 
-package WebGPU::Direct::FragmentState {
+package
+	WebGPU::Direct::FragmentState {
     
     my $default = {};
 
@@ -2714,7 +2840,8 @@ package WebGPU::Direct::FragmentState {
     
 }
 
-package WebGPU::Direct::RenderPipelineDescriptor {
+package
+	WebGPU::Direct::RenderPipelineDescriptor {
     
     my $default = {};
 
