@@ -39,15 +39,181 @@ __END__
 
 =head1 NAME
 
-WebGPU::Direct - Blah blah blah
+WebGPU::Direct - Direct access to the WebGPU native APIs.
 
 =head1 SYNOPSIS
 
   use WebGPU::Direct;
+  my $wgpu = WebGPU::Direct->new;
+  
+  my $adapter = $wgpu->RequestAdapter;
+  my $device  = $adapter->RequestDevice;
 
 =head1 DESCRIPTION
 
-WebGPU::Direct is
+WebGPU::Direct is a thin, perl-ish coating over the WebGPU native APIs. While it provides some helper functions, much of the work is still left up to the developer to provide and know.
+
+=head2 EXPERIMENTAL STATUS
+
+This module is currently I<extremely> experimental, including the documentation. This includes but is not limited to the following.
+
+=over
+
+=item Much of the XS code is automatically generated.
+
+=item Some arguments that are optional or has a default in the JavaScript WebGPU standard are required to be passed
+
+=item While all of the documentation is currently created, most of it is automatically generated from L<webgpu/webgpu.h|https://github.com/webgpu-native/webgpu-headers>.
+
+=item Not all of the generated documentation is currently accurate, for instance callbacks are handled in a perl-ish manner.
+
+=item Errors generated inside of WebGPU are not yet transformed into excpetions
+
+=item Providing the window handle for rendering is done manually
+
+=item Sample window creation code only supports X11 so far
+
+=item Memory leaks are likely to exist
+
+=item This has only been tested with L<wgpu-native|https://github.com/gfx-rs/wgpu-native>, not with L<Dawn|https://dawn.googlesource.com/dawn>.
+
+=item The WebGPU native standard is not finalized and is likely to change
+
+=back
+
+=head1 FUNCTIONS
+
+=head2 new
+
+    my $wgpu = WebGPU::Direct->new;
+
+Create a new WebGPU::Direct instance. This inherits from L<WebGPU::Direct::Instance>, but also provides easy access to L<Constants|/CONSTANTS> and L<Types|/TYPES>.
+
+=head2 HAS_<FOO>
+
+Constant indicating if C<FOO> support is compiled in. This only indicates that C<WebGPU::Direct> detected and compiled C<FOO> was available when installed, making L</new_window_E<lt>fooE<gt>> available. C<FOO> windows can still be used if you manually construct the C<WebGPU::Direct::SurfaceDescriptorFrom*> object.
+
+=head1 METHODS
+
+=head2 new_window_x11
+
+    $wgpu->CreateSurface( { nextInChain => WebGPU::Direct->new_window_x11( $width, $height ) } );
+
+=over
+
+=item Arguments
+
+=over
+
+=item xw - Width of window
+
+=item yh - Height of window
+
+=back
+
+=back
+
+Constructs a C<WebGPU::Direct::SurfaceDescriptorFromXlibWindow> object, usable for passing to L<CreateSurface|WebGPU::Direct::Instance/CreateSurface>.
+
+=head1 TYPES
+
+There are two basic segments of types: Structs and Opaque. The struct types have members that can manipulated and modified. The opaque types are implementation specific to WebGPU so they have no fields that can be directly accessed, but they do have functions made available to them.
+
+The struct types can be instantiated by calling C<new> on the class; opaque types can only be returned by functions.
+
+Struct type classes can be access in a few different ways: with the class name directly or as a class method on C<WebGPU::Direct>. Struct types can also be instantiated with the C<newE<lt>TypeNameE<gt>> functions on C<WebGPU::Direct>.
+
+    WebGPU::Direct::Color()->new({});
+    WebGPU::Direct->Color->new;
+    $wgpu->Color->new;
+    WebGPU::Direct->newColor;
+    $wgpu->newColor();
+
+Often these type members and functions require other types. If these are given a plain hash, those hashes will be coerced into the correct type.
+
+=head2 Functions on all struct types
+
+=head3 new
+
+    my $color = $wgpu->Color->new({ r => 0.0, g => 1.0, b => 0.2, a => 0.9 });
+
+Create a new object of the requested type. It accepts either a hash or a single hashref parameters. This will automatically call L<pack> with the defaults and provided values. There is an associated C<C> level struct stored in memory along side the object.
+
+=head3 pack
+
+    $color->pack;
+
+Take all of the members and copies the values from the C<perl> level down to the C<C> level struct in memory. Any references to other objects will be copied appropriately; in most cases this will copy a pointer to the referenced object. In some cases the entire struct will be copied into the object, in which case a new object will appear pointing directly to the new struct.
+
+If you decide to manually manipulate the blessed hashref instead of using the mutator functions, you must call pack to propagate those changes down to the C<C> level.
+
+=head3 unpack
+
+    $color->unpack;
+
+This is the opposite of L</pack>; this will take the values in the C<C> level struct and ensure the C<perl> level values match.
+
+=head3 bytes
+
+    my $binary = $color->bytes;
+
+Returns the underlying, raw memory bytes of the struct. This includes direct pointers to other structures and the like. There is no way to save any changes to the returned string back to the C<C> level memory. L<Caveat emptor|https://en.wikipedia.org/wiki/Caveat_emptor>.
+
+=head2 Callbacks
+
+In some places in the WebGPU API are callbacks; functions that are passed a function and userdata. The calls are adjusted so that regular perl subs can be passed along with arbitrary perl data. The calling parameters are dependant on the callback in question, but the last parameter will always be passed userdata.
+
+=head2 Arrays
+
+Some types have arrays of data, represented at the C<C> level as a pointer field and a count field. These are translated from C<perl> arrayrefs into the appropriate types. If a single hashref is passed instead, it will be coerced into an array automatically.
+
+=head2 Enums
+
+A value saved to an enum member will get coerced into the corresponding enum L<constant|/CONSTANTS>.
+
+=head1 CONSTANTS
+
+All of the WebGPU enum constant sets can be accessed in a few different ways: from the package directly, as class functions on C<WebGPU::Direct>, and as exports from C<WebGPU::Direct>. All three methods return the enum package for the set. Each of the following calls will produce the same results.
+
+    use WebGPU::Direct qw/:all/;
+    TextureFormat->RGBA8Uint;
+    WebGPU::Direct::TextureFormat->RGBA8Uint;
+    WebGPU::Direct->TextureFormat->RGBA8Uint;
+    $wgpu->TextureFormat->RGBA8Uint;
+
+Enums are implemented as L<dualvars|Scalar::Util/dualvar>, so the numerical value will be the integer value that WebGPU expects, but the string value will match WebGPU's enum name. In the example above, C<RGBA8Uint> will have a value of C<0x00000015> as well as C<WGPUTextureFormat_RGBA8Uint>. Note that the enum name preserves both the WGPU and the enum set prefixes.
+
+=head1 ADDITIONAL WEBGPU INFORMATION
+
+=head2 Force32
+
+There are several enums that have a C<Force32> value. These are not valid values, but are simply there to ensure that the underlying enum is a 32bit integer. Currently WebGPU::Direct includes them, but they should not be used and may be removed in a future version.
+
+=head2 SwapChain
+
+There are older tutorials or code examples around the internet that use a C<SwapChain> type, both for WebGPU native and JavaScript. Later revisions of WebGPU eliminated that type and moved its functionality onto Surface.
+
+=head2 Error Diagnostics
+
+=head3 invalid vertex shader module for vertex state
+
+This is when the Buffer's step mode is invalid. Check the buffer objects in L<VertexState|WebGPU::Direct::VertexState> to ensure the sizes are correct and align with what data you are expecting to pack into a buffer.
+
+=head3 invalid vertex shader module for vertex state
+
+This is when a vertex state does not include a valid L<ShaderModuleDescriptor|WebGPU::Direct::ShaderModuleDescriptor>.
+
+=head3 invalid bind group entry for bind group descriptor
+
+In JavaScript examples, you may see a L<BindGroupEntry|WebGPU::Direct::BindGroupEntry> have a C<resource> entry that points to a buffer, sampler or textureView. In WeGPU native, there is not that extra resource layer. So instead of C<resource =E<gt> { buffer =E<gt> $x }>, simply use C<buffer =E<gt> $x>.
+
+=head3 (left == right), Texture[1] is no longer alive
+
+There appears to be an issue with L<ColorAttachment|WebGPU::Direct::ColorAttachment> inside of L<RenderPassDescriptor|WebGPU::Direct::RenderPassDescriptor>, where just setting C<$renderPassDescriptor-E<gt>{colorAttachments}-E<gt>[0]-E<gt>{view}> on each frame causes this issue. This issue is likely inside of C<WebGPU::Direct>. Generating a new L<ColorAttachment|WebGPU::Direct::ColorAttachment> object should help while the fix is outstanding.
+
+=head3 Error reflecting bind group 0: Validation Error / Invalid group index 0
+
+When a L<RenderPipeline|WebGPU::Direct::RenderPipeline> is being ran with an C<auto> layout, that C<layout> is not defined in the L<RenderPipelineDescriptor|WebGPU::Direct::RenderPipelineDescriptor> passed to C<$device-E<gt>CreateRenderPipeline>, WebGPU will auto analyze the C<WGSL> to determine the group bindings. If a group binding is not used, the layout for it will not be included in the layout. You will need to either use the group binding in the shaders, or manually create and use a layout definition.
 
 =head1 AUTHOR
 
@@ -59,9 +225,22 @@ Copyright 2023- Jon Gentle
 
 =head1 LICENSE
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+This is free software. You may redistribute copies of it under the terms of the Artistic License 2 as published by The Perl Foundation.
 
 =head1 SEE ALSO
+
+=over
+
+=item L<WebGPU|https://en.wikipedia.org/wiki/WebGPU>
+
+=item L<WebGPU Working Draft|https://www.w3.org/TR/webgpu/>
+
+=item L<WebGPU native API|https://github.com/webgpu-native/>
+
+=item L<Dawn|https://dawn.googlesource.com/dawn>
+
+=item L<wgpu-native|https://github.com/gfx-rs/wgpu-native>
+
+=back
 
 =cut
