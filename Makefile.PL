@@ -25,6 +25,12 @@ my %WriteMakefileArgs = (
 );
 
 my $addl_search = $ENV{ADDL_SEARCH} // '';
+
+if ( !$addl_search && -e 'webgpu/webgpu.h' )
+{
+  $addl_search = 'webgpu';
+}
+
 if ($addl_search)
 {
   $addl_search = "-L$addl_search";

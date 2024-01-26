@@ -11,3 +11,4 @@ tmp*
 Direct.bs
 Direct.c
 Direct.o
+/webgpu*
