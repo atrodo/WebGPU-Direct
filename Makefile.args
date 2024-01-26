@@ -1,0 +1,58 @@
+%WriteMakefileArgs = (
+  %WriteMakefileArgs,
+
+  LIBS   => ['-lwgpu_native'],
+  "test" => { "TESTS" => "t/*.t" },
+  depend => {
+    'Direct.c' => 'Direct.xs xs/*.xs xs/*.c',
+  },
+);
+
+my $addl_search = $ENV{ADDL_SEARCH} // '';
+my $addl_L = '';
+
+if ( !$addl_search && -e 'webgpu/webgpu.h' )
+{
+  $addl_search = 'webgpu';
+}
+
+if ($addl_search)
+{
+  $addl_L = "-L$addl_search";
+}
+
+my ($EXTRALIBS) = do
+{
+  local $SIG{__WARN__} = sub { };
+  ExtUtils::Liblist->ext("-l_lib_test_$$");
+};
+
+sub is_lib
+{
+  my $lib = shift;
+
+  my ($extra) = ExtUtils::Liblist->ext("$addl_L -l$lib");
+  $extra =~ s/\Q$EXTRALIBS//;
+
+  return !!$extra;
+}
+
+my $wgpu = 'wgpu_native';
+if ( !is_lib($wgpu) )
+{
+  die "Unable to locate $wgpu\n";
+}
+
+my @libs;
+my @defines;
+
+if ( is_lib('X11') )
+{
+  push @libs,    '-lX11';
+  push @defines, '-DHAS_X11';
+}
+
+$WriteMakefileArgs{LIBS}   = "$addl_L -l$wgpu @libs";
+$WriteMakefileArgs{DEFINE} = "@defines";
+$WriteMakefileArgs{INC}    = "-I$addl_search/.."
+    if $addl_search;
