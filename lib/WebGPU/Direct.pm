@@ -2,7 +2,7 @@ package WebGPU::Direct;
 
 use strict;
 use 5.008_005;
-our $VERSION = '0.01';
+our $VERSION = '0.10';
 
 use Carp;
 use WebGPU::Direct::XS;
