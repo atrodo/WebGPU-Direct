@@ -43,7 +43,7 @@ my %FallbackPrereqs = (
 );
 
 my $addl_search = $ENV{ADDL_SEARCH} // '';
-my $addl_L;
+my $addl_L = '';
 
 if ( !$addl_search && -e 'webgpu/webgpu.h' )
 {
