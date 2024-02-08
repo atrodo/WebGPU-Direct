@@ -1025,6 +1025,7 @@ SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
     SV *val = _void__wrap(field);
     f = nn_hv_store(aTHX_ h, key, klen, val, &PL_sv_undef);
   }
+  SvIV_set(SvRV(*f), (IV)field);
 
   return *f;
 }
