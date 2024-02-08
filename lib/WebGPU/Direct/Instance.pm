@@ -5,6 +5,8 @@ package WebGPU::Direct::Instance
   no warnings qw(experimental::signatures);
   use feature 'signatures';
 
+  use Carp;
+
   sub RequestAdapter (
     $self,
     $options  = undef,
@@ -28,6 +30,14 @@ package WebGPU::Direct::Instance
         warn(qq{RequestAdapter returned "$msg" ($status)"});
       }
     };
+
+    if ( !$options || !exists $options->{compatibleSurface} )
+    {
+      my $pkg = __PACKAGE__;
+      my $fn  = 'RequestAdapter';
+      carp "$pkg: $fn: compatibleSurface not provided"
+          . "\n\tThis is likely not what you want, the returned adapter may be incompataible with your surface";
+    }
 
     $self->_RequestAdapter( $options, $callback, $userdata );
 

@@ -12,7 +12,16 @@ use Math::3Space qw/space/;
 
 my $wgpu = WebGPU::Direct->new;
 
-my $adapter = $wgpu->RequestAdapter;
+my $width  = 600;
+my $height = 600;
+
+my $gpuContext = $wgpu->CreateSurface(
+  {
+    nextInChain => WebGPU::Direct->new_window_x11( $width, $height ),
+  }
+);
+
+my $adapter = $wgpu->RequestAdapter({ compatibleSurface => $gpuContext });
 my $device  = $adapter->RequestDevice;
 
 #*** Vertex Buffer Setup ***
@@ -101,15 +110,6 @@ my $uniformBindGroup = $device->CreateBindGroup(
 );
 
 #*** Swap Chain Setup ***
-
-my $width  = 600;
-my $height = 600;
-
-my $gpuContext = $wgpu->CreateSurface(
-  {
-    nextInChain => WebGPU::Direct->new_window_x11( $width, $height ),
-  }
-);
 
 # GPUCanvasConfiguration
 my $canvasConfiguration = {

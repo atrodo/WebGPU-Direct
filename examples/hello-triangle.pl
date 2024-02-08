@@ -10,7 +10,16 @@ use WebGPU::Direct qw/:all/;
 
 my $wgpu = WebGPU::Direct->new;
 
-my $adapter = $wgpu->RequestAdapter;
+my $width  = 600;
+my $height = 600;
+
+my $gpuContext = $wgpu->CreateSurface(
+  {
+    nextInChain => WebGPU::Direct->new_window_x11( $width, $height ),
+  }
+);
+
+my $adapter = $wgpu->RequestAdapter({ compatibleSurface => $gpuContext });
 my $device  = $adapter->RequestDevice;
 
 #*** Vertex Buffer Setup ***
@@ -54,14 +63,7 @@ my $renderPipeline = $device->CreateRenderPipeline($renderPipelineDescriptor);
 
 #*** Swap Chain Setup ***
 
-my $width  = 600;
-my $height = 600;
 
-my $gpuContext = $wgpu->CreateSurface(
-  {
-    nextInChain => WebGPU::Direct->new_window_x11( $width, $height ),
-  }
-);
 
 # GPUCanvasConfiguration
 my $canvasConfiguration = {
