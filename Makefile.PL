@@ -35,7 +35,6 @@ my %FallbackPrereqs = (
 %WriteMakefileArgs = (
   %WriteMakefileArgs,
 
-  LIBS   => ['-lwgpu_native'],
   "test" => { "TESTS" => "t/*.t" },
   depend => {
     'Direct.c' => 'Direct.xs xs/*.xs xs/*.c',
@@ -71,10 +70,20 @@ sub is_lib
   return !!$extra;
 }
 
-my $wgpu = 'wgpu_native';
-if ( !is_lib($wgpu) )
+my $wgpu;
+my @tests = qw/wgpu_native dawn_native/;
+for my $wgpu_test ( @tests )
 {
-  die "Unable to locate $wgpu\n";
+  if ( is_lib($wgpu_test) )
+  {
+    $wgpu = $wgpu_test;
+    last;
+  }
+}
+
+if ( !$wgpu )
+{
+  die "Unable to locate WebGPU library (tried @tests)\n";
 }
 
 my @libs;
