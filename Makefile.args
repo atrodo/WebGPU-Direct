@@ -1,6 +1,7 @@
 %WriteMakefileArgs = (
   %WriteMakefileArgs,
 
+  OBJECT => [ '$(BASEEXT)$(OBJ_EXT)' ],
   "test" => { "TESTS" => "t/*.t" },
   depend => {
     'Direct.c' => 'Direct.xs xs/*.xs xs/*.c',
@@ -59,6 +60,23 @@ if ( is_lib('X11') )
 {
   push @libs,    '-lX11';
   push @defines, '-DHAS_X11';
+}
+
+if ( is_lib('wayland-client') && qx/pkg-config --version 2>&1/ )
+{
+  my $scanner = qx/pkg-config --variable=wayland_scanner wayland-scanner/;
+  my $proto_dir = qx/pkg-config wayland-protocols --variable=pkgdatadir/;
+  chomp $proto_dir;
+  my $xml = "$proto_dir/stable/xdg-shell/xdg-shell.xml";
+
+  if ( $scanner && -e $xml )
+  {
+    qx{wayland-scanner client-header $xml xdg-shell.h};
+    qx{wayland-scanner private-code $xml xdg-shell.c};
+    push @libs, '-lwayland-client';
+    push @defines, '-DHAS_WAYLAND';
+    push $WriteMakefileArgs{OBJECT}->@*, 'xdg-shell.o';
+  }
 }
 
 $WriteMakefileArgs{LIBS}   = "$addl_L -l$wgpu @libs";

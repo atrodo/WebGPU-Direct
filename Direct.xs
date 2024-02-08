@@ -1450,6 +1450,7 @@ SV *WebGPU__Direct__MappedBuffer__wrap(pTHX_ const char * buffer, Size_t size)
 
 #include "xs/webgpu.c"
 #include "xs/x11.c"
+#include "xs/wayland.c"
 
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
@@ -1524,6 +1525,33 @@ new_window_x11(CLASS, xw = 640, yh = 360)
     OUTPUT:
         RETVAL
 
+WebGPU::Direct::SurfaceDescriptorFromWaylandSurface
+new_window_wayland(CLASS, xw = 640, yh = 360)
+        SV *  CLASS
+        int   xw
+        int   yh
+    PROTOTYPE: $
+    CODE:
+#ifdef HAS_WAYLAND
+#define _DEF_WAYLAND 1
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromWaylandSurface"), NULL );
+        WGPUSurfaceDescriptorFromWaylandSurface *result = (WGPUSurfaceDescriptorFromWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
+        if ( ! wayland_window(result, xw, yh) )
+        {
+          Perl_croak(aTHX_ "Could not create an Wayland window");
+        }
+
+        SV *h = SvRV(THIS);
+        _unpack(THIS);
+
+        RETVAL = THIS;
+#else
+#define _DEF_WAYLAND 0
+        Perl_croak(aTHX_ "Cannot create Wayland window: Wayland not found");
+#endif
+    OUTPUT:
+        RETVAL
+
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
 BOOT:
@@ -1531,5 +1559,6 @@ BOOT:
   HV *stash = gv_stashpv("WebGPU::Direct::XS", 0);
 
   newCONSTSUB(stash, "HAS_X11", newSViv(_DEF_X11));
+  newCONSTSUB(stash, "HAS_WAYLAND", newSViv(_DEF_WAYLAND));
 }
 

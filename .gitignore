@@ -11,4 +11,5 @@ tmp*
 Direct.bs
 Direct.c
 Direct.o
+xdg-shell.*
 /webgpu*
