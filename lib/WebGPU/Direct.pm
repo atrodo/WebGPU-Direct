@@ -1,7 +1,9 @@
 package WebGPU::Direct;
 
-use strict;
-use 5.008_005;
+use v5.30;
+no warnings qw(experimental::signatures);
+use feature 'signatures';
+
 our $VERSION = '0.10';
 
 use Carp;
@@ -30,6 +32,30 @@ sub new
   $result = bless( $result, $class );
 
   return $result;
+}
+
+sub new_window (
+  $class,
+  $xw = 640,
+  $yh = 360,
+    )
+{
+  if (WebGPU::Direct::XS::HAS_X11)
+  {
+    local $@;
+    my $result = eval { $class->new_window_x11( $xw, $yh ); };
+    return $result
+        if $result;
+  }
+  if (WebGPU::Direct::XS::HAS_WAYLAND)
+  {
+    local $@;
+    my $result = eval { $class->new_window_wayland( $xw, $yh ); };
+    return $result
+        if $result;
+  }
+
+  croak "Could not find a usable windowing system";
 }
 
 1;
@@ -71,7 +97,7 @@ This module is currently I<extremely> experimental, including the documentation.
 
 =item Providing the window handle for rendering is done manually
 
-=item Sample window creation code only supports X11 so far
+=item Sample window creation code does have any input or controls, only a WebGPU surface is shown
 
 =item Memory leaks are likely to exist
 
@@ -89,15 +115,9 @@ This module is currently I<extremely> experimental, including the documentation.
 
 Create a new WebGPU::Direct instance. This inherits from L<WebGPU::Direct::Instance>, but also provides easy access to L<Constants|/CONSTANTS> and L<Types|/TYPES>.
 
-=head2 HAS_<FOO>
+=head2 new_window
 
-Constant indicating if C<FOO> support is compiled in. This only indicates that C<WebGPU::Direct> detected and compiled C<FOO> was available when installed, making L</new_window_E<lt>fooE<gt>> available. C<FOO> windows can still be used if you manually construct the C<WebGPU::Direct::SurfaceDescriptorFrom*> object.
-
-=head1 METHODS
-
-=head2 new_window_x11
-
-    $wgpu->CreateSurface( { nextInChain => WebGPU::Direct->new_window_x11( $width, $height ) } );
+    $wgpu->CreateSurface( { nextInChain => WebGPU::Direct->new_window( $width, $height ) } );
 
 =over
 
@@ -113,7 +133,23 @@ Constant indicating if C<FOO> support is compiled in. This only indicates that C
 
 =back
 
-Constructs a C<WebGPU::Direct::SurfaceDescriptorFromXlibWindow> object, usable for passing to L<CreateSurface|WebGPU::Direct::Instance/CreateSurface>.
+Constructs a C<WebGPU::Direct::SurfaceDescriptorFrom*> object, usable for passing to L<CreateSurface|WebGPU::Direct::Instance/CreateSurface>. These are crude and simplistic windows suitable for testing WebGPU with, but there are no options and doesn't come with any way to interact or configure the window.
+
+Currently the supported windowing systems are:
+
+=over
+
+=item X11
+
+=item Wayland
+
+=back
+
+=head2 WebGPU::Direct::XS::HAS_<FOO>
+
+Constant indicating if C<FOO> support is compiled in. This only indicates that C<WebGPU::Direct> detected and compiled C<FOO> was available when installed, making L</new_window> available. C<FOO> windows can still be used if you manually construct the C<WebGPU::Direct::SurfaceDescriptorFrom*> object.
+
+=head1 METHODS
 
 =head1 TYPES
 

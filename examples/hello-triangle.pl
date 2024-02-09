@@ -15,7 +15,7 @@ my $height = 600;
 
 my $gpuContext = $wgpu->CreateSurface(
   {
-    nextInChain => WebGPU::Direct->new_window_x11( $width, $height ),
+    nextInChain => WebGPU::Direct->new_window( $width, $height ),
   }
 );
 

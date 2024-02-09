@@ -14,8 +14,8 @@ my $wgpu = WebGPU::Direct->new;
 my $instance = $wgpu->CreateInstance( $wgpu->InstanceDescriptor->new );
 
 # Build X11 Surface
-my $x11        = WebGPU::Direct->new_window_x11;
-my $descriptor = $wgpu->SurfaceDescriptor->new( nextInChain => $x11 );
+my $window     = WebGPU::Direct->new_window;
+my $descriptor = $wgpu->SurfaceDescriptor->new( nextInChain => $window );
 
 # Build surface
 my $surface = $instance->CreateSurface($descriptor);
