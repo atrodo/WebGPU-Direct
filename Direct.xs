@@ -1451,6 +1451,7 @@ SV *WebGPU__Direct__MappedBuffer__wrap(pTHX_ const char * buffer, Size_t size)
 #include "xs/webgpu.c"
 #include "xs/x11.c"
 #include "xs/wayland.c"
+#include "xs/win32.c"
 
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
@@ -1552,6 +1553,33 @@ new_window_wayland(CLASS, xw = 640, yh = 360)
     OUTPUT:
         RETVAL
 
+WebGPU::Direct::SurfaceDescriptorFromWindowsHWND
+new_window_win32(CLASS, xw = 640, yh = 360)
+        SV *  CLASS
+        int   xw
+        int   yh
+    PROTOTYPE: $
+    CODE:
+#ifdef HAS_WIN32
+#define _DEF_WIN32 1
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromWindowsHWND"), NULL );
+        WGPUSurfaceDescriptorFromWindowsHWND *result = (WGPUSurfaceDescriptorFromWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
+        if ( ! win32_window(result, xw, yh) )
+        {
+          Perl_croak(aTHX_ "Could not create an Win32 window");
+        }
+
+        SV *h = SvRV(THIS);
+        _unpack(THIS);
+
+        RETVAL = THIS;
+#else
+#define _DEF_WIN32 0
+        Perl_croak(aTHX_ "Cannot create Win32 window: Win32 not found");
+#endif
+    OUTPUT:
+        RETVAL
+
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
 BOOT:
@@ -1560,5 +1588,6 @@ BOOT:
 
   newCONSTSUB(stash, "HAS_X11", newSViv(_DEF_X11));
   newCONSTSUB(stash, "HAS_WAYLAND", newSViv(_DEF_WAYLAND));
+  newCONSTSUB(stash, "HAS_WIN32", newSViv(_DEF_WIN32));
 }
 

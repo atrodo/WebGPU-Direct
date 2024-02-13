@@ -73,6 +73,13 @@ sub is_lib
 
 my $wgpu;
 my @tests = qw/wgpu_native dawn_native/;
+
+if ( $^O eq 'MSWin32' )
+{
+  push @tests, map { "$_.dll" } @tests;
+  @tests = ( ( map { "$_.dll" } @tests ), @tests);
+}
+
 for my $wgpu_test ( @tests )
 {
   if ( is_lib($wgpu_test) )
@@ -111,6 +118,11 @@ if ( is_lib('wayland-client') && qx/pkg-config --version 2>&1/ )
     push @defines, '-DHAS_WAYLAND';
     push $WriteMakefileArgs{OBJECT}->@*, 'xdg-shell.o';
   }
+}
+
+if ( $^O eq 'MSWin32' )
+{
+  push @defines, '-DHAS_WIN32';
 }
 
 $WriteMakefileArgs{LIBS}   = "$addl_L -l$wgpu @libs";
