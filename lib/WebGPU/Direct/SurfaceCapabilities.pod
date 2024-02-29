@@ -1,0 +1,12 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+WebGPU::Direct::SurfaceCapabilities
+
+=head2 Methods
+
+=head3 FreeMembers (void)
+

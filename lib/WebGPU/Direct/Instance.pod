@@ -1,0 +1,48 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+WebGPU::Direct::Instance
+
+=head2 Methods
+
+=head3 CreateSurface (WGPUSurface)
+
+=over
+
+=item Arguments
+
+=over
+
+=item descriptor (L<WebGPU::Direct::SurfaceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::SurfaceDescriptor>)
+
+=back
+
+=back
+
+=head3 ProcessEvents (void)
+
+=head3 RequestAdapter (void)
+
+=over
+
+=item Arguments
+
+=over
+
+=item options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>)
+
+=item callback (L<WebGPU::Direct::RequestAdapterCallback>)
+
+=item userdata (L<WebGPU::Direct::void>)
+
+=back
+
+=back
+
+=head3 Reference (void)
+
+=head3 Release (void)
+

@@ -276,7 +276,7 @@ while (<$h>)
     next;
   }
 
-  # Ignore all other function call typdefs
+  # Handle all other function call typdefs
   if (m[^ typedef \s+ (\w+) \s+ [(][*] (\w*) [)] [(] ([^)]+) [)] ; ]xms)
   {
     my $return     = $1;
@@ -308,6 +308,7 @@ while (<$h>)
       type     => $type,
       class    => $class,
       ptr_type => 1,
+      fn_type  => 1,
       defs     => [],
       fns      => [],
     };
@@ -758,22 +759,25 @@ foreach my $class (@classes)
   }
   else
   {
-    say $pm <<~"EOF"; my $n = qq{
-      package $class {
-          $preamble
-          sub new {
-              my \$class = __PACKAGE__;
-              die "Cannot call new on abstract class \$class";
-          }$destroy
-      }
-      EOF
-      };
+    if ( !$def{fn_type} )
+    {
+      say $pm <<~"EOF"; my $n = qq{
+        package $class {
+            $preamble
+            sub new {
+                my \$class = __PACKAGE__;
+                die "Cannot call new on abstract class \$class";
+            }$destroy
+        }
+        EOF
+        };
+    }
 
     # If the def is a ptr type, that is its already a pointer inside the
     # typedef, we don't add the * here
     my $ptr = $def{ptr_type} ? '' : '*';
 
-    say $c <<~"EOF"; $n = qq{
+    say $c <<~"EOF"; my $n = qq{
     SV *${type}__wrap( ${type} $ptr n )
     {
       return _new_opaque(newSVpvs("$class"), n);

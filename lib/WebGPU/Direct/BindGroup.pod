@@ -1,0 +1,28 @@
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+WebGPU::Direct::BindGroup
+
+=head2 Methods
+
+=head3 SetLabel (void)
+
+=over
+
+=item Arguments
+
+=over
+
+=item label (L<WebGPU::Direct::char>)
+
+=back
+
+=back
+
+=head3 Reference (void)
+
+=head3 Release (void)
+
