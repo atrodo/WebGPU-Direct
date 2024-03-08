@@ -13,3 +13,4 @@ Direct.c
 Direct.o
 xdg-shell.*
 /webgpu*
+.build/
