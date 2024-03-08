@@ -72,8 +72,8 @@ subtest 'Enum array', sub
     plan skip_all => 'Test requires working window';
   }
 
-  my $adapter = $wgpu->RequestAdapter;
-  my $surface = $wgpu->CreateSurface( { nextInChain => WebGPU::Direct->new_window_x11( 1, 1 ) } );
+  my $surface = $wgpu->CreateSurface(  { nextInChain       => WebGPU::Direct->new_window_x11( 1, 1 ) } );
+  my $adapter = $wgpu->RequestAdapter( { compatibleSurface => $surface } );
   my $sc      = $wgpu->SurfaceCapabilities->new;
   $surface->GetCapabilities( $adapter, $sc );
 

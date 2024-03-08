@@ -30,6 +30,4 @@ my $wgpu = WebGPU::Direct->new;
   cmp_ok( $a->sType, 'eq', $wgpu->SType->Invalid, 'Setting by name used dualvar version' );
 }
 
-warn Data::Dumper::Dumper($wgpu->ChainedStruct->new({ sType => -0.0 }));
-
 done_testing;
