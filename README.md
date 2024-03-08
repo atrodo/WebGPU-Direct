@@ -24,7 +24,7 @@ This module is currently _extremely_ experimental, including the documentation. 
 - Not all of the generated documentation is currently accurate, for instance callbacks are handled in a perl-ish manner.
 - Errors generated inside of WebGPU are not yet transformed into excpetions
 - Providing the window handle for rendering is done manually
-- Sample window creation code only supports X11 so far
+- Sample window creation code does have any input or controls, only a WebGPU surface is shown
 - Memory leaks are likely to exist
 - This has only been tested with [wgpu-native](https://github.com/gfx-rs/wgpu-native), not with [Dawn](https://dawn.googlesource.com/dawn).
 - The WebGPU native standard is not finalized and is likely to change
@@ -37,21 +37,26 @@ This module is currently _extremely_ experimental, including the documentation. 
 
 Create a new WebGPU::Direct instance. This inherits from [WebGPU::Direct::Instance](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3AInstance), but also provides easy access to [Constants](#constants) and [Types](#types).
 
-## HAS\_<FOO>
+## new\_window
 
-Constant indicating if `FOO` support is compiled in. This only indicates that `WebGPU::Direct` detected and compiled `FOO` was available when installed, making ["new\_window\_&lt;foo>"](#new_window_-foo) available. `FOO` windows can still be used if you manually construct the `WebGPU::Direct::SurfaceDescriptorFrom*` object.
-
-# METHODS
-
-## new\_window\_x11
-
-    $wgpu->CreateSurface( { nextInChain => WebGPU::Direct->new_window_x11( $width, $height ) } );
+    $wgpu->CreateSurface( { nextInChain => WebGPU::Direct->new_window( $width, $height ) } );
 
 - Arguments
     - xw - Width of window
     - yh - Height of window
 
-Constructs a `WebGPU::Direct::SurfaceDescriptorFromXlibWindow` object, usable for passing to [CreateSurface](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3AInstance#CreateSurface).
+Constructs a `WebGPU::Direct::SurfaceDescriptorFrom*` object, usable for passing to [CreateSurface](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3AInstance#CreateSurface). These are crude and simplistic windows suitable for testing WebGPU with, but there are no options and doesn't come with any way to interact or configure the window.
+
+Currently the supported windowing systems are:
+
+- X11
+- Wayland
+
+## WebGPU::Direct::XS::HAS\_<FOO>
+
+Constant indicating if `FOO` support is compiled in. This only indicates that `WebGPU::Direct` detected and compiled `FOO` was available when installed, making ["new\_window"](#new_window) available. `FOO` windows can still be used if you manually construct the `WebGPU::Direct::SurfaceDescriptorFrom*` object.
+
+# METHODS
 
 # TYPES
 
