@@ -988,6 +988,7 @@ package WebGPU::Direct::Adapter {
 
 package WebGPU::Direct::BindGroup {
     push @WebGPU::Direct::BindGroup::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::BindGroup;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1001,6 +1002,7 @@ package WebGPU::Direct::BindGroup {
 
 package WebGPU::Direct::BindGroupLayout {
     push @WebGPU::Direct::BindGroupLayout::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::BindGroupLayout;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1028,6 +1030,7 @@ package WebGPU::Direct::Buffer {
 
 package WebGPU::Direct::CommandBuffer {
     push @WebGPU::Direct::CommandBuffer::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::CommandBuffer;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1055,6 +1058,7 @@ package WebGPU::Direct::CommandEncoder {
 
 package WebGPU::Direct::ComputePassEncoder {
     push @WebGPU::Direct::ComputePassEncoder::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::ComputePassEncoder;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1068,6 +1072,7 @@ package WebGPU::Direct::ComputePassEncoder {
 
 package WebGPU::Direct::ComputePipeline {
     push @WebGPU::Direct::ComputePipeline::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::ComputePipeline;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1109,6 +1114,7 @@ package WebGPU::Direct::Instance {
 
 package WebGPU::Direct::PipelineLayout {
     push @WebGPU::Direct::PipelineLayout::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::PipelineLayout;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1122,6 +1128,7 @@ package WebGPU::Direct::PipelineLayout {
 
 package WebGPU::Direct::QuerySet {
     push @WebGPU::Direct::QuerySet::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::QuerySet;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1135,6 +1142,7 @@ package WebGPU::Direct::QuerySet {
 
 package WebGPU::Direct::Queue {
     push @WebGPU::Direct::Queue::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::Queue;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1148,6 +1156,7 @@ package WebGPU::Direct::Queue {
 
 package WebGPU::Direct::RenderBundle {
     push @WebGPU::Direct::RenderBundle::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::RenderBundle;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1161,6 +1170,7 @@ package WebGPU::Direct::RenderBundle {
 
 package WebGPU::Direct::RenderBundleEncoder {
     push @WebGPU::Direct::RenderBundleEncoder::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::RenderBundleEncoder;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1188,6 +1198,7 @@ package WebGPU::Direct::RenderPassEncoder {
 
 package WebGPU::Direct::RenderPipeline {
     push @WebGPU::Direct::RenderPipeline::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::RenderPipeline;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1201,6 +1212,7 @@ package WebGPU::Direct::RenderPipeline {
 
 package WebGPU::Direct::Sampler {
     push @WebGPU::Direct::Sampler::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::Sampler;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1214,6 +1226,7 @@ package WebGPU::Direct::Sampler {
 
 package WebGPU::Direct::ShaderModule {
     push @WebGPU::Direct::ShaderModule::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::ShaderModule;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1255,6 +1268,7 @@ package WebGPU::Direct::Texture {
 
 package WebGPU::Direct::TextureView {
     push @WebGPU::Direct::TextureView::ISA, "WebGPU::Direct::Opaque";
+    require WebGPU::Direct::TextureView;
     sub new {
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
@@ -1999,6 +2013,7 @@ package
 package
 	WebGPU::Direct::SurfaceCapabilities {
     
+    require WebGPU::Direct::SurfaceCapabilities;
     my $default = {};
 
     sub new {

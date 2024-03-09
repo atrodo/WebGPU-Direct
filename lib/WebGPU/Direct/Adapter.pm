@@ -49,3 +49,92 @@ package WebGPU::Direct::Adapter
 };
 
 1;
+__END__
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+WebGPU::Direct::Adapter
+
+=head2 Methods
+
+=head3 EnumerateFeatures (size_t)
+
+=over
+
+=item Arguments
+
+=over
+
+=item features (L<WebGPU::Direct::FeatureName>)
+
+=back
+
+=back
+
+=head3 GetLimits (WGPUBool)
+
+=over
+
+=item Arguments
+
+=over
+
+=item limits (L<WebGPU::Direct::SupportedLimits|WebGPU::Direct::Types/WebGPU::Direct::SupportedLimits>)
+
+=back
+
+=back
+
+=head3 GetProperties (void)
+
+=over
+
+=item Arguments
+
+=over
+
+=item properties (L<WebGPU::Direct::AdapterProperties|WebGPU::Direct::Types/WebGPU::Direct::AdapterProperties>)
+
+=back
+
+=back
+
+=head3 HasFeature (WGPUBool)
+
+=over
+
+=item Arguments
+
+=over
+
+=item feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
+
+=back
+
+=back
+
+=head3 RequestDevice (void)
+
+=over
+
+=item Arguments
+
+=over
+
+=item descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>)
+
+=item callback (L<WebGPU::Direct::RequestDeviceCallback>)
+
+=item userdata (L<WebGPU::Direct::void>)
+
+=back
+
+=back
+
+=head3 Reference (void)
+
+=head3 Release (void)
+

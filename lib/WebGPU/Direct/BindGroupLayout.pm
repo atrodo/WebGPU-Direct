@@ -1,10 +1,20 @@
+package WebGPU::Direct::BindGroupLayout
+{
+  use v5.30;
+  use warnings;
+  no warnings qw(experimental::signatures);
+  use feature 'signatures';
+};
+
+1;
+__END__
 =pod
 
 =encoding UTF-8
 
 =head1 NAME
 
-WebGPU::Direct::PipelineLayout
+WebGPU::Direct::BindGroupLayout
 
 =head2 Methods
 

@@ -96,3 +96,64 @@ package WebGPU::Direct::Texture
 };
 
 1;
+__END__
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+WebGPU::Direct::Texture
+
+=head2 Methods
+
+=head3 CreateView (WGPUTextureView)
+
+=over
+
+=item Arguments
+
+=over
+
+=item descriptor (L<WebGPU::Direct::TextureViewDescriptor|WebGPU::Direct::Types/WebGPU::Direct::TextureViewDescriptor>)
+
+=back
+
+=back
+
+=head3 Destroy (void)
+
+=head3 GetDepthOrArrayLayers (uint32_t)
+
+=head3 GetDimension (L<WGPUTextureDimension|WebGPU::Direct::Constants/WGPUTextureDimension>)
+
+=head3 GetFormat (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+
+=head3 GetHeight (uint32_t)
+
+=head3 GetMipLevelCount (uint32_t)
+
+=head3 GetSampleCount (uint32_t)
+
+=head3 GetUsage (WGPUTextureUsageFlags)
+
+=head3 GetWidth (uint32_t)
+
+=head3 SetLabel (void)
+
+=over
+
+=item Arguments
+
+=over
+
+=item label (L<WebGPU::Direct::char>)
+
+=back
+
+=back
+
+=head3 Reference (void)
+
+=head3 Release (void)
+
