@@ -64,317 +64,533 @@ WebGPU::Direct::Device
 
 =head2 Methods
 
-=head3 CreateBindGroup (WGPUBindGroup)
+=head3 CreateBindGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::BindGroupDescriptor|WebGPU::Direct::Types/WebGPU::Direct::BindGroupDescriptor>)
+=item * WGPUBindGroup
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::BindGroupDescriptor|WebGPU::Direct::Types/WebGPU::Direct::BindGroupDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateBindGroupLayout (WGPUBindGroupLayout)
+=head3 CreateBindGroupLayout
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::BindGroupLayoutDescriptor|WebGPU::Direct::Types/WebGPU::Direct::BindGroupLayoutDescriptor>)
+=item * WGPUBindGroupLayout
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::BindGroupLayoutDescriptor|WebGPU::Direct::Types/WebGPU::Direct::BindGroupLayoutDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateBuffer (WGPUBuffer)
+=head3 CreateBuffer
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::BufferDescriptor|WebGPU::Direct::Types/WebGPU::Direct::BufferDescriptor>)
+=item * WGPUBuffer
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::BufferDescriptor|WebGPU::Direct::Types/WebGPU::Direct::BufferDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateCommandEncoder (WGPUCommandEncoder)
+=head3 CreateCommandEncoder
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::CommandEncoderDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandEncoderDescriptor>)
+=item * WGPUCommandEncoder
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::CommandEncoderDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandEncoderDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateComputePipeline (WGPUComputePipeline)
+=head3 CreateComputePipeline
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::ComputePipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePipelineDescriptor>)
+=item * WGPUComputePipeline
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::ComputePipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePipelineDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateComputePipelineAsync (void)
+=head3 CreateComputePipelineAsync
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::ComputePipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePipelineDescriptor>)
+=item * void
 
-=item callback (L<WebGPU::Direct::CreateComputePipelineAsyncCallback>)
+=back
 
-=item userdata (L<WebGPU::Direct::void>)
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::ComputePipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePipelineDescriptor>)
+
+=item * callback (L<WebGPU::Direct::CreateComputePipelineAsyncCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
 
 =back
 
 =back
 
-=head3 CreatePipelineLayout (WGPUPipelineLayout)
+=head3 CreatePipelineLayout
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::PipelineLayoutDescriptor|WebGPU::Direct::Types/WebGPU::Direct::PipelineLayoutDescriptor>)
+=item * WGPUPipelineLayout
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::PipelineLayoutDescriptor|WebGPU::Direct::Types/WebGPU::Direct::PipelineLayoutDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateQuerySet (WGPUQuerySet)
+=head3 CreateQuerySet
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::QuerySetDescriptor|WebGPU::Direct::Types/WebGPU::Direct::QuerySetDescriptor>)
+=item * WGPUQuerySet
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::QuerySetDescriptor|WebGPU::Direct::Types/WebGPU::Direct::QuerySetDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateRenderBundleEncoder (WGPURenderBundleEncoder)
+=head3 CreateRenderBundleEncoder
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::RenderBundleEncoderDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderBundleEncoderDescriptor>)
+=item * WGPURenderBundleEncoder
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::RenderBundleEncoderDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderBundleEncoderDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateRenderPipeline (WGPURenderPipeline)
+=head3 CreateRenderPipeline
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::RenderPipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderPipelineDescriptor>)
+=item * WGPURenderPipeline
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::RenderPipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderPipelineDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateRenderPipelineAsync (void)
+=head3 CreateRenderPipelineAsync
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::RenderPipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderPipelineDescriptor>)
+=item * void
 
-=item callback (L<WebGPU::Direct::CreateRenderPipelineAsyncCallback>)
+=back
 
-=item userdata (L<WebGPU::Direct::void>)
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::RenderPipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderPipelineDescriptor>)
+
+=item * callback (L<WebGPU::Direct::CreateRenderPipelineAsyncCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
 
 =back
 
 =back
 
-=head3 CreateSampler (WGPUSampler)
+=head3 CreateSampler
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::SamplerDescriptor|WebGPU::Direct::Types/WebGPU::Direct::SamplerDescriptor>)
+=item * WGPUSampler
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::SamplerDescriptor|WebGPU::Direct::Types/WebGPU::Direct::SamplerDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateShaderModule (WGPUShaderModule)
+=head3 CreateShaderModule
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::ShaderModuleDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleDescriptor>)
+=item * WGPUShaderModule
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::ShaderModuleDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleDescriptor>)
 
 =back
 
 =back
 
-=head3 CreateTexture (WGPUTexture)
+=head3 CreateTexture
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::TextureDescriptor|WebGPU::Direct::Types/WebGPU::Direct::TextureDescriptor>)
+=item * WGPUTexture
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::TextureDescriptor|WebGPU::Direct::Types/WebGPU::Direct::TextureDescriptor>)
 
 =back
 
 =back
 
-=head3 Destroy (void)
-
-=head3 EnumerateFeatures (size_t)
+=head3 Destroy
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item features (L<WebGPU::Direct::FeatureName>)
+=item * void
 
 =back
 
 =back
 
-=head3 GetLimits (WGPUBool)
+=head3 EnumerateFeatures
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item limits (L<WebGPU::Direct::SupportedLimits|WebGPU::Direct::Types/WebGPU::Direct::SupportedLimits>)
+=item * size_t
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * features (L<WebGPU::Direct::FeatureName>)
 
 =back
 
 =back
 
-=head3 GetQueue (WGPUQueue)
-
-=head3 HasFeature (WGPUBool)
+=head3 GetLimits
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
+=item * WGPUBool
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * limits (L<WebGPU::Direct::SupportedLimits|WebGPU::Direct::Types/WebGPU::Direct::SupportedLimits>)
 
 =back
 
 =back
 
-=head3 PopErrorScope (void)
+=head3 GetQueue
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item callback (L<WebGPU::Direct::ErrorCallback>)
-
-=item userdata (L<WebGPU::Direct::void>)
+=item * WGPUQueue
 
 =back
 
 =back
 
-=head3 PushErrorScope (void)
+=head3 HasFeature
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item filter (L<WGPUErrorFilter|WebGPU::Direct::Constants/WGPUErrorFilter>)
+=item * WGPUBool
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 PopErrorScope
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * callback (L<WebGPU::Direct::ErrorCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
 
 =back
 
 =back
 
-=head3 SetUncapturedErrorCallback (void)
+=head3 PushErrorScope
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item callback (L<WebGPU::Direct::ErrorCallback>)
+=item * void
 
-=item userdata (L<WebGPU::Direct::void>)
+=back
+
+=item * Arguments
+
+=over
+
+=item * filter (L<WGPUErrorFilter|WebGPU::Direct::Constants/WGPUErrorFilter>)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 SetLabel
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
+
+=back
+
+=back
+
+=head3 SetUncapturedErrorCallback
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * callback (L<WebGPU::Direct::ErrorCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

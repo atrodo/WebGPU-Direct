@@ -27,85 +27,201 @@ WebGPU::Direct::Buffer
 
 =head2 Methods
 
-=head3 Destroy (void)
-
-=head3 GetConstMappedRange (void)
+=head3 Destroy
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item offset (size_t)
-
-=item size (size_t)
+=item * void
 
 =back
 
 =back
 
-=head3 GetMapState (L<WGPUBufferMapState|WebGPU::Direct::Constants/WGPUBufferMapState>)
-
-=head3 GetMappedRange (void)
+=head3 GetConstMappedRange
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item offset (size_t)
+=item * void
 
-=item size (size_t)
+=back
+
+=item * Arguments
+
+=over
+
+=item * offset (size_t)
+
+=item * size (size_t)
 
 =back
 
 =back
 
-=head3 GetSize (uint64_t)
-
-=head3 GetUsage (WGPUBufferUsageFlags)
-
-=head3 MapAsync (void)
+=head3 GetMapState
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item mode (WGPUMapModeFlags)
-
-=item offset (size_t)
-
-=item size (size_t)
-
-=item callback (L<WebGPU::Direct::BufferMapCallback>)
-
-=item userdata (L<WebGPU::Direct::void>)
+=item * L<WGPUBufferMapState|WebGPU::Direct::Constants/WGPUBufferMapState>
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 GetMappedRange
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * offset (size_t)
+
+=item * size (size_t)
 
 =back
 
 =back
 
-=head3 Unmap (void)
+=head3 GetSize
 
-=head3 Reference (void)
+=over
 
-=head3 Release (void)
+=item * Return Type
+
+=over
+
+=item * uint64_t
+
+=back
+
+=back
+
+=head3 GetUsage
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * WGPUBufferUsageFlags
+
+=back
+
+=back
+
+=head3 MapAsync
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * mode (WGPUMapModeFlags)
+
+=item * offset (size_t)
+
+=item * size (size_t)
+
+=item * callback (L<WebGPU::Direct::BufferMapCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
+
+=back
+
+=back
+
+=head3 SetLabel
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
+
+=back
+
+=back
+
+=head3 Unmap
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

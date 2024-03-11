@@ -18,121 +18,225 @@ WebGPU::Direct::ComputePassEncoder
 
 =head2 Methods
 
-=head3 DispatchWorkgroups (void)
+=head3 DispatchWorkgroups
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item workgroupCountX (uint32_t)
+=item * void
 
-=item workgroupCountY (uint32_t)
+=back
 
-=item workgroupCountZ (uint32_t)
+=item * Arguments
+
+=over
+
+=item * workgroupCountX (uint32_t)
+
+=item * workgroupCountY (uint32_t)
+
+=item * workgroupCountZ (uint32_t)
 
 =back
 
 =back
 
-=head3 DispatchWorkgroupsIndirect (void)
+=head3 DispatchWorkgroupsIndirect
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item indirectBuffer (L<WebGPU::Direct::Buffer>)
+=item * void
 
-=item indirectOffset (uint64_t)
+=back
+
+=item * Arguments
+
+=over
+
+=item * indirectBuffer (L<WebGPU::Direct::Buffer>)
+
+=item * indirectOffset (uint64_t)
 
 =back
 
 =back
 
-=head3 End (void)
-
-=head3 InsertDebugMarker (void)
+=head3 End
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item markerLabel (L<WebGPU::Direct::char>)
+=item * void
 
 =back
 
 =back
 
-=head3 PopDebugGroup (void)
-
-=head3 PushDebugGroup (void)
+=head3 InsertDebugMarker
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item groupLabel (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * markerLabel (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 SetBindGroup (void)
+=head3 PopDebugGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item groupIndex (uint32_t)
-
-=item group (L<WebGPU::Direct::BindGroup>)
-
-=item dynamicOffsetCount (size_t)
-
-=item dynamicOffsets (L<WebGPU::Direct::uint32_t>)
+=item * void
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 PushDebugGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * groupLabel (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 SetPipeline (void)
+=head3 SetBindGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item pipeline (L<WebGPU::Direct::ComputePipeline>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * groupIndex (uint32_t)
+
+=item * group (L<WebGPU::Direct::BindGroup>)
+
+=item * dynamicOffsetCount (size_t)
+
+=item * dynamicOffsets (L<WebGPU::Direct::uint32_t>)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 SetLabel
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
+
+=back
+
+=back
+
+=head3 SetPipeline
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * pipeline (L<WebGPU::Direct::ComputePipeline>)
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

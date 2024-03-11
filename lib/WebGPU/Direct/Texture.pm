@@ -107,53 +107,201 @@ WebGPU::Direct::Texture
 
 =head2 Methods
 
-=head3 CreateView (WGPUTextureView)
+=head3 CreateView
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::TextureViewDescriptor|WebGPU::Direct::Types/WebGPU::Direct::TextureViewDescriptor>)
+=item * WGPUTextureView
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::TextureViewDescriptor|WebGPU::Direct::Types/WebGPU::Direct::TextureViewDescriptor>)
 
 =back
 
 =back
 
-=head3 Destroy (void)
-
-=head3 GetDepthOrArrayLayers (uint32_t)
-
-=head3 GetDimension (L<WGPUTextureDimension|WebGPU::Direct::Constants/WGPUTextureDimension>)
-
-=head3 GetFormat (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
-
-=head3 GetHeight (uint32_t)
-
-=head3 GetMipLevelCount (uint32_t)
-
-=head3 GetSampleCount (uint32_t)
-
-=head3 GetUsage (WGPUTextureUsageFlags)
-
-=head3 GetWidth (uint32_t)
-
-=head3 SetLabel (void)
+=head3 Destroy
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 GetDepthOrArrayLayers
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * uint32_t
+
+=back
+
+=back
+
+=head3 GetDimension
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * L<WGPUTextureDimension|WebGPU::Direct::Constants/WGPUTextureDimension>
+
+=back
+
+=back
+
+=head3 GetFormat
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>
+
+=back
+
+=back
+
+=head3 GetHeight
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * uint32_t
+
+=back
+
+=back
+
+=head3 GetMipLevelCount
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * uint32_t
+
+=back
+
+=back
+
+=head3 GetSampleCount
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * uint32_t
+
+=back
+
+=back
+
+=head3 GetUsage
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * WGPUTextureUsageFlags
+
+=back
+
+=back
+
+=head3 GetWidth
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * uint32_t
+
+=back
+
+=back
+
+=head3 SetLabel
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

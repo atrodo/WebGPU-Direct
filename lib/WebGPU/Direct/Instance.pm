@@ -57,41 +57,93 @@ WebGPU::Direct::Instance
 
 =head2 Methods
 
-=head3 CreateSurface (WGPUSurface)
+=head3 CreateSurface
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::SurfaceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::SurfaceDescriptor>)
+=item * WGPUSurface
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::SurfaceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::SurfaceDescriptor>)
 
 =back
 
 =back
 
-=head3 ProcessEvents (void)
-
-=head3 RequestAdapter (void)
+=head3 ProcessEvents
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>)
-
-=item callback (L<WebGPU::Direct::RequestAdapterCallback>)
-
-=item userdata (L<WebGPU::Direct::void>)
+=item * void
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 RequestAdapter
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>)
+
+=item * callback (L<WebGPU::Direct::RequestAdapterCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

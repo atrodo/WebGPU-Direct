@@ -33,69 +33,149 @@ WebGPU::Direct::Surface
 
 =head2 Methods
 
-=head3 Configure (void)
+=head3 Configure
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item config (L<WebGPU::Direct::SurfaceConfiguration|WebGPU::Direct::Types/WebGPU::Direct::SurfaceConfiguration>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * config (L<WebGPU::Direct::SurfaceConfiguration|WebGPU::Direct::Types/WebGPU::Direct::SurfaceConfiguration>)
 
 =back
 
 =back
 
-=head3 GetCapabilities (void)
+=head3 GetCapabilities
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item adapter (L<WebGPU::Direct::Adapter>)
+=item * void
 
-=item capabilities (L<WebGPU::Direct::SurfaceCapabilities|WebGPU::Direct::Types/WebGPU::Direct::SurfaceCapabilities>)
+=back
+
+=item * Arguments
+
+=over
+
+=item * adapter (L<WebGPU::Direct::Adapter>)
+
+=item * capabilities (L<WebGPU::Direct::SurfaceCapabilities|WebGPU::Direct::Types/WebGPU::Direct::SurfaceCapabilities>)
 
 =back
 
 =back
 
-=head3 GetCurrentTexture (void)
+=head3 GetCurrentTexture
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item surfaceTexture (L<WebGPU::Direct::SurfaceTexture|WebGPU::Direct::Types/WebGPU::Direct::SurfaceTexture>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * surfaceTexture (L<WebGPU::Direct::SurfaceTexture|WebGPU::Direct::Types/WebGPU::Direct::SurfaceTexture>)
 
 =back
 
 =back
 
-=head3 GetPreferredFormat (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=head3 GetPreferredFormat
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item adapter (L<WebGPU::Direct::Adapter>)
+=item * L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * adapter (L<WebGPU::Direct::Adapter>)
 
 =back
 
 =back
 
-=head3 Present (void)
+=head3 Present
 
-=head3 Unconfigure (void)
+=over
 
-=head3 Reference (void)
+=item * Return Type
 
-=head3 Release (void)
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Unconfigure
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

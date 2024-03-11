@@ -32,305 +32,501 @@ WebGPU::Direct::RenderPassEncoder
 
 =head2 Methods
 
-=head3 BeginOcclusionQuery (void)
+=head3 BeginOcclusionQuery
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item queryIndex (uint32_t)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * queryIndex (uint32_t)
 
 =back
 
 =back
 
-=head3 Draw (void)
+=head3 Draw
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item vertexCount (uint32_t)
+=item * void
 
-=item instanceCount (uint32_t)
+=back
 
-=item firstVertex (uint32_t)
+=item * Arguments
 
-=item firstInstance (uint32_t)
+=over
+
+=item * vertexCount (uint32_t)
+
+=item * instanceCount (uint32_t)
+
+=item * firstVertex (uint32_t)
+
+=item * firstInstance (uint32_t)
 
 =back
 
 =back
 
-=head3 DrawIndexed (void)
+=head3 DrawIndexed
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item indexCount (uint32_t)
+=item * void
 
-=item instanceCount (uint32_t)
+=back
 
-=item firstIndex (uint32_t)
+=item * Arguments
 
-=item baseVertex (int32_t)
+=over
 
-=item firstInstance (uint32_t)
+=item * indexCount (uint32_t)
+
+=item * instanceCount (uint32_t)
+
+=item * firstIndex (uint32_t)
+
+=item * baseVertex (int32_t)
+
+=item * firstInstance (uint32_t)
 
 =back
 
 =back
 
-=head3 DrawIndexedIndirect (void)
+=head3 DrawIndexedIndirect
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item indirectBuffer (L<WebGPU::Direct::Buffer>)
+=item * void
 
-=item indirectOffset (uint64_t)
+=back
+
+=item * Arguments
+
+=over
+
+=item * indirectBuffer (L<WebGPU::Direct::Buffer>)
+
+=item * indirectOffset (uint64_t)
 
 =back
 
 =back
 
-=head3 DrawIndirect (void)
+=head3 DrawIndirect
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item indirectBuffer (L<WebGPU::Direct::Buffer>)
+=item * void
 
-=item indirectOffset (uint64_t)
+=back
+
+=item * Arguments
+
+=over
+
+=item * indirectBuffer (L<WebGPU::Direct::Buffer>)
+
+=item * indirectOffset (uint64_t)
 
 =back
 
 =back
 
-=head3 End (void)
-
-=head3 EndOcclusionQuery (void)
-
-=head3 ExecuteBundles (void)
+=head3 End
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item bundleCount (size_t)
-
-=item bundles (L<WebGPU::Direct::RenderBundle>)
+=item * void
 
 =back
 
 =back
 
-=head3 InsertDebugMarker (void)
+=head3 EndOcclusionQuery
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item markerLabel (L<WebGPU::Direct::char>)
+=item * void
 
 =back
 
 =back
 
-=head3 PopDebugGroup (void)
-
-=head3 PushDebugGroup (void)
+=head3 ExecuteBundles
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item groupLabel (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * bundleCount (size_t)
+
+=item * bundles (L<WebGPU::Direct::RenderBundle>)
 
 =back
 
 =back
 
-=head3 SetBindGroup (void)
+=head3 InsertDebugMarker
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item groupIndex (uint32_t)
+=item * void
 
-=item group (L<WebGPU::Direct::BindGroup>)
+=back
 
-=item dynamicOffsetCount (size_t)
+=item * Arguments
 
-=item dynamicOffsets (L<WebGPU::Direct::uint32_t>)
+=over
+
+=item * markerLabel (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 SetBlendConstant (void)
+=head3 PopDebugGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item color (L<WebGPU::Direct::Color|WebGPU::Direct::Types/WebGPU::Direct::Color>)
+=item * void
 
 =back
 
 =back
 
-=head3 SetIndexBuffer (void)
+=head3 PushDebugGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item buffer (L<WebGPU::Direct::Buffer>)
+=item * void
 
-=item format (L<WGPUIndexFormat|WebGPU::Direct::Constants/WGPUIndexFormat>)
+=back
 
-=item offset (uint64_t)
+=item * Arguments
 
-=item size (uint64_t)
+=over
+
+=item * groupLabel (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 SetBindGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * groupIndex (uint32_t)
+
+=item * group (L<WebGPU::Direct::BindGroup>)
+
+=item * dynamicOffsetCount (size_t)
+
+=item * dynamicOffsets (L<WebGPU::Direct::uint32_t>)
 
 =back
 
 =back
 
-=head3 SetPipeline (void)
+=head3 SetBlendConstant
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item pipeline (L<WebGPU::Direct::RenderPipeline>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * color (L<WebGPU::Direct::Color|WebGPU::Direct::Types/WebGPU::Direct::Color>)
 
 =back
 
 =back
 
-=head3 SetScissorRect (void)
+=head3 SetIndexBuffer
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item x (uint32_t)
+=item * void
 
-=item y (uint32_t)
+=back
 
-=item width (uint32_t)
+=item * Arguments
 
-=item height (uint32_t)
+=over
+
+=item * buffer (L<WebGPU::Direct::Buffer>)
+
+=item * format (L<WGPUIndexFormat|WebGPU::Direct::Constants/WGPUIndexFormat>)
+
+=item * offset (uint64_t)
+
+=item * size (uint64_t)
 
 =back
 
 =back
 
-=head3 SetStencilReference (void)
+=head3 SetLabel
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item reference (uint32_t)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 SetVertexBuffer (void)
+=head3 SetPipeline
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item slot (uint32_t)
+=item * void
 
-=item buffer (L<WebGPU::Direct::Buffer>)
+=back
 
-=item offset (uint64_t)
+=item * Arguments
 
-=item size (uint64_t)
+=over
+
+=item * pipeline (L<WebGPU::Direct::RenderPipeline>)
 
 =back
 
 =back
 
-=head3 SetViewport (void)
+=head3 SetScissorRect
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item x (float)
+=item * void
 
-=item y (float)
+=back
 
-=item width (float)
+=item * Arguments
 
-=item height (float)
+=over
 
-=item minDepth (float)
+=item * x (uint32_t)
 
-=item maxDepth (float)
+=item * y (uint32_t)
+
+=item * width (uint32_t)
+
+=item * height (uint32_t)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 SetStencilReference
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * reference (uint32_t)
+
+=back
+
+=back
+
+=head3 SetVertexBuffer
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * slot (uint32_t)
+
+=item * buffer (L<WebGPU::Direct::Buffer>)
+
+=item * offset (uint64_t)
+
+=item * size (uint64_t)
+
+=back
+
+=back
+
+=head3 SetViewport
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * x (float)
+
+=item * y (float)
+
+=item * width (float)
+
+=item * height (float)
+
+=item * minDepth (float)
+
+=item * maxDepth (float)
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

@@ -29,225 +29,365 @@ WebGPU::Direct::CommandEncoder
 
 =head2 Methods
 
-=head3 BeginComputePass (WGPUComputePassEncoder)
+=head3 BeginComputePass
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::ComputePassDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePassDescriptor>)
+=item * WGPUComputePassEncoder
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::ComputePassDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePassDescriptor>)
 
 =back
 
 =back
 
-=head3 BeginRenderPass (WGPURenderPassEncoder)
+=head3 BeginRenderPass
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::RenderPassDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderPassDescriptor>)
+=item * WGPURenderPassEncoder
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::RenderPassDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderPassDescriptor>)
 
 =back
 
 =back
 
-=head3 ClearBuffer (void)
+=head3 ClearBuffer
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item buffer (L<WebGPU::Direct::Buffer>)
+=item * void
 
-=item offset (uint64_t)
+=back
 
-=item size (uint64_t)
+=item * Arguments
+
+=over
+
+=item * buffer (L<WebGPU::Direct::Buffer>)
+
+=item * offset (uint64_t)
+
+=item * size (uint64_t)
 
 =back
 
 =back
 
-=head3 CopyBufferToBuffer (void)
+=head3 CopyBufferToBuffer
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item source (L<WebGPU::Direct::Buffer>)
+=item * void
 
-=item sourceOffset (uint64_t)
+=back
 
-=item destination (L<WebGPU::Direct::Buffer>)
+=item * Arguments
 
-=item destinationOffset (uint64_t)
+=over
 
-=item size (uint64_t)
+=item * source (L<WebGPU::Direct::Buffer>)
+
+=item * sourceOffset (uint64_t)
+
+=item * destination (L<WebGPU::Direct::Buffer>)
+
+=item * destinationOffset (uint64_t)
+
+=item * size (uint64_t)
 
 =back
 
 =back
 
-=head3 CopyBufferToTexture (void)
+=head3 CopyBufferToTexture
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item source (L<WebGPU::Direct::ImageCopyBuffer|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyBuffer>)
+=item * void
 
-=item destination (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+=back
 
-=item copySize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
+=item * Arguments
+
+=over
+
+=item * source (L<WebGPU::Direct::ImageCopyBuffer|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyBuffer>)
+
+=item * destination (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+
+=item * copySize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
 
 =back
 
 =back
 
-=head3 CopyTextureToBuffer (void)
+=head3 CopyTextureToBuffer
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item source (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+=item * void
 
-=item destination (L<WebGPU::Direct::ImageCopyBuffer|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyBuffer>)
+=back
 
-=item copySize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
+=item * Arguments
+
+=over
+
+=item * source (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+
+=item * destination (L<WebGPU::Direct::ImageCopyBuffer|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyBuffer>)
+
+=item * copySize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
 
 =back
 
 =back
 
-=head3 CopyTextureToTexture (void)
+=head3 CopyTextureToTexture
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item source (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+=item * void
 
-=item destination (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+=back
 
-=item copySize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
+=item * Arguments
+
+=over
+
+=item * source (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+
+=item * destination (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+
+=item * copySize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
 
 =back
 
 =back
 
-=head3 Finish (WGPUCommandBuffer)
+=head3 Finish
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::CommandBufferDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandBufferDescriptor>)
+=item * WGPUCommandBuffer
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::CommandBufferDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandBufferDescriptor>)
 
 =back
 
 =back
 
-=head3 InsertDebugMarker (void)
+=head3 InsertDebugMarker
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item markerLabel (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * markerLabel (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 PopDebugGroup (void)
-
-=head3 PushDebugGroup (void)
+=head3 PopDebugGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item groupLabel (L<WebGPU::Direct::char>)
+=item * void
 
 =back
 
 =back
 
-=head3 ResolveQuerySet (void)
+=head3 PushDebugGroup
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item querySet (L<WebGPU::Direct::QuerySet>)
+=item * void
 
-=item firstQuery (uint32_t)
+=back
 
-=item queryCount (uint32_t)
+=item * Arguments
 
-=item destination (L<WebGPU::Direct::Buffer>)
+=over
 
-=item destinationOffset (uint64_t)
+=item * groupLabel (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 ResolveQuerySet
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * querySet (L<WebGPU::Direct::QuerySet>)
+
+=item * firstQuery (uint32_t)
+
+=item * queryCount (uint32_t)
+
+=item * destination (L<WebGPU::Direct::Buffer>)
+
+=item * destinationOffset (uint64_t)
 
 =back
 
 =back
 
-=head3 WriteTimestamp (void)
+=head3 SetLabel
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item querySet (L<WebGPU::Direct::QuerySet>)
+=item * void
 
-=item queryIndex (uint32_t)
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 WriteTimestamp
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * querySet (L<WebGPU::Direct::QuerySet>)
+
+=item * queryIndex (uint32_t)
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

@@ -18,5 +18,17 @@ WebGPU::Direct::SurfaceCapabilities
 
 =head2 Methods
 
-=head3 FreeMembers (void)
+=head3 FreeMembers
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

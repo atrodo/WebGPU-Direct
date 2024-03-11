@@ -18,27 +18,95 @@ WebGPU::Direct::QuerySet
 
 =head2 Methods
 
-=head3 Destroy (void)
-
-=head3 GetCount (uint32_t)
-
-=head3 GetType (L<WGPUQueryType|WebGPU::Direct::Constants/WGPUQueryType>)
-
-=head3 SetLabel (void)
+=head3 Destroy
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 GetCount
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * uint32_t
+
+=back
+
+=back
+
+=head3 GetType
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * L<WGPUQueryType|WebGPU::Direct::Constants/WGPUQueryType>
+
+=back
+
+=back
+
+=head3 SetLabel
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
+
+=back
+
+=back
+
+=head3 Reference
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

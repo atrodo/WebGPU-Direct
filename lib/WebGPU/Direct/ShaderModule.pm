@@ -18,37 +18,77 @@ WebGPU::Direct::ShaderModule
 
 =head2 Methods
 
-=head3 GetCompilationInfo (void)
+=head3 GetCompilationInfo
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item callback (L<WebGPU::Direct::CompilationInfoCallback>)
+=item * void
 
-=item userdata (L<WebGPU::Direct::void>)
+=back
+
+=item * Arguments
+
+=over
+
+=item * callback (L<WebGPU::Direct::CompilationInfoCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 SetLabel
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 Reference
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

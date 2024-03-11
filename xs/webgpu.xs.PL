@@ -455,7 +455,7 @@ foreach my $enum ( sort keys %enums )
   foreach my $value ( sort keys %consts )
   {
     my ($short) = $consts{$value} =~ m/'(\w*)'/;
-    $const_pod->say(qq[\n=item $short]);
+    $const_pod->say(qq[\n=item * $short]);
     say $pm qq[  $consts{$value}];
   }
 
@@ -643,7 +643,7 @@ foreach my $class (@classes)
     say_set_fn( $class, $type, %def );
 
     my $type = typed_pod( $def{return} );
-    $types_pod->say(qq[=item $def{key} ($type)\n]);
+    $types_pod->say(qq[=item * $def{key} ($type)\n]);
   }
 
   if (@defs)
@@ -822,7 +822,12 @@ foreach my $class (@classes)
 
       my $type = typed_pod( $def{return} );
 
-      $pod->say(qq[=head3 $def{name} ($type)\n]);
+      $pod->say(qq[=head3 $def{name}\n]);
+      $pod->say(qq[=over\n]);
+      $pod->say(qq[=item * Return Type\n]);
+      $pod->say(qq[=over\n]);
+      $pod->say(qq[=item * $type\n]);
+      $pod->say(qq[=back\n]);
 
       # Remove the first item, which will always be $self
       my @pairs = pairs $def{args}->@*;
@@ -830,18 +835,17 @@ foreach my $class (@classes)
 
       if (@pairs)
       {
-        $pod->say(qq[=over\n]);
-        $pod->say(qq[=item Arguments\n]);
+        $pod->say(qq[=item * Arguments\n]);
         $pod->say(qq[=over\n]);
         foreach my $pair (@pairs)
         {
           my ( $return, $arg ) = @$pair;
           my $type = typed_pod( pkg_name($return) );
-          $pod->say(qq[=item $arg ($type)\n]);
+          $pod->say(qq[=item * $arg ($type)\n]);
         }
         $pod->say(qq[=back\n]);
-        $pod->say(qq[=back\n]);
       }
+      $pod->say(qq[=back\n]);
     }
   }
 

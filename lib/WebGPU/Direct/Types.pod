@@ -4,9 +4,9 @@
 
 =over
 
-=item next (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * next (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item sType (L<WGPUSType|WebGPU::Direct::Constants/WGPUSType>)
+=item * sType (L<WGPUSType|WebGPU::Direct::Constants/WGPUSType>)
 
 =back
 
@@ -16,9 +16,9 @@
 
 =over
 
-=item next (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
+=item * next (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
 
-=item sType (L<WGPUSType|WebGPU::Direct::Constants/WGPUSType>)
+=item * sType (L<WGPUSType|WebGPU::Direct::Constants/WGPUSType>)
 
 =back
 
@@ -28,23 +28,23 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
 
-=item vendorID (uint32_t)
+=item * vendorID (uint32_t)
 
-=item vendorName (char)
+=item * vendorName (char)
 
-=item architecture (char)
+=item * architecture (char)
 
-=item deviceID (uint32_t)
+=item * deviceID (uint32_t)
 
-=item name (char)
+=item * name (char)
 
-=item driverDescription (char)
+=item * driverDescription (char)
 
-=item adapterType (L<WGPUAdapterType|WebGPU::Direct::Constants/WGPUAdapterType>)
+=item * adapterType (L<WGPUAdapterType|WebGPU::Direct::Constants/WGPUAdapterType>)
 
-=item backendType (L<WGPUBackendType|WebGPU::Direct::Constants/WGPUBackendType>)
+=item * backendType (L<WGPUBackendType|WebGPU::Direct::Constants/WGPUBackendType>)
 
 =back
 
@@ -54,19 +54,19 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item binding (uint32_t)
+=item * binding (uint32_t)
 
-=item buffer (L<WebGPU::Direct::Buffer>)
+=item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item offset (uint64_t)
+=item * offset (uint64_t)
 
-=item size (uint64_t)
+=item * size (uint64_t)
 
-=item sampler (L<WebGPU::Direct::Sampler>)
+=item * sampler (L<WebGPU::Direct::Sampler>)
 
-=item textureView (L<WebGPU::Direct::TextureView>)
+=item * textureView (L<WebGPU::Direct::TextureView>)
 
 =back
 
@@ -76,11 +76,11 @@
 
 =over
 
-=item operation (L<WGPUBlendOperation|WebGPU::Direct::Constants/WGPUBlendOperation>)
+=item * operation (L<WGPUBlendOperation|WebGPU::Direct::Constants/WGPUBlendOperation>)
 
-=item srcFactor (L<WGPUBlendFactor|WebGPU::Direct::Constants/WGPUBlendFactor>)
+=item * srcFactor (L<WGPUBlendFactor|WebGPU::Direct::Constants/WGPUBlendFactor>)
 
-=item dstFactor (L<WGPUBlendFactor|WebGPU::Direct::Constants/WGPUBlendFactor>)
+=item * dstFactor (L<WGPUBlendFactor|WebGPU::Direct::Constants/WGPUBlendFactor>)
 
 =back
 
@@ -90,13 +90,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item type (L<WGPUBufferBindingType|WebGPU::Direct::Constants/WGPUBufferBindingType>)
+=item * type (L<WGPUBufferBindingType|WebGPU::Direct::Constants/WGPUBufferBindingType>)
 
-=item hasDynamicOffset (WGPUBool)
+=item * hasDynamicOffset (WGPUBool)
 
-=item minBindingSize (uint64_t)
+=item * minBindingSize (uint64_t)
 
 =back
 
@@ -106,15 +106,15 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item usage (WGPUBufferUsageFlags)
+=item * usage (WGPUBufferUsageFlags)
 
-=item size (uint64_t)
+=item * size (uint64_t)
 
-=item mappedAtCreation (WGPUBool)
+=item * mappedAtCreation (WGPUBool)
 
 =back
 
@@ -124,13 +124,13 @@
 
 =over
 
-=item r (double)
+=item * r (double)
 
-=item g (double)
+=item * g (double)
 
-=item b (double)
+=item * b (double)
 
-=item a (double)
+=item * a (double)
 
 =back
 
@@ -140,9 +140,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
 =back
 
@@ -152,9 +152,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
 =back
 
@@ -164,25 +164,25 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item message (char)
+=item * message (char)
 
-=item type (L<WGPUCompilationMessageType|WebGPU::Direct::Constants/WGPUCompilationMessageType>)
+=item * type (L<WGPUCompilationMessageType|WebGPU::Direct::Constants/WGPUCompilationMessageType>)
 
-=item lineNum (uint64_t)
+=item * lineNum (uint64_t)
 
-=item linePos (uint64_t)
+=item * linePos (uint64_t)
 
-=item offset (uint64_t)
+=item * offset (uint64_t)
 
-=item length (uint64_t)
+=item * length (uint64_t)
 
-=item utf16LinePos (uint64_t)
+=item * utf16LinePos (uint64_t)
 
-=item utf16Offset (uint64_t)
+=item * utf16Offset (uint64_t)
 
-=item utf16Length (uint64_t)
+=item * utf16Length (uint64_t)
 
 =back
 
@@ -192,11 +192,11 @@
 
 =over
 
-=item querySet (L<WebGPU::Direct::QuerySet>)
+=item * querySet (L<WebGPU::Direct::QuerySet>)
 
-=item beginningOfPassWriteIndex (uint32_t)
+=item * beginningOfPassWriteIndex (uint32_t)
 
-=item endOfPassWriteIndex (uint32_t)
+=item * endOfPassWriteIndex (uint32_t)
 
 =back
 
@@ -206,11 +206,11 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item key (char)
+=item * key (char)
 
-=item value (double)
+=item * value (double)
 
 =back
 
@@ -220,11 +220,11 @@
 
 =over
 
-=item width (uint32_t)
+=item * width (uint32_t)
 
-=item height (uint32_t)
+=item * height (uint32_t)
 
-=item depthOrArrayLayers (uint32_t)
+=item * depthOrArrayLayers (uint32_t)
 
 =back
 
@@ -234,7 +234,7 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
 =back
 
@@ -244,69 +244,69 @@
 
 =over
 
-=item maxTextureDimension1D (uint32_t)
+=item * maxTextureDimension1D (uint32_t)
 
-=item maxTextureDimension2D (uint32_t)
+=item * maxTextureDimension2D (uint32_t)
 
-=item maxTextureDimension3D (uint32_t)
+=item * maxTextureDimension3D (uint32_t)
 
-=item maxTextureArrayLayers (uint32_t)
+=item * maxTextureArrayLayers (uint32_t)
 
-=item maxBindGroups (uint32_t)
+=item * maxBindGroups (uint32_t)
 
-=item maxBindGroupsPlusVertexBuffers (uint32_t)
+=item * maxBindGroupsPlusVertexBuffers (uint32_t)
 
-=item maxBindingsPerBindGroup (uint32_t)
+=item * maxBindingsPerBindGroup (uint32_t)
 
-=item maxDynamicUniformBuffersPerPipelineLayout (uint32_t)
+=item * maxDynamicUniformBuffersPerPipelineLayout (uint32_t)
 
-=item maxDynamicStorageBuffersPerPipelineLayout (uint32_t)
+=item * maxDynamicStorageBuffersPerPipelineLayout (uint32_t)
 
-=item maxSampledTexturesPerShaderStage (uint32_t)
+=item * maxSampledTexturesPerShaderStage (uint32_t)
 
-=item maxSamplersPerShaderStage (uint32_t)
+=item * maxSamplersPerShaderStage (uint32_t)
 
-=item maxStorageBuffersPerShaderStage (uint32_t)
+=item * maxStorageBuffersPerShaderStage (uint32_t)
 
-=item maxStorageTexturesPerShaderStage (uint32_t)
+=item * maxStorageTexturesPerShaderStage (uint32_t)
 
-=item maxUniformBuffersPerShaderStage (uint32_t)
+=item * maxUniformBuffersPerShaderStage (uint32_t)
 
-=item maxUniformBufferBindingSize (uint64_t)
+=item * maxUniformBufferBindingSize (uint64_t)
 
-=item maxStorageBufferBindingSize (uint64_t)
+=item * maxStorageBufferBindingSize (uint64_t)
 
-=item minUniformBufferOffsetAlignment (uint32_t)
+=item * minUniformBufferOffsetAlignment (uint32_t)
 
-=item minStorageBufferOffsetAlignment (uint32_t)
+=item * minStorageBufferOffsetAlignment (uint32_t)
 
-=item maxVertexBuffers (uint32_t)
+=item * maxVertexBuffers (uint32_t)
 
-=item maxBufferSize (uint64_t)
+=item * maxBufferSize (uint64_t)
 
-=item maxVertexAttributes (uint32_t)
+=item * maxVertexAttributes (uint32_t)
 
-=item maxVertexBufferArrayStride (uint32_t)
+=item * maxVertexBufferArrayStride (uint32_t)
 
-=item maxInterStageShaderComponents (uint32_t)
+=item * maxInterStageShaderComponents (uint32_t)
 
-=item maxInterStageShaderVariables (uint32_t)
+=item * maxInterStageShaderVariables (uint32_t)
 
-=item maxColorAttachments (uint32_t)
+=item * maxColorAttachments (uint32_t)
 
-=item maxColorAttachmentBytesPerSample (uint32_t)
+=item * maxColorAttachmentBytesPerSample (uint32_t)
 
-=item maxComputeWorkgroupStorageSize (uint32_t)
+=item * maxComputeWorkgroupStorageSize (uint32_t)
 
-=item maxComputeInvocationsPerWorkgroup (uint32_t)
+=item * maxComputeInvocationsPerWorkgroup (uint32_t)
 
-=item maxComputeWorkgroupSizeX (uint32_t)
+=item * maxComputeWorkgroupSizeX (uint32_t)
 
-=item maxComputeWorkgroupSizeY (uint32_t)
+=item * maxComputeWorkgroupSizeY (uint32_t)
 
-=item maxComputeWorkgroupSizeZ (uint32_t)
+=item * maxComputeWorkgroupSizeZ (uint32_t)
 
-=item maxComputeWorkgroupsPerDimension (uint32_t)
+=item * maxComputeWorkgroupsPerDimension (uint32_t)
 
 =back
 
@@ -316,13 +316,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item count (uint32_t)
+=item * count (uint32_t)
 
-=item mask (uint32_t)
+=item * mask (uint32_t)
 
-=item alphaToCoverageEnabled (WGPUBool)
+=item * alphaToCoverageEnabled (WGPUBool)
 
 =back
 
@@ -332,11 +332,11 @@
 
 =over
 
-=item x (uint32_t)
+=item * x (uint32_t)
 
-=item y (uint32_t)
+=item * y (uint32_t)
 
-=item z (uint32_t)
+=item * z (uint32_t)
 
 =back
 
@@ -346,13 +346,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item bindGroupLayoutCount (size_t)
+=item * bindGroupLayoutCount (size_t)
 
-=item bindGroupLayouts (L<WebGPU::Direct::BindGroupLayout>)
+=item * bindGroupLayouts (L<WebGPU::Direct::BindGroupLayout>)
 
 =back
 
@@ -362,9 +362,9 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item unclippedDepth (WGPUBool)
+=item * unclippedDepth (WGPUBool)
 
 =back
 
@@ -374,15 +374,15 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item topology (L<WGPUPrimitiveTopology|WebGPU::Direct::Constants/WGPUPrimitiveTopology>)
+=item * topology (L<WGPUPrimitiveTopology|WebGPU::Direct::Constants/WGPUPrimitiveTopology>)
 
-=item stripIndexFormat (L<WGPUIndexFormat|WebGPU::Direct::Constants/WGPUIndexFormat>)
+=item * stripIndexFormat (L<WGPUIndexFormat|WebGPU::Direct::Constants/WGPUIndexFormat>)
 
-=item frontFace (L<WGPUFrontFace|WebGPU::Direct::Constants/WGPUFrontFace>)
+=item * frontFace (L<WGPUFrontFace|WebGPU::Direct::Constants/WGPUFrontFace>)
 
-=item cullMode (L<WGPUCullMode|WebGPU::Direct::Constants/WGPUCullMode>)
+=item * cullMode (L<WGPUCullMode|WebGPU::Direct::Constants/WGPUCullMode>)
 
 =back
 
@@ -392,13 +392,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item type (L<WGPUQueryType|WebGPU::Direct::Constants/WGPUQueryType>)
+=item * type (L<WGPUQueryType|WebGPU::Direct::Constants/WGPUQueryType>)
 
-=item count (uint32_t)
+=item * count (uint32_t)
 
 =back
 
@@ -408,9 +408,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
 =back
 
@@ -420,9 +420,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
 =back
 
@@ -432,21 +432,21 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item colorFormatCount (size_t)
+=item * colorFormatCount (size_t)
 
-=item colorFormats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * colorFormats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item depthStencilFormat (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * depthStencilFormat (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item sampleCount (uint32_t)
+=item * sampleCount (uint32_t)
 
-=item depthReadOnly (WGPUBool)
+=item * depthReadOnly (WGPUBool)
 
-=item stencilReadOnly (WGPUBool)
+=item * stencilReadOnly (WGPUBool)
 
 =back
 
@@ -456,23 +456,23 @@
 
 =over
 
-=item view (L<WebGPU::Direct::TextureView>)
+=item * view (L<WebGPU::Direct::TextureView>)
 
-=item depthLoadOp (L<WGPULoadOp|WebGPU::Direct::Constants/WGPULoadOp>)
+=item * depthLoadOp (L<WGPULoadOp|WebGPU::Direct::Constants/WGPULoadOp>)
 
-=item depthStoreOp (L<WGPUStoreOp|WebGPU::Direct::Constants/WGPUStoreOp>)
+=item * depthStoreOp (L<WGPUStoreOp|WebGPU::Direct::Constants/WGPUStoreOp>)
 
-=item depthClearValue (float)
+=item * depthClearValue (float)
 
-=item depthReadOnly (WGPUBool)
+=item * depthReadOnly (WGPUBool)
 
-=item stencilLoadOp (L<WGPULoadOp|WebGPU::Direct::Constants/WGPULoadOp>)
+=item * stencilLoadOp (L<WGPULoadOp|WebGPU::Direct::Constants/WGPULoadOp>)
 
-=item stencilStoreOp (L<WGPUStoreOp|WebGPU::Direct::Constants/WGPUStoreOp>)
+=item * stencilStoreOp (L<WGPUStoreOp|WebGPU::Direct::Constants/WGPUStoreOp>)
 
-=item stencilClearValue (uint32_t)
+=item * stencilClearValue (uint32_t)
 
-=item stencilReadOnly (WGPUBool)
+=item * stencilReadOnly (WGPUBool)
 
 =back
 
@@ -482,9 +482,9 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item maxDrawCount (uint64_t)
+=item * maxDrawCount (uint64_t)
 
 =back
 
@@ -494,11 +494,11 @@
 
 =over
 
-=item querySet (L<WebGPU::Direct::QuerySet>)
+=item * querySet (L<WebGPU::Direct::QuerySet>)
 
-=item beginningOfPassWriteIndex (uint32_t)
+=item * beginningOfPassWriteIndex (uint32_t)
 
-=item endOfPassWriteIndex (uint32_t)
+=item * endOfPassWriteIndex (uint32_t)
 
 =back
 
@@ -508,15 +508,15 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item compatibleSurface (L<WebGPU::Direct::Surface>)
+=item * compatibleSurface (L<WebGPU::Direct::Surface>)
 
-=item powerPreference (L<WGPUPowerPreference|WebGPU::Direct::Constants/WGPUPowerPreference>)
+=item * powerPreference (L<WGPUPowerPreference|WebGPU::Direct::Constants/WGPUPowerPreference>)
 
-=item backendType (L<WGPUBackendType|WebGPU::Direct::Constants/WGPUBackendType>)
+=item * backendType (L<WGPUBackendType|WebGPU::Direct::Constants/WGPUBackendType>)
 
-=item forceFallbackAdapter (WGPUBool)
+=item * forceFallbackAdapter (WGPUBool)
 
 =back
 
@@ -526,9 +526,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item type (L<WGPUSamplerBindingType|WebGPU::Direct::Constants/WGPUSamplerBindingType>)
+=item * type (L<WGPUSamplerBindingType|WebGPU::Direct::Constants/WGPUSamplerBindingType>)
 
 =back
 
@@ -538,29 +538,29 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item addressModeU (L<WGPUAddressMode|WebGPU::Direct::Constants/WGPUAddressMode>)
+=item * addressModeU (L<WGPUAddressMode|WebGPU::Direct::Constants/WGPUAddressMode>)
 
-=item addressModeV (L<WGPUAddressMode|WebGPU::Direct::Constants/WGPUAddressMode>)
+=item * addressModeV (L<WGPUAddressMode|WebGPU::Direct::Constants/WGPUAddressMode>)
 
-=item addressModeW (L<WGPUAddressMode|WebGPU::Direct::Constants/WGPUAddressMode>)
+=item * addressModeW (L<WGPUAddressMode|WebGPU::Direct::Constants/WGPUAddressMode>)
 
-=item magFilter (L<WGPUFilterMode|WebGPU::Direct::Constants/WGPUFilterMode>)
+=item * magFilter (L<WGPUFilterMode|WebGPU::Direct::Constants/WGPUFilterMode>)
 
-=item minFilter (L<WGPUFilterMode|WebGPU::Direct::Constants/WGPUFilterMode>)
+=item * minFilter (L<WGPUFilterMode|WebGPU::Direct::Constants/WGPUFilterMode>)
 
-=item mipmapFilter (L<WGPUMipmapFilterMode|WebGPU::Direct::Constants/WGPUMipmapFilterMode>)
+=item * mipmapFilter (L<WGPUMipmapFilterMode|WebGPU::Direct::Constants/WGPUMipmapFilterMode>)
 
-=item lodMinClamp (float)
+=item * lodMinClamp (float)
 
-=item lodMaxClamp (float)
+=item * lodMaxClamp (float)
 
-=item compare (L<WGPUCompareFunction|WebGPU::Direct::Constants/WGPUCompareFunction>)
+=item * compare (L<WGPUCompareFunction|WebGPU::Direct::Constants/WGPUCompareFunction>)
 
-=item maxAnisotropy (uint16_t)
+=item * maxAnisotropy (uint16_t)
 
 =back
 
@@ -570,11 +570,11 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item entryPoint (char)
+=item * entryPoint (char)
 
-=item layout (L<WebGPU::Direct::PipelineLayout>)
+=item * layout (L<WebGPU::Direct::PipelineLayout>)
 
 =back
 
@@ -584,11 +584,11 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item codeSize (uint32_t)
+=item * codeSize (uint32_t)
 
-=item code (uint32_t)
+=item * code (uint32_t)
 
 =back
 
@@ -598,9 +598,9 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item code (char)
+=item * code (char)
 
 =back
 
@@ -610,13 +610,13 @@
 
 =over
 
-=item compare (L<WGPUCompareFunction|WebGPU::Direct::Constants/WGPUCompareFunction>)
+=item * compare (L<WGPUCompareFunction|WebGPU::Direct::Constants/WGPUCompareFunction>)
 
-=item failOp (L<WGPUStencilOperation|WebGPU::Direct::Constants/WGPUStencilOperation>)
+=item * failOp (L<WGPUStencilOperation|WebGPU::Direct::Constants/WGPUStencilOperation>)
 
-=item depthFailOp (L<WGPUStencilOperation|WebGPU::Direct::Constants/WGPUStencilOperation>)
+=item * depthFailOp (L<WGPUStencilOperation|WebGPU::Direct::Constants/WGPUStencilOperation>)
 
-=item passOp (L<WGPUStencilOperation|WebGPU::Direct::Constants/WGPUStencilOperation>)
+=item * passOp (L<WGPUStencilOperation|WebGPU::Direct::Constants/WGPUStencilOperation>)
 
 =back
 
@@ -626,13 +626,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item access (L<WGPUStorageTextureAccess|WebGPU::Direct::Constants/WGPUStorageTextureAccess>)
+=item * access (L<WGPUStorageTextureAccess|WebGPU::Direct::Constants/WGPUStorageTextureAccess>)
 
-=item format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item viewDimension (L<WGPUTextureViewDimension|WebGPU::Direct::Constants/WGPUTextureViewDimension>)
+=item * viewDimension (L<WGPUTextureViewDimension|WebGPU::Direct::Constants/WGPUTextureViewDimension>)
 
 =back
 
@@ -642,19 +642,19 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
 
-=item formatCount (size_t)
+=item * formatCount (size_t)
 
-=item formats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * formats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item presentModeCount (size_t)
+=item * presentModeCount (size_t)
 
-=item presentModes (L<WGPUPresentMode|WebGPU::Direct::Constants/WGPUPresentMode>)
+=item * presentModes (L<WGPUPresentMode|WebGPU::Direct::Constants/WGPUPresentMode>)
 
-=item alphaModeCount (size_t)
+=item * alphaModeCount (size_t)
 
-=item alphaModes (L<WGPUCompositeAlphaMode|WebGPU::Direct::Constants/WGPUCompositeAlphaMode>)
+=item * alphaModes (L<WGPUCompositeAlphaMode|WebGPU::Direct::Constants/WGPUCompositeAlphaMode>)
 
 =back
 
@@ -664,25 +664,25 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item device (L<WebGPU::Direct::Device>)
+=item * device (L<WebGPU::Direct::Device>)
 
-=item format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item usage (WGPUTextureUsageFlags)
+=item * usage (WGPUTextureUsageFlags)
 
-=item viewFormatCount (size_t)
+=item * viewFormatCount (size_t)
 
-=item viewFormats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * viewFormats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item alphaMode (L<WGPUCompositeAlphaMode|WebGPU::Direct::Constants/WGPUCompositeAlphaMode>)
+=item * alphaMode (L<WGPUCompositeAlphaMode|WebGPU::Direct::Constants/WGPUCompositeAlphaMode>)
 
-=item width (uint32_t)
+=item * width (uint32_t)
 
-=item height (uint32_t)
+=item * height (uint32_t)
 
-=item presentMode (L<WGPUPresentMode|WebGPU::Direct::Constants/WGPUPresentMode>)
+=item * presentMode (L<WGPUPresentMode|WebGPU::Direct::Constants/WGPUPresentMode>)
 
 =back
 
@@ -692,9 +692,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
 =back
 
@@ -704,9 +704,9 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item window (void)
+=item * window (void)
 
 =back
 
@@ -716,9 +716,9 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item selector (char)
+=item * selector (char)
 
 =back
 
@@ -728,9 +728,9 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item layer (void)
+=item * layer (void)
 
 =back
 
@@ -740,11 +740,11 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item display (void)
+=item * display (void)
 
-=item surface (void)
+=item * surface (void)
 
 =back
 
@@ -754,11 +754,11 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item hinstance (void)
+=item * hinstance (void)
 
-=item hwnd (void)
+=item * hwnd (void)
 
 =back
 
@@ -768,11 +768,11 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item connection (void)
+=item * connection (void)
 
-=item window (uint32_t)
+=item * window (uint32_t)
 
 =back
 
@@ -782,11 +782,11 @@
 
 =over
 
-=item chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * chain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item display (void)
+=item * display (void)
 
-=item window (uint64_t)
+=item * window (uint64_t)
 
 =back
 
@@ -796,11 +796,11 @@
 
 =over
 
-=item texture (L<WebGPU::Direct::Texture>)
+=item * texture (L<WebGPU::Direct::Texture>)
 
-=item suboptimal (WGPUBool)
+=item * suboptimal (WGPUBool)
 
-=item status (L<WGPUSurfaceGetCurrentTextureStatus|WebGPU::Direct::Constants/WGPUSurfaceGetCurrentTextureStatus>)
+=item * status (L<WGPUSurfaceGetCurrentTextureStatus|WebGPU::Direct::Constants/WGPUSurfaceGetCurrentTextureStatus>)
 
 =back
 
@@ -810,13 +810,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item sampleType (L<WGPUTextureSampleType|WebGPU::Direct::Constants/WGPUTextureSampleType>)
+=item * sampleType (L<WGPUTextureSampleType|WebGPU::Direct::Constants/WGPUTextureSampleType>)
 
-=item viewDimension (L<WGPUTextureViewDimension|WebGPU::Direct::Constants/WGPUTextureViewDimension>)
+=item * viewDimension (L<WGPUTextureViewDimension|WebGPU::Direct::Constants/WGPUTextureViewDimension>)
 
-=item multisampled (WGPUBool)
+=item * multisampled (WGPUBool)
 
 =back
 
@@ -826,13 +826,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item offset (uint64_t)
+=item * offset (uint64_t)
 
-=item bytesPerRow (uint32_t)
+=item * bytesPerRow (uint32_t)
 
-=item rowsPerImage (uint32_t)
+=item * rowsPerImage (uint32_t)
 
 =back
 
@@ -842,23 +842,23 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item dimension (L<WGPUTextureViewDimension|WebGPU::Direct::Constants/WGPUTextureViewDimension>)
+=item * dimension (L<WGPUTextureViewDimension|WebGPU::Direct::Constants/WGPUTextureViewDimension>)
 
-=item baseMipLevel (uint32_t)
+=item * baseMipLevel (uint32_t)
 
-=item mipLevelCount (uint32_t)
+=item * mipLevelCount (uint32_t)
 
-=item baseArrayLayer (uint32_t)
+=item * baseArrayLayer (uint32_t)
 
-=item arrayLayerCount (uint32_t)
+=item * arrayLayerCount (uint32_t)
 
-=item aspect (L<WGPUTextureAspect|WebGPU::Direct::Constants/WGPUTextureAspect>)
+=item * aspect (L<WGPUTextureAspect|WebGPU::Direct::Constants/WGPUTextureAspect>)
 
 =back
 
@@ -868,11 +868,11 @@
 
 =over
 
-=item format (L<WGPUVertexFormat|WebGPU::Direct::Constants/WGPUVertexFormat>)
+=item * format (L<WGPUVertexFormat|WebGPU::Direct::Constants/WGPUVertexFormat>)
 
-=item offset (uint64_t)
+=item * offset (uint64_t)
 
-=item shaderLocation (uint32_t)
+=item * shaderLocation (uint32_t)
 
 =back
 
@@ -882,15 +882,15 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item layout (L<WebGPU::Direct::BindGroupLayout>)
+=item * layout (L<WebGPU::Direct::BindGroupLayout>)
 
-=item entryCount (size_t)
+=item * entryCount (size_t)
 
-=item entries (L<WebGPU::Direct::BindGroupEntry|WebGPU::Direct::Types/WebGPU::Direct::BindGroupEntry>)
+=item * entries (L<WebGPU::Direct::BindGroupEntry|WebGPU::Direct::Types/WebGPU::Direct::BindGroupEntry>)
 
 =back
 
@@ -900,19 +900,19 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item binding (uint32_t)
+=item * binding (uint32_t)
 
-=item visibility (WGPUShaderStageFlags)
+=item * visibility (WGPUShaderStageFlags)
 
-=item buffer (L<WebGPU::Direct::BufferBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::BufferBindingLayout>)
+=item * buffer (L<WebGPU::Direct::BufferBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::BufferBindingLayout>)
 
-=item sampler (L<WebGPU::Direct::SamplerBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::SamplerBindingLayout>)
+=item * sampler (L<WebGPU::Direct::SamplerBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::SamplerBindingLayout>)
 
-=item texture (L<WebGPU::Direct::TextureBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::TextureBindingLayout>)
+=item * texture (L<WebGPU::Direct::TextureBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::TextureBindingLayout>)
 
-=item storageTexture (L<WebGPU::Direct::StorageTextureBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::StorageTextureBindingLayout>)
+=item * storageTexture (L<WebGPU::Direct::StorageTextureBindingLayout|WebGPU::Direct::Types/WebGPU::Direct::StorageTextureBindingLayout>)
 
 =back
 
@@ -922,9 +922,9 @@
 
 =over
 
-=item color (L<WebGPU::Direct::BlendComponent|WebGPU::Direct::Types/WebGPU::Direct::BlendComponent>)
+=item * color (L<WebGPU::Direct::BlendComponent|WebGPU::Direct::Types/WebGPU::Direct::BlendComponent>)
 
-=item alpha (L<WebGPU::Direct::BlendComponent|WebGPU::Direct::Types/WebGPU::Direct::BlendComponent>)
+=item * alpha (L<WebGPU::Direct::BlendComponent|WebGPU::Direct::Types/WebGPU::Direct::BlendComponent>)
 
 =back
 
@@ -934,11 +934,11 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item messageCount (size_t)
+=item * messageCount (size_t)
 
-=item messages (L<WebGPU::Direct::CompilationMessage|WebGPU::Direct::Types/WebGPU::Direct::CompilationMessage>)
+=item * messages (L<WebGPU::Direct::CompilationMessage|WebGPU::Direct::Types/WebGPU::Direct::CompilationMessage>)
 
 =back
 
@@ -948,11 +948,11 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item timestampWrites (L<WebGPU::Direct::ComputePassTimestampWrites|WebGPU::Direct::Types/WebGPU::Direct::ComputePassTimestampWrites>)
+=item * timestampWrites (L<WebGPU::Direct::ComputePassTimestampWrites|WebGPU::Direct::Types/WebGPU::Direct::ComputePassTimestampWrites>)
 
 =back
 
@@ -962,27 +962,27 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item depthWriteEnabled (WGPUBool)
+=item * depthWriteEnabled (WGPUBool)
 
-=item depthCompare (L<WGPUCompareFunction|WebGPU::Direct::Constants/WGPUCompareFunction>)
+=item * depthCompare (L<WGPUCompareFunction|WebGPU::Direct::Constants/WGPUCompareFunction>)
 
-=item stencilFront (L<WebGPU::Direct::StencilFaceState|WebGPU::Direct::Types/WebGPU::Direct::StencilFaceState>)
+=item * stencilFront (L<WebGPU::Direct::StencilFaceState|WebGPU::Direct::Types/WebGPU::Direct::StencilFaceState>)
 
-=item stencilBack (L<WebGPU::Direct::StencilFaceState|WebGPU::Direct::Types/WebGPU::Direct::StencilFaceState>)
+=item * stencilBack (L<WebGPU::Direct::StencilFaceState|WebGPU::Direct::Types/WebGPU::Direct::StencilFaceState>)
 
-=item stencilReadMask (uint32_t)
+=item * stencilReadMask (uint32_t)
 
-=item stencilWriteMask (uint32_t)
+=item * stencilWriteMask (uint32_t)
 
-=item depthBias (int32_t)
+=item * depthBias (int32_t)
 
-=item depthBiasSlopeScale (float)
+=item * depthBiasSlopeScale (float)
 
-=item depthBiasClamp (float)
+=item * depthBiasClamp (float)
 
 =back
 
@@ -992,11 +992,11 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item layout (L<WebGPU::Direct::TextureDataLayout|WebGPU::Direct::Types/WebGPU::Direct::TextureDataLayout>)
+=item * layout (L<WebGPU::Direct::TextureDataLayout|WebGPU::Direct::Types/WebGPU::Direct::TextureDataLayout>)
 
-=item buffer (L<WebGPU::Direct::Buffer>)
+=item * buffer (L<WebGPU::Direct::Buffer>)
 
 =back
 
@@ -1006,15 +1006,15 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item texture (L<WebGPU::Direct::Texture>)
+=item * texture (L<WebGPU::Direct::Texture>)
 
-=item mipLevel (uint32_t)
+=item * mipLevel (uint32_t)
 
-=item origin (L<WebGPU::Direct::Origin3D|WebGPU::Direct::Types/WebGPU::Direct::Origin3D>)
+=item * origin (L<WebGPU::Direct::Origin3D|WebGPU::Direct::Types/WebGPU::Direct::Origin3D>)
 
-=item aspect (L<WGPUTextureAspect|WebGPU::Direct::Constants/WGPUTextureAspect>)
+=item * aspect (L<WGPUTextureAspect|WebGPU::Direct::Constants/WGPUTextureAspect>)
 
 =back
 
@@ -1024,15 +1024,15 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item module (L<WebGPU::Direct::ShaderModule>)
+=item * module (L<WebGPU::Direct::ShaderModule>)
 
-=item entryPoint (char)
+=item * entryPoint (char)
 
-=item constantCount (size_t)
+=item * constantCount (size_t)
 
-=item constants (L<WebGPU::Direct::ConstantEntry|WebGPU::Direct::Types/WebGPU::Direct::ConstantEntry>)
+=item * constants (L<WebGPU::Direct::ConstantEntry|WebGPU::Direct::Types/WebGPU::Direct::ConstantEntry>)
 
 =back
 
@@ -1042,17 +1042,17 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item view (L<WebGPU::Direct::TextureView>)
+=item * view (L<WebGPU::Direct::TextureView>)
 
-=item resolveTarget (L<WebGPU::Direct::TextureView>)
+=item * resolveTarget (L<WebGPU::Direct::TextureView>)
 
-=item loadOp (L<WGPULoadOp|WebGPU::Direct::Constants/WGPULoadOp>)
+=item * loadOp (L<WGPULoadOp|WebGPU::Direct::Constants/WGPULoadOp>)
 
-=item storeOp (L<WGPUStoreOp|WebGPU::Direct::Constants/WGPUStoreOp>)
+=item * storeOp (L<WGPUStoreOp|WebGPU::Direct::Constants/WGPUStoreOp>)
 
-=item clearValue (L<WebGPU::Direct::Color|WebGPU::Direct::Types/WebGPU::Direct::Color>)
+=item * clearValue (L<WebGPU::Direct::Color|WebGPU::Direct::Types/WebGPU::Direct::Color>)
 
 =back
 
@@ -1062,9 +1062,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item limits (L<WebGPU::Direct::Limits|WebGPU::Direct::Types/WebGPU::Direct::Limits>)
+=item * limits (L<WebGPU::Direct::Limits|WebGPU::Direct::Types/WebGPU::Direct::Limits>)
 
 =back
 
@@ -1074,13 +1074,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item hintCount (size_t)
+=item * hintCount (size_t)
 
-=item hints (L<WebGPU::Direct::ShaderModuleCompilationHint|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleCompilationHint>)
+=item * hints (L<WebGPU::Direct::ShaderModuleCompilationHint|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleCompilationHint>)
 
 =back
 
@@ -1090,9 +1090,9 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStructOut|WebGPU::Direct::Types/WebGPU::Direct::ChainedStructOut>)
 
-=item limits (L<WebGPU::Direct::Limits|WebGPU::Direct::Types/WebGPU::Direct::Limits>)
+=item * limits (L<WebGPU::Direct::Limits|WebGPU::Direct::Types/WebGPU::Direct::Limits>)
 
 =back
 
@@ -1102,25 +1102,25 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item usage (WGPUTextureUsageFlags)
+=item * usage (WGPUTextureUsageFlags)
 
-=item dimension (L<WGPUTextureDimension|WebGPU::Direct::Constants/WGPUTextureDimension>)
+=item * dimension (L<WGPUTextureDimension|WebGPU::Direct::Constants/WGPUTextureDimension>)
 
-=item size (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
+=item * size (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
 
-=item format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item mipLevelCount (uint32_t)
+=item * mipLevelCount (uint32_t)
 
-=item sampleCount (uint32_t)
+=item * sampleCount (uint32_t)
 
-=item viewFormatCount (size_t)
+=item * viewFormatCount (size_t)
 
-=item viewFormats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * viewFormats (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
 =back
 
@@ -1130,13 +1130,13 @@
 
 =over
 
-=item arrayStride (uint64_t)
+=item * arrayStride (uint64_t)
 
-=item stepMode (L<WGPUVertexStepMode|WebGPU::Direct::Constants/WGPUVertexStepMode>)
+=item * stepMode (L<WGPUVertexStepMode|WebGPU::Direct::Constants/WGPUVertexStepMode>)
 
-=item attributeCount (size_t)
+=item * attributeCount (size_t)
 
-=item attributes (L<WebGPU::Direct::VertexAttribute|WebGPU::Direct::Types/WebGPU::Direct::VertexAttribute>)
+=item * attributes (L<WebGPU::Direct::VertexAttribute|WebGPU::Direct::Types/WebGPU::Direct::VertexAttribute>)
 
 =back
 
@@ -1146,13 +1146,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item entryCount (size_t)
+=item * entryCount (size_t)
 
-=item entries (L<WebGPU::Direct::BindGroupLayoutEntry|WebGPU::Direct::Types/WebGPU::Direct::BindGroupLayoutEntry>)
+=item * entries (L<WebGPU::Direct::BindGroupLayoutEntry|WebGPU::Direct::Types/WebGPU::Direct::BindGroupLayoutEntry>)
 
 =back
 
@@ -1162,13 +1162,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
+=item * format (L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>)
 
-=item blend (L<WebGPU::Direct::BlendState|WebGPU::Direct::Types/WebGPU::Direct::BlendState>)
+=item * blend (L<WebGPU::Direct::BlendState|WebGPU::Direct::Types/WebGPU::Direct::BlendState>)
 
-=item writeMask (WGPUColorWriteMaskFlags)
+=item * writeMask (WGPUColorWriteMaskFlags)
 
 =back
 
@@ -1178,13 +1178,13 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item layout (L<WebGPU::Direct::PipelineLayout>)
+=item * layout (L<WebGPU::Direct::PipelineLayout>)
 
-=item compute (L<WebGPU::Direct::ProgrammableStageDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ProgrammableStageDescriptor>)
+=item * compute (L<WebGPU::Direct::ProgrammableStageDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ProgrammableStageDescriptor>)
 
 =back
 
@@ -1194,21 +1194,21 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item requiredFeatureCount (size_t)
+=item * requiredFeatureCount (size_t)
 
-=item requiredFeatures (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
+=item * requiredFeatures (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
 
-=item requiredLimits (L<WebGPU::Direct::RequiredLimits|WebGPU::Direct::Types/WebGPU::Direct::RequiredLimits>)
+=item * requiredLimits (L<WebGPU::Direct::RequiredLimits|WebGPU::Direct::Types/WebGPU::Direct::RequiredLimits>)
 
-=item defaultQueue (L<WebGPU::Direct::QueueDescriptor|WebGPU::Direct::Types/WebGPU::Direct::QueueDescriptor>)
+=item * defaultQueue (L<WebGPU::Direct::QueueDescriptor|WebGPU::Direct::Types/WebGPU::Direct::QueueDescriptor>)
 
-=item deviceLostCallback (void)
+=item * deviceLostCallback (void)
 
-=item deviceLostUserdata (void)
+=item * deviceLostUserdata (void)
 
 =back
 
@@ -1218,19 +1218,19 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item colorAttachmentCount (size_t)
+=item * colorAttachmentCount (size_t)
 
-=item colorAttachments (L<WebGPU::Direct::RenderPassColorAttachment|WebGPU::Direct::Types/WebGPU::Direct::RenderPassColorAttachment>)
+=item * colorAttachments (L<WebGPU::Direct::RenderPassColorAttachment|WebGPU::Direct::Types/WebGPU::Direct::RenderPassColorAttachment>)
 
-=item depthStencilAttachment (L<WebGPU::Direct::RenderPassDepthStencilAttachment|WebGPU::Direct::Types/WebGPU::Direct::RenderPassDepthStencilAttachment>)
+=item * depthStencilAttachment (L<WebGPU::Direct::RenderPassDepthStencilAttachment|WebGPU::Direct::Types/WebGPU::Direct::RenderPassDepthStencilAttachment>)
 
-=item occlusionQuerySet (L<WebGPU::Direct::QuerySet>)
+=item * occlusionQuerySet (L<WebGPU::Direct::QuerySet>)
 
-=item timestampWrites (L<WebGPU::Direct::RenderPassTimestampWrites|WebGPU::Direct::Types/WebGPU::Direct::RenderPassTimestampWrites>)
+=item * timestampWrites (L<WebGPU::Direct::RenderPassTimestampWrites|WebGPU::Direct::Types/WebGPU::Direct::RenderPassTimestampWrites>)
 
 =back
 
@@ -1240,19 +1240,19 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item module (L<WebGPU::Direct::ShaderModule>)
+=item * module (L<WebGPU::Direct::ShaderModule>)
 
-=item entryPoint (char)
+=item * entryPoint (char)
 
-=item constantCount (size_t)
+=item * constantCount (size_t)
 
-=item constants (L<WebGPU::Direct::ConstantEntry|WebGPU::Direct::Types/WebGPU::Direct::ConstantEntry>)
+=item * constants (L<WebGPU::Direct::ConstantEntry|WebGPU::Direct::Types/WebGPU::Direct::ConstantEntry>)
 
-=item bufferCount (size_t)
+=item * bufferCount (size_t)
 
-=item buffers (L<WebGPU::Direct::VertexBufferLayout|WebGPU::Direct::Types/WebGPU::Direct::VertexBufferLayout>)
+=item * buffers (L<WebGPU::Direct::VertexBufferLayout|WebGPU::Direct::Types/WebGPU::Direct::VertexBufferLayout>)
 
 =back
 
@@ -1262,19 +1262,19 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item module (L<WebGPU::Direct::ShaderModule>)
+=item * module (L<WebGPU::Direct::ShaderModule>)
 
-=item entryPoint (char)
+=item * entryPoint (char)
 
-=item constantCount (size_t)
+=item * constantCount (size_t)
 
-=item constants (L<WebGPU::Direct::ConstantEntry|WebGPU::Direct::Types/WebGPU::Direct::ConstantEntry>)
+=item * constants (L<WebGPU::Direct::ConstantEntry|WebGPU::Direct::Types/WebGPU::Direct::ConstantEntry>)
 
-=item targetCount (size_t)
+=item * targetCount (size_t)
 
-=item targets (L<WebGPU::Direct::ColorTargetState|WebGPU::Direct::Types/WebGPU::Direct::ColorTargetState>)
+=item * targets (L<WebGPU::Direct::ColorTargetState|WebGPU::Direct::Types/WebGPU::Direct::ColorTargetState>)
 
 =back
 
@@ -1284,21 +1284,21 @@
 
 =over
 
-=item nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
+=item * nextInChain (L<WebGPU::Direct::ChainedStruct|WebGPU::Direct::Types/WebGPU::Direct::ChainedStruct>)
 
-=item label (char)
+=item * label (char)
 
-=item layout (L<WebGPU::Direct::PipelineLayout>)
+=item * layout (L<WebGPU::Direct::PipelineLayout>)
 
-=item vertex (L<WebGPU::Direct::VertexState|WebGPU::Direct::Types/WebGPU::Direct::VertexState>)
+=item * vertex (L<WebGPU::Direct::VertexState|WebGPU::Direct::Types/WebGPU::Direct::VertexState>)
 
-=item primitive (L<WebGPU::Direct::PrimitiveState|WebGPU::Direct::Types/WebGPU::Direct::PrimitiveState>)
+=item * primitive (L<WebGPU::Direct::PrimitiveState|WebGPU::Direct::Types/WebGPU::Direct::PrimitiveState>)
 
-=item depthStencil (L<WebGPU::Direct::DepthStencilState|WebGPU::Direct::Types/WebGPU::Direct::DepthStencilState>)
+=item * depthStencil (L<WebGPU::Direct::DepthStencilState|WebGPU::Direct::Types/WebGPU::Direct::DepthStencilState>)
 
-=item multisample (L<WebGPU::Direct::MultisampleState|WebGPU::Direct::Types/WebGPU::Direct::MultisampleState>)
+=item * multisample (L<WebGPU::Direct::MultisampleState|WebGPU::Direct::Types/WebGPU::Direct::MultisampleState>)
 
-=item fragment (L<WebGPU::Direct::FragmentState|WebGPU::Direct::Types/WebGPU::Direct::FragmentState>)
+=item * fragment (L<WebGPU::Direct::FragmentState|WebGPU::Direct::Types/WebGPU::Direct::FragmentState>)
 
 =back
 

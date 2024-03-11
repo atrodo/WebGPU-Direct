@@ -18,35 +18,75 @@ WebGPU::Direct::ComputePipeline
 
 =head2 Methods
 
-=head3 GetBindGroupLayout (WGPUBindGroupLayout)
+=head3 GetBindGroupLayout
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item groupIndex (uint32_t)
+=item * WGPUBindGroupLayout
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * groupIndex (uint32_t)
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 SetLabel
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 Reference
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

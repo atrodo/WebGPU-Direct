@@ -18,95 +18,159 @@ WebGPU::Direct::Queue
 
 =head2 Methods
 
-=head3 OnSubmittedWorkDone (void)
+=head3 OnSubmittedWorkDone
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item callback (L<WebGPU::Direct::QueueWorkDoneCallback>)
+=item * void
 
-=item userdata (L<WebGPU::Direct::void>)
+=back
+
+=item * Arguments
+
+=over
+
+=item * callback (L<WebGPU::Direct::QueueWorkDoneCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
 
 =back
 
 =back
 
-=head3 SetLabel (void)
+=head3 SetLabel
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item label (L<WebGPU::Direct::char>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * label (L<WebGPU::Direct::char>)
 
 =back
 
 =back
 
-=head3 Submit (void)
+=head3 Submit
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item commandCount (size_t)
+=item * void
 
-=item commands (L<WebGPU::Direct::CommandBuffer>)
+=back
+
+=item * Arguments
+
+=over
+
+=item * commandCount (size_t)
+
+=item * commands (L<WebGPU::Direct::CommandBuffer>)
 
 =back
 
 =back
 
-=head3 WriteBuffer (void)
+=head3 WriteBuffer
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item buffer (L<WebGPU::Direct::Buffer>)
+=item * void
 
-=item bufferOffset (uint64_t)
+=back
 
-=item data (L<WebGPU::Direct::void>)
+=item * Arguments
 
-=item size (size_t)
+=over
+
+=item * buffer (L<WebGPU::Direct::Buffer>)
+
+=item * bufferOffset (uint64_t)
+
+=item * data (L<WebGPU::Direct::void>)
+
+=item * size (size_t)
 
 =back
 
 =back
 
-=head3 WriteTexture (void)
+=head3 WriteTexture
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item destination (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+=item * void
 
-=item data (L<WebGPU::Direct::void>)
+=back
 
-=item dataSize (size_t)
+=item * Arguments
 
-=item dataLayout (L<WebGPU::Direct::TextureDataLayout|WebGPU::Direct::Types/WebGPU::Direct::TextureDataLayout>)
+=over
 
-=item writeSize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
+=item * destination (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
+
+=item * data (L<WebGPU::Direct::void>)
+
+=item * dataSize (size_t)
+
+=item * dataLayout (L<WebGPU::Direct::TextureDataLayout|WebGPU::Direct::Types/WebGPU::Direct::TextureDataLayout>)
+
+=item * writeSize (L<WebGPU::Direct::Extent3D|WebGPU::Direct::Types/WebGPU::Direct::Extent3D>)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 Reference
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 

@@ -60,81 +60,145 @@ WebGPU::Direct::Adapter
 
 =head2 Methods
 
-=head3 EnumerateFeatures (size_t)
+=head3 EnumerateFeatures
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item features (L<WebGPU::Direct::FeatureName>)
+=item * size_t
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * features (L<WebGPU::Direct::FeatureName>)
 
 =back
 
 =back
 
-=head3 GetLimits (WGPUBool)
+=head3 GetLimits
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item limits (L<WebGPU::Direct::SupportedLimits|WebGPU::Direct::Types/WebGPU::Direct::SupportedLimits>)
+=item * WGPUBool
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * limits (L<WebGPU::Direct::SupportedLimits|WebGPU::Direct::Types/WebGPU::Direct::SupportedLimits>)
 
 =back
 
 =back
 
-=head3 GetProperties (void)
+=head3 GetProperties
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item properties (L<WebGPU::Direct::AdapterProperties|WebGPU::Direct::Types/WebGPU::Direct::AdapterProperties>)
+=item * void
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * properties (L<WebGPU::Direct::AdapterProperties|WebGPU::Direct::Types/WebGPU::Direct::AdapterProperties>)
 
 =back
 
 =back
 
-=head3 HasFeature (WGPUBool)
+=head3 HasFeature
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
+=item * WGPUBool
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
 
 =back
 
 =back
 
-=head3 RequestDevice (void)
+=head3 RequestDevice
 
 =over
 
-=item Arguments
+=item * Return Type
 
 =over
 
-=item descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>)
+=item * void
 
-=item callback (L<WebGPU::Direct::RequestDeviceCallback>)
+=back
 
-=item userdata (L<WebGPU::Direct::void>)
+=item * Arguments
+
+=over
+
+=item * descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>)
+
+=item * callback (L<WebGPU::Direct::RequestDeviceCallback>)
+
+=item * userdata (L<WebGPU::Direct::void>)
 
 =back
 
 =back
 
-=head3 Reference (void)
+=head3 Reference
 
-=head3 Release (void)
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
+
+=head3 Release
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * void
+
+=back
+
+=back
 
