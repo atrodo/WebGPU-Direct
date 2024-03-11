@@ -85,25 +85,25 @@ This module is currently I<extremely> experimental, including the documentation.
 
 =over
 
-=item Much of the XS code is automatically generated.
+=item * Much of the XS code is automatically generated.
 
-=item Some arguments that are optional or has a default in the JavaScript WebGPU standard are required to be passed
+=item * Some arguments that are optional or has a default in the JavaScript WebGPU standard are required to be passed
 
-=item While all of the documentation is currently created, most of it is automatically generated from L<webgpu/webgpu.h|https://github.com/webgpu-native/webgpu-headers>.
+=item * While all of the documentation is currently created, most of it is automatically generated from L<webgpu/webgpu.h|https://github.com/webgpu-native/webgpu-headers>.
 
-=item Not all of the generated documentation is currently accurate, for instance callbacks are handled in a perl-ish manner.
+=item * Not all of the generated documentation is currently accurate, for instance callbacks are handled in a perl-ish manner.
 
-=item Errors generated inside of WebGPU are not yet transformed into excpetions
+=item * Errors generated inside of WebGPU are not yet transformed into excpetions
 
-=item Providing the window handle for rendering is done manually
+=item * Providing the window handle for rendering is done manually
 
-=item Sample window creation code does have any input or controls, only a WebGPU surface is shown
+=item * Sample window creation code does have any input or controls, only a WebGPU surface is shown
 
-=item Memory leaks are likely to exist
+=item * Memory leaks are likely to exist
 
-=item This has only been tested with L<wgpu-native|https://github.com/gfx-rs/wgpu-native>, not with L<Dawn|https://dawn.googlesource.com/dawn>.
+=item * This has only been tested with L<wgpu-native|https://github.com/gfx-rs/wgpu-native>, not with L<Dawn|https://dawn.googlesource.com/dawn>.
 
-=item The WebGPU native standard is not finalized and is likely to change
+=item * The WebGPU native standard is not finalized and is likely to change
 
 =back
 
@@ -125,9 +125,9 @@ Create a new WebGPU::Direct instance. This inherits from L<WebGPU::Direct::Insta
 
 =over
 
-=item xw - Width of window
+=item * xw - Width of window
 
-=item yh - Height of window
+=item * yh - Height of window
 
 =back
 
@@ -139,9 +139,9 @@ Currently the supported windowing systems are:
 
 =over
 
-=item X11
+=item * X11
 
-=item Wayland
+=item * Wayland
 
 =back
 
@@ -267,15 +267,15 @@ This is free software. You may redistribute copies of it under the terms of the 
 
 =over
 
-=item L<WebGPU|https://en.wikipedia.org/wiki/WebGPU>
+=item * L<WebGPU|https://en.wikipedia.org/wiki/WebGPU>
 
-=item L<WebGPU Working Draft|https://www.w3.org/TR/webgpu/>
+=item * L<WebGPU Working Draft|https://www.w3.org/TR/webgpu/>
 
-=item L<WebGPU native API|https://github.com/webgpu-native/>
+=item * L<WebGPU native API|https://github.com/webgpu-native/>
 
-=item L<Dawn|https://dawn.googlesource.com/dawn>
+=item * L<Dawn|https://dawn.googlesource.com/dawn>
 
-=item L<wgpu-native|https://github.com/gfx-rs/wgpu-native>
+=item * L<wgpu-native|https://github.com/gfx-rs/wgpu-native>
 
 =back
 
