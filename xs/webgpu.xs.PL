@@ -167,6 +167,10 @@ while (<$h>)
       {
         $short = "_$short";
       }
+
+      next
+        if $short eq 'Force32';
+
       $enums{$type}->{$value} = "__PACKAGE__->_add_enum('$short' => ($value, '$const'));";
     }
 

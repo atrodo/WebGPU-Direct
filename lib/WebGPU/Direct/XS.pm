@@ -4,7 +4,7 @@ use warnings;
 package # Hide from PAUSE
     WebGPU::Direct::XS
 {
-  our $VERSION = '0.10';
+  our $VERSION = '0.11';
   require XSLoader;
   XSLoader::load('WebGPU::Direct', $VERSION);
 }
@@ -287,7 +287,6 @@ package
   __PACKAGE__->_add_enum('IntegratedGPU' => (0x00000001, 'WGPUAdapterType_IntegratedGPU'));
   __PACKAGE__->_add_enum('CPU' => (0x00000002, 'WGPUAdapterType_CPU'));
   __PACKAGE__->_add_enum('Unknown' => (0x00000003, 'WGPUAdapterType_Unknown'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUAdapterType_Force32'));
   WebGPU::Direct::AdapterType->_build_const_lut;
 };
 
@@ -297,7 +296,6 @@ package
   __PACKAGE__->_add_enum('Repeat' => (0x00000000, 'WGPUAddressMode_Repeat'));
   __PACKAGE__->_add_enum('MirrorRepeat' => (0x00000001, 'WGPUAddressMode_MirrorRepeat'));
   __PACKAGE__->_add_enum('ClampToEdge' => (0x00000002, 'WGPUAddressMode_ClampToEdge'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUAddressMode_Force32'));
   WebGPU::Direct::AddressMode->_build_const_lut;
 };
 
@@ -313,7 +311,6 @@ package
   __PACKAGE__->_add_enum('Vulkan' => (0x00000006, 'WGPUBackendType_Vulkan'));
   __PACKAGE__->_add_enum('OpenGL' => (0x00000007, 'WGPUBackendType_OpenGL'));
   __PACKAGE__->_add_enum('OpenGLES' => (0x00000008, 'WGPUBackendType_OpenGLES'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUBackendType_Force32'));
   WebGPU::Direct::BackendType->_build_const_lut;
 };
 
@@ -333,7 +330,6 @@ package
   __PACKAGE__->_add_enum('SrcAlphaSaturated' => (0x0000000A, 'WGPUBlendFactor_SrcAlphaSaturated'));
   __PACKAGE__->_add_enum('Constant' => (0x0000000B, 'WGPUBlendFactor_Constant'));
   __PACKAGE__->_add_enum('OneMinusConstant' => (0x0000000C, 'WGPUBlendFactor_OneMinusConstant'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUBlendFactor_Force32'));
   WebGPU::Direct::BlendFactor->_build_const_lut;
 };
 
@@ -345,7 +341,6 @@ package
   __PACKAGE__->_add_enum('ReverseSubtract' => (0x00000002, 'WGPUBlendOperation_ReverseSubtract'));
   __PACKAGE__->_add_enum('Min' => (0x00000003, 'WGPUBlendOperation_Min'));
   __PACKAGE__->_add_enum('Max' => (0x00000004, 'WGPUBlendOperation_Max'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUBlendOperation_Force32'));
   WebGPU::Direct::BlendOperation->_build_const_lut;
 };
 
@@ -356,7 +351,6 @@ package
   __PACKAGE__->_add_enum('Uniform' => (0x00000001, 'WGPUBufferBindingType_Uniform'));
   __PACKAGE__->_add_enum('Storage' => (0x00000002, 'WGPUBufferBindingType_Storage'));
   __PACKAGE__->_add_enum('ReadOnlyStorage' => (0x00000003, 'WGPUBufferBindingType_ReadOnlyStorage'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUBufferBindingType_Force32'));
   WebGPU::Direct::BufferBindingType->_build_const_lut;
 };
 
@@ -372,7 +366,6 @@ package
   __PACKAGE__->_add_enum('MappingAlreadyPending' => (0x00000006, 'WGPUBufferMapAsyncStatus_MappingAlreadyPending'));
   __PACKAGE__->_add_enum('OffsetOutOfRange' => (0x00000007, 'WGPUBufferMapAsyncStatus_OffsetOutOfRange'));
   __PACKAGE__->_add_enum('SizeOutOfRange' => (0x00000008, 'WGPUBufferMapAsyncStatus_SizeOutOfRange'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUBufferMapAsyncStatus_Force32'));
   WebGPU::Direct::BufferMapAsyncStatus->_build_const_lut;
 };
 
@@ -382,7 +375,6 @@ package
   __PACKAGE__->_add_enum('Unmapped' => (0x00000000, 'WGPUBufferMapState_Unmapped'));
   __PACKAGE__->_add_enum('Pending' => (0x00000001, 'WGPUBufferMapState_Pending'));
   __PACKAGE__->_add_enum('Mapped' => (0x00000002, 'WGPUBufferMapState_Mapped'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUBufferMapState_Force32'));
   WebGPU::Direct::BufferMapState->_build_const_lut;
 };
 
@@ -400,7 +392,6 @@ package
   __PACKAGE__->_add_enum('Storage' => (0x00000080, 'WGPUBufferUsage_Storage'));
   __PACKAGE__->_add_enum('Indirect' => (0x00000100, 'WGPUBufferUsage_Indirect'));
   __PACKAGE__->_add_enum('QueryResolve' => (0x00000200, 'WGPUBufferUsage_QueryResolve'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUBufferUsage_Force32'));
   WebGPU::Direct::BufferUsage->_build_const_lut;
 };
 
@@ -413,7 +404,6 @@ package
   __PACKAGE__->_add_enum('Blue' => (0x00000004, 'WGPUColorWriteMask_Blue'));
   __PACKAGE__->_add_enum('Alpha' => (0x00000008, 'WGPUColorWriteMask_Alpha'));
   __PACKAGE__->_add_enum('All' => (0x0000000F, 'WGPUColorWriteMask_All'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUColorWriteMask_Force32'));
   WebGPU::Direct::ColorWriteMask->_build_const_lut;
 };
 
@@ -429,7 +419,6 @@ package
   __PACKAGE__->_add_enum('Equal' => (0x00000006, 'WGPUCompareFunction_Equal'));
   __PACKAGE__->_add_enum('NotEqual' => (0x00000007, 'WGPUCompareFunction_NotEqual'));
   __PACKAGE__->_add_enum('Always' => (0x00000008, 'WGPUCompareFunction_Always'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUCompareFunction_Force32'));
   WebGPU::Direct::CompareFunction->_build_const_lut;
 };
 
@@ -440,7 +429,6 @@ package
   __PACKAGE__->_add_enum('Error' => (0x00000001, 'WGPUCompilationInfoRequestStatus_Error'));
   __PACKAGE__->_add_enum('DeviceLost' => (0x00000002, 'WGPUCompilationInfoRequestStatus_DeviceLost'));
   __PACKAGE__->_add_enum('Unknown' => (0x00000003, 'WGPUCompilationInfoRequestStatus_Unknown'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUCompilationInfoRequestStatus_Force32'));
   WebGPU::Direct::CompilationInfoRequestStatus->_build_const_lut;
 };
 
@@ -450,7 +438,6 @@ package
   __PACKAGE__->_add_enum('Error' => (0x00000000, 'WGPUCompilationMessageType_Error'));
   __PACKAGE__->_add_enum('Warning' => (0x00000001, 'WGPUCompilationMessageType_Warning'));
   __PACKAGE__->_add_enum('Info' => (0x00000002, 'WGPUCompilationMessageType_Info'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUCompilationMessageType_Force32'));
   WebGPU::Direct::CompilationMessageType->_build_const_lut;
 };
 
@@ -462,7 +449,6 @@ package
   __PACKAGE__->_add_enum('Premultiplied' => (0x00000002, 'WGPUCompositeAlphaMode_Premultiplied'));
   __PACKAGE__->_add_enum('Unpremultiplied' => (0x00000003, 'WGPUCompositeAlphaMode_Unpremultiplied'));
   __PACKAGE__->_add_enum('Inherit' => (0x00000004, 'WGPUCompositeAlphaMode_Inherit'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUCompositeAlphaMode_Force32'));
   WebGPU::Direct::CompositeAlphaMode->_build_const_lut;
 };
 
@@ -475,7 +461,6 @@ package
   __PACKAGE__->_add_enum('DeviceLost' => (0x00000003, 'WGPUCreatePipelineAsyncStatus_DeviceLost'));
   __PACKAGE__->_add_enum('DeviceDestroyed' => (0x00000004, 'WGPUCreatePipelineAsyncStatus_DeviceDestroyed'));
   __PACKAGE__->_add_enum('Unknown' => (0x00000005, 'WGPUCreatePipelineAsyncStatus_Unknown'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUCreatePipelineAsyncStatus_Force32'));
   WebGPU::Direct::CreatePipelineAsyncStatus->_build_const_lut;
 };
 
@@ -485,7 +470,6 @@ package
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUCullMode_None'));
   __PACKAGE__->_add_enum('Front' => (0x00000001, 'WGPUCullMode_Front'));
   __PACKAGE__->_add_enum('Back' => (0x00000002, 'WGPUCullMode_Back'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUCullMode_Force32'));
   WebGPU::Direct::CullMode->_build_const_lut;
 };
 
@@ -494,7 +478,6 @@ package
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUDeviceLostReason_Undefined'));
   __PACKAGE__->_add_enum('Destroyed' => (0x00000001, 'WGPUDeviceLostReason_Destroyed'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUDeviceLostReason_Force32'));
   WebGPU::Direct::DeviceLostReason->_build_const_lut;
 };
 
@@ -504,7 +487,6 @@ package
   __PACKAGE__->_add_enum('Validation' => (0x00000000, 'WGPUErrorFilter_Validation'));
   __PACKAGE__->_add_enum('OutOfMemory' => (0x00000001, 'WGPUErrorFilter_OutOfMemory'));
   __PACKAGE__->_add_enum('Internal' => (0x00000002, 'WGPUErrorFilter_Internal'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUErrorFilter_Force32'));
   WebGPU::Direct::ErrorFilter->_build_const_lut;
 };
 
@@ -517,7 +499,6 @@ package
   __PACKAGE__->_add_enum('Internal' => (0x00000003, 'WGPUErrorType_Internal'));
   __PACKAGE__->_add_enum('Unknown' => (0x00000004, 'WGPUErrorType_Unknown'));
   __PACKAGE__->_add_enum('DeviceLost' => (0x00000005, 'WGPUErrorType_DeviceLost'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUErrorType_Force32'));
   WebGPU::Direct::ErrorType->_build_const_lut;
 };
 
@@ -536,7 +517,6 @@ package
   __PACKAGE__->_add_enum('RG11B10UfloatRenderable' => (0x00000009, 'WGPUFeatureName_RG11B10UfloatRenderable'));
   __PACKAGE__->_add_enum('BGRA8UnormStorage' => (0x0000000A, 'WGPUFeatureName_BGRA8UnormStorage'));
   __PACKAGE__->_add_enum('Float32Filterable' => (0x0000000B, 'WGPUFeatureName_Float32Filterable'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUFeatureName_Force32'));
   WebGPU::Direct::FeatureName->_build_const_lut;
 };
 
@@ -545,7 +525,6 @@ package
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Nearest' => (0x00000000, 'WGPUFilterMode_Nearest'));
   __PACKAGE__->_add_enum('Linear' => (0x00000001, 'WGPUFilterMode_Linear'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUFilterMode_Force32'));
   WebGPU::Direct::FilterMode->_build_const_lut;
 };
 
@@ -554,7 +533,6 @@ package
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('CCW' => (0x00000000, 'WGPUFrontFace_CCW'));
   __PACKAGE__->_add_enum('CW' => (0x00000001, 'WGPUFrontFace_CW'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUFrontFace_Force32'));
   WebGPU::Direct::FrontFace->_build_const_lut;
 };
 
@@ -564,7 +542,6 @@ package
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUIndexFormat_Undefined'));
   __PACKAGE__->_add_enum('Uint16' => (0x00000001, 'WGPUIndexFormat_Uint16'));
   __PACKAGE__->_add_enum('Uint32' => (0x00000002, 'WGPUIndexFormat_Uint32'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUIndexFormat_Force32'));
   WebGPU::Direct::IndexFormat->_build_const_lut;
 };
 
@@ -574,7 +551,6 @@ package
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPULoadOp_Undefined'));
   __PACKAGE__->_add_enum('Clear' => (0x00000001, 'WGPULoadOp_Clear'));
   __PACKAGE__->_add_enum('Load' => (0x00000002, 'WGPULoadOp_Load'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPULoadOp_Force32'));
   WebGPU::Direct::LoadOp->_build_const_lut;
 };
 
@@ -584,7 +560,6 @@ package
   __PACKAGE__->_add_enum('None' => (0x00000000, 'WGPUMapMode_None'));
   __PACKAGE__->_add_enum('Read' => (0x00000001, 'WGPUMapMode_Read'));
   __PACKAGE__->_add_enum('Write' => (0x00000002, 'WGPUMapMode_Write'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUMapMode_Force32'));
   WebGPU::Direct::MapMode->_build_const_lut;
 };
 
@@ -593,7 +568,6 @@ package
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Nearest' => (0x00000000, 'WGPUMipmapFilterMode_Nearest'));
   __PACKAGE__->_add_enum('Linear' => (0x00000001, 'WGPUMipmapFilterMode_Linear'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUMipmapFilterMode_Force32'));
   WebGPU::Direct::MipmapFilterMode->_build_const_lut;
 };
 
@@ -603,7 +577,6 @@ package
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUPowerPreference_Undefined'));
   __PACKAGE__->_add_enum('LowPower' => (0x00000001, 'WGPUPowerPreference_LowPower'));
   __PACKAGE__->_add_enum('HighPerformance' => (0x00000002, 'WGPUPowerPreference_HighPerformance'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUPowerPreference_Force32'));
   WebGPU::Direct::PowerPreference->_build_const_lut;
 };
 
@@ -614,7 +587,6 @@ package
   __PACKAGE__->_add_enum('FifoRelaxed' => (0x00000001, 'WGPUPresentMode_FifoRelaxed'));
   __PACKAGE__->_add_enum('Immediate' => (0x00000002, 'WGPUPresentMode_Immediate'));
   __PACKAGE__->_add_enum('Mailbox' => (0x00000003, 'WGPUPresentMode_Mailbox'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUPresentMode_Force32'));
   WebGPU::Direct::PresentMode->_build_const_lut;
 };
 
@@ -626,7 +598,6 @@ package
   __PACKAGE__->_add_enum('LineStrip' => (0x00000002, 'WGPUPrimitiveTopology_LineStrip'));
   __PACKAGE__->_add_enum('TriangleList' => (0x00000003, 'WGPUPrimitiveTopology_TriangleList'));
   __PACKAGE__->_add_enum('TriangleStrip' => (0x00000004, 'WGPUPrimitiveTopology_TriangleStrip'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUPrimitiveTopology_Force32'));
   WebGPU::Direct::PrimitiveTopology->_build_const_lut;
 };
 
@@ -635,7 +606,6 @@ package
   use base "WebGPU::Direct::Enum";
   __PACKAGE__->_add_enum('Occlusion' => (0x00000000, 'WGPUQueryType_Occlusion'));
   __PACKAGE__->_add_enum('Timestamp' => (0x00000001, 'WGPUQueryType_Timestamp'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUQueryType_Force32'));
   WebGPU::Direct::QueryType->_build_const_lut;
 };
 
@@ -646,7 +616,6 @@ package
   __PACKAGE__->_add_enum('Error' => (0x00000001, 'WGPUQueueWorkDoneStatus_Error'));
   __PACKAGE__->_add_enum('Unknown' => (0x00000002, 'WGPUQueueWorkDoneStatus_Unknown'));
   __PACKAGE__->_add_enum('DeviceLost' => (0x00000003, 'WGPUQueueWorkDoneStatus_DeviceLost'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUQueueWorkDoneStatus_Force32'));
   WebGPU::Direct::QueueWorkDoneStatus->_build_const_lut;
 };
 
@@ -657,7 +626,6 @@ package
   __PACKAGE__->_add_enum('Unavailable' => (0x00000001, 'WGPURequestAdapterStatus_Unavailable'));
   __PACKAGE__->_add_enum('Error' => (0x00000002, 'WGPURequestAdapterStatus_Error'));
   __PACKAGE__->_add_enum('Unknown' => (0x00000003, 'WGPURequestAdapterStatus_Unknown'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPURequestAdapterStatus_Force32'));
   WebGPU::Direct::RequestAdapterStatus->_build_const_lut;
 };
 
@@ -667,7 +635,6 @@ package
   __PACKAGE__->_add_enum('Success' => (0x00000000, 'WGPURequestDeviceStatus_Success'));
   __PACKAGE__->_add_enum('Error' => (0x00000001, 'WGPURequestDeviceStatus_Error'));
   __PACKAGE__->_add_enum('Unknown' => (0x00000002, 'WGPURequestDeviceStatus_Unknown'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPURequestDeviceStatus_Force32'));
   WebGPU::Direct::RequestDeviceStatus->_build_const_lut;
 };
 
@@ -686,7 +653,6 @@ package
   __PACKAGE__->_add_enum('SurfaceDescriptorFromAndroidNativeWindow' => (0x00000009, 'WGPUSType_SurfaceDescriptorFromAndroidNativeWindow'));
   __PACKAGE__->_add_enum('SurfaceDescriptorFromXcbWindow' => (0x0000000A, 'WGPUSType_SurfaceDescriptorFromXcbWindow'));
   __PACKAGE__->_add_enum('RenderPassDescriptorMaxDrawCount' => (0x0000000F, 'WGPUSType_RenderPassDescriptorMaxDrawCount'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUSType_Force32'));
   WebGPU::Direct::SType->_build_const_lut;
 };
 
@@ -697,7 +663,6 @@ package
   __PACKAGE__->_add_enum('Filtering' => (0x00000001, 'WGPUSamplerBindingType_Filtering'));
   __PACKAGE__->_add_enum('NonFiltering' => (0x00000002, 'WGPUSamplerBindingType_NonFiltering'));
   __PACKAGE__->_add_enum('Comparison' => (0x00000003, 'WGPUSamplerBindingType_Comparison'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUSamplerBindingType_Force32'));
   WebGPU::Direct::SamplerBindingType->_build_const_lut;
 };
 
@@ -708,7 +673,6 @@ package
   __PACKAGE__->_add_enum('Vertex' => (0x00000001, 'WGPUShaderStage_Vertex'));
   __PACKAGE__->_add_enum('Fragment' => (0x00000002, 'WGPUShaderStage_Fragment'));
   __PACKAGE__->_add_enum('Compute' => (0x00000004, 'WGPUShaderStage_Compute'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUShaderStage_Force32'));
   WebGPU::Direct::ShaderStage->_build_const_lut;
 };
 
@@ -723,7 +687,6 @@ package
   __PACKAGE__->_add_enum('DecrementClamp' => (0x00000005, 'WGPUStencilOperation_DecrementClamp'));
   __PACKAGE__->_add_enum('IncrementWrap' => (0x00000006, 'WGPUStencilOperation_IncrementWrap'));
   __PACKAGE__->_add_enum('DecrementWrap' => (0x00000007, 'WGPUStencilOperation_DecrementWrap'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUStencilOperation_Force32'));
   WebGPU::Direct::StencilOperation->_build_const_lut;
 };
 
@@ -734,7 +697,6 @@ package
   __PACKAGE__->_add_enum('WriteOnly' => (0x00000001, 'WGPUStorageTextureAccess_WriteOnly'));
   __PACKAGE__->_add_enum('ReadOnly' => (0x00000002, 'WGPUStorageTextureAccess_ReadOnly'));
   __PACKAGE__->_add_enum('ReadWrite' => (0x00000003, 'WGPUStorageTextureAccess_ReadWrite'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUStorageTextureAccess_Force32'));
   WebGPU::Direct::StorageTextureAccess->_build_const_lut;
 };
 
@@ -744,7 +706,6 @@ package
   __PACKAGE__->_add_enum('Undefined' => (0x00000000, 'WGPUStoreOp_Undefined'));
   __PACKAGE__->_add_enum('Store' => (0x00000001, 'WGPUStoreOp_Store'));
   __PACKAGE__->_add_enum('Discard' => (0x00000002, 'WGPUStoreOp_Discard'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUStoreOp_Force32'));
   WebGPU::Direct::StoreOp->_build_const_lut;
 };
 
@@ -757,7 +718,6 @@ package
   __PACKAGE__->_add_enum('Lost' => (0x00000003, 'WGPUSurfaceGetCurrentTextureStatus_Lost'));
   __PACKAGE__->_add_enum('OutOfMemory' => (0x00000004, 'WGPUSurfaceGetCurrentTextureStatus_OutOfMemory'));
   __PACKAGE__->_add_enum('DeviceLost' => (0x00000005, 'WGPUSurfaceGetCurrentTextureStatus_DeviceLost'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUSurfaceGetCurrentTextureStatus_Force32'));
   WebGPU::Direct::SurfaceGetCurrentTextureStatus->_build_const_lut;
 };
 
@@ -767,7 +727,6 @@ package
   __PACKAGE__->_add_enum('All' => (0x00000000, 'WGPUTextureAspect_All'));
   __PACKAGE__->_add_enum('StencilOnly' => (0x00000001, 'WGPUTextureAspect_StencilOnly'));
   __PACKAGE__->_add_enum('DepthOnly' => (0x00000002, 'WGPUTextureAspect_DepthOnly'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUTextureAspect_Force32'));
   WebGPU::Direct::TextureAspect->_build_const_lut;
 };
 
@@ -777,7 +736,6 @@ package
   __PACKAGE__->_add_enum('_1D' => (0x00000000, 'WGPUTextureDimension_1D'));
   __PACKAGE__->_add_enum('_2D' => (0x00000001, 'WGPUTextureDimension_2D'));
   __PACKAGE__->_add_enum('_3D' => (0x00000002, 'WGPUTextureDimension_3D'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUTextureDimension_Force32'));
   WebGPU::Direct::TextureDimension->_build_const_lut;
 };
 
@@ -880,7 +838,6 @@ package
   __PACKAGE__->_add_enum('ASTC12x10UnormSrgb' => (0x0000005D, 'WGPUTextureFormat_ASTC12x10UnormSrgb'));
   __PACKAGE__->_add_enum('ASTC12x12Unorm' => (0x0000005E, 'WGPUTextureFormat_ASTC12x12Unorm'));
   __PACKAGE__->_add_enum('ASTC12x12UnormSrgb' => (0x0000005F, 'WGPUTextureFormat_ASTC12x12UnormSrgb'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUTextureFormat_Force32'));
   WebGPU::Direct::TextureFormat->_build_const_lut;
 };
 
@@ -893,7 +850,6 @@ package
   __PACKAGE__->_add_enum('Depth' => (0x00000003, 'WGPUTextureSampleType_Depth'));
   __PACKAGE__->_add_enum('Sint' => (0x00000004, 'WGPUTextureSampleType_Sint'));
   __PACKAGE__->_add_enum('Uint' => (0x00000005, 'WGPUTextureSampleType_Uint'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUTextureSampleType_Force32'));
   WebGPU::Direct::TextureSampleType->_build_const_lut;
 };
 
@@ -906,7 +862,6 @@ package
   __PACKAGE__->_add_enum('TextureBinding' => (0x00000004, 'WGPUTextureUsage_TextureBinding'));
   __PACKAGE__->_add_enum('StorageBinding' => (0x00000008, 'WGPUTextureUsage_StorageBinding'));
   __PACKAGE__->_add_enum('RenderAttachment' => (0x00000010, 'WGPUTextureUsage_RenderAttachment'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUTextureUsage_Force32'));
   WebGPU::Direct::TextureUsage->_build_const_lut;
 };
 
@@ -920,7 +875,6 @@ package
   __PACKAGE__->_add_enum('Cube' => (0x00000004, 'WGPUTextureViewDimension_Cube'));
   __PACKAGE__->_add_enum('CubeArray' => (0x00000005, 'WGPUTextureViewDimension_CubeArray'));
   __PACKAGE__->_add_enum('_3D' => (0x00000006, 'WGPUTextureViewDimension_3D'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUTextureViewDimension_Force32'));
   WebGPU::Direct::TextureViewDimension->_build_const_lut;
 };
 
@@ -958,7 +912,6 @@ package
   __PACKAGE__->_add_enum('Sint32x2' => (0x0000001C, 'WGPUVertexFormat_Sint32x2'));
   __PACKAGE__->_add_enum('Sint32x3' => (0x0000001D, 'WGPUVertexFormat_Sint32x3'));
   __PACKAGE__->_add_enum('Sint32x4' => (0x0000001E, 'WGPUVertexFormat_Sint32x4'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUVertexFormat_Force32'));
   WebGPU::Direct::VertexFormat->_build_const_lut;
 };
 
@@ -968,7 +921,6 @@ package
   __PACKAGE__->_add_enum('Vertex' => (0x00000000, 'WGPUVertexStepMode_Vertex'));
   __PACKAGE__->_add_enum('Instance' => (0x00000001, 'WGPUVertexStepMode_Instance'));
   __PACKAGE__->_add_enum('VertexBufferNotUsed' => (0x00000002, 'WGPUVertexStepMode_VertexBufferNotUsed'));
-  __PACKAGE__->_add_enum('Force32' => (0x7FFFFFFF, 'WGPUVertexStepMode_Force32'));
   WebGPU::Direct::VertexStepMode->_build_const_lut;
 };
 

@@ -223,7 +223,7 @@ Enums are implemented as L<dualvars|Scalar::Util/dualvar>, so the numerical valu
 
 =head2 Force32
 
-There are several enums that have a C<Force32> value. These are not valid values, but are simply there to ensure that the underlying enum is a 32bit integer. Currently WebGPU::Direct includes them, but they should not be used and may be removed in a future version.
+All of the enums have a C<Force32> value. These are not valid values, but are simply there to ensure that the underlying enum is a 32bit integer. WebGPU::Direct does not include them.
 
 =head2 SwapChain
 
