@@ -573,6 +573,17 @@ foreach my $class (@classes)
   {
     my $class_pm = "$class_path.pm";
 
+    if ( @fns && ! -e $class_pm )
+    {
+      open my $class_fh, '>', $class_pm;
+      $class_fh->say("package $class\n{");
+      $class_fh->say("  use v5.30;");
+      $class_fh->say("  use warnings;");
+      $class_fh->say("  no warnings qw(experimental::signatures);");
+      $class_fh->say("  use feature 'signatures';");
+      $class_fh->say("};\n\n1;");
+    }
+
     if ( -e $class_pm )
     {
       $preamble .= "\n    require $class;";
@@ -788,8 +799,16 @@ foreach my $class (@classes)
 
   if (@fns)
   {
-    my $pod_file = "$class_path.pod";
+    my $pod_file = "$class_path.pm";
+    my $pm_input='';
+    {
+      open my $in_pod, '<', $pod_file;
+      $pm_input = do { local $/; <$in_pod> };
+      $pm_input =~ s/^__END__$ .*//xms;
+      $pm_input .= '__END__';
+    }
     open my $pod, '>', $pod_file;
+    $pod->say($pm_input);
     $pod->say("=pod\n");
     $pod->say("=encoding UTF-8\n");
     $pod->say("=head1 NAME\n");
