@@ -85,7 +85,7 @@ WebGPU::Direct::Surface
 
 =over
 
-=item * L<WGPUTextureFormat|WebGPU::Direct::Constants/WGPUTextureFormat>
+=item * L<WGPUTextureFormat|WebGPU::Direct::Constants/WebGPU::Direct::TextureFormat>
 
 =back
 

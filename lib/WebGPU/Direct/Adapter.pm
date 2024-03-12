@@ -134,7 +134,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
+=item * feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
 
 =back
 

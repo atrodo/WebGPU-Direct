@@ -174,7 +174,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * format (L<WGPUIndexFormat|WebGPU::Direct::Constants/WGPUIndexFormat>)
+=item * format (L<WGPUIndexFormat|WebGPU::Direct::Constants/WebGPU::Direct::IndexFormat>)
 
 =item * offset (uint64_t)
 

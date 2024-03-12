@@ -440,7 +440,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WGPUFeatureName>)
+=item * feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
 
 =back
 
@@ -470,7 +470,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * filter (L<WGPUErrorFilter|WebGPU::Direct::Constants/WGPUErrorFilter>)
+=item * filter (L<WGPUErrorFilter|WebGPU::Direct::Constants/WebGPU::Direct::ErrorFilter>)
 
 =back
 

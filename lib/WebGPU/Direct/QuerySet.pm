@@ -42,7 +42,7 @@ WebGPU::Direct::QuerySet
 
 =over
 
-=item * L<WGPUQueryType|WebGPU::Direct::Constants/WGPUQueryType>
+=item * L<WGPUQueryType|WebGPU::Direct::Constants/WebGPU::Direct::QueryType>
 
 =back
 
