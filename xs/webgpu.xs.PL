@@ -777,7 +777,7 @@ foreach my $class (@classes)
     if ( !$def{fn_type} )
     {
       say $pm <<~"EOF"; my $n = qq{
-        package $class {
+        package\n\t$class {
             $preamble
             sub new {
                 my \$class = __PACKAGE__;

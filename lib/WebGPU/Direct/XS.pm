@@ -924,7 +924,8 @@ package
   WebGPU::Direct::VertexStepMode->_build_const_lut;
 };
 
-package WebGPU::Direct::Adapter {
+package
+	WebGPU::Direct::Adapter {
     push @WebGPU::Direct::Adapter::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Adapter;
     sub new {
@@ -938,7 +939,8 @@ package WebGPU::Direct::Adapter {
 
 }
 
-package WebGPU::Direct::BindGroup {
+package
+	WebGPU::Direct::BindGroup {
     push @WebGPU::Direct::BindGroup::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::BindGroup;
     sub new {
@@ -952,7 +954,8 @@ package WebGPU::Direct::BindGroup {
 
 }
 
-package WebGPU::Direct::BindGroupLayout {
+package
+	WebGPU::Direct::BindGroupLayout {
     push @WebGPU::Direct::BindGroupLayout::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::BindGroupLayout;
     sub new {
@@ -966,7 +969,8 @@ package WebGPU::Direct::BindGroupLayout {
 
 }
 
-package WebGPU::Direct::Buffer {
+package
+	WebGPU::Direct::Buffer {
     push @WebGPU::Direct::Buffer::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Buffer;
     sub new {
@@ -980,7 +984,8 @@ package WebGPU::Direct::Buffer {
 
 }
 
-package WebGPU::Direct::CommandBuffer {
+package
+	WebGPU::Direct::CommandBuffer {
     push @WebGPU::Direct::CommandBuffer::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::CommandBuffer;
     sub new {
@@ -994,7 +999,8 @@ package WebGPU::Direct::CommandBuffer {
 
 }
 
-package WebGPU::Direct::CommandEncoder {
+package
+	WebGPU::Direct::CommandEncoder {
     push @WebGPU::Direct::CommandEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::CommandEncoder;
     sub new {
@@ -1008,7 +1014,8 @@ package WebGPU::Direct::CommandEncoder {
 
 }
 
-package WebGPU::Direct::ComputePassEncoder {
+package
+	WebGPU::Direct::ComputePassEncoder {
     push @WebGPU::Direct::ComputePassEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::ComputePassEncoder;
     sub new {
@@ -1022,7 +1029,8 @@ package WebGPU::Direct::ComputePassEncoder {
 
 }
 
-package WebGPU::Direct::ComputePipeline {
+package
+	WebGPU::Direct::ComputePipeline {
     push @WebGPU::Direct::ComputePipeline::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::ComputePipeline;
     sub new {
@@ -1036,7 +1044,8 @@ package WebGPU::Direct::ComputePipeline {
 
 }
 
-package WebGPU::Direct::Device {
+package
+	WebGPU::Direct::Device {
     push @WebGPU::Direct::Device::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Device;
     sub new {
@@ -1050,7 +1059,8 @@ package WebGPU::Direct::Device {
 
 }
 
-package WebGPU::Direct::Instance {
+package
+	WebGPU::Direct::Instance {
     push @WebGPU::Direct::Instance::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Instance;
     sub new {
@@ -1064,7 +1074,8 @@ package WebGPU::Direct::Instance {
 
 }
 
-package WebGPU::Direct::PipelineLayout {
+package
+	WebGPU::Direct::PipelineLayout {
     push @WebGPU::Direct::PipelineLayout::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::PipelineLayout;
     sub new {
@@ -1078,7 +1089,8 @@ package WebGPU::Direct::PipelineLayout {
 
 }
 
-package WebGPU::Direct::QuerySet {
+package
+	WebGPU::Direct::QuerySet {
     push @WebGPU::Direct::QuerySet::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::QuerySet;
     sub new {
@@ -1092,7 +1104,8 @@ package WebGPU::Direct::QuerySet {
 
 }
 
-package WebGPU::Direct::Queue {
+package
+	WebGPU::Direct::Queue {
     push @WebGPU::Direct::Queue::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Queue;
     sub new {
@@ -1106,7 +1119,8 @@ package WebGPU::Direct::Queue {
 
 }
 
-package WebGPU::Direct::RenderBundle {
+package
+	WebGPU::Direct::RenderBundle {
     push @WebGPU::Direct::RenderBundle::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderBundle;
     sub new {
@@ -1120,7 +1134,8 @@ package WebGPU::Direct::RenderBundle {
 
 }
 
-package WebGPU::Direct::RenderBundleEncoder {
+package
+	WebGPU::Direct::RenderBundleEncoder {
     push @WebGPU::Direct::RenderBundleEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderBundleEncoder;
     sub new {
@@ -1134,7 +1149,8 @@ package WebGPU::Direct::RenderBundleEncoder {
 
 }
 
-package WebGPU::Direct::RenderPassEncoder {
+package
+	WebGPU::Direct::RenderPassEncoder {
     push @WebGPU::Direct::RenderPassEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderPassEncoder;
     sub new {
@@ -1148,7 +1164,8 @@ package WebGPU::Direct::RenderPassEncoder {
 
 }
 
-package WebGPU::Direct::RenderPipeline {
+package
+	WebGPU::Direct::RenderPipeline {
     push @WebGPU::Direct::RenderPipeline::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderPipeline;
     sub new {
@@ -1162,7 +1179,8 @@ package WebGPU::Direct::RenderPipeline {
 
 }
 
-package WebGPU::Direct::Sampler {
+package
+	WebGPU::Direct::Sampler {
     push @WebGPU::Direct::Sampler::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Sampler;
     sub new {
@@ -1176,7 +1194,8 @@ package WebGPU::Direct::Sampler {
 
 }
 
-package WebGPU::Direct::ShaderModule {
+package
+	WebGPU::Direct::ShaderModule {
     push @WebGPU::Direct::ShaderModule::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::ShaderModule;
     sub new {
@@ -1190,7 +1209,8 @@ package WebGPU::Direct::ShaderModule {
 
 }
 
-package WebGPU::Direct::Surface {
+package
+	WebGPU::Direct::Surface {
     push @WebGPU::Direct::Surface::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Surface;
     sub new {
@@ -1204,7 +1224,8 @@ package WebGPU::Direct::Surface {
 
 }
 
-package WebGPU::Direct::Texture {
+package
+	WebGPU::Direct::Texture {
     push @WebGPU::Direct::Texture::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Texture;
     sub new {
@@ -1218,7 +1239,8 @@ package WebGPU::Direct::Texture {
 
 }
 
-package WebGPU::Direct::TextureView {
+package
+	WebGPU::Direct::TextureView {
     push @WebGPU::Direct::TextureView::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::TextureView;
     sub new {
