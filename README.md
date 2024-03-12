@@ -130,7 +130,7 @@ Enums are implemented as [dualvars](https://metacpan.org/pod/Scalar%3A%3AUtil#du
 
 ## Force32
 
-There are several enums that have a `Force32` value. These are not valid values, but are simply there to ensure that the underlying enum is a 32bit integer. Currently WebGPU::Direct includes them, but they should not be used and may be removed in a future version.
+All of the enums have a `Force32` value. These are not valid values, but are simply there to ensure that the underlying enum is a 32bit integer. WebGPU::Direct does not include them.
 
 ## SwapChain
 

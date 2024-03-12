@@ -2,6 +2,10 @@ Revision history for WebGPU-Direct
 
 {{$NEXT}}
 
+0.12  2024-03-11 22:52:32 EDT
+        - Continued documentation improvements
+        - Remove Force32 as a usable constant
+
 0.11  2024-03-08 00:48:18 EST
         - Add inital wayland support
         - Add debugging informational and usage warnings
