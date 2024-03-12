@@ -108,7 +108,7 @@ subtest 'Enum array', sub
     is( $sc->$key, $existing{$key}, "Count of $key did not change" );
   }
 
-  push $sc->presentModes->@*, WebGPU::Direct::PresentMode->new('Force32');
+  push $sc->presentModes->@*, WebGPU::Direct::PresentMode->new('Immediate');
   my $pm_count = scalar( $sc->presentModes->@* );
   is( $sc->presentModeCount, $pm_count - 1, 'Present Mode Count now does not match' );
 
@@ -124,8 +124,8 @@ subtest 'Enum array', sub
 
   #TODO: is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
   is( $sc->presentModeCount, scalar( $sc->presentModes->@* ), 'Present Mode Count is still correct after unpack' );
-  is( $sc->presentModeCount, $pm_count, 'Present Mode Count included Force32' );
-  is( $sc->presentModes->[-1], WebGPU::Direct::PresentMode->new('Force32'), 'Force32 is still in the list' );
+  is( $sc->presentModeCount, $pm_count, 'Present Mode Count included Immediate' );
+  is( $sc->presentModes->[-1], WebGPU::Direct::PresentMode->new('Immediate'), 'Immediate is still in the list' );
 
   foreach my $key (qw/alphaModeCount formatCount/)
   {
