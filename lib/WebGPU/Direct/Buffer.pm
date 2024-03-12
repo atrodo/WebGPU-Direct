@@ -29,29 +29,9 @@ WebGPU::Direct::Buffer
 
 =head3 Destroy
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 GetConstMappedRange
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -82,14 +62,6 @@ WebGPU::Direct::Buffer
 =head3 GetMappedRange
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -135,14 +107,6 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -165,14 +129,6 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -185,43 +141,7 @@ WebGPU::Direct::Buffer
 
 =head3 Unmap
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

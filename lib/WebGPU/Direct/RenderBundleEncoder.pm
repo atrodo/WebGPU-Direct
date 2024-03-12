@@ -22,14 +22,6 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -49,14 +41,6 @@ WebGPU::Direct::RenderBundleEncoder
 =head3 DrawIndexed
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -80,14 +64,6 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -103,14 +79,6 @@ WebGPU::Direct::RenderBundleEncoder
 =head3 DrawIndirect
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -150,14 +118,6 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -170,29 +130,9 @@ WebGPU::Direct::RenderBundleEncoder
 
 =head3 PopDebugGroup
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 PushDebugGroup
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -207,14 +147,6 @@ WebGPU::Direct::RenderBundleEncoder
 =head3 SetBindGroup
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -236,14 +168,6 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -264,14 +188,6 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -286,14 +202,6 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -307,14 +215,6 @@ WebGPU::Direct::RenderBundleEncoder
 =head3 SetVertexBuffer
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -334,29 +234,5 @@ WebGPU::Direct::RenderBundleEncoder
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

@@ -22,14 +22,6 @@ WebGPU::Direct::TextureView
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -42,29 +34,5 @@ WebGPU::Direct::TextureView
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

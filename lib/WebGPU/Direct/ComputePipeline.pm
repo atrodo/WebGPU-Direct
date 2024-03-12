@@ -44,14 +44,6 @@ WebGPU::Direct::ComputePipeline
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -64,29 +56,5 @@ WebGPU::Direct::ComputePipeline
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

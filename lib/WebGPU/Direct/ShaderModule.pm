@@ -22,14 +22,6 @@ WebGPU::Direct::ShaderModule
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -46,14 +38,6 @@ WebGPU::Direct::ShaderModule
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -66,29 +50,5 @@ WebGPU::Direct::ShaderModule
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

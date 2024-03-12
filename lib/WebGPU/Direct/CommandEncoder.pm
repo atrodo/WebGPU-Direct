@@ -77,14 +77,6 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -102,14 +94,6 @@ WebGPU::Direct::CommandEncoder
 =head3 CopyBufferToBuffer
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -133,14 +117,6 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -159,14 +135,6 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -184,14 +152,6 @@ WebGPU::Direct::CommandEncoder
 =head3 CopyTextureToTexture
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -233,14 +193,6 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -253,29 +205,9 @@ WebGPU::Direct::CommandEncoder
 
 =head3 PopDebugGroup
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 PushDebugGroup
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -290,14 +222,6 @@ WebGPU::Direct::CommandEncoder
 =head3 ResolveQuerySet
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -321,14 +245,6 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -342,14 +258,6 @@ WebGPU::Direct::CommandEncoder
 =head3 WriteTimestamp
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -365,29 +273,5 @@ WebGPU::Direct::CommandEncoder
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

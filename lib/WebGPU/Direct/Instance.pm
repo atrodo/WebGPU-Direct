@@ -81,29 +81,9 @@ WebGPU::Direct::Instance
 
 =head3 ProcessEvents
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 RequestAdapter
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -121,29 +101,5 @@ WebGPU::Direct::Instance
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

@@ -20,18 +20,6 @@ WebGPU::Direct::QuerySet
 
 =head3 Destroy
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 GetCount
 
 =over
@@ -64,14 +52,6 @@ WebGPU::Direct::QuerySet
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -84,29 +64,5 @@ WebGPU::Direct::QuerySet
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

@@ -827,29 +827,36 @@ foreach my $class (@classes)
       my $type = typed_pod( $def{return} );
 
       $pod->say(qq[=head3 $def{name}\n]);
-      $pod->say(qq[=over\n]);
-      $pod->say(qq[=item * Return Type\n]);
-      $pod->say(qq[=over\n]);
-      $pod->say(qq[=item * $type\n]);
-      $pod->say(qq[=back\n]);
 
       # Remove the first item, which will always be $self
       my @pairs = pairs $def{args}->@*;
       shift @pairs;
 
-      if (@pairs)
+      if ( $type ne 'void' || @pairs )
       {
-        $pod->say(qq[=item * Arguments\n]);
         $pod->say(qq[=over\n]);
-        foreach my $pair (@pairs)
+        if ( $type ne 'void' )
         {
-          my ( $return, $arg ) = @$pair;
-          my $type = typed_pod( pkg_name($return) );
-          $pod->say(qq[=item * $arg ($type)\n]);
+          $pod->say(qq[=item * Return Type\n]);
+          $pod->say(qq[=over\n]);
+          $pod->say(qq[=item * $type\n]);
+          $pod->say(qq[=back\n]);
+        }
+
+        if (@pairs)
+        {
+          $pod->say(qq[=item * Arguments\n]);
+          $pod->say(qq[=over\n]);
+          foreach my $pair (@pairs)
+          {
+            my ( $return, $arg ) = @$pair;
+            my $type = typed_pod( pkg_name($return) );
+            $pod->say(qq[=item * $arg ($type)\n]);
+          }
+          $pod->say(qq[=back\n]);
         }
         $pod->say(qq[=back\n]);
       }
-      $pod->say(qq[=back\n]);
     }
   }
 

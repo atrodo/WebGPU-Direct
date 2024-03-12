@@ -178,14 +178,6 @@ WebGPU::Direct::Device
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -292,14 +284,6 @@ WebGPU::Direct::Device
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -381,18 +365,6 @@ WebGPU::Direct::Device
 =back
 
 =head3 Destroy
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 
 =head3 EnumerateFeatures
 
@@ -478,14 +450,6 @@ WebGPU::Direct::Device
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -502,14 +466,6 @@ WebGPU::Direct::Device
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -523,14 +479,6 @@ WebGPU::Direct::Device
 =head3 SetLabel
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -546,14 +494,6 @@ WebGPU::Direct::Device
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -568,29 +508,5 @@ WebGPU::Direct::Device
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

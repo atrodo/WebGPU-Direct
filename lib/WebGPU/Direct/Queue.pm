@@ -22,14 +22,6 @@ WebGPU::Direct::Queue
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -46,14 +38,6 @@ WebGPU::Direct::Queue
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -67,14 +51,6 @@ WebGPU::Direct::Queue
 =head3 Submit
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -91,14 +67,6 @@ WebGPU::Direct::Queue
 =head3 WriteBuffer
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -120,14 +88,6 @@ WebGPU::Direct::Queue
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -148,29 +108,5 @@ WebGPU::Direct::Queue
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

@@ -36,14 +36,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -57,14 +49,6 @@ WebGPU::Direct::RenderPassEncoder
 =head3 Draw
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -85,14 +69,6 @@ WebGPU::Direct::RenderPassEncoder
 =head3 DrawIndexed
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -116,14 +92,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -140,14 +108,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -162,43 +122,11 @@ WebGPU::Direct::RenderPassEncoder
 
 =head3 End
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 EndOcclusionQuery
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 
 =head3 ExecuteBundles
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -216,14 +144,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -236,29 +156,9 @@ WebGPU::Direct::RenderPassEncoder
 
 =head3 PopDebugGroup
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 PushDebugGroup
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -273,14 +173,6 @@ WebGPU::Direct::RenderPassEncoder
 =head3 SetBindGroup
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -302,14 +194,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -323,14 +207,6 @@ WebGPU::Direct::RenderPassEncoder
 =head3 SetIndexBuffer
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -352,14 +228,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -374,14 +242,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -395,14 +255,6 @@ WebGPU::Direct::RenderPassEncoder
 =head3 SetScissorRect
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -424,14 +276,6 @@ WebGPU::Direct::RenderPassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -445,14 +289,6 @@ WebGPU::Direct::RenderPassEncoder
 =head3 SetVertexBuffer
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -473,14 +309,6 @@ WebGPU::Direct::RenderPassEncoder
 =head3 SetViewport
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -504,29 +332,5 @@ WebGPU::Direct::RenderPassEncoder
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

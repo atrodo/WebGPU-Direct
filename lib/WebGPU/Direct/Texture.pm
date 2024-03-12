@@ -131,18 +131,6 @@ WebGPU::Direct::Texture
 
 =head3 Destroy
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 GetDepthOrArrayLayers
 
 =over
@@ -259,14 +247,6 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -279,29 +259,5 @@ WebGPU::Direct::Texture
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 

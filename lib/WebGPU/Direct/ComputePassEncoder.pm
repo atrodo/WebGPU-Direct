@@ -22,14 +22,6 @@ WebGPU::Direct::ComputePassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -48,14 +40,6 @@ WebGPU::Direct::ComputePassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -70,29 +54,9 @@ WebGPU::Direct::ComputePassEncoder
 
 =head3 End
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 InsertDebugMarker
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -106,29 +70,9 @@ WebGPU::Direct::ComputePassEncoder
 
 =head3 PopDebugGroup
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 PushDebugGroup
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -143,14 +87,6 @@ WebGPU::Direct::ComputePassEncoder
 =head3 SetBindGroup
 
 =over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
 
 =item * Arguments
 
@@ -172,14 +108,6 @@ WebGPU::Direct::ComputePassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -194,14 +122,6 @@ WebGPU::Direct::ComputePassEncoder
 
 =over
 
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
 =item * Arguments
 
 =over
@@ -214,29 +134,5 @@ WebGPU::Direct::ComputePassEncoder
 
 =head3 Reference
 
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
-
 =head3 Release
-
-=over
-
-=item * Return Type
-
-=over
-
-=item * void
-
-=back
-
-=back
 
