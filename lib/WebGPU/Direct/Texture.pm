@@ -115,7 +115,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * WGPUTextureView
+=item * L<WebGPU::Direct::TextureView>
 
 =back
 
@@ -139,7 +139,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * uint32_t
+=item * Unsigned 32bit (uint32_t)
 
 =back
 
@@ -181,7 +181,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * uint32_t
+=item * Unsigned 32bit (uint32_t)
 
 =back
 
@@ -195,7 +195,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * uint32_t
+=item * Unsigned 32bit (uint32_t)
 
 =back
 
@@ -209,7 +209,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * uint32_t
+=item * Unsigned 32bit (uint32_t)
 
 =back
 
@@ -223,7 +223,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * WGPUTextureUsageFlags
+=item * L<WGPUTextureUsageFlags|WebGPU::Direct::Constants/WebGPU::Direct::TextureUsage>
 
 =back
 
@@ -237,7 +237,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * uint32_t
+=item * Unsigned 32bit (uint32_t)
 
 =back
 
@@ -251,7 +251,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 

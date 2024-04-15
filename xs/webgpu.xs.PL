@@ -87,6 +87,10 @@ sub pkg_name
 {
   my $ctype = shift;
 
+  $ctype =~ s/\s*[*]\s*$//xms;
+  $ctype =~ s/\s*const$//xms;
+  $ctype =~ s/\s+$//xms;
+
   return $ctype
       if exists $typedefs{$ctype};
 
@@ -402,7 +406,7 @@ say $pm qq[package\n\tWebGPU::Direct {];
 foreach (@fns)
 {
   my %def = %$_;
-  say_call_fn(%def);
+  say_call_fn( \%def );
   say $pm qq[  sub $def{name} { my \$class = shift; WebGPU::Direct::XS::$def{name}(\@_); }];
 }
 
@@ -804,7 +808,7 @@ foreach my $class (@classes)
   if (@fns)
   {
     my $pod_file = "$class_path.pm";
-    my $pm_input='';
+    my $pm_input = '';
     {
       open my $in_pod, '<', $pod_file;
       $pm_input = do { local $/; <$in_pod> };
@@ -822,7 +826,7 @@ foreach my $class (@classes)
     foreach (@fns)
     {
       my %def = %$_;
-      say_call_fn(%def);
+      say_call_fn( \%def );
 
       my $type = typed_pod( $def{return} );
 
@@ -850,7 +854,8 @@ foreach my $class (@classes)
           foreach my $pair (@pairs)
           {
             my ( $return, $arg ) = @$pair;
-            my $type = typed_pod( pkg_name($return) );
+            my $type = typed_pod($return);
+
             $pod->say(qq[=item * $arg ($type)\n]);
           }
           $pod->say(qq[=back\n]);
@@ -994,6 +999,14 @@ sub typed_pod
 {
   my $type = shift;
 
+  my ($as_ptr) = $type =~ m/\s*(?:const\s+)?(\w+(?:\s+const)?\s*[*])\s*$/;
+  if ($as_ptr)
+  {
+    $as_ptr =~ s/\bconst\s*//xms;
+    $as_ptr =~ s/\s+/ /g;
+  }
+
+  $type = pkg_name($type);
   $type =~ s/\s*[*]\s*$//xms;
   $type =~ s/\s*const$//xms;
   $type =~ s/\s+$//xms;
@@ -1015,6 +1028,35 @@ sub typed_pod
     my $pkg = $type;
     $pkg =~ s/^WGPU/WebGPU::Direct::/;
     $result = "L<$type|WebGPU::Direct::Constants/$pkg>";
+  }
+
+  if ( $type =~ m/^(\w+)Flags$/ && $enums{$1} )
+  {
+    my $pkg = $1;
+    $pkg =~ s/^WGPU/WebGPU::Direct::/;
+    $result = "L<$type|WebGPU::Direct::Constants/$pkg>";
+  }
+
+  my %basic_types = (
+    WGPUBool => 'Boolean',
+    'char *' => 'String',
+    'void *' => 'Scalar',
+    uint16_t => 'Unsigned 16bit',
+    uint32_t => 'Unsigned 32bit',
+    uint64_t => 'Unsigned 64bit',
+    int32_t  => 'Signed 32bit',
+    size_t   => 'Integer',
+    float    => 'Float',
+    double   => 'Double',
+  );
+
+  if ( exists $basic_types{$result} )
+  {
+    $result = $basic_types{$result} . " ($result)";
+  }
+  elsif ( $as_ptr && exists $basic_types{$as_ptr} )
+  {
+    $result = $basic_types{$as_ptr} . " ($as_ptr)";
   }
 
   return $result;
@@ -1187,7 +1229,8 @@ sub say_set_fn
 
 sub say_call_fn
 {
-  my %def = @_;
+  my $def_arg = shift;
+  my %def     = %$def_arg;
 
   # 0b001: has offset
   # 0b010: has size
@@ -1414,6 +1457,7 @@ sub say_call_fn
     }
     say $xs "      void *n = $def{prefix}$def{name}($call);";
     say $xs "      RETVAL =  WebGPU__Direct__MappedBuffer__wrap(aTHX_ n, size-offset);";
+    $def_arg->{return} = 'MappedBuffer';
   }
   else
   {

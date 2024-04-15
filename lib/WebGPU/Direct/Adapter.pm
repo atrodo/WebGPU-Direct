@@ -68,7 +68,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * size_t
+=item * Integer (size_t)
 
 =back
 
@@ -76,7 +76,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * features (L<WebGPU::Direct::FeatureName>)
+=item * features (L<WGPUFeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
 
 =back
 
@@ -90,7 +90,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * WGPUBool
+=item * Boolean (WGPUBool)
 
 =back
 
@@ -126,7 +126,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * WGPUBool
+=item * Boolean (WGPUBool)
 
 =back
 
@@ -152,7 +152,7 @@ WebGPU::Direct::Adapter
 
 =item * callback (L<WebGPU::Direct::RequestDeviceCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 

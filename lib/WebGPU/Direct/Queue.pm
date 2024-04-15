@@ -28,7 +28,7 @@ WebGPU::Direct::Queue
 
 =item * callback (L<WebGPU::Direct::QueueWorkDoneCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 
@@ -42,7 +42,7 @@ WebGPU::Direct::Queue
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 
@@ -56,7 +56,7 @@ WebGPU::Direct::Queue
 
 =over
 
-=item * commandCount (size_t)
+=item * commandCount (Integer (size_t))
 
 =item * commands (L<WebGPU::Direct::CommandBuffer>)
 
@@ -74,11 +74,11 @@ WebGPU::Direct::Queue
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * bufferOffset (uint64_t)
+=item * bufferOffset (Unsigned 64bit (uint64_t))
 
-=item * data (L<WebGPU::Direct::void>)
+=item * data (Scalar (void *))
 
-=item * size (size_t)
+=item * size (Integer (size_t))
 
 =back
 
@@ -94,9 +94,9 @@ WebGPU::Direct::Queue
 
 =item * destination (L<WebGPU::Direct::ImageCopyTexture|WebGPU::Direct::Types/WebGPU::Direct::ImageCopyTexture>)
 
-=item * data (L<WebGPU::Direct::void>)
+=item * data (Scalar (void *))
 
-=item * dataSize (size_t)
+=item * dataSize (Integer (size_t))
 
 =item * dataLayout (L<WebGPU::Direct::TextureDataLayout|WebGPU::Direct::Types/WebGPU::Direct::TextureDataLayout>)
 

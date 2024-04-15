@@ -26,7 +26,7 @@ WebGPU::Direct::BindGroup
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 

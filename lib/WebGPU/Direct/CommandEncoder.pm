@@ -37,7 +37,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * WGPUComputePassEncoder
+=item * L<WebGPU::Direct::ComputePassEncoder>
 
 =back
 
@@ -59,7 +59,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * WGPURenderPassEncoder
+=item * L<WebGPU::Direct::RenderPassEncoder>
 
 =back
 
@@ -83,9 +83,9 @@ WebGPU::Direct::CommandEncoder
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * offset (uint64_t)
+=item * offset (Unsigned 64bit (uint64_t))
 
-=item * size (uint64_t)
+=item * size (Unsigned 64bit (uint64_t))
 
 =back
 
@@ -101,13 +101,13 @@ WebGPU::Direct::CommandEncoder
 
 =item * source (L<WebGPU::Direct::Buffer>)
 
-=item * sourceOffset (uint64_t)
+=item * sourceOffset (Unsigned 64bit (uint64_t))
 
 =item * destination (L<WebGPU::Direct::Buffer>)
 
-=item * destinationOffset (uint64_t)
+=item * destinationOffset (Unsigned 64bit (uint64_t))
 
-=item * size (uint64_t)
+=item * size (Unsigned 64bit (uint64_t))
 
 =back
 
@@ -175,7 +175,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * WGPUCommandBuffer
+=item * L<WebGPU::Direct::CommandBuffer>
 
 =back
 
@@ -197,7 +197,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * markerLabel (L<WebGPU::Direct::char>)
+=item * markerLabel (String (char *))
 
 =back
 
@@ -213,7 +213,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * groupLabel (L<WebGPU::Direct::char>)
+=item * groupLabel (String (char *))
 
 =back
 
@@ -229,13 +229,13 @@ WebGPU::Direct::CommandEncoder
 
 =item * querySet (L<WebGPU::Direct::QuerySet>)
 
-=item * firstQuery (uint32_t)
+=item * firstQuery (Unsigned 32bit (uint32_t))
 
-=item * queryCount (uint32_t)
+=item * queryCount (Unsigned 32bit (uint32_t))
 
 =item * destination (L<WebGPU::Direct::Buffer>)
 
-=item * destinationOffset (uint64_t)
+=item * destinationOffset (Unsigned 64bit (uint64_t))
 
 =back
 
@@ -249,7 +249,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 
@@ -265,7 +265,7 @@ WebGPU::Direct::CommandEncoder
 
 =item * querySet (L<WebGPU::Direct::QuerySet>)
 
-=item * queryIndex (uint32_t)
+=item * queryIndex (Unsigned 32bit (uint32_t))
 
 =back
 

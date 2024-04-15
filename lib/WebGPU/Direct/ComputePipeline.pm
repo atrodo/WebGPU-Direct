@@ -26,7 +26,7 @@ WebGPU::Direct::ComputePipeline
 
 =over
 
-=item * WGPUBindGroupLayout
+=item * L<WebGPU::Direct::BindGroupLayout>
 
 =back
 
@@ -34,7 +34,7 @@ WebGPU::Direct::ComputePipeline
 
 =over
 
-=item * groupIndex (uint32_t)
+=item * groupIndex (Unsigned 32bit (uint32_t))
 
 =back
 
@@ -48,7 +48,7 @@ WebGPU::Direct::ComputePipeline
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 

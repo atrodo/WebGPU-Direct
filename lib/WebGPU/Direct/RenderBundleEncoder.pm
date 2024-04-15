@@ -26,13 +26,13 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * vertexCount (uint32_t)
+=item * vertexCount (Unsigned 32bit (uint32_t))
 
-=item * instanceCount (uint32_t)
+=item * instanceCount (Unsigned 32bit (uint32_t))
 
-=item * firstVertex (uint32_t)
+=item * firstVertex (Unsigned 32bit (uint32_t))
 
-=item * firstInstance (uint32_t)
+=item * firstInstance (Unsigned 32bit (uint32_t))
 
 =back
 
@@ -46,15 +46,15 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * indexCount (uint32_t)
+=item * indexCount (Unsigned 32bit (uint32_t))
 
-=item * instanceCount (uint32_t)
+=item * instanceCount (Unsigned 32bit (uint32_t))
 
-=item * firstIndex (uint32_t)
+=item * firstIndex (Unsigned 32bit (uint32_t))
 
-=item * baseVertex (int32_t)
+=item * baseVertex (Signed 32bit (int32_t))
 
-=item * firstInstance (uint32_t)
+=item * firstInstance (Unsigned 32bit (uint32_t))
 
 =back
 
@@ -70,7 +70,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * indirectBuffer (L<WebGPU::Direct::Buffer>)
 
-=item * indirectOffset (uint64_t)
+=item * indirectOffset (Unsigned 64bit (uint64_t))
 
 =back
 
@@ -86,7 +86,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * indirectBuffer (L<WebGPU::Direct::Buffer>)
 
-=item * indirectOffset (uint64_t)
+=item * indirectOffset (Unsigned 64bit (uint64_t))
 
 =back
 
@@ -100,7 +100,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * WGPURenderBundle
+=item * L<WebGPU::Direct::RenderBundle>
 
 =back
 
@@ -122,7 +122,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * markerLabel (L<WebGPU::Direct::char>)
+=item * markerLabel (String (char *))
 
 =back
 
@@ -138,7 +138,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * groupLabel (L<WebGPU::Direct::char>)
+=item * groupLabel (String (char *))
 
 =back
 
@@ -152,13 +152,13 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * groupIndex (uint32_t)
+=item * groupIndex (Unsigned 32bit (uint32_t))
 
 =item * group (L<WebGPU::Direct::BindGroup>)
 
-=item * dynamicOffsetCount (size_t)
+=item * dynamicOffsetCount (Integer (size_t))
 
-=item * dynamicOffsets (L<WebGPU::Direct::uint32_t>)
+=item * dynamicOffsets (Unsigned 32bit (uint32_t))
 
 =back
 
@@ -176,9 +176,9 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * format (L<WGPUIndexFormat|WebGPU::Direct::Constants/WebGPU::Direct::IndexFormat>)
 
-=item * offset (uint64_t)
+=item * offset (Unsigned 64bit (uint64_t))
 
-=item * size (uint64_t)
+=item * size (Unsigned 64bit (uint64_t))
 
 =back
 
@@ -192,7 +192,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 
@@ -220,13 +220,13 @@ WebGPU::Direct::RenderBundleEncoder
 
 =over
 
-=item * slot (uint32_t)
+=item * slot (Unsigned 32bit (uint32_t))
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * offset (uint64_t)
+=item * offset (Unsigned 64bit (uint64_t))
 
-=item * size (uint64_t)
+=item * size (Unsigned 64bit (uint64_t))
 
 =back
 

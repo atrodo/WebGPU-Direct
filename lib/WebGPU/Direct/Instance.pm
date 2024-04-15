@@ -65,7 +65,7 @@ WebGPU::Direct::Instance
 
 =over
 
-=item * WGPUSurface
+=item * L<WebGPU::Direct::Surface>
 
 =back
 
@@ -93,7 +93,7 @@ WebGPU::Direct::Instance
 
 =item * callback (L<WebGPU::Direct::RequestAdapterCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 

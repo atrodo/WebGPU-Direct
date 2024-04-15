@@ -28,7 +28,7 @@ WebGPU::Direct::QuerySet
 
 =over
 
-=item * uint32_t
+=item * Unsigned 32bit (uint32_t)
 
 =back
 
@@ -56,7 +56,7 @@ WebGPU::Direct::QuerySet
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 

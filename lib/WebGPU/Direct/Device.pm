@@ -72,7 +72,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUBindGroup
+=item * L<WebGPU::Direct::BindGroup>
 
 =back
 
@@ -94,7 +94,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUBindGroupLayout
+=item * L<WebGPU::Direct::BindGroupLayout>
 
 =back
 
@@ -116,7 +116,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUBuffer
+=item * L<WebGPU::Direct::Buffer>
 
 =back
 
@@ -138,7 +138,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUCommandEncoder
+=item * L<WebGPU::Direct::CommandEncoder>
 
 =back
 
@@ -160,7 +160,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUComputePipeline
+=item * L<WebGPU::Direct::ComputePipeline>
 
 =back
 
@@ -186,7 +186,7 @@ WebGPU::Direct::Device
 
 =item * callback (L<WebGPU::Direct::CreateComputePipelineAsyncCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 
@@ -200,7 +200,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUPipelineLayout
+=item * L<WebGPU::Direct::PipelineLayout>
 
 =back
 
@@ -222,7 +222,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUQuerySet
+=item * L<WebGPU::Direct::QuerySet>
 
 =back
 
@@ -244,7 +244,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPURenderBundleEncoder
+=item * L<WebGPU::Direct::RenderBundleEncoder>
 
 =back
 
@@ -266,7 +266,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPURenderPipeline
+=item * L<WebGPU::Direct::RenderPipeline>
 
 =back
 
@@ -292,7 +292,7 @@ WebGPU::Direct::Device
 
 =item * callback (L<WebGPU::Direct::CreateRenderPipelineAsyncCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 
@@ -306,7 +306,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUSampler
+=item * L<WebGPU::Direct::Sampler>
 
 =back
 
@@ -328,7 +328,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUShaderModule
+=item * L<WebGPU::Direct::ShaderModule>
 
 =back
 
@@ -350,7 +350,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUTexture
+=item * L<WebGPU::Direct::Texture>
 
 =back
 
@@ -374,7 +374,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * size_t
+=item * Integer (size_t)
 
 =back
 
@@ -382,7 +382,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * features (L<WebGPU::Direct::FeatureName>)
+=item * features (L<WGPUFeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
 
 =back
 
@@ -396,7 +396,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUBool
+=item * Boolean (WGPUBool)
 
 =back
 
@@ -418,7 +418,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUQueue
+=item * L<WebGPU::Direct::Queue>
 
 =back
 
@@ -432,7 +432,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * WGPUBool
+=item * Boolean (WGPUBool)
 
 =back
 
@@ -456,7 +456,7 @@ WebGPU::Direct::Device
 
 =item * callback (L<WebGPU::Direct::ErrorCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 
@@ -484,7 +484,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 
@@ -500,7 +500,7 @@ WebGPU::Direct::Device
 
 =item * callback (L<WebGPU::Direct::ErrorCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 

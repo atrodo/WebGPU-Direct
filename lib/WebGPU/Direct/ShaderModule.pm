@@ -28,7 +28,7 @@ WebGPU::Direct::ShaderModule
 
 =item * callback (L<WebGPU::Direct::CompilationInfoCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 
@@ -42,7 +42,7 @@ WebGPU::Direct::ShaderModule
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 

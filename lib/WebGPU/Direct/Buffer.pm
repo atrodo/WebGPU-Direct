@@ -63,13 +63,21 @@ WebGPU::Direct::Buffer
 
 =over
 
+=item * Return Type
+
+=over
+
+=item * L<WebGPU::Direct::MappedBuffer>
+
+=back
+
 =item * Arguments
 
 =over
 
-=item * offset (size_t)
+=item * offset (Integer (size_t))
 
-=item * size (size_t)
+=item * size (Integer (size_t))
 
 =back
 
@@ -83,7 +91,7 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * uint64_t
+=item * Unsigned 64bit (uint64_t)
 
 =back
 
@@ -97,7 +105,7 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * WGPUBufferUsageFlags
+=item * L<WGPUBufferUsageFlags|WebGPU::Direct::Constants/WebGPU::Direct::BufferUsage>
 
 =back
 
@@ -111,15 +119,15 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * mode (WGPUMapModeFlags)
+=item * mode (L<WGPUMapModeFlags|WebGPU::Direct::Constants/WebGPU::Direct::MapMode>)
 
-=item * offset (size_t)
+=item * offset (Integer (size_t))
 
-=item * size (size_t)
+=item * size (Integer (size_t))
 
 =item * callback (L<WebGPU::Direct::BufferMapCallback>)
 
-=item * userdata (L<WebGPU::Direct::void>)
+=item * userdata (Scalar (void *))
 
 =back
 
@@ -133,7 +141,7 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * label (L<WebGPU::Direct::char>)
+=item * label (String (char *))
 
 =back
 
