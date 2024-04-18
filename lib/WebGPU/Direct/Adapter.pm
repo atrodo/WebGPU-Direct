@@ -150,7 +150,7 @@ WebGPU::Direct::Adapter
 
 =item * descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>)
 
-=item * callback (L<WebGPU::Direct::RequestDeviceCallback>)
+=item * callback (WebGPU::Direct::RequestDeviceCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 

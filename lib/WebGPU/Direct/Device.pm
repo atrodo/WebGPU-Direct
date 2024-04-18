@@ -184,7 +184,7 @@ WebGPU::Direct::Device
 
 =item * descriptor (L<WebGPU::Direct::ComputePipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePipelineDescriptor>)
 
-=item * callback (L<WebGPU::Direct::CreateComputePipelineAsyncCallback>)
+=item * callback (WebGPU::Direct::CreateComputePipelineAsyncCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 
@@ -290,7 +290,7 @@ WebGPU::Direct::Device
 
 =item * descriptor (L<WebGPU::Direct::RenderPipelineDescriptor|WebGPU::Direct::Types/WebGPU::Direct::RenderPipelineDescriptor>)
 
-=item * callback (L<WebGPU::Direct::CreateRenderPipelineAsyncCallback>)
+=item * callback (WebGPU::Direct::CreateRenderPipelineAsyncCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 
@@ -454,7 +454,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * callback (L<WebGPU::Direct::ErrorCallback>)
+=item * callback (WebGPU::Direct::ErrorCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 
@@ -498,7 +498,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * callback (L<WebGPU::Direct::ErrorCallback>)
+=item * callback (WebGPU::Direct::ErrorCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 

@@ -11544,16 +11544,16 @@ defaultQueue(THIS, value = NO_INIT)
 SV *
 deviceLostCallback(THIS, value = NO_INIT)
         WebGPU::Direct::DeviceDescriptor THIS
-        void * value
+        SV * value
     PROTOTYPE: $;$
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
+        RETVAL =   _find_CODE(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
 
         if (items > 1)
         {
-              _store_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL, value);
+              _store_CODE(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL, value);
 
         }
         else

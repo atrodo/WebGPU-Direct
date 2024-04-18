@@ -308,7 +308,7 @@ while (<$h>)
       };
     }
 
-    $typedefs{$class} = 'void';
+    $typedefs{$class} = 'CODE';
 
     push @classes, $class;
 
@@ -995,6 +995,19 @@ foreach my $cb_name ( sort keys %callbackdefs )
     };
 }
 
+my %pages_needed;
+END
+{
+  foreach my $page ( keys %pages_needed )
+  {
+    $page =~ s[::][/]g;
+    if ( !-e "$Bin/../lib/$page.pm" )
+    {
+      warn "Does not exist: $page";
+    }
+  }
+}
+
 sub typed_pod
 {
   my $type = shift;
@@ -1037,6 +1050,11 @@ sub typed_pod
     $result = "L<$type|WebGPU::Direct::Constants/$pkg>";
   }
 
+  if ( $typedefs{$type} && $typedefs{$type} eq 'CODE' )
+  {
+    $result = "$type (Code reference)";
+  }
+
   my %basic_types = (
     WGPUBool => 'Boolean',
     'char *' => 'String',
@@ -1057,6 +1075,11 @@ sub typed_pod
   elsif ( $as_ptr && exists $basic_types{$as_ptr} )
   {
     $result = $basic_types{$as_ptr} . " ($as_ptr)";
+  }
+
+  if ( $result =~ m/L<([\w:]+)>/xms )
+  {
+    $pages_needed{$1} = $1;
   }
 
   return $result;

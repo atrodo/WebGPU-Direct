@@ -26,7 +26,7 @@ WebGPU::Direct::ShaderModule
 
 =over
 
-=item * callback (L<WebGPU::Direct::CompilationInfoCallback>)
+=item * callback (WebGPU::Direct::CompilationInfoCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 

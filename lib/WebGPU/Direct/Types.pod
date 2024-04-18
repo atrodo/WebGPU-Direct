@@ -1206,7 +1206,7 @@
 
 =item * defaultQueue (L<WebGPU::Direct::QueueDescriptor|WebGPU::Direct::Types/WebGPU::Direct::QueueDescriptor>)
 
-=item * deviceLostCallback (Scalar (void *))
+=item * deviceLostCallback (WebGPU::Direct::DeviceLostCallback (Code reference))
 
 =item * deviceLostUserdata (Scalar (void *))
 

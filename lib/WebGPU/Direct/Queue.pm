@@ -26,7 +26,7 @@ WebGPU::Direct::Queue
 
 =over
 
-=item * callback (L<WebGPU::Direct::QueueWorkDoneCallback>)
+=item * callback (WebGPU::Direct::QueueWorkDoneCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 

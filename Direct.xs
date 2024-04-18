@@ -998,6 +998,7 @@ STATIC MGVTBL _mg_vtbl_void = {
   .svt_set = _mg_set_void
 };
 
+#define _unpack_CODE _unpack_void
 SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 {
   SV **f = NULL;
@@ -1030,6 +1031,7 @@ SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
+#define _pack_CODE _pack_void
 SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 {
   SV **f;
@@ -1056,6 +1058,7 @@ SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
+#define _find_CODE _find_void
 SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 {
   SV **f;
@@ -1077,6 +1080,7 @@ SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
+#define _store_CODE _store_void
 void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base, SV *value)
 {
   SV **f = nn_hv_store(aTHX_ h, key, klen, value, &PL_sv_undef);

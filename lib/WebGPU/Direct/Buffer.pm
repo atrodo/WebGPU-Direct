@@ -33,13 +33,21 @@ WebGPU::Direct::Buffer
 
 =over
 
+=item * Return Type
+
+=over
+
+=item * Scalar (void *)
+
+=back
+
 =item * Arguments
 
 =over
 
-=item * offset (size_t)
+=item * offset (Integer (size_t))
 
-=item * size (size_t)
+=item * size (Integer (size_t))
 
 =back
 
@@ -125,7 +133,7 @@ WebGPU::Direct::Buffer
 
 =item * size (Integer (size_t))
 
-=item * callback (L<WebGPU::Direct::BufferMapCallback>)
+=item * callback (WebGPU::Direct::BufferMapCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 

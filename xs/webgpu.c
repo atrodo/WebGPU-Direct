@@ -4451,7 +4451,7 @@ void WebGPU__Direct__DeviceDescriptor__pack( SV *THIS )
   _pack_objarray(aTHX_ h, "requiredFeatures", 16, (void **) &n->requiredFeatures, &n->requiredFeatureCount, sizeof(*n->requiredFeatures), newSVpvs("WebGPU::Direct::FeatureName"));
   _pack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::RequiredLimits"));
   _pack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
-  _pack_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
+  _pack_CODE(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
   // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
   _pack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata, NULL);
 
@@ -4480,7 +4480,7 @@ void WebGPU__Direct__DeviceDescriptor__unpack( SV *THIS )
   _unpack_objarray(aTHX_ h, "requiredFeatures", 16, (void **) &n->requiredFeatures, &n->requiredFeatureCount, sizeof(*n->requiredFeatures), newSVpvs("WebGPU::Direct::FeatureName"));
   _unpack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::RequiredLimits"));
   _unpack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
-  _unpack_void(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
+  _unpack_CODE(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
   // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
   _unpack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata, NULL);
 

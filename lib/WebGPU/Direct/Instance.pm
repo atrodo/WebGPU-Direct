@@ -91,7 +91,7 @@ WebGPU::Direct::Instance
 
 =item * options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>)
 
-=item * callback (L<WebGPU::Direct::RequestAdapterCallback>)
+=item * callback (WebGPU::Direct::RequestAdapterCallback (Code reference))
 
 =item * userdata (Scalar (void *))
 
