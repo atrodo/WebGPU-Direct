@@ -4,7 +4,7 @@ use warnings;
 package # Hide from PAUSE
     WebGPU::Direct::XS
 {
-  our $VERSION = '0.12';
+  our $VERSION = '0.13';
   require XSLoader;
   XSLoader::load('WebGPU::Direct', $VERSION);
 }
