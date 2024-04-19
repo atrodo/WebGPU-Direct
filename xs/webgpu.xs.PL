@@ -73,7 +73,7 @@ say $pm q{};
 say $pm q[package # Hide from PAUSE];
 say $pm q[    WebGPU::Direct::XS];
 say $pm q[{];
-say $pm q[  our $VERSION = '0.10';];
+say $pm q[  our $VERSION = '0.13';];
 say $pm q[  require XSLoader;];
 say $pm q[  XSLoader::load('WebGPU::Direct', $VERSION);];
 say $pm q[}];
