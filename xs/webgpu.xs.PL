@@ -637,7 +637,7 @@ foreach my $class (@classes)
   if (@defs)
   {
     $types_pod->say(qq[=head1 $class\n]);
-    $types_pod->say(qq[=head2 Attributes\n]);
+    $types_pod->say(qq[=item * Attributes\n]);
     $types_pod->say(qq[=over\n]);
   }
 
@@ -656,6 +656,7 @@ foreach my $class (@classes)
 
   if (@defs)
   {
+    $types_pod->say(qq[=back\n]);
     $types_pod->say(qq[=back\n]);
 
     my $short_class = $class;
