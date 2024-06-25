@@ -61,7 +61,7 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * L<WGPUBufferMapState|WebGPU::Direct::Constants/WebGPU::Direct::BufferMapState>
+=item * L<WebGPU::Direct::BufferMapState|WebGPU::Direct::Constants/WebGPU::Direct::BufferMapState>
 
 =back
 

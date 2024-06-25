@@ -382,7 +382,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * features (L<WGPUFeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
+=item * features (L<WebGPU::Direct::FeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
 
 =back
 
@@ -440,7 +440,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * feature (L<WGPUFeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
+=item * feature (L<WebGPU::Direct::FeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
 
 =back
 
@@ -470,7 +470,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * filter (L<WGPUErrorFilter|WebGPU::Direct::Constants/WebGPU::Direct::ErrorFilter>)
+=item * filter (L<WebGPU::Direct::ErrorFilter|WebGPU::Direct::Constants/WebGPU::Direct::ErrorFilter>)
 
 =back
 

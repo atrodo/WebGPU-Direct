@@ -153,7 +153,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * L<WGPUTextureDimension|WebGPU::Direct::Constants/WebGPU::Direct::TextureDimension>
+=item * L<WebGPU::Direct::TextureDimension|WebGPU::Direct::Constants/WebGPU::Direct::TextureDimension>
 
 =back
 
@@ -167,7 +167,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * L<WGPUTextureFormat|WebGPU::Direct::Constants/WebGPU::Direct::TextureFormat>
+=item * L<WebGPU::Direct::TextureFormat|WebGPU::Direct::Constants/WebGPU::Direct::TextureFormat>
 
 =back
 

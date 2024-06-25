@@ -1041,7 +1041,7 @@ sub typed_pod
   {
     my $pkg = $type;
     $pkg =~ s/^WGPU/WebGPU::Direct::/;
-    $result = "L<$type|WebGPU::Direct::Constants/$pkg>";
+    $result = "L<$pkg|WebGPU::Direct::Constants/$pkg>";
   }
 
   if ( $type =~ m/^(\w+)Flags$/ && $enums{$1} )

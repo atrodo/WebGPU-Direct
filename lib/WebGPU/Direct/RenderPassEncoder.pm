@@ -214,7 +214,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * format (L<WGPUIndexFormat|WebGPU::Direct::Constants/WebGPU::Direct::IndexFormat>)
+=item * format (L<WebGPU::Direct::IndexFormat|WebGPU::Direct::Constants/WebGPU::Direct::IndexFormat>)
 
 =item * offset (Unsigned 64bit (uint64_t))
 
