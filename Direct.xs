@@ -91,7 +91,7 @@ SV **nn_av_store(pTHX_ AV *h, const Size_t idx, SV *obj, SV *base)
 
 SV *_void__wrap( const void *n )
 {
-  SV *h = newSViv( *(int *)n);
+  SV *h = newSViv( *(IV *)n);
   SV *RETVAL = sv_2mortal(newRV(h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
@@ -257,7 +257,7 @@ SV *_new_opaque( SV *CLASS, void *n)
     return SvREFCNT_inc(newSV(0));
   }
 
-  SV *h = newSViv( *(int *)n);
+  SV *h = newSViv( *(IV *)n);
   SV *RETVAL = sv_2mortal(newRV(h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
@@ -567,12 +567,12 @@ SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
   av_extend(ret, count);
 
   void *field = n;
-  for ( int i = 0; i < count; i++ )
+  for ( Size_t i = 0; i < count; i++ )
   {
     SV *obj = NULL;
     if ( is_enum )
     {
-      obj = _new(base, newSViv(*(int *)field));
+      obj = _new(base, newSViv(*(IV *)field));
     }
     else if ( is_opaque )
     {
