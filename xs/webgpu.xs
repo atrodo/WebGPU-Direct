@@ -4784,11 +4784,11 @@ bindGroupLayouts(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, newSVpvs("WebGPU::Direct::BindGroupLayout"));
+        RETVAL =   _find_objarray(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, &n->bindGroupLayoutCount, sizeof(*n->bindGroupLayouts), newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
         if (items > 1)
         {
-              _store_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, newSVpvs("WebGPU::Direct::BindGroupLayout"), value);
+              _store_objarray(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, &n->bindGroupLayoutCount, sizeof(*n->bindGroupLayouts), newSVpvs("WebGPU::Direct::BindGroupLayout"), value);
 
         }
         else

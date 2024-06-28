@@ -764,6 +764,7 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
   }
 
   bool is_enum   = sv_derived_from(base, "WebGPU::Direct::Enum");
+  bool is_opaque = sv_derived_from(base, "WebGPU::Direct::Opaque");
 
   void *new_ptr = arr;
 
@@ -786,6 +787,15 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     if ( is_enum )
     {
       *(I32 *)new_ptr = (I32)SvIV(*f);
+    }
+    else if ( is_opaque )
+    {
+      void *old_ptr = _get_struct_ptr(aTHX_ *f, base);
+      if ( !old_ptr )
+      {
+        croak("Could not find a %s type element at index %d for %s", SvPV_nolen(base), i, key);
+      }
+      *(void **)new_ptr = old_ptr;
     }
     else
     {

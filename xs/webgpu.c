@@ -1351,7 +1351,7 @@ void WebGPU__Direct__PipelineLayoutDescriptor__pack( SV *THIS )
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _pack_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, newSVpvs("WebGPU::Direct::BindGroupLayout"));
+  _pack_objarray(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, &n->bindGroupLayoutCount, sizeof(*n->bindGroupLayouts), newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
   
 }
@@ -1375,7 +1375,7 @@ void WebGPU__Direct__PipelineLayoutDescriptor__unpack( SV *THIS )
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
   _unpack_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount, NULL);
-  _unpack_opaque(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, newSVpvs("WebGPU::Direct::BindGroupLayout"));
+  _unpack_objarray(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, &n->bindGroupLayoutCount, sizeof(*n->bindGroupLayouts), newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
 }
 

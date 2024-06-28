@@ -1123,7 +1123,7 @@ sub calls_for
 
   if ( $def{is_ptr} )
   {
-    if ( ( $typedef eq 'obj' || $typedef eq 'enum' ) && $def{array} )
+    if ( ( $typedef eq 'obj' || $typedef eq 'enum' || $typedef eq 'opaque' ) && $def{array} )
     {
       $typedef  = "objarray";
       $set_addl = qq{, sizeof(*n->$def{key})$set_addl};
