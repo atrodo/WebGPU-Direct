@@ -8,6 +8,14 @@ package WebGPU::Direct::CommandEncoder
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
+  sub BeginComputePass (
+    $self,
+    $descriptor = {}
+      )
+  {
+    return $self->_BeginComputePass($descriptor);
+  }
+
   sub Finish (
     $self,
     $descriptor = {}

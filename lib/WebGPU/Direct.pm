@@ -251,6 +251,12 @@ There appears to be an issue with L<ColorAttachment|WebGPU::Direct::ColorAttachm
 
 When a L<RenderPipeline|WebGPU::Direct::RenderPipeline> is being ran with an C<auto> layout, that C<layout> is not defined in the L<RenderPipelineDescriptor|WebGPU::Direct::RenderPipelineDescriptor> passed to C<$device-E<gt>CreateRenderPipeline>, WebGPU will auto analyze the C<WGSL> to determine the group bindings. If a group binding is not used, the layout for it will not be included in the layout. You will need to either use the group binding in the shaders, or manually create and use a layout definition.
 
+=head3 Surface image is already acquired
+
+The WebGPU JavaScript API and the WebGPU Native API differ slightly in how you interact with the hardware. In JavaScript, the L<GPUCanvasContext|https://developer.mozilla.org/en-US/docs/Web/API/GPUCanvasContext> is used, and with the native it is a L<Surface|WebGPU::Direct::Surface>. The core functions are in both, but the Native API has several extra that the JavaScript API does not have, most notably L<Present|WebGPU::Direct::Surface/Present>, which informs the system that rendering is complete. Because of this, this you cannot acquire a L<TextureView|WebGPU::Direct::TextureView> twice in a single frame via the L<CreateView|WebGPU::Direct::TextureView/CreateView> function before calls to L<Present|WebGPU::Direct::Surface/Present>. Tryig to get it a second time will will throw this error.
+
+Because the JavaScript WebGPU API does not have a L<Present|WebGPU::Direct::Surface/Present> function, examples will not include it; it happens implictly after each frame function. That means you must remember to call it at the end of each frame loop when the render is ready to go.
+
 =head1 AUTHOR
 
 Jon Gentle E<lt>cpan@atrodo.orgE<gt>

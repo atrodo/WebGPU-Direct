@@ -4,6 +4,27 @@ package WebGPU::Direct::ComputePassEncoder
   use warnings;
   no warnings qw(experimental::signatures);
   use feature 'signatures';
+
+  sub SetBindGroup (
+    $self,
+    $index,
+    $bindGroup,
+    $dynamicOffsets = [],
+      )
+  {
+    return $self->_SetBindGroup( $index, $bindGroup, $dynamicOffsets );
+  }
+
+  sub DispatchWorkgroups (
+    $self,
+    $workgroupCountX,
+    $workgroupCountY = 1,
+    $workgroupCountZ = 1,
+      )
+  {
+    return $self->_DispatchWorkgroups( $workgroupCountX, $workgroupCountY, $workgroupCountZ );
+  }
+
 };
 
 1;

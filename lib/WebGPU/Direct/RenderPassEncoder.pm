@@ -8,6 +8,17 @@ package WebGPU::Direct::RenderPassEncoder
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
+  sub Draw (
+    $self,
+    $vertexCount,
+    $instanceCount = 1,
+    $firstVertex   = 0,
+    $firstInstance = 0,
+      )
+  {
+    return $self->_Draw( $vertexCount, $instanceCount, $firstVertex, $firstInstance );
+  }
+
   sub SetVertexBuffer (
     $self,
     $slot,

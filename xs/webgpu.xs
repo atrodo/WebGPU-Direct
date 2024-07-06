@@ -289,7 +289,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CommandEncoder	PREFIX = wgpuCo
 
 
 WGPUComputePassEncoder 
-wgpuCommandEncoderBeginComputePass(commandEncoder, descriptor)
+wgpuCommandEncoder_BeginComputePass(commandEncoder, descriptor)
         WGPUCommandEncoder commandEncoder
         WGPUComputePassDescriptor const * descriptor
     CODE:
@@ -440,7 +440,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePassEncoder	PREFIX = wg
 
 
 void 
-wgpuComputePassEncoderDispatchWorkgroups(computePassEncoder, workgroupCountX, workgroupCountY, workgroupCountZ)
+wgpuComputePassEncoder_DispatchWorkgroups(computePassEncoder, workgroupCountX, workgroupCountY, workgroupCountZ)
         WGPUComputePassEncoder computePassEncoder
         uint32_t workgroupCountX
         uint32_t workgroupCountY
@@ -489,7 +489,7 @@ wgpuComputePassEncoderPushDebugGroup(computePassEncoder, groupLabel)
 
 
 void 
-wgpuComputePassEncoderSetBindGroup(computePassEncoder, groupIndex, group, dynamicOffsets)
+wgpuComputePassEncoder_SetBindGroup(computePassEncoder, groupIndex, group, dynamicOffsets)
         WGPUComputePassEncoder computePassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
@@ -1255,7 +1255,7 @@ wgpuRenderPassEncoderBeginOcclusionQuery(renderPassEncoder, queryIndex)
 
 
 void 
-wgpuRenderPassEncoderDraw(renderPassEncoder, vertexCount, instanceCount, firstVertex, firstInstance)
+wgpuRenderPassEncoder_Draw(renderPassEncoder, vertexCount, instanceCount, firstVertex, firstInstance)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t vertexCount
         uint32_t instanceCount
