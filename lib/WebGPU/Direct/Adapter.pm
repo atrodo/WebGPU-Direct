@@ -148,11 +148,11 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>)
+=item * descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>) Default: undef
 
-=item * callback (WebGPU::Direct::RequestDeviceCallback (Code reference))
+=item * callback (WebGPU::Direct::RequestDeviceCallback (Code reference)) Default: undef
 
-=item * userdata (Scalar (void *))
+=item * userdata (Scalar (void *)) Default: {}
 
 =back
 

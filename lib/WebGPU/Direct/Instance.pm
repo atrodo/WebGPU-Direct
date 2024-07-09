@@ -89,11 +89,11 @@ WebGPU::Direct::Instance
 
 =over
 
-=item * options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>)
+=item * options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>) Default: undef
 
-=item * callback (WebGPU::Direct::RequestAdapterCallback (Code reference))
+=item * callback (WebGPU::Direct::RequestAdapterCallback (Code reference)) Default: undef
 
-=item * userdata (Scalar (void *))
+=item * userdata (Scalar (void *)) Default: {}
 
 =back
 

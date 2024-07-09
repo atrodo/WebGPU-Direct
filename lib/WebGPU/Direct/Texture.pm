@@ -123,7 +123,7 @@ WebGPU::Direct::Texture
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::TextureViewDescriptor|WebGPU::Direct::Types/WebGPU::Direct::TextureViewDescriptor>)
+=item * descriptor (L<WebGPU::Direct::TextureViewDescriptor|WebGPU::Direct::Types/WebGPU::Direct::TextureViewDescriptor>) Default: {}
 
 =back
 

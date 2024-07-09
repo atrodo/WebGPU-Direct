@@ -146,7 +146,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::CommandEncoderDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandEncoderDescriptor>)
+=item * descriptor (L<WebGPU::Direct::CommandEncoderDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandEncoderDescriptor>) Default: {}
 
 =back
 
@@ -336,7 +336,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::ShaderModuleDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleDescriptor>)
+=item * descriptor (L<WebGPU::Direct::ShaderModuleDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleDescriptor>) Default: {}
 
 =back
 

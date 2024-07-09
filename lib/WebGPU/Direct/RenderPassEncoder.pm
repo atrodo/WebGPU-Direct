@@ -8,17 +8,6 @@ package WebGPU::Direct::RenderPassEncoder
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
-  sub Draw (
-    $self,
-    $vertexCount,
-    $instanceCount = 1,
-    $firstVertex   = 0,
-    $firstInstance = 0,
-      )
-  {
-    return $self->_Draw( $vertexCount, $instanceCount, $firstVertex, $firstInstance );
-  }
-
   sub SetVertexBuffer (
     $self,
     $slot,
@@ -67,11 +56,11 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * vertexCount (Unsigned 32bit (uint32_t))
 
-=item * instanceCount (Unsigned 32bit (uint32_t))
+=item * instanceCount (Unsigned 32bit (uint32_t)) Default: 1
 
-=item * firstVertex (Unsigned 32bit (uint32_t))
+=item * firstVertex (Unsigned 32bit (uint32_t)) Default: 0
 
-=item * firstInstance (Unsigned 32bit (uint32_t))
+=item * firstInstance (Unsigned 32bit (uint32_t)) Default: 0
 
 =back
 
@@ -309,9 +298,9 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * offset (Unsigned 64bit (uint64_t))
+=item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t))
+=item * size (Unsigned 64bit (uint64_t)) Default: GetSize() - offset
 
 =back
 

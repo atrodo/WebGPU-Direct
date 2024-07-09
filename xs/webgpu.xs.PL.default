@@ -40,14 +40,90 @@
   },
 
   # XS Function and function documentation of defaults
+  Adapter =>
+  {
+    RequestDevice => {
+      descriptor => 'undef',
+      callback   => 'undef',
+      userdata   => '{}',
+    },
+  },
 
-  # ComputePassEncoder
-  (
+  Buffer =>
+  {
+    GetMappedRange => {
+      offset => 0,
+      size   => 'GetSize() - offset',
+    },
+  },
+
+  CommandEncoder =>
+  {
+    BeginComputePass => {
+      descriptor => '{}',
+    },
+    Finish => {
+      descriptor => '{}',
+    },
+  },
+
+  ComputePassEncoder =>
+  {
     DispatchWorkgroups => {
       workgroupCountY => 1,
       workgroupCountZ => 1,
     },
-  ),
+    SetBindGroup => {
+      dynamicOffsets => '[]',
+    },
+  },
+
+  Device =>
+  {
+    CreateShaderModule => {
+      descriptor => '{}',
+    },
+    CreateCommandEncoder => {
+      descriptor => '{}',
+    },
+  },
+
+  Instance =>
+  {
+    RequestAdapter => {
+      options  => 'undef',
+      callback => 'undef',
+      userdata => '{}',
+    },
+  },
+
+  RenderPassEncoder =>
+  {
+    Draw => {
+      instanceCount => 1,
+      firstVertex   => 0,
+      firstInstance => 0,
+    },
+
+    SetVertexBuffer => {
+      offset => 0,
+      size   => 'GetSize() - offset',
+    },
+  },
+
+  Surface =>
+  {
+    GetCurrentTexture => {
+      surfaceTexture => 'undef',
+    },
+  },
+
+  Texture =>
+  {
+    CreateView => {
+      descriptor => '{}',
+    },
+  },
 }
 
 # vim: syn=perl

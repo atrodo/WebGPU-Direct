@@ -1255,7 +1255,7 @@ wgpuRenderPassEncoderBeginOcclusionQuery(renderPassEncoder, queryIndex)
 
 
 void 
-wgpuRenderPassEncoder_Draw(renderPassEncoder, vertexCount, instanceCount, firstVertex, firstInstance)
+wgpuRenderPassEncoderDraw(renderPassEncoder, vertexCount, instanceCount = 1, firstVertex = 0, firstInstance = 0)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t vertexCount
         uint32_t instanceCount

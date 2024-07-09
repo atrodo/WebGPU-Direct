@@ -83,9 +83,9 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * offset (Integer (size_t))
+=item * offset (Integer (size_t)) Default: 0
 
-=item * size (Integer (size_t))
+=item * size (Integer (size_t)) Default: GetSize() - offset
 
 =back
 

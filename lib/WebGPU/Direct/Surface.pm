@@ -71,7 +71,7 @@ WebGPU::Direct::Surface
 
 =over
 
-=item * surfaceTexture (L<WebGPU::Direct::SurfaceTexture|WebGPU::Direct::Types/WebGPU::Direct::SurfaceTexture>)
+=item * surfaceTexture (L<WebGPU::Direct::SurfaceTexture|WebGPU::Direct::Types/WebGPU::Direct::SurfaceTexture>) Default: undef
 
 =back
 

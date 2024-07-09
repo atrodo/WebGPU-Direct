@@ -53,7 +53,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::ComputePassDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePassDescriptor>)
+=item * descriptor (L<WebGPU::Direct::ComputePassDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ComputePassDescriptor>) Default: {}
 
 =back
 
@@ -191,7 +191,7 @@ WebGPU::Direct::CommandEncoder
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::CommandBufferDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandBufferDescriptor>)
+=item * descriptor (L<WebGPU::Direct::CommandBufferDescriptor|WebGPU::Direct::Types/WebGPU::Direct::CommandBufferDescriptor>) Default: {}
 
 =back
 

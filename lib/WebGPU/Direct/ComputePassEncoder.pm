@@ -108,7 +108,7 @@ WebGPU::Direct::ComputePassEncoder
 
 =item * dynamicOffsetCount (Integer (size_t))
 
-=item * dynamicOffsets (Unsigned 32bit (uint32_t))
+=item * dynamicOffsets (Unsigned 32bit (uint32_t)) Default: []
 
 =back
 

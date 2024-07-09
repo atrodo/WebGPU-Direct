@@ -858,9 +858,14 @@ foreach my $class (@classes)
             my $type = typed_pod($return);
             my $default = '';
 
-            if ( exists $class_defaults->{$def{name}}->{$arg} )
+            my $short_class = $class;
+            $short_class =~ s/WebGPU::Direct:://;
+
+            my $defaults = $class_defaults->{$short_class}->{$def{name}};
+
+            if ( exists $defaults->{$arg} )
             {
-              my $def_val = $class_defaults->{$def{name}}->{$arg};
+              my $def_val = $defaults->{$arg};
               $default = " Default: $def_val";
             }
 
@@ -1395,14 +1400,21 @@ sub say_call_fn
 
   my @calls = @vals;
 
-  foreach my $val ( @vals )
   {
+    my $class = $def{prefix};
+    $class =~ s/^wgpu//;
+
     # Using $fn_name instead of $def{name} since if there is an override
     # included (aka _$def{name}), prefer adding the default in the perl space
     # but leave them for generated documentation to use
-    if ( exists $class_defaults->{$fn_name}->{$val} )
+    my $defaults = $class_defaults->{$class}->{$fn_name};
+
+    foreach my $val (@vals)
     {
-      $val .= ' = ' . $class_defaults->{$fn_name}->{$val};
+      if ( exists $defaults->{$val} )
+      {
+        $val .= ' = ' . $defaults->{$val};
+      }
     }
   }
 
