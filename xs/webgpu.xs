@@ -440,7 +440,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePassEncoder	PREFIX = wg
 
 
 void 
-wgpuComputePassEncoder_DispatchWorkgroups(computePassEncoder, workgroupCountX, workgroupCountY, workgroupCountZ)
+wgpuComputePassEncoderDispatchWorkgroups(computePassEncoder, workgroupCountX, workgroupCountY = 1, workgroupCountZ = 1)
         WGPUComputePassEncoder computePassEncoder
         uint32_t workgroupCountX
         uint32_t workgroupCountY

@@ -856,8 +856,15 @@ foreach my $class (@classes)
           {
             my ( $return, $arg ) = @$pair;
             my $type = typed_pod($return);
+            my $default = '';
 
-            $pod->say(qq[=item * $arg ($type)\n]);
+            if ( exists $class_defaults->{$def{name}}->{$arg} )
+            {
+              my $def_val = $class_defaults->{$def{name}}->{$arg};
+              $default = " Default: $def_val";
+            }
+
+            $pod->say(qq[=item * $arg ($type)$default\n]);
           }
           $pod->say(qq[=back\n]);
         }
@@ -1386,6 +1393,19 @@ sub say_call_fn
     $return = 'SV *';
   }
 
+  my @calls = @vals;
+
+  foreach my $val ( @vals )
+  {
+    # Using $fn_name instead of $def{name} since if there is an override
+    # included (aka _$def{name}), prefer adding the default in the perl space
+    # but leave them for generated documentation to use
+    if ( exists $class_defaults->{$fn_name}->{$val} )
+    {
+      $val .= ' = ' . $class_defaults->{$fn_name}->{$val};
+    }
+  }
+
   local $" = ', ';
   say $xs "";
   say $xs "$return";
@@ -1395,7 +1415,6 @@ sub say_call_fn
     say $xs "        $_";
   }
 
-  my @calls = @vals;
   say $xs "    CODE:";
 
   if ( $is_cb || keys %arrays || keys %buffers )

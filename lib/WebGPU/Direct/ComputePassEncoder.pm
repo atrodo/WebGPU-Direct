@@ -14,17 +14,6 @@ package WebGPU::Direct::ComputePassEncoder
   {
     return $self->_SetBindGroup( $index, $bindGroup, $dynamicOffsets );
   }
-
-  sub DispatchWorkgroups (
-    $self,
-    $workgroupCountX,
-    $workgroupCountY = 1,
-    $workgroupCountZ = 1,
-      )
-  {
-    return $self->_DispatchWorkgroups( $workgroupCountX, $workgroupCountY, $workgroupCountZ );
-  }
-
 };
 
 1;
@@ -49,9 +38,9 @@ WebGPU::Direct::ComputePassEncoder
 
 =item * workgroupCountX (Unsigned 32bit (uint32_t))
 
-=item * workgroupCountY (Unsigned 32bit (uint32_t))
+=item * workgroupCountY (Unsigned 32bit (uint32_t)) Default: 1
 
-=item * workgroupCountZ (Unsigned 32bit (uint32_t))
+=item * workgroupCountZ (Unsigned 32bit (uint32_t)) Default: 1
 
 =back
 

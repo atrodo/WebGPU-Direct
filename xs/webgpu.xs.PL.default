@@ -1,5 +1,5 @@
-# Constants, by a name, are scalar refs, and are fixed up later
 {
+  # Constants, by a name, are scalar refs, and are fixed up later
   ColorTargetState => {
     blend     => undef,
     writeMask => \'ColorWriteMask->All',
@@ -38,6 +38,16 @@
     baseArrayLayer => 0,
     baseMipLevel   => 0,
   },
+
+  # XS Function and function documentation of defaults
+
+  # ComputePassEncoder
+  (
+    DispatchWorkgroups => {
+      workgroupCountY => 1,
+      workgroupCountZ => 1,
+    },
+  ),
 }
 
 # vim: syn=perl
