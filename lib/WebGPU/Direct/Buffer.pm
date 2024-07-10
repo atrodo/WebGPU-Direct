@@ -4,14 +4,39 @@ package WebGPU::Direct::Buffer
   use warnings;
   no warnings qw(experimental::signatures);
   use feature 'signatures';
+  use Carp;
+
+  sub GetConstMappedRange (
+    $self,
+    $offset = 0,
+    $size   = $self->GetSize - $offset,
+      )
+  {
+    return $self->_GetConstMappedRange( $offset, $size );
+  }
 
   sub GetMappedRange (
     $self,
     $offset = 0,
-    $size = $self->GetSize - $offset,
+    $size   = $self->GetSize - $offset,
       )
   {
-    return $self->_GetMappedRange($offset, $size);
+    return $self->_GetMappedRange( $offset, $size );
+  }
+
+  sub MapAsync (
+    $self,
+    $mode,
+    $offset   = 0,
+    $size     = $self->GetSize - $offset,
+    $callback = '',
+    $userdata = {},
+      )
+  {
+    croak "callback must be provided"
+        if !$callback;
+
+    return $self->_MapAsync( $mode, $offset, $size, $callback, $userdata );
   }
 };
 
@@ -45,9 +70,9 @@ WebGPU::Direct::Buffer
 
 =over
 
-=item * offset (Integer (size_t))
+=item * offset (Integer (size_t)) Default: 0
 
-=item * size (Integer (size_t))
+=item * size (Integer (size_t)) Default: GetSize() - offset
 
 =back
 
@@ -129,13 +154,13 @@ WebGPU::Direct::Buffer
 
 =item * mode (L<WGPUMapModeFlags|WebGPU::Direct::Constants/WebGPU::Direct::MapMode>)
 
-=item * offset (Integer (size_t))
+=item * offset (Integer (size_t)) Default: 0
 
-=item * size (Integer (size_t))
+=item * size (Integer (size_t)) Default: GetSize() - offset
 
 =item * callback (WebGPU::Direct::BufferMapCallback (Code reference))
 
-=item * userdata (Scalar (void *))
+=item * userdata (Scalar (void *)) Default: {}
 
 =back
 

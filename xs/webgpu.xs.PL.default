@@ -51,9 +51,18 @@
 
   Buffer =>
   {
+    GetConstMappedRange => {
+      offset => 0,
+      size => 'GetSize() - offset',
+    },
     GetMappedRange => {
       offset => 0,
       size   => 'GetSize() - offset',
+    },
+    MapAsync => {
+      offset => 0,
+      size => 'GetSize() - offset',
+      userdata => '{}',
     },
   },
 
@@ -61,6 +70,10 @@
   {
     BeginComputePass => {
       descriptor => '{}',
+    },
+    ClearBuffer => {
+      offset => 0,
+      size => 'buffer->GetSize() - offset',
     },
     Finish => {
       descriptor => '{}',
@@ -80,10 +93,10 @@
 
   Device =>
   {
-    CreateShaderModule => {
+    CreateCommandEncoder => {
       descriptor => '{}',
     },
-    CreateCommandEncoder => {
+    CreateSampler => {
       descriptor => '{}',
     },
   },
@@ -97,6 +110,31 @@
     },
   },
 
+  RenderBundleEncoder => {
+    Draw => {
+      instanceCount => 1,
+      firstVertex   => 0,
+      firstInstance => 0,
+    },
+    DrawIndexed => {
+      instanceCount => 1,
+      firstIndex => 0,
+      baseVertex => 0,
+      firstInstance => 0,
+    },
+    SetBindGroup => {
+      dynamicOffsets => '[]',
+    },
+    SetIndexBuffer => {
+      offset => 0,
+      size => 'buffer->GetSize() - offset',
+    },
+    SetVertexBuffer => {
+      offset => 0,
+      size   => 'buffer->GetSize() - offset',
+    },
+  },
+
   RenderPassEncoder =>
   {
     Draw => {
@@ -104,10 +142,22 @@
       firstVertex   => 0,
       firstInstance => 0,
     },
-
+    DrawIndexed => {
+      instanceCount => 1,
+      firstIndex => 0,
+      baseVertex => 0,
+      firstInstance => 0,
+    },
+    SetBindGroup => {
+      dynamicOffsets => '[]',
+    },
+    SetIndexBuffer => {
+      offset => 0,
+      size => 'buffer->GetSize() - offset',
+    },
     SetVertexBuffer => {
       offset => 0,
-      size   => 'GetSize() - offset',
+      size   => 'buffer->GetSize() - offset',
     },
   },
 

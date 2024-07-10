@@ -8,6 +8,27 @@ package WebGPU::Direct::RenderPassEncoder
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
+  sub SetBindGroup (
+    $self,
+    $groupIndex,
+    $group,
+    $dynamicOffsets = [],
+      )
+  {
+    return $self->_SetBindGroup( $groupIndex, $group, $dynamicOffsets );
+  }
+
+  sub SetIndexBuffer (
+    $self,
+    $buffer,
+    $format,
+    $offset = 0,
+    $size   = $buffer->GetSize() - $offset,
+      )
+  {
+    return $self->_SetIndexBuffer( $buffer, $format, $offset, $size );
+  }
+
   sub SetVertexBuffer (
     $self,
     $slot,
@@ -76,13 +97,13 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * indexCount (Unsigned 32bit (uint32_t))
 
-=item * instanceCount (Unsigned 32bit (uint32_t))
+=item * instanceCount (Unsigned 32bit (uint32_t)) Default: 1
 
-=item * firstIndex (Unsigned 32bit (uint32_t))
+=item * firstIndex (Unsigned 32bit (uint32_t)) Default: 0
 
-=item * baseVertex (Signed 32bit (int32_t))
+=item * baseVertex (Signed 32bit (int32_t)) Default: 0
 
-=item * firstInstance (Unsigned 32bit (uint32_t))
+=item * firstInstance (Unsigned 32bit (uint32_t)) Default: 0
 
 =back
 
@@ -184,7 +205,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * dynamicOffsetCount (Integer (size_t))
 
-=item * dynamicOffsets (Unsigned 32bit (uint32_t))
+=item * dynamicOffsets (Unsigned 32bit (uint32_t)) Default: []
 
 =back
 
@@ -216,9 +237,9 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * format (L<WebGPU::Direct::IndexFormat|WebGPU::Direct::Constants/WebGPU::Direct::IndexFormat>)
 
-=item * offset (Unsigned 64bit (uint64_t))
+=item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t))
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
 
 =back
 
@@ -300,7 +321,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t)) Default: GetSize() - offset
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
 
 =back
 

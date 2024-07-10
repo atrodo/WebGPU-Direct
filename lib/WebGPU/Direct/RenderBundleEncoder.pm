@@ -4,6 +4,38 @@ package WebGPU::Direct::RenderBundleEncoder
   use warnings;
   no warnings qw(experimental::signatures);
   use feature 'signatures';
+
+  sub SetBindGroup (
+    $self,
+    $groupIndex,
+    $group,
+    $dynamicOffsets = [],
+      )
+  {
+    return $self->_SetBindGroup( $groupIndex, $group, $dynamicOffsets );
+  }
+
+  sub SetIndexBuffer (
+    $self,
+    $buffer,
+    $format,
+    $offset = 0,
+    $size   = $buffer->GetSize() - $offset,
+      )
+  {
+    return $self->_SetIndexBuffer( $buffer, $format, $offset, $size );
+  }
+
+  sub SetVertexBuffer (
+    $self,
+    $slot,
+    $buffer,
+    $offset = 0,
+    $size   = $buffer->GetSize() - $offset,
+      )
+  {
+    return $self->_SetVertexBuffer( $slot, $buffer, $offset, $size );
+  }
 };
 
 1;
@@ -28,11 +60,11 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * vertexCount (Unsigned 32bit (uint32_t))
 
-=item * instanceCount (Unsigned 32bit (uint32_t))
+=item * instanceCount (Unsigned 32bit (uint32_t)) Default: 1
 
-=item * firstVertex (Unsigned 32bit (uint32_t))
+=item * firstVertex (Unsigned 32bit (uint32_t)) Default: 0
 
-=item * firstInstance (Unsigned 32bit (uint32_t))
+=item * firstInstance (Unsigned 32bit (uint32_t)) Default: 0
 
 =back
 
@@ -48,13 +80,13 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * indexCount (Unsigned 32bit (uint32_t))
 
-=item * instanceCount (Unsigned 32bit (uint32_t))
+=item * instanceCount (Unsigned 32bit (uint32_t)) Default: 1
 
-=item * firstIndex (Unsigned 32bit (uint32_t))
+=item * firstIndex (Unsigned 32bit (uint32_t)) Default: 0
 
-=item * baseVertex (Signed 32bit (int32_t))
+=item * baseVertex (Signed 32bit (int32_t)) Default: 0
 
-=item * firstInstance (Unsigned 32bit (uint32_t))
+=item * firstInstance (Unsigned 32bit (uint32_t)) Default: 0
 
 =back
 
@@ -158,7 +190,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * dynamicOffsetCount (Integer (size_t))
 
-=item * dynamicOffsets (Unsigned 32bit (uint32_t))
+=item * dynamicOffsets (Unsigned 32bit (uint32_t)) Default: []
 
 =back
 
@@ -176,9 +208,9 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * format (L<WebGPU::Direct::IndexFormat|WebGPU::Direct::Constants/WebGPU::Direct::IndexFormat>)
 
-=item * offset (Unsigned 64bit (uint64_t))
+=item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t))
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
 
 =back
 
@@ -224,9 +256,9 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * offset (Unsigned 64bit (uint64_t))
+=item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t))
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
 
 =back
 

@@ -16,6 +16,16 @@ package WebGPU::Direct::CommandEncoder
     return $self->_BeginComputePass($descriptor);
   }
 
+  sub ClearBuffer (
+    $self,
+    $buffer,
+    $offset = 0,
+    $size   = $buffer->GetSize() - $offset,
+      )
+  {
+    return $self->_ClearBuffer( $buffer, $offset, $size );
+  }
+
   sub Finish (
     $self,
     $descriptor = {}
@@ -91,9 +101,9 @@ WebGPU::Direct::CommandEncoder
 
 =item * buffer (L<WebGPU::Direct::Buffer>)
 
-=item * offset (Unsigned 64bit (uint64_t))
+=item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t))
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
 
 =back
 

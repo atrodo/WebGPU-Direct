@@ -162,7 +162,7 @@ wgpuBufferDestroy(buffer)
 
 
 void const * 
-wgpuBufferGetConstMappedRange(buffer, offset, size)
+wgpuBuffer_GetConstMappedRange(buffer, offset, size)
         WGPUBuffer buffer
         size_t offset
         size_t size
@@ -212,7 +212,7 @@ wgpuBufferGetUsage(buffer)
 
 
 void 
-wgpuBufferMapAsync(buffer, mode, offset, size, callback, userdata)
+wgpuBuffer_MapAsync(buffer, mode, offset, size, callback, userdata)
         WGPUBuffer buffer
         WGPUMapModeFlags mode
         size_t offset
@@ -309,7 +309,7 @@ wgpuCommandEncoderBeginRenderPass(commandEncoder, descriptor)
 
 
 void 
-wgpuCommandEncoderClearBuffer(commandEncoder, buffer, offset, size)
+wgpuCommandEncoder_ClearBuffer(commandEncoder, buffer, offset, size)
         WGPUCommandEncoder commandEncoder
         WGPUBuffer buffer
         uint64_t offset
@@ -706,7 +706,7 @@ wgpuDeviceCreateRenderPipelineAsync(device, descriptor, callback, userdata)
 
 
 WGPUSampler 
-wgpuDeviceCreateSampler(device, descriptor)
+wgpuDevice_CreateSampler(device, descriptor)
         WGPUDevice device
         WGPUSamplerDescriptor const * descriptor
     CODE:
@@ -1095,7 +1095,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderBundleEncoder	PREFIX = w
 
 
 void 
-wgpuRenderBundleEncoderDraw(renderBundleEncoder, vertexCount, instanceCount, firstVertex, firstInstance)
+wgpuRenderBundleEncoderDraw(renderBundleEncoder, vertexCount, instanceCount = 1, firstVertex = 0, firstInstance = 0)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t vertexCount
         uint32_t instanceCount
@@ -1106,7 +1106,7 @@ wgpuRenderBundleEncoderDraw(renderBundleEncoder, vertexCount, instanceCount, fir
 
 
 void 
-wgpuRenderBundleEncoderDrawIndexed(renderBundleEncoder, indexCount, instanceCount, firstIndex, baseVertex, firstInstance)
+wgpuRenderBundleEncoderDrawIndexed(renderBundleEncoder, indexCount, instanceCount = 1, firstIndex = 0, baseVertex = 0, firstInstance = 0)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t indexCount
         uint32_t instanceCount
@@ -1169,7 +1169,7 @@ wgpuRenderBundleEncoderPushDebugGroup(renderBundleEncoder, groupLabel)
 
 
 void 
-wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsets)
+wgpuRenderBundleEncoder_SetBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsets)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t groupIndex
         WGPUBindGroup group
@@ -1192,7 +1192,7 @@ wgpuRenderBundleEncoderSetBindGroup(renderBundleEncoder, groupIndex, group, dyna
 
 
 void 
-wgpuRenderBundleEncoderSetIndexBuffer(renderBundleEncoder, buffer, format, offset, size)
+wgpuRenderBundleEncoder_SetIndexBuffer(renderBundleEncoder, buffer, format, offset, size)
         WGPURenderBundleEncoder renderBundleEncoder
         WGPUBuffer buffer
         WGPUIndexFormat format
@@ -1219,7 +1219,7 @@ wgpuRenderBundleEncoderSetPipeline(renderBundleEncoder, pipeline)
 
 
 void 
-wgpuRenderBundleEncoderSetVertexBuffer(renderBundleEncoder, slot, buffer, offset, size)
+wgpuRenderBundleEncoder_SetVertexBuffer(renderBundleEncoder, slot, buffer, offset, size)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t slot
         WGPUBuffer buffer
@@ -1266,7 +1266,7 @@ wgpuRenderPassEncoderDraw(renderPassEncoder, vertexCount, instanceCount = 1, fir
 
 
 void 
-wgpuRenderPassEncoderDrawIndexed(renderPassEncoder, indexCount, instanceCount, firstIndex, baseVertex, firstInstance)
+wgpuRenderPassEncoderDrawIndexed(renderPassEncoder, indexCount, instanceCount = 1, firstIndex = 0, baseVertex = 0, firstInstance = 0)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t indexCount
         uint32_t instanceCount
@@ -1354,7 +1354,7 @@ wgpuRenderPassEncoderPushDebugGroup(renderPassEncoder, groupLabel)
 
 
 void 
-wgpuRenderPassEncoderSetBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsets)
+wgpuRenderPassEncoder_SetBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsets)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
@@ -1385,7 +1385,7 @@ wgpuRenderPassEncoderSetBlendConstant(renderPassEncoder, color)
 
 
 void 
-wgpuRenderPassEncoderSetIndexBuffer(renderPassEncoder, buffer, format, offset, size)
+wgpuRenderPassEncoder_SetIndexBuffer(renderPassEncoder, buffer, format, offset, size)
         WGPURenderPassEncoder renderPassEncoder
         WGPUBuffer buffer
         WGPUIndexFormat format

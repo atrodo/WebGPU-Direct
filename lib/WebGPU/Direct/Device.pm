@@ -10,7 +10,7 @@ package WebGPU::Direct::Device
 
   sub CreateShaderModule (
     $self,
-    $descriptor = {},
+    $descriptor,
       )
   {
     if ( !blessed $descriptor )
@@ -50,6 +50,15 @@ package WebGPU::Direct::Device
   {
     return $self->_CreateCommandEncoder($descriptor);
   }
+
+  sub CreateSampler (
+    $self,
+    $descriptor = {},
+  )
+  {
+    return $self->_CreateSampler($descriptor);
+  }
+
 };
 
 1;
@@ -314,7 +323,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::SamplerDescriptor|WebGPU::Direct::Types/WebGPU::Direct::SamplerDescriptor>)
+=item * descriptor (L<WebGPU::Direct::SamplerDescriptor|WebGPU::Direct::Types/WebGPU::Direct::SamplerDescriptor>) Default: {}
 
 =back
 
@@ -336,7 +345,7 @@ WebGPU::Direct::Device
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::ShaderModuleDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleDescriptor>) Default: {}
+=item * descriptor (L<WebGPU::Direct::ShaderModuleDescriptor|WebGPU::Direct::Types/WebGPU::Direct::ShaderModuleDescriptor>)
 
 =back
 
