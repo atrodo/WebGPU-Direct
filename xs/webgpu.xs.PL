@@ -1437,16 +1437,20 @@ sub say_call_fn
       my $cb_pkg  = pkg_name($cb_type);
 
       $cb_pkg =~ tr/:/_/;
-      @calls[ -2, -1 ] = qw/c &c_userdata/;
+      @calls[ -2, -1 ] = qw/c c_userdata/;
 
       say $xs <<~"EOF"; my $n = qq{
               $cb_type c = &${cb_pkg}__callback;
-              cb_data c_userdata = {
+              cb_data *c_userdata;
+              Newx(c_userdata, 1, cb_data);
+              *c_userdata = (cb_data) {
                 .guard1 = CB_GUARD,
                 .guard2 = CB_GUARD,
                 .perlsub = callback,
                 .data = userdata,
               };
+              SvREFCNT_inc(callback);
+              SvREFCNT_inc(userdata);
         EOF
         };
     }
