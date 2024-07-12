@@ -282,6 +282,14 @@ package
   sub newVertexAttribute { my $class = shift; return WebGPU::Direct::VertexAttribute->new(@_); }
   sub newVertexBufferLayout { my $class = shift; return WebGPU::Direct::VertexBufferLayout->new(@_); }
   sub newVertexState { my $class = shift; return WebGPU::Direct::VertexState->new(@_); }
+  sub ALIGN_OF_f16 () { 2 }; push @export_all, 'ALIGN_OF_f16';
+  sub ALIGN_OF_f32 () { 4 }; push @export_all, 'ALIGN_OF_f32';
+  sub ALIGN_OF_i32 () { 4 }; push @export_all, 'ALIGN_OF_i32';
+  sub ALIGN_OF_u32 () { 4 }; push @export_all, 'ALIGN_OF_u32';
+  sub BYTES_PER_f16 () { 2 }; push @export_all, 'BYTES_PER_f16';
+  sub BYTES_PER_f32 () { 4 }; push @export_all, 'BYTES_PER_f32';
+  sub BYTES_PER_i32 () { 4 }; push @export_all, 'BYTES_PER_i32';
+  sub BYTES_PER_u32 () { 4 }; push @export_all, 'BYTES_PER_u32';
 };
 
 package

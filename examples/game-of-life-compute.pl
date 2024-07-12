@@ -155,7 +155,7 @@ sub resetGameData
   );
   my $sizeBuffer = $device->CreateBuffer(
     {
-      size             => 2 * length( pack 'L', 0 ),
+      size             => 2 * BYTES_PER_u32,
       usage            => BufferUsage->Storage | BufferUsage->Uniform | BufferUsage->CopyDst | BufferUsage->Vertex,
       mappedAtCreation => 1,
     }
@@ -250,7 +250,7 @@ sub resetGameData
           binding => 0,
           buffer  => $sizeBuffer,
           offset  => 0,
-          size    => 2 * length( pack 'L', 0 ),
+          size    => 2 * BYTES_PER_u32,
         },
       ],
     }

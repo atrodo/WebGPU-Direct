@@ -19,6 +19,7 @@ open my $tm, '>', "$Bin/../typemap";
 open my $pm, '>', "$Bin/../lib/WebGPU/Direct/XS.pm";
 
 my $class_defaults = require "$Bin/$Script.default";
+my $constants      = require "$Bin/$Script.constant";
 
 my %typedefs = (
   bool     => 'bool',
@@ -442,6 +443,12 @@ foreach my $enum ( sort keys %enums )
   }
   say $pm join( "\n", @pkgs );
   say $pm join( "\n", @new );
+}
+
+foreach my $const ( sort keys %$constants )
+{
+  my $val = $constants->{$const};
+  say $pm qq[  sub $const () { $val }; push \@export_all, '$const';];
 }
 
 say $pm qq[};];
