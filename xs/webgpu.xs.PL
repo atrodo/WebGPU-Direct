@@ -95,6 +95,8 @@ say $pm q[package # Hide from PAUSE];
 say $pm q[    WebGPU::Direct::Opaque {];
 say $pm q[}];
 say $pm q[];
+say $pm q[require WebGPU::Direct::MappedBuffer;];
+say $pm q[];
 
 sub pkg_name
 {

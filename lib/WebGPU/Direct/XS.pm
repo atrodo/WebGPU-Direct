@@ -17,6 +17,8 @@ package # Hide from PAUSE
     WebGPU::Direct::Opaque {
 }
 
+require WebGPU::Direct::MappedBuffer;
+
 package
 	WebGPU::Direct {
   sub CreateInstance { my $class = shift; WebGPU::Direct::XS::CreateInstance(@_); }
