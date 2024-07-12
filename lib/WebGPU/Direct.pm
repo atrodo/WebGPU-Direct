@@ -93,7 +93,7 @@ This module is currently I<extremely> experimental, including the documentation.
 
 =item * Not all of the generated documentation is currently accurate, for instance callbacks are handled in a perl-ish manner.
 
-=item * Errors generated inside of WebGPU are not yet transformed into excpetions
+=item * Not all errors generated inside of WebGPU can be captured and likely will call C<abort>
 
 =item * Providing the window handle for rendering is done manually
 
@@ -228,6 +228,12 @@ All of the enums have a C<Force32> value. These are not valid values, but are si
 =head2 SwapChain
 
 There are older tutorials or code examples around the internet that use a C<SwapChain> type, both for WebGPU native and JavaScript. Later revisions of WebGPU eliminated that type and moved its functionality onto Surface.
+
+=head2 WebGPU errors
+
+The default operation of L<RequestDevice|WebGPU::Direct::Adapter/RequestDevice> will install an error handler using L<SetUncapturedErrorCallback|WebGPU::Direct::Device/SetUncapturedErrorCallback> if a device is acquired. This means any errors not handled (generally using L<PushErrorScope|WebGPU::Direct::Device/PushErrorScope>/L<PopErrorScope|WebGPU::Direct::Device/PopErrorScope>) will be thrown as L<Error|WebGPU::Direct::Error> objects. If you override how L<RequestDevice|WebGPU::Direct::Adapter/RequestDevice> searches for devices, you will need to install your own error handler.
+
+B<BE WARNED> that WebGPU is still young and experimental, and as such WebGPU native is more so as it lags behind the WebGPU JavaScript API. This means that not all errors will be passed to L<SetUncapturedErrorCallback|WebGPU::Direct::Device/SetUncapturedErrorCallback>, any may even abort instead, and may vary wildly between implementations and versions.
 
 =head2 Error Diagnostics
 

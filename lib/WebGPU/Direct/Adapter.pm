@@ -5,6 +5,8 @@ package WebGPU::Direct::Adapter
   no warnings qw(experimental::signatures);
   use feature 'signatures';
 
+  use WebGPU::Direct::Error qw/webgpu_die/;
+
   sub RequestDevice (
     $self,
     $descriptor = undef,
@@ -43,6 +45,18 @@ package WebGPU::Direct::Adapter
     }
 
     $self->_RequestDevice( $descriptor, $callback, $userdata );
+
+    if ($device)
+    {
+      my $croak = sub
+      {
+        my $type     = shift;
+        my $message  = shift;
+        my $userdata = shift;
+        webgpu_die( $type, $message );
+      };
+      $device->SetUncapturedErrorCallback( $croak, {} );
+    }
 
     return $device;
   }

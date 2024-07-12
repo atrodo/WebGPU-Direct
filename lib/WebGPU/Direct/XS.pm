@@ -18,6 +18,7 @@ package # Hide from PAUSE
 }
 
 require WebGPU::Direct::MappedBuffer;
+require WebGPU::Direct::Error;
 
 package
 	WebGPU::Direct {
