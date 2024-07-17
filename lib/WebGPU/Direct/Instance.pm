@@ -7,7 +7,7 @@ package WebGPU::Direct::Instance
 
   use Carp;
 
-  sub RequestAdapter (
+  sub requestAdapter (
     $self,
     $options  = undef,
     $callback = undef,
@@ -39,7 +39,7 @@ package WebGPU::Direct::Instance
           . "\n\tThis is likely not what you want, the returned adapter may be incompataible with your surface";
     }
 
-    $self->_RequestAdapter( $options, $callback, $userdata );
+    $self->_requestAdapter( $options, $callback, $userdata );
 
     return $adapter;
   }
@@ -57,7 +57,7 @@ WebGPU::Direct::Instance
 
 =head2 Methods
 
-=head3 CreateSurface
+=head3 createSurface
 
 =over
 
@@ -79,9 +79,9 @@ WebGPU::Direct::Instance
 
 =back
 
-=head3 ProcessEvents
+=head3 processEvents
 
-=head3 RequestAdapter
+=head3 requestAdapter
 
 =over
 
@@ -99,7 +99,7 @@ WebGPU::Direct::Instance
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

@@ -13,14 +13,14 @@ my $wgpu = WebGPU::Direct->new;
 my $width  = 600;
 my $height = 600;
 
-my $gpuContext = $wgpu->CreateSurface(
+my $gpuContext = $wgpu->createSurface(
   {
     nextInChain => WebGPU::Direct->new_window( $width, $height ),
   }
 );
 
-my $adapter = $wgpu->RequestAdapter({ compatibleSurface => $gpuContext });
-my $device  = $adapter->RequestDevice;
+my $adapter = $wgpu->requestAdapter({ compatibleSurface => $gpuContext });
+my $device  = $adapter->requestDevice;
 
 #*** Vertex Buffer Setup ***
 
@@ -34,11 +34,11 @@ my $vertexDataBufferDescriptor = {
 };
 
 # GPUBuffer
-my $vertexBuffer = $device->CreateBuffer($vertexDataBufferDescriptor);
+my $vertexBuffer = $device->createBuffer($vertexDataBufferDescriptor);
 
 #*** Shader Setup ***
 my $wgslSource   = join( '', <DATA> );
-my $shaderModule = $device->CreateShaderModule( { code => $wgslSource } );
+my $shaderModule = $device->createShaderModule( { code => $wgslSource } );
 
 # GPUPipelineStageDescriptors
 my $vertexStageDescriptor = { module => $shaderModule, entryPoint => 'vsmain' };
@@ -52,14 +52,14 @@ my $fragmentStageDescriptor = {
 # GPURenderPipelineDescriptor
 
 my $renderPipelineDescriptor = {
-  layout    => $device->CreatePipelineLayout( {} ),
+  layout    => $device->createPipelineLayout( {} ),
   vertex    => $vertexStageDescriptor,
   fragment  => $fragmentStageDescriptor,
   primitive => { topology => PrimitiveTopology->TriangleList },
 };
 
 # GPURenderPipeline
-my $renderPipeline = $device->CreateRenderPipeline($renderPipelineDescriptor);
+my $renderPipeline = $device->createRenderPipeline($renderPipelineDescriptor);
 
 #*** Swap Chain Setup ***
 
@@ -72,11 +72,11 @@ my $canvasConfiguration = {
   device => $device,
   format => TextureFormat->BGRA8Unorm,
 };
-$gpuContext->Configure($canvasConfiguration);
+$gpuContext->configure($canvasConfiguration);
 
 # GPUTexture
 # This is done in the render loop
-my $currentTexture;    # = $gpuContext->GetCurrentTexture;
+my $currentTexture;    # = $gpuContext->getCurrentTexture;
 
 #*** Render Pass Setup ***
 
@@ -84,7 +84,7 @@ my $currentTexture;    # = $gpuContext->GetCurrentTexture;
 
 # GPUTextureView
 # This is done in the render loop
-my $renderAttachment;    # = $currentTexture->texture->CreateView;
+my $renderAttachment;    # = $currentTexture->texture->createView;
 
 # GPUColor
 my $darkBlue = { r => 0.15, g => 0.15, b => 0.5, a => 1 };
@@ -107,26 +107,26 @@ for ( 1 .. 1000 )
   my $renderPassDescriptor = { colorAttachments => [$colorAttachmentDescriptor] };
 
   # GPUCommandEncoder
-  my $commandEncoder = $device->CreateCommandEncoder;
+  my $commandEncoder = $device->createCommandEncoder;
 
   # GPURenderPassEncoder
-  $currentTexture = $gpuContext->GetCurrentTexture;
-  $colorAttachmentDescriptor->{view} = $currentTexture->texture->CreateView;
-  my $renderPassEncoder = $commandEncoder->BeginRenderPass($renderPassDescriptor);
+  $currentTexture = $gpuContext->getCurrentTexture;
+  $colorAttachmentDescriptor->{view} = $currentTexture->texture->createView;
+  my $renderPassEncoder = $commandEncoder->beginRenderPass($renderPassDescriptor);
 
-  $renderPassEncoder->SetPipeline($renderPipeline);
+  $renderPassEncoder->setPipeline($renderPipeline);
   my $vertexBufferSlot = 0;
-  $renderPassEncoder->SetVertexBuffer( $vertexBufferSlot, $vertexBuffer );
-  $renderPassEncoder->Draw( 3, 1, 0, 0 );    # 3 vertices, 1 instance, 0th vertex, 0th instance.
-  $renderPassEncoder->End;
+  $renderPassEncoder->setVertexBuffer( $vertexBufferSlot, $vertexBuffer );
+  $renderPassEncoder->draw( 3, 1, 0, 0 );    # 3 vertices, 1 instance, 0th vertex, 0th instance.
+  $renderPassEncoder->end;
 
   # GPUComamndBuffer
-  my $commandBuffer = $commandEncoder->Finish;
+  my $commandBuffer = $commandEncoder->finish;
 
   # GPUQueue
-  my $queue = $device->GetQueue;
-  $queue->Submit( [$commandBuffer] );
-  $gpuContext->Present;
+  my $queue = $device->getQueue;
+  $queue->submit( [$commandBuffer] );
+  $gpuContext->present;
 }
 
 my $total = time - $start;

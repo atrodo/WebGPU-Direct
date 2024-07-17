@@ -11,14 +11,14 @@ use WebGPU::Direct qw/:all/;
 my $wgpu = WebGPU::Direct->new;
 
 # Create instance
-my $instance = $wgpu->CreateInstance( $wgpu->InstanceDescriptor->new );
+my $instance = $wgpu->createInstance( $wgpu->InstanceDescriptor->new );
 
 # Build X11 Surface
 my $window     = WebGPU::Direct->new_window;
 my $descriptor = $wgpu->SurfaceDescriptor->new( nextInChain => $window );
 
 # Build surface
-my $surface = $instance->CreateSurface($descriptor);
+my $surface = $instance->createSurface($descriptor);
 
 # Acquire an adapter and device
 my $ra_opt = $wgpu->RequestAdapterOptions->new( compatibleSurface => $surface );
@@ -61,17 +61,17 @@ sub handle_request_device
   }
 }
 
-$instance->RequestAdapter( $ra_opt, \&handle_request_adapter, {} );
+$instance->requestAdapter( $ra_opt, \&handle_request_adapter, {} );
 my $supported_limits = $wgpu->SupportedLimits->new;
 
-$adapter->GetLimits($supported_limits);
+$adapter->getLimits($supported_limits);
 my $limits = $supported_limits->limits;
 
 my $req_limits = $wgpu->RequiredLimits->new( { limits => $limits } );
 my $devdesc    = $wgpu->DeviceDescriptor->new( requiredLimits => $req_limits );
-$adapter->RequestDevice( $devdesc, \&handle_request_device, {} );
+$adapter->requestDevice( $devdesc, \&handle_request_device, {} );
 
-my $queue = $device->GetQueue;
+my $queue = $device->getQueue;
 
 # Build the shader
 my $shaderdesc = $wgpu->ShaderModuleDescriptor->new(
@@ -86,15 +86,15 @@ my $shaderdesc = $wgpu->ShaderModuleDescriptor->new(
   }
 );
 
-my $shader = $device->CreateShaderModule($shaderdesc);
+my $shader = $device->createShaderModule($shaderdesc);
 
 # Build the pipeline pieces
 my $pl_desc         = $wgpu->PipelineLayoutDescriptor->new( label => 'pipeline_layout' );
-my $pipeline_layout = $device->CreatePipelineLayout($pl_desc);
+my $pipeline_layout = $device->createPipelineLayout($pl_desc);
 
-my $tex_fmt              = $surface->GetPreferredFormat($adapter);
+my $tex_fmt              = $surface->getPreferredFormat($adapter);
 my $surface_capabilities = $wgpu->SurfaceCapabilities->new;
-$surface->GetCapabilities( $adapter, $surface_capabilities );
+$surface->getCapabilities( $adapter, $surface_capabilities );
 
 my $rpd = $wgpu->RenderPipelineDescriptor->new(
   label  => 'render_pipeline',
@@ -120,7 +120,7 @@ my $rpd = $wgpu->RenderPipelineDescriptor->new(
   ),
 );
 
-my $pipeline = $device->CreateRenderPipeline($rpd);
+my $pipeline = $device->createRenderPipeline($rpd);
 
 my $sc_config = $wgpu->SurfaceConfiguration->new(
   device      => $device,
@@ -132,7 +132,7 @@ my $sc_config = $wgpu->SurfaceConfiguration->new(
   height      => 360,
 );
 
-$surface->Configure($sc_config);
+$surface->configure($sc_config);
 
 # Precreate some objects used in the loop
 my $passcolor = $wgpu->RenderPassColorAttachment->new(
@@ -160,7 +160,7 @@ my $start  = time;
 my $frames = 1000;
 for ( 1 .. 1000 )
 {
-  $surface->GetCurrentTexture($surface_texture);
+  $surface->getCurrentTexture($surface_texture);
 
   for ( $surface_texture->status )
   {
@@ -178,11 +178,11 @@ for ( 1 .. 1000 )
       # the window size. This could result in an infinte loop
       if ( defined $surface_texture->texture )
       {
-        $surface_texture->texture->Release;
+        $surface_texture->texture->release;
       }
       $sc_config->width(640);
       $sc_config->height(360);
-      $surface->Configure($sc_config);
+      $surface->configure($sc_config);
       redo;
     }
     if ( $_ == $status->OutOfMemory
@@ -194,21 +194,21 @@ for ( 1 .. 1000 )
     }
   }
 
-  my $frame = $surface_texture->texture->CreateView;
+  my $frame = $surface_texture->texture->createView;
 
-  my $cmdenc = $device->CreateCommandEncoder($cwdesc);
+  my $cmdenc = $device->createCommandEncoder($cwdesc);
 
   $passcolor->view($frame);
-  my $passenc = $cmdenc->BeginRenderPass($passdesc);
+  my $passenc = $cmdenc->beginRenderPass($passdesc);
 
-  $passenc->SetPipeline($pipeline);
-  $passenc->Draw( 3, 1, 0, 0 );
-  $passenc->End;
+  $passenc->setPipeline($pipeline);
+  $passenc->draw( 3, 1, 0, 0 );
+  $passenc->end;
 
-  my $cmdbuf = $cmdenc->Finish($cbdesc);
+  my $cmdbuf = $cmdenc->finish($cbdesc);
 
-  $queue->Submit( [$cmdbuf] );
-  $surface->Present;
+  $queue->submit( [$cmdbuf] );
+  $surface->present;
 }
 
 my $total = time - $start;

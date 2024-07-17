@@ -18,5 +18,5 @@ WebGPU::Direct::SurfaceCapabilities
 
 =head2 Methods
 
-=head3 FreeMembers
+=head3 freeMembers
 

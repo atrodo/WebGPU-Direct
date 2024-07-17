@@ -5,7 +5,7 @@ package WebGPU::Direct::Surface
   no warnings qw(experimental::signatures);
   use feature 'signatures';
 
-  sub GetCurrentTexture (
+  sub getCurrentTexture (
     $self,
     $surfaceTexture = undef,
       )
@@ -15,7 +15,7 @@ package WebGPU::Direct::Surface
       $surfaceTexture = WebGPU::Direct->SurfaceTexture->new;
     }
 
-    $self->_GetCurrentTexture($surfaceTexture);
+    $self->_getCurrentTexture($surfaceTexture);
 
     return $surfaceTexture;
   }
@@ -33,7 +33,7 @@ WebGPU::Direct::Surface
 
 =head2 Methods
 
-=head3 Configure
+=head3 configure
 
 =over
 
@@ -47,7 +47,7 @@ WebGPU::Direct::Surface
 
 =back
 
-=head3 GetCapabilities
+=head3 getCapabilities
 
 =over
 
@@ -63,7 +63,7 @@ WebGPU::Direct::Surface
 
 =back
 
-=head3 GetCurrentTexture
+=head3 getCurrentTexture
 
 =over
 
@@ -77,7 +77,7 @@ WebGPU::Direct::Surface
 
 =back
 
-=head3 GetPreferredFormat
+=head3 getPreferredFormat
 
 =over
 
@@ -99,11 +99,11 @@ WebGPU::Direct::Surface
 
 =back
 
-=head3 Present
+=head3 present
 
-=head3 Unconfigure
+=head3 unconfigure
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

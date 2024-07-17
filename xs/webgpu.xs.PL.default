@@ -42,7 +42,7 @@
   # XS Function and function documentation of defaults
   Adapter =>
   {
-    RequestDevice => {
+    requestDevice => {
       descriptor => 'undef',
       callback   => 'undef',
       userdata   => '{}',
@@ -51,15 +51,15 @@
 
   Buffer =>
   {
-    GetConstMappedRange => {
+    getConstMappedRange => {
       offset => 0,
       size => 'GetSize() - offset',
     },
-    GetMappedRange => {
+    getMappedRange => {
       offset => 0,
       size   => 'GetSize() - offset',
     },
-    MapAsync => {
+    mapAsync => {
       offset => 0,
       size => 'GetSize() - offset',
       userdata => '{}',
@@ -68,42 +68,42 @@
 
   CommandEncoder =>
   {
-    BeginComputePass => {
+    beginComputePass => {
       descriptor => '{}',
     },
-    ClearBuffer => {
+    clearBuffer => {
       offset => 0,
-      size => 'buffer->GetSize() - offset',
+      size => 'buffer->getSize() - offset',
     },
-    Finish => {
+    finish => {
       descriptor => '{}',
     },
   },
 
   ComputePassEncoder =>
   {
-    DispatchWorkgroups => {
+    dispatchWorkgroups => {
       workgroupCountY => 1,
       workgroupCountZ => 1,
     },
-    SetBindGroup => {
+    setBindGroup => {
       dynamicOffsets => '[]',
     },
   },
 
   Device =>
   {
-    CreateCommandEncoder => {
+    createCommandEncoder => {
       descriptor => '{}',
     },
-    CreateSampler => {
+    createSampler => {
       descriptor => '{}',
     },
   },
 
   Instance =>
   {
-    RequestAdapter => {
+    requestAdapter => {
       options  => 'undef',
       callback => 'undef',
       userdata => '{}',
@@ -111,66 +111,66 @@
   },
 
   RenderBundleEncoder => {
-    Draw => {
+    draw => {
       instanceCount => 1,
       firstVertex   => 0,
       firstInstance => 0,
     },
-    DrawIndexed => {
+    drawIndexed => {
       instanceCount => 1,
       firstIndex => 0,
       baseVertex => 0,
       firstInstance => 0,
     },
-    SetBindGroup => {
+    setBindGroup => {
       dynamicOffsets => '[]',
     },
-    SetIndexBuffer => {
+    setIndexBuffer => {
       offset => 0,
-      size => 'buffer->GetSize() - offset',
+      size => 'buffer->getSize() - offset',
     },
-    SetVertexBuffer => {
+    setVertexBuffer => {
       offset => 0,
-      size   => 'buffer->GetSize() - offset',
+      size   => 'buffer->getSize() - offset',
     },
   },
 
   RenderPassEncoder =>
   {
-    Draw => {
+    draw => {
       instanceCount => 1,
       firstVertex   => 0,
       firstInstance => 0,
     },
-    DrawIndexed => {
+    drawIndexed => {
       instanceCount => 1,
       firstIndex => 0,
       baseVertex => 0,
       firstInstance => 0,
     },
-    SetBindGroup => {
+    setBindGroup => {
       dynamicOffsets => '[]',
     },
-    SetIndexBuffer => {
+    setIndexBuffer => {
       offset => 0,
-      size => 'buffer->GetSize() - offset',
+      size => 'buffer->getSize() - offset',
     },
-    SetVertexBuffer => {
+    setVertexBuffer => {
       offset => 0,
-      size   => 'buffer->GetSize() - offset',
+      size   => 'buffer->getSize() - offset',
     },
   },
 
   Surface =>
   {
-    GetCurrentTexture => {
+    getCurrentTexture => {
       surfaceTexture => 'undef',
     },
   },
 
   Texture =>
   {
-    CreateView => {
+    createView => {
       descriptor => '{}',
     },
   },

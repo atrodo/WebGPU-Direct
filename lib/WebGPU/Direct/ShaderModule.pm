@@ -18,7 +18,7 @@ WebGPU::Direct::ShaderModule
 
 =head2 Methods
 
-=head3 GetCompilationInfo
+=head3 getCompilationInfo
 
 =over
 
@@ -34,7 +34,7 @@ WebGPU::Direct::ShaderModule
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -48,7 +48,7 @@ WebGPU::Direct::ShaderModule
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

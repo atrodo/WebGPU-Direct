@@ -8,36 +8,36 @@ package WebGPU::Direct::RenderPassEncoder
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
-  sub SetBindGroup (
+  sub setBindGroup (
     $self,
     $groupIndex,
     $group,
     $dynamicOffsets = [],
       )
   {
-    return $self->_SetBindGroup( $groupIndex, $group, $dynamicOffsets );
+    return $self->_setBindGroup( $groupIndex, $group, $dynamicOffsets );
   }
 
-  sub SetIndexBuffer (
+  sub setIndexBuffer (
     $self,
     $buffer,
     $format,
     $offset = 0,
-    $size   = $buffer->GetSize() - $offset,
+    $size   = $buffer->getSize() - $offset,
       )
   {
-    return $self->_SetIndexBuffer( $buffer, $format, $offset, $size );
+    return $self->_setIndexBuffer( $buffer, $format, $offset, $size );
   }
 
-  sub SetVertexBuffer (
+  sub setVertexBuffer (
     $self,
     $slot,
     $buffer,
     $offset = 0,
-    $size   = $buffer->GetSize - $offset,
+    $size   = $buffer->getSize - $offset,
       )
   {
-    return $self->_SetVertexBuffer( $slot, $buffer, $offset, $size );
+    return $self->_setVertexBuffer( $slot, $buffer, $offset, $size );
   }
 };
 
@@ -53,7 +53,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =head2 Methods
 
-=head3 BeginOcclusionQuery
+=head3 beginOcclusionQuery
 
 =over
 
@@ -67,7 +67,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 Draw
+=head3 draw
 
 =over
 
@@ -87,7 +87,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 DrawIndexed
+=head3 drawIndexed
 
 =over
 
@@ -109,7 +109,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 DrawIndexedIndirect
+=head3 drawIndexedIndirect
 
 =over
 
@@ -125,7 +125,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 DrawIndirect
+=head3 drawIndirect
 
 =over
 
@@ -141,11 +141,11 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 End
+=head3 end
 
-=head3 EndOcclusionQuery
+=head3 endOcclusionQuery
 
-=head3 ExecuteBundles
+=head3 executeBundles
 
 =over
 
@@ -161,7 +161,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 InsertDebugMarker
+=head3 insertDebugMarker
 
 =over
 
@@ -175,9 +175,9 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 PopDebugGroup
+=head3 popDebugGroup
 
-=head3 PushDebugGroup
+=head3 pushDebugGroup
 
 =over
 
@@ -191,7 +191,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 SetBindGroup
+=head3 setBindGroup
 
 =over
 
@@ -211,7 +211,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 SetBlendConstant
+=head3 setBlendConstant
 
 =over
 
@@ -225,7 +225,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 SetIndexBuffer
+=head3 setIndexBuffer
 
 =over
 
@@ -239,13 +239,13 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->getSize() - offset
 
 =back
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -259,7 +259,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 SetPipeline
+=head3 setPipeline
 
 =over
 
@@ -273,7 +273,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 SetScissorRect
+=head3 setScissorRect
 
 =over
 
@@ -293,7 +293,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 SetStencilReference
+=head3 setStencilReference
 
 =over
 
@@ -307,7 +307,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 SetVertexBuffer
+=head3 setVertexBuffer
 
 =over
 
@@ -321,13 +321,13 @@ WebGPU::Direct::RenderPassEncoder
 
 =item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->getSize() - offset
 
 =back
 
 =back
 
-=head3 SetViewport
+=head3 setViewport
 
 =over
 
@@ -351,7 +351,7 @@ WebGPU::Direct::RenderPassEncoder
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

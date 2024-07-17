@@ -18,9 +18,9 @@ WebGPU::Direct::QuerySet
 
 =head2 Methods
 
-=head3 Destroy
+=head3 destroy
 
-=head3 GetCount
+=head3 getCount
 
 =over
 
@@ -34,7 +34,7 @@ WebGPU::Direct::QuerySet
 
 =back
 
-=head3 GetType
+=head3 getType
 
 =over
 
@@ -48,7 +48,7 @@ WebGPU::Direct::QuerySet
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -62,7 +62,7 @@ WebGPU::Direct::QuerySet
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

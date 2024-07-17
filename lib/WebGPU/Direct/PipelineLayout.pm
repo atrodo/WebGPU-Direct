@@ -18,7 +18,7 @@ WebGPU::Direct::PipelineLayout
 
 =head2 Methods
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -32,7 +32,7 @@ WebGPU::Direct::PipelineLayout
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

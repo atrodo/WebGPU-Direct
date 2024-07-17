@@ -5,8 +5,8 @@ use WebGPU::Direct;
 
 my $wgpu = WebGPU::Direct->new;
 
-my $adapter = $wgpu->RequestAdapter( { compatibleSurface => undef } );
-my $device  = $adapter->RequestDevice;
+my $adapter = $wgpu->requestAdapter( { compatibleSurface => undef } );
+my $device  = $adapter->requestDevice;
 
 my $cube = {};
 
@@ -14,7 +14,7 @@ my $cube = {};
 {
   local $@;
   my $buffer = eval {
-    $device->CreateBuffer(
+    $device->createBuffer(
       {
         size             => 16,
         usage            => 0,

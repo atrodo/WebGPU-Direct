@@ -8,13 +8,13 @@ my @nonempty_keys = qw/maxBindGroups maxBufferSize minUniformBufferOffsetAlignme
 
 my $wgpu = WebGPU::Direct->new;
 
-my $adapter = $wgpu->RequestAdapter( { compatibleSurface => undef } );
-my $device  = $adapter->RequestDevice;
+my $adapter = $wgpu->requestAdapter( { compatibleSurface => undef } );
+my $device  = $adapter->requestDevice;
 
 my $supported_limits = $wgpu->SupportedLimits->new;
 my %limits           = $supported_limits->limits->%*;
 
-$adapter->GetLimits($supported_limits);
+$adapter->getLimits($supported_limits);
 
 # Select a few known to not be "0"
 foreach my $k (@nonempty_keys)
@@ -23,7 +23,7 @@ foreach my $k (@nonempty_keys)
 }
 
 # What happens when we call with a uninitalized value
-$adapter->GetLimits( {} );
+$adapter->getLimits( {} );
 ok( 1, 'Can call useless population of limits without results' );
 
 done_testing;

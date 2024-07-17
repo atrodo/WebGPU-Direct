@@ -18,7 +18,7 @@ WebGPU::Direct::ComputePipeline
 
 =head2 Methods
 
-=head3 GetBindGroupLayout
+=head3 getBindGroupLayout
 
 =over
 
@@ -40,7 +40,7 @@ WebGPU::Direct::ComputePipeline
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -54,7 +54,7 @@ WebGPU::Direct::ComputePipeline
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

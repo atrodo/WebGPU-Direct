@@ -22,8 +22,8 @@ require WebGPU::Direct::Error;
 
 package
 	WebGPU::Direct {
-  sub CreateInstance { my $class = shift; WebGPU::Direct::XS::CreateInstance(@_); }
-  sub GetProcAddress { my $class = shift; WebGPU::Direct::XS::GetProcAddress(@_); }
+  sub createInstance { my $class = shift; WebGPU::Direct::XS::createInstance(@_); }
+  sub getProcAddress { my $class = shift; WebGPU::Direct::XS::getProcAddress(@_); }
   our @export_all;
   sub AdapterType () { 'WebGPU::Direct::AdapterType' }; push @export_all, 'AdapterType';
   sub AddressMode () { 'WebGPU::Direct::AddressMode' }; push @export_all, 'AddressMode';
@@ -949,7 +949,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -964,7 +964,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -979,7 +979,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -994,7 +994,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1009,7 +1009,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1024,7 +1024,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1039,7 +1039,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1054,7 +1054,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1069,7 +1069,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1084,7 +1084,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1099,7 +1099,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1114,7 +1114,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1129,7 +1129,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1144,7 +1144,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1159,7 +1159,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1174,7 +1174,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1189,7 +1189,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1204,7 +1204,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1219,7 +1219,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1234,7 +1234,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1249,7 +1249,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }
@@ -1264,7 +1264,7 @@ package
     }
     sub DESTROY
     {
-      $_[0]->Release;
+      $_[0]->release;
     }
 
 }

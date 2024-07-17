@@ -6,29 +6,29 @@ package WebGPU::Direct::Buffer
   use feature 'signatures';
   use Carp;
 
-  sub GetConstMappedRange (
+  sub getConstMappedRange (
     $self,
     $offset = 0,
-    $size   = $self->GetSize - $offset,
+    $size   = $self->getSize - $offset,
       )
   {
-    return $self->_GetConstMappedRange( $offset, $size );
+    return $self->_getConstMappedRange( $offset, $size );
   }
 
-  sub GetMappedRange (
+  sub getMappedRange (
     $self,
     $offset = 0,
-    $size   = $self->GetSize - $offset,
+    $size   = $self->getSize - $offset,
       )
   {
-    return $self->_GetMappedRange( $offset, $size );
+    return $self->_getMappedRange( $offset, $size );
   }
 
-  sub MapAsync (
+  sub mapAsync (
     $self,
     $mode,
     $offset   = 0,
-    $size     = $self->GetSize - $offset,
+    $size     = $self->getSize - $offset,
     $callback = '',
     $userdata = {},
       )
@@ -36,7 +36,7 @@ package WebGPU::Direct::Buffer
     croak "callback must be provided"
         if !$callback;
 
-    return $self->_MapAsync( $mode, $offset, $size, $callback, $userdata );
+    return $self->_mapAsync( $mode, $offset, $size, $callback, $userdata );
   }
 };
 
@@ -52,9 +52,9 @@ WebGPU::Direct::Buffer
 
 =head2 Methods
 
-=head3 Destroy
+=head3 destroy
 
-=head3 GetConstMappedRange
+=head3 getConstMappedRange
 
 =over
 
@@ -78,7 +78,7 @@ WebGPU::Direct::Buffer
 
 =back
 
-=head3 GetMapState
+=head3 getMapState
 
 =over
 
@@ -92,7 +92,7 @@ WebGPU::Direct::Buffer
 
 =back
 
-=head3 GetMappedRange
+=head3 getMappedRange
 
 =over
 
@@ -116,7 +116,7 @@ WebGPU::Direct::Buffer
 
 =back
 
-=head3 GetSize
+=head3 getSize
 
 =over
 
@@ -130,7 +130,7 @@ WebGPU::Direct::Buffer
 
 =back
 
-=head3 GetUsage
+=head3 getUsage
 
 =over
 
@@ -144,7 +144,7 @@ WebGPU::Direct::Buffer
 
 =back
 
-=head3 MapAsync
+=head3 mapAsync
 
 =over
 
@@ -166,7 +166,7 @@ WebGPU::Direct::Buffer
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -180,9 +180,9 @@ WebGPU::Direct::Buffer
 
 =back
 
-=head3 Unmap
+=head3 unmap
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

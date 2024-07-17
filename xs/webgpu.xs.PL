@@ -352,8 +352,8 @@ while (<$h>)
     my @args = ( $arg =~ m[ \s* ([^,]*) \s+ (\w+) \s* (?: , | $ ) ]xmsg );
 
     my $fn_def = {
-      return => pkg_name($return) . " $return2",
       return => "$return $return2",
+      c_name => $fn_name,
       name   => $fn_name,
       args   => [@args],
     };
@@ -374,6 +374,8 @@ while (<$h>)
       $fn_def->{prefix} = $1;
       push @fns, $fn_def;
     }
+
+    $fn_def->{name} = lcfirst($fn_def->{name});
 
     next;
   }
@@ -644,13 +646,13 @@ foreach my $class (@classes)
   say $xs qq{MODULE = WebGPU::Direct\tPACKAGE = $class\tPREFIX = $prefix};
   say $xs '';
 
-  if ( grep { $_->{name} eq 'Release' } @fns )
+  if ( grep { $_->{name} eq 'release' } @fns )
   {
     $destroy = <<~"EOF"; my $n = qq{
 
         sub DESTROY
         {
-          \$_[0]->Release;
+          \$_[0]->release;
         }
     EOF
     };
@@ -1547,7 +1549,7 @@ sub say_call_fn
     {
       say $xs "      Size_t offset = 0;";
     }
-    say $xs "      void *n = $def{prefix}$def{name}($call);";
+    say $xs "      void *n = $def{c_name}($call);";
     say $xs "      RETVAL =  WebGPU__Direct__MappedBuffer__wrap(aTHX_ n, size-offset);";
     $def_arg->{return} = 'MappedBuffer';
   }
@@ -1558,9 +1560,9 @@ sub say_call_fn
     $type =~ s/\s*[*]$//xms;
 
     say $xs "      $ptr_type result = NULL;";
-    say $xs "      size_t count = $def{prefix}$def{name}($call, result);";
+    say $xs "      size_t count = $def{c_name}($call, result);";
     say $xs "      Newxz(result, count, $type);";
-    say $xs "      count = $def{prefix}$def{name}($call, result);";
+    say $xs "      count = $def{c_name}($call, result);";
     say $xs '      SV *STRICT_ENUM = get_sv("WebGPU::Direct::Enum::STRICT_NEW", GV_ADDWARN | GV_ADDMULTI);';
     say $xs "      save_item(STRICT_ENUM);";
     say $xs "      sv_setsv(STRICT_ENUM, &PL_sv_undef);";
@@ -1569,7 +1571,7 @@ sub say_call_fn
   }
   else
   {
-    say $xs "      $retval$def{prefix}$def{name}($call);";
+    say $xs "      $retval$def{c_name}($call);";
   }
 
   foreach my $unpack (@unpacks)

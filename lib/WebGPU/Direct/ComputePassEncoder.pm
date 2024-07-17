@@ -5,14 +5,14 @@ package WebGPU::Direct::ComputePassEncoder
   no warnings qw(experimental::signatures);
   use feature 'signatures';
 
-  sub SetBindGroup (
+  sub setBindGroup (
     $self,
     $index,
     $bindGroup,
     $dynamicOffsets = [],
       )
   {
-    return $self->_SetBindGroup( $index, $bindGroup, $dynamicOffsets );
+    return $self->_setBindGroup( $index, $bindGroup, $dynamicOffsets );
   }
 };
 
@@ -28,7 +28,7 @@ WebGPU::Direct::ComputePassEncoder
 
 =head2 Methods
 
-=head3 DispatchWorkgroups
+=head3 dispatchWorkgroups
 
 =over
 
@@ -46,7 +46,7 @@ WebGPU::Direct::ComputePassEncoder
 
 =back
 
-=head3 DispatchWorkgroupsIndirect
+=head3 dispatchWorkgroupsIndirect
 
 =over
 
@@ -62,9 +62,9 @@ WebGPU::Direct::ComputePassEncoder
 
 =back
 
-=head3 End
+=head3 end
 
-=head3 InsertDebugMarker
+=head3 insertDebugMarker
 
 =over
 
@@ -78,9 +78,9 @@ WebGPU::Direct::ComputePassEncoder
 
 =back
 
-=head3 PopDebugGroup
+=head3 popDebugGroup
 
-=head3 PushDebugGroup
+=head3 pushDebugGroup
 
 =over
 
@@ -94,7 +94,7 @@ WebGPU::Direct::ComputePassEncoder
 
 =back
 
-=head3 SetBindGroup
+=head3 setBindGroup
 
 =over
 
@@ -114,7 +114,7 @@ WebGPU::Direct::ComputePassEncoder
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -128,7 +128,7 @@ WebGPU::Direct::ComputePassEncoder
 
 =back
 
-=head3 SetPipeline
+=head3 setPipeline
 
 =over
 
@@ -142,7 +142,7 @@ WebGPU::Direct::ComputePassEncoder
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

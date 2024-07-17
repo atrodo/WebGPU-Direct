@@ -7,7 +7,7 @@ package WebGPU::Direct::Adapter
 
   use WebGPU::Direct::Error qw/webgpu_die/;
 
-  sub RequestDevice (
+  sub requestDevice (
     $self,
     $descriptor = undef,
     $callback   = undef,
@@ -35,7 +35,7 @@ package WebGPU::Direct::Adapter
     {
       my $supported_limits = WebGPU::Direct->SupportedLimits->new;
 
-      $self->GetLimits($supported_limits);
+      $self->getLimits($supported_limits);
       my $limits = $supported_limits->limits;
 
       my $req_limits
@@ -44,7 +44,7 @@ package WebGPU::Direct::Adapter
           = WebGPU::Direct->DeviceDescriptor->new( requiredLimits => $req_limits );
     }
 
-    $self->_RequestDevice( $descriptor, $callback, $userdata );
+    $self->_requestDevice( $descriptor, $callback, $userdata );
 
     if ($device)
     {
@@ -55,7 +55,7 @@ package WebGPU::Direct::Adapter
         my $userdata = shift;
         webgpu_die( $type, $message );
       };
-      $device->SetUncapturedErrorCallback( $croak, {} );
+      $device->setUncapturedErrorCallback( $croak, {} );
     }
 
     return $device;
@@ -74,7 +74,7 @@ WebGPU::Direct::Adapter
 
 =head2 Methods
 
-=head3 EnumerateFeatures
+=head3 enumerateFeatures
 
 =over
 
@@ -96,7 +96,7 @@ WebGPU::Direct::Adapter
 
 =back
 
-=head3 GetLimits
+=head3 getLimits
 
 =over
 
@@ -118,7 +118,7 @@ WebGPU::Direct::Adapter
 
 =back
 
-=head3 GetProperties
+=head3 getProperties
 
 =over
 
@@ -132,7 +132,7 @@ WebGPU::Direct::Adapter
 
 =back
 
-=head3 HasFeature
+=head3 hasFeature
 
 =over
 
@@ -154,7 +154,7 @@ WebGPU::Direct::Adapter
 
 =back
 
-=head3 RequestDevice
+=head3 requestDevice
 
 =over
 
@@ -172,7 +172,7 @@ WebGPU::Direct::Adapter
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

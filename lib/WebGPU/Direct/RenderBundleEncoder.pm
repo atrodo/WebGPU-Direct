@@ -5,36 +5,36 @@ package WebGPU::Direct::RenderBundleEncoder
   no warnings qw(experimental::signatures);
   use feature 'signatures';
 
-  sub SetBindGroup (
+  sub setBindGroup (
     $self,
     $groupIndex,
     $group,
     $dynamicOffsets = [],
       )
   {
-    return $self->_SetBindGroup( $groupIndex, $group, $dynamicOffsets );
+    return $self->_setBindGroup( $groupIndex, $group, $dynamicOffsets );
   }
 
-  sub SetIndexBuffer (
+  sub setIndexBuffer (
     $self,
     $buffer,
     $format,
     $offset = 0,
-    $size   = $buffer->GetSize() - $offset,
+    $size   = $buffer->getSize() - $offset,
       )
   {
-    return $self->_SetIndexBuffer( $buffer, $format, $offset, $size );
+    return $self->_setIndexBuffer( $buffer, $format, $offset, $size );
   }
 
-  sub SetVertexBuffer (
+  sub setVertexBuffer (
     $self,
     $slot,
     $buffer,
     $offset = 0,
-    $size   = $buffer->GetSize() - $offset,
+    $size   = $buffer->getSize() - $offset,
       )
   {
-    return $self->_SetVertexBuffer( $slot, $buffer, $offset, $size );
+    return $self->_setVertexBuffer( $slot, $buffer, $offset, $size );
   }
 };
 
@@ -50,7 +50,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =head2 Methods
 
-=head3 Draw
+=head3 draw
 
 =over
 
@@ -70,7 +70,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 DrawIndexed
+=head3 drawIndexed
 
 =over
 
@@ -92,7 +92,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 DrawIndexedIndirect
+=head3 drawIndexedIndirect
 
 =over
 
@@ -108,7 +108,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 DrawIndirect
+=head3 drawIndirect
 
 =over
 
@@ -124,7 +124,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 Finish
+=head3 finish
 
 =over
 
@@ -146,7 +146,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 InsertDebugMarker
+=head3 insertDebugMarker
 
 =over
 
@@ -160,9 +160,9 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 PopDebugGroup
+=head3 popDebugGroup
 
-=head3 PushDebugGroup
+=head3 pushDebugGroup
 
 =over
 
@@ -176,7 +176,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 SetBindGroup
+=head3 setBindGroup
 
 =over
 
@@ -196,7 +196,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 SetIndexBuffer
+=head3 setIndexBuffer
 
 =over
 
@@ -210,13 +210,13 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->getSize() - offset
 
 =back
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -230,7 +230,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 SetPipeline
+=head3 setPipeline
 
 =over
 
@@ -244,7 +244,7 @@ WebGPU::Direct::RenderBundleEncoder
 
 =back
 
-=head3 SetVertexBuffer
+=head3 setVertexBuffer
 
 =over
 
@@ -258,13 +258,13 @@ WebGPU::Direct::RenderBundleEncoder
 
 =item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->getSize() - offset
 
 =back
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

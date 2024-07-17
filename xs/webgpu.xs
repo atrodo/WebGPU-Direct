@@ -5,7 +5,7 @@
 MODULE = WebGPU::Direct		PACKAGE = WebGPU::Direct::XS		PREFIX = wgpu
 
 WGPUInstance 
-wgpuCreateInstance(descriptor)
+wgpucreateInstance(descriptor)
         WGPUInstanceDescriptor const * descriptor
     CODE:
       RETVAL = wgpuCreateInstance(descriptor);
@@ -14,7 +14,7 @@ wgpuCreateInstance(descriptor)
 
 
 WGPUProc 
-wgpuGetProcAddress(device, procName)
+wgpugetProcAddress(device, procName)
         WGPUDevice device
         char const * procName
     CODE:
@@ -27,7 +27,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Adapter	PREFIX = wgpuAdapter
 
 
 SV *
-wgpuAdapterEnumerateFeatures(adapter)
+wgpuAdapterenumerateFeatures(adapter)
         WGPUAdapter adapter
     CODE:
       WGPUFeatureName * result = NULL;
@@ -44,7 +44,7 @@ wgpuAdapterEnumerateFeatures(adapter)
 
 
 WGPUBool 
-wgpuAdapterGetLimits(adapter, limits)
+wgpuAdaptergetLimits(adapter, limits)
         WGPUAdapter adapter
         WGPUSupportedLimits * limits
     CODE:
@@ -58,7 +58,7 @@ wgpuAdapterGetLimits(adapter, limits)
 
 
 void 
-wgpuAdapterGetProperties(adapter, properties)
+wgpuAdaptergetProperties(adapter, properties)
         WGPUAdapter adapter
         WGPUAdapterProperties * properties
     CODE:
@@ -70,7 +70,7 @@ wgpuAdapterGetProperties(adapter, properties)
 
 
 WGPUBool 
-wgpuAdapterHasFeature(adapter, feature)
+wgpuAdapterhasFeature(adapter, feature)
         WGPUAdapter adapter
         WGPUFeatureName feature
     CODE:
@@ -80,7 +80,7 @@ wgpuAdapterHasFeature(adapter, feature)
 
 
 void 
-wgpuAdapter_RequestDevice(adapter, descriptor, callback, userdata)
+wgpuAdapter_requestDevice(adapter, descriptor, callback, userdata)
         WGPUAdapter adapter
         WGPUDeviceDescriptor const * descriptor
         CV * callback
@@ -102,14 +102,14 @@ wgpuAdapter_RequestDevice(adapter, descriptor, callback, userdata)
 
 
 void 
-wgpuAdapterReference(adapter)
+wgpuAdapterreference(adapter)
         WGPUAdapter adapter
     CODE:
       wgpuAdapterReference(adapter);
 
 
 void 
-wgpuAdapterRelease(adapter)
+wgpuAdapterrelease(adapter)
         WGPUAdapter adapter
     CODE:
       wgpuAdapterRelease(adapter);
@@ -119,7 +119,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BindGroup	PREFIX = wgpuBindGro
 
 
 void 
-wgpuBindGroupSetLabel(bindGroup, label)
+wgpuBindGroupsetLabel(bindGroup, label)
         WGPUBindGroup bindGroup
         char const * label
     CODE:
@@ -127,14 +127,14 @@ wgpuBindGroupSetLabel(bindGroup, label)
 
 
 void 
-wgpuBindGroupReference(bindGroup)
+wgpuBindGroupreference(bindGroup)
         WGPUBindGroup bindGroup
     CODE:
       wgpuBindGroupReference(bindGroup);
 
 
 void 
-wgpuBindGroupRelease(bindGroup)
+wgpuBindGrouprelease(bindGroup)
         WGPUBindGroup bindGroup
     CODE:
       wgpuBindGroupRelease(bindGroup);
@@ -144,7 +144,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::BindGroupLayout	PREFIX = wgpuB
 
 
 void 
-wgpuBindGroupLayoutSetLabel(bindGroupLayout, label)
+wgpuBindGroupLayoutsetLabel(bindGroupLayout, label)
         WGPUBindGroupLayout bindGroupLayout
         char const * label
     CODE:
@@ -152,14 +152,14 @@ wgpuBindGroupLayoutSetLabel(bindGroupLayout, label)
 
 
 void 
-wgpuBindGroupLayoutReference(bindGroupLayout)
+wgpuBindGroupLayoutreference(bindGroupLayout)
         WGPUBindGroupLayout bindGroupLayout
     CODE:
       wgpuBindGroupLayoutReference(bindGroupLayout);
 
 
 void 
-wgpuBindGroupLayoutRelease(bindGroupLayout)
+wgpuBindGroupLayoutrelease(bindGroupLayout)
         WGPUBindGroupLayout bindGroupLayout
     CODE:
       wgpuBindGroupLayoutRelease(bindGroupLayout);
@@ -169,14 +169,14 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Buffer	PREFIX = wgpuBuffer
 
 
 void 
-wgpuBufferDestroy(buffer)
+wgpuBufferdestroy(buffer)
         WGPUBuffer buffer
     CODE:
       wgpuBufferDestroy(buffer);
 
 
 void const * 
-wgpuBuffer_GetConstMappedRange(buffer, offset, size)
+wgpuBuffer_getConstMappedRange(buffer, offset, size)
         WGPUBuffer buffer
         size_t offset
         size_t size
@@ -187,7 +187,7 @@ wgpuBuffer_GetConstMappedRange(buffer, offset, size)
 
 
 WGPUBufferMapState 
-wgpuBufferGetMapState(buffer)
+wgpuBuffergetMapState(buffer)
         WGPUBuffer buffer
     CODE:
       RETVAL = wgpuBufferGetMapState(buffer);
@@ -196,7 +196,7 @@ wgpuBufferGetMapState(buffer)
 
 
 SV *
-wgpuBuffer_GetMappedRange(buffer, offset, size)
+wgpuBuffer_getMappedRange(buffer, offset, size)
         WGPUBuffer buffer
         size_t offset
         size_t size
@@ -208,7 +208,7 @@ wgpuBuffer_GetMappedRange(buffer, offset, size)
 
 
 uint64_t 
-wgpuBufferGetSize(buffer)
+wgpuBuffergetSize(buffer)
         WGPUBuffer buffer
     CODE:
       RETVAL = wgpuBufferGetSize(buffer);
@@ -217,7 +217,7 @@ wgpuBufferGetSize(buffer)
 
 
 WGPUBufferUsageFlags 
-wgpuBufferGetUsage(buffer)
+wgpuBuffergetUsage(buffer)
         WGPUBuffer buffer
     CODE:
       RETVAL = wgpuBufferGetUsage(buffer);
@@ -226,7 +226,7 @@ wgpuBufferGetUsage(buffer)
 
 
 void 
-wgpuBuffer_MapAsync(buffer, mode, offset, size, callback, userdata)
+wgpuBuffer_mapAsync(buffer, mode, offset, size, callback, userdata)
         WGPUBuffer buffer
         WGPUMapModeFlags mode
         size_t offset
@@ -250,7 +250,7 @@ wgpuBuffer_MapAsync(buffer, mode, offset, size, callback, userdata)
 
 
 void 
-wgpuBufferSetLabel(buffer, label)
+wgpuBuffersetLabel(buffer, label)
         WGPUBuffer buffer
         char const * label
     CODE:
@@ -258,21 +258,21 @@ wgpuBufferSetLabel(buffer, label)
 
 
 void 
-wgpuBufferUnmap(buffer)
+wgpuBufferunmap(buffer)
         WGPUBuffer buffer
     CODE:
       wgpuBufferUnmap(buffer);
 
 
 void 
-wgpuBufferReference(buffer)
+wgpuBufferreference(buffer)
         WGPUBuffer buffer
     CODE:
       wgpuBufferReference(buffer);
 
 
 void 
-wgpuBufferRelease(buffer)
+wgpuBufferrelease(buffer)
         WGPUBuffer buffer
     CODE:
       wgpuBufferRelease(buffer);
@@ -282,7 +282,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CommandBuffer	PREFIX = wgpuCom
 
 
 void 
-wgpuCommandBufferSetLabel(commandBuffer, label)
+wgpuCommandBuffersetLabel(commandBuffer, label)
         WGPUCommandBuffer commandBuffer
         char const * label
     CODE:
@@ -290,14 +290,14 @@ wgpuCommandBufferSetLabel(commandBuffer, label)
 
 
 void 
-wgpuCommandBufferReference(commandBuffer)
+wgpuCommandBufferreference(commandBuffer)
         WGPUCommandBuffer commandBuffer
     CODE:
       wgpuCommandBufferReference(commandBuffer);
 
 
 void 
-wgpuCommandBufferRelease(commandBuffer)
+wgpuCommandBufferrelease(commandBuffer)
         WGPUCommandBuffer commandBuffer
     CODE:
       wgpuCommandBufferRelease(commandBuffer);
@@ -307,7 +307,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::CommandEncoder	PREFIX = wgpuCo
 
 
 WGPUComputePassEncoder 
-wgpuCommandEncoder_BeginComputePass(commandEncoder, descriptor)
+wgpuCommandEncoder_beginComputePass(commandEncoder, descriptor)
         WGPUCommandEncoder commandEncoder
         WGPUComputePassDescriptor const * descriptor
     CODE:
@@ -317,7 +317,7 @@ wgpuCommandEncoder_BeginComputePass(commandEncoder, descriptor)
 
 
 WGPURenderPassEncoder 
-wgpuCommandEncoderBeginRenderPass(commandEncoder, descriptor)
+wgpuCommandEncoderbeginRenderPass(commandEncoder, descriptor)
         WGPUCommandEncoder commandEncoder
         WGPURenderPassDescriptor const * descriptor
     CODE:
@@ -327,7 +327,7 @@ wgpuCommandEncoderBeginRenderPass(commandEncoder, descriptor)
 
 
 void 
-wgpuCommandEncoder_ClearBuffer(commandEncoder, buffer, offset, size)
+wgpuCommandEncoder_clearBuffer(commandEncoder, buffer, offset, size)
         WGPUCommandEncoder commandEncoder
         WGPUBuffer buffer
         uint64_t offset
@@ -337,7 +337,7 @@ wgpuCommandEncoder_ClearBuffer(commandEncoder, buffer, offset, size)
 
 
 void 
-wgpuCommandEncoderCopyBufferToBuffer(commandEncoder, source, sourceOffset, destination, destinationOffset, size)
+wgpuCommandEncodercopyBufferToBuffer(commandEncoder, source, sourceOffset, destination, destinationOffset, size)
         WGPUCommandEncoder commandEncoder
         WGPUBuffer source
         uint64_t sourceOffset
@@ -349,7 +349,7 @@ wgpuCommandEncoderCopyBufferToBuffer(commandEncoder, source, sourceOffset, desti
 
 
 void 
-wgpuCommandEncoderCopyBufferToTexture(commandEncoder, source, destination, copySize)
+wgpuCommandEncodercopyBufferToTexture(commandEncoder, source, destination, copySize)
         WGPUCommandEncoder commandEncoder
         WGPUImageCopyBuffer const * source
         WGPUImageCopyTexture const * destination
@@ -359,7 +359,7 @@ wgpuCommandEncoderCopyBufferToTexture(commandEncoder, source, destination, copyS
 
 
 void 
-wgpuCommandEncoderCopyTextureToBuffer(commandEncoder, source, destination, copySize)
+wgpuCommandEncodercopyTextureToBuffer(commandEncoder, source, destination, copySize)
         WGPUCommandEncoder commandEncoder
         WGPUImageCopyTexture const * source
         WGPUImageCopyBuffer const * destination
@@ -369,7 +369,7 @@ wgpuCommandEncoderCopyTextureToBuffer(commandEncoder, source, destination, copyS
 
 
 void 
-wgpuCommandEncoderCopyTextureToTexture(commandEncoder, source, destination, copySize)
+wgpuCommandEncodercopyTextureToTexture(commandEncoder, source, destination, copySize)
         WGPUCommandEncoder commandEncoder
         WGPUImageCopyTexture const * source
         WGPUImageCopyTexture const * destination
@@ -379,7 +379,7 @@ wgpuCommandEncoderCopyTextureToTexture(commandEncoder, source, destination, copy
 
 
 WGPUCommandBuffer 
-wgpuCommandEncoder_Finish(commandEncoder, descriptor)
+wgpuCommandEncoder_finish(commandEncoder, descriptor)
         WGPUCommandEncoder commandEncoder
         WGPUCommandBufferDescriptor const * descriptor
     CODE:
@@ -389,7 +389,7 @@ wgpuCommandEncoder_Finish(commandEncoder, descriptor)
 
 
 void 
-wgpuCommandEncoderInsertDebugMarker(commandEncoder, markerLabel)
+wgpuCommandEncoderinsertDebugMarker(commandEncoder, markerLabel)
         WGPUCommandEncoder commandEncoder
         char const * markerLabel
     CODE:
@@ -397,14 +397,14 @@ wgpuCommandEncoderInsertDebugMarker(commandEncoder, markerLabel)
 
 
 void 
-wgpuCommandEncoderPopDebugGroup(commandEncoder)
+wgpuCommandEncoderpopDebugGroup(commandEncoder)
         WGPUCommandEncoder commandEncoder
     CODE:
       wgpuCommandEncoderPopDebugGroup(commandEncoder);
 
 
 void 
-wgpuCommandEncoderPushDebugGroup(commandEncoder, groupLabel)
+wgpuCommandEncoderpushDebugGroup(commandEncoder, groupLabel)
         WGPUCommandEncoder commandEncoder
         char const * groupLabel
     CODE:
@@ -412,7 +412,7 @@ wgpuCommandEncoderPushDebugGroup(commandEncoder, groupLabel)
 
 
 void 
-wgpuCommandEncoderResolveQuerySet(commandEncoder, querySet, firstQuery, queryCount, destination, destinationOffset)
+wgpuCommandEncoderresolveQuerySet(commandEncoder, querySet, firstQuery, queryCount, destination, destinationOffset)
         WGPUCommandEncoder commandEncoder
         WGPUQuerySet querySet
         uint32_t firstQuery
@@ -424,7 +424,7 @@ wgpuCommandEncoderResolveQuerySet(commandEncoder, querySet, firstQuery, queryCou
 
 
 void 
-wgpuCommandEncoderSetLabel(commandEncoder, label)
+wgpuCommandEncodersetLabel(commandEncoder, label)
         WGPUCommandEncoder commandEncoder
         char const * label
     CODE:
@@ -432,7 +432,7 @@ wgpuCommandEncoderSetLabel(commandEncoder, label)
 
 
 void 
-wgpuCommandEncoderWriteTimestamp(commandEncoder, querySet, queryIndex)
+wgpuCommandEncoderwriteTimestamp(commandEncoder, querySet, queryIndex)
         WGPUCommandEncoder commandEncoder
         WGPUQuerySet querySet
         uint32_t queryIndex
@@ -441,14 +441,14 @@ wgpuCommandEncoderWriteTimestamp(commandEncoder, querySet, queryIndex)
 
 
 void 
-wgpuCommandEncoderReference(commandEncoder)
+wgpuCommandEncoderreference(commandEncoder)
         WGPUCommandEncoder commandEncoder
     CODE:
       wgpuCommandEncoderReference(commandEncoder);
 
 
 void 
-wgpuCommandEncoderRelease(commandEncoder)
+wgpuCommandEncoderrelease(commandEncoder)
         WGPUCommandEncoder commandEncoder
     CODE:
       wgpuCommandEncoderRelease(commandEncoder);
@@ -458,7 +458,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePassEncoder	PREFIX = wg
 
 
 void 
-wgpuComputePassEncoderDispatchWorkgroups(computePassEncoder, workgroupCountX, workgroupCountY = 1, workgroupCountZ = 1)
+wgpuComputePassEncoderdispatchWorkgroups(computePassEncoder, workgroupCountX, workgroupCountY = 1, workgroupCountZ = 1)
         WGPUComputePassEncoder computePassEncoder
         uint32_t workgroupCountX
         uint32_t workgroupCountY
@@ -468,7 +468,7 @@ wgpuComputePassEncoderDispatchWorkgroups(computePassEncoder, workgroupCountX, wo
 
 
 void 
-wgpuComputePassEncoderDispatchWorkgroupsIndirect(computePassEncoder, indirectBuffer, indirectOffset)
+wgpuComputePassEncoderdispatchWorkgroupsIndirect(computePassEncoder, indirectBuffer, indirectOffset)
         WGPUComputePassEncoder computePassEncoder
         WGPUBuffer indirectBuffer
         uint64_t indirectOffset
@@ -477,14 +477,14 @@ wgpuComputePassEncoderDispatchWorkgroupsIndirect(computePassEncoder, indirectBuf
 
 
 void 
-wgpuComputePassEncoderEnd(computePassEncoder)
+wgpuComputePassEncoderend(computePassEncoder)
         WGPUComputePassEncoder computePassEncoder
     CODE:
       wgpuComputePassEncoderEnd(computePassEncoder);
 
 
 void 
-wgpuComputePassEncoderInsertDebugMarker(computePassEncoder, markerLabel)
+wgpuComputePassEncoderinsertDebugMarker(computePassEncoder, markerLabel)
         WGPUComputePassEncoder computePassEncoder
         char const * markerLabel
     CODE:
@@ -492,14 +492,14 @@ wgpuComputePassEncoderInsertDebugMarker(computePassEncoder, markerLabel)
 
 
 void 
-wgpuComputePassEncoderPopDebugGroup(computePassEncoder)
+wgpuComputePassEncoderpopDebugGroup(computePassEncoder)
         WGPUComputePassEncoder computePassEncoder
     CODE:
       wgpuComputePassEncoderPopDebugGroup(computePassEncoder);
 
 
 void 
-wgpuComputePassEncoderPushDebugGroup(computePassEncoder, groupLabel)
+wgpuComputePassEncoderpushDebugGroup(computePassEncoder, groupLabel)
         WGPUComputePassEncoder computePassEncoder
         char const * groupLabel
     CODE:
@@ -507,7 +507,7 @@ wgpuComputePassEncoderPushDebugGroup(computePassEncoder, groupLabel)
 
 
 void 
-wgpuComputePassEncoder_SetBindGroup(computePassEncoder, groupIndex, group, dynamicOffsets)
+wgpuComputePassEncoder_setBindGroup(computePassEncoder, groupIndex, group, dynamicOffsets)
         WGPUComputePassEncoder computePassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
@@ -530,7 +530,7 @@ wgpuComputePassEncoder_SetBindGroup(computePassEncoder, groupIndex, group, dynam
 
 
 void 
-wgpuComputePassEncoderSetLabel(computePassEncoder, label)
+wgpuComputePassEncodersetLabel(computePassEncoder, label)
         WGPUComputePassEncoder computePassEncoder
         char const * label
     CODE:
@@ -538,7 +538,7 @@ wgpuComputePassEncoderSetLabel(computePassEncoder, label)
 
 
 void 
-wgpuComputePassEncoderSetPipeline(computePassEncoder, pipeline)
+wgpuComputePassEncodersetPipeline(computePassEncoder, pipeline)
         WGPUComputePassEncoder computePassEncoder
         WGPUComputePipeline pipeline
     CODE:
@@ -546,14 +546,14 @@ wgpuComputePassEncoderSetPipeline(computePassEncoder, pipeline)
 
 
 void 
-wgpuComputePassEncoderReference(computePassEncoder)
+wgpuComputePassEncoderreference(computePassEncoder)
         WGPUComputePassEncoder computePassEncoder
     CODE:
       wgpuComputePassEncoderReference(computePassEncoder);
 
 
 void 
-wgpuComputePassEncoderRelease(computePassEncoder)
+wgpuComputePassEncoderrelease(computePassEncoder)
         WGPUComputePassEncoder computePassEncoder
     CODE:
       wgpuComputePassEncoderRelease(computePassEncoder);
@@ -563,7 +563,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ComputePipeline	PREFIX = wgpuC
 
 
 WGPUBindGroupLayout 
-wgpuComputePipelineGetBindGroupLayout(computePipeline, groupIndex)
+wgpuComputePipelinegetBindGroupLayout(computePipeline, groupIndex)
         WGPUComputePipeline computePipeline
         uint32_t groupIndex
     CODE:
@@ -573,7 +573,7 @@ wgpuComputePipelineGetBindGroupLayout(computePipeline, groupIndex)
 
 
 void 
-wgpuComputePipelineSetLabel(computePipeline, label)
+wgpuComputePipelinesetLabel(computePipeline, label)
         WGPUComputePipeline computePipeline
         char const * label
     CODE:
@@ -581,14 +581,14 @@ wgpuComputePipelineSetLabel(computePipeline, label)
 
 
 void 
-wgpuComputePipelineReference(computePipeline)
+wgpuComputePipelinereference(computePipeline)
         WGPUComputePipeline computePipeline
     CODE:
       wgpuComputePipelineReference(computePipeline);
 
 
 void 
-wgpuComputePipelineRelease(computePipeline)
+wgpuComputePipelinerelease(computePipeline)
         WGPUComputePipeline computePipeline
     CODE:
       wgpuComputePipelineRelease(computePipeline);
@@ -598,7 +598,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Device	PREFIX = wgpuDevice
 
 
 WGPUBindGroup 
-wgpuDeviceCreateBindGroup(device, descriptor)
+wgpuDevicecreateBindGroup(device, descriptor)
         WGPUDevice device
         WGPUBindGroupDescriptor const * descriptor
     CODE:
@@ -608,7 +608,7 @@ wgpuDeviceCreateBindGroup(device, descriptor)
 
 
 WGPUBindGroupLayout 
-wgpuDeviceCreateBindGroupLayout(device, descriptor)
+wgpuDevicecreateBindGroupLayout(device, descriptor)
         WGPUDevice device
         WGPUBindGroupLayoutDescriptor const * descriptor
     CODE:
@@ -618,7 +618,7 @@ wgpuDeviceCreateBindGroupLayout(device, descriptor)
 
 
 WGPUBuffer 
-wgpuDeviceCreateBuffer(device, descriptor)
+wgpuDevicecreateBuffer(device, descriptor)
         WGPUDevice device
         WGPUBufferDescriptor const * descriptor
     CODE:
@@ -628,7 +628,7 @@ wgpuDeviceCreateBuffer(device, descriptor)
 
 
 WGPUCommandEncoder 
-wgpuDevice_CreateCommandEncoder(device, descriptor)
+wgpuDevice_createCommandEncoder(device, descriptor)
         WGPUDevice device
         WGPUCommandEncoderDescriptor const * descriptor
     CODE:
@@ -638,7 +638,7 @@ wgpuDevice_CreateCommandEncoder(device, descriptor)
 
 
 WGPUComputePipeline 
-wgpuDeviceCreateComputePipeline(device, descriptor)
+wgpuDevicecreateComputePipeline(device, descriptor)
         WGPUDevice device
         WGPUComputePipelineDescriptor const * descriptor
     CODE:
@@ -648,7 +648,7 @@ wgpuDeviceCreateComputePipeline(device, descriptor)
 
 
 void 
-wgpuDeviceCreateComputePipelineAsync(device, descriptor, callback, userdata)
+wgpuDevicecreateComputePipelineAsync(device, descriptor, callback, userdata)
         WGPUDevice device
         WGPUComputePipelineDescriptor const * descriptor
         CV * callback
@@ -670,7 +670,7 @@ wgpuDeviceCreateComputePipelineAsync(device, descriptor, callback, userdata)
 
 
 WGPUPipelineLayout 
-wgpuDeviceCreatePipelineLayout(device, descriptor)
+wgpuDevicecreatePipelineLayout(device, descriptor)
         WGPUDevice device
         WGPUPipelineLayoutDescriptor const * descriptor
     CODE:
@@ -680,7 +680,7 @@ wgpuDeviceCreatePipelineLayout(device, descriptor)
 
 
 WGPUQuerySet 
-wgpuDeviceCreateQuerySet(device, descriptor)
+wgpuDevicecreateQuerySet(device, descriptor)
         WGPUDevice device
         WGPUQuerySetDescriptor const * descriptor
     CODE:
@@ -690,7 +690,7 @@ wgpuDeviceCreateQuerySet(device, descriptor)
 
 
 WGPURenderBundleEncoder 
-wgpuDeviceCreateRenderBundleEncoder(device, descriptor)
+wgpuDevicecreateRenderBundleEncoder(device, descriptor)
         WGPUDevice device
         WGPURenderBundleEncoderDescriptor const * descriptor
     CODE:
@@ -700,7 +700,7 @@ wgpuDeviceCreateRenderBundleEncoder(device, descriptor)
 
 
 WGPURenderPipeline 
-wgpuDeviceCreateRenderPipeline(device, descriptor)
+wgpuDevicecreateRenderPipeline(device, descriptor)
         WGPUDevice device
         WGPURenderPipelineDescriptor const * descriptor
     CODE:
@@ -710,7 +710,7 @@ wgpuDeviceCreateRenderPipeline(device, descriptor)
 
 
 void 
-wgpuDeviceCreateRenderPipelineAsync(device, descriptor, callback, userdata)
+wgpuDevicecreateRenderPipelineAsync(device, descriptor, callback, userdata)
         WGPUDevice device
         WGPURenderPipelineDescriptor const * descriptor
         CV * callback
@@ -732,7 +732,7 @@ wgpuDeviceCreateRenderPipelineAsync(device, descriptor, callback, userdata)
 
 
 WGPUSampler 
-wgpuDevice_CreateSampler(device, descriptor)
+wgpuDevice_createSampler(device, descriptor)
         WGPUDevice device
         WGPUSamplerDescriptor const * descriptor
     CODE:
@@ -742,7 +742,7 @@ wgpuDevice_CreateSampler(device, descriptor)
 
 
 WGPUShaderModule 
-wgpuDevice_CreateShaderModule(device, descriptor)
+wgpuDevice_createShaderModule(device, descriptor)
         WGPUDevice device
         WGPUShaderModuleDescriptor const * descriptor
     CODE:
@@ -752,7 +752,7 @@ wgpuDevice_CreateShaderModule(device, descriptor)
 
 
 WGPUTexture 
-wgpuDeviceCreateTexture(device, descriptor)
+wgpuDevicecreateTexture(device, descriptor)
         WGPUDevice device
         WGPUTextureDescriptor const * descriptor
     CODE:
@@ -762,14 +762,14 @@ wgpuDeviceCreateTexture(device, descriptor)
 
 
 void 
-wgpuDeviceDestroy(device)
+wgpuDevicedestroy(device)
         WGPUDevice device
     CODE:
       wgpuDeviceDestroy(device);
 
 
 SV *
-wgpuDeviceEnumerateFeatures(device)
+wgpuDeviceenumerateFeatures(device)
         WGPUDevice device
     CODE:
       WGPUFeatureName * result = NULL;
@@ -786,7 +786,7 @@ wgpuDeviceEnumerateFeatures(device)
 
 
 WGPUBool 
-wgpuDeviceGetLimits(device, limits)
+wgpuDevicegetLimits(device, limits)
         WGPUDevice device
         WGPUSupportedLimits * limits
     CODE:
@@ -800,7 +800,7 @@ wgpuDeviceGetLimits(device, limits)
 
 
 WGPUQueue 
-wgpuDeviceGetQueue(device)
+wgpuDevicegetQueue(device)
         WGPUDevice device
     CODE:
       RETVAL = wgpuDeviceGetQueue(device);
@@ -809,7 +809,7 @@ wgpuDeviceGetQueue(device)
 
 
 WGPUBool 
-wgpuDeviceHasFeature(device, feature)
+wgpuDevicehasFeature(device, feature)
         WGPUDevice device
         WGPUFeatureName feature
     CODE:
@@ -819,7 +819,7 @@ wgpuDeviceHasFeature(device, feature)
 
 
 void 
-wgpuDevicePopErrorScope(device, callback, userdata)
+wgpuDevicepopErrorScope(device, callback, userdata)
         WGPUDevice device
         CV * callback
         SV * userdata
@@ -840,7 +840,7 @@ wgpuDevicePopErrorScope(device, callback, userdata)
 
 
 void 
-wgpuDevicePushErrorScope(device, filter)
+wgpuDevicepushErrorScope(device, filter)
         WGPUDevice device
         WGPUErrorFilter filter
     CODE:
@@ -848,7 +848,7 @@ wgpuDevicePushErrorScope(device, filter)
 
 
 void 
-wgpuDeviceSetLabel(device, label)
+wgpuDevicesetLabel(device, label)
         WGPUDevice device
         char const * label
     CODE:
@@ -856,7 +856,7 @@ wgpuDeviceSetLabel(device, label)
 
 
 void 
-wgpuDeviceSetUncapturedErrorCallback(device, callback, userdata)
+wgpuDevicesetUncapturedErrorCallback(device, callback, userdata)
         WGPUDevice device
         CV * callback
         SV * userdata
@@ -877,14 +877,14 @@ wgpuDeviceSetUncapturedErrorCallback(device, callback, userdata)
 
 
 void 
-wgpuDeviceReference(device)
+wgpuDevicereference(device)
         WGPUDevice device
     CODE:
       wgpuDeviceReference(device);
 
 
 void 
-wgpuDeviceRelease(device)
+wgpuDevicerelease(device)
         WGPUDevice device
     CODE:
       wgpuDeviceRelease(device);
@@ -894,7 +894,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Instance	PREFIX = wgpuInstance
 
 
 WGPUSurface 
-wgpuInstanceCreateSurface(instance, descriptor)
+wgpuInstancecreateSurface(instance, descriptor)
         WGPUInstance instance
         WGPUSurfaceDescriptor const * descriptor
     CODE:
@@ -904,14 +904,14 @@ wgpuInstanceCreateSurface(instance, descriptor)
 
 
 void 
-wgpuInstanceProcessEvents(instance)
+wgpuInstanceprocessEvents(instance)
         WGPUInstance instance
     CODE:
       wgpuInstanceProcessEvents(instance);
 
 
 void 
-wgpuInstance_RequestAdapter(instance, options, callback, userdata)
+wgpuInstance_requestAdapter(instance, options, callback, userdata)
         WGPUInstance instance
         WGPURequestAdapterOptions const * options
         CV * callback
@@ -933,14 +933,14 @@ wgpuInstance_RequestAdapter(instance, options, callback, userdata)
 
 
 void 
-wgpuInstanceReference(instance)
+wgpuInstancereference(instance)
         WGPUInstance instance
     CODE:
       wgpuInstanceReference(instance);
 
 
 void 
-wgpuInstanceRelease(instance)
+wgpuInstancerelease(instance)
         WGPUInstance instance
     CODE:
       wgpuInstanceRelease(instance);
@@ -950,7 +950,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::PipelineLayout	PREFIX = wgpuPi
 
 
 void 
-wgpuPipelineLayoutSetLabel(pipelineLayout, label)
+wgpuPipelineLayoutsetLabel(pipelineLayout, label)
         WGPUPipelineLayout pipelineLayout
         char const * label
     CODE:
@@ -958,14 +958,14 @@ wgpuPipelineLayoutSetLabel(pipelineLayout, label)
 
 
 void 
-wgpuPipelineLayoutReference(pipelineLayout)
+wgpuPipelineLayoutreference(pipelineLayout)
         WGPUPipelineLayout pipelineLayout
     CODE:
       wgpuPipelineLayoutReference(pipelineLayout);
 
 
 void 
-wgpuPipelineLayoutRelease(pipelineLayout)
+wgpuPipelineLayoutrelease(pipelineLayout)
         WGPUPipelineLayout pipelineLayout
     CODE:
       wgpuPipelineLayoutRelease(pipelineLayout);
@@ -975,14 +975,14 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::QuerySet	PREFIX = wgpuQuerySet
 
 
 void 
-wgpuQuerySetDestroy(querySet)
+wgpuQuerySetdestroy(querySet)
         WGPUQuerySet querySet
     CODE:
       wgpuQuerySetDestroy(querySet);
 
 
 uint32_t 
-wgpuQuerySetGetCount(querySet)
+wgpuQuerySetgetCount(querySet)
         WGPUQuerySet querySet
     CODE:
       RETVAL = wgpuQuerySetGetCount(querySet);
@@ -991,7 +991,7 @@ wgpuQuerySetGetCount(querySet)
 
 
 WGPUQueryType 
-wgpuQuerySetGetType(querySet)
+wgpuQuerySetgetType(querySet)
         WGPUQuerySet querySet
     CODE:
       RETVAL = wgpuQuerySetGetType(querySet);
@@ -1000,7 +1000,7 @@ wgpuQuerySetGetType(querySet)
 
 
 void 
-wgpuQuerySetSetLabel(querySet, label)
+wgpuQuerySetsetLabel(querySet, label)
         WGPUQuerySet querySet
         char const * label
     CODE:
@@ -1008,14 +1008,14 @@ wgpuQuerySetSetLabel(querySet, label)
 
 
 void 
-wgpuQuerySetReference(querySet)
+wgpuQuerySetreference(querySet)
         WGPUQuerySet querySet
     CODE:
       wgpuQuerySetReference(querySet);
 
 
 void 
-wgpuQuerySetRelease(querySet)
+wgpuQuerySetrelease(querySet)
         WGPUQuerySet querySet
     CODE:
       wgpuQuerySetRelease(querySet);
@@ -1025,7 +1025,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Queue	PREFIX = wgpuQueue
 
 
 void 
-wgpuQueueOnSubmittedWorkDone(queue, callback, userdata)
+wgpuQueueonSubmittedWorkDone(queue, callback, userdata)
         WGPUQueue queue
         CV * callback
         SV * userdata
@@ -1046,7 +1046,7 @@ wgpuQueueOnSubmittedWorkDone(queue, callback, userdata)
 
 
 void 
-wgpuQueueSetLabel(queue, label)
+wgpuQueuesetLabel(queue, label)
         WGPUQueue queue
         char const * label
     CODE:
@@ -1054,7 +1054,7 @@ wgpuQueueSetLabel(queue, label)
 
 
 void 
-wgpuQueueSubmit(queue, commands)
+wgpuQueuesubmit(queue, commands)
         WGPUQueue queue
         AV * commands
     CODE:
@@ -1075,7 +1075,7 @@ wgpuQueueSubmit(queue, commands)
 
 
 void 
-wgpuQueueWriteBuffer(queue, buffer, bufferOffset, data)
+wgpuQueuewriteBuffer(queue, buffer, bufferOffset, data)
         WGPUQueue queue
         WGPUBuffer buffer
         uint64_t bufferOffset
@@ -1088,7 +1088,7 @@ wgpuQueueWriteBuffer(queue, buffer, bufferOffset, data)
 
 
 void 
-wgpuQueueWriteTexture(queue, destination, data, dataLayout, writeSize)
+wgpuQueuewriteTexture(queue, destination, data, dataLayout, writeSize)
         WGPUQueue queue
         WGPUImageCopyTexture const * destination
         SV * data
@@ -1102,14 +1102,14 @@ wgpuQueueWriteTexture(queue, destination, data, dataLayout, writeSize)
 
 
 void 
-wgpuQueueReference(queue)
+wgpuQueuereference(queue)
         WGPUQueue queue
     CODE:
       wgpuQueueReference(queue);
 
 
 void 
-wgpuQueueRelease(queue)
+wgpuQueuerelease(queue)
         WGPUQueue queue
     CODE:
       wgpuQueueRelease(queue);
@@ -1119,7 +1119,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderBundle	PREFIX = wgpuRend
 
 
 void 
-wgpuRenderBundleSetLabel(renderBundle, label)
+wgpuRenderBundlesetLabel(renderBundle, label)
         WGPURenderBundle renderBundle
         char const * label
     CODE:
@@ -1127,14 +1127,14 @@ wgpuRenderBundleSetLabel(renderBundle, label)
 
 
 void 
-wgpuRenderBundleReference(renderBundle)
+wgpuRenderBundlereference(renderBundle)
         WGPURenderBundle renderBundle
     CODE:
       wgpuRenderBundleReference(renderBundle);
 
 
 void 
-wgpuRenderBundleRelease(renderBundle)
+wgpuRenderBundlerelease(renderBundle)
         WGPURenderBundle renderBundle
     CODE:
       wgpuRenderBundleRelease(renderBundle);
@@ -1144,7 +1144,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderBundleEncoder	PREFIX = w
 
 
 void 
-wgpuRenderBundleEncoderDraw(renderBundleEncoder, vertexCount, instanceCount = 1, firstVertex = 0, firstInstance = 0)
+wgpuRenderBundleEncoderdraw(renderBundleEncoder, vertexCount, instanceCount = 1, firstVertex = 0, firstInstance = 0)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t vertexCount
         uint32_t instanceCount
@@ -1155,7 +1155,7 @@ wgpuRenderBundleEncoderDraw(renderBundleEncoder, vertexCount, instanceCount = 1,
 
 
 void 
-wgpuRenderBundleEncoderDrawIndexed(renderBundleEncoder, indexCount, instanceCount = 1, firstIndex = 0, baseVertex = 0, firstInstance = 0)
+wgpuRenderBundleEncoderdrawIndexed(renderBundleEncoder, indexCount, instanceCount = 1, firstIndex = 0, baseVertex = 0, firstInstance = 0)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t indexCount
         uint32_t instanceCount
@@ -1167,7 +1167,7 @@ wgpuRenderBundleEncoderDrawIndexed(renderBundleEncoder, indexCount, instanceCoun
 
 
 void 
-wgpuRenderBundleEncoderDrawIndexedIndirect(renderBundleEncoder, indirectBuffer, indirectOffset)
+wgpuRenderBundleEncoderdrawIndexedIndirect(renderBundleEncoder, indirectBuffer, indirectOffset)
         WGPURenderBundleEncoder renderBundleEncoder
         WGPUBuffer indirectBuffer
         uint64_t indirectOffset
@@ -1176,7 +1176,7 @@ wgpuRenderBundleEncoderDrawIndexedIndirect(renderBundleEncoder, indirectBuffer, 
 
 
 void 
-wgpuRenderBundleEncoderDrawIndirect(renderBundleEncoder, indirectBuffer, indirectOffset)
+wgpuRenderBundleEncoderdrawIndirect(renderBundleEncoder, indirectBuffer, indirectOffset)
         WGPURenderBundleEncoder renderBundleEncoder
         WGPUBuffer indirectBuffer
         uint64_t indirectOffset
@@ -1185,7 +1185,7 @@ wgpuRenderBundleEncoderDrawIndirect(renderBundleEncoder, indirectBuffer, indirec
 
 
 WGPURenderBundle 
-wgpuRenderBundleEncoderFinish(renderBundleEncoder, descriptor)
+wgpuRenderBundleEncoderfinish(renderBundleEncoder, descriptor)
         WGPURenderBundleEncoder renderBundleEncoder
         WGPURenderBundleDescriptor const * descriptor
     CODE:
@@ -1195,7 +1195,7 @@ wgpuRenderBundleEncoderFinish(renderBundleEncoder, descriptor)
 
 
 void 
-wgpuRenderBundleEncoderInsertDebugMarker(renderBundleEncoder, markerLabel)
+wgpuRenderBundleEncoderinsertDebugMarker(renderBundleEncoder, markerLabel)
         WGPURenderBundleEncoder renderBundleEncoder
         char const * markerLabel
     CODE:
@@ -1203,14 +1203,14 @@ wgpuRenderBundleEncoderInsertDebugMarker(renderBundleEncoder, markerLabel)
 
 
 void 
-wgpuRenderBundleEncoderPopDebugGroup(renderBundleEncoder)
+wgpuRenderBundleEncoderpopDebugGroup(renderBundleEncoder)
         WGPURenderBundleEncoder renderBundleEncoder
     CODE:
       wgpuRenderBundleEncoderPopDebugGroup(renderBundleEncoder);
 
 
 void 
-wgpuRenderBundleEncoderPushDebugGroup(renderBundleEncoder, groupLabel)
+wgpuRenderBundleEncoderpushDebugGroup(renderBundleEncoder, groupLabel)
         WGPURenderBundleEncoder renderBundleEncoder
         char const * groupLabel
     CODE:
@@ -1218,7 +1218,7 @@ wgpuRenderBundleEncoderPushDebugGroup(renderBundleEncoder, groupLabel)
 
 
 void 
-wgpuRenderBundleEncoder_SetBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsets)
+wgpuRenderBundleEncoder_setBindGroup(renderBundleEncoder, groupIndex, group, dynamicOffsets)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t groupIndex
         WGPUBindGroup group
@@ -1241,7 +1241,7 @@ wgpuRenderBundleEncoder_SetBindGroup(renderBundleEncoder, groupIndex, group, dyn
 
 
 void 
-wgpuRenderBundleEncoder_SetIndexBuffer(renderBundleEncoder, buffer, format, offset, size)
+wgpuRenderBundleEncoder_setIndexBuffer(renderBundleEncoder, buffer, format, offset, size)
         WGPURenderBundleEncoder renderBundleEncoder
         WGPUBuffer buffer
         WGPUIndexFormat format
@@ -1252,7 +1252,7 @@ wgpuRenderBundleEncoder_SetIndexBuffer(renderBundleEncoder, buffer, format, offs
 
 
 void 
-wgpuRenderBundleEncoderSetLabel(renderBundleEncoder, label)
+wgpuRenderBundleEncodersetLabel(renderBundleEncoder, label)
         WGPURenderBundleEncoder renderBundleEncoder
         char const * label
     CODE:
@@ -1260,7 +1260,7 @@ wgpuRenderBundleEncoderSetLabel(renderBundleEncoder, label)
 
 
 void 
-wgpuRenderBundleEncoderSetPipeline(renderBundleEncoder, pipeline)
+wgpuRenderBundleEncodersetPipeline(renderBundleEncoder, pipeline)
         WGPURenderBundleEncoder renderBundleEncoder
         WGPURenderPipeline pipeline
     CODE:
@@ -1268,7 +1268,7 @@ wgpuRenderBundleEncoderSetPipeline(renderBundleEncoder, pipeline)
 
 
 void 
-wgpuRenderBundleEncoder_SetVertexBuffer(renderBundleEncoder, slot, buffer, offset, size)
+wgpuRenderBundleEncoder_setVertexBuffer(renderBundleEncoder, slot, buffer, offset, size)
         WGPURenderBundleEncoder renderBundleEncoder
         uint32_t slot
         WGPUBuffer buffer
@@ -1279,14 +1279,14 @@ wgpuRenderBundleEncoder_SetVertexBuffer(renderBundleEncoder, slot, buffer, offse
 
 
 void 
-wgpuRenderBundleEncoderReference(renderBundleEncoder)
+wgpuRenderBundleEncoderreference(renderBundleEncoder)
         WGPURenderBundleEncoder renderBundleEncoder
     CODE:
       wgpuRenderBundleEncoderReference(renderBundleEncoder);
 
 
 void 
-wgpuRenderBundleEncoderRelease(renderBundleEncoder)
+wgpuRenderBundleEncoderrelease(renderBundleEncoder)
         WGPURenderBundleEncoder renderBundleEncoder
     CODE:
       wgpuRenderBundleEncoderRelease(renderBundleEncoder);
@@ -1296,7 +1296,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPassEncoder	PREFIX = wgp
 
 
 void 
-wgpuRenderPassEncoderBeginOcclusionQuery(renderPassEncoder, queryIndex)
+wgpuRenderPassEncoderbeginOcclusionQuery(renderPassEncoder, queryIndex)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t queryIndex
     CODE:
@@ -1304,7 +1304,7 @@ wgpuRenderPassEncoderBeginOcclusionQuery(renderPassEncoder, queryIndex)
 
 
 void 
-wgpuRenderPassEncoderDraw(renderPassEncoder, vertexCount, instanceCount = 1, firstVertex = 0, firstInstance = 0)
+wgpuRenderPassEncoderdraw(renderPassEncoder, vertexCount, instanceCount = 1, firstVertex = 0, firstInstance = 0)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t vertexCount
         uint32_t instanceCount
@@ -1315,7 +1315,7 @@ wgpuRenderPassEncoderDraw(renderPassEncoder, vertexCount, instanceCount = 1, fir
 
 
 void 
-wgpuRenderPassEncoderDrawIndexed(renderPassEncoder, indexCount, instanceCount = 1, firstIndex = 0, baseVertex = 0, firstInstance = 0)
+wgpuRenderPassEncoderdrawIndexed(renderPassEncoder, indexCount, instanceCount = 1, firstIndex = 0, baseVertex = 0, firstInstance = 0)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t indexCount
         uint32_t instanceCount
@@ -1327,7 +1327,7 @@ wgpuRenderPassEncoderDrawIndexed(renderPassEncoder, indexCount, instanceCount = 
 
 
 void 
-wgpuRenderPassEncoderDrawIndexedIndirect(renderPassEncoder, indirectBuffer, indirectOffset)
+wgpuRenderPassEncoderdrawIndexedIndirect(renderPassEncoder, indirectBuffer, indirectOffset)
         WGPURenderPassEncoder renderPassEncoder
         WGPUBuffer indirectBuffer
         uint64_t indirectOffset
@@ -1336,7 +1336,7 @@ wgpuRenderPassEncoderDrawIndexedIndirect(renderPassEncoder, indirectBuffer, indi
 
 
 void 
-wgpuRenderPassEncoderDrawIndirect(renderPassEncoder, indirectBuffer, indirectOffset)
+wgpuRenderPassEncoderdrawIndirect(renderPassEncoder, indirectBuffer, indirectOffset)
         WGPURenderPassEncoder renderPassEncoder
         WGPUBuffer indirectBuffer
         uint64_t indirectOffset
@@ -1345,21 +1345,21 @@ wgpuRenderPassEncoderDrawIndirect(renderPassEncoder, indirectBuffer, indirectOff
 
 
 void 
-wgpuRenderPassEncoderEnd(renderPassEncoder)
+wgpuRenderPassEncoderend(renderPassEncoder)
         WGPURenderPassEncoder renderPassEncoder
     CODE:
       wgpuRenderPassEncoderEnd(renderPassEncoder);
 
 
 void 
-wgpuRenderPassEncoderEndOcclusionQuery(renderPassEncoder)
+wgpuRenderPassEncoderendOcclusionQuery(renderPassEncoder)
         WGPURenderPassEncoder renderPassEncoder
     CODE:
       wgpuRenderPassEncoderEndOcclusionQuery(renderPassEncoder);
 
 
 void 
-wgpuRenderPassEncoderExecuteBundles(renderPassEncoder, bundles)
+wgpuRenderPassEncoderexecuteBundles(renderPassEncoder, bundles)
         WGPURenderPassEncoder renderPassEncoder
         AV * bundles
     CODE:
@@ -1380,7 +1380,7 @@ wgpuRenderPassEncoderExecuteBundles(renderPassEncoder, bundles)
 
 
 void 
-wgpuRenderPassEncoderInsertDebugMarker(renderPassEncoder, markerLabel)
+wgpuRenderPassEncoderinsertDebugMarker(renderPassEncoder, markerLabel)
         WGPURenderPassEncoder renderPassEncoder
         char const * markerLabel
     CODE:
@@ -1388,14 +1388,14 @@ wgpuRenderPassEncoderInsertDebugMarker(renderPassEncoder, markerLabel)
 
 
 void 
-wgpuRenderPassEncoderPopDebugGroup(renderPassEncoder)
+wgpuRenderPassEncoderpopDebugGroup(renderPassEncoder)
         WGPURenderPassEncoder renderPassEncoder
     CODE:
       wgpuRenderPassEncoderPopDebugGroup(renderPassEncoder);
 
 
 void 
-wgpuRenderPassEncoderPushDebugGroup(renderPassEncoder, groupLabel)
+wgpuRenderPassEncoderpushDebugGroup(renderPassEncoder, groupLabel)
         WGPURenderPassEncoder renderPassEncoder
         char const * groupLabel
     CODE:
@@ -1403,7 +1403,7 @@ wgpuRenderPassEncoderPushDebugGroup(renderPassEncoder, groupLabel)
 
 
 void 
-wgpuRenderPassEncoder_SetBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsets)
+wgpuRenderPassEncoder_setBindGroup(renderPassEncoder, groupIndex, group, dynamicOffsets)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t groupIndex
         WGPUBindGroup group
@@ -1426,7 +1426,7 @@ wgpuRenderPassEncoder_SetBindGroup(renderPassEncoder, groupIndex, group, dynamic
 
 
 void 
-wgpuRenderPassEncoderSetBlendConstant(renderPassEncoder, color)
+wgpuRenderPassEncodersetBlendConstant(renderPassEncoder, color)
         WGPURenderPassEncoder renderPassEncoder
         WGPUColor const * color
     CODE:
@@ -1434,7 +1434,7 @@ wgpuRenderPassEncoderSetBlendConstant(renderPassEncoder, color)
 
 
 void 
-wgpuRenderPassEncoder_SetIndexBuffer(renderPassEncoder, buffer, format, offset, size)
+wgpuRenderPassEncoder_setIndexBuffer(renderPassEncoder, buffer, format, offset, size)
         WGPURenderPassEncoder renderPassEncoder
         WGPUBuffer buffer
         WGPUIndexFormat format
@@ -1445,7 +1445,7 @@ wgpuRenderPassEncoder_SetIndexBuffer(renderPassEncoder, buffer, format, offset, 
 
 
 void 
-wgpuRenderPassEncoderSetLabel(renderPassEncoder, label)
+wgpuRenderPassEncodersetLabel(renderPassEncoder, label)
         WGPURenderPassEncoder renderPassEncoder
         char const * label
     CODE:
@@ -1453,7 +1453,7 @@ wgpuRenderPassEncoderSetLabel(renderPassEncoder, label)
 
 
 void 
-wgpuRenderPassEncoderSetPipeline(renderPassEncoder, pipeline)
+wgpuRenderPassEncodersetPipeline(renderPassEncoder, pipeline)
         WGPURenderPassEncoder renderPassEncoder
         WGPURenderPipeline pipeline
     CODE:
@@ -1461,7 +1461,7 @@ wgpuRenderPassEncoderSetPipeline(renderPassEncoder, pipeline)
 
 
 void 
-wgpuRenderPassEncoderSetScissorRect(renderPassEncoder, x, y, width, height)
+wgpuRenderPassEncodersetScissorRect(renderPassEncoder, x, y, width, height)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t x
         uint32_t y
@@ -1472,7 +1472,7 @@ wgpuRenderPassEncoderSetScissorRect(renderPassEncoder, x, y, width, height)
 
 
 void 
-wgpuRenderPassEncoderSetStencilReference(renderPassEncoder, reference)
+wgpuRenderPassEncodersetStencilReference(renderPassEncoder, reference)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t reference
     CODE:
@@ -1480,7 +1480,7 @@ wgpuRenderPassEncoderSetStencilReference(renderPassEncoder, reference)
 
 
 void 
-wgpuRenderPassEncoder_SetVertexBuffer(renderPassEncoder, slot, buffer, offset, size)
+wgpuRenderPassEncoder_setVertexBuffer(renderPassEncoder, slot, buffer, offset, size)
         WGPURenderPassEncoder renderPassEncoder
         uint32_t slot
         WGPUBuffer buffer
@@ -1491,7 +1491,7 @@ wgpuRenderPassEncoder_SetVertexBuffer(renderPassEncoder, slot, buffer, offset, s
 
 
 void 
-wgpuRenderPassEncoderSetViewport(renderPassEncoder, x, y, width, height, minDepth, maxDepth)
+wgpuRenderPassEncodersetViewport(renderPassEncoder, x, y, width, height, minDepth, maxDepth)
         WGPURenderPassEncoder renderPassEncoder
         float x
         float y
@@ -1504,14 +1504,14 @@ wgpuRenderPassEncoderSetViewport(renderPassEncoder, x, y, width, height, minDept
 
 
 void 
-wgpuRenderPassEncoderReference(renderPassEncoder)
+wgpuRenderPassEncoderreference(renderPassEncoder)
         WGPURenderPassEncoder renderPassEncoder
     CODE:
       wgpuRenderPassEncoderReference(renderPassEncoder);
 
 
 void 
-wgpuRenderPassEncoderRelease(renderPassEncoder)
+wgpuRenderPassEncoderrelease(renderPassEncoder)
         WGPURenderPassEncoder renderPassEncoder
     CODE:
       wgpuRenderPassEncoderRelease(renderPassEncoder);
@@ -1521,7 +1521,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::RenderPipeline	PREFIX = wgpuRe
 
 
 WGPUBindGroupLayout 
-wgpuRenderPipelineGetBindGroupLayout(renderPipeline, groupIndex)
+wgpuRenderPipelinegetBindGroupLayout(renderPipeline, groupIndex)
         WGPURenderPipeline renderPipeline
         uint32_t groupIndex
     CODE:
@@ -1531,7 +1531,7 @@ wgpuRenderPipelineGetBindGroupLayout(renderPipeline, groupIndex)
 
 
 void 
-wgpuRenderPipelineSetLabel(renderPipeline, label)
+wgpuRenderPipelinesetLabel(renderPipeline, label)
         WGPURenderPipeline renderPipeline
         char const * label
     CODE:
@@ -1539,14 +1539,14 @@ wgpuRenderPipelineSetLabel(renderPipeline, label)
 
 
 void 
-wgpuRenderPipelineReference(renderPipeline)
+wgpuRenderPipelinereference(renderPipeline)
         WGPURenderPipeline renderPipeline
     CODE:
       wgpuRenderPipelineReference(renderPipeline);
 
 
 void 
-wgpuRenderPipelineRelease(renderPipeline)
+wgpuRenderPipelinerelease(renderPipeline)
         WGPURenderPipeline renderPipeline
     CODE:
       wgpuRenderPipelineRelease(renderPipeline);
@@ -1556,7 +1556,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Sampler	PREFIX = wgpuSampler
 
 
 void 
-wgpuSamplerSetLabel(sampler, label)
+wgpuSamplersetLabel(sampler, label)
         WGPUSampler sampler
         char const * label
     CODE:
@@ -1564,14 +1564,14 @@ wgpuSamplerSetLabel(sampler, label)
 
 
 void 
-wgpuSamplerReference(sampler)
+wgpuSamplerreference(sampler)
         WGPUSampler sampler
     CODE:
       wgpuSamplerReference(sampler);
 
 
 void 
-wgpuSamplerRelease(sampler)
+wgpuSamplerrelease(sampler)
         WGPUSampler sampler
     CODE:
       wgpuSamplerRelease(sampler);
@@ -1581,7 +1581,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::ShaderModule	PREFIX = wgpuShad
 
 
 void 
-wgpuShaderModuleGetCompilationInfo(shaderModule, callback, userdata)
+wgpuShaderModulegetCompilationInfo(shaderModule, callback, userdata)
         WGPUShaderModule shaderModule
         CV * callback
         SV * userdata
@@ -1602,7 +1602,7 @@ wgpuShaderModuleGetCompilationInfo(shaderModule, callback, userdata)
 
 
 void 
-wgpuShaderModuleSetLabel(shaderModule, label)
+wgpuShaderModulesetLabel(shaderModule, label)
         WGPUShaderModule shaderModule
         char const * label
     CODE:
@@ -1610,14 +1610,14 @@ wgpuShaderModuleSetLabel(shaderModule, label)
 
 
 void 
-wgpuShaderModuleReference(shaderModule)
+wgpuShaderModulereference(shaderModule)
         WGPUShaderModule shaderModule
     CODE:
       wgpuShaderModuleReference(shaderModule);
 
 
 void 
-wgpuShaderModuleRelease(shaderModule)
+wgpuShaderModulerelease(shaderModule)
         WGPUShaderModule shaderModule
     CODE:
       wgpuShaderModuleRelease(shaderModule);
@@ -1627,7 +1627,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Surface	PREFIX = wgpuSurface
 
 
 void 
-wgpuSurfaceConfigure(surface, config)
+wgpuSurfaceconfigure(surface, config)
         WGPUSurface surface
         WGPUSurfaceConfiguration const * config
     CODE:
@@ -1635,7 +1635,7 @@ wgpuSurfaceConfigure(surface, config)
 
 
 void 
-wgpuSurfaceGetCapabilities(surface, adapter, capabilities)
+wgpuSurfacegetCapabilities(surface, adapter, capabilities)
         WGPUSurface surface
         WGPUAdapter adapter
         WGPUSurfaceCapabilities * capabilities
@@ -1648,7 +1648,7 @@ wgpuSurfaceGetCapabilities(surface, adapter, capabilities)
 
 
 void 
-wgpuSurface_GetCurrentTexture(surface, surfaceTexture)
+wgpuSurface_getCurrentTexture(surface, surfaceTexture)
         WGPUSurface surface
         WGPUSurfaceTexture * surfaceTexture
     CODE:
@@ -1660,7 +1660,7 @@ wgpuSurface_GetCurrentTexture(surface, surfaceTexture)
 
 
 WGPUTextureFormat 
-wgpuSurfaceGetPreferredFormat(surface, adapter)
+wgpuSurfacegetPreferredFormat(surface, adapter)
         WGPUSurface surface
         WGPUAdapter adapter
     CODE:
@@ -1670,28 +1670,28 @@ wgpuSurfaceGetPreferredFormat(surface, adapter)
 
 
 void 
-wgpuSurfacePresent(surface)
+wgpuSurfacepresent(surface)
         WGPUSurface surface
     CODE:
       wgpuSurfacePresent(surface);
 
 
 void 
-wgpuSurfaceUnconfigure(surface)
+wgpuSurfaceunconfigure(surface)
         WGPUSurface surface
     CODE:
       wgpuSurfaceUnconfigure(surface);
 
 
 void 
-wgpuSurfaceReference(surface)
+wgpuSurfacereference(surface)
         WGPUSurface surface
     CODE:
       wgpuSurfaceReference(surface);
 
 
 void 
-wgpuSurfaceRelease(surface)
+wgpuSurfacerelease(surface)
         WGPUSurface surface
     CODE:
       wgpuSurfaceRelease(surface);
@@ -1701,7 +1701,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Texture	PREFIX = wgpuTexture
 
 
 WGPUTextureView 
-wgpuTexture_CreateView(texture, descriptor)
+wgpuTexture_createView(texture, descriptor)
         WGPUTexture texture
         WGPUTextureViewDescriptor const * descriptor
     CODE:
@@ -1711,14 +1711,14 @@ wgpuTexture_CreateView(texture, descriptor)
 
 
 void 
-wgpuTextureDestroy(texture)
+wgpuTexturedestroy(texture)
         WGPUTexture texture
     CODE:
       wgpuTextureDestroy(texture);
 
 
 uint32_t 
-wgpuTextureGetDepthOrArrayLayers(texture)
+wgpuTexturegetDepthOrArrayLayers(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetDepthOrArrayLayers(texture);
@@ -1727,7 +1727,7 @@ wgpuTextureGetDepthOrArrayLayers(texture)
 
 
 WGPUTextureDimension 
-wgpuTextureGetDimension(texture)
+wgpuTexturegetDimension(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetDimension(texture);
@@ -1736,7 +1736,7 @@ wgpuTextureGetDimension(texture)
 
 
 WGPUTextureFormat 
-wgpuTextureGetFormat(texture)
+wgpuTexturegetFormat(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetFormat(texture);
@@ -1745,7 +1745,7 @@ wgpuTextureGetFormat(texture)
 
 
 uint32_t 
-wgpuTextureGetHeight(texture)
+wgpuTexturegetHeight(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetHeight(texture);
@@ -1754,7 +1754,7 @@ wgpuTextureGetHeight(texture)
 
 
 uint32_t 
-wgpuTextureGetMipLevelCount(texture)
+wgpuTexturegetMipLevelCount(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetMipLevelCount(texture);
@@ -1763,7 +1763,7 @@ wgpuTextureGetMipLevelCount(texture)
 
 
 uint32_t 
-wgpuTextureGetSampleCount(texture)
+wgpuTexturegetSampleCount(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetSampleCount(texture);
@@ -1772,7 +1772,7 @@ wgpuTextureGetSampleCount(texture)
 
 
 WGPUTextureUsageFlags 
-wgpuTextureGetUsage(texture)
+wgpuTexturegetUsage(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetUsage(texture);
@@ -1781,7 +1781,7 @@ wgpuTextureGetUsage(texture)
 
 
 uint32_t 
-wgpuTextureGetWidth(texture)
+wgpuTexturegetWidth(texture)
         WGPUTexture texture
     CODE:
       RETVAL = wgpuTextureGetWidth(texture);
@@ -1790,7 +1790,7 @@ wgpuTextureGetWidth(texture)
 
 
 void 
-wgpuTextureSetLabel(texture, label)
+wgpuTexturesetLabel(texture, label)
         WGPUTexture texture
         char const * label
     CODE:
@@ -1798,14 +1798,14 @@ wgpuTextureSetLabel(texture, label)
 
 
 void 
-wgpuTextureReference(texture)
+wgpuTexturereference(texture)
         WGPUTexture texture
     CODE:
       wgpuTextureReference(texture);
 
 
 void 
-wgpuTextureRelease(texture)
+wgpuTexturerelease(texture)
         WGPUTexture texture
     CODE:
       wgpuTextureRelease(texture);
@@ -1815,7 +1815,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::TextureView	PREFIX = wgpuTextu
 
 
 void 
-wgpuTextureViewSetLabel(textureView, label)
+wgpuTextureViewsetLabel(textureView, label)
         WGPUTextureView textureView
         char const * label
     CODE:
@@ -1823,14 +1823,14 @@ wgpuTextureViewSetLabel(textureView, label)
 
 
 void 
-wgpuTextureViewReference(textureView)
+wgpuTextureViewreference(textureView)
         WGPUTextureView textureView
     CODE:
       wgpuTextureViewReference(textureView);
 
 
 void 
-wgpuTextureViewRelease(textureView)
+wgpuTextureViewrelease(textureView)
         WGPUTextureView textureView
     CODE:
       wgpuTextureViewRelease(textureView);
@@ -7273,7 +7273,7 @@ bytes(THIS)
 
 
 void 
-wgpuSurfaceCapabilitiesFreeMembers(capabilities)
+wgpuSurfaceCapabilitiesfreeMembers(capabilities)
         WGPUSurfaceCapabilities capabilities
     CODE:
       wgpuSurfaceCapabilitiesFreeMembers(capabilities);

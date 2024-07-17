@@ -15,14 +15,14 @@ my $wgpu = WebGPU::Direct->new;
 my $width  = 600;
 my $height = 600;
 
-my $gpuContext = $wgpu->CreateSurface(
+my $gpuContext = $wgpu->createSurface(
   {
     nextInChain => WebGPU::Direct->new_window( $width, $height ),
   }
 );
 
-my $adapter = $wgpu->RequestAdapter({ compatibleSurface => $gpuContext });
-my $device  = $adapter->RequestDevice;
+my $adapter = $wgpu->requestAdapter({ compatibleSurface => $gpuContext });
+my $device  = $adapter->requestDevice;
 
 #*** Vertex Buffer Setup ***
 
@@ -33,7 +33,7 @@ my @vertex = (
 );
 my $vertex_data = pack( 'f*', @vertex );
 
-my $vertexBuffer = $device->CreateBuffer(
+my $vertexBuffer = $device->createBuffer(
   {
     size             => length($vertex_data),
     usage            => BufferUsage->Vertex,
@@ -41,12 +41,12 @@ my $vertexBuffer = $device->CreateBuffer(
   }
 );
 
-$vertexBuffer->GetMappedRange->buffer($vertex_data);
-$vertexBuffer->Unmap;
+$vertexBuffer->getMappedRange->buffer($vertex_data);
+$vertexBuffer->unmap;
 
 #*** Shader Setup ***
 my $wgslSource   = join( '', <DATA> );
-my $shaderModule = $device->CreateShaderModule( { code => $wgslSource } );
+my $shaderModule = $device->createShaderModule( { code => $wgslSource } );
 
 # GPUPipelineStageDescriptors
 my $vertexStageDescriptor = {
@@ -79,27 +79,27 @@ my $fragmentStageDescriptor = {
 
 my $renderPipelineDescriptor = {
 
-  #layout    => $device->CreatePipelineLayout( {} ),
+  #layout    => $device->createPipelineLayout( {} ),
   vertex    => $vertexStageDescriptor,
   fragment  => $fragmentStageDescriptor,
   primitive => { topology => PrimitiveTopology->TriangleList },
 };
 
 # GPURenderPipeline
-my $renderPipeline = $device->CreateRenderPipeline($renderPipelineDescriptor);
+my $renderPipeline = $device->createRenderPipeline($renderPipelineDescriptor);
 
 my $uniformBufferSize = 4 * 16;                  # 4x4 matrix
-my $uniformBuffer     = $device->CreateBuffer(
+my $uniformBuffer     = $device->createBuffer(
   {
     size  => $uniformBufferSize,
     usage => $wgpu->BufferUsage->Uniform | $wgpu->BufferUsage->CopyDst,
   }
 );
 
-$renderPipeline->GetBindGroupLayout(0);
-my $uniformBindGroup = $device->CreateBindGroup(
+$renderPipeline->getBindGroupLayout(0);
+my $uniformBindGroup = $device->createBindGroup(
   {
-    layout  => $renderPipeline->GetBindGroupLayout(0),
+    layout  => $renderPipeline->getBindGroupLayout(0),
     entries => [
       {
         binding => 0,
@@ -118,11 +118,11 @@ my $canvasConfiguration = {
   device => $device,
   format => TextureFormat->BGRA8Unorm,
 };
-$gpuContext->Configure($canvasConfiguration);
+$gpuContext->configure($canvasConfiguration);
 
 # GPUTexture
 # This is done in the render loop
-my $currentTexture;    # = $gpuContext->GetCurrentTexture;
+my $currentTexture;    # = $gpuContext->getCurrentTexture;
 
 #*** Render Pass Setup ***
 
@@ -153,35 +153,35 @@ for ( 1 .. 1000 )
   my $renderPassDescriptor = { colorAttachments => [$colorAttachmentDescriptor] };
 
   # GPUCommandEncoder
-  my $commandEncoder = $device->CreateCommandEncoder;
+  my $commandEncoder = $device->createCommandEncoder;
 
   my $uniform = space;
   $uniform->rot_z( ( time - $start ) / 2 );
-  $device->GetQueue->WriteBuffer(
+  $device->getQueue->writeBuffer(
     $uniformBuffer,
     0,
     pack( "f*", $uniform->get_gl_matrix ),
   );
 
   # GPURenderPassEncoder
-  $currentTexture = $gpuContext->GetCurrentTexture;
-  $colorAttachmentDescriptor->{view} = $currentTexture->texture->CreateView;
-  my $renderPassEncoder = $commandEncoder->BeginRenderPass($renderPassDescriptor);
+  $currentTexture = $gpuContext->getCurrentTexture;
+  $colorAttachmentDescriptor->{view} = $currentTexture->texture->createView;
+  my $renderPassEncoder = $commandEncoder->beginRenderPass($renderPassDescriptor);
 
-  $renderPassEncoder->SetPipeline($renderPipeline);
+  $renderPassEncoder->setPipeline($renderPipeline);
   my $vertexBufferSlot = 0;
-  $renderPassEncoder->SetBindGroup( 0, $uniformBindGroup, [] );
-  $renderPassEncoder->SetVertexBuffer( $vertexBufferSlot, $vertexBuffer );
-  $renderPassEncoder->Draw( 3, 1, 0, 0 );    # 3 vertices, 1 instance, 0th vertex, 0th instance.
-  $renderPassEncoder->End;
+  $renderPassEncoder->setBindGroup( 0, $uniformBindGroup, [] );
+  $renderPassEncoder->setVertexBuffer( $vertexBufferSlot, $vertexBuffer );
+  $renderPassEncoder->draw( 3, 1, 0, 0 );    # 3 vertices, 1 instance, 0th vertex, 0th instance.
+  $renderPassEncoder->end;
 
   # GPUComamndBuffer
-  my $commandBuffer = $commandEncoder->Finish;
+  my $commandBuffer = $commandEncoder->finish;
 
   # GPUQueue
-  my $queue = $device->GetQueue;
-  $queue->Submit( [$commandBuffer] );
-  $gpuContext->Present;
+  my $queue = $device->getQueue;
+  $queue->submit( [$commandBuffer] );
+  $gpuContext->present;
 }
 
 my $total = time - $start;

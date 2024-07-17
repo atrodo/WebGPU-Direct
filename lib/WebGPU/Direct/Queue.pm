@@ -18,7 +18,7 @@ WebGPU::Direct::Queue
 
 =head2 Methods
 
-=head3 OnSubmittedWorkDone
+=head3 onSubmittedWorkDone
 
 =over
 
@@ -34,7 +34,7 @@ WebGPU::Direct::Queue
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -48,7 +48,7 @@ WebGPU::Direct::Queue
 
 =back
 
-=head3 Submit
+=head3 submit
 
 =over
 
@@ -64,7 +64,7 @@ WebGPU::Direct::Queue
 
 =back
 
-=head3 WriteBuffer
+=head3 writeBuffer
 
 =over
 
@@ -84,7 +84,7 @@ WebGPU::Direct::Queue
 
 =back
 
-=head3 WriteTexture
+=head3 writeTexture
 
 =over
 
@@ -106,7 +106,7 @@ WebGPU::Direct::Queue
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

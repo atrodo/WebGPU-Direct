@@ -26,7 +26,7 @@ sub new
   $class = ref($class) ? ref($class) : $class;
 
   my $ref = { ref( $_[0] ) eq ref {} ? %{ $_[0] } : @_ };
-  my $result = WebGPU::Direct::XS::CreateInstance($ref);
+  my $result = WebGPU::Direct::XS::createInstance($ref);
 
   # Rebless into our class, which inherits from Instance
   $result = bless( $result, $class );

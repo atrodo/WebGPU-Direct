@@ -8,7 +8,7 @@ package WebGPU::Direct::Texture
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
-  sub CreateView (
+  sub createView (
     $self,
     $descriptor = {}
       )
@@ -21,8 +21,8 @@ package WebGPU::Direct::Texture
 
       if ( !exists $descriptor->{Dimension} )
       {
-        my $dim  = $self->GetDimension;
-        my $doal = $self->GetDepthOrArrayLayers;
+        my $dim  = $self->getDimension;
+        my $doal = $self->getDepthOrArrayLayers;
         if ( $dim == $td->_1D )
         {
           $new_descriptor->dimension( $tvd->_1D );
@@ -43,7 +43,7 @@ package WebGPU::Direct::Texture
 
       if ( !exists $descriptor->{ArrayLayerCount} )
       {
-        my $doal        = $self->GetDepthOrArrayLayers;
+        my $doal        = $self->getDepthOrArrayLayers;
         my $bal         = $new_descriptor->baseArrayLayer;
         my %ALC_default = (
           0 + $tvd->_1D       => 1,
@@ -61,7 +61,7 @@ package WebGPU::Direct::Texture
       if ( !exists $descriptor->{format} )
       {
         my $aspect = $new_descriptor->aspect;
-        my $format = $self->GetFormat;
+        my $format = $self->getFormat;
 
         state %depth_or_stencil = map { 0 + WebGPU::Direct->TextureFormat->$_ => 1 } qw/
             Stencil8        Depth16Unorm
@@ -87,11 +87,11 @@ package WebGPU::Direct::Texture
 
       if ( !exists $descriptor->{mipLevelCount} )
       {
-        $new_descriptor->mipLevelCount( $self->GetMipLevelCount - $new_descriptor->baseMipLevel );
+        $new_descriptor->mipLevelCount( $self->getMipLevelCount - $new_descriptor->baseMipLevel );
       }
       $descriptor = $new_descriptor;
     }
-    return $self->_CreateView($descriptor);
+    return $self->_createView($descriptor);
   }
 };
 
@@ -107,7 +107,7 @@ WebGPU::Direct::Texture
 
 =head2 Methods
 
-=head3 CreateView
+=head3 createView
 
 =over
 
@@ -129,9 +129,9 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 Destroy
+=head3 destroy
 
-=head3 GetDepthOrArrayLayers
+=head3 getDepthOrArrayLayers
 
 =over
 
@@ -145,7 +145,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 GetDimension
+=head3 getDimension
 
 =over
 
@@ -159,7 +159,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 GetFormat
+=head3 getFormat
 
 =over
 
@@ -173,7 +173,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 GetHeight
+=head3 getHeight
 
 =over
 
@@ -187,7 +187,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 GetMipLevelCount
+=head3 getMipLevelCount
 
 =over
 
@@ -201,7 +201,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 GetSampleCount
+=head3 getSampleCount
 
 =over
 
@@ -215,7 +215,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 GetUsage
+=head3 getUsage
 
 =over
 
@@ -229,7 +229,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 GetWidth
+=head3 getWidth
 
 =over
 
@@ -243,7 +243,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -257,7 +257,7 @@ WebGPU::Direct::Texture
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

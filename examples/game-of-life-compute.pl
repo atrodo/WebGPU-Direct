@@ -16,18 +16,18 @@ my $height = 600;
 my $wgsl = do { local $/; <DATA> };
 my ( $computeWGSL, $vertWGSL, $fragWGSL ) = split /^---\n/xms, $wgsl;
 
-my $context = $wgpu->CreateSurface(
+my $context = $wgpu->createSurface(
   {
     nextInChain => WebGPU::Direct->new_window( $width, $height ),
   }
 );
 
-my $adapter = $wgpu->RequestAdapter( { compatibleSurface => $context } );
-my $device  = $adapter->RequestDevice;
+my $adapter = $wgpu->requestAdapter( { compatibleSurface => $context } );
+my $device  = $adapter->requestDevice;
 
-my $presentationFormat = $context->GetPreferredFormat($adapter);
+my $presentationFormat = $context->getPreferredFormat($adapter);
 
-$context->Configure(
+$context->configure(
   {
     device => $device,
     format => $presentationFormat,
@@ -43,7 +43,7 @@ my $GameOptions = {
   workgroupSize => 8,
 };
 
-my $computeShader = $device->CreateShaderModule( { code => $computeWGSL } );
+my $computeShader = $device->createShaderModule( { code => $computeWGSL } );
 
 my $a = {
   entries => [
@@ -71,23 +71,22 @@ my $a = {
   ],
 };
 
-my $bindGroupLayoutCompute = $device->CreateBindGroupLayout($a);
+my $bindGroupLayoutCompute = $device->createBindGroupLayout($a);
 
 my @squareVertices = ( 0, 0, 0, 1, 1, 0, 1, 1 );
-my $squareVertices = pack( 'L*', @squareVertices );
-my $squareBuffer   = $device->CreateBuffer(
+my $squareBuffer   = $device->createBuffer(
   {
-    size             => length($squareVertices),
+    size             => BYTES_PER_u32 * scalar(@squareVertices),
     usage            => BufferUsage->Vertex,
     mappedAtCreation => 1,
   }
 );
 
-$squareBuffer->GetMappedRange->buffer($squareVertices);
-$squareBuffer->Unmap();
+$squareBuffer->getMappedRange->buffer_u32(@squareVertices);
+$squareBuffer->unmap();
 
 my $squareStride = {
-  arrayStride => 2 * length( pack 'L', 0 ),
+  arrayStride => 2 * BYTES_PER_u32,
   stepMode    => 'Vertex',
   attributes  => [
     {
@@ -98,11 +97,11 @@ my $squareStride = {
   ],
 };
 
-my $vertexShader   = $device->CreateShaderModule( { code => $vertWGSL } );
-my $fragmentShader = $device->CreateShaderModule( { code => $fragWGSL } );
+my $vertexShader   = $device->createShaderModule( { code => $vertWGSL } );
+my $fragmentShader = $device->createShaderModule( { code => $fragWGSL } );
 my $commandEncoder;
 
-my $bindGroupLayoutRender = $device->CreateBindGroupLayout(
+my $bindGroupLayoutRender = $device->createBindGroupLayout(
   {
     entries => [
       {
@@ -117,7 +116,7 @@ my $bindGroupLayoutRender = $device->CreateBindGroupLayout(
 );
 
 my $cellsStride = {
-  arrayStride => length( pack 'L', 0 ),
+  arrayStride => BYTES_PER_u32,
   stepMode    => 'Instance',
   attributes  => [
     {
@@ -137,9 +136,9 @@ my $render = sub { };
 sub resetGameData
 {
   # compute pipeline
-  my $computePipeline = $device->CreateComputePipeline(
+  my $computePipeline = $device->createComputePipeline(
     {
-      layout => $device->CreatePipelineLayout(
+      layout => $device->createPipelineLayout(
         {
           bindGroupLayouts => [$bindGroupLayoutCompute],
         }
@@ -153,7 +152,7 @@ sub resetGameData
       },
     }
   );
-  my $sizeBuffer = $device->CreateBuffer(
+  my $sizeBuffer = $device->createBuffer(
     {
       size             => 2 * BYTES_PER_u32,
       usage            => BufferUsage->Storage | BufferUsage->Uniform | BufferUsage->CopyDst | BufferUsage->Vertex,
@@ -161,39 +160,31 @@ sub resetGameData
     }
   );
 
-  my $squareVertices = pack( 'L*', @squareVertices );
-  $sizeBuffer->GetMappedRange->buffer(
-    pack(
-      'L*',
-      $GameOptions->{width},
-      $GameOptions->{height},
-    )
-  );
-  $sizeBuffer->Unmap();
+  $sizeBuffer->getMappedRange->buffer_i32( $GameOptions->{width}, $GameOptions->{height} );
+  $sizeBuffer->unmap();
 
   my $cell_length = $GameOptions->{width} * $GameOptions->{height};
   my @cells       = ( map { rand() < 0.25 ? 1 : 0 } 1 .. $cell_length );
-  my $cells       = pack 'L*', @cells;
 
-  $buffer0 = $device->CreateBuffer(
+  $buffer0 = $device->createBuffer(
     {
-      size             => length $cells,
+      size             => scalar(@cells) * BYTES_PER_u32,
       usage            => BufferUsage->Storage | BufferUsage->Vertex,
       mappedAtCreation => 1,
     }
   );
 
-  $buffer0->GetMappedRange->buffer($cells);
-  $buffer0->Unmap();
+  $buffer0->getMappedRange->buffer_i32(@cells);
+  $buffer0->unmap();
 
-  $buffer1 = $device->CreateBuffer(
+  $buffer1 = $device->createBuffer(
     {
-      size  => length $cells,
+      size  => scalar(@cells) * BYTES_PER_u32,
       usage => BufferUsage->Storage | BufferUsage->Vertex,
     }
   );
 
-  my $bindGroup0 = $device->CreateBindGroup(
+  my $bindGroup0 = $device->createBindGroup(
     {
       layout  => $bindGroupLayoutCompute,
       entries => [
@@ -204,7 +195,7 @@ sub resetGameData
     }
   );
 
-  my $bindGroup1 = $device->CreateBindGroup(
+  my $bindGroup1 = $device->createBindGroup(
     {
       layout  => $bindGroupLayoutCompute,
       entries => [
@@ -215,9 +206,9 @@ sub resetGameData
     }
   );
 
-  my $renderPipeline = $device->CreateRenderPipeline(
+  my $renderPipeline = $device->createRenderPipeline(
     {
-      layout => $device->CreatePipelineLayout(
+      layout => $device->createPipelineLayout(
         {
           bindGroupLayouts => [$bindGroupLayoutRender],
         }
@@ -242,9 +233,9 @@ sub resetGameData
     }
   );
 
-  my $uniformBindGroup = $device->CreateBindGroup(
+  my $uniformBindGroup = $device->createBindGroup(
     {
-      layout  => $renderPipeline->GetBindGroupLayout(0),
+      layout  => $renderPipeline->getBindGroupLayout(0),
       entries => [
         {
           binding => 0,
@@ -259,8 +250,8 @@ sub resetGameData
   $loopTimes = 0;
   $render    = sub
   {
-    my $currentTexture = $context->GetCurrentTexture;
-    my $view           = $currentTexture->texture->CreateView();
+    my $currentTexture = $context->getCurrentTexture;
+    my $view           = $currentTexture->texture->createView();
     my $renderPass     = {
       colorAttachments => [
         {
@@ -271,29 +262,29 @@ sub resetGameData
         },
       ],
     };
-    $commandEncoder = $device->CreateCommandEncoder();
+    $commandEncoder = $device->createCommandEncoder();
 
     # compute
-    my $passEncoderCompute = $commandEncoder->BeginComputePass();
-    $passEncoderCompute->SetPipeline($computePipeline);
-    $passEncoderCompute->SetBindGroup( 0, $loopTimes ? $bindGroup1 : $bindGroup0 );
-    $passEncoderCompute->DispatchWorkgroups(
+    my $passEncoderCompute = $commandEncoder->beginComputePass();
+    $passEncoderCompute->setPipeline($computePipeline);
+    $passEncoderCompute->setBindGroup( 0, $loopTimes ? $bindGroup1 : $bindGroup0 );
+    $passEncoderCompute->dispatchWorkgroups(
       $GameOptions->{width} / $GameOptions->{workgroupSize},
       $GameOptions->{height} / $GameOptions->{workgroupSize}
     );
-    $passEncoderCompute->End();
+    $passEncoderCompute->end();
 
     # render
-    my $passEncoderRender = $commandEncoder->BeginRenderPass($renderPass);
-    $passEncoderRender->SetPipeline($renderPipeline);
-    $passEncoderRender->SetVertexBuffer( 0, $loopTimes ? $buffer1 : $buffer0 );
-    $passEncoderRender->SetVertexBuffer( 1, $squareBuffer );
-    $passEncoderRender->SetBindGroup( 0, $uniformBindGroup, [] );
-    $passEncoderRender->Draw( 4, $cell_length );
-    $passEncoderRender->End();
+    my $passEncoderRender = $commandEncoder->beginRenderPass($renderPass);
+    $passEncoderRender->setPipeline($renderPipeline);
+    $passEncoderRender->setVertexBuffer( 0, $loopTimes ? $buffer1 : $buffer0 );
+    $passEncoderRender->setVertexBuffer( 1, $squareBuffer );
+    $passEncoderRender->setBindGroup( 0, $uniformBindGroup, [] );
+    $passEncoderRender->draw( 4, $cell_length );
+    $passEncoderRender->end();
 
-    $device->GetQueue->Submit( [ $commandEncoder->Finish() ] );
-    $context->Present;
+    $device->getQueue->submit( [ $commandEncoder->finish() ] );
+    $context->present;
   };
 }
 

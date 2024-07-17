@@ -5,8 +5,8 @@ use WebGPU::Direct;
 
 my $wgpu = WebGPU::Direct->new;
 
-my $adapter = $wgpu->RequestAdapter( { compatibleSurface => undef } );
-my $device  = $adapter->RequestDevice;
+my $adapter = $wgpu->requestAdapter( { compatibleSurface => undef } );
+my $device  = $adapter->requestDevice;
 
 my @cubeVertexArray = (
   #<<<
@@ -26,7 +26,7 @@ my $cube = {
 };
 
 # Create a vertex buffer from the cube data.
-my $verticesBuffer = $device->CreateBuffer(
+my $verticesBuffer = $device->createBuffer(
   {
     size             => length( $cube->{cubeVertexArray} ),
     usage            => $wgpu->BufferUsage->Vertex,
@@ -36,7 +36,7 @@ my $verticesBuffer = $device->CreateBuffer(
 
 my $poison = (0xff) x ( length( $cube->{cubeVertexArray} ) );
 my $null   = "\0" x ( length( $cube->{cubeVertexArray} ) );
-my $mb     = $verticesBuffer->GetMappedRange;
+my $mb     = $verticesBuffer->getMappedRange;
 
 is( $mb->{buffer}, $null, 'Buffer was correctly sized' );
 is( $mb->{size}, length( $cube->{cubeVertexArray} ), 'Reported size is correct' );

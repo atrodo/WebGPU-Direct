@@ -10,19 +10,19 @@ my $wgpu = WebGPU::Direct->new;
 my $width  = 600;
 my $height = 600;
 
-my $gpuContext = $wgpu->CreateSurface(
+my $gpuContext = $wgpu->createSurface(
   {
     nextInChain => WebGPU::Direct->new_window( $width, $height ),
   }
 );
 
-my $adapter = $wgpu->RequestAdapter({ compatibleSurface => $gpuContext });
+my $adapter = $wgpu->requestAdapter({ compatibleSurface => $gpuContext });
 
 my $limits = $wgpu->SupportedLimits->new;
-if ( $adapter->GetLimits($limits) )
+if ( $adapter->getLimits($limits) )
 {
   warn Data::Dumper::Dumper($limits);
 }
 
-my $features = $adapter->EnumerateFeatures;
+my $features = $adapter->enumerateFeatures;
 warn Data::Dumper::Dumper($features);

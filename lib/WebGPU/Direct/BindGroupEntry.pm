@@ -22,7 +22,7 @@ package WebGPU::Direct::BindGroupEntry
     }
     if ( !exists $args->{size} )
     {
-      $args->{size} = $args->{buffer}->GetSize - $args->{offset};
+      $args->{size} = $args->{buffer}->getSize - $args->{offset};
     }
     return $args;
   }

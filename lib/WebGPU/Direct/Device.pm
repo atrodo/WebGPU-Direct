@@ -8,7 +8,7 @@ package WebGPU::Direct::Device
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
-  sub CreateShaderModule (
+  sub createShaderModule (
     $self,
     $descriptor,
       )
@@ -40,23 +40,23 @@ package WebGPU::Direct::Device
       }
     }
 
-    return $self->_CreateShaderModule($descriptor);
+    return $self->_createShaderModule($descriptor);
   }
 
-  sub CreateCommandEncoder (
+  sub createCommandEncoder (
     $self,
     $descriptor = {},
   )
   {
-    return $self->_CreateCommandEncoder($descriptor);
+    return $self->_createCommandEncoder($descriptor);
   }
 
-  sub CreateSampler (
+  sub createSampler (
     $self,
     $descriptor = {},
   )
   {
-    return $self->_CreateSampler($descriptor);
+    return $self->_createSampler($descriptor);
   }
 
 };
@@ -73,7 +73,7 @@ WebGPU::Direct::Device
 
 =head2 Methods
 
-=head3 CreateBindGroup
+=head3 createBindGroup
 
 =over
 
@@ -95,7 +95,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateBindGroupLayout
+=head3 createBindGroupLayout
 
 =over
 
@@ -117,7 +117,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateBuffer
+=head3 createBuffer
 
 =over
 
@@ -139,7 +139,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateCommandEncoder
+=head3 createCommandEncoder
 
 =over
 
@@ -161,7 +161,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateComputePipeline
+=head3 createComputePipeline
 
 =over
 
@@ -183,7 +183,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateComputePipelineAsync
+=head3 createComputePipelineAsync
 
 =over
 
@@ -201,7 +201,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreatePipelineLayout
+=head3 createPipelineLayout
 
 =over
 
@@ -223,7 +223,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateQuerySet
+=head3 createQuerySet
 
 =over
 
@@ -245,7 +245,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateRenderBundleEncoder
+=head3 createRenderBundleEncoder
 
 =over
 
@@ -267,7 +267,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateRenderPipeline
+=head3 createRenderPipeline
 
 =over
 
@@ -289,7 +289,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateRenderPipelineAsync
+=head3 createRenderPipelineAsync
 
 =over
 
@@ -307,7 +307,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateSampler
+=head3 createSampler
 
 =over
 
@@ -329,7 +329,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateShaderModule
+=head3 createShaderModule
 
 =over
 
@@ -351,7 +351,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 CreateTexture
+=head3 createTexture
 
 =over
 
@@ -373,9 +373,9 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 Destroy
+=head3 destroy
 
-=head3 EnumerateFeatures
+=head3 enumerateFeatures
 
 =over
 
@@ -397,7 +397,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 GetLimits
+=head3 getLimits
 
 =over
 
@@ -419,7 +419,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 GetQueue
+=head3 getQueue
 
 =over
 
@@ -433,7 +433,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 HasFeature
+=head3 hasFeature
 
 =over
 
@@ -455,7 +455,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 PopErrorScope
+=head3 popErrorScope
 
 =over
 
@@ -471,7 +471,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 PushErrorScope
+=head3 pushErrorScope
 
 =over
 
@@ -485,7 +485,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -499,7 +499,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 SetUncapturedErrorCallback
+=head3 setUncapturedErrorCallback
 
 =over
 
@@ -515,7 +515,7 @@ WebGPU::Direct::Device
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 

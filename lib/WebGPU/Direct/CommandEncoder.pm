@@ -8,30 +8,30 @@ package WebGPU::Direct::CommandEncoder
   use Scalar::Util qw/blessed/;
   use Carp qw/croak/;
 
-  sub BeginComputePass (
+  sub beginComputePass (
     $self,
     $descriptor = {}
       )
   {
-    return $self->_BeginComputePass($descriptor);
+    return $self->_beginComputePass($descriptor);
   }
 
-  sub ClearBuffer (
+  sub clearBuffer (
     $self,
     $buffer,
     $offset = 0,
-    $size   = $buffer->GetSize() - $offset,
+    $size   = $buffer->getSize() - $offset,
       )
   {
-    return $self->_ClearBuffer( $buffer, $offset, $size );
+    return $self->_clearBuffer( $buffer, $offset, $size );
   }
 
-  sub Finish (
+  sub finish (
     $self,
     $descriptor = {}
       )
   {
-    return $self->_Finish($descriptor);
+    return $self->_finish($descriptor);
   }
 };
 
@@ -47,7 +47,7 @@ WebGPU::Direct::CommandEncoder
 
 =head2 Methods
 
-=head3 BeginComputePass
+=head3 beginComputePass
 
 =over
 
@@ -69,7 +69,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 BeginRenderPass
+=head3 beginRenderPass
 
 =over
 
@@ -91,7 +91,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 ClearBuffer
+=head3 clearBuffer
 
 =over
 
@@ -103,13 +103,13 @@ WebGPU::Direct::CommandEncoder
 
 =item * offset (Unsigned 64bit (uint64_t)) Default: 0
 
-=item * size (Unsigned 64bit (uint64_t)) Default: buffer->GetSize() - offset
+=item * size (Unsigned 64bit (uint64_t)) Default: buffer->getSize() - offset
 
 =back
 
 =back
 
-=head3 CopyBufferToBuffer
+=head3 copyBufferToBuffer
 
 =over
 
@@ -131,7 +131,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 CopyBufferToTexture
+=head3 copyBufferToTexture
 
 =over
 
@@ -149,7 +149,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 CopyTextureToBuffer
+=head3 copyTextureToBuffer
 
 =over
 
@@ -167,7 +167,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 CopyTextureToTexture
+=head3 copyTextureToTexture
 
 =over
 
@@ -185,7 +185,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 Finish
+=head3 finish
 
 =over
 
@@ -207,7 +207,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 InsertDebugMarker
+=head3 insertDebugMarker
 
 =over
 
@@ -221,9 +221,9 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 PopDebugGroup
+=head3 popDebugGroup
 
-=head3 PushDebugGroup
+=head3 pushDebugGroup
 
 =over
 
@@ -237,7 +237,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 ResolveQuerySet
+=head3 resolveQuerySet
 
 =over
 
@@ -259,7 +259,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 SetLabel
+=head3 setLabel
 
 =over
 
@@ -273,7 +273,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 WriteTimestamp
+=head3 writeTimestamp
 
 =over
 
@@ -289,7 +289,7 @@ WebGPU::Direct::CommandEncoder
 
 =back
 
-=head3 Reference
+=head3 reference
 
-=head3 Release
+=head3 release
 
