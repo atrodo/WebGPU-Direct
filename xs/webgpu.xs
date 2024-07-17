@@ -26,12 +26,19 @@ wgpuGetProcAddress(device, procName)
 MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Adapter	PREFIX = wgpuAdapter
 
 
-size_t 
-wgpuAdapterEnumerateFeatures(adapter, features)
+SV *
+wgpuAdapterEnumerateFeatures(adapter)
         WGPUAdapter adapter
-        WGPUFeatureName * features
     CODE:
-      RETVAL = wgpuAdapterEnumerateFeatures(adapter, features);
+      WGPUFeatureName * result = NULL;
+      size_t count = wgpuAdapterEnumerateFeatures(adapter, result);
+      Newxz(result, count, WGPUFeatureName);
+      count = wgpuAdapterEnumerateFeatures(adapter, result);
+      SV *STRICT_ENUM = get_sv("WebGPU::Direct::Enum::STRICT_NEW", GV_ADDWARN | GV_ADDMULTI);
+      save_item(STRICT_ENUM);
+      sv_setsv(STRICT_ENUM, &PL_sv_undef);
+      RETVAL = _array_new(newSVpvs("WebGPU::Direct::FeatureName"), result, sizeof(WGPUFeatureName), count);
+      Safefree(result);
     OUTPUT:
       RETVAL
 
@@ -761,12 +768,19 @@ wgpuDeviceDestroy(device)
       wgpuDeviceDestroy(device);
 
 
-size_t 
-wgpuDeviceEnumerateFeatures(device, features)
+SV *
+wgpuDeviceEnumerateFeatures(device)
         WGPUDevice device
-        WGPUFeatureName * features
     CODE:
-      RETVAL = wgpuDeviceEnumerateFeatures(device, features);
+      WGPUFeatureName * result = NULL;
+      size_t count = wgpuDeviceEnumerateFeatures(device, result);
+      Newxz(result, count, WGPUFeatureName);
+      count = wgpuDeviceEnumerateFeatures(device, result);
+      SV *STRICT_ENUM = get_sv("WebGPU::Direct::Enum::STRICT_NEW", GV_ADDWARN | GV_ADDMULTI);
+      save_item(STRICT_ENUM);
+      sv_setsv(STRICT_ENUM, &PL_sv_undef);
+      RETVAL = _array_new(newSVpvs("WebGPU::Direct::FeatureName"), result, sizeof(WGPUFeatureName), count);
+      Safefree(result);
     OUTPUT:
       RETVAL
 

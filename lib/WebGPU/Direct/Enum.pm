@@ -30,8 +30,9 @@ package WebGPU::Direct::Enum
       $lut->{$value+0} = $value;
       $lut->{"$value"} = $value;
     }
-    #die Data::Dumper::Dumper($lut);
   }
+
+  our $STRICT_NEW = 1;
 
   sub new(
     $class,
@@ -40,8 +41,12 @@ package WebGPU::Direct::Enum
   {
     my $result = $class->_get_consts_ref->{$enum};
 
-    croak "Could not find '$enum' for enum class $class"
-      if !defined $result;
+    if ( !defined $result )
+    {
+      return $enum
+        if !$STRICT_NEW;
+      croak "Could not find '$enum' for enum class $class"
+    }
 
     return $result;
   }
