@@ -73,17 +73,13 @@ package
   sub TextureViewDimension () { 'WebGPU::Direct::TextureViewDimension' }; push @export_all, 'TextureViewDimension';
   sub VertexFormat () { 'WebGPU::Direct::VertexFormat' }; push @export_all, 'VertexFormat';
   sub VertexStepMode () { 'WebGPU::Direct::VertexStepMode' }; push @export_all, 'VertexStepMode';
-  sub Adapter () { Carp::croak if @_>1; 'WebGPU::Direct::Adapter' }
   sub AdapterProperties () { Carp::croak if @_>1; 'WebGPU::Direct::AdapterProperties' }
-  sub BindGroup () { Carp::croak if @_>1; 'WebGPU::Direct::BindGroup' }
   sub BindGroupDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::BindGroupDescriptor' }
   sub BindGroupEntry () { Carp::croak if @_>1; 'WebGPU::Direct::BindGroupEntry' }
-  sub BindGroupLayout () { Carp::croak if @_>1; 'WebGPU::Direct::BindGroupLayout' }
   sub BindGroupLayoutDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::BindGroupLayoutDescriptor' }
   sub BindGroupLayoutEntry () { Carp::croak if @_>1; 'WebGPU::Direct::BindGroupLayoutEntry' }
   sub BlendComponent () { Carp::croak if @_>1; 'WebGPU::Direct::BlendComponent' }
   sub BlendState () { Carp::croak if @_>1; 'WebGPU::Direct::BlendState' }
-  sub Buffer () { Carp::croak if @_>1; 'WebGPU::Direct::Buffer' }
   sub BufferBindingLayout () { Carp::croak if @_>1; 'WebGPU::Direct::BufferBindingLayout' }
   sub BufferDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::BufferDescriptor' }
   sub BufferMapCallback () { Carp::croak if @_>1; 'WebGPU::Direct::BufferMapCallback' }
@@ -91,23 +87,18 @@ package
   sub ChainedStructOut () { Carp::croak if @_>1; 'WebGPU::Direct::ChainedStructOut' }
   sub Color () { Carp::croak if @_>1; 'WebGPU::Direct::Color' }
   sub ColorTargetState () { Carp::croak if @_>1; 'WebGPU::Direct::ColorTargetState' }
-  sub CommandBuffer () { Carp::croak if @_>1; 'WebGPU::Direct::CommandBuffer' }
   sub CommandBufferDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::CommandBufferDescriptor' }
-  sub CommandEncoder () { Carp::croak if @_>1; 'WebGPU::Direct::CommandEncoder' }
   sub CommandEncoderDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::CommandEncoderDescriptor' }
   sub CompilationInfo () { Carp::croak if @_>1; 'WebGPU::Direct::CompilationInfo' }
   sub CompilationInfoCallback () { Carp::croak if @_>1; 'WebGPU::Direct::CompilationInfoCallback' }
   sub CompilationMessage () { Carp::croak if @_>1; 'WebGPU::Direct::CompilationMessage' }
   sub ComputePassDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::ComputePassDescriptor' }
-  sub ComputePassEncoder () { Carp::croak if @_>1; 'WebGPU::Direct::ComputePassEncoder' }
   sub ComputePassTimestampWrites () { Carp::croak if @_>1; 'WebGPU::Direct::ComputePassTimestampWrites' }
-  sub ComputePipeline () { Carp::croak if @_>1; 'WebGPU::Direct::ComputePipeline' }
   sub ComputePipelineDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::ComputePipelineDescriptor' }
   sub ConstantEntry () { Carp::croak if @_>1; 'WebGPU::Direct::ConstantEntry' }
   sub CreateComputePipelineAsyncCallback () { Carp::croak if @_>1; 'WebGPU::Direct::CreateComputePipelineAsyncCallback' }
   sub CreateRenderPipelineAsyncCallback () { Carp::croak if @_>1; 'WebGPU::Direct::CreateRenderPipelineAsyncCallback' }
   sub DepthStencilState () { Carp::croak if @_>1; 'WebGPU::Direct::DepthStencilState' }
-  sub Device () { Carp::croak if @_>1; 'WebGPU::Direct::Device' }
   sub DeviceDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::DeviceDescriptor' }
   sub DeviceLostCallback () { Carp::croak if @_>1; 'WebGPU::Direct::DeviceLostCallback' }
   sub ErrorCallback () { Carp::croak if @_>1; 'WebGPU::Direct::ErrorCallback' }
@@ -115,42 +106,32 @@ package
   sub FragmentState () { Carp::croak if @_>1; 'WebGPU::Direct::FragmentState' }
   sub ImageCopyBuffer () { Carp::croak if @_>1; 'WebGPU::Direct::ImageCopyBuffer' }
   sub ImageCopyTexture () { Carp::croak if @_>1; 'WebGPU::Direct::ImageCopyTexture' }
-  sub Instance () { Carp::croak if @_>1; 'WebGPU::Direct::Instance' }
   sub InstanceDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::InstanceDescriptor' }
   sub Limits () { Carp::croak if @_>1; 'WebGPU::Direct::Limits' }
   sub MultisampleState () { Carp::croak if @_>1; 'WebGPU::Direct::MultisampleState' }
   sub Origin3D () { Carp::croak if @_>1; 'WebGPU::Direct::Origin3D' }
-  sub PipelineLayout () { Carp::croak if @_>1; 'WebGPU::Direct::PipelineLayout' }
   sub PipelineLayoutDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::PipelineLayoutDescriptor' }
   sub PrimitiveDepthClipControl () { Carp::croak if @_>1; 'WebGPU::Direct::PrimitiveDepthClipControl' }
   sub PrimitiveState () { Carp::croak if @_>1; 'WebGPU::Direct::PrimitiveState' }
   sub Proc () { Carp::croak if @_>1; 'WebGPU::Direct::Proc' }
   sub ProgrammableStageDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::ProgrammableStageDescriptor' }
-  sub QuerySet () { Carp::croak if @_>1; 'WebGPU::Direct::QuerySet' }
   sub QuerySetDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::QuerySetDescriptor' }
-  sub Queue () { Carp::croak if @_>1; 'WebGPU::Direct::Queue' }
   sub QueueDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::QueueDescriptor' }
   sub QueueWorkDoneCallback () { Carp::croak if @_>1; 'WebGPU::Direct::QueueWorkDoneCallback' }
-  sub RenderBundle () { Carp::croak if @_>1; 'WebGPU::Direct::RenderBundle' }
   sub RenderBundleDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::RenderBundleDescriptor' }
-  sub RenderBundleEncoder () { Carp::croak if @_>1; 'WebGPU::Direct::RenderBundleEncoder' }
   sub RenderBundleEncoderDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::RenderBundleEncoderDescriptor' }
   sub RenderPassColorAttachment () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPassColorAttachment' }
   sub RenderPassDepthStencilAttachment () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPassDepthStencilAttachment' }
   sub RenderPassDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPassDescriptor' }
   sub RenderPassDescriptorMaxDrawCount () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPassDescriptorMaxDrawCount' }
-  sub RenderPassEncoder () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPassEncoder' }
   sub RenderPassTimestampWrites () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPassTimestampWrites' }
-  sub RenderPipeline () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPipeline' }
   sub RenderPipelineDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::RenderPipelineDescriptor' }
   sub RequestAdapterCallback () { Carp::croak if @_>1; 'WebGPU::Direct::RequestAdapterCallback' }
   sub RequestAdapterOptions () { Carp::croak if @_>1; 'WebGPU::Direct::RequestAdapterOptions' }
   sub RequestDeviceCallback () { Carp::croak if @_>1; 'WebGPU::Direct::RequestDeviceCallback' }
   sub RequiredLimits () { Carp::croak if @_>1; 'WebGPU::Direct::RequiredLimits' }
-  sub Sampler () { Carp::croak if @_>1; 'WebGPU::Direct::Sampler' }
   sub SamplerBindingLayout () { Carp::croak if @_>1; 'WebGPU::Direct::SamplerBindingLayout' }
   sub SamplerDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::SamplerDescriptor' }
-  sub ShaderModule () { Carp::croak if @_>1; 'WebGPU::Direct::ShaderModule' }
   sub ShaderModuleCompilationHint () { Carp::croak if @_>1; 'WebGPU::Direct::ShaderModuleCompilationHint' }
   sub ShaderModuleDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::ShaderModuleDescriptor' }
   sub ShaderModuleSPIRVDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::ShaderModuleSPIRVDescriptor' }
@@ -158,7 +139,6 @@ package
   sub StencilFaceState () { Carp::croak if @_>1; 'WebGPU::Direct::StencilFaceState' }
   sub StorageTextureBindingLayout () { Carp::croak if @_>1; 'WebGPU::Direct::StorageTextureBindingLayout' }
   sub SupportedLimits () { Carp::croak if @_>1; 'WebGPU::Direct::SupportedLimits' }
-  sub Surface () { Carp::croak if @_>1; 'WebGPU::Direct::Surface' }
   sub SurfaceCapabilities () { Carp::croak if @_>1; 'WebGPU::Direct::SurfaceCapabilities' }
   sub SurfaceConfiguration () { Carp::croak if @_>1; 'WebGPU::Direct::SurfaceConfiguration' }
   sub SurfaceDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::SurfaceDescriptor' }
@@ -170,26 +150,20 @@ package
   sub SurfaceDescriptorFromXcbWindow () { Carp::croak if @_>1; 'WebGPU::Direct::SurfaceDescriptorFromXcbWindow' }
   sub SurfaceDescriptorFromXlibWindow () { Carp::croak if @_>1; 'WebGPU::Direct::SurfaceDescriptorFromXlibWindow' }
   sub SurfaceTexture () { Carp::croak if @_>1; 'WebGPU::Direct::SurfaceTexture' }
-  sub Texture () { Carp::croak if @_>1; 'WebGPU::Direct::Texture' }
   sub TextureBindingLayout () { Carp::croak if @_>1; 'WebGPU::Direct::TextureBindingLayout' }
   sub TextureDataLayout () { Carp::croak if @_>1; 'WebGPU::Direct::TextureDataLayout' }
   sub TextureDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::TextureDescriptor' }
-  sub TextureView () { Carp::croak if @_>1; 'WebGPU::Direct::TextureView' }
   sub TextureViewDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::TextureViewDescriptor' }
   sub VertexAttribute () { Carp::croak if @_>1; 'WebGPU::Direct::VertexAttribute' }
   sub VertexBufferLayout () { Carp::croak if @_>1; 'WebGPU::Direct::VertexBufferLayout' }
   sub VertexState () { Carp::croak if @_>1; 'WebGPU::Direct::VertexState' }
-  sub newAdapter { my $class = shift; return WebGPU::Direct::Adapter->new(@_); }
   sub newAdapterProperties { my $class = shift; return WebGPU::Direct::AdapterProperties->new(@_); }
-  sub newBindGroup { my $class = shift; return WebGPU::Direct::BindGroup->new(@_); }
   sub newBindGroupDescriptor { my $class = shift; return WebGPU::Direct::BindGroupDescriptor->new(@_); }
   sub newBindGroupEntry { my $class = shift; return WebGPU::Direct::BindGroupEntry->new(@_); }
-  sub newBindGroupLayout { my $class = shift; return WebGPU::Direct::BindGroupLayout->new(@_); }
   sub newBindGroupLayoutDescriptor { my $class = shift; return WebGPU::Direct::BindGroupLayoutDescriptor->new(@_); }
   sub newBindGroupLayoutEntry { my $class = shift; return WebGPU::Direct::BindGroupLayoutEntry->new(@_); }
   sub newBlendComponent { my $class = shift; return WebGPU::Direct::BlendComponent->new(@_); }
   sub newBlendState { my $class = shift; return WebGPU::Direct::BlendState->new(@_); }
-  sub newBuffer { my $class = shift; return WebGPU::Direct::Buffer->new(@_); }
   sub newBufferBindingLayout { my $class = shift; return WebGPU::Direct::BufferBindingLayout->new(@_); }
   sub newBufferDescriptor { my $class = shift; return WebGPU::Direct::BufferDescriptor->new(@_); }
   sub newBufferMapCallback { my $class = shift; return WebGPU::Direct::BufferMapCallback->new(@_); }
@@ -197,23 +171,18 @@ package
   sub newChainedStructOut { my $class = shift; return WebGPU::Direct::ChainedStructOut->new(@_); }
   sub newColor { my $class = shift; return WebGPU::Direct::Color->new(@_); }
   sub newColorTargetState { my $class = shift; return WebGPU::Direct::ColorTargetState->new(@_); }
-  sub newCommandBuffer { my $class = shift; return WebGPU::Direct::CommandBuffer->new(@_); }
   sub newCommandBufferDescriptor { my $class = shift; return WebGPU::Direct::CommandBufferDescriptor->new(@_); }
-  sub newCommandEncoder { my $class = shift; return WebGPU::Direct::CommandEncoder->new(@_); }
   sub newCommandEncoderDescriptor { my $class = shift; return WebGPU::Direct::CommandEncoderDescriptor->new(@_); }
   sub newCompilationInfo { my $class = shift; return WebGPU::Direct::CompilationInfo->new(@_); }
   sub newCompilationInfoCallback { my $class = shift; return WebGPU::Direct::CompilationInfoCallback->new(@_); }
   sub newCompilationMessage { my $class = shift; return WebGPU::Direct::CompilationMessage->new(@_); }
   sub newComputePassDescriptor { my $class = shift; return WebGPU::Direct::ComputePassDescriptor->new(@_); }
-  sub newComputePassEncoder { my $class = shift; return WebGPU::Direct::ComputePassEncoder->new(@_); }
   sub newComputePassTimestampWrites { my $class = shift; return WebGPU::Direct::ComputePassTimestampWrites->new(@_); }
-  sub newComputePipeline { my $class = shift; return WebGPU::Direct::ComputePipeline->new(@_); }
   sub newComputePipelineDescriptor { my $class = shift; return WebGPU::Direct::ComputePipelineDescriptor->new(@_); }
   sub newConstantEntry { my $class = shift; return WebGPU::Direct::ConstantEntry->new(@_); }
   sub newCreateComputePipelineAsyncCallback { my $class = shift; return WebGPU::Direct::CreateComputePipelineAsyncCallback->new(@_); }
   sub newCreateRenderPipelineAsyncCallback { my $class = shift; return WebGPU::Direct::CreateRenderPipelineAsyncCallback->new(@_); }
   sub newDepthStencilState { my $class = shift; return WebGPU::Direct::DepthStencilState->new(@_); }
-  sub newDevice { my $class = shift; return WebGPU::Direct::Device->new(@_); }
   sub newDeviceDescriptor { my $class = shift; return WebGPU::Direct::DeviceDescriptor->new(@_); }
   sub newDeviceLostCallback { my $class = shift; return WebGPU::Direct::DeviceLostCallback->new(@_); }
   sub newErrorCallback { my $class = shift; return WebGPU::Direct::ErrorCallback->new(@_); }
@@ -221,42 +190,32 @@ package
   sub newFragmentState { my $class = shift; return WebGPU::Direct::FragmentState->new(@_); }
   sub newImageCopyBuffer { my $class = shift; return WebGPU::Direct::ImageCopyBuffer->new(@_); }
   sub newImageCopyTexture { my $class = shift; return WebGPU::Direct::ImageCopyTexture->new(@_); }
-  sub newInstance { my $class = shift; return WebGPU::Direct::Instance->new(@_); }
   sub newInstanceDescriptor { my $class = shift; return WebGPU::Direct::InstanceDescriptor->new(@_); }
   sub newLimits { my $class = shift; return WebGPU::Direct::Limits->new(@_); }
   sub newMultisampleState { my $class = shift; return WebGPU::Direct::MultisampleState->new(@_); }
   sub newOrigin3D { my $class = shift; return WebGPU::Direct::Origin3D->new(@_); }
-  sub newPipelineLayout { my $class = shift; return WebGPU::Direct::PipelineLayout->new(@_); }
   sub newPipelineLayoutDescriptor { my $class = shift; return WebGPU::Direct::PipelineLayoutDescriptor->new(@_); }
   sub newPrimitiveDepthClipControl { my $class = shift; return WebGPU::Direct::PrimitiveDepthClipControl->new(@_); }
   sub newPrimitiveState { my $class = shift; return WebGPU::Direct::PrimitiveState->new(@_); }
   sub newProc { my $class = shift; return WebGPU::Direct::Proc->new(@_); }
   sub newProgrammableStageDescriptor { my $class = shift; return WebGPU::Direct::ProgrammableStageDescriptor->new(@_); }
-  sub newQuerySet { my $class = shift; return WebGPU::Direct::QuerySet->new(@_); }
   sub newQuerySetDescriptor { my $class = shift; return WebGPU::Direct::QuerySetDescriptor->new(@_); }
-  sub newQueue { my $class = shift; return WebGPU::Direct::Queue->new(@_); }
   sub newQueueDescriptor { my $class = shift; return WebGPU::Direct::QueueDescriptor->new(@_); }
   sub newQueueWorkDoneCallback { my $class = shift; return WebGPU::Direct::QueueWorkDoneCallback->new(@_); }
-  sub newRenderBundle { my $class = shift; return WebGPU::Direct::RenderBundle->new(@_); }
   sub newRenderBundleDescriptor { my $class = shift; return WebGPU::Direct::RenderBundleDescriptor->new(@_); }
-  sub newRenderBundleEncoder { my $class = shift; return WebGPU::Direct::RenderBundleEncoder->new(@_); }
   sub newRenderBundleEncoderDescriptor { my $class = shift; return WebGPU::Direct::RenderBundleEncoderDescriptor->new(@_); }
   sub newRenderPassColorAttachment { my $class = shift; return WebGPU::Direct::RenderPassColorAttachment->new(@_); }
   sub newRenderPassDepthStencilAttachment { my $class = shift; return WebGPU::Direct::RenderPassDepthStencilAttachment->new(@_); }
   sub newRenderPassDescriptor { my $class = shift; return WebGPU::Direct::RenderPassDescriptor->new(@_); }
   sub newRenderPassDescriptorMaxDrawCount { my $class = shift; return WebGPU::Direct::RenderPassDescriptorMaxDrawCount->new(@_); }
-  sub newRenderPassEncoder { my $class = shift; return WebGPU::Direct::RenderPassEncoder->new(@_); }
   sub newRenderPassTimestampWrites { my $class = shift; return WebGPU::Direct::RenderPassTimestampWrites->new(@_); }
-  sub newRenderPipeline { my $class = shift; return WebGPU::Direct::RenderPipeline->new(@_); }
   sub newRenderPipelineDescriptor { my $class = shift; return WebGPU::Direct::RenderPipelineDescriptor->new(@_); }
   sub newRequestAdapterCallback { my $class = shift; return WebGPU::Direct::RequestAdapterCallback->new(@_); }
   sub newRequestAdapterOptions { my $class = shift; return WebGPU::Direct::RequestAdapterOptions->new(@_); }
   sub newRequestDeviceCallback { my $class = shift; return WebGPU::Direct::RequestDeviceCallback->new(@_); }
   sub newRequiredLimits { my $class = shift; return WebGPU::Direct::RequiredLimits->new(@_); }
-  sub newSampler { my $class = shift; return WebGPU::Direct::Sampler->new(@_); }
   sub newSamplerBindingLayout { my $class = shift; return WebGPU::Direct::SamplerBindingLayout->new(@_); }
   sub newSamplerDescriptor { my $class = shift; return WebGPU::Direct::SamplerDescriptor->new(@_); }
-  sub newShaderModule { my $class = shift; return WebGPU::Direct::ShaderModule->new(@_); }
   sub newShaderModuleCompilationHint { my $class = shift; return WebGPU::Direct::ShaderModuleCompilationHint->new(@_); }
   sub newShaderModuleDescriptor { my $class = shift; return WebGPU::Direct::ShaderModuleDescriptor->new(@_); }
   sub newShaderModuleSPIRVDescriptor { my $class = shift; return WebGPU::Direct::ShaderModuleSPIRVDescriptor->new(@_); }
@@ -264,7 +223,6 @@ package
   sub newStencilFaceState { my $class = shift; return WebGPU::Direct::StencilFaceState->new(@_); }
   sub newStorageTextureBindingLayout { my $class = shift; return WebGPU::Direct::StorageTextureBindingLayout->new(@_); }
   sub newSupportedLimits { my $class = shift; return WebGPU::Direct::SupportedLimits->new(@_); }
-  sub newSurface { my $class = shift; return WebGPU::Direct::Surface->new(@_); }
   sub newSurfaceCapabilities { my $class = shift; return WebGPU::Direct::SurfaceCapabilities->new(@_); }
   sub newSurfaceConfiguration { my $class = shift; return WebGPU::Direct::SurfaceConfiguration->new(@_); }
   sub newSurfaceDescriptor { my $class = shift; return WebGPU::Direct::SurfaceDescriptor->new(@_); }
@@ -276,11 +234,9 @@ package
   sub newSurfaceDescriptorFromXcbWindow { my $class = shift; return WebGPU::Direct::SurfaceDescriptorFromXcbWindow->new(@_); }
   sub newSurfaceDescriptorFromXlibWindow { my $class = shift; return WebGPU::Direct::SurfaceDescriptorFromXlibWindow->new(@_); }
   sub newSurfaceTexture { my $class = shift; return WebGPU::Direct::SurfaceTexture->new(@_); }
-  sub newTexture { my $class = shift; return WebGPU::Direct::Texture->new(@_); }
   sub newTextureBindingLayout { my $class = shift; return WebGPU::Direct::TextureBindingLayout->new(@_); }
   sub newTextureDataLayout { my $class = shift; return WebGPU::Direct::TextureDataLayout->new(@_); }
   sub newTextureDescriptor { my $class = shift; return WebGPU::Direct::TextureDescriptor->new(@_); }
-  sub newTextureView { my $class = shift; return WebGPU::Direct::TextureView->new(@_); }
   sub newTextureViewDescriptor { my $class = shift; return WebGPU::Direct::TextureViewDescriptor->new(@_); }
   sub newVertexAttribute { my $class = shift; return WebGPU::Direct::VertexAttribute->new(@_); }
   sub newVertexBufferLayout { my $class = shift; return WebGPU::Direct::VertexBufferLayout->new(@_); }

@@ -441,6 +441,9 @@ foreach my $enum ( sort keys %enums )
   my @pkgs;
   foreach my $pkg ( sort @classes )
   {
+    next
+        if $classdefs{$pkg}->{opaque};
+
     my $fn = $pkg;
     $fn =~ s/^WebGPU::Direct:://;
     push @pkgs, qq[  sub $fn () { Carp::croak if \@_>1; '$pkg' }];
