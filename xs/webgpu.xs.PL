@@ -447,9 +447,11 @@ foreach my $enum ( sort keys %enums )
   foreach my $pkg ( sort @classes )
   {
     next
+        if $classdefs{$pkg}->{fn_type};
+    next
         if $classdefs{$pkg}->{opaque};
     next
-      if $pkg =~ m/Callback$/;
+        if $pkg =~ m/Callback$/;
 
     my $fn = $pkg;
     $fn =~ s/^WebGPU::Direct:://;

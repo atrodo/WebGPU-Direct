@@ -107,7 +107,6 @@ package
   sub PipelineLayoutDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::PipelineLayoutDescriptor' }
   sub PrimitiveDepthClipControl () { Carp::croak if @_>1; 'WebGPU::Direct::PrimitiveDepthClipControl' }
   sub PrimitiveState () { Carp::croak if @_>1; 'WebGPU::Direct::PrimitiveState' }
-  sub Proc () { Carp::croak if @_>1; 'WebGPU::Direct::Proc' }
   sub ProgrammableStageDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::ProgrammableStageDescriptor' }
   sub QuerySetDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::QuerySetDescriptor' }
   sub QueueDescriptor () { Carp::croak if @_>1; 'WebGPU::Direct::QueueDescriptor' }
@@ -182,7 +181,6 @@ package
   sub newPipelineLayoutDescriptor { my $class = shift; return WebGPU::Direct::PipelineLayoutDescriptor->new(@_); }
   sub newPrimitiveDepthClipControl { my $class = shift; return WebGPU::Direct::PrimitiveDepthClipControl->new(@_); }
   sub newPrimitiveState { my $class = shift; return WebGPU::Direct::PrimitiveState->new(@_); }
-  sub newProc { my $class = shift; return WebGPU::Direct::Proc->new(@_); }
   sub newProgrammableStageDescriptor { my $class = shift; return WebGPU::Direct::ProgrammableStageDescriptor->new(@_); }
   sub newQuerySetDescriptor { my $class = shift; return WebGPU::Direct::QuerySetDescriptor->new(@_); }
   sub newQueueDescriptor { my $class = shift; return WebGPU::Direct::QueueDescriptor->new(@_); }
@@ -1291,7 +1289,11 @@ package
 package
 	WebGPU::Direct::BlendComponent {
     
-    my $default = {};
+    my $default = {
+             'dstFactor' => WebGPU::Direct::BlendFactor->zero,
+             'operation' => WebGPU::Direct::BlendOperation->add,
+             'srcFactor' => WebGPU::Direct::BlendFactor->one,
+           };
 
     sub new {
         my $class = shift;
@@ -1311,7 +1313,11 @@ package
 package
 	WebGPU::Direct::BufferBindingLayout {
     
-    my $default = {};
+    my $default = {
+             'hasDynamicOffset' => 0,
+             'minBindingSize' => 0,
+             'type' => WebGPU::Direct::BufferBindingType->uniform,
+           };
 
     sub new {
         my $class = shift;
@@ -1331,7 +1337,9 @@ package
 package
 	WebGPU::Direct::BufferDescriptor {
     
-    my $default = {};
+    my $default = {
+             'mappedAtCreation' => 0,
+           };
 
     sub new {
         my $class = shift;
@@ -1471,7 +1479,10 @@ package
 package
 	WebGPU::Direct::Extent3D {
     
-    my $default = {};
+    my $default = {
+             'depthOrArrayLayers' => 1,
+             'height' => 1,
+           };
 
     sub new {
         my $class = shift;
@@ -1555,7 +1566,11 @@ package
 package
 	WebGPU::Direct::Origin3D {
     
-    my $default = {};
+    my $default = {
+             'x' => 0,
+             'y' => 0,
+             'z' => 0,
+           };
 
     sub new {
         my $class = shift;
@@ -1615,7 +1630,11 @@ package
 package
 	WebGPU::Direct::PrimitiveState {
     
-    my $default = {};
+    my $default = {
+             'cullMode' => WebGPU::Direct::CullMode->none,
+             'frontFace' => WebGPU::Direct::FrontFace->CCW,
+             'topology' => WebGPU::Direct::PrimitiveTopology->triangleList,
+           };
 
     sub new {
         my $class = shift;
@@ -1695,7 +1714,11 @@ package
 package
 	WebGPU::Direct::RenderBundleEncoderDescriptor {
     
-    my $default = {};
+    my $default = {
+             'depthReadOnly' => 0,
+             'sampleCount' => 1,
+             'stencilReadOnly' => 0,
+           };
 
     sub new {
         my $class = shift;
@@ -1735,7 +1758,9 @@ package
 package
 	WebGPU::Direct::RenderPassDescriptorMaxDrawCount {
     push @WebGPU::Direct::RenderPassDescriptorMaxDrawCount::ISA, "WebGPU::Direct::ChainedStruct";
-    my $default = {};
+    my $default = {
+             'maxDrawCount' => 50000000,
+           };
 
     sub new {
         my $class = shift;
@@ -1775,7 +1800,9 @@ package
 package
 	WebGPU::Direct::RequestAdapterOptions {
     
-    my $default = {};
+    my $default = {
+             'forceFallbackAdapter' => 0,
+           };
 
     sub new {
         my $class = shift;
@@ -1795,7 +1822,9 @@ package
 package
 	WebGPU::Direct::SamplerBindingLayout {
     
-    my $default = {};
+    my $default = {
+             'type' => WebGPU::Direct::SamplerBindingType->filtering,
+           };
 
     sub new {
         my $class = shift;
@@ -1815,7 +1844,17 @@ package
 package
 	WebGPU::Direct::SamplerDescriptor {
     
-    my $default = {};
+    my $default = {
+             'addressModeU' => WebGPU::Direct::AddressMode->clampToEdge,
+             'addressModeV' => WebGPU::Direct::AddressMode->clampToEdge,
+             'addressModeW' => WebGPU::Direct::AddressMode->clampToEdge,
+             'lodMaxClamp' => 32,
+             'lodMinClamp' => 0,
+             'magFilter' => WebGPU::Direct::FilterMode->nearest,
+             'maxAnisotropy' => 1,
+             'minFilter' => WebGPU::Direct::FilterMode->nearest,
+             'mipmapFilter' => WebGPU::Direct::MipmapFilterMode->nearest,
+           };
 
     sub new {
         my $class = shift;
@@ -1920,7 +1959,10 @@ package
 package
 	WebGPU::Direct::StorageTextureBindingLayout {
     
-    my $default = {};
+    my $default = {
+             'access' => WebGPU::Direct::StorageTextureAccess->writeOnly,
+             'viewDimension' => WebGPU::Direct::TextureViewDimension->_2D,
+           };
 
     sub new {
         my $class = shift;
@@ -2164,7 +2206,11 @@ package
 package
 	WebGPU::Direct::TextureBindingLayout {
     
-    my $default = {};
+    my $default = {
+             'multisampled' => 0,
+             'sampleType' => WebGPU::Direct::TextureSampleType->float,
+             'viewDimension' => WebGPU::Direct::TextureViewDimension->_2D,
+           };
 
     sub new {
         my $class = shift;
@@ -2374,7 +2420,9 @@ package
 package
 	WebGPU::Direct::ImageCopyBuffer {
     
-    my $default = {};
+    my $default = {
+             'offset' => 0,
+           };
 
     sub new {
         my $class = shift;
@@ -2394,7 +2442,10 @@ package
 package
 	WebGPU::Direct::ImageCopyTexture {
     
-    my $default = {};
+    my $default = {
+             'aspect' => WebGPU::Direct::TextureAspect->all,
+             'mipLevel' => 0,
+           };
 
     sub new {
         my $class = shift;
@@ -2454,7 +2505,39 @@ package
 package
 	WebGPU::Direct::RequiredLimits {
     
-    my $default = {};
+    my $default = {
+             'maxBindGroups' => 4,
+             'maxBindingsPerBindGroup' => 640,
+             'maxBufferSize' => 268435456,
+             'maxColorAttachmentBytesPerSample' => 32,
+             'maxColorAttachments' => 8,
+             'maxComputeInvocationsPerWorkgroup' => 256,
+             'maxComputeWorkgroupSizeX' => 256,
+             'maxComputeWorkgroupSizeY' => 256,
+             'maxComputeWorkgroupSizeZ' => 64,
+             'maxComputeWorkgroupStorageSize' => 16384,
+             'maxComputeWorkgroupsPerDimension' => 65535,
+             'maxDynamicStorageBuffersPerPipelineLayout' => 4,
+             'maxDynamicUniformBuffersPerPipelineLayout' => 8,
+             'maxInterStageShaderComponents' => 60,
+             'maxInterStageShaderVariables' => 16,
+             'maxSampledTexturesPerShaderStage' => 16,
+             'maxSamplersPerShaderStage' => 16,
+             'maxStorageBufferBindingSize' => 134217728,
+             'maxStorageBuffersPerShaderStage' => 8,
+             'maxStorageTexturesPerShaderStage' => 4,
+             'maxTextureArrayLayers' => 256,
+             'maxTextureDimension1D' => 8192,
+             'maxTextureDimension2D' => 8192,
+             'maxTextureDimension3D' => 2048,
+             'maxUniformBufferBindingSize' => 65536,
+             'maxUniformBuffersPerShaderStage' => 12,
+             'maxVertexAttributes' => 16,
+             'maxVertexBufferArrayStride' => 2048,
+             'maxVertexBuffers' => 8,
+             'minStorageBufferOffsetAlignment' => 256,
+             'minUniformBufferOffsetAlignment' => 256,
+           };
 
     sub new {
         my $class = shift;
@@ -2542,7 +2625,9 @@ package
 package
 	WebGPU::Direct::VertexBufferLayout {
     
-    my $default = {};
+    my $default = {
+             'stepMode' => WebGPU::Direct::VertexStepMode->vertex,
+           };
 
     sub new {
         my $class = shift;
