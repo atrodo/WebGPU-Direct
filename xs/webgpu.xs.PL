@@ -443,6 +443,8 @@ foreach my $enum ( sort keys %enums )
   {
     next
         if $classdefs{$pkg}->{opaque};
+    next
+      if $pkg =~ m/Callback$/;
 
     my $fn = $pkg;
     $fn =~ s/^WebGPU::Direct:://;
