@@ -49,9 +49,9 @@ package WebGPU::Direct::Texture
           0 + $tvd->_1D       => 1,
           0 + $tvd->_2D       => 1,
           0 + $tvd->_3D       => 1,
-          0 + $tvd->Cube      => 6,
+          0 + $tvd->cube      => 6,
           0 + $tvd->_2DArray  => $doal - $bal,
-          0 + $tvd->CubeArray => $doal - $bal,
+          0 + $tvd->cubeArray => $doal - $bal,
         );
 
         my $dim = 0 + $new_descriptor->dimension;
@@ -64,15 +64,15 @@ package WebGPU::Direct::Texture
         my $format = $self->getFormat;
 
         state %depth_or_stencil = map { 0 + WebGPU::Direct->TextureFormat->$_ => 1 } qw/
-            Stencil8        Depth16Unorm
-            Depth24Plus     Depth24PlusStencil8
-            Depth32Float    Depth32FloatStencil8
+            stencil8        depth16Unorm
+            depth24Plus     depth24PlusStencil8
+            depth32Float    depth32FloatStencil8
             /;
 
         if (
           (
-               $aspect == WebGPU::Direct->TextureAspect->StencilOnly
-            || $aspect == WebGPU::Direct->TextureAspect->DepthOnly
+               $aspect == WebGPU::Direct->TextureAspect->stencilOnly
+            || $aspect == WebGPU::Direct->TextureAspect->depthOnly
           )
           && $depth_or_stencil{ 0 + $format }
             )

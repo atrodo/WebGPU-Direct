@@ -45,39 +45,39 @@ my $GameOptions = {
 
 my $computeShader = $device->createShaderModule( { code => $computeWGSL } );
 
-my $a = {
-  entries => [
-    {
-      binding    => 0,
-      visibility => ShaderStage->Compute,
-      buffer     => {
-        type => 'ReadOnlyStorage',
+my $bindGroupLayoutCompute = $device->createBindGroupLayout(
+  {
+    entries => [
+      {
+        binding    => 0,
+        visibility => ShaderStage->compute,
+        buffer     => {
+          type => 'readOnlyStorage',
+        },
       },
-    },
-    {
-      binding    => 1,
-      visibility => ShaderStage->Compute,
-      buffer     => {
-        type => 'ReadOnlyStorage',
+      {
+        binding    => 1,
+        visibility => ShaderStage->compute,
+        buffer     => {
+          type => 'readOnlyStorage',
+        },
       },
-    },
-    {
-      binding    => 2,
-      visibility => ShaderStage->Compute,
-      buffer     => {
-        type => 'Storage',
+      {
+        binding    => 2,
+        visibility => ShaderStage->compute,
+        buffer     => {
+          type => 'storage',
+        },
       },
-    },
-  ],
-};
-
-my $bindGroupLayoutCompute = $device->createBindGroupLayout($a);
+    ],
+  }
+);
 
 my @squareVertices = ( 0, 0, 0, 1, 1, 0, 1, 1 );
 my $squareBuffer   = $device->createBuffer(
   {
     size             => BYTES_PER_u32 * scalar(@squareVertices),
-    usage            => BufferUsage->Vertex,
+    usage            => BufferUsage->vertex,
     mappedAtCreation => 1,
   }
 );
@@ -87,12 +87,12 @@ $squareBuffer->unmap();
 
 my $squareStride = {
   arrayStride => 2 * BYTES_PER_u32,
-  stepMode    => 'Vertex',
+  stepMode    => 'vertex',
   attributes  => [
     {
       shaderLocation => 1,
       offset         => 0,
-      format         => 'Uint32x2',
+      format         => 'uint32x2',
     },
   ],
 };
@@ -106,9 +106,9 @@ my $bindGroupLayoutRender = $device->createBindGroupLayout(
     entries => [
       {
         binding    => 0,
-        visibility => ShaderStage->Vertex,
+        visibility => ShaderStage->vertex,
         buffer     => {
-          type => 'Uniform',
+          type => 'uniform',
         },
       },
     ],
@@ -117,12 +117,12 @@ my $bindGroupLayoutRender = $device->createBindGroupLayout(
 
 my $cellsStride = {
   arrayStride => BYTES_PER_u32,
-  stepMode    => 'Instance',
+  stepMode    => 'instance',
   attributes  => [
     {
       shaderLocation => 0,
       offset         => 0,
-      format         => 'Uint32',
+      format         => 'uint32',
     },
   ],
 };
@@ -155,7 +155,7 @@ sub resetGameData
   my $sizeBuffer = $device->createBuffer(
     {
       size             => 2 * BYTES_PER_u32,
-      usage            => BufferUsage->Storage | BufferUsage->Uniform | BufferUsage->CopyDst | BufferUsage->Vertex,
+      usage            => BufferUsage->storage | BufferUsage->uniform | BufferUsage->copyDst | BufferUsage->vertex,
       mappedAtCreation => 1,
     }
   );
@@ -169,7 +169,7 @@ sub resetGameData
   $buffer0 = $device->createBuffer(
     {
       size             => scalar(@cells) * BYTES_PER_u32,
-      usage            => BufferUsage->Storage | BufferUsage->Vertex,
+      usage            => BufferUsage->storage | BufferUsage->vertex,
       mappedAtCreation => 1,
     }
   );
@@ -180,7 +180,7 @@ sub resetGameData
   $buffer1 = $device->createBuffer(
     {
       size  => scalar(@cells) * BYTES_PER_u32,
-      usage => BufferUsage->Storage | BufferUsage->Vertex,
+      usage => BufferUsage->storage | BufferUsage->vertex,
     }
   );
 
@@ -214,7 +214,7 @@ sub resetGameData
         }
       ),
       primitive => {
-        topology => 'TriangleStrip',
+        topology => 'triangleStrip',
       },
       vertex => {
         module     => $vertexShader,
@@ -256,8 +256,8 @@ sub resetGameData
       colorAttachments => [
         {
           view       => $view,
-          loadOp     => 'Clear',
-          storeOp    => 'Store',
+          loadOp     => 'clear',
+          storeOp    => 'store',
           clearColor => { r => 0.15, g => 0.15, b => 0.5, a => 1 },
         },
       ],

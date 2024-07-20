@@ -30,7 +30,7 @@ my $vertexDataSize = $vertexStride * 3;
 # GPUBufferDescriptor
 my $vertexDataBufferDescriptor = {
   size  => $vertexDataSize,
-  usage => BufferUsage->Vertex,
+  usage => BufferUsage->vertex,
 };
 
 # GPUBuffer
@@ -55,7 +55,7 @@ my $renderPipelineDescriptor = {
   layout    => $device->createPipelineLayout( {} ),
   vertex    => $vertexStageDescriptor,
   fragment  => $fragmentStageDescriptor,
-  primitive => { topology => PrimitiveTopology->TriangleList },
+  primitive => { topology => PrimitiveTopology->triangleList },
 };
 
 # GPURenderPipeline
@@ -92,8 +92,8 @@ my $darkBlue = { r => 0.15, g => 0.15, b => 0.5, a => 1 };
 # GPURenderPassColorATtachmentDescriptor
 my $colorAttachmentDescriptor = {
   view       => $renderAttachment,
-  loadOp     => LoadOp->Clear,
-  storeOp    => StoreOp->Store,
+  loadOp     => LoadOp->clear,
+  storeOp    => StoreOp->store,
   clearColor => $darkBlue,
 };
 

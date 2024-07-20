@@ -33,7 +33,7 @@ sub handle_request_adapter
   my $msg  = shift;
   my $data = shift;
 
-  if ( $status == RequestAdapterStatus->Success )
+  if ( $status == RequestAdapterStatus->success )
   {
     $data->{adapter} = $adapter;
   }
@@ -51,7 +51,7 @@ sub handle_request_device
   my $msg  = shift;
   my $data = shift;
 
-  if ( $status == RequestDeviceStatus->Success )
+  if ( $status == RequestDeviceStatus->success )
   {
     $data->{device} = $device;
   }
@@ -79,7 +79,7 @@ my $shaderdesc = $wgpu->ShaderModuleDescriptor->new(
     label       => 'shader.wsgl',
     nextInChain => $wgpu->ShaderModuleWGSLDescriptor->new(
       {
-        sType => SType->ShaderModuleWGSLDescriptor,
+        sType => SType->shaderModuleWGSLDescriptor,
         code  => join( '', <DATA> ),
       }
     ),
@@ -108,11 +108,11 @@ my $rpd = $wgpu->RenderPipelineDescriptor->new(
     entryPoint => 'fs_main',
     targets    => $wgpu->ColorTargetState->new(
       format    => $surface_capabilities->formats->[0],
-      writeMask => ColorWriteMask->All,
+      writeMask => ColorWriteMask->all,
     ),
   ),
   primitive => $wgpu->PrimitiveState->new(
-    topology => PrimitiveTopology->TriangleList,
+    topology => PrimitiveTopology->triangleList,
   ),
   multisample => $wgpu->MultisampleState->new(
     count => 1,
@@ -124,9 +124,9 @@ my $pipeline = $device->createRenderPipeline($rpd);
 
 my $sc_config = $wgpu->SurfaceConfiguration->new(
   device      => $device,
-  usage       => TextureUsage->RenderAttachment,
+  usage       => TextureUsage->renderAttachment,
   format      => $surface_capabilities->formats->[0],
-  presentMode => PresentMode->Fifo,
+  presentMode => PresentMode->fifo,
   alphaMode   => $surface_capabilities->alphaModes->[0],
   width       => 640,
   height      => 360,
@@ -136,8 +136,8 @@ $surface->configure($sc_config);
 
 # Precreate some objects used in the loop
 my $passcolor = $wgpu->RenderPassColorAttachment->new(
-  loadOp     => LoadOp->Clear,
-  storeOp    => StoreOp->Store,
+  loadOp     => LoadOp->clear,
+  storeOp    => StoreOp->store,
   clearValue => $wgpu->Color->new(
     r => 0.0,
     g => 1.0,
@@ -164,14 +164,14 @@ for ( 1 .. 1000 )
 
   for ( $surface_texture->status )
   {
-    if ( $_ == $status->Success )
+    if ( $_ == $status->success )
     {
       # All good, could check for `surface_texture.suboptimal` here.
       last;
     }
-    if ( $_ == $status->Timeout
-      || $_ == $status->Outdated
-      || $_ == $status->Lost )
+    if ( $_ == $status->timeout
+      || $_ == $status->outdated
+      || $_ == $status->lost )
     {
       # Skip this frame, and re-configure surface.
       # This is a bit different from the reference example since we can't get
@@ -185,9 +185,9 @@ for ( 1 .. 1000 )
       $surface->configure($sc_config);
       redo;
     }
-    if ( $_ == $status->OutOfMemory
-      || $_ == $status->DeviceLost
-      || $_ == $status->Force32 )
+    if ( $_ == $status->outOfMemory
+      || $_ == $status->deviceLost
+      || $_ == $status->force32 )
     {
       # Fatal error
       die "get_current_texture status=$_";

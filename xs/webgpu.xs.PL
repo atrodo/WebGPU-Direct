@@ -191,6 +191,11 @@ while (<$h>)
       next
         if $short eq 'Force32';
 
+      if ( $short !~ m/^[[:upper:]][\d[:upper:]]+/ )
+      {
+        $short = lcfirst $short;
+      }
+
       $enums{$type}->{$value} = "__PACKAGE__->_add_enum('$short' => ($value, '$const'));";
     }
 

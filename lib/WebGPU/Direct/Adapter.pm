@@ -25,7 +25,7 @@ package WebGPU::Direct::Adapter
       my $msg  = shift;
       my $data = shift;
 
-      if ( $status != WebGPU::Direct::RequestDeviceStatus->Success )
+      if ( $status != WebGPU::Direct::RequestDeviceStatus->success )
       {
         warn(qq{RequestDevice returned "$msg" ($status)"});
       }

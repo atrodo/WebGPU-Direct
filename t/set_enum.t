@@ -11,23 +11,23 @@ my $wgpu = WebGPU::Direct->new;
 {
   my $a = $wgpu->ChainedStruct->new(
     {
-      sType => 'RenderPassDescriptorMaxDrawCount',
+      sType => 'renderPassDescriptorMaxDrawCount',
     }
   );
 
-  cmp_ok( $a->sType, '==', $wgpu->SType->RenderPassDescriptorMaxDrawCount, 'sType was set by name' );
-  cmp_ok( $a->sType, 'eq', $wgpu->SType->RenderPassDescriptorMaxDrawCount, 'Setting by name used dualvar version' );
+  cmp_ok( $a->sType, '==', $wgpu->SType->renderPassDescriptorMaxDrawCount, 'sType was set by name' );
+  cmp_ok( $a->sType, 'eq', $wgpu->SType->renderPassDescriptorMaxDrawCount, 'Setting by name used dualvar version' );
 }
 
 {
   my $a = $wgpu->ChainedStruct->new(
     {
-      sType => 'Invalid',
+      sType => 'invalid',
     }
   );
 
-  cmp_ok( $a->sType, '==', $wgpu->SType->Invalid, 'sType was set by name' );
-  cmp_ok( $a->sType, 'eq', $wgpu->SType->Invalid, 'Setting by name used dualvar version' );
+  cmp_ok( $a->sType, '==', $wgpu->SType->invalid, 'sType was set by name' );
+  cmp_ok( $a->sType, 'eq', $wgpu->SType->invalid, 'Setting by name used dualvar version' );
 }
 
 done_testing;

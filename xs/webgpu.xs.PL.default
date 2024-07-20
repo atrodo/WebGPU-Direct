@@ -2,7 +2,7 @@
   # Constants, by a name, are scalar refs, and are fixed up later
   ColorTargetState => {
     blend     => undef,
-    writeMask => \'ColorWriteMask->All',
+    writeMask => \'ColorWriteMask->all',
   },
   DepthStencilState => {
     depthBias           => 0,
@@ -18,14 +18,14 @@
   },
   RenderPipelineDescriptor => {},
   StencilFaceState         => {
-    compare     => \'CompareFunction->Always',
-    failOp      => \'StencilOperation->Keep',
-    depthFailOp => \'StencilOperation->Keep',
-    passOp      => \'StencilOperation->Keep',
+    compare     => \'CompareFunction->always',
+    failOp      => \'StencilOperation->keep',
+    depthFailOp => \'StencilOperation->keep',
+    passOp      => \'StencilOperation->keep',
   },
   SurfaceConfiguration => {
-    alphaMode => \'CompositeAlphaMode->Auto',
-    usage     => \'TextureUsage->RenderAttachment',
+    alphaMode => \'CompositeAlphaMode->auto',
+    usage     => \'TextureUsage->renderAttachment',
   },
   TextureDescriptor => {
     dimension     => \'TextureDimension->_2D',
@@ -34,7 +34,7 @@
     sampleCount   => 1,
   },
   TextureViewDescriptor => {
-    aspect         => \'TextureAspect->All',
+    aspect         => \'TextureAspect->all',
     baseArrayLayer => 0,
     baseMipLevel   => 0,
   },

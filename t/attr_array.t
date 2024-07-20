@@ -10,19 +10,19 @@ my $wgpu = WebGPU::Direct->new;
     buffers => [
       {
         arrayStride => 10,
-        stepMode    => $wgpu->VertexStepMode->Vertex,
+        stepMode    => $wgpu->VertexStepMode->vertex,
         attributes  => [
           {
             # position
             shaderLocation => 0,
             offset         => 0,
-            format         => $wgpu->VertexFormat->Float32x4,
+            format         => $wgpu->VertexFormat->float32x4,
           },
           {
             # uv
             shaderLocation => 1,
             offset         => 4,
-            format         => $wgpu->VertexFormat->Float32x2,
+            format         => $wgpu->VertexFormat->float32x2,
           },
         ],
       },
@@ -35,19 +35,19 @@ my $wgpu = WebGPU::Direct->new;
         buffers => [
           {
             arrayStride => 10,
-            stepMode    => $wgpu->VertexStepMode->Vertex,
+            stepMode    => $wgpu->VertexStepMode->vertex,
             attributes  => [
               {
                 # position
                 shaderLocation => 0,
                 offset         => 0,
-                format         => $wgpu->VertexFormat->Float32x4,
+                format         => $wgpu->VertexFormat->float32x4,
               },
               {
                 # uv
                 shaderLocation => 1,
                 offset         => 4,
-                format         => $wgpu->VertexFormat->Float32x2,
+                format         => $wgpu->VertexFormat->float32x2,
               },
             ],
           },
@@ -108,7 +108,7 @@ subtest 'Enum array', sub
     is( $sc->$key, $existing{$key}, "Count of $key did not change" );
   }
 
-  push $sc->presentModes->@*, WebGPU::Direct::PresentMode->new('Immediate');
+  push $sc->presentModes->@*, WebGPU::Direct::PresentMode->new('immediate');
   my $pm_count = scalar( $sc->presentModes->@* );
   is( $sc->presentModeCount, $pm_count - 1, 'Present Mode Count now does not match' );
 
@@ -125,7 +125,7 @@ subtest 'Enum array', sub
   #TODO: is( $sc->presentModes->bytes, $pm_bytes, 'PresentModes in memory has not changed with pack');
   is( $sc->presentModeCount, scalar( $sc->presentModes->@* ), 'Present Mode Count is still correct after unpack' );
   is( $sc->presentModeCount, $pm_count, 'Present Mode Count included Immediate' );
-  is( $sc->presentModes->[-1], WebGPU::Direct::PresentMode->new('Immediate'), 'Immediate is still in the list' );
+  is( $sc->presentModes->[-1], WebGPU::Direct::PresentMode->new('immediate'), 'Immediate is still in the list' );
 
   foreach my $key (qw/alphaModeCount formatCount/)
   {

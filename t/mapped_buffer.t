@@ -29,7 +29,7 @@ my $cube = {
 my $verticesBuffer = $device->createBuffer(
   {
     size             => length( $cube->{cubeVertexArray} ),
-    usage            => $wgpu->BufferUsage->Vertex,
+    usage            => $wgpu->BufferUsage->vertex,
     mappedAtCreation => 1,
   }
 );

@@ -29,7 +29,7 @@ package WebGPU::Direct::Device
             label       => $label,
             nextInChain => WebGPU::Direct->ShaderModuleWGSLDescriptor->new(
               {
-                sType => $stype->ShaderModuleWGSLDescriptor,
+                sType => $stype->shaderModuleWGSLDescriptor,
                 code  => $code,
               }
             ),

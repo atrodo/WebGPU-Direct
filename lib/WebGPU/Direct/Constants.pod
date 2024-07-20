@@ -3,13 +3,13 @@
 
 =over
 
-=item * DiscreteGPU
+=item * discreteGPU
 
-=item * IntegratedGPU
+=item * integratedGPU
 
 =item * CPU
 
-=item * Unknown
+=item * unknown
 
 =back
 
@@ -17,11 +17,11 @@
 
 =over
 
-=item * Repeat
+=item * repeat
 
-=item * MirrorRepeat
+=item * mirrorRepeat
 
-=item * ClampToEdge
+=item * clampToEdge
 
 =back
 
@@ -29,23 +29,23 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Null
+=item * null
 
-=item * WebGPU
+=item * webGPU
 
 =item * D3D11
 
 =item * D3D12
 
-=item * Metal
+=item * metal
 
-=item * Vulkan
+=item * vulkan
 
-=item * OpenGL
+=item * openGL
 
-=item * OpenGLES
+=item * openGLES
 
 =back
 
@@ -53,31 +53,31 @@
 
 =over
 
-=item * Zero
+=item * zero
 
-=item * One
+=item * one
 
-=item * Src
+=item * src
 
-=item * OneMinusSrc
+=item * oneMinusSrc
 
-=item * SrcAlpha
+=item * srcAlpha
 
-=item * OneMinusSrcAlpha
+=item * oneMinusSrcAlpha
 
-=item * Dst
+=item * dst
 
-=item * OneMinusDst
+=item * oneMinusDst
 
-=item * DstAlpha
+=item * dstAlpha
 
-=item * OneMinusDstAlpha
+=item * oneMinusDstAlpha
 
-=item * SrcAlphaSaturated
+=item * srcAlphaSaturated
 
-=item * Constant
+=item * constant
 
-=item * OneMinusConstant
+=item * oneMinusConstant
 
 =back
 
@@ -85,15 +85,15 @@
 
 =over
 
-=item * Add
+=item * add
 
-=item * Subtract
+=item * subtract
 
-=item * ReverseSubtract
+=item * reverseSubtract
 
-=item * Min
+=item * min
 
-=item * Max
+=item * max
 
 =back
 
@@ -101,13 +101,13 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Uniform
+=item * uniform
 
-=item * Storage
+=item * storage
 
-=item * ReadOnlyStorage
+=item * readOnlyStorage
 
 =back
 
@@ -115,23 +115,23 @@
 
 =over
 
-=item * Success
+=item * success
 
-=item * ValidationError
+=item * validationError
 
-=item * Unknown
+=item * unknown
 
-=item * DeviceLost
+=item * deviceLost
 
-=item * DestroyedBeforeCallback
+=item * destroyedBeforeCallback
 
-=item * UnmappedBeforeCallback
+=item * unmappedBeforeCallback
 
-=item * MappingAlreadyPending
+=item * mappingAlreadyPending
 
-=item * OffsetOutOfRange
+=item * offsetOutOfRange
 
-=item * SizeOutOfRange
+=item * sizeOutOfRange
 
 =back
 
@@ -139,11 +139,11 @@
 
 =over
 
-=item * Unmapped
+=item * unmapped
 
-=item * Pending
+=item * pending
 
-=item * Mapped
+=item * mapped
 
 =back
 
@@ -151,27 +151,27 @@
 
 =over
 
-=item * None
+=item * none
 
-=item * MapRead
+=item * mapRead
 
-=item * MapWrite
+=item * mapWrite
 
-=item * CopySrc
+=item * copySrc
 
-=item * CopyDst
+=item * copyDst
 
-=item * Index
+=item * index
 
-=item * Vertex
+=item * vertex
 
-=item * Uniform
+=item * uniform
 
-=item * Storage
+=item * storage
 
-=item * Indirect
+=item * indirect
 
-=item * QueryResolve
+=item * queryResolve
 
 =back
 
@@ -179,17 +179,17 @@
 
 =over
 
-=item * None
+=item * none
 
-=item * Red
+=item * red
 
-=item * Green
+=item * green
 
-=item * Blue
+=item * blue
 
-=item * Alpha
+=item * alpha
 
-=item * All
+=item * all
 
 =back
 
@@ -197,23 +197,23 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Never
+=item * never
 
-=item * Less
+=item * less
 
-=item * LessEqual
+=item * lessEqual
 
-=item * Greater
+=item * greater
 
-=item * GreaterEqual
+=item * greaterEqual
 
-=item * Equal
+=item * equal
 
-=item * NotEqual
+=item * notEqual
 
-=item * Always
+=item * always
 
 =back
 
@@ -221,13 +221,13 @@
 
 =over
 
-=item * Success
+=item * success
 
-=item * Error
+=item * error
 
-=item * DeviceLost
+=item * deviceLost
 
-=item * Unknown
+=item * unknown
 
 =back
 
@@ -235,11 +235,11 @@
 
 =over
 
-=item * Error
+=item * error
 
-=item * Warning
+=item * warning
 
-=item * Info
+=item * info
 
 =back
 
@@ -247,15 +247,15 @@
 
 =over
 
-=item * Auto
+=item * auto
 
-=item * Opaque
+=item * opaque
 
-=item * Premultiplied
+=item * premultiplied
 
-=item * Unpremultiplied
+=item * unpremultiplied
 
-=item * Inherit
+=item * inherit
 
 =back
 
@@ -263,17 +263,17 @@
 
 =over
 
-=item * Success
+=item * success
 
-=item * ValidationError
+=item * validationError
 
-=item * InternalError
+=item * internalError
 
-=item * DeviceLost
+=item * deviceLost
 
-=item * DeviceDestroyed
+=item * deviceDestroyed
 
-=item * Unknown
+=item * unknown
 
 =back
 
@@ -281,11 +281,11 @@
 
 =over
 
-=item * None
+=item * none
 
-=item * Front
+=item * front
 
-=item * Back
+=item * back
 
 =back
 
@@ -293,9 +293,9 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Destroyed
+=item * destroyed
 
 =back
 
@@ -303,11 +303,11 @@
 
 =over
 
-=item * Validation
+=item * validation
 
-=item * OutOfMemory
+=item * outOfMemory
 
-=item * Internal
+=item * internal
 
 =back
 
@@ -315,17 +315,17 @@
 
 =over
 
-=item * NoError
+=item * noError
 
-=item * Validation
+=item * validation
 
-=item * OutOfMemory
+=item * outOfMemory
 
-=item * Internal
+=item * internal
 
-=item * Unknown
+=item * unknown
 
-=item * DeviceLost
+=item * deviceLost
 
 =back
 
@@ -333,29 +333,29 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * DepthClipControl
+=item * depthClipControl
 
-=item * Depth32FloatStencil8
+=item * depth32FloatStencil8
 
-=item * TimestampQuery
+=item * timestampQuery
 
-=item * TextureCompressionBC
+=item * textureCompressionBC
 
-=item * TextureCompressionETC2
+=item * textureCompressionETC2
 
-=item * TextureCompressionASTC
+=item * textureCompressionASTC
 
-=item * IndirectFirstInstance
+=item * indirectFirstInstance
 
-=item * ShaderF16
+=item * shaderF16
 
 =item * RG11B10UfloatRenderable
 
 =item * BGRA8UnormStorage
 
-=item * Float32Filterable
+=item * float32Filterable
 
 =back
 
@@ -363,9 +363,9 @@
 
 =over
 
-=item * Nearest
+=item * nearest
 
-=item * Linear
+=item * linear
 
 =back
 
@@ -383,11 +383,11 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Uint16
+=item * uint16
 
-=item * Uint32
+=item * uint32
 
 =back
 
@@ -395,11 +395,11 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Clear
+=item * clear
 
-=item * Load
+=item * load
 
 =back
 
@@ -407,11 +407,11 @@
 
 =over
 
-=item * None
+=item * none
 
-=item * Read
+=item * read
 
-=item * Write
+=item * write
 
 =back
 
@@ -419,9 +419,9 @@
 
 =over
 
-=item * Nearest
+=item * nearest
 
-=item * Linear
+=item * linear
 
 =back
 
@@ -429,11 +429,11 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * LowPower
+=item * lowPower
 
-=item * HighPerformance
+=item * highPerformance
 
 =back
 
@@ -441,13 +441,13 @@
 
 =over
 
-=item * Fifo
+=item * fifo
 
-=item * FifoRelaxed
+=item * fifoRelaxed
 
-=item * Immediate
+=item * immediate
 
-=item * Mailbox
+=item * mailbox
 
 =back
 
@@ -455,15 +455,15 @@
 
 =over
 
-=item * PointList
+=item * pointList
 
-=item * LineList
+=item * lineList
 
-=item * LineStrip
+=item * lineStrip
 
-=item * TriangleList
+=item * triangleList
 
-=item * TriangleStrip
+=item * triangleStrip
 
 =back
 
@@ -471,9 +471,9 @@
 
 =over
 
-=item * Occlusion
+=item * occlusion
 
-=item * Timestamp
+=item * timestamp
 
 =back
 
@@ -481,13 +481,13 @@
 
 =over
 
-=item * Success
+=item * success
 
-=item * Error
+=item * error
 
-=item * Unknown
+=item * unknown
 
-=item * DeviceLost
+=item * deviceLost
 
 =back
 
@@ -495,13 +495,13 @@
 
 =over
 
-=item * Success
+=item * success
 
-=item * Unavailable
+=item * unavailable
 
-=item * Error
+=item * error
 
-=item * Unknown
+=item * unknown
 
 =back
 
@@ -509,11 +509,11 @@
 
 =over
 
-=item * Success
+=item * success
 
-=item * Error
+=item * error
 
-=item * Unknown
+=item * unknown
 
 =back
 
@@ -521,29 +521,29 @@
 
 =over
 
-=item * Invalid
+=item * invalid
 
-=item * SurfaceDescriptorFromMetalLayer
+=item * surfaceDescriptorFromMetalLayer
 
-=item * SurfaceDescriptorFromWindowsHWND
+=item * surfaceDescriptorFromWindowsHWND
 
-=item * SurfaceDescriptorFromXlibWindow
+=item * surfaceDescriptorFromXlibWindow
 
-=item * SurfaceDescriptorFromCanvasHTMLSelector
+=item * surfaceDescriptorFromCanvasHTMLSelector
 
-=item * ShaderModuleSPIRVDescriptor
+=item * shaderModuleSPIRVDescriptor
 
-=item * ShaderModuleWGSLDescriptor
+=item * shaderModuleWGSLDescriptor
 
-=item * PrimitiveDepthClipControl
+=item * primitiveDepthClipControl
 
-=item * SurfaceDescriptorFromWaylandSurface
+=item * surfaceDescriptorFromWaylandSurface
 
-=item * SurfaceDescriptorFromAndroidNativeWindow
+=item * surfaceDescriptorFromAndroidNativeWindow
 
-=item * SurfaceDescriptorFromXcbWindow
+=item * surfaceDescriptorFromXcbWindow
 
-=item * RenderPassDescriptorMaxDrawCount
+=item * renderPassDescriptorMaxDrawCount
 
 =back
 
@@ -551,13 +551,13 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Filtering
+=item * filtering
 
-=item * NonFiltering
+=item * nonFiltering
 
-=item * Comparison
+=item * comparison
 
 =back
 
@@ -565,13 +565,13 @@
 
 =over
 
-=item * None
+=item * none
 
-=item * Vertex
+=item * vertex
 
-=item * Fragment
+=item * fragment
 
-=item * Compute
+=item * compute
 
 =back
 
@@ -579,21 +579,21 @@
 
 =over
 
-=item * Keep
+=item * keep
 
-=item * Zero
+=item * zero
 
-=item * Replace
+=item * replace
 
-=item * Invert
+=item * invert
 
-=item * IncrementClamp
+=item * incrementClamp
 
-=item * DecrementClamp
+=item * decrementClamp
 
-=item * IncrementWrap
+=item * incrementWrap
 
-=item * DecrementWrap
+=item * decrementWrap
 
 =back
 
@@ -601,13 +601,13 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * WriteOnly
+=item * writeOnly
 
-=item * ReadOnly
+=item * readOnly
 
-=item * ReadWrite
+=item * readWrite
 
 =back
 
@@ -615,11 +615,11 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Store
+=item * store
 
-=item * Discard
+=item * discard
 
 =back
 
@@ -627,17 +627,17 @@
 
 =over
 
-=item * Success
+=item * success
 
-=item * Timeout
+=item * timeout
 
-=item * Outdated
+=item * outdated
 
-=item * Lost
+=item * lost
 
-=item * OutOfMemory
+=item * outOfMemory
 
-=item * DeviceLost
+=item * deviceLost
 
 =back
 
@@ -645,11 +645,11 @@
 
 =over
 
-=item * All
+=item * all
 
-=item * StencilOnly
+=item * stencilOnly
 
-=item * DepthOnly
+=item * depthOnly
 
 =back
 
@@ -669,7 +669,7 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
 =item * R8Unorm
 
@@ -745,17 +745,17 @@
 
 =item * RGBA32Sint
 
-=item * Stencil8
+=item * stencil8
 
-=item * Depth16Unorm
+=item * depth16Unorm
 
-=item * Depth24Plus
+=item * depth24Plus
 
-=item * Depth24PlusStencil8
+=item * depth24PlusStencil8
 
-=item * Depth32Float
+=item * depth32Float
 
-=item * Depth32FloatStencil8
+=item * depth32FloatStencil8
 
 =item * BC1RGBAUnorm
 
@@ -867,17 +867,17 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Float
+=item * float
 
-=item * UnfilterableFloat
+=item * unfilterableFloat
 
-=item * Depth
+=item * depth
 
-=item * Sint
+=item * sint
 
-=item * Uint
+=item * uint
 
 =back
 
@@ -885,17 +885,17 @@
 
 =over
 
-=item * None
+=item * none
 
-=item * CopySrc
+=item * copySrc
 
-=item * CopyDst
+=item * copyDst
 
-=item * TextureBinding
+=item * textureBinding
 
-=item * StorageBinding
+=item * storageBinding
 
-=item * RenderAttachment
+=item * renderAttachment
 
 =back
 
@@ -903,7 +903,7 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
 =item * _1D
 
@@ -911,9 +911,9 @@
 
 =item * _2DArray
 
-=item * Cube
+=item * cube
 
-=item * CubeArray
+=item * cubeArray
 
 =item * _3D
 
@@ -923,67 +923,67 @@
 
 =over
 
-=item * Undefined
+=item * undefined
 
-=item * Uint8x2
+=item * uint8x2
 
-=item * Uint8x4
+=item * uint8x4
 
-=item * Sint8x2
+=item * sint8x2
 
-=item * Sint8x4
+=item * sint8x4
 
-=item * Unorm8x2
+=item * unorm8x2
 
-=item * Unorm8x4
+=item * unorm8x4
 
-=item * Snorm8x2
+=item * snorm8x2
 
-=item * Snorm8x4
+=item * snorm8x4
 
-=item * Uint16x2
+=item * uint16x2
 
-=item * Uint16x4
+=item * uint16x4
 
-=item * Sint16x2
+=item * sint16x2
 
-=item * Sint16x4
+=item * sint16x4
 
-=item * Unorm16x2
+=item * unorm16x2
 
-=item * Unorm16x4
+=item * unorm16x4
 
-=item * Snorm16x2
+=item * snorm16x2
 
-=item * Snorm16x4
+=item * snorm16x4
 
-=item * Float16x2
+=item * float16x2
 
-=item * Float16x4
+=item * float16x4
 
-=item * Float32
+=item * float32
 
-=item * Float32x2
+=item * float32x2
 
-=item * Float32x3
+=item * float32x3
 
-=item * Float32x4
+=item * float32x4
 
-=item * Uint32
+=item * uint32
 
-=item * Uint32x2
+=item * uint32x2
 
-=item * Uint32x3
+=item * uint32x3
 
-=item * Uint32x4
+=item * uint32x4
 
-=item * Sint32
+=item * sint32
 
-=item * Sint32x2
+=item * sint32x2
 
-=item * Sint32x3
+=item * sint32x3
 
-=item * Sint32x4
+=item * sint32x4
 
 =back
 
@@ -991,10 +991,10 @@
 
 =over
 
-=item * Vertex
+=item * vertex
 
-=item * Instance
+=item * instance
 
-=item * VertexBufferNotUsed
+=item * vertexBufferNotUsed
 
 =back

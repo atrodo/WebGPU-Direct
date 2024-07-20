@@ -36,7 +36,7 @@ my $vertex_data = pack( 'f*', @vertex );
 my $vertexBuffer = $device->createBuffer(
   {
     size             => length($vertex_data),
-    usage            => BufferUsage->Vertex,
+    usage            => BufferUsage->vertex,
     mappedAtCreation => 1,
   }
 );
@@ -55,13 +55,13 @@ my $vertexStageDescriptor = {
   buffers    => [
     {
       arrayStride => ( length($vertex_data) / ( @vertex / 4 ) ),
-      stepMode    => $wgpu->VertexStepMode->Vertex,
+      stepMode    => $wgpu->VertexStepMode->vertex,
       attributes  => [
         {
           # position
           shaderLocation => 0,
           offset         => 0,
-          format         => $wgpu->VertexFormat->Float32x4,
+          format         => $wgpu->VertexFormat->float32x4,
         },
       ],
     },
@@ -82,7 +82,7 @@ my $renderPipelineDescriptor = {
   #layout    => $device->createPipelineLayout( {} ),
   vertex    => $vertexStageDescriptor,
   fragment  => $fragmentStageDescriptor,
-  primitive => { topology => PrimitiveTopology->TriangleList },
+  primitive => { topology => PrimitiveTopology->triangleList },
 };
 
 # GPURenderPipeline
@@ -92,7 +92,7 @@ my $uniformBufferSize = 4 * 16;                  # 4x4 matrix
 my $uniformBuffer     = $device->createBuffer(
   {
     size  => $uniformBufferSize,
-    usage => $wgpu->BufferUsage->Uniform | $wgpu->BufferUsage->CopyDst,
+    usage => $wgpu->BufferUsage->uniform | $wgpu->BufferUsage->copyDst,
   }
 );
 
@@ -130,7 +130,7 @@ my $currentTexture;    # = $gpuContext->getCurrentTexture;
 
 # GPUTextureView
 # This is done in the render loop
-my $renderAttachment;    # = $currentTexture->texture->CreateView;
+my $renderAttachment;    # = $currentTexture->texture->createView;
 
 # GPUColor
 my $darkBlue = { r => 0.15, g => 0.15, b => 0.5, a => 1 };
@@ -138,8 +138,8 @@ my $darkBlue = { r => 0.15, g => 0.15, b => 0.5, a => 1 };
 # GPURenderPassColorATtachmentDescriptor
 my $colorAttachmentDescriptor = {
   view       => $renderAttachment,
-  loadOp     => LoadOp->Clear,
-  storeOp    => StoreOp->Store,
+  loadOp     => LoadOp->clear,
+  storeOp    => StoreOp->store,
   clearColor => $darkBlue,
 };
 
