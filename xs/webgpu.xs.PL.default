@@ -94,9 +94,6 @@
     maxComputeWorkgroupSizeZ                  => 64,
     maxComputeWorkgroupsPerDimension          => 65535,
   },
-  SamplerBindingLayout => {
-    type => \'SamplerBindingType->filtering',
-  },
   SamplerDescriptor => {
     addressModeU  => \'AddressMode->clampToEdge',
     addressModeV  => \'AddressMode->clampToEdge',
@@ -114,18 +111,9 @@
     depthFailOp => \'StencilOperation->keep',
     passOp      => \'StencilOperation->keep',
   },
-  StorageTextureBindingLayout => {
-    access        => \'StorageTextureAccess->writeOnly',
-    viewDimension => \'TextureViewDimension->_2D',
-  },
   SurfaceConfiguration => {
     alphaMode => \'CompositeAlphaMode->auto',
     usage     => \'TextureUsage->renderAttachment',
-  },
-  TextureBindingLayout => {
-    sampleType    => \'TextureSampleType->float',
-    viewDimension => \'TextureViewDimension->_2D',
-    multisampled  => 0,
   },
   TextureDescriptor => {
     dimension     => \'TextureDimension->_2D',

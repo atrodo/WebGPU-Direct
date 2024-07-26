@@ -1822,9 +1822,7 @@ package
 package
 	WebGPU::Direct::SamplerBindingLayout {
     
-    my $default = {
-             'type' => WebGPU::Direct::SamplerBindingType->filtering,
-           };
+    my $default = {};
 
     sub new {
         my $class = shift;
@@ -1959,10 +1957,7 @@ package
 package
 	WebGPU::Direct::StorageTextureBindingLayout {
     
-    my $default = {
-             'access' => WebGPU::Direct::StorageTextureAccess->writeOnly,
-             'viewDimension' => WebGPU::Direct::TextureViewDimension->_2D,
-           };
+    my $default = {};
 
     sub new {
         my $class = shift;
@@ -2206,11 +2201,7 @@ package
 package
 	WebGPU::Direct::TextureBindingLayout {
     
-    my $default = {
-             'multisampled' => 0,
-             'sampleType' => WebGPU::Direct::TextureSampleType->float,
-             'viewDimension' => WebGPU::Direct::TextureViewDimension->_2D,
-           };
+    my $default = {};
 
     sub new {
         my $class = shift;
