@@ -565,7 +565,7 @@ SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
 
   if ( is_enum && size != sizeof(uint32_t) )
   {
-    croak("Enum is expected to be of size %d, not %d", sizeof(uint32_t), size);
+    croak("Enum is expected to be of size %zu, not %zu", sizeof(uint32_t), size);
   }
 
   AV *ret = newAV();
@@ -798,7 +798,7 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
       void *old_ptr = _get_struct_ptr(aTHX_ *f, base);
       if ( !old_ptr )
       {
-        croak("Could not find a %s type element at index %d for %s", SvPV_nolen(base), i, key);
+        croak("Could not find a %s type element at index %zu for %s", SvPV_nolen(base), i, key);
       }
       *(void **)new_ptr = old_ptr;
     }
