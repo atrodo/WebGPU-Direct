@@ -673,6 +673,7 @@ foreach my $class (@classes)
   if (@defs)
   {
     $types_pod->say(qq[=head1 $class\n]);
+    $types_pod->say(qq[=over\n]);
     $types_pod->say(qq[=item * Attributes\n]);
     $types_pod->say(qq[=over\n]);
   }

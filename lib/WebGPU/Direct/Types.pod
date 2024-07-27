@@ -1,5 +1,7 @@
 =head1 WebGPU::Direct::ChainedStruct
 
+=over
+
 =item * Attributes
 
 =over
@@ -14,6 +16,8 @@
 
 =head1 WebGPU::Direct::ChainedStructOut
 
+=over
+
 =item * Attributes
 
 =over
@@ -27,6 +31,8 @@
 =back
 
 =head1 WebGPU::Direct::AdapterProperties
+
+=over
 
 =item * Attributes
 
@@ -56,6 +62,8 @@
 
 =head1 WebGPU::Direct::BindGroupEntry
 
+=over
+
 =item * Attributes
 
 =over
@@ -80,6 +88,8 @@
 
 =head1 WebGPU::Direct::BlendComponent
 
+=over
+
 =item * Attributes
 
 =over
@@ -95,6 +105,8 @@
 =back
 
 =head1 WebGPU::Direct::BufferBindingLayout
+
+=over
 
 =item * Attributes
 
@@ -113,6 +125,8 @@
 =back
 
 =head1 WebGPU::Direct::BufferDescriptor
+
+=over
 
 =item * Attributes
 
@@ -134,6 +148,8 @@
 
 =head1 WebGPU::Direct::Color
 
+=over
+
 =item * Attributes
 
 =over
@@ -152,6 +168,8 @@
 
 =head1 WebGPU::Direct::CommandBufferDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -166,6 +184,8 @@
 
 =head1 WebGPU::Direct::CommandEncoderDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -179,6 +199,8 @@
 =back
 
 =head1 WebGPU::Direct::CompilationMessage
+
+=over
 
 =item * Attributes
 
@@ -210,6 +232,8 @@
 
 =head1 WebGPU::Direct::ComputePassTimestampWrites
 
+=over
+
 =item * Attributes
 
 =over
@@ -225,6 +249,8 @@
 =back
 
 =head1 WebGPU::Direct::ConstantEntry
+
+=over
 
 =item * Attributes
 
@@ -242,6 +268,8 @@
 
 =head1 WebGPU::Direct::Extent3D
 
+=over
+
 =item * Attributes
 
 =over
@@ -258,6 +286,8 @@
 
 =head1 WebGPU::Direct::InstanceDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -269,6 +299,8 @@
 =back
 
 =head1 WebGPU::Direct::Limits
+
+=over
 
 =item * Attributes
 
@@ -344,6 +376,8 @@
 
 =head1 WebGPU::Direct::MultisampleState
 
+=over
+
 =item * Attributes
 
 =over
@@ -362,6 +396,8 @@
 
 =head1 WebGPU::Direct::Origin3D
 
+=over
+
 =item * Attributes
 
 =over
@@ -377,6 +413,8 @@
 =back
 
 =head1 WebGPU::Direct::PipelineLayoutDescriptor
+
+=over
 
 =item * Attributes
 
@@ -396,6 +434,8 @@
 
 =head1 WebGPU::Direct::PrimitiveDepthClipControl
 
+=over
+
 =item * Attributes
 
 =over
@@ -409,6 +449,8 @@
 =back
 
 =head1 WebGPU::Direct::PrimitiveState
+
+=over
 
 =item * Attributes
 
@@ -430,6 +472,8 @@
 
 =head1 WebGPU::Direct::QuerySetDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -448,6 +492,8 @@
 
 =head1 WebGPU::Direct::QueueDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -462,6 +508,8 @@
 
 =head1 WebGPU::Direct::RenderBundleDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -475,6 +523,8 @@
 =back
 
 =head1 WebGPU::Direct::RenderBundleEncoderDescriptor
+
+=over
 
 =item * Attributes
 
@@ -501,6 +551,8 @@
 =back
 
 =head1 WebGPU::Direct::RenderPassDepthStencilAttachment
+
+=over
 
 =item * Attributes
 
@@ -530,6 +582,8 @@
 
 =head1 WebGPU::Direct::RenderPassDescriptorMaxDrawCount
 
+=over
+
 =item * Attributes
 
 =over
@@ -543,6 +597,8 @@
 =back
 
 =head1 WebGPU::Direct::RenderPassTimestampWrites
+
+=over
 
 =item * Attributes
 
@@ -559,6 +615,8 @@
 =back
 
 =head1 WebGPU::Direct::RequestAdapterOptions
+
+=over
 
 =item * Attributes
 
@@ -580,6 +638,8 @@
 
 =head1 WebGPU::Direct::SamplerBindingLayout
 
+=over
+
 =item * Attributes
 
 =over
@@ -593,6 +653,8 @@
 =back
 
 =head1 WebGPU::Direct::SamplerDescriptor
+
+=over
 
 =item * Attributes
 
@@ -628,6 +690,8 @@
 
 =head1 WebGPU::Direct::ShaderModuleCompilationHint
 
+=over
+
 =item * Attributes
 
 =over
@@ -643,6 +707,8 @@
 =back
 
 =head1 WebGPU::Direct::ShaderModuleSPIRVDescriptor
+
+=over
 
 =item * Attributes
 
@@ -660,6 +726,8 @@
 
 =head1 WebGPU::Direct::ShaderModuleWGSLDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -673,6 +741,8 @@
 =back
 
 =head1 WebGPU::Direct::StencilFaceState
+
+=over
 
 =item * Attributes
 
@@ -692,6 +762,8 @@
 
 =head1 WebGPU::Direct::StorageTextureBindingLayout
 
+=over
+
 =item * Attributes
 
 =over
@@ -709,6 +781,8 @@
 =back
 
 =head1 WebGPU::Direct::SurfaceCapabilities
+
+=over
 
 =item * Attributes
 
@@ -733,6 +807,8 @@
 =back
 
 =head1 WebGPU::Direct::SurfaceConfiguration
+
+=over
 
 =item * Attributes
 
@@ -764,6 +840,8 @@
 
 =head1 WebGPU::Direct::SurfaceDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -777,6 +855,8 @@
 =back
 
 =head1 WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow
+
+=over
 
 =item * Attributes
 
@@ -792,6 +872,8 @@
 
 =head1 WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector
 
+=over
+
 =item * Attributes
 
 =over
@@ -806,6 +888,8 @@
 
 =head1 WebGPU::Direct::SurfaceDescriptorFromMetalLayer
 
+=over
+
 =item * Attributes
 
 =over
@@ -819,6 +903,8 @@
 =back
 
 =head1 WebGPU::Direct::SurfaceDescriptorFromWaylandSurface
+
+=over
 
 =item * Attributes
 
@@ -836,6 +922,8 @@
 
 =head1 WebGPU::Direct::SurfaceDescriptorFromWindowsHWND
 
+=over
+
 =item * Attributes
 
 =over
@@ -851,6 +939,8 @@
 =back
 
 =head1 WebGPU::Direct::SurfaceDescriptorFromXcbWindow
+
+=over
 
 =item * Attributes
 
@@ -868,6 +958,8 @@
 
 =head1 WebGPU::Direct::SurfaceDescriptorFromXlibWindow
 
+=over
+
 =item * Attributes
 
 =over
@@ -884,6 +976,8 @@
 
 =head1 WebGPU::Direct::SurfaceTexture
 
+=over
+
 =item * Attributes
 
 =over
@@ -899,6 +993,8 @@
 =back
 
 =head1 WebGPU::Direct::TextureBindingLayout
+
+=over
 
 =item * Attributes
 
@@ -918,6 +1014,8 @@
 
 =head1 WebGPU::Direct::TextureDataLayout
 
+=over
+
 =item * Attributes
 
 =over
@@ -935,6 +1033,8 @@
 =back
 
 =head1 WebGPU::Direct::TextureViewDescriptor
+
+=over
 
 =item * Attributes
 
@@ -964,6 +1064,8 @@
 
 =head1 WebGPU::Direct::VertexAttribute
 
+=over
+
 =item * Attributes
 
 =over
@@ -979,6 +1081,8 @@
 =back
 
 =head1 WebGPU::Direct::BindGroupDescriptor
+
+=over
 
 =item * Attributes
 
@@ -999,6 +1103,8 @@
 =back
 
 =head1 WebGPU::Direct::BindGroupLayoutEntry
+
+=over
 
 =item * Attributes
 
@@ -1024,6 +1130,8 @@
 
 =head1 WebGPU::Direct::BlendState
 
+=over
+
 =item * Attributes
 
 =over
@@ -1037,6 +1145,8 @@
 =back
 
 =head1 WebGPU::Direct::CompilationInfo
+
+=over
 
 =item * Attributes
 
@@ -1054,6 +1164,8 @@
 
 =head1 WebGPU::Direct::ComputePassDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -1069,6 +1181,8 @@
 =back
 
 =head1 WebGPU::Direct::DepthStencilState
+
+=over
 
 =item * Attributes
 
@@ -1102,6 +1216,8 @@
 
 =head1 WebGPU::Direct::ImageCopyBuffer
 
+=over
+
 =item * Attributes
 
 =over
@@ -1117,6 +1233,8 @@
 =back
 
 =head1 WebGPU::Direct::ImageCopyTexture
+
+=over
 
 =item * Attributes
 
@@ -1138,6 +1256,8 @@
 
 =head1 WebGPU::Direct::ProgrammableStageDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -1157,6 +1277,8 @@
 =back
 
 =head1 WebGPU::Direct::RenderPassColorAttachment
+
+=over
 
 =item * Attributes
 
@@ -1180,6 +1302,8 @@
 
 =head1 WebGPU::Direct::RequiredLimits
 
+=over
+
 =item * Attributes
 
 =over
@@ -1193,6 +1317,8 @@
 =back
 
 =head1 WebGPU::Direct::ShaderModuleDescriptor
+
+=over
 
 =item * Attributes
 
@@ -1212,6 +1338,8 @@
 
 =head1 WebGPU::Direct::SupportedLimits
 
+=over
+
 =item * Attributes
 
 =over
@@ -1225,6 +1353,8 @@
 =back
 
 =head1 WebGPU::Direct::TextureDescriptor
+
+=over
 
 =item * Attributes
 
@@ -1256,6 +1386,8 @@
 
 =head1 WebGPU::Direct::VertexBufferLayout
 
+=over
+
 =item * Attributes
 
 =over
@@ -1273,6 +1405,8 @@
 =back
 
 =head1 WebGPU::Direct::BindGroupLayoutDescriptor
+
+=over
 
 =item * Attributes
 
@@ -1292,6 +1426,8 @@
 
 =head1 WebGPU::Direct::ColorTargetState
 
+=over
+
 =item * Attributes
 
 =over
@@ -1310,6 +1446,8 @@
 
 =head1 WebGPU::Direct::ComputePipelineDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -1327,6 +1465,8 @@
 =back
 
 =head1 WebGPU::Direct::DeviceDescriptor
+
+=over
 
 =item * Attributes
 
@@ -1354,6 +1494,8 @@
 
 =head1 WebGPU::Direct::RenderPassDescriptor
 
+=over
+
 =item * Attributes
 
 =over
@@ -1377,6 +1519,8 @@
 =back
 
 =head1 WebGPU::Direct::VertexState
+
+=over
 
 =item * Attributes
 
@@ -1402,6 +1546,8 @@
 
 =head1 WebGPU::Direct::FragmentState
 
+=over
+
 =item * Attributes
 
 =over
@@ -1425,6 +1571,8 @@
 =back
 
 =head1 WebGPU::Direct::RenderPipelineDescriptor
+
+=over
 
 =item * Attributes
 

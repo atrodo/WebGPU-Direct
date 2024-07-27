@@ -105,6 +105,8 @@ Errors produced by WebGPU::Direct will be wrapped in a WebGPU::Direct::Error obj
 
 Convenience function to automate creation of and throwing L<WebGPU::Direct::Error> objects.
 
+=over
+
 =item * Arguments
 
 =over
@@ -124,6 +126,8 @@ The WebGPU message of the error
 =head2 Constructor
 
 =head3 new(type => $type, message => $message)
+
+=over
 
 =item * Arguments
 
