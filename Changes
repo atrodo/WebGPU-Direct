@@ -2,6 +2,16 @@ Revision history for WebGPU-Direct
 
 {{$NEXT}}
 
+0.14  2024-07-26 23:42:48 EDT
+        - Additional documentation fixes
+        - Add and fix issues for a compute example
+        - Improve defaults system and documentation
+        - Add WebGPU packing functions
+        - Package catchable errors into perl exceptions
+        - The great lcfirst-ining of functions and enums
+        - Allow some functions to return arrayrefs
+        - Clean up what can't actually be called
+
 0.13-TRIAL  2024-04-18 23:09:56 EDT
         - Automatic documentation generation improvements
 

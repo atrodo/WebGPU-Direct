@@ -36,6 +36,9 @@
          }
       },
       "runtime" : {
+         "recommends" : {
+            "Devel::StackTrace" : "0"
+         },
          "requires" : {
             "perl" : "5.030000"
          }
@@ -58,7 +61,7 @@
          "web" : "https://github.com/atrodo/WebGPU-Direct"
       }
    },
-   "version" : "0.13",
+   "version" : "0.14",
    "x_contributors" : [
       "Jon Gentle <atrodo@atrodo.org>"
    ],

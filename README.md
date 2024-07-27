@@ -22,7 +22,7 @@ This module is currently _extremely_ experimental, including the documentation. 
 - Some arguments that are optional or has a default in the JavaScript WebGPU standard are required to be passed
 - While all of the documentation is currently created, most of it is automatically generated from [webgpu/webgpu.h](https://github.com/webgpu-native/webgpu-headers).
 - Not all of the generated documentation is currently accurate, for instance callbacks are handled in a perl-ish manner.
-- Errors generated inside of WebGPU are not yet transformed into excpetions
+- Not all errors generated inside of WebGPU can be captured and likely will call `abort`
 - Providing the window handle for rendering is done manually
 - Sample window creation code does have any input or controls, only a WebGPU surface is shown
 - Memory leaks are likely to exist
@@ -136,6 +136,12 @@ All of the enums have a `Force32` value. These are not valid values, but are sim
 
 There are older tutorials or code examples around the internet that use a `SwapChain` type, both for WebGPU native and JavaScript. Later revisions of WebGPU eliminated that type and moved its functionality onto Surface.
 
+## WebGPU errors
+
+The default operation of [RequestDevice](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3AAdapter#RequestDevice) will install an error handler using [SetUncapturedErrorCallback](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ADevice#SetUncapturedErrorCallback) if a device is acquired. This means any errors not handled (generally using [PushErrorScope](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ADevice#PushErrorScope)/[PopErrorScope](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ADevice#PopErrorScope)) will be thrown as [Error](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3AError) objects. If you override how [RequestDevice](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3AAdapter#RequestDevice) searches for devices, you will need to install your own error handler.
+
+**BE WARNED** that WebGPU is still young and experimental, and as such WebGPU native is more so as it lags behind the WebGPU JavaScript API. This means that not all errors will be passed to [SetUncapturedErrorCallback](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ADevice#SetUncapturedErrorCallback), any may even abort instead, and may vary wildly between implementations and versions.
+
 ## Error Diagnostics
 
 ### invalid vertex shader module for vertex state
@@ -157,6 +163,12 @@ There appears to be an issue with [ColorAttachment](https://metacpan.org/pod/Web
 ### Error reflecting bind group 0: Validation Error / Invalid group index 0
 
 When a [RenderPipeline](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ARenderPipeline) is being ran with an `auto` layout, that `layout` is not defined in the [RenderPipelineDescriptor](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ARenderPipelineDescriptor) passed to `$device->CreateRenderPipeline`, WebGPU will auto analyze the `WGSL` to determine the group bindings. If a group binding is not used, the layout for it will not be included in the layout. You will need to either use the group binding in the shaders, or manually create and use a layout definition.
+
+### Surface image is already acquired
+
+The WebGPU JavaScript API and the WebGPU Native API differ slightly in how you interact with the hardware. In JavaScript, the [GPUCanvasContext](https://developer.mozilla.org/en-US/docs/Web/API/GPUCanvasContext) is used, and with the native it is a [Surface](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ASurface). The core functions are in both, but the Native API has several extra that the JavaScript API does not have, most notably [Present](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ASurface#Present), which informs the system that rendering is complete. Because of this, this you cannot acquire a [TextureView](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ATextureView) twice in a single frame via the [CreateView](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ATextureView#CreateView) function before calls to [Present](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ASurface#Present). Tryig to get it a second time will will throw this error.
+
+Because the JavaScript WebGPU API does not have a [Present](https://metacpan.org/pod/WebGPU%3A%3ADirect%3A%3ASurface#Present) function, examples will not include it; it happens implictly after each frame function. That means you must remember to call it at the end of each frame loop when the render is ready to go.
 
 # AUTHOR
 

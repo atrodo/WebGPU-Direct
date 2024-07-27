@@ -20,7 +20,7 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Test::More" => "0.96"
   },
-  "VERSION" => "0.13",
+  "VERSION" => "0.14",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -35,7 +35,7 @@ my %FallbackPrereqs = (
 %WriteMakefileArgs = (
   %WriteMakefileArgs,
 
-  OBJECT => [ '$(BASEEXT)$(OBJ_EXT)' ],
+  OBJECT => ['$(BASEEXT)$(OBJ_EXT)'],
   "test" => { "TESTS" => "t/*.t" },
   depend => {
     'Direct.c' => 'Direct.xs xs/*.xs xs/*.c',
@@ -43,11 +43,16 @@ my %FallbackPrereqs = (
 );
 
 my $addl_search = $ENV{ADDL_SEARCH} // '';
-my $addl_L = '';
+my $addl_L      = '';
 
 if ( !$addl_search && -e 'webgpu/webgpu.h' )
 {
   $addl_search = 'webgpu';
+}
+
+if ( $addl_search && -e "$addl_search/webgpu/webgpu.h" )
+{
+  $addl_search = "$addl_search/webgpu/";
 }
 
 if ($addl_search)
@@ -73,7 +78,7 @@ sub is_lib
 
 my $wgpu;
 my @tests = qw/wgpu_native dawn_native/;
-for my $wgpu_test ( @tests )
+for my $wgpu_test (@tests)
 {
   if ( is_lib($wgpu_test) )
   {
@@ -98,7 +103,7 @@ if ( is_lib('X11') )
 
 if ( is_lib('wayland-client') && qx/pkg-config --version 2>&1/ )
 {
-  my $scanner = qx/pkg-config --variable=wayland_scanner wayland-scanner/;
+  my $scanner   = qx/pkg-config --variable=wayland_scanner wayland-scanner/;
   my $proto_dir = qx/pkg-config wayland-protocols --variable=pkgdatadir/;
   chomp $proto_dir;
   my $xml = "$proto_dir/stable/xdg-shell/xdg-shell.xml";
@@ -107,7 +112,7 @@ if ( is_lib('wayland-client') && qx/pkg-config --version 2>&1/ )
   {
     qx{wayland-scanner client-header $xml xdg-shell.h};
     qx{wayland-scanner private-code $xml xdg-shell.c};
-    push @libs, '-lwayland-client';
+    push @libs,    '-lwayland-client';
     push @defines, '-DHAS_WAYLAND';
     push $WriteMakefileArgs{OBJECT}->@*, 'xdg-shell.o';
   }
