@@ -751,14 +751,19 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     croak("The field value to _pack_objarray must be an array, for %s{%s}", SvPV_nolen(base), key);
   }
 
-  if ( !sv_isobject(*f) )
-  {
-    sv_bless(*f, gv_stashpv(SvPV_nolen(array_base), GV_ADD));
-  }
-
   objs = (AV *)SvRV(*f);
   count = av_count(objs);
+
+  if ( !sv_isobject(*f) )
+  {
+    SV *a = (SV *)newAV();
+    *f = sv_2mortal(newRV(a));
+    sv_bless(*f, gv_stashpv(SvPV_nolen(array_base), GV_ADD));
+    f = nn_hv_store(aTHX_ h, key, klen, *f, base);
+  }
+
   arr = _get_struct_ptr(aTHX_ *f, array_base);
+  AV *out_objs = (AV *)SvRV(*f);
 
   if ( arr != NULL )
   {
@@ -786,7 +791,7 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     SV *obj = _coerce_obj(base, *f);
     if ( obj != *f )
     {
-      f = nn_av_store(aTHX_ objs, i, obj, base);
+      f = nn_av_store(aTHX_ out_objs, i, obj, base);
     }
 
     assert(SvOK(*f));
@@ -844,7 +849,7 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
 
   SvREFCNT_inc(*f);
 
-  sv_magicext((SV *)objs, NULL, PERL_MAGIC_ext, NULL, (const char *)arr, 0);
+  sv_magicext((SV *)out_objs, NULL, PERL_MAGIC_ext, NULL, (const char *)arr, 0);
 
   _set_objarray(aTHX_ (count == 0 ? NULL : *f), field, cntField, size, array_base);
 
