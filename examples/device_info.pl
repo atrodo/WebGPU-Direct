@@ -26,3 +26,7 @@ if ( $adapter->getLimits($limits) )
 
 my $features = $adapter->enumerateFeatures;
 warn Data::Dumper::Dumper($features);
+
+my $properties = WebGPU::Direct::AdapterProperties->new;
+$adapter->getProperties($properties);
+warn Data::Dumper::Dumper($properties);
