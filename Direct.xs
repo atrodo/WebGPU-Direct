@@ -257,7 +257,7 @@ SV *_new_opaque( SV *CLASS, void *n)
     return SvREFCNT_inc(newSV(0));
   }
 
-  SV *h = newSViv( *(IV *)n);
+  SV *h = newSViv( (Size_t)n);
   SV *RETVAL = sv_2mortal(newRV(h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
