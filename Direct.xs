@@ -116,7 +116,8 @@ SV *_coerce_obj( SV *CLASS, SV *fields )
   {
     return fields;
   }
-  if ( SvTYPE(SvRV(fields)) != SVt_PVHV )
+  if (   SvTYPE(SvRV(fields)) != SVt_PVHV
+      && SvTYPE(SvRV(fields)) != SVt_PVAV )
   {
     return fields;
   }

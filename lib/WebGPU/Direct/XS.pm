@@ -1215,7 +1215,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ChainedStruct\n"
           if !$class->isa("WebGPU::Direct::ChainedStruct");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1235,7 +1236,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ChainedStructOut\n"
           if !$class->isa("WebGPU::Direct::ChainedStructOut");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1255,7 +1257,8 @@ package
         die "$class does not inherit from WebGPU::Direct::AdapterProperties\n"
           if !$class->isa("WebGPU::Direct::AdapterProperties");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1276,7 +1279,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BindGroupEntry\n"
           if !$class->isa("WebGPU::Direct::BindGroupEntry");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1300,7 +1304,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BlendComponent\n"
           if !$class->isa("WebGPU::Direct::BlendComponent");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1324,7 +1329,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BufferBindingLayout\n"
           if !$class->isa("WebGPU::Direct::BufferBindingLayout");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1346,7 +1352,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BufferDescriptor\n"
           if !$class->isa("WebGPU::Direct::BufferDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1366,7 +1373,8 @@ package
         die "$class does not inherit from WebGPU::Direct::Color\n"
           if !$class->isa("WebGPU::Direct::Color");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref [] ? (r => $_[0]->[0] // 0, g => $_[0]->[1] // 0, b => $_[0]->[2] // 0, a => $_[0]->[3] // 0) : ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1386,7 +1394,8 @@ package
         die "$class does not inherit from WebGPU::Direct::CommandBufferDescriptor\n"
           if !$class->isa("WebGPU::Direct::CommandBufferDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1406,7 +1415,8 @@ package
         die "$class does not inherit from WebGPU::Direct::CommandEncoderDescriptor\n"
           if !$class->isa("WebGPU::Direct::CommandEncoderDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1426,7 +1436,8 @@ package
         die "$class does not inherit from WebGPU::Direct::CompilationMessage\n"
           if !$class->isa("WebGPU::Direct::CompilationMessage");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1446,7 +1457,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ComputePassTimestampWrites\n"
           if !$class->isa("WebGPU::Direct::ComputePassTimestampWrites");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1466,7 +1478,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ConstantEntry\n"
           if !$class->isa("WebGPU::Direct::ConstantEntry");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1479,17 +1492,15 @@ package
 package
 	WebGPU::Direct::Extent3D {
     
-    my $default = {
-             'depthOrArrayLayers' => 1,
-             'height' => 1,
-           };
+    my $default = {};
 
     sub new {
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Extent3D\n"
           if !$class->isa("WebGPU::Direct::Extent3D");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref [] ? (width => $_[0]->[0] // 0, height => $_[0]->[1] // 1, depthOrArrayLayers => $_[0]->[2] // 1) : ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1509,7 +1520,8 @@ package
         die "$class does not inherit from WebGPU::Direct::InstanceDescriptor\n"
           if !$class->isa("WebGPU::Direct::InstanceDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1529,7 +1541,8 @@ package
         die "$class does not inherit from WebGPU::Direct::Limits\n"
           if !$class->isa("WebGPU::Direct::Limits");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1553,7 +1566,8 @@ package
         die "$class does not inherit from WebGPU::Direct::MultisampleState\n"
           if !$class->isa("WebGPU::Direct::MultisampleState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1577,7 +1591,8 @@ package
         die "$class does not inherit from WebGPU::Direct::Origin3D\n"
           if !$class->isa("WebGPU::Direct::Origin3D");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1597,7 +1612,8 @@ package
         die "$class does not inherit from WebGPU::Direct::PipelineLayoutDescriptor\n"
           if !$class->isa("WebGPU::Direct::PipelineLayoutDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1617,7 +1633,8 @@ package
         die "$class does not inherit from WebGPU::Direct::PrimitiveDepthClipControl\n"
           if !$class->isa("WebGPU::Direct::PrimitiveDepthClipControl");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1641,7 +1658,8 @@ package
         die "$class does not inherit from WebGPU::Direct::PrimitiveState\n"
           if !$class->isa("WebGPU::Direct::PrimitiveState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1661,7 +1679,8 @@ package
         die "$class does not inherit from WebGPU::Direct::QuerySetDescriptor\n"
           if !$class->isa("WebGPU::Direct::QuerySetDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1681,7 +1700,8 @@ package
         die "$class does not inherit from WebGPU::Direct::QueueDescriptor\n"
           if !$class->isa("WebGPU::Direct::QueueDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1701,7 +1721,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderBundleDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderBundleDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1725,7 +1746,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderBundleEncoderDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderBundleEncoderDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1745,7 +1767,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderPassDepthStencilAttachment\n"
           if !$class->isa("WebGPU::Direct::RenderPassDepthStencilAttachment");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1767,7 +1790,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderPassDescriptorMaxDrawCount\n"
           if !$class->isa("WebGPU::Direct::RenderPassDescriptorMaxDrawCount");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1787,7 +1811,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderPassTimestampWrites\n"
           if !$class->isa("WebGPU::Direct::RenderPassTimestampWrites");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1809,7 +1834,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RequestAdapterOptions\n"
           if !$class->isa("WebGPU::Direct::RequestAdapterOptions");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1829,7 +1855,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SamplerBindingLayout\n"
           if !$class->isa("WebGPU::Direct::SamplerBindingLayout");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1859,7 +1886,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SamplerDescriptor\n"
           if !$class->isa("WebGPU::Direct::SamplerDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1879,7 +1907,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ShaderModuleCompilationHint\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleCompilationHint");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1899,7 +1928,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ShaderModuleSPIRVDescriptor\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleSPIRVDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1919,7 +1949,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ShaderModuleWGSLDescriptor\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleWGSLDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1944,7 +1975,8 @@ package
         die "$class does not inherit from WebGPU::Direct::StencilFaceState\n"
           if !$class->isa("WebGPU::Direct::StencilFaceState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1964,7 +1996,8 @@ package
         die "$class does not inherit from WebGPU::Direct::StorageTextureBindingLayout\n"
           if !$class->isa("WebGPU::Direct::StorageTextureBindingLayout");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -1985,7 +2018,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceCapabilities\n"
           if !$class->isa("WebGPU::Direct::SurfaceCapabilities");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2008,7 +2042,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceConfiguration\n"
           if !$class->isa("WebGPU::Direct::SurfaceConfiguration");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2028,7 +2063,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptor\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2048,7 +2084,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2068,7 +2105,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2088,7 +2126,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromMetalLayer\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromMetalLayer");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2108,7 +2147,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromWaylandSurface\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWaylandSurface");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2128,7 +2168,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromWindowsHWND\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromWindowsHWND");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2148,7 +2189,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromXcbWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXcbWindow");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2168,7 +2210,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptorFromXlibWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptorFromXlibWindow");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2188,7 +2231,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SurfaceTexture\n"
           if !$class->isa("WebGPU::Direct::SurfaceTexture");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2208,7 +2252,8 @@ package
         die "$class does not inherit from WebGPU::Direct::TextureBindingLayout\n"
           if !$class->isa("WebGPU::Direct::TextureBindingLayout");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2228,7 +2273,8 @@ package
         die "$class does not inherit from WebGPU::Direct::TextureDataLayout\n"
           if !$class->isa("WebGPU::Direct::TextureDataLayout");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2252,7 +2298,8 @@ package
         die "$class does not inherit from WebGPU::Direct::TextureViewDescriptor\n"
           if !$class->isa("WebGPU::Direct::TextureViewDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2272,7 +2319,8 @@ package
         die "$class does not inherit from WebGPU::Direct::VertexAttribute\n"
           if !$class->isa("WebGPU::Direct::VertexAttribute");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2292,7 +2340,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BindGroupDescriptor\n"
           if !$class->isa("WebGPU::Direct::BindGroupDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2312,7 +2361,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BindGroupLayoutEntry\n"
           if !$class->isa("WebGPU::Direct::BindGroupLayoutEntry");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2332,7 +2382,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BlendState\n"
           if !$class->isa("WebGPU::Direct::BlendState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2352,7 +2403,8 @@ package
         die "$class does not inherit from WebGPU::Direct::CompilationInfo\n"
           if !$class->isa("WebGPU::Direct::CompilationInfo");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2372,7 +2424,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ComputePassDescriptor\n"
           if !$class->isa("WebGPU::Direct::ComputePassDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2398,7 +2451,8 @@ package
         die "$class does not inherit from WebGPU::Direct::DepthStencilState\n"
           if !$class->isa("WebGPU::Direct::DepthStencilState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2420,7 +2474,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ImageCopyBuffer\n"
           if !$class->isa("WebGPU::Direct::ImageCopyBuffer");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2443,7 +2498,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ImageCopyTexture\n"
           if !$class->isa("WebGPU::Direct::ImageCopyTexture");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2463,7 +2519,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ProgrammableStageDescriptor\n"
           if !$class->isa("WebGPU::Direct::ProgrammableStageDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2483,7 +2540,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderPassColorAttachment\n"
           if !$class->isa("WebGPU::Direct::RenderPassColorAttachment");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2535,7 +2593,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RequiredLimits\n"
           if !$class->isa("WebGPU::Direct::RequiredLimits");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2555,7 +2614,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ShaderModuleDescriptor\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2575,7 +2635,8 @@ package
         die "$class does not inherit from WebGPU::Direct::SupportedLimits\n"
           if !$class->isa("WebGPU::Direct::SupportedLimits");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2603,7 +2664,8 @@ package
         die "$class does not inherit from WebGPU::Direct::TextureDescriptor\n"
           if !$class->isa("WebGPU::Direct::TextureDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2625,7 +2687,8 @@ package
         die "$class does not inherit from WebGPU::Direct::VertexBufferLayout\n"
           if !$class->isa("WebGPU::Direct::VertexBufferLayout");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2645,7 +2708,8 @@ package
         die "$class does not inherit from WebGPU::Direct::BindGroupLayoutDescriptor\n"
           if !$class->isa("WebGPU::Direct::BindGroupLayoutDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2668,7 +2732,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ColorTargetState\n"
           if !$class->isa("WebGPU::Direct::ColorTargetState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2688,7 +2753,8 @@ package
         die "$class does not inherit from WebGPU::Direct::ComputePipelineDescriptor\n"
           if !$class->isa("WebGPU::Direct::ComputePipelineDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2708,7 +2774,8 @@ package
         die "$class does not inherit from WebGPU::Direct::DeviceDescriptor\n"
           if !$class->isa("WebGPU::Direct::DeviceDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2728,7 +2795,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderPassDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderPassDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2748,7 +2816,8 @@ package
         die "$class does not inherit from WebGPU::Direct::VertexState\n"
           if !$class->isa("WebGPU::Direct::VertexState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2768,7 +2837,8 @@ package
         die "$class does not inherit from WebGPU::Direct::FragmentState\n"
           if !$class->isa("WebGPU::Direct::FragmentState");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );
@@ -2788,7 +2858,8 @@ package
         die "$class does not inherit from WebGPU::Direct::RenderPipelineDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderPipelineDescriptor");
         $class = ref($class) ? ref($class) : $class;
-        my $result = { %$default, ref( $_[0] ) eq ref {} ? %{$_[0]} : @_ };
+        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
         $result = bless( $result, $class );

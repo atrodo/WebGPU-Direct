@@ -130,6 +130,12 @@
     stepMode => \'VertexStepMode->vertex',
   },
 
+  # Structs that can be constructed with an array
+  ARRAY => {
+    Color    => [qw/ r g b a /],
+    Extent3D => [qw/width height depthOrArrayLayers/],
+  },
+
   # XS Function and function documentation of defaults
   Adapter => {
     requestDevice => {

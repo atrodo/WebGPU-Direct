@@ -86,7 +86,7 @@ say $pm q{};
 say $pm q[package # Hide from PAUSE];
 say $pm q[    WebGPU::Direct::XS];
 say $pm q[{];
-say $pm q[  our $VERSION = '0.13';];
+say $pm q[  our $VERSION = '0.14';];
 say $pm q[  require XSLoader;];
 say $pm q[  XSLoader::load('WebGPU::Direct', $VERSION);];
 say $pm q[}];
@@ -699,9 +699,31 @@ foreach my $class (@classes)
     my $short_class = $class;
     $short_class =~ s/WebGPU::Direct:://;
 
+    my $default_raw = $class_defaults->{$short_class};
+    my $coerce      = 'ref( $_[0] ) eq ref {} ? %{$_[0]} : @_';
+    if ( $class_defaults->{ARRAY}->{$short_class} )
+    {
+      my @c             = ();
+      my $array_default = $class_defaults->{ARRAY}->{$short_class};
+      foreach my $i ( keys @$array_default )
+      {
+        my $n = $array_default->[$i];
+        my $d = ' // 0';
+        if ( exists $default_raw->{$n} )
+        {
+          $d = " // " . $default_raw->{$n};
+        }
+        push @c, "$n => \$_[0]->[$i]$d";
+      }
+
+      my $constr = join( ', ', @c );
+      $coerce      = "ref( \$_[0] ) eq ref [] ? ($constr) : " . $coerce;
+      $default_raw = {};
+    }
+
     local $Data::Dumper::Trailingcomma = 1;
     local $Data::Dumper::Sortkeys      = 1;
-    my $default = Data::Dumper->Dump( [ $class_defaults->{$short_class} // {} ], [qw/default/] );
+    my $default = Data::Dumper->Dump( [ $default_raw // {} ], [qw/default/] );
 
     # Any scalar refs, strip the decoration and fully-qualify the call
     $default =~ s[\\'([\w\:\-\>]*)'][WebGPU::Direct::$1]g;
@@ -715,7 +737,8 @@ foreach my $class (@classes)
               die "\$class does not inherit from $class\\n"
                 if !\$class->isa("$class");
               \$class = ref(\$class) ? ref(\$class) : \$class;
-              my \$result = { \%\$default, ref( \$_[0] ) eq ref {} ? %{\$_[0]} : \@_ };
+              my \%params = $coerce;
+              my \$result = { \%\$default, \%params };
               \$result = \$class->BUILDARGS(\$result)
                 if \$class->can('BUILDARGS');
               \$result = bless( \$result, \$class );
@@ -1046,6 +1069,7 @@ foreach my $cb_name ( sort keys %callbackdefs )
 }
 
 my %pages_needed;
+
 END
 {
   foreach my $page ( keys %pages_needed )
