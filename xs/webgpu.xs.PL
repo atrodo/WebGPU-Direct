@@ -718,7 +718,6 @@ foreach my $class (@classes)
 
       my $constr = join( ', ', @c );
       $coerce      = "ref( \$_[0] ) eq ref [] ? ($constr) : " . $coerce;
-      $default_raw = {};
     }
 
     local $Data::Dumper::Trailingcomma = 1;

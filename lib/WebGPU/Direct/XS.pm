@@ -1492,7 +1492,10 @@ package
 package
 	WebGPU::Direct::Extent3D {
     
-    my $default = {};
+    my $default = {
+             'depthOrArrayLayers' => 1,
+             'height' => 1,
+           };
 
     sub new {
         my $class = shift;
