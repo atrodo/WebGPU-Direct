@@ -4,7 +4,7 @@ use v5.30;
 no warnings qw(experimental::signatures);
 use feature 'signatures';
 
-our $VERSION = '0.14';
+our $VERSION = '0.15';
 
 use Carp;
 use WebGPU::Direct::XS;

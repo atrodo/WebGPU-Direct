@@ -2,6 +2,12 @@ Revision history for WebGPU-Direct
 
 {{$NEXT}}
 
+0.15  2024-08-07 23:41:34 EDT
+        - Add array constructor for Color and Extent3D
+        - Add rotating cube example
+        - Fix the blessed scalar value of opaque types
+        - Fix the accidental reuse of arrays when blessing
+
 0.14  2024-07-26 23:42:48 EDT
         - Additional documentation fixes
         - Add and fix issues for a compute example
