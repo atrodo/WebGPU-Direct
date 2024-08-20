@@ -789,7 +789,7 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
     }
 
     SV *obj = _coerce_obj(base, *f);
-    if ( obj != *f )
+    if ( obj != *f || out_objs != objs )
     {
       f = nn_av_store(aTHX_ out_objs, i, obj, base);
     }
