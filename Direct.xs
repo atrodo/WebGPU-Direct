@@ -6,6 +6,15 @@
 
 #include <webgpu/webgpu.h>
 
+// Chosen by fair dice roll
+#define CB_GUARD 0x25b3eea3
+typedef struct cb_data {
+  I32 guard1;
+  CV *perlsub;
+  SV *data;
+  I32 guard2;
+} cb_data;
+
 // Call new if possible, otherwise return fields
 SV *_coerce_obj( SV *CLASS, SV *fields );
 SV *_new( SV *CLASS, SV *fields );
@@ -259,7 +268,8 @@ SV *_new_opaque( SV *CLASS, void *n)
   }
 
   SV *h = newSViv( (Size_t)n);
-  SV *RETVAL = sv_2mortal(newRV(h));
+  SV *RETVAL = newRV_noinc(h);
+  RETVAL = sv_2mortal(RETVAL);
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   sv_bless(RETVAL, gv_stashpv(SvPV_nolen(CLASS), GV_ADD));
@@ -1160,12 +1170,12 @@ SV *_unpack_callback(pTHX_ HV *h, const char *cb_key, I32 cb_klen, const char *u
 
   if ( cb_field == NULL )
   {
-    croak("The callback field value to _pack_callback must not be null, for {%s}", cb_key);
+    croak("The callback field value to _pack_void must not be null, for {%s}", cb_key);
   }
 
   if ( ud_field == NULL )
   {
-    croak("The userdata field value to _pack_callback must not be null, for {%s}", ud_key);
+    croak("The userdata field value to _pack_void must not be null, for {%s}", ud_key);
   }
 
   // Find the field from the hash
@@ -1208,12 +1218,12 @@ SV *_pack_callback(pTHX_ HV *h, const char *cb_key, I32 cb_klen, const char *ud_
 
   if ( cb_field == NULL )
   {
-    croak("The callback field value to _pack_callback must not be null, for {%s}", cb_key);
+    croak("The callback field value to _pack_void must not be null, for {%s}", cb_key);
   }
 
   if ( ud_field == NULL )
   {
-    croak("The userdata field value to _pack_callback must not be null, for {%s}", ud_key);
+    croak("The userdata field value to _pack_void must not be null, for {%s}", ud_key);
   }
 
   // Find the field from the hash

@@ -487,15 +487,6 @@ foreach my $const ( sort keys %$constants )
 say $pm qq[};];
 say $pm qq[];
 
-# Chosen by fair dice roll
-say $c "#define CB_GUARD 0x25b3eea3";
-say $c "typedef struct cb_data {
-    I32 guard1;
-    CV *perlsub;
-    SV *data;
-    I32 guard2;
-} cb_data;
-";
 
 open my $const_pod, '>', "$Bin/../lib/WebGPU/Direct/Constants.pod";
 open my $types_pod, '>', "$Bin/../lib/WebGPU/Direct/Types.pod";
