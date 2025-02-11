@@ -140,6 +140,14 @@ while (<$h>)
     next;
   }
 
+  # Ignore multi-line comments
+  if (m[(.*?) /[*] .*?]xms .. m[.*? [*]/ (.*)]xms )
+  {
+    next
+      if !defined $1;
+    $_ = $1;
+  }
+
   if (m/^ [#] | ^ \s* $ | ^ extern \s* "C" \s* { | ^ } \s* $ /xms)
   {
     next;
