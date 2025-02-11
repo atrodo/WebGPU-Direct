@@ -525,6 +525,43 @@ foreach my $enum ( sort keys %enums )
   say $pm qq[];
 }
 
+# Forward define the callback refs
+foreach my $cb_name ( sort keys %callbackdefs )
+{
+  my $callback = $callbackdefs{$cb_name};
+  my $type     = $callback->{type};
+  my $class    = $callback->{class};
+  my @args     = $callback->{args}->@*;
+  my $c_prefix = "${class}";
+
+  $c_prefix =~ s/::/__/g;
+
+  my @argdefs;
+  my @keys;
+  my @vals;
+  my @pushs;
+
+  my $argoff = -1;
+  foreach my $pair ( pairs @args )
+  {
+    my ( $key, $value ) = @$pair;
+
+    my ($type) = $key =~ m/^(?:struct\s+)?(\w+)/;
+    my $pkg = pkg_name($type);
+
+    warn "Unknown type: $type"
+        if !exists $typedefs{$pkg} && !exists $typedefs{$type};
+
+    push @argdefs, "$key $value";
+  }
+
+  {
+    local $" = ', ';
+    say $c "void ${c_prefix}__callback( @argdefs );";
+  }
+}
+say $c '';
+
 foreach my $class (@classes)
 {
   my %def = $classdefs{$class}->%*;
