@@ -179,11 +179,12 @@ while (<$h>)
       }
     }
 
+    # Pull out constants, including named ones
     if (
       m[^ \s*
               (\w+) \s*
               = \s*
-              (\w+) \s*
+              ([^,]+) \s*
               ,? \s* $]xms
         )
     {
@@ -202,6 +203,13 @@ while (<$h>)
       if ( $short !~ m/^[[:upper:]][\d[:upper:]]+/ )
       {
         $short = lcfirst $short;
+      }
+
+      # If it is a definition of previous constants, keep the idea in tact
+      # and let perl do that work of its value
+      if ( $value !~ m/^[0-9a-fx]+$/ixms )
+      {
+        $value =~ s/$type [_] (\w+)/\l$1()/xmsg;
       }
 
       $enums{$type}->{$value} = "__PACKAGE__->_add_enum('$short' => ($value, '$const'));";
