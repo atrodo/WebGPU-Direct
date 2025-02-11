@@ -5,8 +5,6 @@
 #include "perl.h"
 #include "XSUB.h"
 
-#include "ppport.h"
-
 #include <X11/Xlib.h>
 
 bool x11_window(WGPUSurfaceDescriptorFromXlibWindow *result, int xw, int yh)
