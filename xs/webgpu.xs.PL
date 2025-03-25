@@ -346,8 +346,9 @@ while (<$h>)
 
     my @args = ( $definition =~ m[ \s* ([^,]*) \s+ (\w+) \s* (?: , | $ ) ]xmsg );
 
+    warn Data::Dumper::Dumper(\@args);
     # If the last arg is a user-data slot, create a callback situation
-    if ( $return eq 'void' && $args[-2] && $args[-2] =~ m/^void\s+[*]$/ )
+    if ( $return eq 'void' && $args[-2] && $args[-2] =~ m/^void\s*[*]$/ )
     {
       $callbackdefs{$class} = {
         type  => $type,
