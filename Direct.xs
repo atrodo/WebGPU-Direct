@@ -1029,7 +1029,6 @@ STATIC MGVTBL _mg_vtbl_void = {
   .svt_set = _mg_set_void
 };
 
-#define _unpack_CODE _unpack_void
 SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 {
   SV **f = NULL;
@@ -1062,7 +1061,6 @@ SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
-#define _pack_CODE _pack_void
 SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 {
   SV **f;
@@ -1089,7 +1087,6 @@ SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
-#define _find_CODE _find_void
 SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 {
   SV **f;
@@ -1111,7 +1108,6 @@ SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
-#define _store_CODE _store_void
 void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base, SV *value)
 {
   SV **f = nn_hv_store(aTHX_ h, key, klen, value, &PL_sv_undef);
@@ -1328,6 +1324,36 @@ void _store_##type(pTHX_ HV *h, const char *key, I32 klen, ft field, SV * base, 
 }                                                                               \
                                                                                 \
 
+
+/* ------------------------------------------------------------------
+   SV
+   ------------------------------------------------------------------ */
+
+SV *_set_SV(pTHX_ SV *new_value, void **field, SV *base)
+{
+  *field = (void *)new_value;
+  return new_value;
+}
+_setup_x(SV, void **, (SV *)*field);
+
+SV *_set_CODE(pTHX_ SV *new_value, void **field, SV *base)
+{
+  if ( SvOK(new_value) )
+  {
+    if ( !SvROK(new_value) )
+    {
+      croak("%s is not an coderef", SvPVbyte_nolen(new_value));
+    }
+    if ( SvTYPE(SvRV(new_value)) != SVt_PVCV )
+    {
+      croak("%s reference is not an coderef", SvPVbyte_nolen(new_value));
+    }
+  }
+
+  *field = (void *)new_value;
+  return new_value;
+}
+_setup_x(CODE, void **, (SV *)*field);
 
 /* ------------------------------------------------------------------
    str
