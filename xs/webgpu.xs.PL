@@ -52,9 +52,11 @@ my @typemap = (
   q{T_VOID},
   q{    $arg = _void__wrap($var);},
   q{T_FETCH},
-  q{    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);},
+  q{    ${$type=~tr/:/_/, \$type}* ptr_$var; Newx(ptr_$var, 1, $type);},
+  q{    Copy(&$var, ptr_$var, 1, $type);},
+  q{    $arg = ${\$type}__wrap(ptr_$var); /* T_FETCH */},
   q{T_FETCHPTR},
-  q{    $arg = ${$type=~tr/:/_/, \$type}__wrap($var);},
+  q{    $arg = ${$type=~tr/:/_/, \$type}__wrap($var); /* T_FETCHPTR */},
 );
 
 my $arrcnt_re = qr/^(\w+)Count$/xms;
@@ -1172,6 +1174,15 @@ foreach my $cb_name ( sort keys %callbackdefs )
     my $outputmap = $tmx->get_outputmap( ctype => $key );
     $argoff++;
 
+    # If we're passed a const-pointer to a normal type, we can take extra
+    # steps to pass it along
+    my $const_ptr;
+    if ( !defined $outputmap && $key =~ m/^(\w+) \s+ const \s* [*]/xms )
+    {
+      $outputmap = $tmx->get_outputmap( ctype => $1 );
+      $const_ptr = 1;
+    }
+
     die "Can't find for ctype $key"
         if !defined $outputmap;
 
@@ -1701,10 +1712,18 @@ sub say_call_fn
     foreach my $array ( sort keys %arrays )
     {
       my $type = $arrays{$array};
+      die $type if $type !~ m/[*]$/;
       $type =~ s/[*]$//;
       $type =~ s/const//;
 
-      my $fetch = "($type) _get_struct_ptr(aTHX_ *item, NULL)";
+      my $cast = "($type)";
+      my $class = $classdefs{pkg_name($type)};
+      if ( $class && !$class->{ptr_type} )
+      {
+        $cast = "*($type *)";
+      }
+
+      my $fetch = "$cast _get_struct_ptr(aTHX_ *item, NULL)";
       if ( $type =~ m/^\s*uint\d+_t\s*$/xms )
       {
         $fetch = "SvIV(*item)";
@@ -1722,9 +1741,13 @@ sub say_call_fn
                   $array\[i] = n;
                 }
               }
-              $array\[${array}Count+1] = ($type) 0;
         EOF
         };
+
+      if ( $class && $class->{ptr_type} )
+      {
+        say $xs "      $array\[${array}Count+1] = ($type) 0;";
+      }
 
       @calls = map { $_ eq "${array}s" ? ( "${array}Count", $array ) : $_ } @calls;
     }
