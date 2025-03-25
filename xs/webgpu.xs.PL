@@ -229,6 +229,43 @@ while (<$h>)
     next;
   }
 
+  # Bit flag typedef definitions
+  if (m[^ typedef \s+ (WGPUFlags) \s+ (\w+); $]xms)
+  {
+    die "Duplicate typedef: $2"
+        if exists $typedefs{$2};
+    my $type = $2;
+    $enums{$type}    = {};
+    $typedefs{$type} = 'flag';
+    next;
+  }
+
+  # Bit flag definitions
+  if (m[^ static \s+ const \s+ (\w+) \s+ (\w+) \s* = \s* ( (?:0x)? [0-9a-fx]+ ) \s* ;]ixms)
+  {
+    my $type  = $1;
+    my $const = $2;
+    my $value = $3;
+    my $short = $const;
+    $short =~ s/$type\_//;
+    if ( $short =~ m/^\d/ )
+    {
+      $short = "_$short";
+    }
+
+    next
+        if $short eq 'Force32';
+
+    if ( $short !~ m/^[[:upper:]][\d[:upper:]]+/ )
+    {
+      $short = lcfirst $short;
+    }
+
+    $enums{$type}->{$value} = "__PACKAGE__->_add_enum('$short' => ($value, '$const'));";
+
+    next;
+  }
+
   # Struct definitions
   if ( m[^ typedef \s+ (struct) \s+ (\w+) \s+ { $]xms .. m[ ^ } \s+ (\w+) ; $]xms )
   {

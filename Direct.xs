@@ -1397,6 +1397,13 @@ SV *_coerce_enum(pTHX_ void *field, SV *base)
 
 _setup_x(enum, void *, _coerce_enum(aTHX_ field, base));
 
+#define _set_flag _set_enum
+#define _coerce_flag _coerce_enum
+#define _pack_flag _pack_enum
+#define _unpack_flag _unpack_enum
+#define _find_flag _find_enum
+#define _store_flag _store_enum
+
 /* ------------------------------------------------------------------
    bool
    ------------------------------------------------------------------ */
