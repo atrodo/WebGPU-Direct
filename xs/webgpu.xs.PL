@@ -516,8 +516,6 @@ foreach my $enum ( sort keys %enums )
         if $classdefs{$pkg}->{fn_type};
     next
         if $classdefs{$pkg}->{opaque};
-    next
-        if $pkg =~ m/Callback$/;
 
     my $fn = $pkg;
     $fn =~ s/^WebGPU::Direct:://;
@@ -696,6 +694,49 @@ foreach my $class (@classes)
 
       undef $maybe_array;
     }
+
+    # Check for callback-type elements
+    if ( $#defs >= 3 )
+    {
+      my %has_x;
+      foreach my $i ( 0 .. $#defs )
+      {
+        my %def = $defs[$i]->%*;
+
+        foreach my $x (qw/callback userdata1 userdata2/)
+        {
+          if ( $def{key} eq $x )
+          {
+            die "Saw $x twice in the same struct: $class"
+                if $has_x{$x};
+
+            $has_x{$x} = $i || '0 but true';
+            last;
+          }
+        }
+      }
+
+      if ( $has_x{callback} && $has_x{userdata1} && $has_x{userdata2} )
+      {
+        $defs[ $has_x{callback} ]->{struct_key} = 'userdata1';
+
+        $defs[ $has_x{userdata1} ]->{is_ro} = 1;
+        $defs[ $has_x{userdata1} ]->{key}   = '';
+        $defs[ $has_x{userdata1} ]->{klen}  = 0;
+
+        $defs[ $has_x{userdata2} ]->{typedef}    = 'SV';
+        $defs[ $has_x{userdata2} ]->{key}        = 'userdata';
+        $defs[ $has_x{userdata2} ]->{klen}       = 8;
+        $defs[ $has_x{userdata2} ]->{struct_key} = 'userdata2';
+
+        my $cb_type = pkg_name( $defs[ $has_x{callback} ]->{ctype} );
+        $cb_type =~ s/::/__/g;
+        $cb_type .= '__callback';
+
+        $packs .= "  n->callback = &${cb_type};\n";
+      }
+    }
+
   }
   else
   {
@@ -778,6 +819,10 @@ foreach my $class (@classes)
   {
     my %def   = %$_;
     my %calls = calls_for( %$_, c_prefix => $c_prefix );
+
+    next
+      if $def{key} eq '';
+
     $packs   .= $calls{pack};
     $unpacks .= $calls{unpack};
 
@@ -1111,9 +1156,16 @@ foreach my $cb_name ( sort keys %callbackdefs )
     push @keys,    $key;
     push @vals,    $value;
 
-    if ( $value eq 'userdata' )
+    # userdata1 is the callback, which we don't need to supply
+    if ( $value eq 'userdata1' )
     {
-      push @pushs, "\n    XPUSHs(cb->data);";
+      next;
+    }
+
+    # userdata2 is the userdata, which we handle special
+    if ( $value eq 'userdata2' )
+    {
+      push @pushs, "\n    XPUSHs(user_sv);";
       next;
     }
 
@@ -1148,19 +1200,40 @@ foreach my $cb_name ( sort keys %callbackdefs )
     say $c "void ${c_prefix}__callback( @argdefs )";
   }
 
+  # userdata1 is the CODE/CV. userdata2 is the userdata
+
   say $c <<~"EOF"; my $n = qq{
       {
-        cb_data *cb = (cb_data *)userdata;
-        if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+        if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
         {
-          croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+          warn("Callback ${c_prefix} failed: callback function was NULL");
+          return;
+        }
+
+        SV* callback = (SV *) userdata1;
+        SV* user_sv  = (SV *) userdata2;
+
+        if ( userdata2 == NULL || !SvOK(user_sv) )
+        {
+          user_sv = &PL_sv_undef;
+        }
+
+        if ( !SvROK(callback) )
+        {
+          warn("Callback ${c_prefix} failed: callback function was not a ref: %s", SvPV_nolen(callback));
+          return;
+        }
+        if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+        {
+          warn("Callback ${c_prefix} failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+          return;
         }
 
         dSP;
         dTARGET;
         PUSHMARK(SP);@pushs
         PUTBACK;
-        call_sv((SV *)cb->perlsub, G_VOID);
+        call_sv((SV *)callback, G_VOID);
       }
     EOF
     };
@@ -1285,7 +1358,7 @@ sub calls_for
     $return =~ s/::WGPU/::/;
   }
 
-  my $is_obj_opaque = $def{typedef} eq 'obj' || $def{typedef} eq 'opaque';
+  my $is_obj_opaque = $def{typedef} eq 'obj' || $def{typedef} eq 'opaque' || $def{typedef} eq 'SV';
   my $base
       = ( $typedef eq 'obj' )    ? qq{newSVpvs("$return")}
       : ( $typedef eq 'opaque' ) ? qq{newSVpvs("$return")}
@@ -1340,11 +1413,12 @@ sub calls_for
   }
 
   my $c_prefix = $def{c_prefix} // '';
-  $result{pack}   .= ${ trace_c( "${c_prefix}__pack",   "pack $def{key}" ) };
-  $result{unpack} .= ${ trace_c( "${c_prefix}__unpack", "unpack $def{key}" ) };
+  my $struct_key = $def{struct_key} // $def{key};
+  $result{pack}   .= ${ trace_c( "${c_prefix}__pack",   "pack $struct_key" ) };
+  $result{unpack} .= ${ trace_c( "${c_prefix}__unpack", "unpack $struct_key" ) };
 
-  my $call     = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->$def{key}$set_addl, $base};
-  my $set_call = qq{aTHX_ value,/**/ (void *) &n->$def{key}$set_addl, $base};
+  my $call     = qq{aTHX_ h, "$def{key}", $def{klen}, $cast &n->${struct_key}$set_addl, $base};
+  my $set_call = qq{aTHX_ value,/**/ (void *) &n->${struct_key}$set_addl, $base};
 
   $result{pack}   .= qq{  _pack_$typedef($call);\n};
   $result{unpack} .= qq{  _unpack_$typedef($call);\n};
@@ -1436,9 +1510,8 @@ sub say_call_fn
 
   # Handle callbacks in a perl-ish way
   my @defargs = $def{args}->@*;
-  if ( @defargs >= 4
-    && $defargs[-1] eq 'userdata'
-    && $defargs[-3] eq 'callback' )
+  if ( @defargs >= 2
+    && $defargs[-1] eq 'callbackInfo' )
   {
     $is_cb = 1;
   }
