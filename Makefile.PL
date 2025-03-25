@@ -45,9 +45,13 @@ my %FallbackPrereqs = (
 my $addl_search = $ENV{ADDL_SEARCH} // '';
 my $addl_L      = '';
 
-if ( !$addl_search && -e 'webgpu/webgpu.h' )
+foreach my $path ( qw[webgpu webgpu/include/webgpu] )
 {
-  $addl_search = 'webgpu';
+  if ( !$addl_search && -e "$path/webgpu.h" )
+  {
+    $addl_search = $path;
+    last;
+  }
 }
 
 if ( $addl_search && -e "$addl_search/webgpu/webgpu.h" )
@@ -57,7 +61,7 @@ if ( $addl_search && -e "$addl_search/webgpu/webgpu.h" )
 
 if ($addl_search)
 {
-  $addl_L = "-L$addl_search";
+  $addl_L = "-L$addl_search -L$addl_search/../../lib";
 }
 
 my ($EXTRALIBS) = do

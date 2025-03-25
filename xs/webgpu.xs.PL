@@ -12,7 +12,9 @@ use autodie;
 
 my $add_trace = $ENV{WGPU_PL_TRACE} // 0;
 
-open my $h,  '<', "$Bin/../webgpu/webgpu.h";
+my $h_file = find_header();
+
+open my $h,  '<', $h_file;
 open my $xs, '>', "$Bin/webgpu.xs";
 open my $c,  '>', "$Bin/webgpu.c";
 open my $tm, '>', "$Bin/../typemap";
@@ -1673,5 +1675,23 @@ sub say_call_fn
 say $pm q{1;};
 
 warn Data::Dumper::Dumper( \%typedefs );
+
+sub find_header
+{
+  use File::Find qw//;
+
+  my $result;
+  my $find = sub
+  {
+    if (m/^webgpu[.]h$/xms)
+    {
+      die "Found more than one webgpu.h"
+        if $result;
+      $result = $File::Find::name;
+    }
+  };
+  File::Find::find( $find, "$Bin/../webgpu/" );
+  return $result;
+}
 
 1;
