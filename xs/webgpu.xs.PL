@@ -129,6 +129,7 @@ sub trace_c
   return \qq{printf("$name: $stage L%d\\n", __LINE__);};
 }
 
+# Parse the header file
 while (<$h>)
 {
   chomp;
@@ -150,6 +151,13 @@ while (<$h>)
     $_ = $1;
   }
 
+  # Ignore multi-line definitions
+  if (m/^ [#] .* \\ $/xms .. m[ [^\\] $ ]xms )
+  {
+    next;
+  }
+
+  # Ignore CPP macros, blank lines, and extern statements
   if (m/^ [#] | ^ \s* $ | ^ extern \s* "C" \s* { | ^ } \s* $ /xms)
   {
     next;
@@ -161,6 +169,7 @@ while (<$h>)
     next;
   }
 
+  # Enum typedef blocks
   if ( m[^ typedef \s+ (enum) \s+ (\w+) \s+ { $]xms .. m[ ^ } \s+ (\w+) ; $]xms )
   {
     state $type;
@@ -444,6 +453,7 @@ while (<$h>)
 say $xs qq{MODULE = WebGPU::Direct\t\tPACKAGE = WebGPU::Direct::XS\t\tPREFIX = wgpu};
 say $pm qq[package\n\tWebGPU::Direct {];
 
+# Map all the shortcuts to their proper calsses
 foreach (@fns)
 {
   my %def = %$_;
@@ -480,6 +490,7 @@ foreach my $enum ( sort keys %enums )
   say $pm join( "\n", @new );
 }
 
+# Write out all the constant definitions
 foreach my $const ( sort keys %$constants )
 {
   my $val = $constants->{$const};
@@ -489,10 +500,10 @@ foreach my $const ( sort keys %$constants )
 say $pm qq[};];
 say $pm qq[];
 
-
 open my $const_pod, '>', "$Bin/../lib/WebGPU/Direct/Constants.pod";
 open my $types_pod, '>', "$Bin/../lib/WebGPU/Direct/Types.pod";
 
+# Write out all the enum definitions
 foreach my $enum ( sort keys %enums )
 {
   my $pkg = "WebGPU::Direct::$enum";
@@ -555,6 +566,7 @@ foreach my $cb_name ( sort keys %callbackdefs )
 }
 say $c '';
 
+# Produce all the class definitions
 foreach my $class (@classes)
 {
   my %def = $classdefs{$class}->%*;
@@ -1001,6 +1013,7 @@ foreach my $class (@classes)
   say $c "typedef SV* $c_prefix;";
 }
 
+# Output all of the typemaps
 foreach my $typedef ( sort keys %typedefs )
 {
   next
@@ -1016,6 +1029,7 @@ say $tm join( "\n", @typemap );
 
 $tm->flush;
 
+# Load and merge the typemaps into our typemap
 my $tmx = ExtUtils::Typemaps->new;
 foreach my $tm_file ( standard_typemap_locations( \@INC ) )
 {
@@ -1028,6 +1042,7 @@ foreach my $tm_file ( standard_typemap_locations( \@INC ) )
   $tmx->merge( file => $tm_file, replace => 1 );
 }
 
+# Write out all the static callback functions
 foreach my $cb_name ( sort keys %callbackdefs )
 {
   my $callback = $callbackdefs{$cb_name};
