@@ -79,11 +79,63 @@ WebGPU::Direct::Instance
 
 =back
 
+=head3 getWGSLLanguageFeatures
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * L<WebGPU::Direct::Status|WebGPU::Direct::Constants/WebGPU::Direct::Status>
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * features (L<WebGPU::Direct::SupportedWGSLLanguageFeatures|WebGPU::Direct::Types/WebGPU::Direct::SupportedWGSLLanguageFeatures>)
+
+=back
+
+=back
+
+=head3 hasWGSLLanguageFeature
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * Boolean (WGPUBool)
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * feature (L<WebGPU::Direct::WGSLLanguageFeatureName|WebGPU::Direct::Constants/WebGPU::Direct::WGSLLanguageFeatureName>)
+
+=back
+
+=back
+
 =head3 processEvents
 
 =head3 requestAdapter
 
 =over
+
+=item * Return Type
+
+=over
+
+=item * L<WebGPU::Direct::Future|WebGPU::Direct::Types/WebGPU::Direct::Future>
+
+=back
 
 =item * Arguments
 
@@ -91,15 +143,39 @@ WebGPU::Direct::Instance
 
 =item * options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>) Default: undef
 
-=item * callback (WebGPU::Direct::RequestAdapterCallback (Code reference)) Default: undef
-
-=item * userdata (Scalar (void *)) Default: {}
+=item * callbackInfo (L<WebGPU::Direct::RequestAdapterCallbackInfo|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterCallbackInfo>)
 
 =back
 
 =back
 
-=head3 reference
+=head3 waitAny
+
+=over
+
+=item * Return Type
+
+=over
+
+=item * L<WebGPU::Direct::WaitStatus|WebGPU::Direct::Constants/WebGPU::Direct::WaitStatus>
+
+=back
+
+=item * Arguments
+
+=over
+
+=item * futureCount (Integer (size_t))
+
+=item * futures (L<WebGPU::Direct::FutureWaitInfo|WebGPU::Direct::Types/WebGPU::Direct::FutureWaitInfo>)
+
+=item * timeoutNS (Unsigned 64bit (uint64_t))
+
+=back
+
+=back
+
+=head3 addRef
 
 =head3 release
 

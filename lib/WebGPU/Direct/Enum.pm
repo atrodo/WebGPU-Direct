@@ -41,6 +41,11 @@ package WebGPU::Direct::Enum
   {
     my $result = $class->_get_consts_ref->{$enum};
 
+    if ( !defined $result && $enum == 0 )
+    {
+      return undef;
+    }
+
     if ( !defined $result )
     {
       return $enum

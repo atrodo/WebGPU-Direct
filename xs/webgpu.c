@@ -4,14 +4,73 @@
 # !!!!!!!   ANY EDIT WILL BE LOST   !!!!!!! #
 */
 
-#define CB_GUARD 0x25b3eea3
-typedef struct cb_data {
-    I32 guard1;
-    CV *perlsub;
-    SV *data;
-    I32 guard2;
-} cb_data;
+void WebGPU__Direct__BufferMapCallback__callback( WGPUMapAsyncStatus status, WGPUStringView message, void* userdata1, void* userdata2 );
+void WebGPU__Direct__CompilationInfoCallback__callback( WGPUCompilationInfoRequestStatus status, struct WGPUCompilationInfo const * compilationInfo, void* userdata1, void* userdata2 );
+void WebGPU__Direct__CreateComputePipelineAsyncCallback__callback( WGPUCreatePipelineAsyncStatus status, WGPUComputePipeline pipeline, WGPUStringView message, void* userdata1, void* userdata2 );
+void WebGPU__Direct__CreateRenderPipelineAsyncCallback__callback( WGPUCreatePipelineAsyncStatus status, WGPURenderPipeline pipeline, WGPUStringView message, void* userdata1, void* userdata2 );
+void WebGPU__Direct__DeviceLostCallback__callback( WGPUDevice const * device, WGPUDeviceLostReason reason, WGPUStringView message, void* userdata1, void* userdata2 );
+void WebGPU__Direct__PopErrorScopeCallback__callback( WGPUPopErrorScopeStatus status, WGPUErrorType type, WGPUStringView message, void* userdata1, void* userdata2 );
+void WebGPU__Direct__QueueWorkDoneCallback__callback( WGPUQueueWorkDoneStatus status, void* userdata1, void* userdata2 );
+void WebGPU__Direct__RequestAdapterCallback__callback( WGPURequestAdapterStatus status, WGPUAdapter adapter, WGPUStringView message, void* userdata1, void* userdata2 );
+void WebGPU__Direct__RequestDeviceCallback__callback( WGPURequestDeviceStatus status, WGPUDevice device, WGPUStringView message, void* userdata1, void* userdata2 );
+void WebGPU__Direct__UncapturedErrorCallback__callback( WGPUDevice const * device, WGPUErrorType type, WGPUStringView message, void* userdata1, void* userdata2 );
 
+void WebGPU__Direct__StringView__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::StringView"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::StringView",
+      "THIS", "WebGPU::Direct::StringView");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUStringView);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _pack_str(aTHX_ h, "data", 4,  &n->data, NULL);
+  _pack_size_t(aTHX_ h, "length", 6,  &n->length, NULL);
+
+  
+}
+
+void WebGPU__Direct__StringView__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::StringView"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::StringView",
+      "THIS", "WebGPU::Direct::StringView");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUStringView);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_str(aTHX_ h, "data", 4,  &n->data, NULL);
+  _unpack_size_t(aTHX_ h, "length", 6,  &n->length, NULL);
+
+}
+
+SV *WGPUStringView__wrap( const WGPUStringView * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::StringView", GV_ADD));
+  WebGPU__Direct__StringView__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__StringView;
 SV *WGPUAdapter__wrap( WGPUAdapter  n )
 {
   return _new_opaque(newSVpvs("WebGPU::Direct::Adapter"), n);
@@ -144,6 +203,12 @@ SV *WGPUTextureView__wrap( WGPUTextureView  n )
 }
 
 typedef SV* WebGPU__Direct__TextureView;
+SV *WGPUProc__wrap( WGPUProc  n )
+{
+  return _new_opaque(newSVpvs("WebGPU::Direct::Proc"), n);
+}
+
+typedef SV* WebGPU__Direct__Proc;
 SV *WGPUBufferMapCallback__wrap( WGPUBufferMapCallback  n )
 {
   return _new_opaque(newSVpvs("WebGPU::Direct::BufferMapCallback"), n);
@@ -174,18 +239,12 @@ SV *WGPUDeviceLostCallback__wrap( WGPUDeviceLostCallback  n )
 }
 
 typedef SV* WebGPU__Direct__DeviceLostCallback;
-SV *WGPUErrorCallback__wrap( WGPUErrorCallback  n )
+SV *WGPUPopErrorScopeCallback__wrap( WGPUPopErrorScopeCallback  n )
 {
-  return _new_opaque(newSVpvs("WebGPU::Direct::ErrorCallback"), n);
+  return _new_opaque(newSVpvs("WebGPU::Direct::PopErrorScopeCallback"), n);
 }
 
-typedef SV* WebGPU__Direct__ErrorCallback;
-SV *WGPUProc__wrap( WGPUProc  n )
-{
-  return _new_opaque(newSVpvs("WebGPU::Direct::Proc"), n);
-}
-
-typedef SV* WebGPU__Direct__Proc;
+typedef SV* WebGPU__Direct__PopErrorScopeCallback;
 SV *WGPUQueueWorkDoneCallback__wrap( WGPUQueueWorkDoneCallback  n )
 {
   return _new_opaque(newSVpvs("WebGPU::Direct::QueueWorkDoneCallback"), n);
@@ -204,6 +263,12 @@ SV *WGPURequestDeviceCallback__wrap( WGPURequestDeviceCallback  n )
 }
 
 typedef SV* WebGPU__Direct__RequestDeviceCallback;
+SV *WGPUUncapturedErrorCallback__wrap( WGPUUncapturedErrorCallback  n )
+{
+  return _new_opaque(newSVpvs("WebGPU::Direct::UncapturedErrorCallback"), n);
+}
+
+typedef SV* WebGPU__Direct__UncapturedErrorCallback;
 void WebGPU__Direct__ChainedStruct__pack( SV *THIS )
 {
   
@@ -316,76 +381,684 @@ SV *WGPUChainedStructOut__wrap( const WGPUChainedStructOut * n )
 }
 
 typedef SV* WebGPU__Direct__ChainedStructOut;
-void WebGPU__Direct__AdapterProperties__pack( SV *THIS )
+void WebGPU__Direct__BufferMapCallbackInfo__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::AdapterProperties"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BufferMapCallbackInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::AdapterProperties",
-      "THIS", "WebGPU::Direct::AdapterProperties");
+      "WebGPU::Direct::BufferMapCallbackInfo",
+      "THIS", "WebGPU::Direct::BufferMapCallbackInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUAdapterProperties *n = (WGPUAdapterProperties *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferMapCallbackInfo *n = (WGPUBufferMapCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUAdapterProperties);
+    Newxz(n, 1, WGPUBufferMapCallbackInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _pack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID, NULL);
-  _pack_str(aTHX_ h, "vendorName", 10,  &n->vendorName, NULL);
-  _pack_str(aTHX_ h, "architecture", 12,  &n->architecture, NULL);
-  _pack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID, NULL);
-  _pack_str(aTHX_ h, "name", 4,  &n->name, NULL);
-  _pack_str(aTHX_ h, "driverDescription", 17,  &n->driverDescription, NULL);
-  _pack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType, newSVpvs("WebGPU::Direct::AdapterType"));
-  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
+  n->callback = &WebGPU__Direct__BufferMapCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
 
   
 }
 
-void WebGPU__Direct__AdapterProperties__unpack( SV *THIS )
+void WebGPU__Direct__BufferMapCallbackInfo__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::AdapterProperties"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::BufferMapCallbackInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::AdapterProperties",
-      "THIS", "WebGPU::Direct::AdapterProperties");
+      "WebGPU::Direct::BufferMapCallbackInfo",
+      "THIS", "WebGPU::Direct::BufferMapCallbackInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUAdapterProperties *n = (WGPUAdapterProperties *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferMapCallbackInfo *n = (WGPUBufferMapCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUAdapterProperties);
+    Newxz(n, 1, WGPUBufferMapCallbackInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _unpack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID, NULL);
-  _unpack_str(aTHX_ h, "vendorName", 10,  &n->vendorName, NULL);
-  _unpack_str(aTHX_ h, "architecture", 12,  &n->architecture, NULL);
-  _unpack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID, NULL);
-  _unpack_str(aTHX_ h, "name", 4,  &n->name, NULL);
-  _unpack_str(aTHX_ h, "driverDescription", 17,  &n->driverDescription, NULL);
-  _unpack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType, newSVpvs("WebGPU::Direct::AdapterType"));
-  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
 
 }
 
-SV *WGPUAdapterProperties__wrap( const WGPUAdapterProperties * n )
+SV *WGPUBufferMapCallbackInfo__wrap( const WGPUBufferMapCallbackInfo * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::AdapterProperties", GV_ADD));
-  WebGPU__Direct__AdapterProperties__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::BufferMapCallbackInfo", GV_ADD));
+  WebGPU__Direct__BufferMapCallbackInfo__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__AdapterProperties;
+typedef SV* WebGPU__Direct__BufferMapCallbackInfo;
+void WebGPU__Direct__CompilationInfoCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CompilationInfoCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::CompilationInfoCallbackInfo",
+      "THIS", "WebGPU::Direct::CompilationInfoCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUCompilationInfoCallbackInfo *n = (WGPUCompilationInfoCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUCompilationInfoCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__CompilationInfoCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__CompilationInfoCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CompilationInfoCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::CompilationInfoCallbackInfo",
+      "THIS", "WebGPU::Direct::CompilationInfoCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUCompilationInfoCallbackInfo *n = (WGPUCompilationInfoCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUCompilationInfoCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPUCompilationInfoCallbackInfo__wrap( const WGPUCompilationInfoCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::CompilationInfoCallbackInfo", GV_ADD));
+  WebGPU__Direct__CompilationInfoCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__CompilationInfoCallbackInfo;
+void WebGPU__Direct__CreateComputePipelineAsyncCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo",
+      "THIS", "WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUCreateComputePipelineAsyncCallbackInfo *n = (WGPUCreateComputePipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUCreateComputePipelineAsyncCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__CreateComputePipelineAsyncCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__CreateComputePipelineAsyncCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo",
+      "THIS", "WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUCreateComputePipelineAsyncCallbackInfo *n = (WGPUCreateComputePipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUCreateComputePipelineAsyncCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPUCreateComputePipelineAsyncCallbackInfo__wrap( const WGPUCreateComputePipelineAsyncCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo", GV_ADD));
+  WebGPU__Direct__CreateComputePipelineAsyncCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__CreateComputePipelineAsyncCallbackInfo;
+void WebGPU__Direct__CreateRenderPipelineAsyncCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo",
+      "THIS", "WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUCreateRenderPipelineAsyncCallbackInfo *n = (WGPUCreateRenderPipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUCreateRenderPipelineAsyncCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__CreateRenderPipelineAsyncCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__CreateRenderPipelineAsyncCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo",
+      "THIS", "WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUCreateRenderPipelineAsyncCallbackInfo *n = (WGPUCreateRenderPipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUCreateRenderPipelineAsyncCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPUCreateRenderPipelineAsyncCallbackInfo__wrap( const WGPUCreateRenderPipelineAsyncCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo", GV_ADD));
+  WebGPU__Direct__CreateRenderPipelineAsyncCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__CreateRenderPipelineAsyncCallbackInfo;
+void WebGPU__Direct__DeviceLostCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DeviceLostCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::DeviceLostCallbackInfo",
+      "THIS", "WebGPU::Direct::DeviceLostCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUDeviceLostCallbackInfo *n = (WGPUDeviceLostCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUDeviceLostCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__DeviceLostCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__DeviceLostCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DeviceLostCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::DeviceLostCallbackInfo",
+      "THIS", "WebGPU::Direct::DeviceLostCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUDeviceLostCallbackInfo *n = (WGPUDeviceLostCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUDeviceLostCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPUDeviceLostCallbackInfo__wrap( const WGPUDeviceLostCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::DeviceLostCallbackInfo", GV_ADD));
+  WebGPU__Direct__DeviceLostCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__DeviceLostCallbackInfo;
+void WebGPU__Direct__PopErrorScopeCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::PopErrorScopeCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::PopErrorScopeCallbackInfo",
+      "THIS", "WebGPU::Direct::PopErrorScopeCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUPopErrorScopeCallbackInfo *n = (WGPUPopErrorScopeCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUPopErrorScopeCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__PopErrorScopeCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__PopErrorScopeCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::PopErrorScopeCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::PopErrorScopeCallbackInfo",
+      "THIS", "WebGPU::Direct::PopErrorScopeCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUPopErrorScopeCallbackInfo *n = (WGPUPopErrorScopeCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUPopErrorScopeCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPUPopErrorScopeCallbackInfo__wrap( const WGPUPopErrorScopeCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::PopErrorScopeCallbackInfo", GV_ADD));
+  WebGPU__Direct__PopErrorScopeCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__PopErrorScopeCallbackInfo;
+void WebGPU__Direct__QueueWorkDoneCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::QueueWorkDoneCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::QueueWorkDoneCallbackInfo",
+      "THIS", "WebGPU::Direct::QueueWorkDoneCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUQueueWorkDoneCallbackInfo *n = (WGPUQueueWorkDoneCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUQueueWorkDoneCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__QueueWorkDoneCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__QueueWorkDoneCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::QueueWorkDoneCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::QueueWorkDoneCallbackInfo",
+      "THIS", "WebGPU::Direct::QueueWorkDoneCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUQueueWorkDoneCallbackInfo *n = (WGPUQueueWorkDoneCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUQueueWorkDoneCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPUQueueWorkDoneCallbackInfo__wrap( const WGPUQueueWorkDoneCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::QueueWorkDoneCallbackInfo", GV_ADD));
+  WebGPU__Direct__QueueWorkDoneCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__QueueWorkDoneCallbackInfo;
+void WebGPU__Direct__RequestAdapterCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequestAdapterCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::RequestAdapterCallbackInfo",
+      "THIS", "WebGPU::Direct::RequestAdapterCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPURequestAdapterCallbackInfo *n = (WGPURequestAdapterCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPURequestAdapterCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__RequestAdapterCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__RequestAdapterCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequestAdapterCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::RequestAdapterCallbackInfo",
+      "THIS", "WebGPU::Direct::RequestAdapterCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPURequestAdapterCallbackInfo *n = (WGPURequestAdapterCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPURequestAdapterCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPURequestAdapterCallbackInfo__wrap( const WGPURequestAdapterCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::RequestAdapterCallbackInfo", GV_ADD));
+  WebGPU__Direct__RequestAdapterCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__RequestAdapterCallbackInfo;
+void WebGPU__Direct__RequestDeviceCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequestDeviceCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::RequestDeviceCallbackInfo",
+      "THIS", "WebGPU::Direct::RequestDeviceCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPURequestDeviceCallbackInfo *n = (WGPURequestDeviceCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPURequestDeviceCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__RequestDeviceCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__RequestDeviceCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequestDeviceCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::RequestDeviceCallbackInfo",
+      "THIS", "WebGPU::Direct::RequestDeviceCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPURequestDeviceCallbackInfo *n = (WGPURequestDeviceCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPURequestDeviceCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_enum(aTHX_ h, "mode", 4,  &n->mode, newSVpvs("WebGPU::Direct::CallbackMode"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPURequestDeviceCallbackInfo__wrap( const WGPURequestDeviceCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::RequestDeviceCallbackInfo", GV_ADD));
+  WebGPU__Direct__RequestDeviceCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__RequestDeviceCallbackInfo;
+void WebGPU__Direct__UncapturedErrorCallbackInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::UncapturedErrorCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::UncapturedErrorCallbackInfo",
+      "THIS", "WebGPU::Direct::UncapturedErrorCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUUncapturedErrorCallbackInfo *n = (WGPUUncapturedErrorCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUUncapturedErrorCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  n->callback = &WebGPU__Direct__UncapturedErrorCallback__callback;
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _pack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+  
+}
+
+void WebGPU__Direct__UncapturedErrorCallbackInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::UncapturedErrorCallbackInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::UncapturedErrorCallbackInfo",
+      "THIS", "WebGPU::Direct::UncapturedErrorCallbackInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUUncapturedErrorCallbackInfo *n = (WGPUUncapturedErrorCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUUncapturedErrorCallbackInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_CODE(aTHX_ h, "callback", 8,  &n->userdata1, NULL);
+  _unpack_SV(aTHX_ h, "userdata", 8,  &n->userdata2, NULL);
+
+}
+
+SV *WGPUUncapturedErrorCallbackInfo__wrap( const WGPUUncapturedErrorCallbackInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::UncapturedErrorCallbackInfo", GV_ADD));
+  WebGPU__Direct__UncapturedErrorCallbackInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__UncapturedErrorCallbackInfo;
+void WebGPU__Direct__AdapterInfo__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::AdapterInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::AdapterInfo",
+      "THIS", "WebGPU::Direct::AdapterInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUAdapterInfo *n = (WGPUAdapterInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUAdapterInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _pack_obj(aTHX_ h, "vendor", 6,  &n->vendor, sizeof(n->vendor), newSVpvs("WebGPU::Direct::StringView"));
+  _pack_obj(aTHX_ h, "architecture", 12,  &n->architecture, sizeof(n->architecture), newSVpvs("WebGPU::Direct::StringView"));
+  _pack_obj(aTHX_ h, "device", 6,  &n->device, sizeof(n->device), newSVpvs("WebGPU::Direct::StringView"));
+  _pack_obj(aTHX_ h, "description", 11,  &n->description, sizeof(n->description), newSVpvs("WebGPU::Direct::StringView"));
+  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
+  _pack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType, newSVpvs("WebGPU::Direct::AdapterType"));
+  _pack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID, NULL);
+  _pack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID, NULL);
+
+  
+}
+
+void WebGPU__Direct__AdapterInfo__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::AdapterInfo"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::AdapterInfo",
+      "THIS", "WebGPU::Direct::AdapterInfo");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUAdapterInfo *n = (WGPUAdapterInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUAdapterInfo);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _unpack_obj(aTHX_ h, "vendor", 6,  &n->vendor, sizeof(n->vendor), newSVpvs("WebGPU::Direct::StringView"));
+  _unpack_obj(aTHX_ h, "architecture", 12,  &n->architecture, sizeof(n->architecture), newSVpvs("WebGPU::Direct::StringView"));
+  _unpack_obj(aTHX_ h, "device", 6,  &n->device, sizeof(n->device), newSVpvs("WebGPU::Direct::StringView"));
+  _unpack_obj(aTHX_ h, "description", 11,  &n->description, sizeof(n->description), newSVpvs("WebGPU::Direct::StringView"));
+  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
+  _unpack_enum(aTHX_ h, "adapterType", 11,  &n->adapterType, newSVpvs("WebGPU::Direct::AdapterType"));
+  _unpack_uint32_t(aTHX_ h, "vendorID", 8,  &n->vendorID, NULL);
+  _unpack_uint32_t(aTHX_ h, "deviceID", 8,  &n->deviceID, NULL);
+
+}
+
+SV *WGPUAdapterInfo__wrap( const WGPUAdapterInfo * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::AdapterInfo", GV_ADD));
+  WebGPU__Direct__AdapterInfo__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__AdapterInfo;
 void WebGPU__Direct__BindGroupEntry__pack( SV *THIS )
 {
   
@@ -588,8 +1261,8 @@ void WebGPU__Direct__BufferDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
+  _pack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
   _pack_uint64_t(aTHX_ h, "size", 4,  &n->size, NULL);
   _pack_uint32_t(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation, NULL);
 
@@ -613,8 +1286,8 @@ void WebGPU__Direct__BufferDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
+  _unpack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
   _unpack_uint64_t(aTHX_ h, "size", 4,  &n->size, NULL);
   _unpack_uint32_t(aTHX_ h, "mappedAtCreation", 16,  &n->mappedAtCreation, NULL);
 
@@ -710,7 +1383,7 @@ void WebGPU__Direct__CommandBufferDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
   
 }
@@ -732,7 +1405,7 @@ void WebGPU__Direct__CommandBufferDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
 }
 
@@ -766,7 +1439,7 @@ void WebGPU__Direct__CommandEncoderDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
   
 }
@@ -788,7 +1461,7 @@ void WebGPU__Direct__CommandEncoderDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
 }
 
@@ -822,15 +1495,12 @@ void WebGPU__Direct__CompilationMessage__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "message", 7,  &n->message, NULL);
+  _pack_obj(aTHX_ h, "message", 7,  &n->message, sizeof(n->message), newSVpvs("WebGPU::Direct::StringView"));
   _pack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WebGPU::Direct::CompilationMessageType"));
   _pack_uint64_t(aTHX_ h, "lineNum", 7,  &n->lineNum, NULL);
   _pack_uint64_t(aTHX_ h, "linePos", 7,  &n->linePos, NULL);
   _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
   _pack_uint64_t(aTHX_ h, "length", 6,  &n->length, NULL);
-  _pack_uint64_t(aTHX_ h, "utf16LinePos", 12,  &n->utf16LinePos, NULL);
-  _pack_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset, NULL);
-  _pack_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length, NULL);
 
   
 }
@@ -852,15 +1522,12 @@ void WebGPU__Direct__CompilationMessage__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "message", 7,  &n->message, NULL);
+  _unpack_obj(aTHX_ h, "message", 7,  &n->message, sizeof(n->message), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WebGPU::Direct::CompilationMessageType"));
   _unpack_uint64_t(aTHX_ h, "lineNum", 7,  &n->lineNum, NULL);
   _unpack_uint64_t(aTHX_ h, "linePos", 7,  &n->linePos, NULL);
   _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
   _unpack_uint64_t(aTHX_ h, "length", 6,  &n->length, NULL);
-  _unpack_uint64_t(aTHX_ h, "utf16LinePos", 12,  &n->utf16LinePos, NULL);
-  _unpack_uint64_t(aTHX_ h, "utf16Offset", 11,  &n->utf16Offset, NULL);
-  _unpack_uint64_t(aTHX_ h, "utf16Length", 11,  &n->utf16Length, NULL);
 
 }
 
@@ -952,7 +1619,7 @@ void WebGPU__Direct__ConstantEntry__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "key", 3,  &n->key, NULL);
+  _pack_obj(aTHX_ h, "key", 3,  &n->key, sizeof(n->key), newSVpvs("WebGPU::Direct::StringView"));
   _pack_double(aTHX_ h, "value", 5,  &n->value, NULL);
 
   
@@ -975,7 +1642,7 @@ void WebGPU__Direct__ConstantEntry__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "key", 3,  &n->key, NULL);
+  _unpack_obj(aTHX_ h, "key", 3,  &n->key, sizeof(n->key), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_double(aTHX_ h, "value", 5,  &n->value, NULL);
 
 }
@@ -1050,60 +1717,118 @@ SV *WGPUExtent3D__wrap( const WGPUExtent3D * n )
 }
 
 typedef SV* WebGPU__Direct__Extent3D;
-void WebGPU__Direct__InstanceDescriptor__pack( SV *THIS )
+void WebGPU__Direct__Future__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::InstanceDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::Future"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::InstanceDescriptor",
-      "THIS", "WebGPU::Direct::InstanceDescriptor");
+      "WebGPU::Direct::Future",
+      "THIS", "WebGPU::Direct::Future");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFuture *n = (WGPUFuture *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUInstanceDescriptor);
+    Newxz(n, 1, WGPUFuture);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_uint64_t(aTHX_ h, "id", 2,  &n->id, NULL);
 
   
 }
 
-void WebGPU__Direct__InstanceDescriptor__unpack( SV *THIS )
+void WebGPU__Direct__Future__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::InstanceDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::Future"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::InstanceDescriptor",
-      "THIS", "WebGPU::Direct::InstanceDescriptor");
+      "WebGPU::Direct::Future",
+      "THIS", "WebGPU::Direct::Future");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFuture *n = (WGPUFuture *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUInstanceDescriptor);
+    Newxz(n, 1, WGPUFuture);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_uint64_t(aTHX_ h, "id", 2,  &n->id, NULL);
 
 }
 
-SV *WGPUInstanceDescriptor__wrap( const WGPUInstanceDescriptor * n )
+SV *WGPUFuture__wrap( const WGPUFuture * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::InstanceDescriptor", GV_ADD));
-  WebGPU__Direct__InstanceDescriptor__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::Future", GV_ADD));
+  WebGPU__Direct__Future__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__InstanceDescriptor;
+typedef SV* WebGPU__Direct__Future;
+void WebGPU__Direct__InstanceCapabilities__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::InstanceCapabilities"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::InstanceCapabilities",
+      "THIS", "WebGPU::Direct::InstanceCapabilities");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUInstanceCapabilities *n = (WGPUInstanceCapabilities *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUInstanceCapabilities);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _pack_uint32_t(aTHX_ h, "timedWaitAnyEnable", 18,  &n->timedWaitAnyEnable, NULL);
+  _pack_size_t(aTHX_ h, "timedWaitAnyMaxCount", 20,  &n->timedWaitAnyMaxCount, NULL);
+
+  
+}
+
+void WebGPU__Direct__InstanceCapabilities__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::InstanceCapabilities"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::InstanceCapabilities",
+      "THIS", "WebGPU::Direct::InstanceCapabilities");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUInstanceCapabilities *n = (WGPUInstanceCapabilities *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUInstanceCapabilities);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _unpack_uint32_t(aTHX_ h, "timedWaitAnyEnable", 18,  &n->timedWaitAnyEnable, NULL);
+  _unpack_size_t(aTHX_ h, "timedWaitAnyMaxCount", 20,  &n->timedWaitAnyMaxCount, NULL);
+
+}
+
+SV *WGPUInstanceCapabilities__wrap( const WGPUInstanceCapabilities * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::InstanceCapabilities", GV_ADD));
+  WebGPU__Direct__InstanceCapabilities__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__InstanceCapabilities;
 void WebGPU__Direct__Limits__pack( SV *THIS )
 {
   
@@ -1121,6 +1846,7 @@ void WebGPU__Direct__Limits__pack( SV *THIS )
     Newxz(n, 1, WGPULimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
   _pack_uint32_t(aTHX_ h, "maxTextureDimension1D", 21,  &n->maxTextureDimension1D, NULL);
   _pack_uint32_t(aTHX_ h, "maxTextureDimension2D", 21,  &n->maxTextureDimension2D, NULL);
   _pack_uint32_t(aTHX_ h, "maxTextureDimension3D", 21,  &n->maxTextureDimension3D, NULL);
@@ -1143,7 +1869,6 @@ void WebGPU__Direct__Limits__pack( SV *THIS )
   _pack_uint64_t(aTHX_ h, "maxBufferSize", 13,  &n->maxBufferSize, NULL);
   _pack_uint32_t(aTHX_ h, "maxVertexAttributes", 19,  &n->maxVertexAttributes, NULL);
   _pack_uint32_t(aTHX_ h, "maxVertexBufferArrayStride", 26,  &n->maxVertexBufferArrayStride, NULL);
-  _pack_uint32_t(aTHX_ h, "maxInterStageShaderComponents", 29,  &n->maxInterStageShaderComponents, NULL);
   _pack_uint32_t(aTHX_ h, "maxInterStageShaderVariables", 28,  &n->maxInterStageShaderVariables, NULL);
   _pack_uint32_t(aTHX_ h, "maxColorAttachments", 19,  &n->maxColorAttachments, NULL);
   _pack_uint32_t(aTHX_ h, "maxColorAttachmentBytesPerSample", 32,  &n->maxColorAttachmentBytesPerSample, NULL);
@@ -1173,6 +1898,7 @@ void WebGPU__Direct__Limits__unpack( SV *THIS )
     Newxz(n, 1, WGPULimits);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
   _unpack_uint32_t(aTHX_ h, "maxTextureDimension1D", 21,  &n->maxTextureDimension1D, NULL);
   _unpack_uint32_t(aTHX_ h, "maxTextureDimension2D", 21,  &n->maxTextureDimension2D, NULL);
   _unpack_uint32_t(aTHX_ h, "maxTextureDimension3D", 21,  &n->maxTextureDimension3D, NULL);
@@ -1195,7 +1921,6 @@ void WebGPU__Direct__Limits__unpack( SV *THIS )
   _unpack_uint64_t(aTHX_ h, "maxBufferSize", 13,  &n->maxBufferSize, NULL);
   _unpack_uint32_t(aTHX_ h, "maxVertexAttributes", 19,  &n->maxVertexAttributes, NULL);
   _unpack_uint32_t(aTHX_ h, "maxVertexBufferArrayStride", 26,  &n->maxVertexBufferArrayStride, NULL);
-  _unpack_uint32_t(aTHX_ h, "maxInterStageShaderComponents", 29,  &n->maxInterStageShaderComponents, NULL);
   _unpack_uint32_t(aTHX_ h, "maxInterStageShaderVariables", 28,  &n->maxInterStageShaderVariables, NULL);
   _unpack_uint32_t(aTHX_ h, "maxColorAttachments", 19,  &n->maxColorAttachments, NULL);
   _unpack_uint32_t(aTHX_ h, "maxColorAttachmentBytesPerSample", 32,  &n->maxColorAttachmentBytesPerSample, NULL);
@@ -1356,7 +2081,7 @@ void WebGPU__Direct__PipelineLayoutDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objarray(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, &n->bindGroupLayoutCount, sizeof(*n->bindGroupLayouts), newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
   
@@ -1379,7 +2104,7 @@ void WebGPU__Direct__PipelineLayoutDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_size_t(aTHX_ h, "bindGroupLayoutCount", 20,  &n->bindGroupLayoutCount, NULL);
   _unpack_objarray(aTHX_ h, "bindGroupLayouts", 16, (void **) &n->bindGroupLayouts, &n->bindGroupLayoutCount, sizeof(*n->bindGroupLayouts), newSVpvs("WebGPU::Direct::BindGroupLayout"));
 
@@ -1397,62 +2122,6 @@ SV *WGPUPipelineLayoutDescriptor__wrap( const WGPUPipelineLayoutDescriptor * n )
 }
 
 typedef SV* WebGPU__Direct__PipelineLayoutDescriptor;
-void WebGPU__Direct__PrimitiveDepthClipControl__pack( SV *THIS )
-{
-  
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::PrimitiveDepthClipControl"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::PrimitiveDepthClipControl",
-      "THIS", "WebGPU::Direct::PrimitiveDepthClipControl");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUPrimitiveDepthClipControl *n = (WGPUPrimitiveDepthClipControl *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUPrimitiveDepthClipControl);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint32_t(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth, NULL);
-
-  
-}
-
-void WebGPU__Direct__PrimitiveDepthClipControl__unpack( SV *THIS )
-{
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::PrimitiveDepthClipControl"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::PrimitiveDepthClipControl",
-      "THIS", "WebGPU::Direct::PrimitiveDepthClipControl");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUPrimitiveDepthClipControl *n = (WGPUPrimitiveDepthClipControl *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUPrimitiveDepthClipControl);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint32_t(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth, NULL);
-
-}
-
-SV *WGPUPrimitiveDepthClipControl__wrap( const WGPUPrimitiveDepthClipControl * n )
-{
-  HV *h = newHV();
-  SV *RETVAL = sv_2mortal(newRV((SV*)h));
-
-  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::PrimitiveDepthClipControl", GV_ADD));
-  WebGPU__Direct__PrimitiveDepthClipControl__unpack(RETVAL);
-  return SvREFCNT_inc(RETVAL);
-}
-
-typedef SV* WebGPU__Direct__PrimitiveDepthClipControl;
 void WebGPU__Direct__PrimitiveState__pack( SV *THIS )
 {
   
@@ -1475,6 +2144,7 @@ void WebGPU__Direct__PrimitiveState__pack( SV *THIS )
   _pack_enum(aTHX_ h, "stripIndexFormat", 16,  &n->stripIndexFormat, newSVpvs("WebGPU::Direct::IndexFormat"));
   _pack_enum(aTHX_ h, "frontFace", 9,  &n->frontFace, newSVpvs("WebGPU::Direct::FrontFace"));
   _pack_enum(aTHX_ h, "cullMode", 8,  &n->cullMode, newSVpvs("WebGPU::Direct::CullMode"));
+  _pack_uint32_t(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth, NULL);
 
   
 }
@@ -1500,6 +2170,7 @@ void WebGPU__Direct__PrimitiveState__unpack( SV *THIS )
   _unpack_enum(aTHX_ h, "stripIndexFormat", 16,  &n->stripIndexFormat, newSVpvs("WebGPU::Direct::IndexFormat"));
   _unpack_enum(aTHX_ h, "frontFace", 9,  &n->frontFace, newSVpvs("WebGPU::Direct::FrontFace"));
   _unpack_enum(aTHX_ h, "cullMode", 8,  &n->cullMode, newSVpvs("WebGPU::Direct::CullMode"));
+  _unpack_uint32_t(aTHX_ h, "unclippedDepth", 14,  &n->unclippedDepth, NULL);
 
 }
 
@@ -1533,7 +2204,7 @@ void WebGPU__Direct__QuerySetDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WebGPU::Direct::QueryType"));
   _pack_uint32_t(aTHX_ h, "count", 5,  &n->count, NULL);
 
@@ -1557,7 +2228,7 @@ void WebGPU__Direct__QuerySetDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_enum(aTHX_ h, "type", 4,  &n->type, newSVpvs("WebGPU::Direct::QueryType"));
   _unpack_uint32_t(aTHX_ h, "count", 5,  &n->count, NULL);
 
@@ -1593,7 +2264,7 @@ void WebGPU__Direct__QueueDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
   
 }
@@ -1615,7 +2286,7 @@ void WebGPU__Direct__QueueDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
 }
 
@@ -1649,7 +2320,7 @@ void WebGPU__Direct__RenderBundleDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
   
 }
@@ -1671,7 +2342,7 @@ void WebGPU__Direct__RenderBundleDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
 }
 
@@ -1705,7 +2376,7 @@ void WebGPU__Direct__RenderBundleEncoderDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objarray(aTHX_ h, "colorFormats", 12, (void **) &n->colorFormats, &n->colorFormatCount, sizeof(*n->colorFormats), newSVpvs("WebGPU::Direct::TextureFormat"));
   _pack_enum(aTHX_ h, "depthStencilFormat", 18,  &n->depthStencilFormat, newSVpvs("WebGPU::Direct::TextureFormat"));
   _pack_uint32_t(aTHX_ h, "sampleCount", 11,  &n->sampleCount, NULL);
@@ -1732,7 +2403,7 @@ void WebGPU__Direct__RenderBundleEncoderDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_size_t(aTHX_ h, "colorFormatCount", 16,  &n->colorFormatCount, NULL);
   _unpack_objarray(aTHX_ h, "colorFormats", 12, (void **) &n->colorFormats, &n->colorFormatCount, sizeof(*n->colorFormats), newSVpvs("WebGPU::Direct::TextureFormat"));
   _unpack_enum(aTHX_ h, "depthStencilFormat", 18,  &n->depthStencilFormat, newSVpvs("WebGPU::Direct::TextureFormat"));
@@ -1824,21 +2495,21 @@ SV *WGPURenderPassDepthStencilAttachment__wrap( const WGPURenderPassDepthStencil
 }
 
 typedef SV* WebGPU__Direct__RenderPassDepthStencilAttachment;
-void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__pack( SV *THIS )
+void WebGPU__Direct__RenderPassMaxDrawCount__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassDescriptorMaxDrawCount"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassMaxDrawCount"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::RenderPassDescriptorMaxDrawCount",
-      "THIS", "WebGPU::Direct::RenderPassDescriptorMaxDrawCount");
+      "WebGPU::Direct::RenderPassMaxDrawCount",
+      "THIS", "WebGPU::Direct::RenderPassMaxDrawCount");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassDescriptorMaxDrawCount *n = (WGPURenderPassDescriptorMaxDrawCount *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassMaxDrawCount *n = (WGPURenderPassMaxDrawCount *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPURenderPassDescriptorMaxDrawCount);
+    Newxz(n, 1, WGPURenderPassMaxDrawCount);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -1847,20 +2518,20 @@ void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__unpack( SV *THIS )
+void WebGPU__Direct__RenderPassMaxDrawCount__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassDescriptorMaxDrawCount"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RenderPassMaxDrawCount"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::RenderPassDescriptorMaxDrawCount",
-      "THIS", "WebGPU::Direct::RenderPassDescriptorMaxDrawCount");
+      "WebGPU::Direct::RenderPassMaxDrawCount",
+      "THIS", "WebGPU::Direct::RenderPassMaxDrawCount");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassDescriptorMaxDrawCount *n = (WGPURenderPassDescriptorMaxDrawCount *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassMaxDrawCount *n = (WGPURenderPassMaxDrawCount *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPURenderPassDescriptorMaxDrawCount);
+    Newxz(n, 1, WGPURenderPassMaxDrawCount);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -1868,18 +2539,18 @@ void WebGPU__Direct__RenderPassDescriptorMaxDrawCount__unpack( SV *THIS )
 
 }
 
-SV *WGPURenderPassDescriptorMaxDrawCount__wrap( const WGPURenderPassDescriptorMaxDrawCount * n )
+SV *WGPURenderPassMaxDrawCount__wrap( const WGPURenderPassMaxDrawCount * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::RenderPassDescriptorMaxDrawCount", GV_ADD));
-  WebGPU__Direct__RenderPassDescriptorMaxDrawCount__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::RenderPassMaxDrawCount", GV_ADD));
+  WebGPU__Direct__RenderPassMaxDrawCount__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__RenderPassDescriptorMaxDrawCount;
+typedef SV* WebGPU__Direct__RenderPassMaxDrawCount;
 void WebGPU__Direct__RenderPassTimestampWrites__pack( SV *THIS )
 {
   
@@ -1956,10 +2627,11 @@ void WebGPU__Direct__RequestAdapterOptions__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface, newSVpvs("WebGPU::Direct::Surface"));
+  _pack_enum(aTHX_ h, "featureLevel", 12,  &n->featureLevel, newSVpvs("WebGPU::Direct::FeatureLevel"));
   _pack_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference, newSVpvs("WebGPU::Direct::PowerPreference"));
-  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
   _pack_uint32_t(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter, NULL);
+  _pack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
+  _pack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface, newSVpvs("WebGPU::Direct::Surface"));
 
   
 }
@@ -1981,10 +2653,11 @@ void WebGPU__Direct__RequestAdapterOptions__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface, newSVpvs("WebGPU::Direct::Surface"));
+  _unpack_enum(aTHX_ h, "featureLevel", 12,  &n->featureLevel, newSVpvs("WebGPU::Direct::FeatureLevel"));
   _unpack_enum(aTHX_ h, "powerPreference", 15,  &n->powerPreference, newSVpvs("WebGPU::Direct::PowerPreference"));
-  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
   _unpack_uint32_t(aTHX_ h, "forceFallbackAdapter", 20,  &n->forceFallbackAdapter, NULL);
+  _unpack_enum(aTHX_ h, "backendType", 11,  &n->backendType, newSVpvs("WebGPU::Direct::BackendType"));
+  _unpack_opaque(aTHX_ h, "compatibleSurface", 17, (void **) &n->compatibleSurface, newSVpvs("WebGPU::Direct::Surface"));
 
 }
 
@@ -2074,7 +2747,7 @@ void WebGPU__Direct__SamplerDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_enum(aTHX_ h, "addressModeU", 12,  &n->addressModeU, newSVpvs("WebGPU::Direct::AddressMode"));
   _pack_enum(aTHX_ h, "addressModeV", 12,  &n->addressModeV, newSVpvs("WebGPU::Direct::AddressMode"));
   _pack_enum(aTHX_ h, "addressModeW", 12,  &n->addressModeW, newSVpvs("WebGPU::Direct::AddressMode"));
@@ -2106,7 +2779,7 @@ void WebGPU__Direct__SamplerDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_enum(aTHX_ h, "addressModeU", 12,  &n->addressModeU, newSVpvs("WebGPU::Direct::AddressMode"));
   _unpack_enum(aTHX_ h, "addressModeV", 12,  &n->addressModeV, newSVpvs("WebGPU::Direct::AddressMode"));
   _unpack_enum(aTHX_ h, "addressModeW", 12,  &n->addressModeW, newSVpvs("WebGPU::Direct::AddressMode"));
@@ -2132,79 +2805,77 @@ SV *WGPUSamplerDescriptor__wrap( const WGPUSamplerDescriptor * n )
 }
 
 typedef SV* WebGPU__Direct__SamplerDescriptor;
-void WebGPU__Direct__ShaderModuleCompilationHint__pack( SV *THIS )
+void WebGPU__Direct__ShaderModuleDescriptor__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleCompilationHint"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleCompilationHint",
-      "THIS", "WebGPU::Direct::ShaderModuleCompilationHint");
+      "WebGPU::Direct::ShaderModuleDescriptor",
+      "THIS", "WebGPU::Direct::ShaderModuleDescriptor");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleCompilationHint *n = (WGPUShaderModuleCompilationHint *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleCompilationHint);
+    Newxz(n, 1, WGPUShaderModuleDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
-  _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
   
 }
 
-void WebGPU__Direct__ShaderModuleCompilationHint__unpack( SV *THIS )
+void WebGPU__Direct__ShaderModuleDescriptor__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleCompilationHint"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleCompilationHint",
-      "THIS", "WebGPU::Direct::ShaderModuleCompilationHint");
+      "WebGPU::Direct::ShaderModuleDescriptor",
+      "THIS", "WebGPU::Direct::ShaderModuleDescriptor");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleCompilationHint *n = (WGPUShaderModuleCompilationHint *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleCompilationHint);
+    Newxz(n, 1, WGPUShaderModuleDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
-  _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
 }
 
-SV *WGPUShaderModuleCompilationHint__wrap( const WGPUShaderModuleCompilationHint * n )
+SV *WGPUShaderModuleDescriptor__wrap( const WGPUShaderModuleDescriptor * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ShaderModuleCompilationHint", GV_ADD));
-  WebGPU__Direct__ShaderModuleCompilationHint__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ShaderModuleDescriptor", GV_ADD));
+  WebGPU__Direct__ShaderModuleDescriptor__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__ShaderModuleCompilationHint;
-void WebGPU__Direct__ShaderModuleSPIRVDescriptor__pack( SV *THIS )
+typedef SV* WebGPU__Direct__ShaderModuleDescriptor;
+void WebGPU__Direct__ShaderSourceSPIRV__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleSPIRVDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderSourceSPIRV"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleSPIRVDescriptor",
-      "THIS", "WebGPU::Direct::ShaderModuleSPIRVDescriptor");
+      "WebGPU::Direct::ShaderSourceSPIRV",
+      "THIS", "WebGPU::Direct::ShaderSourceSPIRV");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleSPIRVDescriptor *n = (WGPUShaderModuleSPIRVDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceSPIRV *n = (WGPUShaderSourceSPIRV *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleSPIRVDescriptor);
+    Newxz(n, 1, WGPUShaderSourceSPIRV);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2215,20 +2886,20 @@ void WebGPU__Direct__ShaderModuleSPIRVDescriptor__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__ShaderModuleSPIRVDescriptor__unpack( SV *THIS )
+void WebGPU__Direct__ShaderSourceSPIRV__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleSPIRVDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderSourceSPIRV"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleSPIRVDescriptor",
-      "THIS", "WebGPU::Direct::ShaderModuleSPIRVDescriptor");
+      "WebGPU::Direct::ShaderSourceSPIRV",
+      "THIS", "WebGPU::Direct::ShaderSourceSPIRV");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleSPIRVDescriptor *n = (WGPUShaderModuleSPIRVDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceSPIRV *n = (WGPUShaderSourceSPIRV *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleSPIRVDescriptor);
+    Newxz(n, 1, WGPUShaderSourceSPIRV);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2238,74 +2909,74 @@ void WebGPU__Direct__ShaderModuleSPIRVDescriptor__unpack( SV *THIS )
 
 }
 
-SV *WGPUShaderModuleSPIRVDescriptor__wrap( const WGPUShaderModuleSPIRVDescriptor * n )
+SV *WGPUShaderSourceSPIRV__wrap( const WGPUShaderSourceSPIRV * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ShaderModuleSPIRVDescriptor", GV_ADD));
-  WebGPU__Direct__ShaderModuleSPIRVDescriptor__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ShaderSourceSPIRV", GV_ADD));
+  WebGPU__Direct__ShaderSourceSPIRV__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__ShaderModuleSPIRVDescriptor;
-void WebGPU__Direct__ShaderModuleWGSLDescriptor__pack( SV *THIS )
+typedef SV* WebGPU__Direct__ShaderSourceSPIRV;
+void WebGPU__Direct__ShaderSourceWGSL__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleWGSLDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderSourceWGSL"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleWGSLDescriptor",
-      "THIS", "WebGPU::Direct::ShaderModuleWGSLDescriptor");
+      "WebGPU::Direct::ShaderSourceWGSL",
+      "THIS", "WebGPU::Direct::ShaderSourceWGSL");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleWGSLDescriptor *n = (WGPUShaderModuleWGSLDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceWGSL *n = (WGPUShaderSourceWGSL *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleWGSLDescriptor);
+    Newxz(n, 1, WGPUShaderSourceWGSL);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "code", 4,  &n->code, NULL);
+  _pack_obj(aTHX_ h, "code", 4,  &n->code, sizeof(n->code), newSVpvs("WebGPU::Direct::StringView"));
 
   
 }
 
-void WebGPU__Direct__ShaderModuleWGSLDescriptor__unpack( SV *THIS )
+void WebGPU__Direct__ShaderSourceWGSL__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleWGSLDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderSourceWGSL"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleWGSLDescriptor",
-      "THIS", "WebGPU::Direct::ShaderModuleWGSLDescriptor");
+      "WebGPU::Direct::ShaderSourceWGSL",
+      "THIS", "WebGPU::Direct::ShaderSourceWGSL");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleWGSLDescriptor *n = (WGPUShaderModuleWGSLDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceWGSL *n = (WGPUShaderSourceWGSL *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleWGSLDescriptor);
+    Newxz(n, 1, WGPUShaderSourceWGSL);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "code", 4,  &n->code, NULL);
+  _unpack_obj(aTHX_ h, "code", 4,  &n->code, sizeof(n->code), newSVpvs("WebGPU::Direct::StringView"));
 
 }
 
-SV *WGPUShaderModuleWGSLDescriptor__wrap( const WGPUShaderModuleWGSLDescriptor * n )
+SV *WGPUShaderSourceWGSL__wrap( const WGPUShaderSourceWGSL * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ShaderModuleWGSLDescriptor", GV_ADD));
-  WebGPU__Direct__ShaderModuleWGSLDescriptor__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ShaderSourceWGSL", GV_ADD));
+  WebGPU__Direct__ShaderSourceWGSL__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__ShaderModuleWGSLDescriptor;
+typedef SV* WebGPU__Direct__ShaderSourceWGSL;
 void WebGPU__Direct__StencilFaceState__pack( SV *THIS )
 {
   
@@ -2426,6 +3097,116 @@ SV *WGPUStorageTextureBindingLayout__wrap( const WGPUStorageTextureBindingLayout
 }
 
 typedef SV* WebGPU__Direct__StorageTextureBindingLayout;
+void WebGPU__Direct__SupportedFeatures__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SupportedFeatures"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::SupportedFeatures",
+      "THIS", "WebGPU::Direct::SupportedFeatures");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUSupportedFeatures *n = (WGPUSupportedFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUSupportedFeatures);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _pack_objarray(aTHX_ h, "features", 8, (void **) &n->features, &n->featureCount, sizeof(*n->features), newSVpvs("WebGPU::Direct::FeatureName"));
+
+  
+}
+
+void WebGPU__Direct__SupportedFeatures__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SupportedFeatures"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::SupportedFeatures",
+      "THIS", "WebGPU::Direct::SupportedFeatures");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUSupportedFeatures *n = (WGPUSupportedFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUSupportedFeatures);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_size_t(aTHX_ h, "featureCount", 12,  &n->featureCount, NULL);
+  _unpack_objarray(aTHX_ h, "features", 8, (void **) &n->features, &n->featureCount, sizeof(*n->features), newSVpvs("WebGPU::Direct::FeatureName"));
+
+}
+
+SV *WGPUSupportedFeatures__wrap( const WGPUSupportedFeatures * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SupportedFeatures", GV_ADD));
+  WebGPU__Direct__SupportedFeatures__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__SupportedFeatures;
+void WebGPU__Direct__SupportedWGSLLanguageFeatures__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SupportedWGSLLanguageFeatures"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::SupportedWGSLLanguageFeatures",
+      "THIS", "WebGPU::Direct::SupportedWGSLLanguageFeatures");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUSupportedWGSLLanguageFeatures *n = (WGPUSupportedWGSLLanguageFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUSupportedWGSLLanguageFeatures);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _pack_objarray(aTHX_ h, "features", 8, (void **) &n->features, &n->featureCount, sizeof(*n->features), newSVpvs("WebGPU::Direct::WGSLLanguageFeatureName"));
+
+  
+}
+
+void WebGPU__Direct__SupportedWGSLLanguageFeatures__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SupportedWGSLLanguageFeatures"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::SupportedWGSLLanguageFeatures",
+      "THIS", "WebGPU::Direct::SupportedWGSLLanguageFeatures");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUSupportedWGSLLanguageFeatures *n = (WGPUSupportedWGSLLanguageFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUSupportedWGSLLanguageFeatures);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_size_t(aTHX_ h, "featureCount", 12,  &n->featureCount, NULL);
+  _unpack_objarray(aTHX_ h, "features", 8, (void **) &n->features, &n->featureCount, sizeof(*n->features), newSVpvs("WebGPU::Direct::WGSLLanguageFeatureName"));
+
+}
+
+SV *WGPUSupportedWGSLLanguageFeatures__wrap( const WGPUSupportedWGSLLanguageFeatures * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SupportedWGSLLanguageFeatures", GV_ADD));
+  WebGPU__Direct__SupportedWGSLLanguageFeatures__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__SupportedWGSLLanguageFeatures;
 void WebGPU__Direct__SurfaceCapabilities__pack( SV *THIS )
 {
   
@@ -2444,6 +3225,7 @@ void WebGPU__Direct__SurfaceCapabilities__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _pack_flag(aTHX_ h, "usages", 6,  &n->usages, NULL);
   _pack_objarray(aTHX_ h, "formats", 7, (void **) &n->formats, &n->formatCount, sizeof(*n->formats), newSVpvs("WebGPU::Direct::TextureFormat"));
   _pack_objarray(aTHX_ h, "presentModes", 12, (void **) &n->presentModes, &n->presentModeCount, sizeof(*n->presentModes), newSVpvs("WebGPU::Direct::PresentMode"));
   _pack_objarray(aTHX_ h, "alphaModes", 10, (void **) &n->alphaModes, &n->alphaModeCount, sizeof(*n->alphaModes), newSVpvs("WebGPU::Direct::CompositeAlphaMode"));
@@ -2468,6 +3250,7 @@ void WebGPU__Direct__SurfaceCapabilities__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
+  _unpack_flag(aTHX_ h, "usages", 6,  &n->usages, NULL);
   _unpack_size_t(aTHX_ h, "formatCount", 11,  &n->formatCount, NULL);
   _unpack_objarray(aTHX_ h, "formats", 7, (void **) &n->formats, &n->formatCount, sizeof(*n->formats), newSVpvs("WebGPU::Direct::TextureFormat"));
   _unpack_size_t(aTHX_ h, "presentModeCount", 16,  &n->presentModeCount, NULL);
@@ -2509,11 +3292,11 @@ void WebGPU__Direct__SurfaceConfiguration__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_opaque(aTHX_ h, "device", 6, (void **) &n->device, newSVpvs("WebGPU::Direct::Device"));
   _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
-  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
-  _pack_objarray(aTHX_ h, "viewFormats", 11, (void **) &n->viewFormats, &n->viewFormatCount, sizeof(*n->viewFormats), newSVpvs("WebGPU::Direct::TextureFormat"));
-  _pack_enum(aTHX_ h, "alphaMode", 9,  &n->alphaMode, newSVpvs("WebGPU::Direct::CompositeAlphaMode"));
+  _pack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
   _pack_uint32_t(aTHX_ h, "width", 5,  &n->width, NULL);
   _pack_uint32_t(aTHX_ h, "height", 6,  &n->height, NULL);
+  _pack_objarray(aTHX_ h, "viewFormats", 11, (void **) &n->viewFormats, &n->viewFormatCount, sizeof(*n->viewFormats), newSVpvs("WebGPU::Direct::TextureFormat"));
+  _pack_enum(aTHX_ h, "alphaMode", 9,  &n->alphaMode, newSVpvs("WebGPU::Direct::CompositeAlphaMode"));
   _pack_enum(aTHX_ h, "presentMode", 11,  &n->presentMode, newSVpvs("WebGPU::Direct::PresentMode"));
 
   
@@ -2538,12 +3321,12 @@ void WebGPU__Direct__SurfaceConfiguration__unpack( SV *THIS )
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_opaque(aTHX_ h, "device", 6, (void **) &n->device, newSVpvs("WebGPU::Direct::Device"));
   _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
-  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _unpack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _unpack_uint32_t(aTHX_ h, "width", 5,  &n->width, NULL);
+  _unpack_uint32_t(aTHX_ h, "height", 6,  &n->height, NULL);
   _unpack_size_t(aTHX_ h, "viewFormatCount", 15,  &n->viewFormatCount, NULL);
   _unpack_objarray(aTHX_ h, "viewFormats", 11, (void **) &n->viewFormats, &n->viewFormatCount, sizeof(*n->viewFormats), newSVpvs("WebGPU::Direct::TextureFormat"));
   _unpack_enum(aTHX_ h, "alphaMode", 9,  &n->alphaMode, newSVpvs("WebGPU::Direct::CompositeAlphaMode"));
-  _unpack_uint32_t(aTHX_ h, "width", 5,  &n->width, NULL);
-  _unpack_uint32_t(aTHX_ h, "height", 6,  &n->height, NULL);
   _unpack_enum(aTHX_ h, "presentMode", 11,  &n->presentMode, newSVpvs("WebGPU::Direct::PresentMode"));
 
 }
@@ -2578,7 +3361,7 @@ void WebGPU__Direct__SurfaceDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
   
 }
@@ -2600,7 +3383,7 @@ void WebGPU__Direct__SurfaceDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
 
 }
 
@@ -2616,21 +3399,21 @@ SV *WGPUSurfaceDescriptor__wrap( const WGPUSurfaceDescriptor * n )
 }
 
 typedef SV* WebGPU__Direct__SurfaceDescriptor;
-void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__pack( SV *THIS )
+void WebGPU__Direct__SurfaceSourceAndroidNativeWindow__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceAndroidNativeWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow");
+      "WebGPU::Direct::SurfaceSourceAndroidNativeWindow",
+      "THIS", "WebGPU::Direct::SurfaceSourceAndroidNativeWindow");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromAndroidNativeWindow *n = (WGPUSurfaceDescriptorFromAndroidNativeWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceAndroidNativeWindow *n = (WGPUSurfaceSourceAndroidNativeWindow *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromAndroidNativeWindow);
+    Newxz(n, 1, WGPUSurfaceSourceAndroidNativeWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2640,20 +3423,20 @@ void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__unpack( SV *THIS )
+void WebGPU__Direct__SurfaceSourceAndroidNativeWindow__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceAndroidNativeWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow");
+      "WebGPU::Direct::SurfaceSourceAndroidNativeWindow",
+      "THIS", "WebGPU::Direct::SurfaceSourceAndroidNativeWindow");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromAndroidNativeWindow *n = (WGPUSurfaceDescriptorFromAndroidNativeWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceAndroidNativeWindow *n = (WGPUSurfaceSourceAndroidNativeWindow *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromAndroidNativeWindow);
+    Newxz(n, 1, WGPUSurfaceSourceAndroidNativeWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2662,89 +3445,33 @@ void WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__unpack( SV *THIS 
 
 }
 
-SV *WGPUSurfaceDescriptorFromAndroidNativeWindow__wrap( const WGPUSurfaceDescriptorFromAndroidNativeWindow * n )
+SV *WGPUSurfaceSourceAndroidNativeWindow__wrap( const WGPUSurfaceSourceAndroidNativeWindow * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceDescriptorFromAndroidNativeWindow", GV_ADD));
-  WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceSourceAndroidNativeWindow", GV_ADD));
+  WebGPU__Direct__SurfaceSourceAndroidNativeWindow__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__SurfaceDescriptorFromAndroidNativeWindow;
-void WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__pack( SV *THIS )
+typedef SV* WebGPU__Direct__SurfaceSourceAndroidNativeWindow;
+void WebGPU__Direct__SurfaceSourceMetalLayer__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceMetalLayer"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector");
+      "WebGPU::Direct::SurfaceSourceMetalLayer",
+      "THIS", "WebGPU::Direct::SurfaceSourceMetalLayer");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromCanvasHTMLSelector *n = (WGPUSurfaceDescriptorFromCanvasHTMLSelector *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceMetalLayer *n = (WGPUSurfaceSourceMetalLayer *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromCanvasHTMLSelector);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "selector", 8,  &n->selector, NULL);
-
-  
-}
-
-void WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__unpack( SV *THIS )
-{
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromCanvasHTMLSelector *n = (WGPUSurfaceDescriptorFromCanvasHTMLSelector *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromCanvasHTMLSelector);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "selector", 8,  &n->selector, NULL);
-
-}
-
-SV *WGPUSurfaceDescriptorFromCanvasHTMLSelector__wrap( const WGPUSurfaceDescriptorFromCanvasHTMLSelector * n )
-{
-  HV *h = newHV();
-  SV *RETVAL = sv_2mortal(newRV((SV*)h));
-
-  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceDescriptorFromCanvasHTMLSelector", GV_ADD));
-  WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector__unpack(RETVAL);
-  return SvREFCNT_inc(RETVAL);
-}
-
-typedef SV* WebGPU__Direct__SurfaceDescriptorFromCanvasHTMLSelector;
-void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__pack( SV *THIS )
-{
-  
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromMetalLayer"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromMetalLayer",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromMetalLayer");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromMetalLayer *n = (WGPUSurfaceDescriptorFromMetalLayer *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromMetalLayer);
+    Newxz(n, 1, WGPUSurfaceSourceMetalLayer);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2754,20 +3481,20 @@ void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__unpack( SV *THIS )
+void WebGPU__Direct__SurfaceSourceMetalLayer__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromMetalLayer"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceMetalLayer"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromMetalLayer",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromMetalLayer");
+      "WebGPU::Direct::SurfaceSourceMetalLayer",
+      "THIS", "WebGPU::Direct::SurfaceSourceMetalLayer");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromMetalLayer *n = (WGPUSurfaceDescriptorFromMetalLayer *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceMetalLayer *n = (WGPUSurfaceSourceMetalLayer *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromMetalLayer);
+    Newxz(n, 1, WGPUSurfaceSourceMetalLayer);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2776,33 +3503,33 @@ void WebGPU__Direct__SurfaceDescriptorFromMetalLayer__unpack( SV *THIS )
 
 }
 
-SV *WGPUSurfaceDescriptorFromMetalLayer__wrap( const WGPUSurfaceDescriptorFromMetalLayer * n )
+SV *WGPUSurfaceSourceMetalLayer__wrap( const WGPUSurfaceSourceMetalLayer * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceDescriptorFromMetalLayer", GV_ADD));
-  WebGPU__Direct__SurfaceDescriptorFromMetalLayer__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceSourceMetalLayer", GV_ADD));
+  WebGPU__Direct__SurfaceSourceMetalLayer__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__SurfaceDescriptorFromMetalLayer;
-void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__pack( SV *THIS )
+typedef SV* WebGPU__Direct__SurfaceSourceMetalLayer;
+void WebGPU__Direct__SurfaceSourceWaylandSurface__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromWaylandSurface"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceWaylandSurface"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromWaylandSurface",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromWaylandSurface");
+      "WebGPU::Direct::SurfaceSourceWaylandSurface",
+      "THIS", "WebGPU::Direct::SurfaceSourceWaylandSurface");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromWaylandSurface *n = (WGPUSurfaceDescriptorFromWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromWaylandSurface);
+    Newxz(n, 1, WGPUSurfaceSourceWaylandSurface);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2814,20 +3541,20 @@ void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__unpack( SV *THIS )
+void WebGPU__Direct__SurfaceSourceWaylandSurface__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromWaylandSurface"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceWaylandSurface"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromWaylandSurface",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromWaylandSurface");
+      "WebGPU::Direct::SurfaceSourceWaylandSurface",
+      "THIS", "WebGPU::Direct::SurfaceSourceWaylandSurface");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromWaylandSurface *n = (WGPUSurfaceDescriptorFromWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromWaylandSurface);
+    Newxz(n, 1, WGPUSurfaceSourceWaylandSurface);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2838,33 +3565,33 @@ void WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__unpack( SV *THIS )
 
 }
 
-SV *WGPUSurfaceDescriptorFromWaylandSurface__wrap( const WGPUSurfaceDescriptorFromWaylandSurface * n )
+SV *WGPUSurfaceSourceWaylandSurface__wrap( const WGPUSurfaceSourceWaylandSurface * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceDescriptorFromWaylandSurface", GV_ADD));
-  WebGPU__Direct__SurfaceDescriptorFromWaylandSurface__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceSourceWaylandSurface", GV_ADD));
+  WebGPU__Direct__SurfaceSourceWaylandSurface__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__SurfaceDescriptorFromWaylandSurface;
-void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__pack( SV *THIS )
+typedef SV* WebGPU__Direct__SurfaceSourceWaylandSurface;
+void WebGPU__Direct__SurfaceSourceWindowsHWND__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromWindowsHWND"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceWindowsHWND"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromWindowsHWND",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromWindowsHWND");
+      "WebGPU::Direct::SurfaceSourceWindowsHWND",
+      "THIS", "WebGPU::Direct::SurfaceSourceWindowsHWND");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromWindowsHWND *n = (WGPUSurfaceDescriptorFromWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromWindowsHWND);
+    Newxz(n, 1, WGPUSurfaceSourceWindowsHWND);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2876,20 +3603,20 @@ void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__unpack( SV *THIS )
+void WebGPU__Direct__SurfaceSourceWindowsHWND__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromWindowsHWND"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceWindowsHWND"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromWindowsHWND",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromWindowsHWND");
+      "WebGPU::Direct::SurfaceSourceWindowsHWND",
+      "THIS", "WebGPU::Direct::SurfaceSourceWindowsHWND");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromWindowsHWND *n = (WGPUSurfaceDescriptorFromWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromWindowsHWND);
+    Newxz(n, 1, WGPUSurfaceSourceWindowsHWND);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2900,33 +3627,33 @@ void WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__unpack( SV *THIS )
 
 }
 
-SV *WGPUSurfaceDescriptorFromWindowsHWND__wrap( const WGPUSurfaceDescriptorFromWindowsHWND * n )
+SV *WGPUSurfaceSourceWindowsHWND__wrap( const WGPUSurfaceSourceWindowsHWND * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceDescriptorFromWindowsHWND", GV_ADD));
-  WebGPU__Direct__SurfaceDescriptorFromWindowsHWND__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceSourceWindowsHWND", GV_ADD));
+  WebGPU__Direct__SurfaceSourceWindowsHWND__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__SurfaceDescriptorFromWindowsHWND;
-void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__pack( SV *THIS )
+typedef SV* WebGPU__Direct__SurfaceSourceWindowsHWND;
+void WebGPU__Direct__SurfaceSourceXCBWindow__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromXcbWindow"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceXCBWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromXcbWindow",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromXcbWindow");
+      "WebGPU::Direct::SurfaceSourceXCBWindow",
+      "THIS", "WebGPU::Direct::SurfaceSourceXCBWindow");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromXcbWindow *n = (WGPUSurfaceDescriptorFromXcbWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXCBWindow *n = (WGPUSurfaceSourceXCBWindow *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromXcbWindow);
+    Newxz(n, 1, WGPUSurfaceSourceXCBWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2937,20 +3664,20 @@ void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__unpack( SV *THIS )
+void WebGPU__Direct__SurfaceSourceXCBWindow__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromXcbWindow"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceXCBWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromXcbWindow",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromXcbWindow");
+      "WebGPU::Direct::SurfaceSourceXCBWindow",
+      "THIS", "WebGPU::Direct::SurfaceSourceXCBWindow");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromXcbWindow *n = (WGPUSurfaceDescriptorFromXcbWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXCBWindow *n = (WGPUSurfaceSourceXCBWindow *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromXcbWindow);
+    Newxz(n, 1, WGPUSurfaceSourceXCBWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2960,33 +3687,33 @@ void WebGPU__Direct__SurfaceDescriptorFromXcbWindow__unpack( SV *THIS )
 
 }
 
-SV *WGPUSurfaceDescriptorFromXcbWindow__wrap( const WGPUSurfaceDescriptorFromXcbWindow * n )
+SV *WGPUSurfaceSourceXCBWindow__wrap( const WGPUSurfaceSourceXCBWindow * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceDescriptorFromXcbWindow", GV_ADD));
-  WebGPU__Direct__SurfaceDescriptorFromXcbWindow__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceSourceXCBWindow", GV_ADD));
+  WebGPU__Direct__SurfaceSourceXCBWindow__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__SurfaceDescriptorFromXcbWindow;
-void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__pack( SV *THIS )
+typedef SV* WebGPU__Direct__SurfaceSourceXCBWindow;
+void WebGPU__Direct__SurfaceSourceXlibWindow__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromXlibWindow"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceXlibWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromXlibWindow",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromXlibWindow");
+      "WebGPU::Direct::SurfaceSourceXlibWindow",
+      "THIS", "WebGPU::Direct::SurfaceSourceXlibWindow");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromXlibWindow *n = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXlibWindow *n = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromXlibWindow);
+    Newxz(n, 1, WGPUSurfaceSourceXlibWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -2997,20 +3724,20 @@ void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__pack( SV *THIS )
   
 }
 
-void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack( SV *THIS )
+void WebGPU__Direct__SurfaceSourceXlibWindow__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceDescriptorFromXlibWindow"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SurfaceSourceXlibWindow"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SurfaceDescriptorFromXlibWindow",
-      "THIS", "WebGPU::Direct::SurfaceDescriptorFromXlibWindow");
+      "WebGPU::Direct::SurfaceSourceXlibWindow",
+      "THIS", "WebGPU::Direct::SurfaceSourceXlibWindow");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptorFromXlibWindow *n = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXlibWindow *n = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUSurfaceDescriptorFromXlibWindow);
+    Newxz(n, 1, WGPUSurfaceSourceXlibWindow);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_obj(aTHX_ h, "chain", 5,  &n->chain, sizeof(n->chain), newSVpvs("WebGPU::Direct::ChainedStruct"));
@@ -3020,18 +3747,18 @@ void WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack( SV *THIS )
 
 }
 
-SV *WGPUSurfaceDescriptorFromXlibWindow__wrap( const WGPUSurfaceDescriptorFromXlibWindow * n )
+SV *WGPUSurfaceSourceXlibWindow__wrap( const WGPUSurfaceSourceXlibWindow * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceDescriptorFromXlibWindow", GV_ADD));
-  WebGPU__Direct__SurfaceDescriptorFromXlibWindow__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SurfaceSourceXlibWindow", GV_ADD));
+  WebGPU__Direct__SurfaceSourceXlibWindow__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__SurfaceDescriptorFromXlibWindow;
+typedef SV* WebGPU__Direct__SurfaceSourceXlibWindow;
 void WebGPU__Direct__SurfaceTexture__pack( SV *THIS )
 {
   
@@ -3049,8 +3776,8 @@ void WebGPU__Direct__SurfaceTexture__pack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceTexture);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
   _pack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
-  _pack_uint32_t(aTHX_ h, "suboptimal", 10,  &n->suboptimal, NULL);
   _pack_enum(aTHX_ h, "status", 6,  &n->status, newSVpvs("WebGPU::Direct::SurfaceGetCurrentTextureStatus"));
 
   
@@ -3072,8 +3799,8 @@ void WebGPU__Direct__SurfaceTexture__unpack( SV *THIS )
     Newxz(n, 1, WGPUSurfaceTexture);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
   _unpack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
-  _unpack_uint32_t(aTHX_ h, "suboptimal", 10,  &n->suboptimal, NULL);
   _unpack_enum(aTHX_ h, "status", 6,  &n->status, newSVpvs("WebGPU::Direct::SurfaceGetCurrentTextureStatus"));
 
 }
@@ -3090,6 +3817,64 @@ SV *WGPUSurfaceTexture__wrap( const WGPUSurfaceTexture * n )
 }
 
 typedef SV* WebGPU__Direct__SurfaceTexture;
+void WebGPU__Direct__TexelCopyBufferLayout__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TexelCopyBufferLayout"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::TexelCopyBufferLayout",
+      "THIS", "WebGPU::Direct::TexelCopyBufferLayout");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUTexelCopyBufferLayout *n = (WGPUTexelCopyBufferLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUTexelCopyBufferLayout);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _pack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow, NULL);
+  _pack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage, NULL);
+
+  
+}
+
+void WebGPU__Direct__TexelCopyBufferLayout__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TexelCopyBufferLayout"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::TexelCopyBufferLayout",
+      "THIS", "WebGPU::Direct::TexelCopyBufferLayout");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUTexelCopyBufferLayout *n = (WGPUTexelCopyBufferLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUTexelCopyBufferLayout);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
+  _unpack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow, NULL);
+  _unpack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage, NULL);
+
+}
+
+SV *WGPUTexelCopyBufferLayout__wrap( const WGPUTexelCopyBufferLayout * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::TexelCopyBufferLayout", GV_ADD));
+  WebGPU__Direct__TexelCopyBufferLayout__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__TexelCopyBufferLayout;
 void WebGPU__Direct__TextureBindingLayout__pack( SV *THIS )
 {
   
@@ -3150,66 +3935,6 @@ SV *WGPUTextureBindingLayout__wrap( const WGPUTextureBindingLayout * n )
 }
 
 typedef SV* WebGPU__Direct__TextureBindingLayout;
-void WebGPU__Direct__TextureDataLayout__pack( SV *THIS )
-{
-  
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TextureDataLayout"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::TextureDataLayout",
-      "THIS", "WebGPU::Direct::TextureDataLayout");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUTextureDataLayout *n = (WGPUTextureDataLayout *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUTextureDataLayout);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
-  _pack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow, NULL);
-  _pack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage, NULL);
-
-  
-}
-
-void WebGPU__Direct__TextureDataLayout__unpack( SV *THIS )
-{
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TextureDataLayout"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::TextureDataLayout",
-      "THIS", "WebGPU::Direct::TextureDataLayout");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUTextureDataLayout *n = (WGPUTextureDataLayout *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUTextureDataLayout);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_uint64_t(aTHX_ h, "offset", 6,  &n->offset, NULL);
-  _unpack_uint32_t(aTHX_ h, "bytesPerRow", 11,  &n->bytesPerRow, NULL);
-  _unpack_uint32_t(aTHX_ h, "rowsPerImage", 12,  &n->rowsPerImage, NULL);
-
-}
-
-SV *WGPUTextureDataLayout__wrap( const WGPUTextureDataLayout * n )
-{
-  HV *h = newHV();
-  SV *RETVAL = sv_2mortal(newRV((SV*)h));
-
-  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::TextureDataLayout", GV_ADD));
-  WebGPU__Direct__TextureDataLayout__unpack(RETVAL);
-  return SvREFCNT_inc(RETVAL);
-}
-
-typedef SV* WebGPU__Direct__TextureDataLayout;
 void WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS )
 {
   
@@ -3228,7 +3953,7 @@ void WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
   _pack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WebGPU::Direct::TextureViewDimension"));
   _pack_uint32_t(aTHX_ h, "baseMipLevel", 12,  &n->baseMipLevel, NULL);
@@ -3236,6 +3961,7 @@ void WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS )
   _pack_uint32_t(aTHX_ h, "baseArrayLayer", 14,  &n->baseArrayLayer, NULL);
   _pack_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount, NULL);
   _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WebGPU::Direct::TextureAspect"));
+  _pack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
 
   
 }
@@ -3257,7 +3983,7 @@ void WebGPU__Direct__TextureViewDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
   _unpack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WebGPU::Direct::TextureViewDimension"));
   _unpack_uint32_t(aTHX_ h, "baseMipLevel", 12,  &n->baseMipLevel, NULL);
@@ -3265,6 +3991,7 @@ void WebGPU__Direct__TextureViewDescriptor__unpack( SV *THIS )
   _unpack_uint32_t(aTHX_ h, "baseArrayLayer", 14,  &n->baseArrayLayer, NULL);
   _unpack_uint32_t(aTHX_ h, "arrayLayerCount", 15,  &n->arrayLayerCount, NULL);
   _unpack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WebGPU::Direct::TextureAspect"));
+  _unpack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
 
 }
 
@@ -3356,7 +4083,7 @@ void WebGPU__Direct__BindGroupDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::BindGroupLayout"));
   _pack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupEntry"));
 
@@ -3380,7 +4107,7 @@ void WebGPU__Direct__BindGroupDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::BindGroupLayout"));
   _unpack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount, NULL);
   _unpack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupEntry"));
@@ -3418,7 +4145,7 @@ void WebGPU__Direct__BindGroupLayoutEntry__pack( SV *THIS )
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_uint32_t(aTHX_ h, "binding", 7,  &n->binding, NULL);
-  _pack_uint32_t(aTHX_ h, "visibility", 10,  &n->visibility, NULL);
+  _pack_flag(aTHX_ h, "visibility", 10,  &n->visibility, NULL);
   _pack_obj(aTHX_ h, "buffer", 6,  &n->buffer, sizeof(n->buffer), newSVpvs("WebGPU::Direct::BufferBindingLayout"));
   _pack_obj(aTHX_ h, "sampler", 7,  &n->sampler, sizeof(n->sampler), newSVpvs("WebGPU::Direct::SamplerBindingLayout"));
   _pack_obj(aTHX_ h, "texture", 7,  &n->texture, sizeof(n->texture), newSVpvs("WebGPU::Direct::TextureBindingLayout"));
@@ -3445,7 +4172,7 @@ void WebGPU__Direct__BindGroupLayoutEntry__unpack( SV *THIS )
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_uint32_t(aTHX_ h, "binding", 7,  &n->binding, NULL);
-  _unpack_uint32_t(aTHX_ h, "visibility", 10,  &n->visibility, NULL);
+  _unpack_flag(aTHX_ h, "visibility", 10,  &n->visibility, NULL);
   _unpack_obj(aTHX_ h, "buffer", 6,  &n->buffer, sizeof(n->buffer), newSVpvs("WebGPU::Direct::BufferBindingLayout"));
   _unpack_obj(aTHX_ h, "sampler", 7,  &n->sampler, sizeof(n->sampler), newSVpvs("WebGPU::Direct::SamplerBindingLayout"));
   _unpack_obj(aTHX_ h, "texture", 7,  &n->texture, sizeof(n->texture), newSVpvs("WebGPU::Direct::TextureBindingLayout"));
@@ -3596,7 +4323,7 @@ void WebGPU__Direct__ComputePassDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objptr(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites, newSVpvs("WebGPU::Direct::ComputePassTimestampWrites"));
 
   
@@ -3619,7 +4346,7 @@ void WebGPU__Direct__ComputePassDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_objptr(aTHX_ h, "timestampWrites", 15, (void **) &n->timestampWrites, newSVpvs("WebGPU::Direct::ComputePassTimestampWrites"));
 
 }
@@ -3655,7 +4382,7 @@ void WebGPU__Direct__DepthStencilState__pack( SV *THIS )
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
-  _pack_uint32_t(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled, NULL);
+  _pack_enum(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled, newSVpvs("WebGPU::Direct::OptionalBool"));
   _pack_enum(aTHX_ h, "depthCompare", 12,  &n->depthCompare, newSVpvs("WebGPU::Direct::CompareFunction"));
   _pack_obj(aTHX_ h, "stencilFront", 12,  &n->stencilFront, sizeof(n->stencilFront), newSVpvs("WebGPU::Direct::StencilFaceState"));
   _pack_obj(aTHX_ h, "stencilBack", 11,  &n->stencilBack, sizeof(n->stencilBack), newSVpvs("WebGPU::Direct::StencilFaceState"));
@@ -3686,7 +4413,7 @@ void WebGPU__Direct__DepthStencilState__unpack( SV *THIS )
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
-  _unpack_uint32_t(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled, NULL);
+  _unpack_enum(aTHX_ h, "depthWriteEnabled", 17,  &n->depthWriteEnabled, newSVpvs("WebGPU::Direct::OptionalBool"));
   _unpack_enum(aTHX_ h, "depthCompare", 12,  &n->depthCompare, newSVpvs("WebGPU::Direct::CompareFunction"));
   _unpack_obj(aTHX_ h, "stencilFront", 12,  &n->stencilFront, sizeof(n->stencilFront), newSVpvs("WebGPU::Direct::StencilFaceState"));
   _unpack_obj(aTHX_ h, "stencilBack", 11,  &n->stencilBack, sizeof(n->stencilBack), newSVpvs("WebGPU::Direct::StencilFaceState"));
@@ -3710,126 +4437,185 @@ SV *WGPUDepthStencilState__wrap( const WGPUDepthStencilState * n )
 }
 
 typedef SV* WebGPU__Direct__DepthStencilState;
-void WebGPU__Direct__ImageCopyBuffer__pack( SV *THIS )
+void WebGPU__Direct__DeviceDescriptor__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ImageCopyBuffer"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DeviceDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ImageCopyBuffer",
-      "THIS", "WebGPU::Direct::ImageCopyBuffer");
+      "WebGPU::Direct::DeviceDescriptor",
+      "THIS", "WebGPU::Direct::DeviceDescriptor");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUImageCopyBuffer *n = (WGPUImageCopyBuffer *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUImageCopyBuffer);
+    Newxz(n, 1, WGPUDeviceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_obj(aTHX_ h, "layout", 6,  &n->layout, sizeof(n->layout), newSVpvs("WebGPU::Direct::TextureDataLayout"));
-  _pack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
+  _pack_objarray(aTHX_ h, "requiredFeatures", 16, (void **) &n->requiredFeatures, &n->requiredFeatureCount, sizeof(*n->requiredFeatures), newSVpvs("WebGPU::Direct::FeatureName"));
+  _pack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::Limits"));
+  _pack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
+  _pack_obj(aTHX_ h, "deviceLostCallbackInfo", 22,  &n->deviceLostCallbackInfo, sizeof(n->deviceLostCallbackInfo), newSVpvs("WebGPU::Direct::DeviceLostCallbackInfo"));
+  _pack_obj(aTHX_ h, "uncapturedErrorCallbackInfo", 27,  &n->uncapturedErrorCallbackInfo, sizeof(n->uncapturedErrorCallbackInfo), newSVpvs("WebGPU::Direct::UncapturedErrorCallbackInfo"));
 
   
 }
 
-void WebGPU__Direct__ImageCopyBuffer__unpack( SV *THIS )
+void WebGPU__Direct__DeviceDescriptor__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ImageCopyBuffer"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DeviceDescriptor"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ImageCopyBuffer",
-      "THIS", "WebGPU::Direct::ImageCopyBuffer");
+      "WebGPU::Direct::DeviceDescriptor",
+      "THIS", "WebGPU::Direct::DeviceDescriptor");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUImageCopyBuffer *n = (WGPUImageCopyBuffer *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUImageCopyBuffer);
+    Newxz(n, 1, WGPUDeviceDescriptor);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_obj(aTHX_ h, "layout", 6,  &n->layout, sizeof(n->layout), newSVpvs("WebGPU::Direct::TextureDataLayout"));
-  _unpack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
+  _unpack_size_t(aTHX_ h, "requiredFeatureCount", 20,  &n->requiredFeatureCount, NULL);
+  _unpack_objarray(aTHX_ h, "requiredFeatures", 16, (void **) &n->requiredFeatures, &n->requiredFeatureCount, sizeof(*n->requiredFeatures), newSVpvs("WebGPU::Direct::FeatureName"));
+  _unpack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::Limits"));
+  _unpack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
+  _unpack_obj(aTHX_ h, "deviceLostCallbackInfo", 22,  &n->deviceLostCallbackInfo, sizeof(n->deviceLostCallbackInfo), newSVpvs("WebGPU::Direct::DeviceLostCallbackInfo"));
+  _unpack_obj(aTHX_ h, "uncapturedErrorCallbackInfo", 27,  &n->uncapturedErrorCallbackInfo, sizeof(n->uncapturedErrorCallbackInfo), newSVpvs("WebGPU::Direct::UncapturedErrorCallbackInfo"));
 
 }
 
-SV *WGPUImageCopyBuffer__wrap( const WGPUImageCopyBuffer * n )
+SV *WGPUDeviceDescriptor__wrap( const WGPUDeviceDescriptor * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ImageCopyBuffer", GV_ADD));
-  WebGPU__Direct__ImageCopyBuffer__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::DeviceDescriptor", GV_ADD));
+  WebGPU__Direct__DeviceDescriptor__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__ImageCopyBuffer;
-void WebGPU__Direct__ImageCopyTexture__pack( SV *THIS )
+typedef SV* WebGPU__Direct__DeviceDescriptor;
+void WebGPU__Direct__FutureWaitInfo__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ImageCopyTexture"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::FutureWaitInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ImageCopyTexture",
-      "THIS", "WebGPU::Direct::ImageCopyTexture");
+      "WebGPU::Direct::FutureWaitInfo",
+      "THIS", "WebGPU::Direct::FutureWaitInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUImageCopyTexture *n = (WGPUImageCopyTexture *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFutureWaitInfo *n = (WGPUFutureWaitInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUImageCopyTexture);
+    Newxz(n, 1, WGPUFutureWaitInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
-  _pack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel, NULL);
-  _pack_obj(aTHX_ h, "origin", 6,  &n->origin, sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
-  _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WebGPU::Direct::TextureAspect"));
+  _pack_obj(aTHX_ h, "future", 6,  &n->future, sizeof(n->future), newSVpvs("WebGPU::Direct::Future"));
+  _pack_uint32_t(aTHX_ h, "completed", 9,  &n->completed, NULL);
 
   
 }
 
-void WebGPU__Direct__ImageCopyTexture__unpack( SV *THIS )
+void WebGPU__Direct__FutureWaitInfo__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ImageCopyTexture"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::FutureWaitInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ImageCopyTexture",
-      "THIS", "WebGPU::Direct::ImageCopyTexture");
+      "WebGPU::Direct::FutureWaitInfo",
+      "THIS", "WebGPU::Direct::FutureWaitInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUImageCopyTexture *n = (WGPUImageCopyTexture *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFutureWaitInfo *n = (WGPUFutureWaitInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUImageCopyTexture);
+    Newxz(n, 1, WGPUFutureWaitInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
-  _unpack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel, NULL);
-  _unpack_obj(aTHX_ h, "origin", 6,  &n->origin, sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
-  _unpack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WebGPU::Direct::TextureAspect"));
+  _unpack_obj(aTHX_ h, "future", 6,  &n->future, sizeof(n->future), newSVpvs("WebGPU::Direct::Future"));
+  _unpack_uint32_t(aTHX_ h, "completed", 9,  &n->completed, NULL);
 
 }
 
-SV *WGPUImageCopyTexture__wrap( const WGPUImageCopyTexture * n )
+SV *WGPUFutureWaitInfo__wrap( const WGPUFutureWaitInfo * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ImageCopyTexture", GV_ADD));
-  WebGPU__Direct__ImageCopyTexture__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::FutureWaitInfo", GV_ADD));
+  WebGPU__Direct__FutureWaitInfo__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__ImageCopyTexture;
+typedef SV* WebGPU__Direct__FutureWaitInfo;
+void WebGPU__Direct__InstanceDescriptor__pack( SV *THIS )
+{
+  
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::InstanceDescriptor"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::InstanceDescriptor",
+      "THIS", "WebGPU::Direct::InstanceDescriptor");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUInstanceDescriptor);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _pack_obj(aTHX_ h, "features", 8,  &n->features, sizeof(n->features), newSVpvs("WebGPU::Direct::InstanceCapabilities"));
+
+  
+}
+
+void WebGPU__Direct__InstanceDescriptor__unpack( SV *THIS )
+{
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::InstanceDescriptor"))
+  {
+    croak_nocontext("%s: %s is not of type %s",
+      "WebGPU::Direct::InstanceDescriptor",
+      "THIS", "WebGPU::Direct::InstanceDescriptor");
+  }
+
+  HV *h = (HV *)SvRV(THIS);
+  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  if ( !n )
+  {
+    Newxz(n, 1, WGPUInstanceDescriptor);
+    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  }
+  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
+  _unpack_obj(aTHX_ h, "features", 8,  &n->features, sizeof(n->features), newSVpvs("WebGPU::Direct::InstanceCapabilities"));
+
+}
+
+SV *WGPUInstanceDescriptor__wrap( const WGPUInstanceDescriptor * n )
+{
+  HV *h = newHV();
+  SV *RETVAL = sv_2mortal(newRV((SV*)h));
+
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::InstanceDescriptor", GV_ADD));
+  WebGPU__Direct__InstanceDescriptor__unpack(RETVAL);
+  return SvREFCNT_inc(RETVAL);
+}
+
+typedef SV* WebGPU__Direct__InstanceDescriptor;
 void WebGPU__Direct__ProgrammableStageDescriptor__pack( SV *THIS )
 {
   
@@ -3849,7 +4635,7 @@ void WebGPU__Direct__ProgrammableStageDescriptor__pack( SV *THIS )
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _pack_obj(aTHX_ h, "entryPoint", 10,  &n->entryPoint, sizeof(n->entryPoint), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
 
   
@@ -3873,7 +4659,7 @@ void WebGPU__Direct__ProgrammableStageDescriptor__unpack( SV *THIS )
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _unpack_obj(aTHX_ h, "entryPoint", 10,  &n->entryPoint, sizeof(n->entryPoint), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount, NULL);
   _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
 
@@ -3910,6 +4696,7 @@ void WebGPU__Direct__RenderPassColorAttachment__pack( SV *THIS )
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_opaque(aTHX_ h, "view", 4, (void **) &n->view, newSVpvs("WebGPU::Direct::TextureView"));
+  _pack_uint32_t(aTHX_ h, "depthSlice", 10,  &n->depthSlice, NULL);
   _pack_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget, newSVpvs("WebGPU::Direct::TextureView"));
   _pack_enum(aTHX_ h, "loadOp", 6,  &n->loadOp, newSVpvs("WebGPU::Direct::LoadOp"));
   _pack_enum(aTHX_ h, "storeOp", 7,  &n->storeOp, newSVpvs("WebGPU::Direct::StoreOp"));
@@ -3936,6 +4723,7 @@ void WebGPU__Direct__RenderPassColorAttachment__unpack( SV *THIS )
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_opaque(aTHX_ h, "view", 4, (void **) &n->view, newSVpvs("WebGPU::Direct::TextureView"));
+  _unpack_uint32_t(aTHX_ h, "depthSlice", 10,  &n->depthSlice, NULL);
   _unpack_opaque(aTHX_ h, "resolveTarget", 13, (void **) &n->resolveTarget, newSVpvs("WebGPU::Direct::TextureView"));
   _unpack_enum(aTHX_ h, "loadOp", 6,  &n->loadOp, newSVpvs("WebGPU::Direct::LoadOp"));
   _unpack_enum(aTHX_ h, "storeOp", 7,  &n->storeOp, newSVpvs("WebGPU::Direct::StoreOp"));
@@ -3955,177 +4743,122 @@ SV *WGPURenderPassColorAttachment__wrap( const WGPURenderPassColorAttachment * n
 }
 
 typedef SV* WebGPU__Direct__RenderPassColorAttachment;
-void WebGPU__Direct__RequiredLimits__pack( SV *THIS )
+void WebGPU__Direct__TexelCopyBufferInfo__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequiredLimits"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TexelCopyBufferInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::RequiredLimits",
-      "THIS", "WebGPU::Direct::RequiredLimits");
+      "WebGPU::Direct::TexelCopyBufferInfo",
+      "THIS", "WebGPU::Direct::TexelCopyBufferInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequiredLimits *n = (WGPURequiredLimits *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyBufferInfo *n = (WGPUTexelCopyBufferInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPURequiredLimits);
+    Newxz(n, 1, WGPUTexelCopyBufferInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
+  _pack_obj(aTHX_ h, "layout", 6,  &n->layout, sizeof(n->layout), newSVpvs("WebGPU::Direct::TexelCopyBufferLayout"));
+  _pack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
 
   
 }
 
-void WebGPU__Direct__RequiredLimits__unpack( SV *THIS )
+void WebGPU__Direct__TexelCopyBufferInfo__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::RequiredLimits"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TexelCopyBufferInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::RequiredLimits",
-      "THIS", "WebGPU::Direct::RequiredLimits");
+      "WebGPU::Direct::TexelCopyBufferInfo",
+      "THIS", "WebGPU::Direct::TexelCopyBufferInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequiredLimits *n = (WGPURequiredLimits *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyBufferInfo *n = (WGPUTexelCopyBufferInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPURequiredLimits);
+    Newxz(n, 1, WGPUTexelCopyBufferInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
+  _unpack_obj(aTHX_ h, "layout", 6,  &n->layout, sizeof(n->layout), newSVpvs("WebGPU::Direct::TexelCopyBufferLayout"));
+  _unpack_opaque(aTHX_ h, "buffer", 6, (void **) &n->buffer, newSVpvs("WebGPU::Direct::Buffer"));
 
 }
 
-SV *WGPURequiredLimits__wrap( const WGPURequiredLimits * n )
+SV *WGPUTexelCopyBufferInfo__wrap( const WGPUTexelCopyBufferInfo * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::RequiredLimits", GV_ADD));
-  WebGPU__Direct__RequiredLimits__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::TexelCopyBufferInfo", GV_ADD));
+  WebGPU__Direct__TexelCopyBufferInfo__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__RequiredLimits;
-void WebGPU__Direct__ShaderModuleDescriptor__pack( SV *THIS )
+typedef SV* WebGPU__Direct__TexelCopyBufferInfo;
+void WebGPU__Direct__TexelCopyTextureInfo__pack( SV *THIS )
 {
   
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TexelCopyTextureInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleDescriptor",
-      "THIS", "WebGPU::Direct::ShaderModuleDescriptor");
+      "WebGPU::Direct::TexelCopyTextureInfo",
+      "THIS", "WebGPU::Direct::TexelCopyTextureInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyTextureInfo *n = (WGPUTexelCopyTextureInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleDescriptor);
+    Newxz(n, 1, WGPUTexelCopyTextureInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _pack_objarray(aTHX_ h, "hints", 5, (void **) &n->hints, &n->hintCount, sizeof(*n->hints), newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
+  _pack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
+  _pack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel, NULL);
+  _pack_obj(aTHX_ h, "origin", 6,  &n->origin, sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
+  _pack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WebGPU::Direct::TextureAspect"));
 
   
 }
 
-void WebGPU__Direct__ShaderModuleDescriptor__unpack( SV *THIS )
+void WebGPU__Direct__TexelCopyTextureInfo__unpack( SV *THIS )
 {
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::ShaderModuleDescriptor"))
+  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::TexelCopyTextureInfo"))
   {
     croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::ShaderModuleDescriptor",
-      "THIS", "WebGPU::Direct::ShaderModuleDescriptor");
+      "WebGPU::Direct::TexelCopyTextureInfo",
+      "THIS", "WebGPU::Direct::TexelCopyTextureInfo");
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyTextureInfo *n = (WGPUTexelCopyTextureInfo *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUShaderModuleDescriptor);
+    Newxz(n, 1, WGPUTexelCopyTextureInfo);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _unpack_size_t(aTHX_ h, "hintCount", 9,  &n->hintCount, NULL);
-  _unpack_objarray(aTHX_ h, "hints", 5, (void **) &n->hints, &n->hintCount, sizeof(*n->hints), newSVpvs("WebGPU::Direct::ShaderModuleCompilationHint"));
+  _unpack_opaque(aTHX_ h, "texture", 7, (void **) &n->texture, newSVpvs("WebGPU::Direct::Texture"));
+  _unpack_uint32_t(aTHX_ h, "mipLevel", 8,  &n->mipLevel, NULL);
+  _unpack_obj(aTHX_ h, "origin", 6,  &n->origin, sizeof(n->origin), newSVpvs("WebGPU::Direct::Origin3D"));
+  _unpack_enum(aTHX_ h, "aspect", 6,  &n->aspect, newSVpvs("WebGPU::Direct::TextureAspect"));
 
 }
 
-SV *WGPUShaderModuleDescriptor__wrap( const WGPUShaderModuleDescriptor * n )
+SV *WGPUTexelCopyTextureInfo__wrap( const WGPUTexelCopyTextureInfo * n )
 {
   HV *h = newHV();
   SV *RETVAL = sv_2mortal(newRV((SV*)h));
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::ShaderModuleDescriptor", GV_ADD));
-  WebGPU__Direct__ShaderModuleDescriptor__unpack(RETVAL);
+  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::TexelCopyTextureInfo", GV_ADD));
+  WebGPU__Direct__TexelCopyTextureInfo__unpack(RETVAL);
   return SvREFCNT_inc(RETVAL);
 }
 
-typedef SV* WebGPU__Direct__ShaderModuleDescriptor;
-void WebGPU__Direct__SupportedLimits__pack( SV *THIS )
-{
-  
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SupportedLimits"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SupportedLimits",
-      "THIS", "WebGPU::Direct::SupportedLimits");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUSupportedLimits *n = (WGPUSupportedLimits *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUSupportedLimits);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _pack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
-
-  
-}
-
-void WebGPU__Direct__SupportedLimits__unpack( SV *THIS )
-{
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::SupportedLimits"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::SupportedLimits",
-      "THIS", "WebGPU::Direct::SupportedLimits");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUSupportedLimits *n = (WGPUSupportedLimits *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUSupportedLimits);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStructOut"));
-  _unpack_obj(aTHX_ h, "limits", 6,  &n->limits, sizeof(n->limits), newSVpvs("WebGPU::Direct::Limits"));
-
-}
-
-SV *WGPUSupportedLimits__wrap( const WGPUSupportedLimits * n )
-{
-  HV *h = newHV();
-  SV *RETVAL = sv_2mortal(newRV((SV*)h));
-
-  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::SupportedLimits", GV_ADD));
-  WebGPU__Direct__SupportedLimits__unpack(RETVAL);
-  return SvREFCNT_inc(RETVAL);
-}
-
-typedef SV* WebGPU__Direct__SupportedLimits;
+typedef SV* WebGPU__Direct__TexelCopyTextureInfo;
 void WebGPU__Direct__TextureDescriptor__pack( SV *THIS )
 {
   
@@ -4144,8 +4877,8 @@ void WebGPU__Direct__TextureDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _pack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
+  _pack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
   _pack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WebGPU::Direct::TextureDimension"));
   _pack_obj(aTHX_ h, "size", 4,  &n->size, sizeof(n->size), newSVpvs("WebGPU::Direct::Extent3D"));
   _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
@@ -4173,8 +4906,8 @@ void WebGPU__Direct__TextureDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _unpack_uint32_t(aTHX_ h, "usage", 5,  &n->usage, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
+  _unpack_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
   _unpack_enum(aTHX_ h, "dimension", 9,  &n->dimension, newSVpvs("WebGPU::Direct::TextureDimension"));
   _unpack_obj(aTHX_ h, "size", 4,  &n->size, sizeof(n->size), newSVpvs("WebGPU::Direct::Extent3D"));
   _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
@@ -4214,8 +4947,8 @@ void WebGPU__Direct__VertexBufferLayout__pack( SV *THIS )
     Newxz(n, 1, WGPUVertexBufferLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _pack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride, NULL);
   _pack_enum(aTHX_ h, "stepMode", 8,  &n->stepMode, newSVpvs("WebGPU::Direct::VertexStepMode"));
+  _pack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride, NULL);
   _pack_objarray(aTHX_ h, "attributes", 10, (void **) &n->attributes, &n->attributeCount, sizeof(*n->attributes), newSVpvs("WebGPU::Direct::VertexAttribute"));
 
   
@@ -4237,8 +4970,8 @@ void WebGPU__Direct__VertexBufferLayout__unpack( SV *THIS )
     Newxz(n, 1, WGPUVertexBufferLayout);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride, NULL);
   _unpack_enum(aTHX_ h, "stepMode", 8,  &n->stepMode, newSVpvs("WebGPU::Direct::VertexStepMode"));
+  _unpack_uint64_t(aTHX_ h, "arrayStride", 11,  &n->arrayStride, NULL);
   _unpack_size_t(aTHX_ h, "attributeCount", 14,  &n->attributeCount, NULL);
   _unpack_objarray(aTHX_ h, "attributes", 10, (void **) &n->attributes, &n->attributeCount, sizeof(*n->attributes), newSVpvs("WebGPU::Direct::VertexAttribute"));
 
@@ -4274,7 +5007,7 @@ void WebGPU__Direct__BindGroupLayoutDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
 
   
@@ -4297,7 +5030,7 @@ void WebGPU__Direct__BindGroupLayoutDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_size_t(aTHX_ h, "entryCount", 10,  &n->entryCount, NULL);
   _unpack_objarray(aTHX_ h, "entries", 7, (void **) &n->entries, &n->entryCount, sizeof(*n->entries), newSVpvs("WebGPU::Direct::BindGroupLayoutEntry"));
 
@@ -4335,7 +5068,7 @@ void WebGPU__Direct__ColorTargetState__pack( SV *THIS )
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
   _pack_objptr(aTHX_ h, "blend", 5, (void **) &n->blend, newSVpvs("WebGPU::Direct::BlendState"));
-  _pack_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL);
+  _pack_flag(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL);
 
   
 }
@@ -4359,7 +5092,7 @@ void WebGPU__Direct__ColorTargetState__unpack( SV *THIS )
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_enum(aTHX_ h, "format", 6,  &n->format, newSVpvs("WebGPU::Direct::TextureFormat"));
   _unpack_objptr(aTHX_ h, "blend", 5, (void **) &n->blend, newSVpvs("WebGPU::Direct::BlendState"));
-  _unpack_uint32_t(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL);
+  _unpack_flag(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL);
 
 }
 
@@ -4393,7 +5126,7 @@ void WebGPU__Direct__ComputePipelineDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
   _pack_obj(aTHX_ h, "compute", 7,  &n->compute, sizeof(n->compute), newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
 
@@ -4417,7 +5150,7 @@ void WebGPU__Direct__ComputePipelineDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
   _unpack_obj(aTHX_ h, "compute", 7,  &n->compute, sizeof(n->compute), newSVpvs("WebGPU::Direct::ProgrammableStageDescriptor"));
 
@@ -4435,75 +5168,6 @@ SV *WGPUComputePipelineDescriptor__wrap( const WGPUComputePipelineDescriptor * n
 }
 
 typedef SV* WebGPU__Direct__ComputePipelineDescriptor;
-void WebGPU__Direct__DeviceDescriptor__pack( SV *THIS )
-{
-  
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DeviceDescriptor"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::DeviceDescriptor",
-      "THIS", "WebGPU::Direct::DeviceDescriptor");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUDeviceDescriptor);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _pack_objarray(aTHX_ h, "requiredFeatures", 16, (void **) &n->requiredFeatures, &n->requiredFeatureCount, sizeof(*n->requiredFeatures), newSVpvs("WebGPU::Direct::FeatureName"));
-  _pack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::RequiredLimits"));
-  _pack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
-  _pack_CODE(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
-  // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
-  _pack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata, NULL);
-
-  
-}
-
-void WebGPU__Direct__DeviceDescriptor__unpack( SV *THIS )
-{
-  if (!SvROK(THIS) || !sv_derived_from(THIS, "WebGPU::Direct::DeviceDescriptor"))
-  {
-    croak_nocontext("%s: %s is not of type %s",
-      "WebGPU::Direct::DeviceDescriptor",
-      "THIS", "WebGPU::Direct::DeviceDescriptor");
-  }
-
-  HV *h = (HV *)SvRV(THIS);
-  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-  if ( !n )
-  {
-    Newxz(n, 1, WGPUDeviceDescriptor);
-    sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  }
-  _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
-  _unpack_size_t(aTHX_ h, "requiredFeatureCount", 20,  &n->requiredFeatureCount, NULL);
-  _unpack_objarray(aTHX_ h, "requiredFeatures", 16, (void **) &n->requiredFeatures, &n->requiredFeatureCount, sizeof(*n->requiredFeatures), newSVpvs("WebGPU::Direct::FeatureName"));
-  _unpack_objptr(aTHX_ h, "requiredLimits", 14, (void **) &n->requiredLimits, newSVpvs("WebGPU::Direct::RequiredLimits"));
-  _unpack_obj(aTHX_ h, "defaultQueue", 12,  &n->defaultQueue, sizeof(n->defaultQueue), newSVpvs("WebGPU::Direct::QueueDescriptor"));
-  _unpack_CODE(aTHX_ h, "deviceLostCallback", 18,  &n->deviceLostCallback, NULL);
-  // "deviceLostUserdata" is a ptr type void, and that's not quite right yet, using opaque
-  _unpack_void(aTHX_ h, "deviceLostUserdata", 18,  &n->deviceLostUserdata, NULL);
-
-}
-
-SV *WGPUDeviceDescriptor__wrap( const WGPUDeviceDescriptor * n )
-{
-  HV *h = newHV();
-  SV *RETVAL = sv_2mortal(newRV((SV*)h));
-
-  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
-  sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::DeviceDescriptor", GV_ADD));
-  WebGPU__Direct__DeviceDescriptor__unpack(RETVAL);
-  return SvREFCNT_inc(RETVAL);
-}
-
-typedef SV* WebGPU__Direct__DeviceDescriptor;
 void WebGPU__Direct__RenderPassDescriptor__pack( SV *THIS )
 {
   
@@ -4522,7 +5186,7 @@ void WebGPU__Direct__RenderPassDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objarray(aTHX_ h, "colorAttachments", 16, (void **) &n->colorAttachments, &n->colorAttachmentCount, sizeof(*n->colorAttachments), newSVpvs("WebGPU::Direct::RenderPassColorAttachment"));
   _pack_objptr(aTHX_ h, "depthStencilAttachment", 22, (void **) &n->depthStencilAttachment, newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"));
   _pack_opaque(aTHX_ h, "occlusionQuerySet", 17, (void **) &n->occlusionQuerySet, newSVpvs("WebGPU::Direct::QuerySet"));
@@ -4548,7 +5212,7 @@ void WebGPU__Direct__RenderPassDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_size_t(aTHX_ h, "colorAttachmentCount", 20,  &n->colorAttachmentCount, NULL);
   _unpack_objarray(aTHX_ h, "colorAttachments", 16, (void **) &n->colorAttachments, &n->colorAttachmentCount, sizeof(*n->colorAttachments), newSVpvs("WebGPU::Direct::RenderPassColorAttachment"));
   _unpack_objptr(aTHX_ h, "depthStencilAttachment", 22, (void **) &n->depthStencilAttachment, newSVpvs("WebGPU::Direct::RenderPassDepthStencilAttachment"));
@@ -4588,7 +5252,7 @@ void WebGPU__Direct__VertexState__pack( SV *THIS )
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _pack_obj(aTHX_ h, "entryPoint", 10,  &n->entryPoint, sizeof(n->entryPoint), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
   _pack_objarray(aTHX_ h, "buffers", 7, (void **) &n->buffers, &n->bufferCount, sizeof(*n->buffers), newSVpvs("WebGPU::Direct::VertexBufferLayout"));
 
@@ -4613,7 +5277,7 @@ void WebGPU__Direct__VertexState__unpack( SV *THIS )
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _unpack_obj(aTHX_ h, "entryPoint", 10,  &n->entryPoint, sizeof(n->entryPoint), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount, NULL);
   _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
   _unpack_size_t(aTHX_ h, "bufferCount", 11,  &n->bufferCount, NULL);
@@ -4652,7 +5316,7 @@ void WebGPU__Direct__FragmentState__pack( SV *THIS )
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _pack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
-  _pack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _pack_obj(aTHX_ h, "entryPoint", 10,  &n->entryPoint, sizeof(n->entryPoint), newSVpvs("WebGPU::Direct::StringView"));
   _pack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
   _pack_objarray(aTHX_ h, "targets", 7, (void **) &n->targets, &n->targetCount, sizeof(*n->targets), newSVpvs("WebGPU::Direct::ColorTargetState"));
 
@@ -4677,7 +5341,7 @@ void WebGPU__Direct__FragmentState__unpack( SV *THIS )
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
   _unpack_opaque(aTHX_ h, "module", 6, (void **) &n->module, newSVpvs("WebGPU::Direct::ShaderModule"));
-  _unpack_str(aTHX_ h, "entryPoint", 10,  &n->entryPoint, NULL);
+  _unpack_obj(aTHX_ h, "entryPoint", 10,  &n->entryPoint, sizeof(n->entryPoint), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_size_t(aTHX_ h, "constantCount", 13,  &n->constantCount, NULL);
   _unpack_objarray(aTHX_ h, "constants", 9, (void **) &n->constants, &n->constantCount, sizeof(*n->constants), newSVpvs("WebGPU::Direct::ConstantEntry"));
   _unpack_size_t(aTHX_ h, "targetCount", 11,  &n->targetCount, NULL);
@@ -4715,7 +5379,7 @@ void WebGPU__Direct__RenderPipelineDescriptor__pack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _pack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _pack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _pack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _pack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
   _pack_obj(aTHX_ h, "vertex", 6,  &n->vertex, sizeof(n->vertex), newSVpvs("WebGPU::Direct::VertexState"));
   _pack_obj(aTHX_ h, "primitive", 9,  &n->primitive, sizeof(n->primitive), newSVpvs("WebGPU::Direct::PrimitiveState"));
@@ -4743,7 +5407,7 @@ void WebGPU__Direct__RenderPipelineDescriptor__unpack( SV *THIS )
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
   _unpack_objptr(aTHX_ h, "nextInChain", 11, (void **) &n->nextInChain, newSVpvs("WebGPU::Direct::ChainedStruct"));
-  _unpack_str(aTHX_ h, "label", 5,  &n->label, NULL);
+  _unpack_obj(aTHX_ h, "label", 5,  &n->label, sizeof(n->label), newSVpvs("WebGPU::Direct::StringView"));
   _unpack_opaque(aTHX_ h, "layout", 6, (void **) &n->layout, newSVpvs("WebGPU::Direct::PipelineLayout"));
   _unpack_obj(aTHX_ h, "vertex", 6,  &n->vertex, sizeof(n->vertex), newSVpvs("WebGPU::Direct::VertexState"));
   _unpack_obj(aTHX_ h, "primitive", 9,  &n->primitive, sizeof(n->primitive), newSVpvs("WebGPU::Direct::PrimitiveState"));
@@ -4765,12 +5429,31 @@ SV *WGPURenderPipelineDescriptor__wrap( const WGPURenderPipelineDescriptor * n )
 }
 
 typedef SV* WebGPU__Direct__RenderPipelineDescriptor;
-void WebGPU__Direct__BufferMapCallback__callback( WGPUBufferMapAsyncStatus status, void * userdata )
+void WebGPU__Direct__BufferMapCallback__callback( WGPUMapAsyncStatus status, WGPUStringView message, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__BufferMapCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__BufferMapCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__BufferMapCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
@@ -4779,17 +5462,41 @@ void WebGPU__Direct__BufferMapCallback__callback( WGPUBufferMapAsyncStatus statu
     WebGPU__Direct__BufferMapCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
 ; 
     XPUSHs(tm_status); 
-    XPUSHs(cb->data);
+    WebGPU__Direct__BufferMapCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
+; 
+    XPUSHs(tm_message); 
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__CompilationInfoCallback__callback( WGPUCompilationInfoRequestStatus status, struct WGPUCompilationInfo const * compilationInfo, void * userdata )
+void WebGPU__Direct__CompilationInfoCallback__callback( WGPUCompilationInfoRequestStatus status, struct WGPUCompilationInfo const * compilationInfo, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__CompilationInfoCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__CompilationInfoCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__CompilationInfoCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
@@ -4798,20 +5505,39 @@ void WebGPU__Direct__CompilationInfoCallback__callback( WGPUCompilationInfoReque
     WebGPU__Direct__CompilationInfoCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
 ; 
     XPUSHs(tm_status); 
-    WebGPU__Direct__CompilationInfoCallback tm_compilationInfo = newSV(0);     tm_compilationInfo = WGPUCompilationInfo__wrap(compilationInfo);
+    WebGPU__Direct__CompilationInfoCallback tm_compilationInfo = newSV(0);     tm_compilationInfo = WGPUCompilationInfo__wrap(compilationInfo); /* T_FETCHPTR */
 ; 
     XPUSHs(tm_compilationInfo); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__CreateComputePipelineAsyncCallback__callback( WGPUCreatePipelineAsyncStatus status, WGPUComputePipeline pipeline, char const * message, void * userdata )
+void WebGPU__Direct__CreateComputePipelineAsyncCallback__callback( WGPUCreatePipelineAsyncStatus status, WGPUComputePipeline pipeline, WGPUStringView message, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__CreateComputePipelineAsyncCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__CreateComputePipelineAsyncCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__CreateComputePipelineAsyncCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
@@ -4820,23 +5546,44 @@ void WebGPU__Direct__CreateComputePipelineAsyncCallback__callback( WGPUCreatePip
     WebGPU__Direct__CreateComputePipelineAsyncCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
 ; 
     XPUSHs(tm_status); 
-    WebGPU__Direct__CreateComputePipelineAsyncCallback tm_pipeline = newSV(0);     tm_pipeline = WGPUComputePipeline__wrap(pipeline);
+    WebGPU__Direct__CreateComputePipelineAsyncCallback tm_pipeline = newSV(0);     tm_pipeline = WGPUComputePipeline__wrap(pipeline); /* T_FETCHPTR */
 ; 
     XPUSHs(tm_pipeline); 
-    WebGPU__Direct__CreateComputePipelineAsyncCallback tm_message = newSV(0); 	sv_setpv((SV*)tm_message, message);
+    WebGPU__Direct__CreateComputePipelineAsyncCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
 ; 
     XPUSHs(tm_message); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__CreateRenderPipelineAsyncCallback__callback( WGPUCreatePipelineAsyncStatus status, WGPURenderPipeline pipeline, char const * message, void * userdata )
+void WebGPU__Direct__CreateRenderPipelineAsyncCallback__callback( WGPUCreatePipelineAsyncStatus status, WGPURenderPipeline pipeline, WGPUStringView message, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__CreateRenderPipelineAsyncCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__CreateRenderPipelineAsyncCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__CreateRenderPipelineAsyncCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
@@ -4845,67 +5592,136 @@ void WebGPU__Direct__CreateRenderPipelineAsyncCallback__callback( WGPUCreatePipe
     WebGPU__Direct__CreateRenderPipelineAsyncCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
 ; 
     XPUSHs(tm_status); 
-    WebGPU__Direct__CreateRenderPipelineAsyncCallback tm_pipeline = newSV(0);     tm_pipeline = WGPURenderPipeline__wrap(pipeline);
+    WebGPU__Direct__CreateRenderPipelineAsyncCallback tm_pipeline = newSV(0);     tm_pipeline = WGPURenderPipeline__wrap(pipeline); /* T_FETCHPTR */
 ; 
     XPUSHs(tm_pipeline); 
-    WebGPU__Direct__CreateRenderPipelineAsyncCallback tm_message = newSV(0); 	sv_setpv((SV*)tm_message, message);
+    WebGPU__Direct__CreateRenderPipelineAsyncCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
 ; 
     XPUSHs(tm_message); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__DeviceLostCallback__callback( WGPUDeviceLostReason reason, char const * message, void * userdata )
+void WebGPU__Direct__DeviceLostCallback__callback( WGPUDevice const * device, WGPUDeviceLostReason reason, WGPUStringView message, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__DeviceLostCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__DeviceLostCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__DeviceLostCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
     dTARGET;
     PUSHMARK(SP);
+    WebGPU__Direct__DeviceLostCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(device); /* T_FETCHPTR */
+; 
+    XPUSHs(tm_device); 
     WebGPU__Direct__DeviceLostCallback tm_reason = newSV(0); 	sv_setiv(tm_reason, (IV)reason);
 ; 
     XPUSHs(tm_reason); 
-    WebGPU__Direct__DeviceLostCallback tm_message = newSV(0); 	sv_setpv((SV*)tm_message, message);
+    WebGPU__Direct__DeviceLostCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
 ; 
     XPUSHs(tm_message); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__ErrorCallback__callback( WGPUErrorType type, char const * message, void * userdata )
+void WebGPU__Direct__PopErrorScopeCallback__callback( WGPUPopErrorScopeStatus status, WGPUErrorType type, WGPUStringView message, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__PopErrorScopeCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__PopErrorScopeCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__PopErrorScopeCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
     dTARGET;
     PUSHMARK(SP);
-    WebGPU__Direct__ErrorCallback tm_type = newSV(0); 	sv_setiv(tm_type, (IV)type);
+    WebGPU__Direct__PopErrorScopeCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
+; 
+    XPUSHs(tm_status); 
+    WebGPU__Direct__PopErrorScopeCallback tm_type = newSV(0); 	sv_setiv(tm_type, (IV)type);
 ; 
     XPUSHs(tm_type); 
-    WebGPU__Direct__ErrorCallback tm_message = newSV(0); 	sv_setpv((SV*)tm_message, message);
+    WebGPU__Direct__PopErrorScopeCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
 ; 
     XPUSHs(tm_message); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__QueueWorkDoneCallback__callback( WGPUQueueWorkDoneStatus status, void * userdata )
+void WebGPU__Direct__QueueWorkDoneCallback__callback( WGPUQueueWorkDoneStatus status, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__QueueWorkDoneCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__QueueWorkDoneCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__QueueWorkDoneCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
@@ -4914,17 +5730,36 @@ void WebGPU__Direct__QueueWorkDoneCallback__callback( WGPUQueueWorkDoneStatus st
     WebGPU__Direct__QueueWorkDoneCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
 ; 
     XPUSHs(tm_status); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__RequestAdapterCallback__callback( WGPURequestAdapterStatus status, WGPUAdapter adapter, char const * message, void * userdata )
+void WebGPU__Direct__RequestAdapterCallback__callback( WGPURequestAdapterStatus status, WGPUAdapter adapter, WGPUStringView message, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__RequestAdapterCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__RequestAdapterCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__RequestAdapterCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
@@ -4933,23 +5768,44 @@ void WebGPU__Direct__RequestAdapterCallback__callback( WGPURequestAdapterStatus 
     WebGPU__Direct__RequestAdapterCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
 ; 
     XPUSHs(tm_status); 
-    WebGPU__Direct__RequestAdapterCallback tm_adapter = newSV(0);     tm_adapter = WGPUAdapter__wrap(adapter);
+    WebGPU__Direct__RequestAdapterCallback tm_adapter = newSV(0);     tm_adapter = WGPUAdapter__wrap(adapter); /* T_FETCHPTR */
 ; 
     XPUSHs(tm_adapter); 
-    WebGPU__Direct__RequestAdapterCallback tm_message = newSV(0); 	sv_setpv((SV*)tm_message, message);
+    WebGPU__Direct__RequestAdapterCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
 ; 
     XPUSHs(tm_message); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
   }
 
-void WebGPU__Direct__RequestDeviceCallback__callback( WGPURequestDeviceStatus status, WGPUDevice device, char const * message, void * userdata )
+void WebGPU__Direct__RequestDeviceCallback__callback( WGPURequestDeviceStatus status, WGPUDevice device, WGPUStringView message, void* userdata1, void* userdata2 )
   {
-    cb_data *cb = (cb_data *)userdata;
-    if ( cb->guard1 != CB_GUARD || cb->guard2 != cb->guard1 )
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
     {
-      croak("Got a callback with improper guards: 0x%X, 0x%X", cb->guard1, cb->guard2);
+      warn("Callback WebGPU__Direct__RequestDeviceCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__RequestDeviceCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__RequestDeviceCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
     }
 
     dSP;
@@ -4958,14 +5814,62 @@ void WebGPU__Direct__RequestDeviceCallback__callback( WGPURequestDeviceStatus st
     WebGPU__Direct__RequestDeviceCallback tm_status = newSV(0); 	sv_setiv(tm_status, (IV)status);
 ; 
     XPUSHs(tm_status); 
-    WebGPU__Direct__RequestDeviceCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(device);
+    WebGPU__Direct__RequestDeviceCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(device); /* T_FETCHPTR */
 ; 
     XPUSHs(tm_device); 
-    WebGPU__Direct__RequestDeviceCallback tm_message = newSV(0); 	sv_setpv((SV*)tm_message, message);
+    WebGPU__Direct__RequestDeviceCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
 ; 
     XPUSHs(tm_message); 
-    XPUSHs(cb->data);
+    XPUSHs(user_sv);
     PUTBACK;
-    call_sv((SV *)cb->perlsub, G_VOID);
+    call_sv((SV *)callback, G_VOID);
+  }
+
+void WebGPU__Direct__UncapturedErrorCallback__callback( WGPUDevice const * device, WGPUErrorType type, WGPUStringView message, void* userdata1, void* userdata2 )
+  {
+    if ( userdata1 == NULL || !SvOK((SV *)userdata1) )
+    {
+      warn("Callback WebGPU__Direct__UncapturedErrorCallback failed: callback function was NULL");
+      return;
+    }
+
+    SV* callback = (SV *) userdata1;
+    SV* user_sv  = (SV *) userdata2;
+
+    if ( userdata2 == NULL || !SvOK(user_sv) )
+    {
+      user_sv = &PL_sv_undef;
+    }
+
+    if ( !SvROK(callback) )
+    {
+      warn("Callback WebGPU__Direct__UncapturedErrorCallback failed: callback function was not a ref: %s", SvPV_nolen(callback));
+      return;
+    }
+    if ( SvTYPE(SvRV(callback)) != SVt_PVCV )
+    {
+      warn("Callback WebGPU__Direct__UncapturedErrorCallback failed: callback function was not a coderef: %s", SvPV_nolen(callback));
+      return;
+    }
+
+    dSP;
+    dTARGET;
+    PUSHMARK(SP);
+    WebGPU__Direct__UncapturedErrorCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(device); /* T_FETCHPTR */
+; 
+    XPUSHs(tm_device); 
+    WebGPU__Direct__UncapturedErrorCallback tm_type = newSV(0); 	sv_setiv(tm_type, (IV)type);
+; 
+    XPUSHs(tm_type); 
+    WebGPU__Direct__UncapturedErrorCallback tm_message = newSV(0);     WGPUStringView* ptr_message; Newx(ptr_message, 1, WGPUStringView);
+    Copy(&message, ptr_message, 1, WGPUStringView);
+    tm_message = WGPUStringView__wrap(ptr_message); /* T_FETCH */
+; 
+    XPUSHs(tm_message); 
+    XPUSHs(user_sv);
+    PUTBACK;
+    call_sv((SV *)callback, G_VOID);
   }
 

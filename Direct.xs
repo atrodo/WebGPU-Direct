@@ -1710,7 +1710,7 @@ buffer(THIS, value = NULL)
 
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct                PREFIX = wgpu
 
-WebGPU::Direct::SurfaceDescriptorFromXlibWindow
+WebGPU::Direct::SurfaceSourceXlibWindow
 new_window_x11(CLASS, xw = 640, yh = 360)
         SV *  CLASS
         int   xw
@@ -1719,8 +1719,8 @@ new_window_x11(CLASS, xw = 640, yh = 360)
     CODE:
 #ifdef HAS_X11
 #define _DEF_X11 1
-        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromXlibWindow"), NULL );
-        WGPUSurfaceDescriptorFromXlibWindow *result = (WGPUSurfaceDescriptorFromXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceSourceXlibWindow"), NULL );
+        WGPUSurfaceSourceXlibWindow *result = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
         if ( ! x11_window(result, xw, yh) )
         {
           Perl_croak(aTHX_ "Could not create an X11 window");
@@ -1737,7 +1737,7 @@ new_window_x11(CLASS, xw = 640, yh = 360)
     OUTPUT:
         RETVAL
 
-WebGPU::Direct::SurfaceDescriptorFromWaylandSurface
+WebGPU::Direct::SurfaceSourceWaylandSurface
 new_window_wayland(CLASS, xw = 640, yh = 360)
         SV *  CLASS
         int   xw
@@ -1746,8 +1746,8 @@ new_window_wayland(CLASS, xw = 640, yh = 360)
     CODE:
 #ifdef HAS_WAYLAND
 #define _DEF_WAYLAND 1
-        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceDescriptorFromWaylandSurface"), NULL );
-        WGPUSurfaceDescriptorFromWaylandSurface *result = (WGPUSurfaceDescriptorFromWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::WGPUSurfaceSourceWaylandSurface"), NULL );
+        WGPUSurfaceSourceWaylandSurface *result = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
         if ( ! wayland_window(result, xw, yh) )
         {
           Perl_croak(aTHX_ "Could not create an Wayland window");

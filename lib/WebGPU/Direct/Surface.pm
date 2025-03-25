@@ -51,6 +51,14 @@ WebGPU::Direct::Surface
 
 =over
 
+=item * Return Type
+
+=over
+
+=item * L<WebGPU::Direct::Status|WebGPU::Direct::Constants/WebGPU::Direct::Status>
+
+=back
+
 =item * Arguments
 
 =over
@@ -77,7 +85,7 @@ WebGPU::Direct::Surface
 
 =back
 
-=head3 getPreferredFormat
+=head3 present
 
 =over
 
@@ -85,25 +93,29 @@ WebGPU::Direct::Surface
 
 =over
 
-=item * L<WebGPU::Direct::TextureFormat|WebGPU::Direct::Constants/WebGPU::Direct::TextureFormat>
+=item * L<WebGPU::Direct::Status|WebGPU::Direct::Constants/WebGPU::Direct::Status>
 
 =back
+
+=back
+
+=head3 setLabel
+
+=over
 
 =item * Arguments
 
 =over
 
-=item * adapter (L<WebGPU::Direct::Adapter>)
+=item * label (L<WebGPU::Direct::StringView|WebGPU::Direct::Types/WebGPU::Direct::StringView>)
 
 =back
 
 =back
-
-=head3 present
 
 =head3 unconfigure
 
-=head3 reference
+=head3 addRef
 
 =head3 release
 

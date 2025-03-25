@@ -7,13 +7,13 @@
 
 #include <X11/Xlib.h>
 
-bool x11_window(WGPUSurfaceDescriptorFromXlibWindow *result, int xw, int yh)
+bool x11_window(WGPUSurfaceSourceXlibWindow *result, int xw, int yh)
 {
   Display *dis;
   Window   win;
 
 
-  Zero((void*)result, 1, WGPUSurfaceDescriptorFromXlibWindow);
+  Zero((void*)result, 1, WGPUSurfaceSourceXlibWindow);
   xw = xw ? xw : 640;
   yh = yh ? yh : 360;
 
@@ -56,7 +56,7 @@ bool x11_window(WGPUSurfaceDescriptorFromXlibWindow *result, int xw, int yh)
 
   XSelectInput(dis, win, 0);
 
-  result->chain.sType = WGPUSType_SurfaceDescriptorFromXlibWindow;
+  result->chain.sType = WGPUSType_SurfaceSourceXlibWindow;
   result->display = dis;
   result->window  = win;
 

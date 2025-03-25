@@ -74,7 +74,21 @@ WebGPU::Direct::Adapter
 
 =head2 Methods
 
-=head3 enumerateFeatures
+=head3 getFeatures
+
+=over
+
+=item * Arguments
+
+=over
+
+=item * features (L<WebGPU::Direct::SupportedFeatures|WebGPU::Direct::Types/WebGPU::Direct::SupportedFeatures>)
+
+=back
+
+=back
+
+=head3 getInfo
 
 =over
 
@@ -82,7 +96,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * Integer (size_t)
+=item * L<WebGPU::Direct::Status|WebGPU::Direct::Constants/WebGPU::Direct::Status>
 
 =back
 
@@ -90,7 +104,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * features (L<WebGPU::Direct::FeatureName|WebGPU::Direct::Constants/WebGPU::Direct::FeatureName>)
+=item * info (L<WebGPU::Direct::AdapterInfo|WebGPU::Direct::Types/WebGPU::Direct::AdapterInfo>)
 
 =back
 
@@ -104,7 +118,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * Boolean (WGPUBool)
+=item * L<WebGPU::Direct::Status|WebGPU::Direct::Constants/WebGPU::Direct::Status>
 
 =back
 
@@ -112,21 +126,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * limits (L<WebGPU::Direct::SupportedLimits|WebGPU::Direct::Types/WebGPU::Direct::SupportedLimits>)
-
-=back
-
-=back
-
-=head3 getProperties
-
-=over
-
-=item * Arguments
-
-=over
-
-=item * properties (L<WebGPU::Direct::AdapterProperties|WebGPU::Direct::Types/WebGPU::Direct::AdapterProperties>)
+=item * limits (L<WebGPU::Direct::Limits|WebGPU::Direct::Types/WebGPU::Direct::Limits>)
 
 =back
 
@@ -158,21 +158,27 @@ WebGPU::Direct::Adapter
 
 =over
 
+=item * Return Type
+
+=over
+
+=item * L<WebGPU::Direct::Future|WebGPU::Direct::Types/WebGPU::Direct::Future>
+
+=back
+
 =item * Arguments
 
 =over
 
 =item * descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>) Default: undef
 
-=item * callback (WebGPU::Direct::RequestDeviceCallback (Code reference)) Default: undef
-
-=item * userdata (Scalar (void *)) Default: {}
+=item * callbackInfo (L<WebGPU::Direct::RequestDeviceCallbackInfo|WebGPU::Direct::Types/WebGPU::Direct::RequestDeviceCallbackInfo>)
 
 =back
 
 =back
 
-=head3 reference
+=head3 addRef
 
 =head3 release
 
