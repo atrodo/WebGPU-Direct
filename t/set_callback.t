@@ -5,7 +5,6 @@ use Scalar::Util qw/refaddr/;
 use WebGPU::Direct;
 
 my $wgpu = WebGPU::Direct->new;
-warn;
 
 my $obj___ = eval { $wgpu->UncapturedErrorCallbackInfo->new };
 my $obj_c_ = eval { $wgpu->UncapturedErrorCallbackInfo->new({ callback => sub {...} }) };
@@ -37,9 +36,6 @@ is( ref $obj_cx->userdata, '', '(cx) userdata can be a string' );
 is( $obj_xu, undef, '(xu) callback cannot be a string');
 
 isnt($obj_Xu, undef, '(Xu) callback can be explictly undef');
-
-use Data::Dumper;
-warn Data::Dumper::Dumper($obj_Xu);
 
 # Check case when pack repacks the same data doesn't destroy things
 
