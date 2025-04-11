@@ -16,7 +16,7 @@ my $h_file = find_header();
 
 open my $h,  '<', $h_file;
 open my $xs, '>', "$Bin/webgpu.xs";
-open my $c,  '>', "$Bin/webgpu.c";
+open my $c,  '>', "$Bin/webgpu_wrap.c";
 open my $tm, '>', "$Bin/../typemap";
 open my $pm, '>', "$Bin/../lib/WebGPU/Direct/XS.pm";
 

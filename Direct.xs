@@ -1660,7 +1660,7 @@ SV *WebGPU__Direct__MappedBuffer__wrap(pTHX_ const char * buffer, Size_t size)
    END
    ------------------------------------------------------------------ */
 
-#include "xs/webgpu.c"
+#include "xs/webgpu_wrap.c"
 #include "xs/x11.c"
 #include "xs/wayland.c"
 
