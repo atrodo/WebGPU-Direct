@@ -49,11 +49,11 @@ data(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_str(aTHX_ h, "data", 4,  &n->data, NULL);
+        RETVAL =   _find_strview(aTHX_ h, "data", 4,  &n->data, &n->length, NULL);
 
         if (items > 1)
         {
-              _store_str(aTHX_ h, "data", 4,  &n->data, NULL, value);
+              _store_strview(aTHX_ h, "data", 4,  &n->data, &n->length, NULL, value);
 
         }
         else
@@ -75,16 +75,7 @@ length(THIS, value = NO_INIT)
         WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX, THIS, NULL);
         RETVAL =   _find_size_t(aTHX_ h, "length", 6,  &n->length, NULL);
 
-        if (items > 1)
-        {
-              _store_size_t(aTHX_ h, "length", 6,  &n->length, NULL, value);
-
-        }
-        else
-        {
-            SvREFCNT_inc(RETVAL);
-        }
-
+        SvREFCNT_inc(RETVAL);
 
     OUTPUT:
         RETVAL

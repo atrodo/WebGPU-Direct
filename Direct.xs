@@ -277,6 +277,55 @@ SV *_new_opaque( SV *CLASS, void *n)
 }
 
 /* ------------------------------------------------------------------
+   WGPUStringView is a special case. They represent strings that can
+   have nulls, which perl can handle just fine
+   ------------------------------------------------------------------ */
+
+WGPUStringView string_view_from_sv(SV *input)
+{
+  WGPUStringView result;
+  if ( !SvOK(input) )
+  {
+    result.data = NULL;
+    result.length = WGPU_STRLEN;
+    return result;
+  }
+  result.data = SvPVutf8(input, result.length);
+  return result;
+}
+
+SV *_string_view_to_sv(WGPUStringView input)
+{
+  if ( input.length == WGPU_STRLEN )
+  {
+    if ( input.data == NULL )
+    {
+      return &PL_sv_undef;
+    }
+    return newSVpv(input.data, 0);
+  }
+
+  if ( input.length == 0 )
+  {
+    return newSVpvn("", 0);
+  }
+
+  if ( input.data == NULL )
+  {
+    croak("Recieved an invalid WGPUStringView with a length of %zd, but a NULL pointer", input.length);
+  }
+
+  return newSVpvn(input.data, input.length);
+}
+
+SV *string_view_to_sv(WGPUStringView input)
+{
+  SV *result = _string_view_to_sv(input);
+  return result;
+}
+
+
+/* ------------------------------------------------------------------
     {
       set      => 'Sets the field of the struct',
       unpack   => 'Sets the perl hash from the struct',
@@ -588,6 +637,10 @@ SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
     SV *obj = NULL;
     if ( is_enum )
     {
+      if ( base == NULL || !SvOK(base) )
+      {
+        croak("_array_new got a null base");
+      }
       obj = _new(base, newSViv(*(uint32_t *)field));
     }
     else if ( is_opaque )
@@ -1115,6 +1168,99 @@ void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base, 
   _pack_void(aTHX_ h, key, klen, field, base);
 
   return;
+}
+
+/* ------------------------------------------------------------------
+   StringView
+   ------------------------------------------------------------------ */
+
+void _set_strview(pTHX_ SV *new_value, char const **data, size_t *length, SV *base)
+{
+  WGPUStringView v = string_view_from_sv(new_value);
+  *data = v.data;
+  *length = v.length;
+}
+
+SV *_unpack_strview(pTHX_ HV *h, const char *key, I32 klen, char const **data, size_t *length, SV *base)
+{
+  SV **f = NULL;
+  WGPUStringView rebuilt = {
+    .data = *data,
+    .length = *length,
+  };
+
+  SV *val = string_view_to_sv(rebuilt);
+  f = nn_hv_store(aTHX_ h, key, klen, val, base);
+  nn_hv_store(aTHX_ h, "length", 6, newSViv(*length), base);
+
+  return *f;
+}
+
+SV *_pack_strview(pTHX_ HV *h, const char *key, I32 klen, char const **data, size_t *length, SV *base)
+{
+  SV **f;
+
+  /* Find the field from the hash */
+  f = hv_fetch(h, key, klen, 0);
+
+  /* If the field is not found, create a default one */
+  if ( !( f && *f ) )
+  {
+    return _unpack_strview(aTHX_ h, key, klen, data, length, base);
+  }
+
+  /* Save the new value to the field */
+  _set_strview(aTHX_ *f, data, length, base);
+  nn_hv_store(aTHX_ h, "length", 6, newSViv(*length), base);
+
+  return *f;
+}
+
+SV *_find_strview(pTHX_ HV *h, const char *key, I32 klen, char const **data, size_t *length, SV *base)
+{
+  SV **f;
+
+  // Find the field from the hash
+  f = hv_fetch(h, key, klen, 0);
+
+  // If the field is not found, create a default one
+  if ( !( f && *f ) )
+  {
+    return _unpack_strview(aTHX_ h, key, klen, data, length, base);
+  }
+
+  return *f;
+}
+
+void _store_strview(pTHX_ HV *h, const char *key, I32 klen, char const **data, size_t *length, SV *base, SV *value)
+{
+  croak("unimplemented _store_strview...%d", __LINE__);
+}
+
+void _init_strview(pTHX_ HV *h, WGPUStringView *n)
+{
+  SV **f;
+  f = hv_fetch(h, "data", 4, 0);
+
+  if ( !( f && *f ) || !SvOK(*f) )
+  {
+    n->data = NULL;
+    n->length = WGPU_STRLEN;
+
+    _unpack_strview(aTHX_ h, "data", 4,  &n->data, &n->length, NULL);
+    return;
+  }
+
+  n->data = SvPVutf8(*f, n->length);
+
+  SV **f1 = hv_fetch(h, "length", 6, 0);
+
+  if ( f1 && *f1 )
+  {
+    n->length = SvIV(*f1);
+  }
+
+  _unpack_strview(aTHX_ h, "data", 4,  &n->data, &n->length, NULL);
 }
 
 /* ------------------------------------------------------------------
@@ -1667,6 +1813,25 @@ SV *WebGPU__Direct__MappedBuffer__wrap(pTHX_ const char * buffer, Size_t size)
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
 INCLUDE: xs/webgpu.xs
+
+MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::StringView    PREFIX = wgpu
+
+SV *
+as_string(THIS)
+        SV *THIS
+    PROTOTYPE: $;
+    CODE:
+        WGPUStringView str = *(WGPUStringView *) _get_struct_ptr(aTHX, THIS, newSVpvs("WebGPU::Direct::StringView"));
+        RETVAL = string_view_to_sv( str );
+    OUTPUT:
+        RETVAL
+
+BOOT:
+{
+  HV *stash = gv_stashpv("WebGPU::Direct::StringView", 0);
+
+  newCONSTSUB(stash, "STRLEN", newSViv(WGPU_STRLEN));
+}
 
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::Enum      PREFIX = wgpu
 

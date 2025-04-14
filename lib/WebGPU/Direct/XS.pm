@@ -1005,6 +1005,7 @@ package
 package
 	WebGPU::Direct::StringView {
     
+    require WebGPU::Direct::StringView;
     my $default = {};
 
     sub new {
@@ -1012,7 +1013,7 @@ package
         die "$class does not inherit from WebGPU::Direct::StringView\n"
           if !$class->isa("WebGPU::Direct::StringView");
         $class = ref($class) ? ref($class) : $class;
-        my %params = ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
+        my %params = (scalar @_ == 1 && ref( $_[0] ) eq '') ? (data => $_[0]) : ref( $_[0] ) eq ref {} ? %{$_[0]} : @_;
         my $result = { %$default, %params };
         $result = $class->BUILDARGS($result)
           if $class->can('BUILDARGS');
@@ -1033,8 +1034,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1050,8 +1049,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1067,8 +1064,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1084,8 +1079,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1101,8 +1094,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1118,8 +1109,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1135,8 +1124,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1152,8 +1139,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1169,8 +1154,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1186,8 +1169,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1203,8 +1184,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1220,8 +1199,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1237,8 +1214,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1254,8 +1229,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1271,8 +1244,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1288,8 +1259,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1305,8 +1274,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1322,8 +1289,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1339,8 +1304,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1356,8 +1319,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1373,8 +1334,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 
@@ -1390,8 +1349,6 @@ package
     }
     sub DESTROY
     {
-      warn "releaseing $_[0]
-";
       $_[0]->release;
     }
 

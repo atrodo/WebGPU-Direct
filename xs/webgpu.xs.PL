@@ -739,6 +739,13 @@ foreach my $class (@classes)
       }
     }
 
+    # Check for a pascal-like string type, aka StringView
+    if ( $#defs == 1 && $defs[0]->{key} eq 'data' && $defs[1]->{key} eq 'length' )
+    {
+      $defs[0]->{str} = 1;
+      $defs[1]->{ro}  = 1;
+    }
+
   }
   else
   {
@@ -863,6 +870,12 @@ foreach my $class (@classes)
       $coerce      = "ref( \$_[0] ) eq ref [] ? ($constr) : " . $coerce;
     }
 
+    # StringView is special since it represents a string
+    if ( $short_class eq 'StringView' )
+    {
+      $coerce = "(scalar \@_ == 1 && ref( \$_[0] ) eq '') ? (data => \$_[0]) : " . $coerce;
+    }
+
     local $Data::Dumper::Trailingcomma = 1;
     local $Data::Dumper::Sortkeys      = 1;
     my $default = Data::Dumper->Dump( [ $default_raw // {} ], [qw/default/] );
@@ -921,6 +934,12 @@ foreach my $class (@classes)
       EOF
       };
 
+    my $init_struct = "Newxz(n, 1, $type)";
+    if ( $short_class eq 'StringView' )
+    {
+      $init_struct .= "; _init_strview(aTHX_ h, n)";
+    }
+
     say $c <<~"EOF"; $n = qq{
     void ${c_prefix}__pack( SV *THIS )
     {
@@ -936,7 +955,7 @@ foreach my $class (@classes)
       $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
       if ( !n )
       {
-        Newxz(n, 1, $type);
+        $init_struct;
         sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
       }
     $packs
@@ -1081,7 +1100,7 @@ foreach my $class (@classes)
   }
 
   my $typemap = $typedefs{$class} eq 'obj' ? 'T_SV' : '';
-  if ( $def{ptr_type} && $def{ptr_type} )
+  if ( $def{ptr_type} )
   {
     say $tm sprintf( "%-64s%s", $type,                  'T_FETCHPTR' );
   }
@@ -1400,6 +1419,12 @@ sub calls_for
   if ( $typedef eq 'opaque' )
   {
     $cast = '(void **)';
+  }
+
+  if ( $def{str} )
+  {
+    $typedef = 'strview';
+    $set_addl = qq{, &n->length$set_addl};
   }
 
   my %result = (

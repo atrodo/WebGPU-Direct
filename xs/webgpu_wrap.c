@@ -29,11 +29,10 @@ void WebGPU__Direct__StringView__pack( SV *THIS )
   WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX, THIS, NULL);
   if ( !n )
   {
-    Newxz(n, 1, WGPUStringView);
+    Newxz(n, 1, WGPUStringView); _init_strview(aTHX_ h, n);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _pack_str(aTHX_ h, "data", 4,  &n->data, NULL);
-  _pack_size_t(aTHX_ h, "length", 6,  &n->length, NULL);
+  _pack_strview(aTHX_ h, "data", 4,  &n->data, &n->length, NULL);
 
   
 }
@@ -54,7 +53,7 @@ void WebGPU__Direct__StringView__unpack( SV *THIS )
     Newxz(n, 1, WGPUStringView);
     sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
   }
-  _unpack_str(aTHX_ h, "data", 4,  &n->data, NULL);
+  _unpack_strview(aTHX_ h, "data", 4,  &n->data, &n->length, NULL);
   _unpack_size_t(aTHX_ h, "length", 6,  &n->length, NULL);
 
 }
