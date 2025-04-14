@@ -385,7 +385,6 @@ while (<$h>)
 
     my @args = ( $definition =~ m[ \s* ([^,]*) \s+ (\w+) \s* (?: , | $ ) ]xmsg );
 
-    warn Data::Dumper::Dumper(\@args);
     # If the last arg is a user-data slot, create a callback situation
     if ( $return eq 'void' && $args[-2] && $args[-2] =~ m/^void\s*[*]$/ )
     {
@@ -1382,7 +1381,7 @@ sub calls_for
   my $typedef = $def{typedef};
   my $return  = $def{return};
 
-  if ( $typedef eq 'enum' )
+  if ( $typedef eq 'enum' || $typedef eq 'flag' )
   {
     $return = "WebGPU::Direct::$return";
     $return =~ s/::WGPU/::/;
@@ -1393,6 +1392,7 @@ sub calls_for
       = ( $typedef eq 'obj' )    ? qq{newSVpvs("$return")}
       : ( $typedef eq 'opaque' ) ? qq{newSVpvs("$return")}
       : ( $typedef eq 'enum' )   ? qq{newSVpvs("$return")}
+      : ( $typedef eq 'flag' )   ? qq{newSVpvs("$return")}
       :                                 "NULL";
 
   if ( $def{is_ptr} )

@@ -4261,11 +4261,11 @@ usage(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBufferDescriptor *n = (WGPUBufferDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
+        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::BufferUsage"));
 
         if (items > 1)
         {
-              _store_flag(aTHX_ h, "usage", 5,  &n->usage, NULL, value);
+              _store_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::BufferUsage"), value);
 
         }
         else
@@ -8781,11 +8781,11 @@ usages(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceCapabilities *n = (WGPUSurfaceCapabilities *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_flag(aTHX_ h, "usages", 6,  &n->usages, NULL);
+        RETVAL =   _find_flag(aTHX_ h, "usages", 6,  &n->usages, newSVpvs("WebGPU::Direct::TextureUsage"));
 
         if (items > 1)
         {
-              _store_flag(aTHX_ h, "usages", 6,  &n->usages, NULL, value);
+              _store_flag(aTHX_ h, "usages", 6,  &n->usages, newSVpvs("WebGPU::Direct::TextureUsage"), value);
 
         }
         else
@@ -9034,11 +9034,11 @@ usage(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceConfiguration *n = (WGPUSurfaceConfiguration *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
+        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::TextureUsage"));
 
         if (items > 1)
         {
-              _store_flag(aTHX_ h, "usage", 5,  &n->usage, NULL, value);
+              _store_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::TextureUsage"), value);
 
         }
         else
@@ -10428,11 +10428,11 @@ usage(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUTextureViewDescriptor *n = (WGPUTextureViewDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
+        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::TextureUsage"));
 
         if (items > 1)
         {
-              _store_flag(aTHX_ h, "usage", 5,  &n->usage, NULL, value);
+              _store_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::TextureUsage"), value);
 
         }
         else
@@ -10770,11 +10770,11 @@ visibility(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUBindGroupLayoutEntry *n = (WGPUBindGroupLayoutEntry *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_flag(aTHX_ h, "visibility", 10,  &n->visibility, NULL);
+        RETVAL =   _find_flag(aTHX_ h, "visibility", 10,  &n->visibility, newSVpvs("WebGPU::Direct::ShaderStage"));
 
         if (items > 1)
         {
-              _store_flag(aTHX_ h, "visibility", 10,  &n->visibility, NULL, value);
+              _store_flag(aTHX_ h, "visibility", 10,  &n->visibility, newSVpvs("WebGPU::Direct::ShaderStage"), value);
 
         }
         else
@@ -12439,11 +12439,11 @@ usage(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUTextureDescriptor *n = (WGPUTextureDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, NULL);
+        RETVAL =   _find_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::TextureUsage"));
 
         if (items > 1)
         {
-              _store_flag(aTHX_ h, "usage", 5,  &n->usage, NULL, value);
+              _store_flag(aTHX_ h, "usage", 5,  &n->usage, newSVpvs("WebGPU::Direct::TextureUsage"), value);
 
         }
         else
@@ -12955,11 +12955,11 @@ writeMask(THIS, value = NO_INIT)
     CODE:
         HV *h = (HV *)SvRV(THIS);
         WGPUColorTargetState *n = (WGPUColorTargetState *) _get_struct_ptr(aTHX, THIS, NULL);
-        RETVAL =   _find_flag(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL);
+        RETVAL =   _find_flag(aTHX_ h, "writeMask", 9,  &n->writeMask, newSVpvs("WebGPU::Direct::ColorWriteMask"));
 
         if (items > 1)
         {
-              _store_flag(aTHX_ h, "writeMask", 9,  &n->writeMask, NULL, value);
+              _store_flag(aTHX_ h, "writeMask", 9,  &n->writeMask, newSVpvs("WebGPU::Direct::ColorWriteMask"), value);
 
         }
         else
