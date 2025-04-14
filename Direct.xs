@@ -141,6 +141,11 @@ SV *_new( SV *CLASS, SV *fields )
   ENTER;
   SAVETMPS;
 
+  if ( CLASS == NULL || !SvOK(CLASS) )
+  {
+    croak("CLASS passed to _new was null, which is not expected to happen");
+  }
+
   PUSHMARK(SP);
   EXTEND(SP, 2);
   PUSHs(CLASS);
@@ -1527,6 +1532,10 @@ SV *_set_enum(pTHX_ SV *new_value, I32 *field, SV *base)
      coerce it */
   if ( !( SvIOK(new_value) && SvPOK(new_value) && SvNOK(new_value) ) )
   {
+    if ( base == NULL || !SvOK(base) )
+    {
+      croak("_set_enum got a null base");
+    }
     new_value = _new(base, new_value);
   }
   I32 v = (I32)SvIV(new_value);
@@ -1537,6 +1546,10 @@ SV *_set_enum(pTHX_ SV *new_value, I32 *field, SV *base)
 SV *_coerce_enum(pTHX_ void *field, SV *base)
 {
   // In order to support strings as values, we need the enum type
+  if ( base == NULL || !SvOK(base) )
+  {
+    croak("_coerce_enum got a null base");
+  }
   SV *result = _new(base, newSViv(*(int *)field));
   return result;
 }
