@@ -86,6 +86,7 @@ say $tm $edit_warning;
 say $pm $edit_warning;
 say $pm q{use v5.30;};
 say $pm q{use warnings;};
+say $pm q{use Carp;};
 say $pm q{};
 say $pm q[package # Hide from PAUSE];
 say $pm q[    WebGPU::Direct::XS];
@@ -887,6 +888,7 @@ foreach my $class (@classes)
           $preamble
           my $default
           sub new {
+              local \$SIG{__DIE__} = \\&Carp::confess;
               my \$class = shift;
               die "\$class does not inherit from $class\\n"
                 if !\$class->isa("$class");
@@ -1005,6 +1007,7 @@ foreach my $class (@classes)
         package\n\t$class {
             $preamble
             sub new {
+                local \$SIG{__DIE__} = \\&Carp::croak;
                 my \$class = __PACKAGE__;
                 die "Cannot call new on abstract class \$class";
             }$destroy

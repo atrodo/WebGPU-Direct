@@ -4,6 +4,7 @@
 
 use v5.30;
 use warnings;
+use Carp;
 
 package # Hide from PAUSE
     WebGPU::Direct::XS
@@ -1009,6 +1010,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::StringView\n"
           if !$class->isa("WebGPU::Direct::StringView");
@@ -1029,6 +1031,7 @@ package
     push @WebGPU::Direct::Adapter::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Adapter;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1044,6 +1047,7 @@ package
     push @WebGPU::Direct::BindGroup::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::BindGroup;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1059,6 +1063,7 @@ package
     push @WebGPU::Direct::BindGroupLayout::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::BindGroupLayout;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1074,6 +1079,7 @@ package
     push @WebGPU::Direct::Buffer::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Buffer;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1089,6 +1095,7 @@ package
     push @WebGPU::Direct::CommandBuffer::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::CommandBuffer;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1104,6 +1111,7 @@ package
     push @WebGPU::Direct::CommandEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::CommandEncoder;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1119,6 +1127,7 @@ package
     push @WebGPU::Direct::ComputePassEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::ComputePassEncoder;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1134,6 +1143,7 @@ package
     push @WebGPU::Direct::ComputePipeline::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::ComputePipeline;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1149,6 +1159,7 @@ package
     push @WebGPU::Direct::Device::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Device;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1164,6 +1175,7 @@ package
     push @WebGPU::Direct::Instance::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Instance;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1179,6 +1191,7 @@ package
     push @WebGPU::Direct::PipelineLayout::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::PipelineLayout;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1194,6 +1207,7 @@ package
     push @WebGPU::Direct::QuerySet::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::QuerySet;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1209,6 +1223,7 @@ package
     push @WebGPU::Direct::Queue::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Queue;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1224,6 +1239,7 @@ package
     push @WebGPU::Direct::RenderBundle::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderBundle;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1239,6 +1255,7 @@ package
     push @WebGPU::Direct::RenderBundleEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderBundleEncoder;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1254,6 +1271,7 @@ package
     push @WebGPU::Direct::RenderPassEncoder::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderPassEncoder;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1269,6 +1287,7 @@ package
     push @WebGPU::Direct::RenderPipeline::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::RenderPipeline;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1284,6 +1303,7 @@ package
     push @WebGPU::Direct::Sampler::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Sampler;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1299,6 +1319,7 @@ package
     push @WebGPU::Direct::ShaderModule::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::ShaderModule;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1314,6 +1335,7 @@ package
     push @WebGPU::Direct::Surface::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Surface;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1329,6 +1351,7 @@ package
     push @WebGPU::Direct::Texture::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::Texture;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1344,6 +1367,7 @@ package
     push @WebGPU::Direct::TextureView::ISA, "WebGPU::Direct::Opaque";
     require WebGPU::Direct::TextureView;
     sub new {
+        local $SIG{__DIE__} = \&Carp::croak;
         my $class = __PACKAGE__;
         die "Cannot call new on abstract class $class";
     }
@@ -1360,6 +1384,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ChainedStruct\n"
           if !$class->isa("WebGPU::Direct::ChainedStruct");
@@ -1381,6 +1406,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ChainedStructOut\n"
           if !$class->isa("WebGPU::Direct::ChainedStructOut");
@@ -1402,6 +1428,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BufferMapCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::BufferMapCallbackInfo");
@@ -1423,6 +1450,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CompilationInfoCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::CompilationInfoCallbackInfo");
@@ -1444,6 +1472,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::CreateComputePipelineAsyncCallbackInfo");
@@ -1465,6 +1494,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::CreateRenderPipelineAsyncCallbackInfo");
@@ -1486,6 +1516,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::DeviceLostCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::DeviceLostCallbackInfo");
@@ -1507,6 +1538,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::PopErrorScopeCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::PopErrorScopeCallbackInfo");
@@ -1528,6 +1560,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::QueueWorkDoneCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::QueueWorkDoneCallbackInfo");
@@ -1549,6 +1582,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RequestAdapterCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::RequestAdapterCallbackInfo");
@@ -1570,6 +1604,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RequestDeviceCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::RequestDeviceCallbackInfo");
@@ -1591,6 +1626,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::UncapturedErrorCallbackInfo\n"
           if !$class->isa("WebGPU::Direct::UncapturedErrorCallbackInfo");
@@ -1613,6 +1649,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::AdapterInfo\n"
           if !$class->isa("WebGPU::Direct::AdapterInfo");
@@ -1635,6 +1672,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupEntry\n"
           if !$class->isa("WebGPU::Direct::BindGroupEntry");
@@ -1660,6 +1698,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BlendComponent\n"
           if !$class->isa("WebGPU::Direct::BlendComponent");
@@ -1685,6 +1724,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BufferBindingLayout\n"
           if !$class->isa("WebGPU::Direct::BufferBindingLayout");
@@ -1708,6 +1748,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BufferDescriptor\n"
           if !$class->isa("WebGPU::Direct::BufferDescriptor");
@@ -1729,6 +1770,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Color\n"
           if !$class->isa("WebGPU::Direct::Color");
@@ -1750,6 +1792,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CommandBufferDescriptor\n"
           if !$class->isa("WebGPU::Direct::CommandBufferDescriptor");
@@ -1771,6 +1814,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CommandEncoderDescriptor\n"
           if !$class->isa("WebGPU::Direct::CommandEncoderDescriptor");
@@ -1792,6 +1836,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CompilationMessage\n"
           if !$class->isa("WebGPU::Direct::CompilationMessage");
@@ -1813,6 +1858,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ComputePassTimestampWrites\n"
           if !$class->isa("WebGPU::Direct::ComputePassTimestampWrites");
@@ -1834,6 +1880,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ConstantEntry\n"
           if !$class->isa("WebGPU::Direct::ConstantEntry");
@@ -1858,6 +1905,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Extent3D\n"
           if !$class->isa("WebGPU::Direct::Extent3D");
@@ -1879,6 +1927,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Future\n"
           if !$class->isa("WebGPU::Direct::Future");
@@ -1900,6 +1949,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::InstanceCapabilities\n"
           if !$class->isa("WebGPU::Direct::InstanceCapabilities");
@@ -1921,6 +1971,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Limits\n"
           if !$class->isa("WebGPU::Direct::Limits");
@@ -1946,6 +1997,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::MultisampleState\n"
           if !$class->isa("WebGPU::Direct::MultisampleState");
@@ -1971,6 +2023,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::Origin3D\n"
           if !$class->isa("WebGPU::Direct::Origin3D");
@@ -1992,6 +2045,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::PipelineLayoutDescriptor\n"
           if !$class->isa("WebGPU::Direct::PipelineLayoutDescriptor");
@@ -2017,6 +2071,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::PrimitiveState\n"
           if !$class->isa("WebGPU::Direct::PrimitiveState");
@@ -2038,6 +2093,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::QuerySetDescriptor\n"
           if !$class->isa("WebGPU::Direct::QuerySetDescriptor");
@@ -2059,6 +2115,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::QueueDescriptor\n"
           if !$class->isa("WebGPU::Direct::QueueDescriptor");
@@ -2080,6 +2137,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderBundleDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderBundleDescriptor");
@@ -2105,6 +2163,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderBundleEncoderDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderBundleEncoderDescriptor");
@@ -2126,6 +2185,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassDepthStencilAttachment\n"
           if !$class->isa("WebGPU::Direct::RenderPassDepthStencilAttachment");
@@ -2147,6 +2207,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassMaxDrawCount\n"
           if !$class->isa("WebGPU::Direct::RenderPassMaxDrawCount");
@@ -2168,6 +2229,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassTimestampWrites\n"
           if !$class->isa("WebGPU::Direct::RenderPassTimestampWrites");
@@ -2191,6 +2253,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RequestAdapterOptions\n"
           if !$class->isa("WebGPU::Direct::RequestAdapterOptions");
@@ -2212,6 +2275,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SamplerBindingLayout\n"
           if !$class->isa("WebGPU::Direct::SamplerBindingLayout");
@@ -2243,6 +2307,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SamplerDescriptor\n"
           if !$class->isa("WebGPU::Direct::SamplerDescriptor");
@@ -2264,6 +2329,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderModuleDescriptor\n"
           if !$class->isa("WebGPU::Direct::ShaderModuleDescriptor");
@@ -2285,6 +2351,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderSourceSPIRV\n"
           if !$class->isa("WebGPU::Direct::ShaderSourceSPIRV");
@@ -2306,6 +2373,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ShaderSourceWGSL\n"
           if !$class->isa("WebGPU::Direct::ShaderSourceWGSL");
@@ -2332,6 +2400,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::StencilFaceState\n"
           if !$class->isa("WebGPU::Direct::StencilFaceState");
@@ -2353,6 +2422,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::StorageTextureBindingLayout\n"
           if !$class->isa("WebGPU::Direct::StorageTextureBindingLayout");
@@ -2375,6 +2445,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SupportedFeatures\n"
           if !$class->isa("WebGPU::Direct::SupportedFeatures");
@@ -2397,6 +2468,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SupportedWGSLLanguageFeatures\n"
           if !$class->isa("WebGPU::Direct::SupportedWGSLLanguageFeatures");
@@ -2419,6 +2491,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceCapabilities\n"
           if !$class->isa("WebGPU::Direct::SurfaceCapabilities");
@@ -2443,6 +2516,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceConfiguration\n"
           if !$class->isa("WebGPU::Direct::SurfaceConfiguration");
@@ -2464,6 +2538,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceDescriptor\n"
           if !$class->isa("WebGPU::Direct::SurfaceDescriptor");
@@ -2485,6 +2560,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceSourceAndroidNativeWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceSourceAndroidNativeWindow");
@@ -2506,6 +2582,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceSourceMetalLayer\n"
           if !$class->isa("WebGPU::Direct::SurfaceSourceMetalLayer");
@@ -2527,6 +2604,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceSourceWaylandSurface\n"
           if !$class->isa("WebGPU::Direct::SurfaceSourceWaylandSurface");
@@ -2548,6 +2626,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceSourceWindowsHWND\n"
           if !$class->isa("WebGPU::Direct::SurfaceSourceWindowsHWND");
@@ -2569,6 +2648,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceSourceXCBWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceSourceXCBWindow");
@@ -2590,6 +2670,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceSourceXlibWindow\n"
           if !$class->isa("WebGPU::Direct::SurfaceSourceXlibWindow");
@@ -2611,6 +2692,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::SurfaceTexture\n"
           if !$class->isa("WebGPU::Direct::SurfaceTexture");
@@ -2632,6 +2714,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TexelCopyBufferLayout\n"
           if !$class->isa("WebGPU::Direct::TexelCopyBufferLayout");
@@ -2653,6 +2736,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TextureBindingLayout\n"
           if !$class->isa("WebGPU::Direct::TextureBindingLayout");
@@ -2678,6 +2762,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TextureViewDescriptor\n"
           if !$class->isa("WebGPU::Direct::TextureViewDescriptor");
@@ -2699,6 +2784,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::VertexAttribute\n"
           if !$class->isa("WebGPU::Direct::VertexAttribute");
@@ -2720,6 +2806,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupDescriptor\n"
           if !$class->isa("WebGPU::Direct::BindGroupDescriptor");
@@ -2741,6 +2828,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupLayoutEntry\n"
           if !$class->isa("WebGPU::Direct::BindGroupLayoutEntry");
@@ -2762,6 +2850,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BlendState\n"
           if !$class->isa("WebGPU::Direct::BlendState");
@@ -2783,6 +2872,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::CompilationInfo\n"
           if !$class->isa("WebGPU::Direct::CompilationInfo");
@@ -2804,6 +2894,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ComputePassDescriptor\n"
           if !$class->isa("WebGPU::Direct::ComputePassDescriptor");
@@ -2831,6 +2922,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::DepthStencilState\n"
           if !$class->isa("WebGPU::Direct::DepthStencilState");
@@ -2852,6 +2944,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::DeviceDescriptor\n"
           if !$class->isa("WebGPU::Direct::DeviceDescriptor");
@@ -2873,6 +2966,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::FutureWaitInfo\n"
           if !$class->isa("WebGPU::Direct::FutureWaitInfo");
@@ -2894,6 +2988,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::InstanceDescriptor\n"
           if !$class->isa("WebGPU::Direct::InstanceDescriptor");
@@ -2915,6 +3010,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ProgrammableStageDescriptor\n"
           if !$class->isa("WebGPU::Direct::ProgrammableStageDescriptor");
@@ -2936,6 +3032,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassColorAttachment\n"
           if !$class->isa("WebGPU::Direct::RenderPassColorAttachment");
@@ -2957,6 +3054,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TexelCopyBufferInfo\n"
           if !$class->isa("WebGPU::Direct::TexelCopyBufferInfo");
@@ -2978,6 +3076,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TexelCopyTextureInfo\n"
           if !$class->isa("WebGPU::Direct::TexelCopyTextureInfo");
@@ -3007,6 +3106,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::TextureDescriptor\n"
           if !$class->isa("WebGPU::Direct::TextureDescriptor");
@@ -3030,6 +3130,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::VertexBufferLayout\n"
           if !$class->isa("WebGPU::Direct::VertexBufferLayout");
@@ -3051,6 +3152,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::BindGroupLayoutDescriptor\n"
           if !$class->isa("WebGPU::Direct::BindGroupLayoutDescriptor");
@@ -3075,6 +3177,7 @@ package
            };
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ColorTargetState\n"
           if !$class->isa("WebGPU::Direct::ColorTargetState");
@@ -3096,6 +3199,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::ComputePipelineDescriptor\n"
           if !$class->isa("WebGPU::Direct::ComputePipelineDescriptor");
@@ -3117,6 +3221,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPassDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderPassDescriptor");
@@ -3138,6 +3243,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::VertexState\n"
           if !$class->isa("WebGPU::Direct::VertexState");
@@ -3159,6 +3265,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::FragmentState\n"
           if !$class->isa("WebGPU::Direct::FragmentState");
@@ -3180,6 +3287,7 @@ package
     my $default = {};
 
     sub new {
+        local $SIG{__DIE__} = \&Carp::confess;
         my $class = shift;
         die "$class does not inherit from WebGPU::Direct::RenderPipelineDescriptor\n"
           if !$class->isa("WebGPU::Direct::RenderPipelineDescriptor");
