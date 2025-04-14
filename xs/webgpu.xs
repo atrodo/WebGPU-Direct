@@ -166,19 +166,7 @@ wgpuAdapter_requestDevice(adapter, descriptor, callbackInfo)
         WGPUDeviceDescriptor const * descriptor
         WGPURequestDeviceCallbackInfo callbackInfo
     CODE:
-      WGPUDeviceDescriptor const * c = &WebGPU__Direct__DeviceDescriptor__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuAdapterRequestDevice(adapter, c, c_userdata);
+      RETVAL = wgpuAdapterRequestDevice(adapter, descriptor, callbackInfo);
       {
         SV *u = ST(2);
         if ( sv_isobject(u) ) { _unpack(u); }
@@ -327,19 +315,7 @@ wgpuBuffer_mapAsync(buffer, mode, offset, size, callbackInfo)
         size_t size
         WGPUBufferMapCallbackInfo callbackInfo
     CODE:
-      size_t c = &size_t__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuBufferMapAsync(buffer, mode, offset, c, c_userdata);
+      RETVAL = wgpuBufferMapAsync(buffer, mode, offset, size, callbackInfo);
       {
         SV *u = ST(4);
         if ( sv_isobject(u) ) { _unpack(u); }
@@ -787,19 +763,7 @@ wgpuDevicecreateComputePipelineAsync(device, descriptor, callbackInfo)
         WGPUComputePipelineDescriptor const * descriptor
         WGPUCreateComputePipelineAsyncCallbackInfo callbackInfo
     CODE:
-      WGPUComputePipelineDescriptor const * c = &WebGPU__Direct__ComputePipelineDescriptor__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuDeviceCreateComputePipelineAsync(device, c, c_userdata);
+      RETVAL = wgpuDeviceCreateComputePipelineAsync(device, descriptor, callbackInfo);
       {
         SV *u = ST(2);
         if ( sv_isobject(u) ) { _unpack(u); }
@@ -854,19 +818,7 @@ wgpuDevicecreateRenderPipelineAsync(device, descriptor, callbackInfo)
         WGPURenderPipelineDescriptor const * descriptor
         WGPUCreateRenderPipelineAsyncCallbackInfo callbackInfo
     CODE:
-      WGPURenderPipelineDescriptor const * c = &WebGPU__Direct__RenderPipelineDescriptor__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuDeviceCreateRenderPipelineAsync(device, c, c_userdata);
+      RETVAL = wgpuDeviceCreateRenderPipelineAsync(device, descriptor, callbackInfo);
       {
         SV *u = ST(2);
         if ( sv_isobject(u) ) { _unpack(u); }
@@ -980,19 +932,7 @@ wgpuDevicepopErrorScope(device, callbackInfo)
         WGPUDevice device
         WGPUPopErrorScopeCallbackInfo callbackInfo
     CODE:
-      WGPUDevice c = &WebGPU__Direct__Device__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuDevicePopErrorScope(c, c_userdata);
+      RETVAL = wgpuDevicePopErrorScope(device, callbackInfo);
       {
         SV *u = ST(1);
         if ( sv_isobject(u) ) { _unpack(u); }
@@ -1085,19 +1025,7 @@ wgpuInstance_requestAdapter(instance, options, callbackInfo)
         WGPURequestAdapterOptions const * options
         WGPURequestAdapterCallbackInfo callbackInfo
     CODE:
-      WGPURequestAdapterOptions const * c = &WebGPU__Direct__RequestAdapterOptions__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuInstanceRequestAdapter(instance, c, c_userdata);
+      RETVAL = wgpuInstanceRequestAdapter(instance, options, callbackInfo);
       {
         SV *u = ST(2);
         if ( sv_isobject(u) ) { _unpack(u); }
@@ -1238,19 +1166,7 @@ wgpuQueueonSubmittedWorkDone(queue, callbackInfo)
         WGPUQueue queue
         WGPUQueueWorkDoneCallbackInfo callbackInfo
     CODE:
-      WGPUQueue c = &WebGPU__Direct__Queue__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuQueueOnSubmittedWorkDone(c, c_userdata);
+      RETVAL = wgpuQueueOnSubmittedWorkDone(queue, callbackInfo);
       {
         SV *u = ST(1);
         if ( sv_isobject(u) ) { _unpack(u); }
@@ -1837,19 +1753,7 @@ wgpuShaderModulegetCompilationInfo(shaderModule, callbackInfo)
         WGPUShaderModule shaderModule
         WGPUCompilationInfoCallbackInfo callbackInfo
     CODE:
-      WGPUShaderModule c = &WebGPU__Direct__ShaderModule__callback;
-      cb_data *c_userdata;
-      Newx(c_userdata, 1, cb_data);
-      *c_userdata = (cb_data) {
-        .guard1 = CB_GUARD,
-        .guard2 = CB_GUARD,
-        .perlsub = callback,
-        .data = userdata,
-      };
-      SvREFCNT_inc(callback);
-      SvREFCNT_inc(userdata);
-
-      RETVAL = wgpuShaderModuleGetCompilationInfo(c, c_userdata);
+      RETVAL = wgpuShaderModuleGetCompilationInfo(shaderModule, callbackInfo);
       {
         SV *u = ST(1);
         if ( sv_isobject(u) ) { _unpack(u); }

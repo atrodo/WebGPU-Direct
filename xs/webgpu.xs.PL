@@ -1541,16 +1541,10 @@ sub say_call_fn
   # 0b010: has size
   # 0b100: is a MappedBuffer return
   my $has_mb = 0;
-  my $is_cb;
   my $ret_array;
 
-  # Handle callbacks in a perl-ish way
+  # Handle certain aspects in a perl-ish way
   my @defargs = $def{args}->@*;
-  if ( @defargs >= 2
-    && $defargs[-1] eq 'callbackInfo' )
-  {
-    $is_cb = 1;
-  }
 
   if ( @defargs == 4
     && $def{return} =~ m/^size_t\s*$/xms
@@ -1627,16 +1621,6 @@ sub say_call_fn
     warn "Unknown type: $type"
         if !exists $typedefs{$pkg} && !exists $typedefs{$type};
 
-    # Handle the callback cases
-    if ( $is_cb && $value eq 'callback' )
-    {
-      $key = 'CV *';
-    }
-    if ( $is_cb && $value eq 'userdata' )
-    {
-      $key = 'SV *';
-    }
-
     # Handle the array cases
     if ( $value =~ $arrcnt_re && exists $arrays{$1} )
     {
@@ -1708,32 +1692,8 @@ sub say_call_fn
 
   say $xs "    CODE:";
 
-  if ( $is_cb || keys %arrays || keys %buffers )
+  if ( keys %arrays || keys %buffers )
   {
-    if ($is_cb)
-    {
-      my $cb_type = $defargs[-4];
-      my $cb_pkg  = pkg_name($cb_type);
-
-      $cb_pkg =~ tr/:/_/;
-      @calls[ -2, -1 ] = qw/c c_userdata/;
-
-      say $xs <<~"EOF"; my $n = qq{
-              $cb_type c = &${cb_pkg}__callback;
-              cb_data *c_userdata;
-              Newx(c_userdata, 1, cb_data);
-              *c_userdata = (cb_data) {
-                .guard1 = CB_GUARD,
-                .guard2 = CB_GUARD,
-                .perlsub = callback,
-                .data = userdata,
-              };
-              SvREFCNT_inc(callback);
-              SvREFCNT_inc(userdata);
-        EOF
-        };
-    }
-
     foreach my $array ( sort keys %arrays )
     {
       my $type = $arrays{$array};
