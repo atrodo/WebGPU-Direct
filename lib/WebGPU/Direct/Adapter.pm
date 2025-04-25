@@ -7,7 +7,7 @@ package WebGPU::Direct::Adapter
 
   use WebGPU::Direct::Error qw/webgpu_die/;
 
-  sub requestDevice (
+  sub createDevice (
     $self,
     $descriptor = undef,
     $callback   = undef,
@@ -33,21 +33,10 @@ package WebGPU::Direct::Adapter
 
     if ( !defined $descriptor )
     {
-      my $supported_limits = WebGPU::Direct->SupportedLimits->new;
+      my $limits = WebGPU::Direct->Limits->new;
 
-      $self->getLimits($supported_limits);
-      my $limits = $supported_limits->limits;
+      $self->getLimits($limits);
 
-      my $req_limits
-          = WebGPU::Direct->RequiredLimits->new( { limits => $limits } );
-      $descriptor
-          = WebGPU::Direct->DeviceDescriptor->new( requiredLimits => $req_limits );
-    }
-
-    $self->_requestDevice( $descriptor, $callback, $userdata );
-
-    if ($device)
-    {
       my $croak = sub
       {
         my $type     = shift;
@@ -55,7 +44,25 @@ package WebGPU::Direct::Adapter
         my $userdata = shift;
         webgpu_die( $type, $message );
       };
-      $device->setUncapturedErrorCallback( $croak, {} );
+
+      my $error_callback = {
+        callback => $croak,
+      };
+
+      my $req_limits = WebGPU::Direct->Limits->new( { limits => $limits } );
+      $descriptor = WebGPU::Direct->DeviceDescriptor->new(
+        requiredLimits              => $limits,
+        uncapturedErrorCallbackInfo => $error_callback,
+      );
+    }
+
+    my $future = $self->requestDevice( $descriptor, { callback => $callback, userdata1 => $userdata } );
+
+    while ( !defined $descriptor )
+    {
+      my $status = $self->waitAny( [$future], 500 );
+      die $status
+          if $status->error;
     }
 
     return $device;
@@ -215,7 +222,7 @@ WebGPU::Direct::Adapter
 
 =over
 
-=item * descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>) Default: undef
+=item * descriptor (L<WebGPU::Direct::DeviceDescriptor|WebGPU::Direct::Types/WebGPU::Direct::DeviceDescriptor>)
 
 =item * callbackInfo (L<WebGPU::Direct::RequestDeviceCallbackInfo|WebGPU::Direct::Types/WebGPU::Direct::RequestDeviceCallbackInfo>)
 

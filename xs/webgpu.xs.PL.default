@@ -139,7 +139,6 @@
   # XS Function and function documentation of defaults
   Adapter => {
     requestDevice => {
-      descriptor => 'undef',
       callback   => 'undef',
       userdata   => '{}',
     },

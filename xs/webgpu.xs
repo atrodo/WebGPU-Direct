@@ -161,7 +161,7 @@ wgpuAdapterhasFeature(adapter, feature)
 
 
 WGPUFuture 
-wgpuAdapter_requestDevice(adapter, descriptor, callbackInfo)
+wgpuAdapterrequestDevice(adapter, descriptor, callbackInfo)
         WGPUAdapter adapter
         WGPUDeviceDescriptor const * descriptor
         WGPURequestDeviceCallbackInfo callbackInfo
