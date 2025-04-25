@@ -195,7 +195,6 @@
 
   Instance => {
     requestAdapter => {
-      options  => 'undef',
       callback => 'undef',
       userdata => '{}',
     },

@@ -7,7 +7,7 @@ package WebGPU::Direct::Instance
 
   use Carp;
 
-  sub requestAdapter (
+  sub createAdapter (
     $self,
     $options  = undef,
     $callback = undef,
@@ -34,12 +34,19 @@ package WebGPU::Direct::Instance
     if ( !$options || !exists $options->{compatibleSurface} )
     {
       my $pkg = __PACKAGE__;
-      my $fn  = 'RequestAdapter';
+      my $fn  = 'createAdapter';
       carp "$pkg: $fn: compatibleSurface not provided"
           . "\n\tThis is likely not what you want, the returned adapter may be incompataible with your surface";
     }
 
-    $self->_requestAdapter( $options, $callback, $userdata );
+    my $future = $self->requestAdapter( $options, { callback => $callback, userdata1 => $userdata } );
+
+    while ( !defined $adapter )
+    {
+      my $status = $self->waitAny([$future], 500);
+      die $status
+        if $status->error;
+    }
 
     return $adapter;
   }
@@ -141,7 +148,7 @@ WebGPU::Direct::Instance
 
 =over
 
-=item * options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>) Default: undef
+=item * options (L<WebGPU::Direct::RequestAdapterOptions|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterOptions>)
 
 =item * callbackInfo (L<WebGPU::Direct::RequestAdapterCallbackInfo|WebGPU::Direct::Types/WebGPU::Direct::RequestAdapterCallbackInfo>)
 
