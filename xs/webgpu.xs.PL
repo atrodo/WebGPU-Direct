@@ -1548,20 +1548,9 @@ sub say_call_fn
   # 0b010: has size
   # 0b100: is a MappedBuffer return
   my $has_mb = 0;
-  my $ret_array;
 
   # Handle certain aspects in a perl-ish way
   my @defargs = $def{args}->@*;
-
-  if ( @defargs == 4
-    && $def{return} =~ m/^size_t\s*$/xms
-    && $defargs[2] =~ m/\s*[*]$/xms )
-  {
-    $def{return} = 'SV *';
-    $ret_array = $defargs[2];
-    delete $defargs[2];
-    delete $defargs[3];
-  }
 
   my %arrays;
   my $array_can;
@@ -1775,22 +1764,6 @@ sub say_call_fn
     say $xs "      void *n = $def{c_name}($call);";
     say $xs "      RETVAL =  WebGPU__Direct__MappedBuffer__wrap(aTHX_ n, size-offset);";
     $def_arg->{return} = 'MappedBuffer';
-  }
-  elsif ($ret_array)
-  {
-    my $ptr_type = $ret_array;
-    my $type     = $ptr_type;
-    $type =~ s/\s*[*]$//xms;
-
-    say $xs "      $ptr_type result = NULL;";
-    say $xs "      size_t count = $def{c_name}($call, result);";
-    say $xs "      Newxz(result, count, $type);";
-    say $xs "      count = $def{c_name}($call, result);";
-    say $xs '      SV *STRICT_ENUM = get_sv("WebGPU::Direct::Enum::STRICT_NEW", GV_ADDWARN | GV_ADDMULTI);';
-    say $xs "      save_item(STRICT_ENUM);";
-    say $xs "      sv_setsv(STRICT_ENUM, &PL_sv_undef);";
-    say $xs "      RETVAL = _array_new(newSVpvs(\"WebGPU::Direct::FeatureName\"), result, sizeof($type), count);";
-    say $xs "      Safefree(result);";
   }
   else
   {
