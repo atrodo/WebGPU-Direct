@@ -111,7 +111,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Adapter	PREFIX = wgpuAdapter
 
 
 void 
-wgpuAdaptergetFeatures(adapter, features)
+wgpuAdapter_getFeatures(adapter, features)
         WGPUAdapter adapter
         WGPUSupportedFeatures * features
     CODE:
@@ -123,7 +123,7 @@ wgpuAdaptergetFeatures(adapter, features)
 
 
 WGPUStatus 
-wgpuAdaptergetInfo(adapter, info)
+wgpuAdapter_getInfo(adapter, info)
         WGPUAdapter adapter
         WGPUAdapterInfo * info
     CODE:
@@ -137,7 +137,7 @@ wgpuAdaptergetInfo(adapter, info)
 
 
 WGPUStatus 
-wgpuAdaptergetLimits(adapter, limits)
+wgpuAdapter_getLimits(adapter, limits)
         WGPUAdapter adapter
         WGPULimits * limits
     CODE:
@@ -1020,7 +1020,7 @@ wgpuInstanceprocessEvents(instance)
 
 
 WGPUFuture 
-wgpuInstance_requestAdapter(instance, options, callbackInfo)
+wgpuInstancerequestAdapter(instance, options, callbackInfo)
         WGPUInstance instance
         WGPURequestAdapterOptions const * options
         WGPURequestAdapterCallbackInfo callbackInfo

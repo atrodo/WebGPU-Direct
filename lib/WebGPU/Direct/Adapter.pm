@@ -60,6 +60,51 @@ package WebGPU::Direct::Adapter
 
     return $device;
   }
+
+  sub getLimits (
+    $self,
+    $limits = undef,
+      )
+  {
+    if ( !defined $limits )
+    {
+      $limits = WebGPU::Direct::Limits->new;
+    }
+
+    $self->_getLimits($limits);
+
+    return $limits;
+  }
+
+  sub getFeatures (
+    $self,
+    $features = undef,
+      )
+  {
+    if ( !defined $features )
+    {
+      $features = WebGPU::Direct::SupportedFeatures->new;
+    }
+
+    $self->_getFeatures($features);
+
+    return $features;
+  }
+
+  sub getInfo (
+    $self,
+    $info = undef,
+      )
+  {
+    if ( !defined $info )
+    {
+      $info = WebGPU::Direct::AdapterInfo->new;
+    }
+
+    $self->_getInfo($info);
+
+    return $info;
+  }
 };
 
 1;
