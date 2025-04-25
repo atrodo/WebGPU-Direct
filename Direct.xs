@@ -110,21 +110,19 @@ SV *_coerce_obj( SV *CLASS, SV *fields )
     return fields;
   }
 
-  // If it's null or not a hashref, don't bother either
+  // If there is no valid class, don't bother
   if ( CLASS == NULL )
   {
     return fields;
   }
-  if ( !SvROK(fields) )
-  {
-    return fields;
-  }
-  if (   SvTYPE(SvRV(fields)) != SVt_PVHV
-      && SvTYPE(SvRV(fields)) != SVt_PVAV )
+
+  // If there the value is not defined, don't bother
+  if ( !SvOK(fields) )
   {
     return fields;
   }
 
+  // Otherwise run CLASS->new(fields)
   return _new(CLASS, fields);
 }
 
