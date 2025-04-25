@@ -1663,6 +1663,11 @@ package
         return $result;
     }
     
+    sub DESTROY
+    {
+      $_[0]->freeMembers;
+    }
+
 }
 
 package
@@ -2459,6 +2464,11 @@ package
         return $result;
     }
     
+    sub DESTROY
+    {
+      $_[0]->freeMembers;
+    }
+
 }
 
 package
@@ -2482,6 +2492,11 @@ package
         return $result;
     }
     
+    sub DESTROY
+    {
+      $_[0]->freeMembers;
+    }
+
 }
 
 package
@@ -2505,6 +2520,11 @@ package
         return $result;
     }
     
+    sub DESTROY
+    {
+      $_[0]->freeMembers;
+    }
+
 }
 
 package

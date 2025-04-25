@@ -814,13 +814,23 @@ foreach my $class (@classes)
   say $xs qq{MODULE = WebGPU::Direct\tPACKAGE = $class\tPREFIX = $prefix};
   say $xs '';
 
+  my @destroys;
   if ( grep { $_->{name} eq 'release' } @fns )
+  {
+    push @destroys, '$_[0]->release;';
+  }
+  if ( grep { $_->{name} eq 'freeMembers' } @fns )
+  {
+    push @destroys, '$_[0]->freeMembers;';
+  }
+
+  if (@destroys)
   {
     $destroy = <<~"EOF"; my $n = qq{
 
         sub DESTROY
         {
-          \$_[0]->release;
+          @destroys
         }
     EOF
     };
