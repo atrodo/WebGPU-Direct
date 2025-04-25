@@ -620,9 +620,16 @@ SV * _array_new(SV *base, void *n, Size_t size, Size_t count)
   bool is_enum   = sv_derived_from(base, "WebGPU::Direct::Enum");
   bool is_opaque = sv_derived_from(base, "WebGPU::Direct::Opaque");
 
-  if ( is_enum && size != sizeof(uint32_t) )
+  if ( is_enum )
   {
-    croak("Enum is expected to be of size %zu, not %zu", sizeof(uint32_t), size);
+    SV *STRICT_ENUM = get_sv("WebGPU::Direct::Enum::STRICT_NEW", GV_ADDWARN | GV_ADDMULTI);
+    save_item(STRICT_ENUM);
+    sv_setsv(STRICT_ENUM, &PL_sv_undef);
+
+    if ( size != sizeof(uint32_t) )
+    {
+      croak("Enum is expected to be of size %zu, not %zu", sizeof(uint32_t), size);
+    }
   }
 
   AV *ret = newAV();
