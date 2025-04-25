@@ -27,9 +27,9 @@ package WebGPU::Direct::Device
         $descriptor = WebGPU::Direct->ShaderModuleDescriptor->new(
           {
             label       => $label,
-            nextInChain => WebGPU::Direct->ShaderModuleWGSLDescriptor->new(
+            nextInChain => WebGPU::Direct->ShaderSourceWGSL->new(
               {
-                sType => $stype->shaderModuleWGSLDescriptor,
+                sType => $stype->shaderSourceWGSL,
                 code  => $code,
               }
             ),
