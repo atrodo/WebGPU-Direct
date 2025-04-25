@@ -8222,7 +8222,8 @@ pack(THIS)
     PROTOTYPE: $
     CODE:
         WebGPU__Direct__ShaderSourceWGSL__pack( THIS );
-         //
+        WebGPU__Direct__ChainedStruct__pack( /*asdf*/ THIS );
+ //
 
 void
 unpack(THIS)
@@ -8230,7 +8231,8 @@ unpack(THIS)
     PROTOTYPE: $
     CODE:
         WebGPU__Direct__ShaderSourceWGSL__unpack( THIS );
-         //
+        WebGPU__Direct__ChainedStruct__unpack( /*asdf*/ THIS );
+ //
 
 SV *
 bytes(THIS)
@@ -10869,7 +10871,8 @@ pack(THIS)
     PROTOTYPE: $
     CODE:
         WebGPU__Direct__BlendState__pack( THIS );
-         //
+        WebGPU__Direct__BlendComponent__pack( /*asdf*/ THIS );
+ //
 
 void
 unpack(THIS)
@@ -10877,7 +10880,8 @@ unpack(THIS)
     PROTOTYPE: $
     CODE:
         WebGPU__Direct__BlendState__unpack( THIS );
-         //
+        WebGPU__Direct__BlendComponent__unpack( /*asdf*/ THIS );
+ //
 
 SV *
 bytes(THIS)

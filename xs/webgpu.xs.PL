@@ -633,7 +633,11 @@ foreach my $class (@classes)
 
   if (@defs)
   {
-    if ( $defs[0]->{inline_obj} && 1 == scalar( grep { $_->{inline_obj} } @defs ) )
+    # Tehcnically this gets more than it should, because anyone with a first
+    # element that is non-pointer struct can be used in place of that first
+    # element type. Used to require that the first one be the only inlinable
+    # object, but that now removes some that are legit ISA's. TODO
+    if ( $defs[0]->{inline_obj} )
     {
       my $c_prefix = $defs[0]->{return} . '::';
       $c_prefix =~ s/::/__/g;

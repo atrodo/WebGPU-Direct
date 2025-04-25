@@ -2369,7 +2369,7 @@ package
 
 package
 	WebGPU::Direct::ShaderSourceWGSL {
-    
+    push @WebGPU::Direct::ShaderSourceWGSL::ISA, "WebGPU::Direct::ChainedStruct";
     my $default = {};
 
     sub new {
@@ -2846,7 +2846,7 @@ package
 
 package
 	WebGPU::Direct::BlendState {
-    
+    push @WebGPU::Direct::BlendState::ISA, "WebGPU::Direct::BlendComponent";
     my $default = {};
 
     sub new {
