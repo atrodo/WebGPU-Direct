@@ -541,16 +541,22 @@ say $pm qq[];
 open my $const_pod, '>', "$Bin/../lib/WebGPU/Direct/Constants.pod";
 open my $types_pod, '>', "$Bin/../lib/WebGPU/Direct/Types.pod";
 
+my %enum_base = (
+  enum => 'WebGPU::Direct::Enum',
+  flag => 'WebGPU::Direct::Flag',
+);
+
 # Write out all the enum definitions
 foreach my $enum ( sort keys %enums )
 {
   my $pkg = "WebGPU::Direct::$enum";
   $pkg =~ s/::WGPU/::/;
 
+  my $base = $enum_base{ $typedefs{$enum} };
   $const_pod->say(qq[\n=head1 $pkg]);
   $const_pod->say(qq[\n=over]);
   say $pm qq[package\n\t$pkg {];
-  say $pm qq{  use base "WebGPU::Direct::Enum";};
+  say $pm qq{  use base "$base";};
 
   my %consts = %{ $enums{$enum} };
 

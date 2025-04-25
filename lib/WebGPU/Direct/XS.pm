@@ -355,7 +355,7 @@ package
 
 package
 	WebGPU::Direct::BufferUsage {
-  use base "WebGPU::Direct::Enum";
+  use base "WebGPU::Direct::Flag";
   __PACKAGE__->_add_enum('none' => (0x0000000000000000, 'WGPUBufferUsage_None'));
   __PACKAGE__->_add_enum('mapRead' => (0x0000000000000001, 'WGPUBufferUsage_MapRead'));
   __PACKAGE__->_add_enum('mapWrite' => (0x0000000000000002, 'WGPUBufferUsage_MapWrite'));
@@ -381,7 +381,7 @@ package
 
 package
 	WebGPU::Direct::ColorWriteMask {
-  use base "WebGPU::Direct::Enum";
+  use base "WebGPU::Direct::Flag";
   __PACKAGE__->_add_enum('none' => (0x0000000000000000, 'WGPUColorWriteMask_None'));
   __PACKAGE__->_add_enum('red' => (0x0000000000000001, 'WGPUColorWriteMask_Red'));
   __PACKAGE__->_add_enum('green' => (0x0000000000000002, 'WGPUColorWriteMask_Green'));
@@ -567,7 +567,7 @@ package
 
 package
 	WebGPU::Direct::MapMode {
-  use base "WebGPU::Direct::Enum";
+  use base "WebGPU::Direct::Flag";
   __PACKAGE__->_add_enum('none' => (0x0000000000000000, 'WGPUMapMode_None'));
   __PACKAGE__->_add_enum('read' => (0x0000000000000001, 'WGPUMapMode_Read'));
   __PACKAGE__->_add_enum('write' => (0x0000000000000002, 'WGPUMapMode_Write'));
@@ -700,7 +700,7 @@ package
 
 package
 	WebGPU::Direct::ShaderStage {
-  use base "WebGPU::Direct::Enum";
+  use base "WebGPU::Direct::Flag";
   __PACKAGE__->_add_enum('none' => (0x0000000000000000, 'WGPUShaderStage_None'));
   __PACKAGE__->_add_enum('vertex' => (0x0000000000000001, 'WGPUShaderStage_Vertex'));
   __PACKAGE__->_add_enum('fragment' => (0x0000000000000002, 'WGPUShaderStage_Fragment'));
@@ -902,7 +902,7 @@ package
 
 package
 	WebGPU::Direct::TextureUsage {
-  use base "WebGPU::Direct::Enum";
+  use base "WebGPU::Direct::Flag";
   __PACKAGE__->_add_enum('none' => (0x0000000000000000, 'WGPUTextureUsage_None'));
   __PACKAGE__->_add_enum('copySrc' => (0x0000000000000001, 'WGPUTextureUsage_CopySrc'));
   __PACKAGE__->_add_enum('copyDst' => (0x0000000000000002, 'WGPUTextureUsage_CopyDst'));
