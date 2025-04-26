@@ -19,6 +19,32 @@ package WebGPU::Direct::Surface
 
     return $surfaceTexture;
   }
+
+  sub getCapabilities (
+    $self,
+    $adapter,
+    $capabilities = undef,
+      )
+  {
+    if ( !defined $capabilities )
+    {
+      $capabilities = WebGPU::Direct::SurfaceCapabilities->new;
+    }
+
+    $self->_getCapabilities( $adapter, $capabilities );
+
+    return $capabilities;
+  }
+
+  sub getPreferredFormat (
+    $self,
+    $adapter,
+      )
+  {
+    my $capabilities = $self->getCapabilities($adapter);
+
+    return $capabilities->formats->[0];
+  }
 };
 
 1;

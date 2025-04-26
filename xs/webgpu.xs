@@ -1800,7 +1800,7 @@ wgpuSurfaceconfigure(surface, config)
 
 
 WGPUStatus 
-wgpuSurfacegetCapabilities(surface, adapter, capabilities)
+wgpuSurface_getCapabilities(surface, adapter, capabilities)
         WGPUSurface surface
         WGPUAdapter adapter
         WGPUSurfaceCapabilities * capabilities
