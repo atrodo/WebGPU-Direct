@@ -1779,7 +1779,7 @@ new_window_wayland(CLASS, xw = 640, yh = 360)
     CODE:
 #ifdef HAS_WAYLAND
 #define _DEF_WAYLAND 1
-        SV *THIS = _new( newSVpvs("WebGPU::Direct::WGPUSurfaceSourceWaylandSurface"), NULL );
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceSourceWaylandSurface"), NULL );
         WGPUSurfaceSourceWaylandSurface *result = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
         if ( ! wayland_window(result, xw, yh) )
         {
