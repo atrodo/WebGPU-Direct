@@ -1234,6 +1234,11 @@ foreach my $cb_name ( sort keys %callbackdefs )
 
       $type =~ tr/:/_/;
 
+      if ($const_ptr)
+      {
+        $var = "*$var";
+      }
+
       my $expr = $outputmap->cleaned_code;
 
       {

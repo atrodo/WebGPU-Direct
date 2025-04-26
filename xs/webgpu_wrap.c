@@ -5634,7 +5634,7 @@ void WebGPU__Direct__DeviceLostCallback__callback( WGPUDevice const * device, WG
     dSP;
     dTARGET;
     PUSHMARK(SP);
-    WebGPU__Direct__DeviceLostCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(device); /* T_FETCHPTR */
+    WebGPU__Direct__DeviceLostCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(*device); /* T_FETCHPTR */
 ; 
     XPUSHs(tm_device); 
     WebGPU__Direct__DeviceLostCallback tm_reason = newSV(0); 	sv_setiv(tm_reason, (IV)reason);
@@ -5856,7 +5856,7 @@ void WebGPU__Direct__UncapturedErrorCallback__callback( WGPUDevice const * devic
     dSP;
     dTARGET;
     PUSHMARK(SP);
-    WebGPU__Direct__UncapturedErrorCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(device); /* T_FETCHPTR */
+    WebGPU__Direct__UncapturedErrorCallback tm_device = newSV(0);     tm_device = WGPUDevice__wrap(*device); /* T_FETCHPTR */
 ; 
     XPUSHs(tm_device); 
     WebGPU__Direct__UncapturedErrorCallback tm_type = newSV(0); 	sv_setiv(tm_type, (IV)type);
