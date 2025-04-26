@@ -28,8 +28,8 @@ my $context = $wgpu->createSurface(
   }
 );
 
-my $adapter = $wgpu->requestAdapter( { compatibleSurface => $context } );
-my $device  = $adapter->requestDevice;
+my $adapter = $wgpu->createAdapter( { compatibleSurface => $context } );
+my $device  = $adapter->createDevice;
 
 my $presentationFormat = $context->getPreferredFormat($adapter);
 
