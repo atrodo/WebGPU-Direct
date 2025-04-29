@@ -10,10 +10,15 @@
 
 my $addl_search = $ENV{ADDL_SEARCH} // '';
 my $addl_L      = '';
+my $wgpu;
 
-if ( !$addl_search && -e 'webgpu/webgpu.h' )
+foreach my $path ( qw[webgpu webgpu/include/webgpu] )
 {
-  $addl_search = 'webgpu';
+  if ( !$addl_search && -e "$path/webgpu.h" )
+  {
+    $addl_search = $path;
+    last;
+  }
 }
 
 if ( $addl_search && -e "$addl_search/webgpu/webgpu.h" )
@@ -23,7 +28,7 @@ if ( $addl_search && -e "$addl_search/webgpu/webgpu.h" )
 
 if ($addl_search)
 {
-  $addl_L = "-L$addl_search";
+  $addl_L = "-L$addl_search -L$addl_search/../../lib";
 }
 
 my ($EXTRALIBS) = do
@@ -42,7 +47,6 @@ sub is_lib
   return !!$extra;
 }
 
-my $wgpu;
 my @tests = qw/wgpu_native dawn_native/;
 for my $wgpu_test (@tests)
 {
@@ -88,3 +92,5 @@ $WriteMakefileArgs{LIBS}   = "$addl_L -l$wgpu @libs";
 $WriteMakefileArgs{DEFINE} = "@defines";
 $WriteMakefileArgs{INC}    = "-I$addl_search/.."
     if $addl_search;
+
+# vim: syntax=perl

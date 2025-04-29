@@ -44,6 +44,7 @@ my %FallbackPrereqs = (
 
 my $addl_search = $ENV{ADDL_SEARCH} // '';
 my $addl_L      = '';
+my $wgpu;
 
 foreach my $path ( qw[webgpu webgpu/include/webgpu] )
 {
@@ -80,7 +81,6 @@ sub is_lib
   return !!$extra;
 }
 
-my $wgpu;
 my @tests = qw/wgpu_native dawn_native/;
 for my $wgpu_test (@tests)
 {
@@ -126,6 +126,8 @@ $WriteMakefileArgs{LIBS}   = "$addl_L -l$wgpu @libs";
 $WriteMakefileArgs{DEFINE} = "@defines";
 $WriteMakefileArgs{INC}    = "-I$addl_search/.."
     if $addl_search;
+
+# vim: syntax=perl
 
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
