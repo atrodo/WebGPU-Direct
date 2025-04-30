@@ -93,6 +93,22 @@ for my $wgpu_test (@tests)
 
 if ( !$wgpu )
 {
+  ( $wgpu, $addl_search ) = do './Makefile.download.pl';
+  die $@
+      if $@;
+
+  if ($wgpu)
+  {
+    $addl_L = "-L$addl_search -L$addl_search/../../lib";
+    if ( !is_lib($wgpu) )
+    {
+      die "Could not download and use $wgpu successfully";
+    }
+  }
+}
+
+if ( !$wgpu )
+{
   die "Unable to locate WebGPU library (tried @tests)\n";
 }
 
