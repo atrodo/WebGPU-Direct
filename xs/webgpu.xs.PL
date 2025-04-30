@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use v5.20;
+use v5.30;
 use warnings;
 
 use FindBin qw/$Bin $Script/;
@@ -1823,6 +1823,13 @@ sub find_header
       die "Found more than one webgpu.h"
         if $result;
       $result = $File::Find::name;
+    }
+
+    if ( m/git-tag/xms )
+    {
+      open my $gittag_fh, '<', $_;
+      open my $versio_fh, '>', "$Bin/../.webgpu-version";
+      $versio_fh->print( <$gittag_fh> );
     }
   };
   File::Find::find( $find, "$Bin/../webgpu/" );
