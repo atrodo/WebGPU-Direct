@@ -1243,10 +1243,11 @@ void _store_strview(pTHX_ HV *h, const char *key, I32 klen, char const **data, s
 
 void _init_strview(pTHX_ HV *h, WGPUStringView *n)
 {
-  SV **f;
-  f = hv_fetch(h, "data", 4, 0);
+  SV **f  = hv_fetch(h, "data", 4, 0);
+  SV **f1 = hv_fetch(h, "length", 6, 0);
 
-  if ( !( f && *f ) || !SvOK(*f) )
+  // We want to preserve the data=undef,length=... semantics
+  if ( !( f && *f ) )
   {
     n->data = NULL;
     n->length = WGPU_STRLEN;
@@ -1255,9 +1256,22 @@ void _init_strview(pTHX_ HV *h, WGPUStringView *n)
     return;
   }
 
-  n->data = SvPVutf8(*f, n->length);
+  // Handle data => undef, which may include a length
+  if ( !SvOK(*f) )
+  {
+    n->data = NULL;
+    n->length = WGPU_STRLEN;
 
-  SV **f1 = hv_fetch(h, "length", 6, 0);
+    if ( f1 && *f1 )
+    {
+      n->length = SvIV(*f1);
+    }
+
+    _unpack_strview(aTHX_ h, "data", 4,  &n->data, &n->length, NULL);
+    return;
+  }
+
+  n->data = SvPVutf8(*f, n->length);
 
   if ( f1 && *f1 )
   {

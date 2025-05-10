@@ -13,6 +13,13 @@ package WebGPU::Direct::Enum
     return eval '\%' . $class . '::CONSTANTS';
   }
 
+  sub all_constants (
+    $class,
+  )
+  {
+    return $class->_all_names;
+  }
+
   sub _all_names (
     $class,
       )
@@ -50,6 +57,7 @@ package WebGPU::Direct::Enum
     $enum
       )
   {
+    no warnings qw/numeric uninitialized/;
     my $result = $class->_get_consts_ref->{$enum};
 
     if ( !defined $result && $enum == 0 )

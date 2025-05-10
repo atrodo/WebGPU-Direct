@@ -39,6 +39,7 @@ package WebGPU::Direct::Adapter
 
       my $croak = sub
       {
+        my $device   = shift;
         my $type     = shift;
         my $message  = shift;
         my $userdata = shift;

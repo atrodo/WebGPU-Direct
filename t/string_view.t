@@ -31,7 +31,7 @@ subtest 'StringView by definition' => sub
   # `{NULL, non_zero_length}`: not allowed (null dereference).
   my $error;
   my $str4 = eval { $wgpu->newStringView( { data => undef, length => 1 } ) };
-  $error = @_;
+  $error = $@;
 
   is( $str4, undef, 'Definintion {NULL, non_zero_length} does not work' );
   isnt( $error, undef, 'Definintion {NULL, non_zero_length} produces an error' );
