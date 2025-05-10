@@ -46,18 +46,18 @@ my $addl_search = $ENV{ADDL_SEARCH} // '';
 my $addl_L      = '';
 my $wgpu;
 
-foreach my $path ( qw[webgpu webgpu/include/webgpu] )
+foreach my $path ( qw[webgpu webgpu/include/webgpu include/webgpu] )
 {
   if ( !$addl_search && -e "$path/webgpu.h" )
   {
     $addl_search = $path;
     last;
   }
-}
 
-if ( $addl_search && -e "$addl_search/webgpu/webgpu.h" )
-{
-  $addl_search = "$addl_search/webgpu/";
+  if ( $addl_search && -e "$addl_search/$path/webgpu.h" )
+  {
+    $addl_search = "$addl_search/$path/";
+  }
 }
 
 if ($addl_search)
