@@ -52,6 +52,30 @@ package WebGPU::Direct::Instance
   }
 };
 
+# Also add a WGPUWaitStatus_* package so we can use ->is_error and ->is_success for each
+{
+  use v5.30;
+  foreach my $constant ( WebGPU::Direct::WaitStatus->all_constants )
+  {
+    state %states = ( success => 1, timedOut => 1 );
+    my $success = $states{$constant} ? 1 : 0;
+    my $pkg = ucfirst $constant;
+    local $@;
+    eval qq{
+      package WebGPU::Direct::WaitStatus::$pkg
+      {
+        sub is_error { !$success };
+        sub is_success { $success };
+      };
+      package WGPUWaitStatus_$pkg
+      {
+        our \@ISA = ( "WebGPU::Direct::WaitStatus::$pkg" );
+      };
+    };
+    die $@ if $@;
+  }
+}
+
 1;
 __END__
 =pod
