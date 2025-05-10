@@ -830,7 +830,10 @@ foreach my $class (@classes)
 
         sub DESTROY
         {
-          @destroys
+          if ( \${^GLOBAL_PHASE} ne 'DESTRUCT' )
+          {
+            @destroys
+          }
         }
     EOF
     };

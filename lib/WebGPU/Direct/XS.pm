@@ -1037,7 +1037,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1053,7 +1056,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1069,7 +1075,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1085,7 +1094,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1101,7 +1113,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1117,7 +1132,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1133,7 +1151,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1149,7 +1170,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1165,7 +1189,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1181,7 +1208,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1197,7 +1227,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1213,7 +1246,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1229,7 +1265,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1245,7 +1284,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1261,7 +1303,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1277,7 +1322,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1293,7 +1341,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1309,7 +1360,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1325,7 +1379,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1341,7 +1398,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1357,7 +1417,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1373,7 +1436,10 @@ package
     }
     sub DESTROY
     {
-      $_[0]->release;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->release;
+      }
     }
 
 }
@@ -1665,7 +1731,10 @@ package
     
     sub DESTROY
     {
-      $_[0]->freeMembers;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->freeMembers;
+      }
     }
 
 }
@@ -2466,7 +2535,10 @@ package
     
     sub DESTROY
     {
-      $_[0]->freeMembers;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->freeMembers;
+      }
     }
 
 }
@@ -2494,7 +2566,10 @@ package
     
     sub DESTROY
     {
-      $_[0]->freeMembers;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->freeMembers;
+      }
     }
 
 }
@@ -2522,7 +2597,10 @@ package
     
     sub DESTROY
     {
-      $_[0]->freeMembers;
+      if ( ${^GLOBAL_PHASE} ne 'DESTRUCT' )
+      {
+        $_[0]->freeMembers;
+      }
     }
 
 }
