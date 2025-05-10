@@ -60,6 +60,10 @@ if ($os)
       my $template = File::Spec->catdir( File::Spec->tmpdir, 'WebGPU-Direct-XXXXXXXX' );
       my $tmpdir   = File::Temp->newdir( TEMPLATE => $template );
       my $from = $ff->fetch( to => $tmpdir );
+
+      die "Could not download $url\n"
+        if !$from;
+
       my $to   = File::Temp->newdir( TEMPLATE => 'webgpu-XXXXXX', CLEANUP => 0 );
 
       unzip( $from => $to );
