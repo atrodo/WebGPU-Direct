@@ -26,7 +26,7 @@ void WebGPU__Direct__StringView__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUStringView); _init_strview(aTHX_ h, n);
@@ -47,7 +47,7 @@ void WebGPU__Direct__StringView__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUStringView *n = (WGPUStringView *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUStringView);
@@ -279,7 +279,7 @@ void WebGPU__Direct__ChainedStruct__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUChainedStruct *n = (WGPUChainedStruct *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUChainedStruct *n = (WGPUChainedStruct *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUChainedStruct);
@@ -301,7 +301,7 @@ void WebGPU__Direct__ChainedStruct__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUChainedStruct *n = (WGPUChainedStruct *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUChainedStruct *n = (WGPUChainedStruct *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUChainedStruct);
@@ -335,7 +335,7 @@ void WebGPU__Direct__ChainedStructOut__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUChainedStructOut *n = (WGPUChainedStructOut *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUChainedStructOut *n = (WGPUChainedStructOut *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUChainedStructOut);
@@ -357,7 +357,7 @@ void WebGPU__Direct__ChainedStructOut__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUChainedStructOut *n = (WGPUChainedStructOut *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUChainedStructOut *n = (WGPUChainedStructOut *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUChainedStructOut);
@@ -391,7 +391,7 @@ void WebGPU__Direct__BufferMapCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBufferMapCallbackInfo *n = (WGPUBufferMapCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferMapCallbackInfo *n = (WGPUBufferMapCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBufferMapCallbackInfo);
@@ -416,7 +416,7 @@ void WebGPU__Direct__BufferMapCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBufferMapCallbackInfo *n = (WGPUBufferMapCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferMapCallbackInfo *n = (WGPUBufferMapCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBufferMapCallbackInfo);
@@ -452,7 +452,7 @@ void WebGPU__Direct__CompilationInfoCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCompilationInfoCallbackInfo *n = (WGPUCompilationInfoCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCompilationInfoCallbackInfo *n = (WGPUCompilationInfoCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCompilationInfoCallbackInfo);
@@ -477,7 +477,7 @@ void WebGPU__Direct__CompilationInfoCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCompilationInfoCallbackInfo *n = (WGPUCompilationInfoCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCompilationInfoCallbackInfo *n = (WGPUCompilationInfoCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCompilationInfoCallbackInfo);
@@ -513,7 +513,7 @@ void WebGPU__Direct__CreateComputePipelineAsyncCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCreateComputePipelineAsyncCallbackInfo *n = (WGPUCreateComputePipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCreateComputePipelineAsyncCallbackInfo *n = (WGPUCreateComputePipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCreateComputePipelineAsyncCallbackInfo);
@@ -538,7 +538,7 @@ void WebGPU__Direct__CreateComputePipelineAsyncCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCreateComputePipelineAsyncCallbackInfo *n = (WGPUCreateComputePipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCreateComputePipelineAsyncCallbackInfo *n = (WGPUCreateComputePipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCreateComputePipelineAsyncCallbackInfo);
@@ -574,7 +574,7 @@ void WebGPU__Direct__CreateRenderPipelineAsyncCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCreateRenderPipelineAsyncCallbackInfo *n = (WGPUCreateRenderPipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCreateRenderPipelineAsyncCallbackInfo *n = (WGPUCreateRenderPipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCreateRenderPipelineAsyncCallbackInfo);
@@ -599,7 +599,7 @@ void WebGPU__Direct__CreateRenderPipelineAsyncCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCreateRenderPipelineAsyncCallbackInfo *n = (WGPUCreateRenderPipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCreateRenderPipelineAsyncCallbackInfo *n = (WGPUCreateRenderPipelineAsyncCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCreateRenderPipelineAsyncCallbackInfo);
@@ -635,7 +635,7 @@ void WebGPU__Direct__DeviceLostCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUDeviceLostCallbackInfo *n = (WGPUDeviceLostCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDeviceLostCallbackInfo *n = (WGPUDeviceLostCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUDeviceLostCallbackInfo);
@@ -660,7 +660,7 @@ void WebGPU__Direct__DeviceLostCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUDeviceLostCallbackInfo *n = (WGPUDeviceLostCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDeviceLostCallbackInfo *n = (WGPUDeviceLostCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUDeviceLostCallbackInfo);
@@ -696,7 +696,7 @@ void WebGPU__Direct__PopErrorScopeCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUPopErrorScopeCallbackInfo *n = (WGPUPopErrorScopeCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUPopErrorScopeCallbackInfo *n = (WGPUPopErrorScopeCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUPopErrorScopeCallbackInfo);
@@ -721,7 +721,7 @@ void WebGPU__Direct__PopErrorScopeCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUPopErrorScopeCallbackInfo *n = (WGPUPopErrorScopeCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUPopErrorScopeCallbackInfo *n = (WGPUPopErrorScopeCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUPopErrorScopeCallbackInfo);
@@ -757,7 +757,7 @@ void WebGPU__Direct__QueueWorkDoneCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUQueueWorkDoneCallbackInfo *n = (WGPUQueueWorkDoneCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUQueueWorkDoneCallbackInfo *n = (WGPUQueueWorkDoneCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUQueueWorkDoneCallbackInfo);
@@ -782,7 +782,7 @@ void WebGPU__Direct__QueueWorkDoneCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUQueueWorkDoneCallbackInfo *n = (WGPUQueueWorkDoneCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUQueueWorkDoneCallbackInfo *n = (WGPUQueueWorkDoneCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUQueueWorkDoneCallbackInfo);
@@ -818,7 +818,7 @@ void WebGPU__Direct__RequestAdapterCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequestAdapterCallbackInfo *n = (WGPURequestAdapterCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURequestAdapterCallbackInfo *n = (WGPURequestAdapterCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURequestAdapterCallbackInfo);
@@ -843,7 +843,7 @@ void WebGPU__Direct__RequestAdapterCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequestAdapterCallbackInfo *n = (WGPURequestAdapterCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURequestAdapterCallbackInfo *n = (WGPURequestAdapterCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURequestAdapterCallbackInfo);
@@ -879,7 +879,7 @@ void WebGPU__Direct__RequestDeviceCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequestDeviceCallbackInfo *n = (WGPURequestDeviceCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURequestDeviceCallbackInfo *n = (WGPURequestDeviceCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURequestDeviceCallbackInfo);
@@ -904,7 +904,7 @@ void WebGPU__Direct__RequestDeviceCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequestDeviceCallbackInfo *n = (WGPURequestDeviceCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURequestDeviceCallbackInfo *n = (WGPURequestDeviceCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURequestDeviceCallbackInfo);
@@ -940,7 +940,7 @@ void WebGPU__Direct__UncapturedErrorCallbackInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUUncapturedErrorCallbackInfo *n = (WGPUUncapturedErrorCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUUncapturedErrorCallbackInfo *n = (WGPUUncapturedErrorCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUUncapturedErrorCallbackInfo);
@@ -964,7 +964,7 @@ void WebGPU__Direct__UncapturedErrorCallbackInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUUncapturedErrorCallbackInfo *n = (WGPUUncapturedErrorCallbackInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUUncapturedErrorCallbackInfo *n = (WGPUUncapturedErrorCallbackInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUUncapturedErrorCallbackInfo);
@@ -999,7 +999,7 @@ void WebGPU__Direct__AdapterInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUAdapterInfo *n = (WGPUAdapterInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUAdapterInfo *n = (WGPUAdapterInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUAdapterInfo);
@@ -1028,7 +1028,7 @@ void WebGPU__Direct__AdapterInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUAdapterInfo *n = (WGPUAdapterInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUAdapterInfo *n = (WGPUAdapterInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUAdapterInfo);
@@ -1069,7 +1069,7 @@ void WebGPU__Direct__BindGroupEntry__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupEntry);
@@ -1096,7 +1096,7 @@ void WebGPU__Direct__BindGroupEntry__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupEntry *n = (WGPUBindGroupEntry *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupEntry);
@@ -1135,7 +1135,7 @@ void WebGPU__Direct__BlendComponent__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBlendComponent *n = (WGPUBlendComponent *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBlendComponent *n = (WGPUBlendComponent *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBlendComponent);
@@ -1158,7 +1158,7 @@ void WebGPU__Direct__BlendComponent__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBlendComponent *n = (WGPUBlendComponent *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBlendComponent *n = (WGPUBlendComponent *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBlendComponent);
@@ -1193,7 +1193,7 @@ void WebGPU__Direct__BufferBindingLayout__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBufferBindingLayout *n = (WGPUBufferBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferBindingLayout *n = (WGPUBufferBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBufferBindingLayout);
@@ -1217,7 +1217,7 @@ void WebGPU__Direct__BufferBindingLayout__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBufferBindingLayout *n = (WGPUBufferBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferBindingLayout *n = (WGPUBufferBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBufferBindingLayout);
@@ -1253,7 +1253,7 @@ void WebGPU__Direct__BufferDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBufferDescriptor *n = (WGPUBufferDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferDescriptor *n = (WGPUBufferDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBufferDescriptor);
@@ -1278,7 +1278,7 @@ void WebGPU__Direct__BufferDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBufferDescriptor *n = (WGPUBufferDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBufferDescriptor *n = (WGPUBufferDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBufferDescriptor);
@@ -1315,7 +1315,7 @@ void WebGPU__Direct__Color__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUColor *n = (WGPUColor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUColor *n = (WGPUColor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUColor);
@@ -1339,7 +1339,7 @@ void WebGPU__Direct__Color__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUColor *n = (WGPUColor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUColor *n = (WGPUColor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUColor);
@@ -1375,7 +1375,7 @@ void WebGPU__Direct__CommandBufferDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCommandBufferDescriptor *n = (WGPUCommandBufferDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCommandBufferDescriptor *n = (WGPUCommandBufferDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCommandBufferDescriptor);
@@ -1397,7 +1397,7 @@ void WebGPU__Direct__CommandBufferDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCommandBufferDescriptor *n = (WGPUCommandBufferDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCommandBufferDescriptor *n = (WGPUCommandBufferDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCommandBufferDescriptor);
@@ -1431,7 +1431,7 @@ void WebGPU__Direct__CommandEncoderDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCommandEncoderDescriptor *n = (WGPUCommandEncoderDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCommandEncoderDescriptor *n = (WGPUCommandEncoderDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCommandEncoderDescriptor);
@@ -1453,7 +1453,7 @@ void WebGPU__Direct__CommandEncoderDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCommandEncoderDescriptor *n = (WGPUCommandEncoderDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCommandEncoderDescriptor *n = (WGPUCommandEncoderDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCommandEncoderDescriptor);
@@ -1487,7 +1487,7 @@ void WebGPU__Direct__CompilationMessage__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCompilationMessage *n = (WGPUCompilationMessage *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCompilationMessage *n = (WGPUCompilationMessage *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCompilationMessage);
@@ -1514,7 +1514,7 @@ void WebGPU__Direct__CompilationMessage__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCompilationMessage *n = (WGPUCompilationMessage *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCompilationMessage *n = (WGPUCompilationMessage *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCompilationMessage);
@@ -1553,7 +1553,7 @@ void WebGPU__Direct__ComputePassTimestampWrites__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUComputePassTimestampWrites *n = (WGPUComputePassTimestampWrites *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUComputePassTimestampWrites *n = (WGPUComputePassTimestampWrites *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUComputePassTimestampWrites);
@@ -1576,7 +1576,7 @@ void WebGPU__Direct__ComputePassTimestampWrites__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUComputePassTimestampWrites *n = (WGPUComputePassTimestampWrites *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUComputePassTimestampWrites *n = (WGPUComputePassTimestampWrites *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUComputePassTimestampWrites);
@@ -1611,7 +1611,7 @@ void WebGPU__Direct__ConstantEntry__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUConstantEntry *n = (WGPUConstantEntry *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUConstantEntry *n = (WGPUConstantEntry *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUConstantEntry);
@@ -1634,7 +1634,7 @@ void WebGPU__Direct__ConstantEntry__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUConstantEntry *n = (WGPUConstantEntry *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUConstantEntry *n = (WGPUConstantEntry *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUConstantEntry);
@@ -1669,7 +1669,7 @@ void WebGPU__Direct__Extent3D__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUExtent3D *n = (WGPUExtent3D *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUExtent3D *n = (WGPUExtent3D *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUExtent3D);
@@ -1692,7 +1692,7 @@ void WebGPU__Direct__Extent3D__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUExtent3D *n = (WGPUExtent3D *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUExtent3D *n = (WGPUExtent3D *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUExtent3D);
@@ -1727,7 +1727,7 @@ void WebGPU__Direct__Future__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUFuture *n = (WGPUFuture *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFuture *n = (WGPUFuture *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUFuture);
@@ -1748,7 +1748,7 @@ void WebGPU__Direct__Future__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUFuture *n = (WGPUFuture *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFuture *n = (WGPUFuture *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUFuture);
@@ -1781,7 +1781,7 @@ void WebGPU__Direct__InstanceCapabilities__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUInstanceCapabilities *n = (WGPUInstanceCapabilities *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUInstanceCapabilities *n = (WGPUInstanceCapabilities *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUInstanceCapabilities);
@@ -1804,7 +1804,7 @@ void WebGPU__Direct__InstanceCapabilities__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUInstanceCapabilities *n = (WGPUInstanceCapabilities *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUInstanceCapabilities *n = (WGPUInstanceCapabilities *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUInstanceCapabilities);
@@ -1839,7 +1839,7 @@ void WebGPU__Direct__Limits__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPULimits *n = (WGPULimits *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPULimits *n = (WGPULimits *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPULimits);
@@ -1891,7 +1891,7 @@ void WebGPU__Direct__Limits__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPULimits *n = (WGPULimits *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPULimits *n = (WGPULimits *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPULimits);
@@ -1955,7 +1955,7 @@ void WebGPU__Direct__MultisampleState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUMultisampleState *n = (WGPUMultisampleState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUMultisampleState *n = (WGPUMultisampleState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUMultisampleState);
@@ -1979,7 +1979,7 @@ void WebGPU__Direct__MultisampleState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUMultisampleState *n = (WGPUMultisampleState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUMultisampleState *n = (WGPUMultisampleState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUMultisampleState);
@@ -2015,7 +2015,7 @@ void WebGPU__Direct__Origin3D__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUOrigin3D *n = (WGPUOrigin3D *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUOrigin3D *n = (WGPUOrigin3D *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUOrigin3D);
@@ -2038,7 +2038,7 @@ void WebGPU__Direct__Origin3D__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUOrigin3D *n = (WGPUOrigin3D *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUOrigin3D *n = (WGPUOrigin3D *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUOrigin3D);
@@ -2073,7 +2073,7 @@ void WebGPU__Direct__PipelineLayoutDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUPipelineLayoutDescriptor);
@@ -2096,7 +2096,7 @@ void WebGPU__Direct__PipelineLayoutDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUPipelineLayoutDescriptor *n = (WGPUPipelineLayoutDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUPipelineLayoutDescriptor);
@@ -2132,7 +2132,7 @@ void WebGPU__Direct__PrimitiveState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUPrimitiveState *n = (WGPUPrimitiveState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUPrimitiveState *n = (WGPUPrimitiveState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUPrimitiveState);
@@ -2158,7 +2158,7 @@ void WebGPU__Direct__PrimitiveState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUPrimitiveState *n = (WGPUPrimitiveState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUPrimitiveState *n = (WGPUPrimitiveState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUPrimitiveState);
@@ -2196,7 +2196,7 @@ void WebGPU__Direct__QuerySetDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUQuerySetDescriptor *n = (WGPUQuerySetDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUQuerySetDescriptor *n = (WGPUQuerySetDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUQuerySetDescriptor);
@@ -2220,7 +2220,7 @@ void WebGPU__Direct__QuerySetDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUQuerySetDescriptor *n = (WGPUQuerySetDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUQuerySetDescriptor *n = (WGPUQuerySetDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUQuerySetDescriptor);
@@ -2256,7 +2256,7 @@ void WebGPU__Direct__QueueDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUQueueDescriptor *n = (WGPUQueueDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUQueueDescriptor *n = (WGPUQueueDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUQueueDescriptor);
@@ -2278,7 +2278,7 @@ void WebGPU__Direct__QueueDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUQueueDescriptor *n = (WGPUQueueDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUQueueDescriptor *n = (WGPUQueueDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUQueueDescriptor);
@@ -2312,7 +2312,7 @@ void WebGPU__Direct__RenderBundleDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderBundleDescriptor *n = (WGPURenderBundleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderBundleDescriptor *n = (WGPURenderBundleDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderBundleDescriptor);
@@ -2334,7 +2334,7 @@ void WebGPU__Direct__RenderBundleDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderBundleDescriptor *n = (WGPURenderBundleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderBundleDescriptor *n = (WGPURenderBundleDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderBundleDescriptor);
@@ -2368,7 +2368,7 @@ void WebGPU__Direct__RenderBundleEncoderDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderBundleEncoderDescriptor *n = (WGPURenderBundleEncoderDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderBundleEncoderDescriptor *n = (WGPURenderBundleEncoderDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderBundleEncoderDescriptor);
@@ -2395,7 +2395,7 @@ void WebGPU__Direct__RenderBundleEncoderDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderBundleEncoderDescriptor *n = (WGPURenderBundleEncoderDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderBundleEncoderDescriptor *n = (WGPURenderBundleEncoderDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderBundleEncoderDescriptor);
@@ -2435,7 +2435,7 @@ void WebGPU__Direct__RenderPassDepthStencilAttachment__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassDepthStencilAttachment *n = (WGPURenderPassDepthStencilAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassDepthStencilAttachment *n = (WGPURenderPassDepthStencilAttachment *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassDepthStencilAttachment);
@@ -2464,7 +2464,7 @@ void WebGPU__Direct__RenderPassDepthStencilAttachment__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassDepthStencilAttachment *n = (WGPURenderPassDepthStencilAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassDepthStencilAttachment *n = (WGPURenderPassDepthStencilAttachment *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassDepthStencilAttachment);
@@ -2505,7 +2505,7 @@ void WebGPU__Direct__RenderPassMaxDrawCount__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassMaxDrawCount *n = (WGPURenderPassMaxDrawCount *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassMaxDrawCount *n = (WGPURenderPassMaxDrawCount *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassMaxDrawCount);
@@ -2527,7 +2527,7 @@ void WebGPU__Direct__RenderPassMaxDrawCount__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassMaxDrawCount *n = (WGPURenderPassMaxDrawCount *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassMaxDrawCount *n = (WGPURenderPassMaxDrawCount *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassMaxDrawCount);
@@ -2561,7 +2561,7 @@ void WebGPU__Direct__RenderPassTimestampWrites__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassTimestampWrites *n = (WGPURenderPassTimestampWrites *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassTimestampWrites *n = (WGPURenderPassTimestampWrites *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassTimestampWrites);
@@ -2584,7 +2584,7 @@ void WebGPU__Direct__RenderPassTimestampWrites__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassTimestampWrites *n = (WGPURenderPassTimestampWrites *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassTimestampWrites *n = (WGPURenderPassTimestampWrites *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassTimestampWrites);
@@ -2619,7 +2619,7 @@ void WebGPU__Direct__RequestAdapterOptions__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequestAdapterOptions *n = (WGPURequestAdapterOptions *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURequestAdapterOptions *n = (WGPURequestAdapterOptions *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURequestAdapterOptions);
@@ -2645,7 +2645,7 @@ void WebGPU__Direct__RequestAdapterOptions__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURequestAdapterOptions *n = (WGPURequestAdapterOptions *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURequestAdapterOptions *n = (WGPURequestAdapterOptions *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURequestAdapterOptions);
@@ -2683,7 +2683,7 @@ void WebGPU__Direct__SamplerBindingLayout__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSamplerBindingLayout *n = (WGPUSamplerBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSamplerBindingLayout *n = (WGPUSamplerBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSamplerBindingLayout);
@@ -2705,7 +2705,7 @@ void WebGPU__Direct__SamplerBindingLayout__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSamplerBindingLayout *n = (WGPUSamplerBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSamplerBindingLayout *n = (WGPUSamplerBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSamplerBindingLayout);
@@ -2739,7 +2739,7 @@ void WebGPU__Direct__SamplerDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSamplerDescriptor *n = (WGPUSamplerDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSamplerDescriptor *n = (WGPUSamplerDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSamplerDescriptor);
@@ -2771,7 +2771,7 @@ void WebGPU__Direct__SamplerDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSamplerDescriptor *n = (WGPUSamplerDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSamplerDescriptor *n = (WGPUSamplerDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSamplerDescriptor);
@@ -2815,7 +2815,7 @@ void WebGPU__Direct__ShaderModuleDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUShaderModuleDescriptor);
@@ -2837,7 +2837,7 @@ void WebGPU__Direct__ShaderModuleDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderModuleDescriptor *n = (WGPUShaderModuleDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUShaderModuleDescriptor);
@@ -2871,7 +2871,7 @@ void WebGPU__Direct__ShaderSourceSPIRV__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderSourceSPIRV *n = (WGPUShaderSourceSPIRV *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceSPIRV *n = (WGPUShaderSourceSPIRV *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUShaderSourceSPIRV);
@@ -2895,7 +2895,7 @@ void WebGPU__Direct__ShaderSourceSPIRV__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderSourceSPIRV *n = (WGPUShaderSourceSPIRV *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceSPIRV *n = (WGPUShaderSourceSPIRV *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUShaderSourceSPIRV);
@@ -2931,7 +2931,7 @@ void WebGPU__Direct__ShaderSourceWGSL__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderSourceWGSL *n = (WGPUShaderSourceWGSL *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceWGSL *n = (WGPUShaderSourceWGSL *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUShaderSourceWGSL);
@@ -2953,7 +2953,7 @@ void WebGPU__Direct__ShaderSourceWGSL__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUShaderSourceWGSL *n = (WGPUShaderSourceWGSL *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUShaderSourceWGSL *n = (WGPUShaderSourceWGSL *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUShaderSourceWGSL);
@@ -2987,7 +2987,7 @@ void WebGPU__Direct__StencilFaceState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUStencilFaceState *n = (WGPUStencilFaceState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUStencilFaceState *n = (WGPUStencilFaceState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUStencilFaceState);
@@ -3011,7 +3011,7 @@ void WebGPU__Direct__StencilFaceState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUStencilFaceState *n = (WGPUStencilFaceState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUStencilFaceState *n = (WGPUStencilFaceState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUStencilFaceState);
@@ -3047,7 +3047,7 @@ void WebGPU__Direct__StorageTextureBindingLayout__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUStorageTextureBindingLayout *n = (WGPUStorageTextureBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUStorageTextureBindingLayout *n = (WGPUStorageTextureBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUStorageTextureBindingLayout);
@@ -3071,7 +3071,7 @@ void WebGPU__Direct__StorageTextureBindingLayout__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUStorageTextureBindingLayout *n = (WGPUStorageTextureBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUStorageTextureBindingLayout *n = (WGPUStorageTextureBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUStorageTextureBindingLayout);
@@ -3107,7 +3107,7 @@ void WebGPU__Direct__SupportedFeatures__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSupportedFeatures *n = (WGPUSupportedFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSupportedFeatures *n = (WGPUSupportedFeatures *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSupportedFeatures);
@@ -3128,7 +3128,7 @@ void WebGPU__Direct__SupportedFeatures__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSupportedFeatures *n = (WGPUSupportedFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSupportedFeatures *n = (WGPUSupportedFeatures *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSupportedFeatures);
@@ -3162,7 +3162,7 @@ void WebGPU__Direct__SupportedWGSLLanguageFeatures__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSupportedWGSLLanguageFeatures *n = (WGPUSupportedWGSLLanguageFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSupportedWGSLLanguageFeatures *n = (WGPUSupportedWGSLLanguageFeatures *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSupportedWGSLLanguageFeatures);
@@ -3183,7 +3183,7 @@ void WebGPU__Direct__SupportedWGSLLanguageFeatures__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSupportedWGSLLanguageFeatures *n = (WGPUSupportedWGSLLanguageFeatures *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSupportedWGSLLanguageFeatures *n = (WGPUSupportedWGSLLanguageFeatures *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSupportedWGSLLanguageFeatures);
@@ -3217,7 +3217,7 @@ void WebGPU__Direct__SurfaceCapabilities__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceCapabilities *n = (WGPUSurfaceCapabilities *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceCapabilities *n = (WGPUSurfaceCapabilities *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceCapabilities);
@@ -3242,7 +3242,7 @@ void WebGPU__Direct__SurfaceCapabilities__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceCapabilities *n = (WGPUSurfaceCapabilities *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceCapabilities *n = (WGPUSurfaceCapabilities *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceCapabilities);
@@ -3282,7 +3282,7 @@ void WebGPU__Direct__SurfaceConfiguration__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceConfiguration *n = (WGPUSurfaceConfiguration *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceConfiguration *n = (WGPUSurfaceConfiguration *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceConfiguration);
@@ -3311,7 +3311,7 @@ void WebGPU__Direct__SurfaceConfiguration__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceConfiguration *n = (WGPUSurfaceConfiguration *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceConfiguration *n = (WGPUSurfaceConfiguration *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceConfiguration);
@@ -3353,7 +3353,7 @@ void WebGPU__Direct__SurfaceDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptor *n = (WGPUSurfaceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceDescriptor *n = (WGPUSurfaceDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceDescriptor);
@@ -3375,7 +3375,7 @@ void WebGPU__Direct__SurfaceDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceDescriptor *n = (WGPUSurfaceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceDescriptor *n = (WGPUSurfaceDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceDescriptor);
@@ -3409,7 +3409,7 @@ void WebGPU__Direct__SurfaceSourceAndroidNativeWindow__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceAndroidNativeWindow *n = (WGPUSurfaceSourceAndroidNativeWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceAndroidNativeWindow *n = (WGPUSurfaceSourceAndroidNativeWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceAndroidNativeWindow);
@@ -3432,7 +3432,7 @@ void WebGPU__Direct__SurfaceSourceAndroidNativeWindow__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceAndroidNativeWindow *n = (WGPUSurfaceSourceAndroidNativeWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceAndroidNativeWindow *n = (WGPUSurfaceSourceAndroidNativeWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceAndroidNativeWindow);
@@ -3467,7 +3467,7 @@ void WebGPU__Direct__SurfaceSourceMetalLayer__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceMetalLayer *n = (WGPUSurfaceSourceMetalLayer *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceMetalLayer *n = (WGPUSurfaceSourceMetalLayer *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceMetalLayer);
@@ -3490,7 +3490,7 @@ void WebGPU__Direct__SurfaceSourceMetalLayer__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceMetalLayer *n = (WGPUSurfaceSourceMetalLayer *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceMetalLayer *n = (WGPUSurfaceSourceMetalLayer *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceMetalLayer);
@@ -3525,7 +3525,7 @@ void WebGPU__Direct__SurfaceSourceWaylandSurface__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceWaylandSurface);
@@ -3550,7 +3550,7 @@ void WebGPU__Direct__SurfaceSourceWaylandSurface__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceWaylandSurface);
@@ -3587,7 +3587,7 @@ void WebGPU__Direct__SurfaceSourceWindowsHWND__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceWindowsHWND);
@@ -3612,7 +3612,7 @@ void WebGPU__Direct__SurfaceSourceWindowsHWND__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceWindowsHWND);
@@ -3649,7 +3649,7 @@ void WebGPU__Direct__SurfaceSourceXCBWindow__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceXCBWindow *n = (WGPUSurfaceSourceXCBWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXCBWindow *n = (WGPUSurfaceSourceXCBWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceXCBWindow);
@@ -3673,7 +3673,7 @@ void WebGPU__Direct__SurfaceSourceXCBWindow__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceXCBWindow *n = (WGPUSurfaceSourceXCBWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXCBWindow *n = (WGPUSurfaceSourceXCBWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceXCBWindow);
@@ -3709,7 +3709,7 @@ void WebGPU__Direct__SurfaceSourceXlibWindow__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceXlibWindow *n = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXlibWindow *n = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceXlibWindow);
@@ -3733,7 +3733,7 @@ void WebGPU__Direct__SurfaceSourceXlibWindow__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceSourceXlibWindow *n = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceSourceXlibWindow *n = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceSourceXlibWindow);
@@ -3769,7 +3769,7 @@ void WebGPU__Direct__SurfaceTexture__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceTexture *n = (WGPUSurfaceTexture *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceTexture *n = (WGPUSurfaceTexture *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceTexture);
@@ -3792,7 +3792,7 @@ void WebGPU__Direct__SurfaceTexture__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUSurfaceTexture *n = (WGPUSurfaceTexture *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUSurfaceTexture *n = (WGPUSurfaceTexture *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUSurfaceTexture);
@@ -3827,7 +3827,7 @@ void WebGPU__Direct__TexelCopyBufferLayout__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTexelCopyBufferLayout *n = (WGPUTexelCopyBufferLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyBufferLayout *n = (WGPUTexelCopyBufferLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTexelCopyBufferLayout);
@@ -3850,7 +3850,7 @@ void WebGPU__Direct__TexelCopyBufferLayout__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTexelCopyBufferLayout *n = (WGPUTexelCopyBufferLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyBufferLayout *n = (WGPUTexelCopyBufferLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTexelCopyBufferLayout);
@@ -3885,7 +3885,7 @@ void WebGPU__Direct__TextureBindingLayout__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTextureBindingLayout *n = (WGPUTextureBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTextureBindingLayout *n = (WGPUTextureBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTextureBindingLayout);
@@ -3909,7 +3909,7 @@ void WebGPU__Direct__TextureBindingLayout__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTextureBindingLayout *n = (WGPUTextureBindingLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTextureBindingLayout *n = (WGPUTextureBindingLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTextureBindingLayout);
@@ -3945,7 +3945,7 @@ void WebGPU__Direct__TextureViewDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTextureViewDescriptor *n = (WGPUTextureViewDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTextureViewDescriptor *n = (WGPUTextureViewDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTextureViewDescriptor);
@@ -3975,7 +3975,7 @@ void WebGPU__Direct__TextureViewDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTextureViewDescriptor *n = (WGPUTextureViewDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTextureViewDescriptor *n = (WGPUTextureViewDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTextureViewDescriptor);
@@ -4017,7 +4017,7 @@ void WebGPU__Direct__VertexAttribute__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUVertexAttribute *n = (WGPUVertexAttribute *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUVertexAttribute *n = (WGPUVertexAttribute *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUVertexAttribute);
@@ -4040,7 +4040,7 @@ void WebGPU__Direct__VertexAttribute__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUVertexAttribute *n = (WGPUVertexAttribute *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUVertexAttribute *n = (WGPUVertexAttribute *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUVertexAttribute);
@@ -4075,7 +4075,7 @@ void WebGPU__Direct__BindGroupDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupDescriptor *n = (WGPUBindGroupDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupDescriptor *n = (WGPUBindGroupDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupDescriptor);
@@ -4099,7 +4099,7 @@ void WebGPU__Direct__BindGroupDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupDescriptor *n = (WGPUBindGroupDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupDescriptor *n = (WGPUBindGroupDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupDescriptor);
@@ -4136,7 +4136,7 @@ void WebGPU__Direct__BindGroupLayoutEntry__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupLayoutEntry *n = (WGPUBindGroupLayoutEntry *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupLayoutEntry *n = (WGPUBindGroupLayoutEntry *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupLayoutEntry);
@@ -4163,7 +4163,7 @@ void WebGPU__Direct__BindGroupLayoutEntry__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupLayoutEntry *n = (WGPUBindGroupLayoutEntry *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupLayoutEntry *n = (WGPUBindGroupLayoutEntry *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupLayoutEntry);
@@ -4202,7 +4202,7 @@ void WebGPU__Direct__BlendState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBlendState *n = (WGPUBlendState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBlendState *n = (WGPUBlendState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBlendState);
@@ -4224,7 +4224,7 @@ void WebGPU__Direct__BlendState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBlendState *n = (WGPUBlendState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBlendState *n = (WGPUBlendState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBlendState);
@@ -4258,7 +4258,7 @@ void WebGPU__Direct__CompilationInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCompilationInfo *n = (WGPUCompilationInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCompilationInfo *n = (WGPUCompilationInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCompilationInfo);
@@ -4280,7 +4280,7 @@ void WebGPU__Direct__CompilationInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUCompilationInfo *n = (WGPUCompilationInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUCompilationInfo *n = (WGPUCompilationInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUCompilationInfo);
@@ -4315,7 +4315,7 @@ void WebGPU__Direct__ComputePassDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUComputePassDescriptor *n = (WGPUComputePassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUComputePassDescriptor *n = (WGPUComputePassDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUComputePassDescriptor);
@@ -4338,7 +4338,7 @@ void WebGPU__Direct__ComputePassDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUComputePassDescriptor *n = (WGPUComputePassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUComputePassDescriptor *n = (WGPUComputePassDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUComputePassDescriptor);
@@ -4373,7 +4373,7 @@ void WebGPU__Direct__DepthStencilState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUDepthStencilState *n = (WGPUDepthStencilState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDepthStencilState *n = (WGPUDepthStencilState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUDepthStencilState);
@@ -4404,7 +4404,7 @@ void WebGPU__Direct__DepthStencilState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUDepthStencilState *n = (WGPUDepthStencilState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDepthStencilState *n = (WGPUDepthStencilState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUDepthStencilState);
@@ -4447,7 +4447,7 @@ void WebGPU__Direct__DeviceDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUDeviceDescriptor);
@@ -4474,7 +4474,7 @@ void WebGPU__Direct__DeviceDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUDeviceDescriptor *n = (WGPUDeviceDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUDeviceDescriptor);
@@ -4514,7 +4514,7 @@ void WebGPU__Direct__FutureWaitInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUFutureWaitInfo *n = (WGPUFutureWaitInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFutureWaitInfo *n = (WGPUFutureWaitInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUFutureWaitInfo);
@@ -4536,7 +4536,7 @@ void WebGPU__Direct__FutureWaitInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUFutureWaitInfo *n = (WGPUFutureWaitInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFutureWaitInfo *n = (WGPUFutureWaitInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUFutureWaitInfo);
@@ -4570,7 +4570,7 @@ void WebGPU__Direct__InstanceDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUInstanceDescriptor);
@@ -4592,7 +4592,7 @@ void WebGPU__Direct__InstanceDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUInstanceDescriptor *n = (WGPUInstanceDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUInstanceDescriptor);
@@ -4626,7 +4626,7 @@ void WebGPU__Direct__ProgrammableStageDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUProgrammableStageDescriptor *n = (WGPUProgrammableStageDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUProgrammableStageDescriptor *n = (WGPUProgrammableStageDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUProgrammableStageDescriptor);
@@ -4650,7 +4650,7 @@ void WebGPU__Direct__ProgrammableStageDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUProgrammableStageDescriptor *n = (WGPUProgrammableStageDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUProgrammableStageDescriptor *n = (WGPUProgrammableStageDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUProgrammableStageDescriptor);
@@ -4687,7 +4687,7 @@ void WebGPU__Direct__RenderPassColorAttachment__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassColorAttachment);
@@ -4714,7 +4714,7 @@ void WebGPU__Direct__RenderPassColorAttachment__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassColorAttachment *n = (WGPURenderPassColorAttachment *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassColorAttachment);
@@ -4753,7 +4753,7 @@ void WebGPU__Direct__TexelCopyBufferInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTexelCopyBufferInfo *n = (WGPUTexelCopyBufferInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyBufferInfo *n = (WGPUTexelCopyBufferInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTexelCopyBufferInfo);
@@ -4775,7 +4775,7 @@ void WebGPU__Direct__TexelCopyBufferInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTexelCopyBufferInfo *n = (WGPUTexelCopyBufferInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyBufferInfo *n = (WGPUTexelCopyBufferInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTexelCopyBufferInfo);
@@ -4809,7 +4809,7 @@ void WebGPU__Direct__TexelCopyTextureInfo__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTexelCopyTextureInfo *n = (WGPUTexelCopyTextureInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyTextureInfo *n = (WGPUTexelCopyTextureInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTexelCopyTextureInfo);
@@ -4833,7 +4833,7 @@ void WebGPU__Direct__TexelCopyTextureInfo__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTexelCopyTextureInfo *n = (WGPUTexelCopyTextureInfo *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTexelCopyTextureInfo *n = (WGPUTexelCopyTextureInfo *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTexelCopyTextureInfo);
@@ -4869,7 +4869,7 @@ void WebGPU__Direct__TextureDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTextureDescriptor *n = (WGPUTextureDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTextureDescriptor *n = (WGPUTextureDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTextureDescriptor);
@@ -4898,7 +4898,7 @@ void WebGPU__Direct__TextureDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUTextureDescriptor *n = (WGPUTextureDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUTextureDescriptor *n = (WGPUTextureDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUTextureDescriptor);
@@ -4940,7 +4940,7 @@ void WebGPU__Direct__VertexBufferLayout__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUVertexBufferLayout *n = (WGPUVertexBufferLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUVertexBufferLayout *n = (WGPUVertexBufferLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUVertexBufferLayout);
@@ -4963,7 +4963,7 @@ void WebGPU__Direct__VertexBufferLayout__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUVertexBufferLayout *n = (WGPUVertexBufferLayout *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUVertexBufferLayout *n = (WGPUVertexBufferLayout *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUVertexBufferLayout);
@@ -4999,7 +4999,7 @@ void WebGPU__Direct__BindGroupLayoutDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupLayoutDescriptor *n = (WGPUBindGroupLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupLayoutDescriptor *n = (WGPUBindGroupLayoutDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupLayoutDescriptor);
@@ -5022,7 +5022,7 @@ void WebGPU__Direct__BindGroupLayoutDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUBindGroupLayoutDescriptor *n = (WGPUBindGroupLayoutDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUBindGroupLayoutDescriptor *n = (WGPUBindGroupLayoutDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUBindGroupLayoutDescriptor);
@@ -5058,7 +5058,7 @@ void WebGPU__Direct__ColorTargetState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUColorTargetState *n = (WGPUColorTargetState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUColorTargetState *n = (WGPUColorTargetState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUColorTargetState);
@@ -5082,7 +5082,7 @@ void WebGPU__Direct__ColorTargetState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUColorTargetState *n = (WGPUColorTargetState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUColorTargetState *n = (WGPUColorTargetState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUColorTargetState);
@@ -5118,7 +5118,7 @@ void WebGPU__Direct__ComputePipelineDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUComputePipelineDescriptor *n = (WGPUComputePipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUComputePipelineDescriptor *n = (WGPUComputePipelineDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUComputePipelineDescriptor);
@@ -5142,7 +5142,7 @@ void WebGPU__Direct__ComputePipelineDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUComputePipelineDescriptor *n = (WGPUComputePipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUComputePipelineDescriptor *n = (WGPUComputePipelineDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUComputePipelineDescriptor);
@@ -5178,7 +5178,7 @@ void WebGPU__Direct__RenderPassDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassDescriptor);
@@ -5204,7 +5204,7 @@ void WebGPU__Direct__RenderPassDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPassDescriptor *n = (WGPURenderPassDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPassDescriptor);
@@ -5243,7 +5243,7 @@ void WebGPU__Direct__VertexState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUVertexState);
@@ -5268,7 +5268,7 @@ void WebGPU__Direct__VertexState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUVertexState *n = (WGPUVertexState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUVertexState);
@@ -5307,7 +5307,7 @@ void WebGPU__Direct__FragmentState__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUFragmentState);
@@ -5332,7 +5332,7 @@ void WebGPU__Direct__FragmentState__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPUFragmentState *n = (WGPUFragmentState *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPUFragmentState);
@@ -5371,7 +5371,7 @@ void WebGPU__Direct__RenderPipelineDescriptor__pack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPipelineDescriptor *n = (WGPURenderPipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPipelineDescriptor *n = (WGPURenderPipelineDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPipelineDescriptor);
@@ -5399,7 +5399,7 @@ void WebGPU__Direct__RenderPipelineDescriptor__unpack( SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  WGPURenderPipelineDescriptor *n = (WGPURenderPipelineDescriptor *) _get_struct_ptr(aTHX, THIS, NULL);
+  WGPURenderPipelineDescriptor *n = (WGPURenderPipelineDescriptor *) _get_struct_ptr(aTHX_ THIS, NULL);
   if ( !n )
   {
     Newxz(n, 1, WGPURenderPipelineDescriptor);

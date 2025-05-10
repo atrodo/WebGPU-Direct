@@ -951,7 +951,7 @@ foreach my $class (@classes)
               SV *THIS
           PROTOTYPE: \$
           CODE:
-              $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+              $type *n = ($type *) _get_struct_ptr(aTHX_ THIS, NULL);
               RETVAL = newSVpvn((const char *const) n, sizeof($type) );
           OUTPUT:
               RETVAL
@@ -976,7 +976,7 @@ foreach my $class (@classes)
       }
 
       HV *h = (HV *)SvRV(THIS);
-      $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+      $type *n = ($type *) _get_struct_ptr(aTHX_ THIS, NULL);
       if ( !n )
       {
         $init_struct;
@@ -999,7 +999,7 @@ foreach my $class (@classes)
       }
 
       HV *h = (HV *)SvRV(THIS);
-      $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+      $type *n = ($type *) _get_struct_ptr(aTHX_ THIS, NULL);
       if ( !n )
       {
         Newxz(n, 1, $type);
@@ -1553,7 +1553,7 @@ sub say_set_fn
         PROTOTYPE: \$;\$
         CODE:
             HV *h = (HV *)SvRV(THIS);
-            $type *n = ($type *) _get_struct_ptr(aTHX, THIS, NULL);
+            $type *n = ($type *) _get_struct_ptr(aTHX_ THIS, NULL);
             RETVAL = $calls{find}
             $mut
 

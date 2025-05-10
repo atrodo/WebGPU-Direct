@@ -1557,7 +1557,7 @@ void WebGPU__Direct__MappedBuffer__unpack(pTHX_ SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  mapped_buffer *n = (mapped_buffer *) _get_struct_ptr(aTHX, THIS, newSVpvs("WebGPU::Direct::MappedBuffer"));
+  mapped_buffer *n = (mapped_buffer *) _get_struct_ptr(aTHX_ THIS, newSVpvs("WebGPU::Direct::MappedBuffer"));
   if ( !n )
   {
     croak("%s: Cannot find Memory Bufffer", "WebGPU::Direct::MappedBuffer");
@@ -1613,7 +1613,7 @@ void WebGPU__Direct__MappedBuffer__pack(pTHX_ SV *THIS )
   }
 
   HV *h = (HV *)SvRV(THIS);
-  mapped_buffer *n = (mapped_buffer *) _get_struct_ptr(aTHX, THIS, newSVpvs("WebGPU::Direct::MappedBuffer"));
+  mapped_buffer *n = (mapped_buffer *) _get_struct_ptr(aTHX_ THIS, newSVpvs("WebGPU::Direct::MappedBuffer"));
   if ( !n )
   {
     croak("%s: Cannot find Memory Bufffer", "WebGPU::Direct::MappedBuffer");
@@ -1703,7 +1703,7 @@ as_string(THIS)
         SV *THIS
     PROTOTYPE: $;
     CODE:
-        WGPUStringView str = *(WGPUStringView *) _get_struct_ptr(aTHX, THIS, newSVpvs("WebGPU::Direct::StringView"));
+        WGPUStringView str = *(WGPUStringView *) _get_struct_ptr(aTHX_ THIS, newSVpvs("WebGPU::Direct::StringView"));
         RETVAL = string_view_to_sv( str );
     OUTPUT:
         RETVAL
@@ -1767,7 +1767,7 @@ new_window_x11(CLASS, xw = 640, yh = 360)
 #ifdef HAS_X11
 #define _DEF_X11 1
         SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceSourceXlibWindow"), NULL );
-        WGPUSurfaceSourceXlibWindow *result = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX, THIS, NULL);
+        WGPUSurfaceSourceXlibWindow *result = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
         if ( ! x11_window(result, xw, yh) )
         {
           Perl_croak(aTHX_ "Could not create an X11 window");
@@ -1794,7 +1794,7 @@ new_window_wayland(CLASS, xw = 640, yh = 360)
 #ifdef HAS_WAYLAND
 #define _DEF_WAYLAND 1
         SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceSourceWaylandSurface"), NULL );
-        WGPUSurfaceSourceWaylandSurface *result = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX, THIS, NULL);
+        WGPUSurfaceSourceWaylandSurface *result = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX_ THIS, NULL);
         if ( ! wayland_window(result, xw, yh) )
         {
           Perl_croak(aTHX_ "Could not create an Wayland window");
