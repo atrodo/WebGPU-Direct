@@ -1825,6 +1825,58 @@ new_window_wayland(CLASS, xw = 640, yh = 360)
 
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
+SV *
+_x11_xlib_display_to_opaque(display)
+        SV *  display
+    PROTOTYPE: $
+    CODE:
+        const char *base = "X11::Xlib::Display";
+        if (!sv_derived_from(display, base) )
+        {
+          croak("Cannot coerce X11 display from %s; not of type %s", SvPVbyte_nolen(display), base);
+        }
+
+        RETVAL = &PL_sv_undef;
+
+        dSP;
+        ENTER;
+        SAVETMPS;
+
+        PUSHMARK(SP);
+        EXTEND(SP, 1);
+        PUSHs(display);
+        PUTBACK;
+
+        int count = call_method("_pointer_value", G_SCALAR);
+
+        SPAGAIN;
+
+        if (count != 1)
+        {
+          croak("Could not call _pointer_value on %s\n", SvPV_nolen(display));
+        }
+
+        SV *pointer_value = SvREFCNT_inc(POPs);
+
+        if ( !SvOK(pointer_value))
+        {
+          croak("Could not get _pointer_value for %s\n", SvPV_nolen(display));
+        }
+
+        if (SvPOK(pointer_value) && SvCUR(pointer_value) == sizeof(void*))
+        {
+          void *opaque = *(void **) SvPVX(pointer_value);
+          RETVAL = _void__wrap(opaque);
+        }
+
+        SvREFCNT_dec(pointer_value);
+        PUTBACK;
+        FREETMPS;
+        LEAVE;
+    OUTPUT:
+        RETVAL
+
+
 BOOT:
 {
   HV *stash = gv_stashpv("WebGPU::Direct::XS", 0);

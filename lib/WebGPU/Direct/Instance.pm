@@ -7,6 +7,51 @@ package WebGPU::Direct::Instance
 
   use Carp;
 
+  my %integrated_win = (
+    'WebGPU::Direct::SurfaceSourceAndroidNativeWindow' => 1,
+    'WebGPU::Direct::SurfaceSourceMetalLayer'          => 1,
+    'WebGPU::Direct::SurfaceSourceWaylandSurface'      => 1,
+    'WebGPU::Direct::SurfaceSourceWindowsHWND'         => 1,
+    'WebGPU::Direct::SurfaceSourceXCBWindow'           => 1,
+    'WebGPU::Direct::SurfaceSourceXlibWindow'          => 1,
+    'X11::Xlib::Window'                                => sub
+    {
+      my $window = shift;
+
+      my $opaque_display = WebGPU::Direct::XS::_x11_xlib_display_to_opaque( $window->display );
+      return WebGPU::Direct::SurfaceSourceXlibWindow->new(
+        {
+          sType   => WebGPU::Direct::SType->surfaceSourceXlibWindow,
+          display => $opaque_display,
+          window  => $window->xid,
+        }
+      );
+    },
+  );
+
+  sub createSurface (
+    $self,
+    $options = undef,
+      )
+  {
+    if ( exists $integrated_win{ ref $options } )
+    {
+      $options = { nextInChain => $options };
+    }
+
+    if ( exists $options->{nextInChain} )
+    {
+      my $next_in_chain = $options->{nextInChain};
+      my $integrate     = $integrated_win{ ref $next_in_chain };
+      if ( ref $integrate eq 'CODE' )
+      {
+        $options->{nextInChain} = $integrate->( $options->{nextInChain} );
+      }
+    }
+
+    return $self->_createSurface($options);
+  }
+
   sub createAdapter (
     $self,
     $options  = undef,

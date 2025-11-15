@@ -5,10 +5,12 @@ use feature 'signatures';
 require Test::More;
 use WebGPU::Direct qw/BufferUsage TextureFormat PrimitiveTopology LoadOp StoreOp/;
 
+my $wgslSource              = join( '', <DATA> );
+
 sub test_frames ( $window, $xw = 10, $yh = 10 )
 {
   my $wgpu    = WebGPU::Direct->new;
-  my $surface = $wgpu->createSurface( { nextInChain => $window } );
+  my $surface = $wgpu->createSurface( $window );
   my $adapter = $wgpu->createAdapter( { compatibleSurface => $surface } );
   my $device  = $adapter->createDevice;
 
@@ -21,7 +23,6 @@ sub test_frames ( $window, $xw = 10, $yh = 10 )
   };
   my $vertexBuffer = $device->createBuffer($vertexDataBufferDescriptor);
 
-  my $wgslSource              = join( '', <DATA> );
   my $shaderModule            = $device->createShaderModule( { code => $wgslSource } );
   my $vertexStageDescriptor   = { module => $shaderModule, entryPoint => 'vsmain' };
   my $fragmentStageDescriptor = {
