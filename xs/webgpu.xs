@@ -979,7 +979,7 @@ MODULE = WebGPU::Direct	PACKAGE = WebGPU::Direct::Instance	PREFIX = wgpuInstance
 
 
 WGPUSurface 
-wgpuInstancecreateSurface(instance, descriptor)
+wgpuInstance_createSurface(instance, descriptor)
         WGPUInstance instance
         WGPUSurfaceDescriptor const * descriptor
     CODE:
@@ -8120,12 +8120,12 @@ code(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUShaderSourceSPIRV *n = (WGPUShaderSourceSPIRV *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "code" is a ptr type uint32_t, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "code", 4,  &n->code, NULL);
+  _find_void(aTHX_ h, "code", 4, (void **) &n->code, NULL);
 
         if (items > 1)
         {
               // "code" is a ptr type uint32_t, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "code", 4,  &n->code, NULL, value);
+  _store_void(aTHX_ h, "code", 4, (void **) &n->code, NULL, value);
 
         }
         else
@@ -9230,12 +9230,12 @@ window(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceAndroidNativeWindow *n = (WGPUSurfaceSourceAndroidNativeWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "window" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "window", 6,  &n->window, NULL);
+  _find_void(aTHX_ h, "window", 6, (void **) &n->window, NULL);
 
         if (items > 1)
         {
               // "window" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "window", 6,  &n->window, NULL, value);
+  _store_void(aTHX_ h, "window", 6, (void **) &n->window, NULL, value);
 
         }
         else
@@ -9311,12 +9311,12 @@ layer(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceMetalLayer *n = (WGPUSurfaceSourceMetalLayer *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "layer" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "layer", 5,  &n->layer, NULL);
+  _find_void(aTHX_ h, "layer", 5, (void **) &n->layer, NULL);
 
         if (items > 1)
         {
               // "layer" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "layer", 5,  &n->layer, NULL, value);
+  _store_void(aTHX_ h, "layer", 5, (void **) &n->layer, NULL, value);
 
         }
         else
@@ -9392,12 +9392,12 @@ display(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "display", 7,  &n->display, NULL);
+  _find_void(aTHX_ h, "display", 7, (void **) &n->display, NULL);
 
         if (items > 1)
         {
               // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "display", 7,  &n->display, NULL, value);
+  _store_void(aTHX_ h, "display", 7, (void **) &n->display, NULL, value);
 
         }
         else
@@ -9418,12 +9418,12 @@ surface(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceWaylandSurface *n = (WGPUSurfaceSourceWaylandSurface *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "surface" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "surface", 7,  &n->surface, NULL);
+  _find_void(aTHX_ h, "surface", 7, (void **) &n->surface, NULL);
 
         if (items > 1)
         {
               // "surface" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "surface", 7,  &n->surface, NULL, value);
+  _store_void(aTHX_ h, "surface", 7, (void **) &n->surface, NULL, value);
 
         }
         else
@@ -9499,12 +9499,12 @@ hinstance(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "hinstance" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "hinstance", 9,  &n->hinstance, NULL);
+  _find_void(aTHX_ h, "hinstance", 9, (void **) &n->hinstance, NULL);
 
         if (items > 1)
         {
               // "hinstance" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "hinstance", 9,  &n->hinstance, NULL, value);
+  _store_void(aTHX_ h, "hinstance", 9, (void **) &n->hinstance, NULL, value);
 
         }
         else
@@ -9525,12 +9525,12 @@ hwnd(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceWindowsHWND *n = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "hwnd" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "hwnd", 4,  &n->hwnd, NULL);
+  _find_void(aTHX_ h, "hwnd", 4, (void **) &n->hwnd, NULL);
 
         if (items > 1)
         {
               // "hwnd" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "hwnd", 4,  &n->hwnd, NULL, value);
+  _store_void(aTHX_ h, "hwnd", 4, (void **) &n->hwnd, NULL, value);
 
         }
         else
@@ -9606,12 +9606,12 @@ connection(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceXCBWindow *n = (WGPUSurfaceSourceXCBWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "connection" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "connection", 10,  &n->connection, NULL);
+  _find_void(aTHX_ h, "connection", 10, (void **) &n->connection, NULL);
 
         if (items > 1)
         {
               // "connection" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "connection", 10,  &n->connection, NULL, value);
+  _store_void(aTHX_ h, "connection", 10, (void **) &n->connection, NULL, value);
 
         }
         else
@@ -9711,12 +9711,12 @@ display(THIS, value = NO_INIT)
         HV *h = (HV *)SvRV(THIS);
         WGPUSurfaceSourceXlibWindow *n = (WGPUSurfaceSourceXlibWindow *) _get_struct_ptr(aTHX_ THIS, NULL);
         RETVAL =   // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _find_void(aTHX_ h, "display", 7,  &n->display, NULL);
+  _find_void(aTHX_ h, "display", 7, (void **) &n->display, NULL);
 
         if (items > 1)
         {
               // "display" is a ptr type void, and that's not quite right yet, using opaque
-  _store_void(aTHX_ h, "display", 7,  &n->display, NULL, value);
+  _store_void(aTHX_ h, "display", 7, (void **) &n->display, NULL, value);
 
         }
         else

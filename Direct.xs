@@ -1071,10 +1071,10 @@ void _store_opaque(pTHX_ HV *h, const char *key, I32 klen, void **field, SV* bas
    void
    ------------------------------------------------------------------ */
 
-void _set_void(pTHX_ SV *new_value, void *field)
+void _set_void(pTHX_ SV *new_value, void **field)
 {
   void *v = SvOK(new_value) ? _get_struct_ptr(aTHX_ new_value, newSVpvs("WebGPU::Direct::Opaque")) : NULL;
-  field = v;
+  *field = v;
 }
 
 int _mg_set_void(pTHX_ SV* sv, MAGIC* mg)
@@ -1087,7 +1087,7 @@ STATIC MGVTBL _mg_vtbl_void = {
   .svt_set = _mg_set_void
 };
 
-SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
+SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
 {
   SV **f = NULL;
 
@@ -1114,12 +1114,12 @@ SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
     SV *val = _void__wrap(*field);
     f = nn_hv_store(aTHX_ h, key, klen, val, &PL_sv_undef);
   }
-  SvIV_set(SvRV(*f), (IV)field);
+  SvIV_set(SvRV(*f), (IV)*field);
 
   return *f;
 }
 
-SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
+SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
 {
   SV **f;
   SV *fp;
@@ -1145,7 +1145,7 @@ SV *_pack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
-SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
+SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base)
 {
   SV **f;
 
@@ -1166,7 +1166,7 @@ SV *_find_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
   return *f;
 }
 
-void _store_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base, SV *value)
+void _store_void(pTHX_ HV *h, const char *key, I32 klen, void **field, SV *base, SV *value)
 {
   SV **f = nn_hv_store(aTHX_ h, key, klen, value, &PL_sv_undef);
 
@@ -1753,6 +1753,17 @@ buffer(THIS, value = NULL)
     PROTOTYPE: $;$
     CODE:
         RETVAL = WebGPU__Direct__MappedBuffer_buffer( aTHX_ THIS, value );
+    OUTPUT:
+        RETVAL
+
+MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::Opaque        PREFIX = wgpu
+
+SV *
+__wrap(val)
+        IV    val
+    PROTOTYPE: $
+    CODE:
+        RETVAL = _void__wrap((void *)val);
     OUTPUT:
         RETVAL
 

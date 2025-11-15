@@ -1477,6 +1477,7 @@ sub calls_for
     $result{set}    .= $warning;
 
     $typedef = 'void';
+    $cast    = '(void **)';
   }
 
   my $c_prefix = $def{c_prefix} // '';
