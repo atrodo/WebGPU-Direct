@@ -4,6 +4,11 @@ use WebGPU::Direct;
 
 if ( !WebGPU::Direct::XS::HAS_WAYLAND )
 {
+  plan skip_all => 'Test requires Wayland';
+}
+
+if ( !eval { WebGPU::Direct->new_window_wayland( 10, 10 ) } )
+{
   plan skip_all => 'Test requires working Wayland';
 }
 
