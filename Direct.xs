@@ -94,10 +94,11 @@ SV **nn_av_store(pTHX_ AV *h, const Size_t idx, SV *obj, SV *base)
 
 SV *_void__wrap( const void *n )
 {
-  SV *h = newSViv( *(IV *)n);
+  IV opaque = (IV)n;
+  SV *h = newSViv( opaque );
   SV *RETVAL = sv_2mortal(newRV(h));
 
-  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)n, 0);
+  sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)opaque, 0);
   sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::Opaque", GV_ADD));
   return SvREFCNT_inc(RETVAL);
 }
@@ -1110,7 +1111,7 @@ SV *_unpack_void(pTHX_ HV *h, const char *key, I32 klen, void *field, SV *base)
 
   if ( n == NULL || n != field )
   {
-    SV *val = _void__wrap(field);
+    SV *val = _void__wrap(*field);
     f = nn_hv_store(aTHX_ h, key, klen, val, &PL_sv_undef);
   }
   SvIV_set(SvRV(*f), (IV)field);
