@@ -29,6 +29,8 @@ package WebGPU::Direct::Instance
     },
   );
 
+  my $desc_class = WebGPU::Direct::SurfaceDescriptor;
+
   sub createSurface (
     $self,
     $options = undef,
@@ -39,6 +41,11 @@ package WebGPU::Direct::Instance
       $options = { nextInChain => $options };
     }
 
+    if ( ref $options ne 'HASH' && ref $options ne $desc_class )
+    {
+      croak "createSurface requires a SurfaceDescriptor or compatible native window";
+    }
+
     if ( exists $options->{nextInChain} )
     {
       my $next_in_chain = $options->{nextInChain};
@@ -47,6 +54,11 @@ package WebGPU::Direct::Instance
       {
         $options->{nextInChain} = $integrate->( $options->{nextInChain} );
       }
+    }
+
+    if ( ref $options eq 'HASH' )
+    {
+      $options = WebGPU::Direct::SurfaceDescriptor->new($options);
     }
 
     return $self->_createSurface($options);
