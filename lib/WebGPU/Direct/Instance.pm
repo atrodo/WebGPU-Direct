@@ -27,6 +27,19 @@ package WebGPU::Direct::Instance
         }
       );
     },
+    'X11::XCB::Window' => sub
+    {
+      my $window = shift;
+
+      my $opaque_conn = WebGPU::Direct::XS::_x11_xcb_conn_to_opaque( $window->_conn );
+      return WebGPU::Direct::SurfaceSourceXCBWindow->new(
+        {
+          sType      => WebGPU::Direct::SType->surfaceSourceXCBWindow,
+          connection => $opaque_conn,
+          window     => $window->id,
+        }
+      );
+    },
   );
 
   my $desc_class = WebGPU::Direct::SurfaceDescriptor;

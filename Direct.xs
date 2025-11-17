@@ -100,6 +100,7 @@ SV *_void__wrap( const void *n )
 
   sv_magicext((SV *)h, NULL, PERL_MAGIC_ext, NULL, (const char *)opaque, 0);
   sv_bless(RETVAL, gv_stashpv("WebGPU::Direct::Opaque", GV_ADD));
+
   return SvREFCNT_inc(RETVAL);
 }
 
@@ -1870,6 +1871,50 @@ _x11_xlib_display_to_opaque(display)
         }
 
         SvREFCNT_dec(pointer_value);
+        PUTBACK;
+        FREETMPS;
+        LEAVE;
+    OUTPUT:
+        RETVAL
+
+SV *
+_x11_xcb_conn_to_opaque(conn)
+        SV *  conn
+    PROTOTYPE: $
+    CODE:
+        const char *base = "X11::XCB::Connection";
+        if (!sv_derived_from(conn, base) )
+        {
+          croak("Cannot coerce XCB connection from %s; not of type %s", SvPVbyte_nolen(conn), base);
+        }
+
+        RETVAL = &PL_sv_undef;
+
+        dSP;
+        ENTER;
+        SAVETMPS;
+
+        PUSHMARK(SP);
+        EXTEND(SP, 1);
+        PUSHs(conn);
+        PUTBACK;
+
+        int count = call_method("get_xcb_conn", G_SCALAR);
+
+        SPAGAIN;
+
+        if (count != 1)
+        {
+          croak("Could not call get_xcb_conn on %s\n", SvPV_nolen(conn));
+        }
+
+        IV conn_value = POPi;
+
+        if (conn_value)
+        {
+          RETVAL = _void__wrap((void *)conn_value);
+        }
+
         PUTBACK;
         FREETMPS;
         LEAVE;
