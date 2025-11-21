@@ -697,7 +697,7 @@ void _set_objarray(pTHX_ SV *new_value, void **field, Size_t *cntField, Size_t s
 
   void *v = _get_struct_ptr(aTHX_ new_value, base);
   *field = v;
-  *cntField = av_count(SvRV(new_value));
+  *cntField = av_count((AV *)SvRV(new_value));
 }
 
 SV *_unpack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t *cntField, Size_t size, SV* base)
@@ -1490,7 +1490,7 @@ _setup_x(uint16_t, uint16_t *, newSViv(*field));
    uint32_t
    ------------------------------------------------------------------ */
 
-SV *_set_uint32_t(pTHX_ SV *new_value, U32 *field, SV *base)
+SV *_set_uint32_t(pTHX_ SV *new_value, uint32_t *field, SV *base)
 {
   U32 v = (U32)SvIV(new_value);
   *field = v;
@@ -1516,7 +1516,7 @@ _setup_x(uint64_t, uint64_t *, newSViv(*field));
    int32_t
    ------------------------------------------------------------------ */
 
-SV *_set_int32_t(pTHX_ SV *new_value, I32 *field, SV *base)
+SV *_set_int32_t(pTHX_ SV *new_value, int32_t *field, SV *base)
 {
   I32 v = (I32)SvIV(new_value);
   *field = v;
