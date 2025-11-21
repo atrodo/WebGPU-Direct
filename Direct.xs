@@ -834,6 +834,7 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
   arr = _get_struct_ptr(aTHX_ *f, array_base);
   AV *out_objs = (AV *)SvRV(*f);
 
+  void *old_arr = arr;
   if ( arr != NULL )
   {
     Renew(arr, (count+1) * size, char);
@@ -884,8 +885,19 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
       {
         if ( old_ptr != new_ptr )
         {
+          ptrdiff_t offset_in_old_arr = ((char *)old_ptr) - ((char *)old_arr);
+          bool was_in_old_arr = (old_arr != NULL &&
+                                 offset_in_old_arr >= 0 &&
+                                 offset_in_old_arr <= (count * size));
+
           // TODO: object should probably be duplicated (if refcnt is minimal?)
-          Copy(old_ptr, new_ptr, size, char);
+          // TODO: how does this inteact when an item is moved in the array?
+          // Don't copy/free if the array was reallocated with Renew above
+          if ( !was_in_old_arr )
+          {
+            Copy(old_ptr, new_ptr, size, char);
+            Safefree(old_ptr);
+          }
 
           MAGIC *mg = _get_mg(aTHX_ *f, base);
           if ( mg == NULL )
@@ -896,7 +908,6 @@ SV *_pack_objarray(pTHX_ HV *h, const char *key, I32 klen, void **field, Size_t 
           {
             mg->mg_ptr = new_ptr;
           }
-          Safefree(old_ptr);
         }
       }
       else
