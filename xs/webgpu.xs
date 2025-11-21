@@ -1013,7 +1013,7 @@ wgpuInstancehasWGSLLanguageFeature(instance, feature)
 
 
 void 
-wgpuInstanceprocessEvents(instance)
+wgpuInstance_processEvents(instance)
         WGPUInstance instance
     CODE:
       wgpuInstanceProcessEvents(instance);

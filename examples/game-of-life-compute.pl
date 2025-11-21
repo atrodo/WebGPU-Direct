@@ -250,6 +250,8 @@ sub resetGameData
   $loopTimes = 0;
   $render    = sub
   {
+    $wgpu->processEvents;
+
     my $currentTexture = $context->getCurrentTexture;
     my $view           = $currentTexture->texture->createView();
     my $renderPass     = {

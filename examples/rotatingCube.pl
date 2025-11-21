@@ -207,6 +207,7 @@ my $start  = time;
 my $frames = 1000;
 for ( 1 .. $frames )
 {
+  $wgpu->processEvents;
   frame();
 }
 

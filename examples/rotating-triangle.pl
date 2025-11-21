@@ -149,6 +149,8 @@ my $start  = time;
 my $frames = 1000;
 for ( 1 .. 1000 )
 {
+  $wgpu->processEvents;
+
   # GPURenderPassDescriptor
   my $renderPassDescriptor = { colorAttachments => [$colorAttachmentDescriptor] };
 

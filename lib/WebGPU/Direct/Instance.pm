@@ -6,6 +6,9 @@ package WebGPU::Direct::Instance
   use feature 'signatures';
 
   use Carp;
+  use Scalar::Util qw/reftype/;
+
+  my %_processEvents;
 
   my %integrated_win = (
     'WebGPU::Direct::SurfaceSourceAndroidNativeWindow' => 1,
@@ -67,6 +70,15 @@ package WebGPU::Direct::Instance
       {
         $options->{nextInChain} = $integrate->( $options->{nextInChain} );
       }
+
+      if ( reftype $next_in_chain eq 'HASH'
+        && exists $next_in_chain->{processEvents}
+        && ref $next_in_chain->{processEvents} eq 'CODE' )
+      {
+        $next_in_chain->{processEvents}->();
+        $_processEvents{$$self} //= [];
+        push $_processEvents{$$self}->@*, $next_in_chain->{processEvents};
+      }
     }
 
     if ( ref $options eq 'HASH' )
@@ -119,6 +131,18 @@ package WebGPU::Direct::Instance
     }
 
     return $adapter;
+  }
+
+  sub processEvents ($self)
+  {
+    if ( $_processEvents{$$self} )
+    {
+      foreach my $pe ( $_processEvents{$$self}->@* )
+      {
+        $pe->();
+      }
+    }
+    return $self->_processEvents;
   }
 };
 
