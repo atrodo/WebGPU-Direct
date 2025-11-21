@@ -75,18 +75,31 @@ sub is_lib
 {
   my $lib = shift;
 
+  if ( $^O eq 'MSWin32' )
+  {
+    my $lib_dll = "$lib.dll";
+    my ($extra) = ExtUtils::Liblist->ext("$addl_L -l$lib_dll");
+    $extra =~ s/\Q$EXTRALIBS//;
+
+    return $lib_dll
+      if $extra;
+  }
+
   my ($extra) = ExtUtils::Liblist->ext("$addl_L -l$lib");
   $extra =~ s/\Q$EXTRALIBS//;
 
-  return !!$extra;
+  return $lib
+    if $extra;
+
+  return;
 }
 
 my @tests = qw/wgpu_native dawn_native/;
 for my $wgpu_test (@tests)
 {
-  if ( is_lib($wgpu_test) )
+  if ( my $lib = is_lib($wgpu_test) )
   {
-    $wgpu = $wgpu_test;
+    $wgpu = $lib;
     last;
   }
 }
@@ -100,7 +113,8 @@ if ( !$wgpu )
   if ($wgpu)
   {
     $addl_L = "-L$addl_search -L$addl_search/../../lib";
-    if ( !is_lib($wgpu) )
+    $wgpu = is_lib($wgpu);
+    if ( !$wgpu )
     {
       die "Could not download and use $wgpu successfully";
     }
@@ -138,13 +152,15 @@ if ( is_lib('wayland-client') && qx/pkg-config --version 2>&1/ )
   }
 }
 
+if ( $^O eq 'MSWin32' )
+{
+  push @defines, '-DHAS_WIN32';
+}
+
 $WriteMakefileArgs{LIBS}   = "$addl_L -l$wgpu @libs";
 $WriteMakefileArgs{DEFINE} = "@defines";
 $WriteMakefileArgs{INC}    = "-I$addl_search/.."
     if $addl_search;
-
-# vim: syntax=perl
-
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
   delete $WriteMakefileArgs{TEST_REQUIRES};
@@ -156,3 +172,5 @@ delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
   unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
 
 WriteMakefile(%WriteMakefileArgs);
+
+# vim: syntax=perl

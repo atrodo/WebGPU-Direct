@@ -54,6 +54,13 @@ sub new_window (
     return $result
         if $result;
   }
+  if (WebGPU::Direct::XS::HAS_WIN32)
+  {
+    local $@;
+    my $result = eval { $class->new_window_win32( $xw, $yh ); };
+    return $result
+        if $result;
+  }
 
   croak "Could not find a usable windowing system";
 }

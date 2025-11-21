@@ -20,7 +20,7 @@ if ($os)
 
   require Config;
   my $archname = $Config::Config{archname};
-  my $isx86    = $archname =~ m/(x86_64|amd64|i.86)/ ? 1 : 0;
+  my $isx86    = $archname =~ m/(x86_64|amd64|i.86|-x64-)/ ? 1 : 0;
   my $isarm    = $archname =~ m/(aarch64|arm64)/ ? 1 : 0;
   my $bits64   = $Config::Config{ptrsize} == 8;
 
@@ -45,6 +45,12 @@ if ($os)
           = $isarm  ? 'aarch64'
           : $bits64 ? 'x86_64'
           :           'i686';
+
+      if ( $os eq 'windows' )
+      {
+        $arch .= '-msvc';
+      }
+
       my $url = "$repo/$dnld/$version/wgpu-$os-$arch-release.zip";
 
       require File::Fetch;

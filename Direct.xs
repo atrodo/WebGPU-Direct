@@ -1704,6 +1704,7 @@ SV *WebGPU__Direct__MappedBuffer__wrap(pTHX_ const char * buffer, Size_t size)
 #include "xs/webgpu_wrap.c"
 #include "xs/x11.c"
 #include "xs/wayland.c"
+#include "xs/win32.c"
 
 MODULE = WebGPU::Direct         PACKAGE = WebGPU::Direct::XS            PREFIX = wgpu
 
@@ -1797,7 +1798,6 @@ new_window_x11(CLASS, xw = 640, yh = 360)
           Perl_croak(aTHX_ "Could not create an X11 window");
         }
 
-        SV *h = SvRV(THIS);
         _unpack(THIS);
 
         RETVAL = THIS;
@@ -1824,13 +1824,49 @@ new_window_wayland(CLASS, xw = 640, yh = 360)
           Perl_croak(aTHX_ "Could not create an Wayland window");
         }
 
-        SV *h = SvRV(THIS);
         _unpack(THIS);
 
         RETVAL = THIS;
 #else
 #define _DEF_WAYLAND 0
         Perl_croak(aTHX_ "Cannot create Wayland window: Wayland not found");
+#endif
+    OUTPUT:
+        RETVAL
+
+WebGPU::Direct::SurfaceSourceWindowsHWND
+new_window_win32(CLASS, xw = 640, yh = 360)
+        SV *  CLASS
+        int   xw
+        int   yh
+    PROTOTYPE: $
+    CODE:
+#ifdef HAS_WIN32
+#define _DEF_WIN32 1
+        SV *THIS = _new( newSVpvs("WebGPU::Direct::SurfaceSourceWindowsHWND"), NULL );
+        CV *pec = NULL;
+        WGPUSurfaceSourceWindowsHWND *result = (WGPUSurfaceSourceWindowsHWND *) _get_struct_ptr(aTHX_ THIS, NULL);
+        if ( ! win32_window(result, &pec, xw, yh) )
+        {
+          Perl_croak(aTHX_ "Could not create an win32 window");
+        }
+
+        _unpack(THIS);
+
+        if ( pec )
+        {
+          SV *cv_ref = SvREFCNT_inc(newRV((SV *)pec));
+          SV **f = hv_stores((HV *)SvRV(THIS), "processEvents", cv_ref);
+          if ( !f )
+          {
+            SvREFCNT_dec(cv_ref);
+            croak("Could not save processEvents value to object");
+          }
+        }
+        RETVAL = THIS;
+#else
+#define _DEF_WIN32 0
+        Perl_croak(aTHX_ "Cannot create win32 window: win32 not found");
 #endif
     OUTPUT:
         RETVAL
@@ -1939,5 +1975,6 @@ BOOT:
 
   newCONSTSUB(stash, "HAS_X11", newSViv(_DEF_X11));
   newCONSTSUB(stash, "HAS_WAYLAND", newSViv(_DEF_WAYLAND));
+  newCONSTSUB(stash, "HAS_WIN32", newSViv(_DEF_WIN32));
 }
 
