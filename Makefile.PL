@@ -155,6 +155,19 @@ if ( is_lib('wayland-client') && qx/pkg-config --version 2>&1/ )
 if ( $^O eq 'MSWin32' )
 {
   push @defines, '-DHAS_WIN32';
+
+  *MY::postamble = sub
+  {
+    my $dll_cp = File::Spec->catdir( $addl_search,          '..', '..', 'lib', $wgpu );
+    my $dll_to = File::Spec->catdir( '$(INST_ARCHAUTODIR)', $wgpu );
+    return join(
+      "\n",
+      "dynamic :: $dll_cp",
+      "\t\$(CP_NONEMPTY) $dll_cp $dll_to \$(PERM_RWX)"
+
+          #cp myexternal_lib.so $(INSTALLSITELIB)/auto/Your/Module/
+    );
+  }
 }
 
 $WriteMakefileArgs{LIBS}   = "$addl_L -l$wgpu @libs";
