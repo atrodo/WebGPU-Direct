@@ -60,6 +60,8 @@ sub test_frames ( $window, $xw = 10, $yh = 10 )
 
   for ( 0 .. 1 )
   {
+    $wgpu->processEvents;
+
     # GPURenderPassDescriptor
     my $renderPassDescriptor = { colorAttachments => [$colorAttachmentDescriptor] };
 
@@ -68,6 +70,8 @@ sub test_frames ( $window, $xw = 10, $yh = 10 )
 
     # GPURenderPassEncoder
     $currentTexture = $surface->getCurrentTexture;
+    use Data::Dumper;
+    warn Data::Dumper::Dumper($currentTexture, $wgpu);
     $colorAttachmentDescriptor->{view} = $currentTexture->texture->createView;
     my $renderPassEncoder = $commandEncoder->beginRenderPass($renderPassDescriptor);
 
